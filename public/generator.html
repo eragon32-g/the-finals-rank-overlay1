@@ -16,7 +16,7 @@
       padding: 24px;
     }
     .card {
-      width: min(760px, 100%);
+      width: min(800px, 100%);
       background: #15151b;
       border: 1px solid rgba(255,255,255,.12);
       border-radius: 18px;
@@ -62,7 +62,7 @@
 <body>
   <main class="card">
     <h1>THE FINALS Overlay Generator</h1>
-    <p class="hint">Usa Manuale per chi non è nella leaderboard pubblica. Il risultato crea un link da incollare in OBS o TikTok LIVE Studio.</p>
+    <p class="hint">V7: ora puoi scegliere lo stemma preciso: Bronze IV, III, II, I fino a Diamond I e Ruby. Così non resta sempre sull'icona con il numero 1.</p>
 
     <div class="grid">
       <label>
@@ -79,26 +79,29 @@
       </label>
 
       <label>
-        Lega
-        <select id="league">
-          <option>Bronze</option>
-          <option>Silver</option>
-          <option>Gold</option>
-          <option selected>Platinum</option>
-          <option>Diamond</option>
-          <option>Ruby</option>
-          <option>Unranked</option>
-        </select>
-      </label>
-
-      <label>
-        Divisione
-        <select id="division">
-          <option value="">Nessuna</option>
-          <option selected>I</option>
-          <option>II</option>
-          <option>III</option>
-          <option>IV</option>
+        Rank da mostrare
+        <select id="badgeFile">
+          <option value="bronze-4">Bronze IV</option>
+          <option value="bronze-3">Bronze III</option>
+          <option value="bronze-2">Bronze II</option>
+          <option value="bronze-1">Bronze I</option>
+          <option value="silver-4">Silver IV</option>
+          <option value="silver-3">Silver III</option>
+          <option value="silver-2">Silver II</option>
+          <option value="silver-1">Silver I</option>
+          <option value="gold-4">Gold IV</option>
+          <option value="gold-3">Gold III</option>
+          <option value="gold-2">Gold II</option>
+          <option value="gold-1">Gold I</option>
+          <option value="platinum-4">Platinum IV</option>
+          <option value="platinum-3">Platinum III</option>
+          <option value="platinum-2">Platinum II</option>
+          <option value="platinum-1">Platinum I</option>
+          <option value="diamond-4">Diamond IV</option>
+          <option value="diamond-3">Diamond III</option>
+          <option value="diamond-2">Diamond II</option>
+          <option value="diamond-1">Diamond I</option>
+          <option value="ruby">Ruby</option>
         </select>
       </label>
 
@@ -108,36 +111,23 @@
       </label>
 
       <label>
-        Stemma
-        <select id="badge">
-          <option value="bronze">Bronze</option>
-          <option value="silver">Silver</option>
-          <option value="gold">Gold</option>
-          <option value="platinum" selected>Platinum</option>
-          <option value="diamond">Diamond</option>
-          <option value="ruby">Ruby</option>
-          <option value="unranked">Unranked</option>
-        </select>
-      </label>
-
-      <label>
         Colore testo
-        <input id="textColor" value="ff0015ff" />
+        <input id="textColor" value="ffffffff" />
       </label>
 
       <label>
         Colore bordo
-        <input id="borderColor" value="d0021bff" />
+        <input id="borderColor" value="8d95a0ff" />
       </label>
 
       <label>
         Sfondo
-        <input id="backgroundColor" value="000000ff" />
+        <input id="backgroundColor" value="101116ee" />
       </label>
 
       <label>
         Spessore bordo
-        <input id="borderWidth" value="5" inputmode="numeric" />
+        <input id="borderWidth" value="2" inputmode="numeric" />
       </label>
 
       <textarea id="output" readonly></textarea>
@@ -150,18 +140,44 @@
   <script>
     const get = (id) => document.getElementById(id);
 
+    const rankMap = {
+      "bronze-4": ["Bronze", "IV"],
+      "bronze-3": ["Bronze", "III"],
+      "bronze-2": ["Bronze", "II"],
+      "bronze-1": ["Bronze", "I"],
+      "silver-4": ["Silver", "IV"],
+      "silver-3": ["Silver", "III"],
+      "silver-2": ["Silver", "II"],
+      "silver-1": ["Silver", "I"],
+      "gold-4": ["Gold", "IV"],
+      "gold-3": ["Gold", "III"],
+      "gold-2": ["Gold", "II"],
+      "gold-1": ["Gold", "I"],
+      "platinum-4": ["Platinum", "IV"],
+      "platinum-3": ["Platinum", "III"],
+      "platinum-2": ["Platinum", "II"],
+      "platinum-1": ["Platinum", "I"],
+      "diamond-4": ["Diamond", "IV"],
+      "diamond-3": ["Diamond", "III"],
+      "diamond-2": ["Diamond", "II"],
+      "diamond-1": ["Diamond", "I"],
+      "ruby": ["Ruby", ""]
+    };
+
     function buildLink() {
       const url = new URL(window.location.origin + "/");
       const mode = get("mode").value;
       const player = get("player").value.trim();
+      const badgeFile = get("badgeFile").value;
+      const [league, division] = rankMap[badgeFile] || ["Unranked", ""];
 
       if (mode === "manual") {
         url.searchParams.set("mode", "manual");
         url.searchParams.set("player", player);
-        url.searchParams.set("league", get("league").value);
-        url.searchParams.set("division", get("division").value);
+        url.searchParams.set("league", league);
+        url.searchParams.set("division", division);
         url.searchParams.set("rankScore", get("rankScore").value.trim());
-        url.searchParams.set("badge", get("badge").value);
+        url.searchParams.set("badgeFile", badgeFile);
       } else {
         if (player.includes("#")) {
           const [name, number] = player.split("#");

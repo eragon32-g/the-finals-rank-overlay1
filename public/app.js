@@ -12,6 +12,15 @@ const params = new URLSearchParams(window.location.search);
 
 const EMBARK_BADGE_BASE = "https://id.embark.games/images/leaderboards/leagues/";
 
+const ALLOWED_BADGE_FILES = new Set([
+  "bronze-4", "bronze-3", "bronze-2", "bronze-1",
+  "silver-4", "silver-3", "silver-2", "silver-1",
+  "gold-4", "gold-3", "gold-2", "gold-1",
+  "platinum-4", "platinum-3", "platinum-2", "platinum-1",
+  "diamond-4", "diamond-3", "diamond-2", "diamond-1",
+  "ruby"
+]);
+
 const LEAGUE_NUMBER_TO_FILE = [
   "",
   "bronze-4.png",
@@ -59,9 +68,9 @@ function normalizeHexColor(value, fallback) {
 
 function applyColors() {
   const textColor = normalizeHexColor(params.get("textColor"), "#ffffff");
-  const backgroundColor = normalizeHexColor(params.get("backgroundColor"), "rgba(0,0,0,0.88)");
-  const borderColor = normalizeHexColor(params.get("borderColor"), "#d0021b");
-  const borderWidth = Number(params.get("borderWidth") || 5);
+  const backgroundColor = normalizeHexColor(params.get("backgroundColor"), "rgba(15,16,20,0.93)");
+  const borderColor = normalizeHexColor(params.get("borderColor"), "#8d95a0");
+  const borderWidth = Number(params.get("borderWidth") || 2);
 
   document.documentElement.style.setProperty("--text-color", textColor);
   document.documentElement.style.setProperty("--background-color", backgroundColor);
@@ -107,13 +116,13 @@ function baseLeague(league) {
   return "unranked";
 }
 
-function divisionToNumber(divisionOrLeague) {
+function romanToFileDivision(divisionOrLeague) {
   const clean = String(divisionOrLeague || "").toLowerCase().trim();
 
-  if (clean === "1" || clean.includes(" i") || clean.endsWith("i") || clean.includes("division 1")) return "1";
-  if (clean === "2" || clean.includes(" ii") || clean.endsWith("ii") || clean.includes("division 2")) return "2";
-  if (clean === "3" || clean.includes(" iii") || clean.endsWith("iii") || clean.includes("division 3")) return "3";
-  if (clean === "4" || clean.includes(" iv") || clean.endsWith("iv") || clean.includes("division 4")) return "4";
+  if (clean === "i" || clean === "1" || clean.endsWith(" i") || clean.includes("division 1")) return "1";
+  if (clean === "ii" || clean === "2" || clean.endsWith(" ii") || clean.includes("division 2")) return "2";
+  if (clean === "iii" || clean === "3" || clean.endsWith(" iii") || clean.includes("division 3")) return "3";
+  if (clean === "iv" || clean === "4" || clean.endsWith(" iv") || clean.includes("division 4")) return "4";
 
   return "";
 }
@@ -129,7 +138,19 @@ function iconFromLeague(league) {
   return "TF";
 }
 
-function getOfficialBadgeFile({ league, division, badge, leagueNumber }) {
+function sanitizeBadgeFile(value) {
+  const clean = String(value || "")
+    .toLowerCase()
+    .replace(".png", "")
+    .replace(/[^a-z0-9-]/g, "");
+
+  return ALLOWED_BADGE_FILES.has(clean) ? clean : "";
+}
+
+function getOfficialBadgeFile({ league, division, badge, badgeFile, leagueNumber }) {
+  const exactFile = sanitizeBadgeFile(badgeFile);
+  if (exactFile) return `${exactFile}.png`;
+
   const number = Number(leagueNumber);
   if (Number.isInteger(number) && LEAGUE_NUMBER_TO_FILE[number]) {
     return LEAGUE_NUMBER_TO_FILE[number];
@@ -139,7 +160,7 @@ function getOfficialBadgeFile({ league, division, badge, leagueNumber }) {
   if (cleanBadge === "ruby") return "ruby.png";
   if (cleanBadge === "unranked") return "";
 
-  const div = divisionToNumber(division || league) || "1";
+  const div = romanToFileDivision(division || league) || "1";
   return `${cleanBadge}-${div}.png`;
 }
 
@@ -159,11 +180,11 @@ async function imageExists(src) {
   });
 }
 
-async function setBadgeVisual({ league, division, forcedBadge, leagueNumber }) {
-  const officialUrl = getOfficialBadgeUrl({ league, division, badge: forcedBadge, leagueNumber });
-  const badgeName = String(forcedBadge || baseLeague(league)).toLowerCase().replace(/[^a-z0-9_-]/g, "");
-  const localPng = `/assets/badges/${badgeName}.png`;
-  const localSvg = `/assets/badges/${badgeName}.svg`;
+async function setBadgeVisual({ league, division, forcedBadge, badgeFile, leagueNumber }) {
+  const officialUrl = getOfficialBadgeUrl({ league, division, badge: forcedBadge, badgeFile, leagueNumber });
+  const fallbackName = sanitizeBadgeFile(badgeFile) || String(forcedBadge || baseLeague(league)).toLowerCase().replace(/[^a-z0-9_-]/g, "");
+  const localPng = `/assets/badges/${fallbackName}.png`;
+  const localSvg = `/assets/badges/${fallbackName}.svg`;
 
   badgeImage.classList.add("hidden");
   rankIcon.classList.remove("hidden");
@@ -233,6 +254,7 @@ async function setData(data, status = "LIVE") {
     league,
     division,
     forcedBadge: data.badge,
+    badgeFile: data.badgeFile,
     leagueNumber: data.leagueNumber,
   });
 }
@@ -245,9 +267,10 @@ async function loadManual() {
   const rankScore = params.get("rankScore") || params.get("score") || "0";
   const rank = params.get("rank") || "";
   const badge = params.get("badge") || baseLeague(leagueBase);
+  const badgeFile = params.get("badgeFile") || "";
   const leagueNumber = params.get("leagueNumber") || "";
 
-  await setData({ player, league, division, rankScore, rank, badge, leagueNumber }, "MANUAL");
+  await setData({ player, league, division, rankScore, rank, badge, badgeFile, leagueNumber }, "MANUAL");
 }
 
 async function loadAuto() {
