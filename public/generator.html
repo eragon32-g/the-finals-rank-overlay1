@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generator THE FINALS Overlay</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0b0f;
+      color: white;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .card {
+      width: min(760px, 100%);
+      background: #15151b;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+    h1 { margin-top: 0; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    label { display: grid; gap: 6px; font-weight: 700; font-size: 14px; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 12px;
+      background: #0d0d12;
+      color: white;
+      padding: 12px;
+      font-size: 15px;
+    }
+    textarea { min-height: 94px; resize: vertical; grid-column: 1 / -1; }
+    button {
+      border: 0;
+      border-radius: 12px;
+      background: #ff1f35;
+      color: white;
+      padding: 13px 18px;
+      font-weight: 900;
+      cursor: pointer;
+      margin-top: 14px;
+    }
+    .hint {
+      color: rgba(255,255,255,.68);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .full { grid-column: 1 / -1; }
+    @media (max-width: 650px) { .grid { grid-template-columns: 1fr; } .full { grid-column: auto; } }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>THE FINALS Overlay Generator</h1>
+    <p class="hint">Usa Manuale per chi non è nella leaderboard pubblica. Il risultato crea un link da incollare in OBS o TikTok LIVE Studio.</p>
+
+    <div class="grid">
+      <label>
+        Modalità
+        <select id="mode">
+          <option value="auto">Automatica leaderboard</option>
+          <option value="manual">Manuale</option>
+        </select>
+      </label>
+
+      <label>
+        Player / Embark ID
+        <input id="player" value="erdragon32#2577" />
+      </label>
+
+      <label>
+        Lega
+        <select id="league">
+          <option>Bronze</option>
+          <option>Silver</option>
+          <option>Gold</option>
+          <option selected>Platinum</option>
+          <option>Diamond</option>
+          <option>Ruby</option>
+          <option>Unranked</option>
+        </select>
+      </label>
+
+      <label>
+        Divisione
+        <select id="division">
+          <option value="">Nessuna</option>
+          <option selected>I</option>
+          <option>II</option>
+          <option>III</option>
+          <option>IV</option>
+        </select>
+      </label>
+
+      <label>
+        Punti RS
+        <input id="rankScore" value="37705" inputmode="numeric" />
+      </label>
+
+      <label>
+        Stemma
+        <select id="badge">
+          <option value="bronze">Bronze</option>
+          <option value="silver">Silver</option>
+          <option value="gold">Gold</option>
+          <option value="platinum" selected>Platinum</option>
+          <option value="diamond">Diamond</option>
+          <option value="ruby">Ruby</option>
+          <option value="unranked">Unranked</option>
+        </select>
+      </label>
+
+      <label>
+        Colore testo
+        <input id="textColor" value="ff0015ff" />
+      </label>
+
+      <label>
+        Colore bordo
+        <input id="borderColor" value="d0021bff" />
+      </label>
+
+      <label>
+        Sfondo
+        <input id="backgroundColor" value="000000ff" />
+      </label>
+
+      <label>
+        Spessore bordo
+        <input id="borderWidth" value="5" inputmode="numeric" />
+      </label>
+
+      <textarea id="output" readonly></textarea>
+    </div>
+
+    <button id="generate">Genera link</button>
+    <button id="copy">Copia link</button>
+  </main>
+
+  <script>
+    const get = (id) => document.getElementById(id);
+
+    function buildLink() {
+      const url = new URL(window.location.origin + "/");
+      const mode = get("mode").value;
+      const player = get("player").value.trim();
+
+      if (mode === "manual") {
+        url.searchParams.set("mode", "manual");
+        url.searchParams.set("player", player);
+        url.searchParams.set("league", get("league").value);
+        url.searchParams.set("division", get("division").value);
+        url.searchParams.set("rankScore", get("rankScore").value.trim());
+        url.searchParams.set("badge", get("badge").value);
+      } else {
+        if (player.includes("#")) {
+          const [name, number] = player.split("#");
+          url.searchParams.set("embarkIdName", name);
+          url.searchParams.set("embarkIdNumber", number);
+        } else {
+          url.searchParams.set("player", player);
+        }
+        url.searchParams.set("leaderboard", "s10");
+      }
+
+      url.searchParams.set("textColor", get("textColor").value.trim());
+      url.searchParams.set("backgroundColor", get("backgroundColor").value.trim());
+      url.searchParams.set("borderColor", get("borderColor").value.trim());
+      url.searchParams.set("borderWidth", get("borderWidth").value.trim());
+
+      get("output").value = url.toString();
+    }
+
+    get("generate").addEventListener("click", buildLink);
+    get("copy").addEventListener("click", async () => {
+      buildLink();
+      await navigator.clipboard.writeText(get("output").value);
+      get("copy").textContent = "Copiato!";
+      setTimeout(() => get("copy").textContent = "Copia link", 1200);
+    });
+
+    buildLink();
+  </script>
+</body>
+</html>

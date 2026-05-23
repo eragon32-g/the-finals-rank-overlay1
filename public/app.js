@@ -6,13 +6,13 @@ const rankText = $("rankText");
 const scoreText = $("scoreText");
 const nameText = $("nameText");
 const rankIcon = $("rankIcon");
+const badgeImage = $("badgeImage");
 
 const params = new URLSearchParams(window.location.search);
 
 function normalizeHexColor(value, fallback) {
   if (!value) return fallback;
   let raw = String(value).trim().replace("#", "");
-
   if (![3, 4, 6, 8].includes(raw.length)) return fallback;
 
   if (raw.length === 3 || raw.length === 4) {
@@ -21,7 +21,6 @@ function normalizeHexColor(value, fallback) {
 
   const rgb = raw.slice(0, 6);
   const alpha = raw.length === 8 ? parseInt(raw.slice(6, 8), 16) / 255 : 1;
-
   if (!/^[0-9a-fA-F]{6}$/.test(rgb) || Number.isNaN(alpha)) return fallback;
 
   const r = parseInt(rgb.slice(0, 2), 16);
@@ -59,10 +58,8 @@ function getPlayerFromUrl() {
 
 function normalizeLeaderboard(value) {
   const input = (value || "s10").toLowerCase().trim();
-
   if (input === "ranked" || input === "current" || input === "live") return "s10";
   if (input === "worldtour" || input === "world_tour") return "s10worldtour";
-
   return input || "s10";
 }
 
@@ -72,15 +69,58 @@ function compactNumber(n) {
   return new Intl.NumberFormat("it-IT").format(num);
 }
 
-function iconFromLeague(league) {
+function baseLeague(league) {
   const clean = String(league || "").toLowerCase();
-  if (clean.includes("ruby")) return "RB";
-  if (clean.includes("diamond")) return "D";
-  if (clean.includes("platinum")) return "P";
-  if (clean.includes("gold")) return "G";
-  if (clean.includes("silver")) return "S";
-  if (clean.includes("bronze")) return "B";
+  if (clean.includes("ruby")) return "ruby";
+  if (clean.includes("diamond")) return "diamond";
+  if (clean.includes("platinum")) return "platinum";
+  if (clean.includes("gold")) return "gold";
+  if (clean.includes("silver")) return "silver";
+  if (clean.includes("bronze")) return "bronze";
+  return "unranked";
+}
+
+function iconFromLeague(league) {
+  const clean = baseLeague(league);
+  if (clean === "ruby") return "RB";
+  if (clean === "diamond") return "D";
+  if (clean === "platinum") return "P";
+  if (clean === "gold") return "G";
+  if (clean === "silver") return "S";
+  if (clean === "bronze") return "B";
   return "TF";
+}
+
+async function imageExists(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = src + `?v=${Date.now()}`;
+  });
+}
+
+async function setBadgeVisual(league, forcedBadge) {
+  const badgeName = String(forcedBadge || baseLeague(league)).toLowerCase().replace(/[^a-z0-9_-]/g, "");
+  const png = `/assets/badges/${badgeName}.png`;
+  const svg = `/assets/badges/${badgeName}.svg`;
+
+  badgeImage.classList.add("hidden");
+  rankIcon.classList.remove("hidden");
+  rankIcon.textContent = iconFromLeague(league);
+
+  if (await imageExists(png)) {
+    badgeImage.src = png;
+    badgeImage.classList.remove("hidden");
+    rankIcon.classList.add("hidden");
+    return;
+  }
+
+  if (await imageExists(svg)) {
+    badgeImage.src = svg;
+    badgeImage.classList.remove("hidden");
+    rankIcon.classList.add("hidden");
+  }
 }
 
 function setLoading() {
@@ -101,9 +141,11 @@ function setError(message, detail) {
   scoreText.textContent = detail || "Controlla Embark ID";
   nameText.textContent = getPlayerFromUrl();
   rankIcon.textContent = "!";
+  badgeImage.classList.add("hidden");
+  rankIcon.classList.remove("hidden");
 }
 
-function setData(data) {
+async function setData(data, status = "LIVE") {
   badge.classList.remove("error", "loading");
 
   const league = data.league || "Unranked";
@@ -112,44 +154,56 @@ function setData(data) {
   const change = Number(data.change || 0);
   const changeText = change === 0 ? "" : change > 0 ? ` ▲${compactNumber(change)}` : ` ▼${compactNumber(Math.abs(change))}`;
 
-  statusText.textContent = "LIVE";
+  statusText.textContent = status;
   rankText.textContent = String(league).toUpperCase();
   scoreText.textContent = `${compactNumber(rankScore)} RS ${rank}${changeText}`;
   nameText.textContent = data.player || data.name || getPlayerFromUrl();
-  rankIcon.textContent = iconFromLeague(league);
+
+  await setBadgeVisual(league, data.badge);
 }
 
-async function loadPlayer() {
+async function loadManual() {
+  const player = getPlayerFromUrl();
+  const leagueBase = params.get("league") || "Unranked";
+  const division = params.get("division") || "";
+  const league = `${leagueBase}${division ? " " + division : ""}`;
+  const rankScore = params.get("rankScore") || params.get("score") || "0";
+  const rank = params.get("rank") || "";
+  const badge = params.get("badge") || baseLeague(leagueBase);
+
+  await setData({ player, league, rankScore, rank, badge }, "MANUAL");
+}
+
+async function loadAuto() {
   try {
     const player = getPlayerFromUrl();
     const leaderboard = normalizeLeaderboard(params.get("leaderboard"));
     const platform = (params.get("platform") || "crossplay").toLowerCase();
 
-    const query = new URLSearchParams({
-      player,
-      leaderboard,
-      platform,
-    });
+    const query = new URLSearchParams({ player, leaderboard, platform });
 
-    const res = await fetch(`/api/player?${query.toString()}`, {
-      cache: "no-store",
-    });
-
+    const res = await fetch(`/api/player?${query.toString()}`, { cache: "no-store" });
     const data = await res.json();
 
-    if (!res.ok || !data.ok) {
-      throw new Error(data.message || "Player non trovato");
-    }
+    if (!res.ok || !data.ok) throw new Error(data.message || "Player non trovato");
 
-    setData(data);
+    await setData(data, "LIVE");
   } catch (err) {
     setError("NON TROVATO", err.message);
   }
 }
 
+function isManualMode() {
+  return ["manual", "1", "true", "yes"].includes(String(params.get("mode") || params.get("manual") || "").toLowerCase());
+}
+
 applyColors();
 setLoading();
-loadPlayer();
 
-const refreshSeconds = Math.max(30, Math.min(600, Number(params.get("refresh") || 60)));
-setInterval(loadPlayer, refreshSeconds * 1000);
+if (isManualMode()) {
+  loadManual();
+} else {
+  loadAuto();
+  const refreshSeconds = Math.max(30, Math.min(600, Number(params.get("refresh") || 60)));
+  setInterval(loadAuto, refreshSeconds * 1000);
+}
