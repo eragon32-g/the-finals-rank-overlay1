@@ -1,19 +1,36 @@
-# THE FINALS Rank Overlay V16 - Branding Fit Fix
+# THE FINALS Rank Overlay V17 - Animated Locked Branding
 
-Questa versione mantiene il branding integrato nella card ma corregge il taglio del testo.
+Questa versione risolve il problema del testo tagliato nel branding.
 
 ## Cosa cambia
-- card leggermente più larga
-- footer branding meglio distribuito
-- più spazio al Discord
-- font branding leggermente ottimizzato per stare dentro
+- Il branding non è più sempre visibile
+- Compare ogni X secondi
+- Il testo scorre in stile marquee
+- Dopo alcuni secondi la finestra si richiude
+- Branding e tempi restano bloccati lato progetto, non modificabili dal link
 
-## Se vuoi cambiare il branding
-Apri `api/brand.js` e modifica:
+## Modificare branding e tempi
+
+Apri su GitHub:
+
+```text
+api/brand.js
+```
+
+Puoi cambiare:
 
 ```js
 brandText: "ERDRAGON3",
 discordText: "DISCORD.GG/TUOLINK",
 callToAction: "JOIN THE VOID",
-mode: "split"
+
+intervalSeconds: 18,
+visibleSeconds: 7,
+scrollSeconds: 8,
+showOnLoad: true
+```
+
+## Generatore
+```text
+https://TUO-PROGETTO.vercel.app/generator.html
 ```

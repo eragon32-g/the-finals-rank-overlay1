@@ -5,10 +5,8 @@ const statusText = $("statusText");
 const rankText = $("rankText");
 const scoreText = $("scoreText");
 const nameText = $("nameText");
-const brandFooter = $("brandFooter");
-const brandLeft = $("brandLeft");
-const brandCenter = $("brandCenter");
-const brandRight = $("brandRight");
+const brandDrawer = $("brandDrawer");
+const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
@@ -49,6 +47,10 @@ const LEAGUE_NUMBER_TO_FILE = [
   "diamond-1.png",
   "ruby.png",
 ];
+
+let lockedBrandConfig = null;
+let brandTimersStarted = false;
+let brandHideTimer = null;
 
 function normalizeHexColor(value, fallback) {
   if (!value) return fallback;
@@ -204,8 +206,6 @@ async function setBadgeVisual({ league, division, forcedBadge, badgeFile, league
   }
 }
 
-let lockedBrandConfig = null;
-
 async function loadLockedBranding() {
   if (lockedBrandConfig) return lockedBrandConfig;
   try {
@@ -218,58 +218,75 @@ async function loadLockedBranding() {
       brandText: "ERDRAGON3",
       discordText: "DISCORD.GG/TUOLINK",
       callToAction: "JOIN THE VOID",
-      mode: "split"
+      mode: "marquee",
+      separator: " • ",
+      intervalSeconds: 18,
+      visibleSeconds: 7,
+      scrollSeconds: 8,
+      showOnLoad: true
     };
   }
   return lockedBrandConfig;
 }
 
-function cleanBrand(value, max = 38) {
+function cleanBrand(value, max = 120) {
   return String(value || "").trim().replace(/\s+/g, " ").slice(0, max);
 }
 
-async function setLockedBrandingText() {
+function buildBrandText(config) {
+  if (!config || config.enabled === false) return "";
+
+  const brand = cleanBrand(config.brandText, 35);
+  const cta = cleanBrand(config.callToAction, 45);
+  const discord = cleanBrand(config.discordText, 45);
+  const separator = config.separator || " • ";
+  const mode = String(config.mode || "marquee").toLowerCase();
+
+  if (mode === "discord") return discord;
+  if (mode === "brand") return brand;
+  if (mode === "cta") return cta;
+
+  return [brand, cta, discord].filter(Boolean).join(separator);
+}
+
+function showBrandDrawer(config) {
+  if (!brandDrawer || !brandMarqueeText) return;
+
+  const visibleSeconds = Math.max(2, Math.min(20, Number(config.visibleSeconds || 7)));
+
+  brandDrawer.classList.add("is-visible");
+  brandDrawer.closest(".card-shell")?.classList.add("brand-open");
+
+  if (brandHideTimer) clearTimeout(brandHideTimer);
+  brandHideTimer = setTimeout(() => {
+    brandDrawer.classList.remove("is-visible");
+    brandDrawer.closest(".card-shell")?.classList.remove("brand-open");
+  }, visibleSeconds * 1000);
+}
+
+async function setupLockedBranding() {
   const config = await loadLockedBranding();
+  const text = buildBrandText(config);
 
-  if (!config || config.enabled === false) {
-    brandFooter.classList.add("is-empty");
-    brandLeft.textContent = "";
-    brandCenter.textContent = "";
-    brandRight.textContent = "";
+  if (!text || config.enabled === false) {
+    brandDrawer.classList.add("is-empty");
     return;
   }
 
-  const brand = cleanBrand(config.brandText, 24);
-  const cta = cleanBrand(config.callToAction, 30);
-  const discord = cleanBrand(config.discordText, 36);
-  const mode = String(config.mode || "split").toLowerCase();
+  brandDrawer.classList.remove("is-empty");
+  brandMarqueeText.textContent = text;
 
-  brandFooter.classList.remove("is-empty");
+  const scrollSeconds = Math.max(4, Math.min(30, Number(config.scrollSeconds || 8)));
+  document.documentElement.style.setProperty("--brand-duration", `${scrollSeconds}s`);
 
-  if (mode === "discord") {
-    brandLeft.textContent = "";
-    brandCenter.textContent = "";
-    brandRight.textContent = discord;
-    return;
-  }
+  if (brandTimersStarted) return;
+  brandTimersStarted = true;
 
-  if (mode === "brand") {
-    brandLeft.textContent = brand;
-    brandCenter.textContent = "";
-    brandRight.textContent = "";
-    return;
-  }
+  const intervalSeconds = Math.max(8, Math.min(180, Number(config.intervalSeconds || 18)));
+  const showOnLoad = config.showOnLoad !== false;
 
-  if (mode === "cta") {
-    brandLeft.textContent = "";
-    brandCenter.textContent = cta;
-    brandRight.textContent = "";
-    return;
-  }
-
-  brandLeft.textContent = brand;
-  brandCenter.textContent = cta;
-  brandRight.textContent = discord;
+  if (showOnLoad) setTimeout(() => showBrandDrawer(config), 800);
+  setInterval(() => showBrandDrawer(config), intervalSeconds * 1000);
 }
 
 function shouldShowStatus(status) {
@@ -287,7 +304,7 @@ function setLoading() {
   rankText.textContent = "RANKED";
   scoreText.textContent = `${(params.get("scoreLabel") || "ELO").toUpperCase()}: ...`;
   nameText.textContent = getPlayerFromUrl();
-  setLockedBrandingText();
+  setupLockedBranding();
   rankIcon.textContent = "TF";
   badgeImage.classList.add("hidden");
   rankIcon.classList.remove("hidden");
@@ -302,7 +319,7 @@ function setError(message, detail) {
   rankText.textContent = message || "NON TROVATO";
   scoreText.textContent = detail || "Controlla Embark ID";
   nameText.textContent = getPlayerFromUrl();
-  setLockedBrandingText();
+  setupLockedBranding();
   rankIcon.textContent = "!";
   badgeImage.classList.add("hidden");
   rankIcon.classList.remove("hidden");
@@ -330,7 +347,7 @@ async function setData(data, status = "LIVE") {
   rankText.textContent = String(league).toUpperCase();
   scoreText.textContent = `${scoreLabel}: ${rankScore}${rank ? " " + rank : ""}${changeText}`;
   nameText.textContent = data.player || data.name || getPlayerFromUrl();
-  setLockedBrandingText();
+  setupLockedBranding();
 
   await setBadgeVisual({
     league,

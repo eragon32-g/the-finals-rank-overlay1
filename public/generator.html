@@ -180,9 +180,9 @@
     <header class="header">
       <div>
         <h1>Overlay Generator</h1>
-        <p class="subtitle">Genera il link per il rank. Il branding è integrato nella card e resta bloccato lato progetto.</p>
+        <p class="subtitle">Genera il link per il rank. Il branding è bloccato lato progetto, compare ogni tot secondi e scorre in automatico.</p>
       </div>
-      <div class="tag">🔒 V15 INTEGRATED BRAND</div>
+      <div class="tag">🔒 V17 ANIMATED BRAND</div>
     </header>
 
     <div class="layout">
@@ -250,7 +250,7 @@
 
         <div class="section">
           <div class="section-title">
-            <h2>2. Branding integrato e bloccato</h2>
+            <h2>2. Branding animato e bloccato</h2>
             <span class="tag">Solo owner</span>
           </div>
           <div class="locked-card">
@@ -260,7 +260,7 @@
             </div>
             <div id="lockedPreview" class="locked-preview">Caricamento branding...</div>
           </div>
-          <p class="help">Il branding ora è integrato nella parte bassa della targhetta, non più in una pill esterna. Per modificarlo cambia <b>api/brand.js</b>.</p>
+          <p class="help">Il branding ora compare a finestra animata: si apre, il testo scorre, poi si richiude. Per modificarlo cambia <b>api/brand.js</b>.</p>
         </div>
 
         <div class="section">
@@ -302,7 +302,7 @@
             <button id="copy" class="btn">Copia link</button>
           </div>
           <textarea id="output" readonly></textarea>
-          <p class="help">Il link può modificare rank e colori, ma non il branding Discord.</p>
+          <p class="help">Il link può modificare rank e colori, ma non branding/Discord/tempi animazione.</p>
         </div>
       </aside>
     </div>
@@ -354,7 +354,7 @@
         if (cfg.brandText) parts.push("Brand: " + cfg.brandText);
         if (cfg.callToAction) parts.push("CTA: " + cfg.callToAction);
         if (cfg.discordText) parts.push("Discord: " + cfg.discordText);
-        get("lockedPreview").textContent = parts.join("  |  ") || "Branding disattivato";
+        get("lockedPreview").textContent = parts.join("  •  ") || "Branding disattivato";
       } catch {
         get("lockedPreview").textContent = "ERDRAGON3 • JOIN THE VOID • DISCORD.GG/TUOLINK";
       }

@@ -7,8 +7,22 @@ const BRAND_CONFIG = {
   discordText: "DISCORD.GG/TUOLINK",
   callToAction: "JOIN THE VOID",
 
-  // Opzioni: "split", "discord", "cta", "brand"
-  mode: "split"
+  // Opzioni: "marquee", "discord", "cta", "brand"
+  mode: "marquee",
+  separator: " • ",
+
+  // Animazione branding:
+  // ogni quanti secondi compare
+  intervalSeconds: 18,
+
+  // per quanti secondi resta visibile
+  visibleSeconds: 7,
+
+  // velocità scorrimento testo
+  scrollSeconds: 8,
+
+  // mostra subito il branding appena si apre l'overlay
+  showOnLoad: true
 };
 
 module.exports = function handler(req, res) {
