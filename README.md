@@ -1,42 +1,63 @@
-# THE FINALS Rank Overlay V21 - Brand Debug Fix
+# THE FINALS Rank Overlay V22 - Static Brand Fix
 
-Questa versione serve a capire definitivamente se Vercel sta servendo il codice nuovo.
+Questa versione elimina il problema del 404 su `/api/version`.
 
-## Fix inclusi
-- `index.html` non contiene più il vecchio testo placeholder `ERDRAGON3`
-- carica `style.css?v=21` e `app.js?v=21`
-- `/api/brand` include `version: "21"`
-- nuovo endpoint `/api/version`
-- CSS forza branding mixed-case con `!important`
+## Cosa cambia
+Vercel nel tuo progetto non sta servendo le route `/api`.
+Quindi il branding ora viene letto da file statici dentro `public`:
 
-## Controlli dopo il deploy
+```text
+public/brand.json
+public/version.json
+```
+
+Questi funzionano sempre perché Vercel sta già servendo la cartella `public`.
+
+## Controllo dopo il deploy
 
 Apri:
 
 ```text
-https://TUO-PROGETTO.vercel.app/api/version?v=123
+https://TUO-PROGETTO.vercel.app/version.json?v=123
 ```
 
-Deve mostrare:
+Devi vedere:
 
 ```json
-"version": "21",
+"version": "22",
 "expectedBrand": "ERDRAGON32"
 ```
 
 Poi apri:
 
 ```text
-https://TUO-PROGETTO.vercel.app/api/brand?v=123
+https://TUO-PROGETTO.vercel.app/brand.json?v=123
 ```
 
-Deve mostrare:
+Devi vedere:
 
 ```json
-"version": "21",
 "brandText": "ERDRAGON32",
 "discordText": "discord.gg/cffTwCcCGD"
 ```
 
-Se questi endpoint sono giusti ma l'overlay resta vecchio, allora è cache del browser/OBS/TikTok.
-Se gli endpoint sono vecchi, allora il dominio Vercel non punta all'ultimo deploy Production.
+## Come modificare il branding
+
+Apri su GitHub:
+
+```text
+public/brand.json
+```
+
+Modifica:
+
+```json
+"brandText": "ERDRAGON32",
+"discordText": "discord.gg/cffTwCcCGD",
+"callToAction": "Join the Void"
+```
+
+Poi fai **Commit changes** e aspetta Vercel.
+
+## Nota
+Il file `api/brand.js` è ancora presente come backup, ma l'overlay usa `public/brand.json`.

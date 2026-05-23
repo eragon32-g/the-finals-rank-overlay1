@@ -1,28 +1,14 @@
 const BRAND_CONFIG = {
   enabled: true,
-  version: "21",
-
-  // MODIFICA SOLO QUI IL TUO BRANDING.
-  // Chi apre il link overlay NON può cambiare questi dati dai parametri URL.
+  version: "22",
   brandText: "ERDRAGON32",
   discordText: "discord.gg/cffTwCcCGD",
-  callToAction: "JOIN THE VOID",
-
-  // Opzioni: "marquee", "discord", "cta", "brand"
+  callToAction: "Join the Void",
   mode: "marquee",
   separator: " • ",
-
-  // Animazione branding:
-  // ogni quanti secondi compare
   intervalSeconds: 18,
-
-  // per quanti secondi resta visibile
   visibleSeconds: 7,
-
-  // velocità scorrimento testo
   scrollSeconds: 8,
-
-  // mostra subito il branding appena si apre l'overlay
   showOnLoad: true
 };
 

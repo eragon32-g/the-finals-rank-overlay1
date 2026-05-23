@@ -1,9 +1,9 @@
 module.exports = function handler(req, res) {
   res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
   res.status(200).json({
-    version: "21",
+    version: "22",
     expectedBrand: "ERDRAGON32",
     expectedDiscord: "discord.gg/cffTwCcCGD",
-    updatedAt: new Date().toISOString()
+    note: "If /api does not work, use /version.json and /brand.json."
   });
 };

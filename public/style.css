@@ -315,3 +315,12 @@ html, body {
 .brand-drawer * {
   text-transform: none !important;
 }
+
+
+/* V22: static brand config; keep exact casing from brand.json */
+#brandMarqueeText,
+.brand-marquee span,
+.brand-drawer,
+.brand-drawer * {
+  text-transform: none !important;
+}

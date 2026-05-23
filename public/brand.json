@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "version": "22",
+  "brandText": "ERDRAGON32",
+  "discordText": "discord.gg/cffTwCcCGD",
+  "callToAction": "Join the Void",
+  "mode": "marquee",
+  "separator": " • ",
+  "intervalSeconds": 18,
+  "visibleSeconds": 7,
+  "scrollSeconds": 8,
+  "showOnLoad": true
+}

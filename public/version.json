@@ -1,0 +1,6 @@
+{
+  "version": "22",
+  "expectedBrand": "ERDRAGON32",
+  "expectedDiscord": "discord.gg/cffTwCcCGD",
+  "note": "Static public config; no /api route needed."
+}
