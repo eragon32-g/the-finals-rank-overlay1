@@ -1,8 +1,8 @@
 {
-  "name": "the-finals-rank-overlay-v15-integrated-branding",
-  "version": "2.1.0",
+  "name": "the-finals-rank-overlay-v16-branding-fit-fix",
+  "version": "2.2.0",
   "private": true,
-  "description": "Overlay THE FINALS con branding bloccato integrato nella card",
+  "description": "Overlay THE FINALS con fix al taglio del branding integrato",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
