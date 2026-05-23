@@ -10,6 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
+const OVERLAY_VERSION = "21";
 const params = new URLSearchParams(window.location.search);
 
 const EMBARK_BADGE_BASE = "https://id.embark.games/images/leaderboards/leagues/";
@@ -212,11 +213,12 @@ async function loadLockedBranding() {
     const res = await fetch(`/api/brand?v=${Date.now()}`, { cache: "no-store" });
     if (!res.ok) throw new Error("Brand API not available");
     lockedBrandConfig = await res.json();
+    console.log("[Overlay brand]", lockedBrandConfig);
   } catch {
     lockedBrandConfig = {
       enabled: true,
       brandText: "ERDRAGON32",
-      discordText: "DISCORD.GG/TUOLINK",
+      discordText: "discord.gg/cffTwCcCGD",
       callToAction: "JOIN THE VOID",
       mode: "marquee",
       separator: " • ",

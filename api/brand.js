@@ -1,5 +1,6 @@
 const BRAND_CONFIG = {
   enabled: true,
+  version: "21",
 
   // MODIFICA SOLO QUI IL TUO BRANDING.
   // Chi apre il link overlay NON può cambiare questi dati dai parametri URL.

@@ -306,3 +306,12 @@ html, body {
 #brandMarqueeText {
   text-transform: none !important;
 }
+
+
+/* V21: hard override mixed-case branding */
+#brandMarqueeText,
+.brand-marquee span,
+.brand-drawer,
+.brand-drawer * {
+  text-transform: none !important;
+}

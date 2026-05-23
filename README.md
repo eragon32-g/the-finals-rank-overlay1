@@ -1,26 +1,42 @@
-# THE FINALS Rank Overlay V20 - Hard Cache + Case Fix
+# THE FINALS Rank Overlay V21 - Brand Debug Fix
 
-Questa versione corregge due problemi:
-1. Il branding restava tutto maiuscolo.
-2. Dopo aver cambiato `api/brand.js`, il generatore/overlay poteva mostrare ancora dati vecchi.
+Questa versione serve a capire definitivamente se Vercel sta servendo il codice nuovo.
 
-## Cosa cambia
-- `index.html` carica `style.css?v=20` e `app.js?v=20`, così il browser non usa file vecchi in cache.
-- Il CSS forza il branding a NON usare `text-transform: uppercase`.
-- `/api/brand` è impostato con `no-store`.
-- L'overlay chiama `/api/brand?v=timestamp`.
-- Il fallback ora usa `ERDRAGON32`, non più `ERDRAGON3`.
+## Fix inclusi
+- `index.html` non contiene più il vecchio testo placeholder `ERDRAGON3`
+- carica `style.css?v=21` e `app.js?v=21`
+- `/api/brand` include `version: "21"`
+- nuovo endpoint `/api/version`
+- CSS forza branding mixed-case con `!important`
 
-## Dopo aver aggiornato
-Apri in incognito oppure fai Ctrl+F5.
+## Controlli dopo il deploy
 
-Controlla direttamente:
+Apri:
+
+```text
+https://TUO-PROGETTO.vercel.app/api/version?v=123
+```
+
+Deve mostrare:
+
+```json
+"version": "21",
+"expectedBrand": "ERDRAGON32"
+```
+
+Poi apri:
+
 ```text
 https://TUO-PROGETTO.vercel.app/api/brand?v=123
 ```
 
-Se lì vedi:
+Deve mostrare:
+
 ```json
-"brandText": "ERDRAGON32"
+"version": "21",
+"brandText": "ERDRAGON32",
+"discordText": "discord.gg/cffTwCcCGD"
 ```
-allora l'overlay userà quello.
+
+Se questi endpoint sono giusti ma l'overlay resta vecchio, allora è cache del browser/OBS/TikTok.
+Se gli endpoint sono vecchi, allora il dominio Vercel non punta all'ultimo deploy Production.

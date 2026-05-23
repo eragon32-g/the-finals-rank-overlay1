@@ -1,8 +1,8 @@
 {
-  "name": "the-finals-rank-overlay-v20-hard-cache-and-case-fix",
-  "version": "2.6.0",
+  "name": "the-finals-rank-overlay-v21-brand-debug-fix",
+  "version": "2.7.0",
   "private": true,
-  "description": "Overlay THE FINALS con fix definitivo cache e maiuscole branding",
+  "description": "Overlay THE FINALS con debug versione brand e fix placeholder",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
