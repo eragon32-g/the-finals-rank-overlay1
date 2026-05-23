@@ -62,7 +62,7 @@
 <body>
   <main class="card">
     <h1>THE FINALS Overlay Generator</h1>
-    <p class="hint">V8: stile più simile allo screenshot, la scritta MANUAL viene nascosta e in modalità manuale i punti RS vengono mostrati correttamente.</p>
+    <p class="hint">V10: stile molto più vicino allo screenshot: titolo chiaro, barra compatta, stemma sovrapposto, label punteggio personalizzabile e status nascosto di default.</p>
 
     <div class="grid">
       <label>
@@ -122,7 +122,17 @@
 
       <label>
         Colore titolo rank
-        <input id="rankColor" value="ff2a17ff" />
+        <input id="rankColor" value="f2f4f7ff" />
+      </label>
+
+      <label>
+        Label punteggio
+        <input id="scoreLabel" value="ELO" />
+      </label>
+
+      <label>
+        Testo piccolo in basso a destra
+        <input id="extraText" value="" />
       </label>
 
       <label>
@@ -199,6 +209,8 @@
       url.searchParams.set("borderColor", get("borderColor").value.trim());
       url.searchParams.set("borderWidth", get("borderWidth").value.trim());
       url.searchParams.set("rankColor", get("rankColor").value.trim());
+      url.searchParams.set("scoreLabel", get("scoreLabel").value.trim());
+      url.searchParams.set("extraText", get("extraText").value.trim());
 
       get("output").value = url.toString();
     }

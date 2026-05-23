@@ -1,13 +1,16 @@
 * { box-sizing: border-box; }
 
 :root {
-  --text-color: #ffffff;
-  --background-color: rgba(16,18,23,0.98);
-  --border-color: #707985;
+  --text-color: #f3f5f8;
+  --background-color: rgba(11, 13, 17, 0.98);
+  --border-color: #6e7682;
   --border-width: 2px;
   --accent-color: #ffffff;
-  --muted-color: rgba(255, 255, 255, 0.92);
-  --rank-color: #ff2a17;
+  --muted-color: rgba(240, 243, 247, 0.95);
+  --rank-color: #f2f4f7;
+  --score-color: #dfe4ea;
+  --name-color: rgba(214, 221, 229, 0.88);
+  --extra-color: rgba(172, 180, 191, 0.72);
 }
 
 html, body {
@@ -34,37 +37,38 @@ html, body {
   height: 160px;
   display: flex;
   align-items: center;
-  padding-left: 4px;
+  padding-left: 0;
   color: var(--text-color);
 }
 
 .rank-mark {
   position: relative;
-  width: 96px;
-  height: 96px;
+  width: 92px;
+  height: 92px;
   z-index: 3;
   display: grid;
   place-items: center;
-  flex: 0 0 96px;
+  flex: 0 0 92px;
   margin-right: -16px;
+  margin-top: 4px;
 }
 
 .badge-image {
-  width: 92px;
-  height: 92px;
+  width: 88px;
+  height: 88px;
   object-fit: contain;
   filter:
-    drop-shadow(0 4px 8px rgba(0,0,0,0.45))
+    drop-shadow(0 3px 6px rgba(0,0,0,0.45))
     drop-shadow(0 1px 0 rgba(255,255,255,0.18));
 }
 
 .rank-icon {
-  width: 82px;
-  height: 82px;
+  width: 80px;
+  height: 80px;
   display: grid;
   place-items: center;
   border-radius: 18px;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 900;
   letter-spacing: -1px;
   background:
@@ -78,17 +82,17 @@ html, body {
 
 .card-shell {
   position: relative;
-  width: 368px;
-  height: 78px;
+  width: 360px;
+  height: 80px;
   border-radius: 18px;
   overflow: hidden;
-  border: var(--border-width) solid rgba(112,121,133,0.9);
+  border: var(--border-width) solid rgba(109,118,129,0.95);
   background:
-    radial-gradient(circle at 18% 10%, rgba(255,255,255,0.12), transparent 28%),
-    linear-gradient(180deg, rgba(40,43,49,0.96) 0%, rgba(12,13,17,0.98) 58%, rgba(6,7,10,0.98) 100%);
+    radial-gradient(circle at 18% 10%, rgba(255,255,255,0.10), transparent 24%),
+    linear-gradient(180deg, rgba(43,46,53,0.97) 0%, rgba(14,16,20,0.98) 54%, rgba(5,6,8,1) 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.15),
-    inset 0 -2px 0 rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.16),
+    inset 0 -2px 0 rgba(0,0,0,0.58),
     0 7px 18px rgba(0,0,0,0.28);
 }
 
@@ -103,18 +107,29 @@ html, body {
 
 .card-shine {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 28px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.01));
+  left: 12px;
+  right: 12px;
+  top: 3px;
+  height: 20px;
+  border-radius: 14px 14px 40px 40px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.00));
+  pointer-events: none;
+}
+
+.card-inner-line {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 2px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.00), rgba(255,255,255,0.28), rgba(255,255,255,0.00));
   pointer-events: none;
 }
 
 .rank-info {
   position: relative;
   height: 100%;
-  padding: 8px 12px 8px 26px;
+  padding: 8px 14px 8px 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -124,18 +139,18 @@ html, body {
 .title-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 10px;
 }
 
 .rank-text {
-  font-size: 25px;
+  font-size: 29px;
   line-height: 1;
   font-weight: 1000;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.2px;
   text-transform: uppercase;
   white-space: nowrap;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.62);
   color: var(--rank-color);
 }
 
@@ -160,8 +175,8 @@ html, body {
 
 .meta-row {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: baseline;
+  gap: 12px;
   margin-top: 6px;
   white-space: nowrap;
   overflow: hidden;
@@ -171,19 +186,36 @@ html, body {
 .score-text {
   font-size: 15px;
   font-weight: 1000;
-  color: var(--muted-color);
+  color: var(--score-color);
   text-transform: uppercase;
   flex: 0 0 auto;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.5);
 }
 
 .name-text {
   font-size: 12px;
   font-weight: 900;
-  color: rgba(255,255,255,0.90);
+  color: var(--name-color);
   flex: 1 1 auto;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+}
+
+.extra-text {
+  position: absolute;
+  right: 14px;
+  bottom: 7px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: var(--extra-color);
+  text-transform: uppercase;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .error .status {

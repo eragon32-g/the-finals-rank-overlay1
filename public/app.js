@@ -5,6 +5,7 @@ const statusText = $("statusText");
 const rankText = $("rankText");
 const scoreText = $("scoreText");
 const nameText = $("nameText");
+const extraText = $("extraText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
@@ -67,11 +68,14 @@ function normalizeHexColor(value, fallback) {
 }
 
 function applyColors() {
-  const textColor = normalizeHexColor(params.get("textColor"), "#ffffff");
-  const backgroundColor = normalizeHexColor(params.get("backgroundColor"), "rgba(16,18,23,0.98)");
-  const borderColor = normalizeHexColor(params.get("borderColor"), "#707985");
+  const textColor = normalizeHexColor(params.get("textColor"), "#f3f5f8");
+  const backgroundColor = normalizeHexColor(params.get("backgroundColor"), "rgba(11,13,17,0.98)");
+  const borderColor = normalizeHexColor(params.get("borderColor"), "#6e7682");
   const borderWidth = Number(params.get("borderWidth") || 2);
-  const rankColor = normalizeHexColor(params.get("rankColor"), "#ff2a17");
+  const rankColor = normalizeHexColor(params.get("rankColor"), "#f2f4f7");
+  const scoreColor = normalizeHexColor(params.get("scoreColor"), "#dfe4ea");
+  const nameColor = normalizeHexColor(params.get("nameColor"), "rgba(214,221,229,0.88)");
+  const extraColor = normalizeHexColor(params.get("extraColor"), "rgba(172,180,191,0.72)");
 
   document.documentElement.style.setProperty("--text-color", textColor);
   document.documentElement.style.setProperty("--background-color", backgroundColor);
@@ -79,6 +83,9 @@ function applyColors() {
   document.documentElement.style.setProperty("--accent-color", borderColor);
   document.documentElement.style.setProperty("--border-width", `${Math.max(0, Math.min(14, borderWidth))}px`);
   document.documentElement.style.setProperty("--rank-color", rankColor);
+  document.documentElement.style.setProperty("--score-color", scoreColor);
+  document.documentElement.style.setProperty("--name-color", nameColor);
+  document.documentElement.style.setProperty("--extra-color", extraColor);
 }
 
 function getPlayerFromUrl() {
@@ -215,14 +222,22 @@ async function setBadgeVisual({ league, division, forcedBadge, badgeFile, league
   }
 }
 
+function shouldShowStatus(status) {
+  const explicit = String(params.get("showStatus") || "").toLowerCase();
+  if (["1", "true", "yes"].includes(explicit)) return true;
+  if (["0", "false", "no"].includes(explicit)) return false;
+  return false; // default hidden for screenshot-like look
+}
+
 function setLoading() {
   badge.classList.remove("error");
   badge.classList.add("loading");
   statusText.textContent = "LIVE";
-  statusText.classList.remove("hidden");
+  statusText.classList.add("hidden");
   rankText.textContent = "RANKED";
-  scoreText.textContent = "RS: ...";
+  scoreText.textContent = `${(params.get("scoreLabel") || "ELO").toUpperCase()}: ...`;
   nameText.textContent = getPlayerFromUrl();
+  extraText.textContent = params.get("extraText") || "";
   rankIcon.textContent = "TF";
   badgeImage.classList.add("hidden");
   rankIcon.classList.remove("hidden");
@@ -232,10 +247,12 @@ function setError(message, detail) {
   badge.classList.add("error");
   badge.classList.remove("loading");
   statusText.textContent = "ERRORE";
-  statusText.classList.remove("hidden");
+  if (shouldShowStatus("ERRORE")) statusText.classList.remove("hidden");
+  else statusText.classList.add("hidden");
   rankText.textContent = message || "NON TROVATO";
   scoreText.textContent = detail || "Controlla Embark ID";
   nameText.textContent = getPlayerFromUrl();
+  extraText.textContent = params.get("extraText") || "";
   rankIcon.textContent = "!";
   badgeImage.classList.add("hidden");
   rankIcon.classList.remove("hidden");
@@ -251,17 +268,19 @@ async function setData(data, status = "LIVE") {
   const rank = data.rank ? `#${compactNumber(data.rank)}` : "";
   const change = Number(data.change || 0);
   const changeText = change === 0 ? "" : change > 0 ? ` ▲${compactNumber(change)}` : ` ▼${compactNumber(Math.abs(change))}`;
+  const scoreLabel = (params.get("scoreLabel") || "ELO").toUpperCase();
 
-  if (status === "MANUAL") {
-    statusText.classList.add("hidden");
-  } else {
+  if (shouldShowStatus(status) && status !== "MANUAL") {
     statusText.textContent = status;
     statusText.classList.remove("hidden");
+  } else {
+    statusText.classList.add("hidden");
   }
 
   rankText.textContent = String(league).toUpperCase();
-  scoreText.textContent = `RS: ${rankScore}${rank ? " " + rank : ""}${changeText}`;
+  scoreText.textContent = `${scoreLabel}: ${rankScore}${rank ? " " + rank : ""}${changeText}`;
   nameText.textContent = data.player || data.name || getPlayerFromUrl();
+  extraText.textContent = params.get("extraText") || "";
 
   await setBadgeVisual({
     league,
