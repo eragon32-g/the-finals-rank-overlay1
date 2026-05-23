@@ -209,7 +209,7 @@ async function setBadgeVisual({ league, division, forcedBadge, badgeFile, league
 async function loadLockedBranding() {
   if (lockedBrandConfig) return lockedBrandConfig;
   try {
-    const res = await fetch("/api/brand", { cache: "no-store" });
+    const res = await fetch(`/api/brand?v=${Date.now()}`, { cache: "no-store" });
     if (!res.ok) throw new Error("Brand API not available");
     lockedBrandConfig = await res.json();
   } catch {

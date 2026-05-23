@@ -348,7 +348,7 @@
 
     async function loadBrandPreview() {
       try {
-        const res = await fetch("/api/brand", { cache: "no-store" });
+        const res = await fetch(`/api/brand?v=${Date.now()}`, { cache: "no-store" });
         const cfg = await res.json();
         const parts = [];
         if (cfg.brandText) parts.push("Brand: " + cfg.brandText);

@@ -3,8 +3,8 @@ const BRAND_CONFIG = {
 
   // MODIFICA SOLO QUI IL TUO BRANDING.
   // Chi apre il link overlay NON può cambiare questi dati dai parametri URL.
-  brandText: "ERDRAGON32",
-  discordText: "discord.gg/cffTwCcCGD",
+  brandText: "ERDRAGON3",
+  discordText: "DISCORD.GG/TUOLINK",
   callToAction: "JOIN THE VOID",
 
   // Opzioni: "marquee", "discord", "cta", "brand"
@@ -26,6 +26,6 @@ const BRAND_CONFIG = {
 };
 
 module.exports = function handler(req, res) {
-  res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=300");
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
   res.status(200).json(BRAND_CONFIG);
 };

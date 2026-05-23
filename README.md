@@ -1,26 +1,18 @@
-# THE FINALS Rank Overlay V18 - Case Sensitive Branding
+# THE FINALS Rank Overlay V19 - Brand Cache Fix
 
-Questa versione corregge il problema del branding che diventava tutto maiuscolo.
+Questa versione corregge il problema in cui modifichi `api/brand.js` ma nel generatore/overlay resta il testo vecchio.
 
 ## Cosa cambia
-- Il testo animato del branding mantiene maiuscole/minuscole come scritto in `api/brand.js`
-- Esempio: `discord.gg/tuolink` resta minuscolo
-- Il branding resta bloccato lato progetto
+- `/api/brand` non viene più cacheato da Vercel/CDN
+- l'overlay chiama `/api/brand?v=timestamp`, quindi forza il refresh
+- il generatore fa lo stesso
+- il branding resta bloccato lato progetto
 
-## Modificare il branding
+## Dopo aver modificato `api/brand.js`
+1. Fai **Commit changes** su GitHub.
+2. Aspetta che Vercel finisca il deploy.
+3. Apri il generatore con Ctrl+F5 o in incognito.
+4. Controlla direttamente:
+   `https://TUO-PROGETTO.vercel.app/api/brand?v=1`
 
-Apri su GitHub:
-
-```text
-api/brand.js
-```
-
-E scrivi il testo come vuoi che venga mostrato:
-
-```js
-brandText: "ErDragon32",
-discordText: "discord.gg/tuolink",
-callToAction: "Join the Void"
-```
-
-Poi fai **Commit changes** e aspetta Vercel.
+Se lì vedi i dati nuovi, anche l'overlay userà quelli.
