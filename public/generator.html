@@ -180,9 +180,9 @@
     <header class="header">
       <div>
         <h1>Overlay Generator</h1>
-        <p class="subtitle">Genera il link per il rank. Il branding è bloccato lato progetto, compare ogni tot secondi e scorre in automatico.</p>
+        <p class="subtitle">Genera il link per il rank. Il branding è bloccato lato progetto e viene letto da public/brand.json.</p>
       </div>
-      <div class="tag">🔒 V17 ANIMATED BRAND</div>
+      <div class="tag">🔒 V23 STATIC BRAND</div>
     </header>
 
     <div class="layout">
@@ -260,7 +260,7 @@
             </div>
             <div id="lockedPreview" class="locked-preview">Caricamento branding...</div>
           </div>
-          <p class="help">Il branding ora compare a finestra animata: si apre, il testo scorre, poi si richiude. Per modificarlo cambia <b>brand.json.js</b>.</p>
+          <p class="help">Il branding viene letto da <b>public/brand.json</b>. Lo puoi modificare solo tu da GitHub.</p>
         </div>
 
         <div class="section">
@@ -302,7 +302,7 @@
             <button id="copy" class="btn">Copia link</button>
           </div>
           <textarea id="output" readonly></textarea>
-          <p class="help">Il link può modificare rank e colori, ma non branding/Discord/tempi animazione.</p>
+          <p class="help">Il link può modificare rank e colori, ma non branding e Discord.</p>
         </div>
       </aside>
     </div>
@@ -356,7 +356,7 @@
         if (cfg.discordText) parts.push("Discord: " + cfg.discordText);
         get("lockedPreview").textContent = parts.join("  •  ") || "Branding disattivato";
       } catch {
-        get("lockedPreview").textContent = "ERDRAGON3 • JOIN THE VOID • DISCORD.GG/TUOLINK";
+        get("lockedPreview").textContent = "ERDRAGON32 • Join the Void • discord.gg/cffTwCcCGD";
       }
     }
 

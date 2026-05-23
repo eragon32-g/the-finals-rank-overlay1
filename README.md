@@ -1,63 +1,22 @@
-# THE FINALS Rank Overlay V22 - Static Brand Fix
+# THE FINALS Rank Overlay V23 - Generator Label Fix
 
-Questa versione elimina il problema del 404 su `/api/version`.
+Questa versione corregge solo il generatore che mostrava ancora "V17 Animated Brand".
 
 ## Cosa cambia
-Vercel nel tuo progetto non sta servendo le route `/api`.
-Quindi il branding ora viene letto da file statici dentro `public`:
+- Etichetta generatore aggiornata a V23 Static Brand
+- Testo corretto: il branding si modifica da `public/brand.json`
+- `public/version.json` aggiornato a versione 23
+- Cache di app/style aggiornata a v23
 
-```text
-public/brand.json
-public/version.json
-```
-
-Questi funzionano sempre perché Vercel sta già servendo la cartella `public`.
-
-## Controllo dopo il deploy
-
-Apri:
+## Controllo
+Dopo il deploy apri:
 
 ```text
 https://TUO-PROGETTO.vercel.app/version.json?v=123
 ```
 
-Devi vedere:
+Deve mostrare:
 
 ```json
-"version": "22",
-"expectedBrand": "ERDRAGON32"
+"version": "23"
 ```
-
-Poi apri:
-
-```text
-https://TUO-PROGETTO.vercel.app/brand.json?v=123
-```
-
-Devi vedere:
-
-```json
-"brandText": "ERDRAGON32",
-"discordText": "discord.gg/cffTwCcCGD"
-```
-
-## Come modificare il branding
-
-Apri su GitHub:
-
-```text
-public/brand.json
-```
-
-Modifica:
-
-```json
-"brandText": "ERDRAGON32",
-"discordText": "discord.gg/cffTwCcCGD",
-"callToAction": "Join the Void"
-```
-
-Poi fai **Commit changes** e aspetta Vercel.
-
-## Nota
-Il file `api/brand.js` è ancora presente come backup, ma l'overlay usa `public/brand.json`.

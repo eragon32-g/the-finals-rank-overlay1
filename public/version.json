@@ -1,6 +1,6 @@
 {
-  "version": "22",
+  "version": "23",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Static public config; no /api route needed."
+  "note": "Static public config; generator label fixed."
 }
