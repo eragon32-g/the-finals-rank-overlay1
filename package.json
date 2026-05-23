@@ -1,8 +1,8 @@
 {
-  "name": "the-finals-rank-overlay-v8-style-fix",
-  "version": "1.4.0",
+  "name": "the-finals-rank-overlay-v9-text-fit-fix",
+  "version": "1.5.0",
   "private": true,
-  "description": "Overlay THE FINALS stile simile allo screenshot con fix manual mode",
+  "description": "Overlay THE FINALS con fix per testi tagliati nella card",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
