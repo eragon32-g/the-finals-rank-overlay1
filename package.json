@@ -4,7 +4,8 @@
   "private": true,
   "description": "Overlay live per THE FINALS Rank su OBS / TikTok LIVE Studio",
   "scripts": {
-    "start": "vercel dev"
+    "build": "node -e \"console.log('Build ok - static overlay')\"",
+    "start": "node -e \"console.log('This project is meant to run on Vercel')\""
   },
   "engines": {
     "node": ">=18"
