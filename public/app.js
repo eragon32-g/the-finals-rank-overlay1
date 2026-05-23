@@ -221,12 +221,21 @@ function shouldShowStatus(status) {
 
 function getBrandingText() {
   const explicitExtra = params.get("extraText");
-  if (explicitExtra && explicitExtra.trim()) return explicitExtra.trim();
+  const separator = params.get("brandSeparator") || " • ";
 
-  const brandText = (params.get("brandText") || "").trim();
-  const discordText = (params.get("discordText") || "").trim();
+  function clean(value) {
+    return String(value || "")
+      .trim()
+      .replace(/\s+/g, " ")
+      .slice(0, 80);
+  }
 
-  if (brandText && discordText) return `${brandText} • ${discordText}`;
+  if (explicitExtra && explicitExtra.trim()) return clean(explicitExtra);
+
+  const brandText = clean(params.get("brandText"));
+  const discordText = clean(params.get("discordText"));
+
+  if (brandText && discordText) return `${brandText}${separator}${discordText}`;
   if (brandText) return brandText;
   if (discordText) return discordText;
 

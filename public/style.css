@@ -201,19 +201,43 @@ html, body {
   text-shadow: 0 1px 4px rgba(0,0,0,0.55);
 }
 
-.extra-text {
+.branding-strip {
   position: absolute;
-  right: 14px;
-  bottom: 7px;
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: 0.6px;
+  left: 118px;
+  top: 112px;
+  width: 310px;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 999px;
   color: var(--extra-color);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.085), rgba(255,255,255,0.025)),
+    rgba(5, 7, 11, 0.78);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 5px 14px rgba(0,0,0,0.22);
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: 0.7px;
   text-transform: uppercase;
-  max-width: 130px;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+}
+
+.branding-strip:empty {
+  display: none;
+}
+
+.branding-strip::before {
+  content: "⚡";
+  margin-right: 7px;
+  color: var(--score-color);
+  font-size: 10px;
 }
 
 .error .status {

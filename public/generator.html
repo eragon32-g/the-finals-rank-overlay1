@@ -279,9 +279,9 @@
     <header class="header">
       <div>
         <h1>Overlay Generator</h1>
-        <p class="subtitle">Crea la targhetta rank per THE FINALS, con palette pronte, branding personale e Discord.</p>
+        <p class="subtitle">Crea la targhetta rank per THE FINALS con palette pronte, branding leggibile e richiamo al Discord.</p>
       </div>
-      <div class="tag">V12 BRANDING</div>
+      <div class="tag">V13 BRANDING FIX</div>
     </header>
 
     <div class="layout">
@@ -354,7 +354,7 @@
 
         <div class="section">
           <div class="section-title">
-            <h2>2. Branding tuo + Discord</h2>
+            <h2>2. Branding leggibile</h2>
             <span class="tag">Identity</span>
           </div>
           <div class="grid">
@@ -365,7 +365,17 @@
 
             <label>
               Discord
-              <input id="discordText" value="DISCORD.GG/TUOLINK" />
+              <input id="discordText" value="DISCORD.GG/VOIDRAGE" />
+            </label>
+
+            <label>
+              Separatore
+              <select id="brandSeparator">
+                <option value=" • " selected>• Punto</option>
+                <option value=" | ">| Barra</option>
+                <option value=" — ">— Tratto</option>
+                <option value="  ">Spazio</option>
+              </select>
             </label>
 
             <label class="full">
@@ -373,7 +383,7 @@
               <input id="extraText" value="" placeholder="Lascia vuoto per usare: BRAND • DISCORD" />
             </label>
           </div>
-          <p class="help">Il testo piccolo può mostrare il tuo nome, il server Discord o una call to action tipo “JOIN THE VOID”.</p>
+          <p class="help">Ora il branding viene mostrato in una striscia separata sotto la targhetta: più leggibile e meno tagliato.</p>
         </div>
 
         <div class="section">
@@ -600,7 +610,7 @@
 
       const fields = [
         "scoreLabel", "showStatus",
-        "brandText", "discordText", "extraText",
+        "brandText", "discordText", "brandSeparator", "extraText",
         "rankColor", "scoreColor", "nameColor", "extraColor",
         "backgroundColor", "borderColor", "borderWidth"
       ];
