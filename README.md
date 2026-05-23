@@ -1,35 +1,14 @@
-# THE FINALS Rank Overlay V1
+# THE FINALS Rank Overlay - V3 public fix
 
-Overlay pronto per OBS e TikTok LIVE Studio.
+Questa versione risolve l'errore Vercel:
 
-## Link esempio dopo il deploy
+`No Output Directory named "public" found after the Build completed`
 
-Dopo averlo caricato su Vercel, userai un link simile:
+I file statici sono dentro la cartella `public`, quindi funziona anche se su Vercel l'Output Directory è impostata su `public`.
 
-```text
-https://TUO-PROGETTO.vercel.app/?embarkIdName=erdragon32&embarkIdNumber=2577
-```
+## Link esempio
 
-Oppure:
-
-```text
-https://TUO-PROGETTO.vercel.app/?player=erdragon32%232577
-```
-
-## Parametri utili
-
-- `embarkIdName=erdragon32`
-- `embarkIdNumber=2577`
-- `player=erdragon32%232577`
-- `leaderboard=s10`
-- `platform=crossplay`
-- `textColor=ff0015ff`
-- `backgroundColor=000000ff`
-- `borderColor=d0021bff`
-- `borderWidth=5`
-- `refresh=60`
-
-## Esempio con colori
+Dopo il deploy:
 
 ```text
 https://TUO-PROGETTO.vercel.app/?embarkIdName=erdragon32&embarkIdNumber=2577&textColor=ff0015ff&backgroundColor=000000ff&borderColor=d0021bff&borderWidth=5&leaderboard=s10
@@ -37,24 +16,7 @@ https://TUO-PROGETTO.vercel.app/?embarkIdName=erdragon32&embarkIdNumber=2577&tex
 
 ## OBS
 
-Aggiungi:
+Browser Source:
 
-- Source: Browser
 - Width: 470
 - Height: 160
-- URL: il link del tuo overlay
-
-## TikTok LIVE Studio
-
-Aggiungi una sorgente tipo:
-
-- Link Source
-- Web Source
-- Browser Source
-
-e incolla il link del tuo overlay.
-
-## Nota importante
-
-Funziona solo se il giocatore è presente nella leaderboard pubblica.
-Di solito i dati pubblici coprono la top leaderboard disponibile.
