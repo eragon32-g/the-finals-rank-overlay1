@@ -218,6 +218,21 @@ function shouldShowStatus(status) {
   return false;
 }
 
+
+function getBrandingText() {
+  const explicitExtra = params.get("extraText");
+  if (explicitExtra && explicitExtra.trim()) return explicitExtra.trim();
+
+  const brandText = (params.get("brandText") || "").trim();
+  const discordText = (params.get("discordText") || "").trim();
+
+  if (brandText && discordText) return `${brandText} • ${discordText}`;
+  if (brandText) return brandText;
+  if (discordText) return discordText;
+
+  return "";
+}
+
 function setLoading() {
   badge.classList.remove("error");
   badge.classList.add("loading");
@@ -226,7 +241,7 @@ function setLoading() {
   rankText.textContent = "RANKED";
   scoreText.textContent = `${(params.get("scoreLabel") || "ELO").toUpperCase()}: ...`;
   nameText.textContent = getPlayerFromUrl();
-  extraText.textContent = params.get("extraText") || "";
+  extraText.textContent = getBrandingText();
   rankIcon.textContent = "TF";
   badgeImage.classList.add("hidden");
   rankIcon.classList.remove("hidden");
@@ -241,7 +256,7 @@ function setError(message, detail) {
   rankText.textContent = message || "NON TROVATO";
   scoreText.textContent = detail || "Controlla Embark ID";
   nameText.textContent = getPlayerFromUrl();
-  extraText.textContent = params.get("extraText") || "";
+  extraText.textContent = getBrandingText();
   rankIcon.textContent = "!";
   badgeImage.classList.add("hidden");
   rankIcon.classList.remove("hidden");
@@ -269,7 +284,7 @@ async function setData(data, status = "LIVE") {
   rankText.textContent = String(league).toUpperCase();
   scoreText.textContent = `${scoreLabel}: ${rankScore}${rank ? " " + rank : ""}${changeText}`;
   nameText.textContent = data.player || data.name || getPlayerFromUrl();
-  extraText.textContent = params.get("extraText") || "";
+  extraText.textContent = getBrandingText();
 
   await setBadgeVisual({
     league,

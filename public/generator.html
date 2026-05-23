@@ -5,151 +5,450 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Generator THE FINALS Overlay</title>
   <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --bg: #08090d;
+      --panel: rgba(18, 20, 27, .94);
+      --panel-2: rgba(24, 27, 36, .95);
+      --border: rgba(255,255,255,.12);
+      --text: #f5f7fb;
+      --muted: rgba(245,247,251,.68);
+      --accent: #ff2b3d;
+      --accent-2: #7dd3fc;
+      --radius: 20px;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      background: #0b0b0f;
-      color: white;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,43,61,.16), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(125,211,252,.13), transparent 26%),
+        linear-gradient(180deg, #090a0f, #05060a);
+      color: var(--text);
+      padding: 26px;
+    }
+
+    .page {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .layout {
       display: grid;
-      place-items: center;
-      padding: 24px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr);
+      gap: 20px;
+      align-items: start;
     }
-    .card {
-      width: min(800px, 100%);
-      background: #15151b;
+
+    .panel {
+      background: linear-gradient(180deg, var(--panel), rgba(12,14,19,.96));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 24px 70px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.06);
+      overflow: hidden;
+    }
+
+    .section {
+      padding: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .section:last-child { border-bottom: 0; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: .2px;
+    }
+
+    .tag {
+      font-size: 11px;
+      color: rgba(255,255,255,.75);
+      padding: 5px 9px;
       border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      font-weight: 900;
+      letter-spacing: .8px;
     }
-    h1 { margin-top: 0; }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
-    label { display: grid; gap: 6px; font-weight: 700; font-size: 14px; }
+
+    label {
+      display: grid;
+      gap: 7px;
+      font-weight: 800;
+      font-size: 13px;
+      color: rgba(255,255,255,.86);
+    }
+
     input, select, textarea {
       width: 100%;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 12px;
-      background: #0d0d12;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 13px;
+      background: rgba(5,6,10,.8);
       color: white;
-      padding: 12px;
+      padding: 12px 13px;
       font-size: 15px;
+      outline: none;
+      transition: border .15s, box-shadow .15s, transform .15s;
     }
-    textarea { min-height: 94px; resize: vertical; grid-column: 1 / -1; }
-    button {
-      border: 0;
-      border-radius: 12px;
-      background: #ff1f35;
-      color: white;
-      padding: 13px 18px;
-      font-weight: 900;
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(125,211,252,.65);
+      box-shadow: 0 0 0 4px rgba(125,211,252,.12);
+    }
+
+    .full { grid-column: 1 / -1; }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .palette {
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.045);
+      border-radius: 15px;
+      padding: 12px;
       cursor: pointer;
+      transition: transform .15s, border .15s, background .15s;
+      text-align: left;
+      color: white;
+    }
+
+    .palette:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.28);
+      background: rgba(255,255,255,.07);
+    }
+
+    .palette.active {
+      border-color: rgba(125,211,252,.7);
+      box-shadow: 0 0 0 3px rgba(125,211,252,.10);
+    }
+
+    .palette-name {
+      font-size: 13px;
+      font-weight: 950;
+      margin-bottom: 9px;
+    }
+
+    .swatches {
+      display: flex;
+      gap: 5px;
+    }
+
+    .swatch {
+      height: 20px;
+      flex: 1;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,.16);
+    }
+
+    .preview-panel {
+      position: sticky;
+      top: 20px;
+    }
+
+    .preview-wrap {
+      padding: 20px;
+    }
+
+    .preview-box {
+      width: 100%;
+      min-height: 220px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background:
+        linear-gradient(45deg, rgba(255,255,255,.04) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,.04) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255,255,255,.04) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,.04) 75%),
+        #11131a;
+      background-size: 24px 24px;
+      background-position: 0 0, 0 12px, 12px -12px, -12px 0px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 470px;
+      height: 160px;
+      border: 0;
+      transform: scale(.88);
+      transform-origin: center;
+      background: transparent;
+    }
+
+    .output-row {
+      display: flex;
+      gap: 10px;
       margin-top: 14px;
     }
-    .hint {
-      color: rgba(255,255,255,.68);
-      font-size: 14px;
+
+    textarea {
+      min-height: 84px;
+      resize: vertical;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
       line-height: 1.45;
     }
-    .full { grid-column: 1 / -1; }
-    @media (max-width: 650px) { .grid { grid-template-columns: 1fr; } .full { grid-column: auto; } }
+
+    .btn {
+      border: 0;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--accent), #b30f23);
+      color: white;
+      padding: 13px 16px;
+      font-weight: 1000;
+      cursor: pointer;
+      letter-spacing: .2px;
+      box-shadow: 0 10px 24px rgba(255,43,61,.22);
+      white-space: nowrap;
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow: none;
+    }
+
+    .help {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 960px) {
+      body { padding: 16px; }
+      .layout { grid-template-columns: 1fr; }
+      .preview-panel { position: static; }
+    }
+
+    @media (max-width: 650px) {
+      .header { display: block; }
+      .grid, .palette-grid { grid-template-columns: 1fr; }
+      .full { grid-column: auto; }
+      iframe { transform: scale(.72); }
+    }
   </style>
 </head>
 <body>
-  <main class="card">
-    <h1>THE FINALS Overlay Generator</h1>
-    <p class="hint">V11: stile più d'impatto: badge più grande, barra più aggressiva, titolo più forte e punteggio in evidenza.</p>
+  <main class="page">
+    <header class="header">
+      <div>
+        <h1>Overlay Generator</h1>
+        <p class="subtitle">Crea la targhetta rank per THE FINALS, con palette pronte, branding personale e Discord.</p>
+      </div>
+      <div class="tag">V12 BRANDING</div>
+    </header>
 
-    <div class="grid">
-      <label>
-        Modalità
-        <select id="mode">
-          <option value="auto">Automatica leaderboard</option>
-          <option value="manual">Manuale</option>
-        </select>
-      </label>
+    <div class="layout">
+      <section class="panel">
+        <div class="section">
+          <div class="section-title">
+            <h2>1. Dati rank</h2>
+            <span class="tag">Rank</span>
+          </div>
+          <div class="grid">
+            <label>
+              Modalità
+              <select id="mode">
+                <option value="auto">Automatica leaderboard</option>
+                <option value="manual" selected>Manuale</option>
+              </select>
+            </label>
 
-      <label>
-        Player / Embark ID
-        <input id="player" value="erdragon32#2577" />
-      </label>
+            <label>
+              Player / Embark ID
+              <input id="player" value="ERDRAGON3#2577" />
+            </label>
 
-      <label>
-        Rank da mostrare
-        <select id="badgeFile">
-          <option value="bronze-4">Bronze IV</option>
-          <option value="bronze-3">Bronze III</option>
-          <option value="bronze-2">Bronze II</option>
-          <option value="bronze-1">Bronze I</option>
-          <option value="silver-4">Silver IV</option>
-          <option value="silver-3">Silver III</option>
-          <option value="silver-2">Silver II</option>
-          <option value="silver-1">Silver I</option>
-          <option value="gold-4">Gold IV</option>
-          <option value="gold-3">Gold III</option>
-          <option value="gold-2">Gold II</option>
-          <option value="gold-1">Gold I</option>
-          <option value="platinum-4">Platinum IV</option>
-          <option value="platinum-3">Platinum III</option>
-          <option value="platinum-2">Platinum II</option>
-          <option value="platinum-1">Platinum I</option>
-          <option value="diamond-4">Diamond IV</option>
-          <option value="diamond-3">Diamond III</option>
-          <option value="diamond-2">Diamond II</option>
-          <option value="diamond-1">Diamond I</option>
-          <option value="ruby">Ruby</option>
-        </select>
-      </label>
+            <label>
+              Rank da mostrare
+              <select id="badgeFile">
+                <option value="bronze-4" >Bronze IV</option>
+<option value="bronze-3" >Bronze III</option>
+<option value="bronze-2" >Bronze II</option>
+<option value="bronze-1" >Bronze I</option>
+<option value="silver-4" >Silver IV</option>
+<option value="silver-3" >Silver III</option>
+<option value="silver-2" >Silver II</option>
+<option value="silver-1" >Silver I</option>
+<option value="gold-4" >Gold IV</option>
+<option value="gold-3" >Gold III</option>
+<option value="gold-2" >Gold II</option>
+<option value="gold-1" >Gold I</option>
+<option value="platinum-4" >Platinum IV</option>
+<option value="platinum-3" >Platinum III</option>
+<option value="platinum-2" >Platinum II</option>
+<option value="platinum-1" selected>Platinum I</option>
+<option value="diamond-4" >Diamond IV</option>
+<option value="diamond-3" >Diamond III</option>
+<option value="diamond-2" >Diamond II</option>
+<option value="diamond-1" >Diamond I</option>
+<option value="ruby" >Ruby</option>
+              </select>
+            </label>
 
-      <label>
-        Punti RS
-        <input id="rankScore" value="37705" inputmode="numeric" />
-      </label>
+            <label>
+              Punti
+              <input id="rankScore" value="37705" inputmode="numeric" />
+            </label>
 
-      <label>
-        Colore testo
-        <input id="textColor" value="ffffffff" />
-      </label>
+            <label>
+              Label punti
+              <input id="scoreLabel" value="ELO" />
+            </label>
 
-      <label>
-        Colore bordo
-        <input id="borderColor" value="707985ff" />
-      </label>
+            <label>
+              Mostra LIVE
+              <select id="showStatus">
+                <option value="0" selected>No</option>
+                <option value="1">Sì</option>
+              </select>
+            </label>
+          </div>
+        </div>
 
-      <label>
-        Colore titolo rank
-        <input id="rankColor" value="f5f7faff" />
-      </label>
+        <div class="section">
+          <div class="section-title">
+            <h2>2. Branding tuo + Discord</h2>
+            <span class="tag">Identity</span>
+          </div>
+          <div class="grid">
+            <label>
+              Nome creator / brand
+              <input id="brandText" value="VOIDRAGE32" />
+            </label>
 
-      <label>
-        Label punteggio
-        <input id="scoreLabel" value="ELO" />
-      </label>
+            <label>
+              Discord
+              <input id="discordText" value="DISCORD.GG/TUOLINK" />
+            </label>
 
-      <label>
-        Testo piccolo in basso a destra
-        <input id="extraText" value="" />
-      </label>
+            <label class="full">
+              Testo piccolo personalizzato
+              <input id="extraText" value="" placeholder="Lascia vuoto per usare: BRAND • DISCORD" />
+            </label>
+          </div>
+          <p class="help">Il testo piccolo può mostrare il tuo nome, il server Discord o una call to action tipo “JOIN THE VOID”.</p>
+        </div>
 
-      <label>
-        Sfondo
-        <input id="backgroundColor" value="101116ee" />
-      </label>
+        <div class="section">
+          <div class="section-title">
+            <h2>3. Palette rapide</h2>
+            <span class="tag">Colori</span>
+          </div>
 
-      <label>
-        Spessore bordo
-        <input id="borderWidth" value="2" inputmode="numeric" />
-      </label>
+          <div id="palettes" class="palette-grid"></div>
+        </div>
 
-      <textarea id="output" readonly></textarea>
+        <div class="section">
+          <div class="section-title">
+            <h2>4. Colori avanzati</h2>
+            <span class="tag">Custom</span>
+          </div>
+          <div class="grid">
+            <label>
+              Titolo rank
+              <input id="rankColor" value="f5f7faff" />
+            </label>
+
+            <label>
+              Punti
+              <input id="scoreColor" value="f0d9aaff" />
+            </label>
+
+            <label>
+              Nome player
+              <input id="nameColor" value="e8edf4ff" />
+            </label>
+
+            <label>
+              Testo piccolo
+              <input id="extraColor" value="a8b1bdc2" />
+            </label>
+
+            <label>
+              Sfondo card
+              <input id="backgroundColor" value="0a0c10fa" />
+            </label>
+
+            <label>
+              Bordo card
+              <input id="borderColor" value="7c848fff" />
+            </label>
+
+            <label>
+              Spessore bordo
+              <input id="borderWidth" value="2" inputmode="numeric" />
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel preview-panel">
+        <div class="section">
+          <div class="section-title">
+            <h2>Anteprima live</h2>
+            <span class="tag">Preview</span>
+          </div>
+          <div class="preview-box">
+            <iframe id="preview" title="Overlay preview"></iframe>
+          </div>
+
+          <div class="output-row">
+            <button id="generate" class="btn secondary">Aggiorna</button>
+            <button id="copy" class="btn">Copia link</button>
+          </div>
+
+          <textarea id="output" readonly></textarea>
+          <p class="help">Copia il link e incollalo in OBS o TikTok LIVE Studio come Browser/Link Source.</p>
+        </div>
+      </aside>
     </div>
-
-    <button id="generate">Genera link</button>
-    <button id="copy">Copia link</button>
   </main>
 
   <script>
@@ -179,6 +478,101 @@
       "ruby": ["Ruby", ""]
     };
 
+    const palettes = [
+      {
+        name: "Original Steel",
+        rankColor: "f5f7faff",
+        scoreColor: "f0d9aaff",
+        nameColor: "e8edf4ff",
+        extraColor: "a8b1bdc2",
+        backgroundColor: "0a0c10fa",
+        borderColor: "7c848fff"
+      },
+      {
+        name: "Void Red",
+        rankColor: "ff2a17ff",
+        scoreColor: "ffffffff",
+        nameColor: "f3f4f6ff",
+        extraColor: "ff8791cc",
+        backgroundColor: "06070bfa",
+        borderColor: "d0021bff"
+      },
+      {
+        name: "Diamond Ice",
+        rankColor: "dff8ffff",
+        scoreColor: "7dd3fcff",
+        nameColor: "eaf8ffff",
+        extraColor: "9de8ffcc",
+        backgroundColor: "071019fa",
+        borderColor: "6fe7ffff"
+      },
+      {
+        name: "Gold Winner",
+        rankColor: "ffd76aff",
+        scoreColor: "ffffffff",
+        nameColor: "fff5d6ff",
+        extraColor: "ffdf7fcc",
+        backgroundColor: "120d05fa",
+        borderColor: "d6a438ff"
+      },
+      {
+        name: "Platinum Clean",
+        rankColor: "f8fbffff",
+        scoreColor: "cbd5e1ff",
+        nameColor: "f1f5f9ff",
+        extraColor: "aab4c2cc",
+        backgroundColor: "10131afa",
+        borderColor: "b5c2d1ff"
+      },
+      {
+        name: "Neon Purple",
+        rankColor: "f5d0feff",
+        scoreColor: "c084fcff",
+        nameColor: "f8f0ffff",
+        extraColor: "d8b4fecc",
+        backgroundColor: "10071afa",
+        borderColor: "a855f7ff"
+      }
+    ];
+
+    function setValue(id, value) {
+      const el = get(id);
+      if (el) el.value = value;
+    }
+
+    function renderPalettes() {
+      const wrap = get("palettes");
+      wrap.innerHTML = "";
+
+      palettes.forEach((p, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "palette" + (index === 0 ? " active" : "");
+        btn.innerHTML = `
+          <div class="palette-name">${p.name}</div>
+          <div class="swatches">
+            <div class="swatch" style="background:#${p.rankColor.slice(0,6)}"></div>
+            <div class="swatch" style="background:#${p.scoreColor.slice(0,6)}"></div>
+            <div class="swatch" style="background:#${p.backgroundColor.slice(0,6)}"></div>
+            <div class="swatch" style="background:#${p.borderColor.slice(0,6)}"></div>
+          </div>
+        `;
+
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".palette").forEach((el) => el.classList.remove("active"));
+          btn.classList.add("active");
+
+          Object.entries(p).forEach(([key, value]) => {
+            if (key !== "name") setValue(key, value);
+          });
+
+          buildLink();
+        });
+
+        wrap.appendChild(btn);
+      });
+    }
+
     function buildLink() {
       const url = new URL(window.location.origin + "/");
       const mode = get("mode").value;
@@ -204,16 +598,26 @@
         url.searchParams.set("leaderboard", "s10");
       }
 
-      url.searchParams.set("textColor", get("textColor").value.trim());
-      url.searchParams.set("backgroundColor", get("backgroundColor").value.trim());
-      url.searchParams.set("borderColor", get("borderColor").value.trim());
-      url.searchParams.set("borderWidth", get("borderWidth").value.trim());
-      url.searchParams.set("rankColor", get("rankColor").value.trim());
-      url.searchParams.set("scoreLabel", get("scoreLabel").value.trim());
-      url.searchParams.set("extraText", get("extraText").value.trim());
+      const fields = [
+        "scoreLabel", "showStatus",
+        "brandText", "discordText", "extraText",
+        "rankColor", "scoreColor", "nameColor", "extraColor",
+        "backgroundColor", "borderColor", "borderWidth"
+      ];
+
+      fields.forEach((field) => {
+        const value = get(field)?.value?.trim();
+        if (value) url.searchParams.set(field, value);
+      });
 
       get("output").value = url.toString();
+      get("preview").src = url.toString();
     }
+
+    document.querySelectorAll("input, select").forEach((el) => {
+      el.addEventListener("input", buildLink);
+      el.addEventListener("change", buildLink);
+    });
 
     get("generate").addEventListener("click", buildLink);
     get("copy").addEventListener("click", async () => {
@@ -223,6 +627,7 @@
       setTimeout(() => get("copy").textContent = "Copia link", 1200);
     });
 
+    renderPalettes();
     buildLink();
   </script>
 </body>

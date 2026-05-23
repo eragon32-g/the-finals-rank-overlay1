@@ -1,14 +1,25 @@
-# THE FINALS Rank Overlay V11 - Impact Style
+# THE FINALS Rank Overlay V12 - Generator Branding
 
-Questa versione punta a un look più d'impatto e più vicino alla targhetta dello screenshot:
-- stemma più grande e più sovrapposto
-- barra più compatta e aggressiva
-- titolo rank più forte
-- punteggio ELO più evidente
-- testo piccolo opzionale in basso a destra
+Questa versione migliora soprattutto il generatore:
+- layout più ordinato e allineato
+- anteprima live integrata
+- palette colore pronte
+- campi branding personale
+- campo Discord
+- link generato automaticamente
 
-## Esempio manuale
+## Generatore
 
 ```text
-https://TUO-PROGETTO.vercel.app/?mode=manual&player=ERDRAGON3%232577&league=Platinum%20I&division=I&rankScore=37705&badgeFile=platinum-1&scoreLabel=ELO&rankColor=f5f7faff
+https://TUO-PROGETTO.vercel.app/generator.html
 ```
+
+## Branding
+
+Puoi usare:
+- `brandText=VOIDRAGE32`
+- `discordText=DISCORD.GG/TUOLINK`
+- `extraText=JOIN%20THE%20VOID`
+
+Se `extraText` è vuoto, l'overlay usa automaticamente:
+`brandText • discordText`
