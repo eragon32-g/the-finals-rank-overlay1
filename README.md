@@ -1,9 +1,33 @@
-# THE FINALS Rank Overlay V4
+# THE FINALS Rank Overlay V5 - Official Embark Badges
 
-Novità:
-- Modalità automatica: prende i dati dalla leaderboard pubblica.
-- Modalità manuale: per chi non è nella top leaderboard pubblica.
-- Supporto stemmi immagine in `public/assets/badges`.
+Questa versione usa gli stemmi ufficiali caricati da Embark:
+
+```text
+https://id.embark.games/images/leaderboards/leagues/
+```
+
+Esempi:
+- bronze-4.png
+- bronze-3.png
+- bronze-2.png
+- bronze-1.png
+- silver-4.png
+- silver-3.png
+- silver-2.png
+- silver-1.png
+- gold-4.png
+- gold-3.png
+- gold-2.png
+- gold-1.png
+- platinum-4.png
+- platinum-3.png
+- platinum-2.png
+- platinum-1.png
+- diamond-4.png
+- diamond-3.png
+- diamond-2.png
+- diamond-1.png
+- ruby.png
 
 ## Overlay automatico
 
@@ -19,35 +43,9 @@ https://TUO-PROGETTO.vercel.app/?mode=manual&player=erdragon32%232577&league=Pla
 
 ## Generatore link
 
-Apri:
-
 ```text
 https://TUO-PROGETTO.vercel.app/generator.html
 ```
-
-Compila i campi e copia il link generato.
-
-## Stemmi veri di THE FINALS
-
-Sostituisci i file dentro:
-
-```text
-public/assets/badges/
-```
-
-Usando questi nomi:
-
-```text
-bronze.png
-silver.png
-gold.png
-platinum.png
-diamond.png
-ruby.png
-unranked.png
-```
-
-Se non hai i PNG, il progetto usa gli SVG placeholder già inclusi.
 
 ## OBS
 
@@ -58,3 +56,11 @@ Browser Source:
 ## TikTok LIVE Studio
 
 Aggiungi una sorgente Link / Web / Browser e incolla il link.
+
+## Fallback
+
+Se per qualsiasi motivo l'immagine ufficiale remota non si carica, l'overlay usa i file locali in:
+
+```text
+public/assets/badges/
+```

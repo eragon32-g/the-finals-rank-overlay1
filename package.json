@@ -1,8 +1,8 @@
 {
-  "name": "the-finals-rank-overlay-v4-manual-badges",
-  "version": "1.0.0",
+  "name": "the-finals-rank-overlay-v5-official-embark-badges",
+  "version": "1.1.0",
   "private": true,
-  "description": "Overlay THE FINALS con modalit\u00e0 automatica/manuale e supporto stemmi",
+  "description": "Overlay THE FINALS con modalit\u00e0 automatica/manuale e stemmi ufficiali Embark remoti",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

@@ -10,6 +10,33 @@ const badgeImage = $("badgeImage");
 
 const params = new URLSearchParams(window.location.search);
 
+const EMBARK_BADGE_BASE = "https://id.embark.games/images/leaderboards/leagues/";
+
+const LEAGUE_NUMBER_TO_FILE = [
+  "",
+  "bronze-4.png",
+  "bronze-3.png",
+  "bronze-2.png",
+  "bronze-1.png",
+  "silver-4.png",
+  "silver-3.png",
+  "silver-2.png",
+  "silver-1.png",
+  "gold-4.png",
+  "gold-3.png",
+  "gold-2.png",
+  "gold-1.png",
+  "platinum-4.png",
+  "platinum-3.png",
+  "platinum-2.png",
+  "platinum-1.png",
+  "diamond-4.png",
+  "diamond-3.png",
+  "diamond-2.png",
+  "diamond-1.png",
+  "ruby.png",
+];
+
 function normalizeHexColor(value, fallback) {
   if (!value) return fallback;
   let raw = String(value).trim().replace("#", "");
@@ -80,6 +107,17 @@ function baseLeague(league) {
   return "unranked";
 }
 
+function divisionToNumber(divisionOrLeague) {
+  const clean = String(divisionOrLeague || "").toLowerCase().trim();
+
+  if (clean === "1" || clean.includes(" i") || clean.endsWith("i") || clean.includes("division 1")) return "1";
+  if (clean === "2" || clean.includes(" ii") || clean.endsWith("ii") || clean.includes("division 2")) return "2";
+  if (clean === "3" || clean.includes(" iii") || clean.endsWith("iii") || clean.includes("division 3")) return "3";
+  if (clean === "4" || clean.includes(" iv") || clean.endsWith("iv") || clean.includes("division 4")) return "4";
+
+  return "";
+}
+
 function iconFromLeague(league) {
   const clean = baseLeague(league);
   if (clean === "ruby") return "RB";
@@ -91,33 +129,62 @@ function iconFromLeague(league) {
   return "TF";
 }
 
+function getOfficialBadgeFile({ league, division, badge, leagueNumber }) {
+  const number = Number(leagueNumber);
+  if (Number.isInteger(number) && LEAGUE_NUMBER_TO_FILE[number]) {
+    return LEAGUE_NUMBER_TO_FILE[number];
+  }
+
+  const cleanBadge = baseLeague(badge || league);
+  if (cleanBadge === "ruby") return "ruby.png";
+  if (cleanBadge === "unranked") return "";
+
+  const div = divisionToNumber(division || league) || "1";
+  return `${cleanBadge}-${div}.png`;
+}
+
+function getOfficialBadgeUrl(info) {
+  const file = getOfficialBadgeFile(info);
+  return file ? EMBARK_BADGE_BASE + file : "";
+}
+
 async function imageExists(src) {
   return new Promise((resolve) => {
+    if (!src) return resolve(false);
     const img = new Image();
     img.onload = () => resolve(true);
     img.onerror = () => resolve(false);
-    img.src = src + `?v=${Date.now()}`;
+    img.referrerPolicy = "no-referrer";
+    img.src = src;
   });
 }
 
-async function setBadgeVisual(league, forcedBadge) {
+async function setBadgeVisual({ league, division, forcedBadge, leagueNumber }) {
+  const officialUrl = getOfficialBadgeUrl({ league, division, badge: forcedBadge, leagueNumber });
   const badgeName = String(forcedBadge || baseLeague(league)).toLowerCase().replace(/[^a-z0-9_-]/g, "");
-  const png = `/assets/badges/${badgeName}.png`;
-  const svg = `/assets/badges/${badgeName}.svg`;
+  const localPng = `/assets/badges/${badgeName}.png`;
+  const localSvg = `/assets/badges/${badgeName}.svg`;
 
   badgeImage.classList.add("hidden");
   rankIcon.classList.remove("hidden");
   rankIcon.textContent = iconFromLeague(league);
 
-  if (await imageExists(png)) {
-    badgeImage.src = png;
+  if (officialUrl && await imageExists(officialUrl)) {
+    badgeImage.src = officialUrl;
     badgeImage.classList.remove("hidden");
     rankIcon.classList.add("hidden");
     return;
   }
 
-  if (await imageExists(svg)) {
-    badgeImage.src = svg;
+  if (await imageExists(localPng)) {
+    badgeImage.src = localPng;
+    badgeImage.classList.remove("hidden");
+    rankIcon.classList.add("hidden");
+    return;
+  }
+
+  if (await imageExists(localSvg)) {
+    badgeImage.src = localSvg;
     badgeImage.classList.remove("hidden");
     rankIcon.classList.add("hidden");
   }
@@ -131,6 +198,8 @@ function setLoading() {
   scoreText.textContent = "Cerco il player...";
   nameText.textContent = getPlayerFromUrl();
   rankIcon.textContent = "TF";
+  badgeImage.classList.add("hidden");
+  rankIcon.classList.remove("hidden");
 }
 
 function setError(message, detail) {
@@ -149,6 +218,7 @@ async function setData(data, status = "LIVE") {
   badge.classList.remove("error", "loading");
 
   const league = data.league || "Unranked";
+  const division = data.division || "";
   const rankScore = data.rankScore ?? data.score ?? "-";
   const rank = data.rank ? `#${compactNumber(data.rank)}` : "";
   const change = Number(data.change || 0);
@@ -159,7 +229,12 @@ async function setData(data, status = "LIVE") {
   scoreText.textContent = `${compactNumber(rankScore)} RS ${rank}${changeText}`;
   nameText.textContent = data.player || data.name || getPlayerFromUrl();
 
-  await setBadgeVisual(league, data.badge);
+  await setBadgeVisual({
+    league,
+    division,
+    forcedBadge: data.badge,
+    leagueNumber: data.leagueNumber,
+  });
 }
 
 async function loadManual() {
@@ -170,8 +245,9 @@ async function loadManual() {
   const rankScore = params.get("rankScore") || params.get("score") || "0";
   const rank = params.get("rank") || "";
   const badge = params.get("badge") || baseLeague(leagueBase);
+  const leagueNumber = params.get("leagueNumber") || "";
 
-  await setData({ player, league, rankScore, rank, badge }, "MANUAL");
+  await setData({ player, league, division, rankScore, rank, badge, leagueNumber }, "MANUAL");
 }
 
 async function loadAuto() {
