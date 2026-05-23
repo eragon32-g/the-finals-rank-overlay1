@@ -68,15 +68,17 @@ function normalizeHexColor(value, fallback) {
 
 function applyColors() {
   const textColor = normalizeHexColor(params.get("textColor"), "#ffffff");
-  const backgroundColor = normalizeHexColor(params.get("backgroundColor"), "rgba(15,16,20,0.93)");
-  const borderColor = normalizeHexColor(params.get("borderColor"), "#8d95a0");
+  const backgroundColor = normalizeHexColor(params.get("backgroundColor"), "rgba(16,18,23,0.98)");
+  const borderColor = normalizeHexColor(params.get("borderColor"), "#707985");
   const borderWidth = Number(params.get("borderWidth") || 2);
+  const rankColor = normalizeHexColor(params.get("rankColor"), "#ff2a17");
 
   document.documentElement.style.setProperty("--text-color", textColor);
   document.documentElement.style.setProperty("--background-color", backgroundColor);
   document.documentElement.style.setProperty("--border-color", borderColor);
   document.documentElement.style.setProperty("--accent-color", borderColor);
   document.documentElement.style.setProperty("--border-width", `${Math.max(0, Math.min(14, borderWidth))}px`);
+  document.documentElement.style.setProperty("--rank-color", rankColor);
 }
 
 function getPlayerFromUrl() {
@@ -100,8 +102,10 @@ function normalizeLeaderboard(value) {
 }
 
 function compactNumber(n) {
-  const num = Number(n);
-  if (!Number.isFinite(num)) return "-";
+  if (n === null || n === undefined || String(n).trim() === "") return "-";
+  const normalized = String(n).replace(/[^\d.-]/g, "");
+  const num = Number(normalized);
+  if (!Number.isFinite(num)) return String(n);
   return new Intl.NumberFormat("it-IT").format(num);
 }
 
@@ -215,8 +219,9 @@ function setLoading() {
   badge.classList.remove("error");
   badge.classList.add("loading");
   statusText.textContent = "LIVE";
+  statusText.classList.remove("hidden");
   rankText.textContent = "RANKED";
-  scoreText.textContent = "Caricamento...";
+  scoreText.textContent = "RS: ...";
   nameText.textContent = getPlayerFromUrl();
   rankIcon.textContent = "TF";
   badgeImage.classList.add("hidden");
@@ -227,6 +232,7 @@ function setError(message, detail) {
   badge.classList.add("error");
   badge.classList.remove("loading");
   statusText.textContent = "ERRORE";
+  statusText.classList.remove("hidden");
   rankText.textContent = message || "NON TROVATO";
   scoreText.textContent = detail || "Controlla Embark ID";
   nameText.textContent = getPlayerFromUrl();
@@ -240,14 +246,21 @@ async function setData(data, status = "LIVE") {
 
   const league = data.league || "Unranked";
   const division = data.division || "";
-  const rankScore = data.rankScore ?? data.score ?? "-";
+  const rankScoreRaw = data.rankScore ?? data.score ?? params.get("rankScore") ?? params.get("score") ?? params.get("points") ?? "-";
+  const rankScore = compactNumber(rankScoreRaw);
   const rank = data.rank ? `#${compactNumber(data.rank)}` : "";
   const change = Number(data.change || 0);
   const changeText = change === 0 ? "" : change > 0 ? ` ▲${compactNumber(change)}` : ` ▼${compactNumber(Math.abs(change))}`;
 
-  statusText.textContent = status;
+  if (status === "MANUAL") {
+    statusText.classList.add("hidden");
+  } else {
+    statusText.textContent = status;
+    statusText.classList.remove("hidden");
+  }
+
   rankText.textContent = String(league).toUpperCase();
-  scoreText.textContent = `RS: ${compactNumber(rankScore)} ${rank}${changeText}`;
+  scoreText.textContent = `RS: ${rankScore}${rank ? " " + rank : ""}${changeText}`;
   nameText.textContent = data.player || data.name || getPlayerFromUrl();
 
   await setBadgeVisual({
@@ -263,8 +276,8 @@ async function loadManual() {
   const player = getPlayerFromUrl();
   const leagueBase = params.get("league") || "Unranked";
   const division = params.get("division") || "";
-  const league = `${leagueBase}${division ? " " + division : ""}`;
-  const rankScore = params.get("rankScore") || params.get("score") || "0";
+  const league = `${leagueBase}${division ? " " + division : ""}`.trim();
+  const rankScore = params.get("rankScore") || params.get("score") || params.get("points") || "0";
   const rank = params.get("rank") || "";
   const badge = params.get("badge") || baseLeague(leagueBase);
   const badgeFile = params.get("badgeFile") || "";

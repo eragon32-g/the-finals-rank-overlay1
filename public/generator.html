@@ -62,7 +62,7 @@
 <body>
   <main class="card">
     <h1>THE FINALS Overlay Generator</h1>
-    <p class="hint">V7: ora puoi scegliere lo stemma preciso: Bronze IV, III, II, I fino a Diamond I e Ruby. Così non resta sempre sull'icona con il numero 1.</p>
+    <p class="hint">V8: stile più simile allo screenshot, la scritta MANUAL viene nascosta e in modalità manuale i punti RS vengono mostrati correttamente.</p>
 
     <div class="grid">
       <label>
@@ -117,7 +117,12 @@
 
       <label>
         Colore bordo
-        <input id="borderColor" value="8d95a0ff" />
+        <input id="borderColor" value="707985ff" />
+      </label>
+
+      <label>
+        Colore titolo rank
+        <input id="rankColor" value="ff2a17ff" />
       </label>
 
       <label>
@@ -193,6 +198,7 @@
       url.searchParams.set("backgroundColor", get("backgroundColor").value.trim());
       url.searchParams.set("borderColor", get("borderColor").value.trim());
       url.searchParams.set("borderWidth", get("borderWidth").value.trim());
+      url.searchParams.set("rankColor", get("rankColor").value.trim());
 
       get("output").value = url.toString();
     }
