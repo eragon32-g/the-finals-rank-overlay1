@@ -5,7 +5,10 @@ const statusText = $("statusText");
 const rankText = $("rankText");
 const scoreText = $("scoreText");
 const nameText = $("nameText");
-const extraText = $("extraText");
+const brandFooter = $("brandFooter");
+const brandLeft = $("brandLeft");
+const brandCenter = $("brandCenter");
+const brandRight = $("brandRight");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
@@ -51,17 +54,13 @@ function normalizeHexColor(value, fallback) {
   if (!value) return fallback;
   let raw = String(value).trim().replace("#", "");
   if (![3, 4, 6, 8].includes(raw.length)) return fallback;
-
   if (raw.length === 3 || raw.length === 4) raw = raw.split("").map((c) => c + c).join("");
-
   const rgb = raw.slice(0, 6);
   const alpha = raw.length === 8 ? parseInt(raw.slice(6, 8), 16) / 255 : 1;
   if (!/^[0-9a-fA-F]{6}$/.test(rgb) || Number.isNaN(alpha)) return fallback;
-
   const r = parseInt(rgb.slice(0, 2), 16);
   const g = parseInt(rgb.slice(2, 4), 16);
   const b = parseInt(rgb.slice(4, 6), 16);
-
   return `rgba(${r}, ${g}, ${b}, ${Math.max(0, Math.min(1, alpha))})`;
 }
 
@@ -73,7 +72,8 @@ function applyColors() {
   const rankColor = normalizeHexColor(params.get("rankColor"), "#f5f7fa");
   const scoreColor = normalizeHexColor(params.get("scoreColor"), "#f0d9aa");
   const nameColor = normalizeHexColor(params.get("nameColor"), "rgba(232,237,244,0.94)");
-  const extraColor = normalizeHexColor(params.get("extraColor"), "rgba(168,177,189,0.76)");
+  const extraColor = normalizeHexColor(params.get("extraColor"), "rgba(245,247,251,0.92)");
+  const brandAccent = normalizeHexColor(params.get("brandAccent"), "#ff2a17");
 
   document.documentElement.style.setProperty("--text-color", textColor);
   document.documentElement.style.setProperty("--background-color", backgroundColor);
@@ -83,18 +83,16 @@ function applyColors() {
   document.documentElement.style.setProperty("--score-color", scoreColor);
   document.documentElement.style.setProperty("--name-color", nameColor);
   document.documentElement.style.setProperty("--extra-color", extraColor);
+  document.documentElement.style.setProperty("--brand-accent", brandAccent);
 }
 
 function getPlayerFromUrl() {
   const directPlayer = params.get("player");
   if (directPlayer) return directPlayer.trim();
-
   const name = params.get("embarkIdName");
   const number = params.get("embarkIdNumber");
-
   if (name && number) return `${name.trim()}#${number.trim()}`;
   if (name) return name.trim();
-
   return "erdragon32#2577";
 }
 
@@ -152,14 +150,11 @@ function sanitizeBadgeFile(value) {
 function getOfficialBadgeFile({ league, division, badge, badgeFile, leagueNumber }) {
   const exactFile = sanitizeBadgeFile(badgeFile);
   if (exactFile) return `${exactFile}.png`;
-
   const number = Number(leagueNumber);
   if (Number.isInteger(number) && LEAGUE_NUMBER_TO_FILE[number]) return LEAGUE_NUMBER_TO_FILE[number];
-
   const cleanBadge = baseLeague(badge || league);
   if (cleanBadge === "ruby") return "ruby.png";
   if (cleanBadge === "unranked") return "";
-
   const div = romanToFileDivision(division || league) || "1";
   return `${cleanBadge}-${div}.png`;
 }
@@ -196,14 +191,12 @@ async function setBadgeVisual({ league, division, forcedBadge, badgeFile, league
     rankIcon.classList.add("hidden");
     return;
   }
-
   if (await imageExists(localPng)) {
     badgeImage.src = localPng;
     badgeImage.classList.remove("hidden");
     rankIcon.classList.add("hidden");
     return;
   }
-
   if (await imageExists(localSvg)) {
     badgeImage.src = localSvg;
     badgeImage.classList.remove("hidden");
@@ -211,60 +204,79 @@ async function setBadgeVisual({ league, division, forcedBadge, badgeFile, league
   }
 }
 
-function shouldShowStatus(status) {
-  const explicit = String(params.get("showStatus") || "").toLowerCase();
-  if (["1", "true", "yes"].includes(explicit)) return true;
-  if (["0", "false", "no"].includes(explicit)) return false;
-  return false;
-}
-
-
-
-
 let lockedBrandConfig = null;
 
 async function loadLockedBranding() {
   if (lockedBrandConfig) return lockedBrandConfig;
-
   try {
     const res = await fetch("/api/brand", { cache: "no-store" });
     if (!res.ok) throw new Error("Brand API not available");
     lockedBrandConfig = await res.json();
-  } catch (error) {
+  } catch {
     lockedBrandConfig = {
       enabled: true,
       brandText: "ERDRAGON3",
       discordText: "DISCORD.GG/TUOLINK",
       callToAction: "JOIN THE VOID",
-      mode: "full",
-      separator: " • "
+      mode: "split"
     };
   }
-
   return lockedBrandConfig;
 }
 
-function buildLockedBrandingText(config) {
-  if (!config || config.enabled === false) return "";
-
-  const clean = (value) => String(value || "").trim().replace(/\s+/g, " ").slice(0, 90);
-  const brand = clean(config.brandText);
-  const discord = clean(config.discordText);
-  const cta = clean(config.callToAction);
-  const separator = config.separator || " • ";
-  const mode = String(config.mode || "full").toLowerCase();
-
-  if (mode === "discord") return discord;
-  if (mode === "cta") return cta;
-  if (mode === "brand") return brand;
-
-  return [brand, cta, discord].filter(Boolean).join(separator);
+function cleanBrand(value, max = 38) {
+  return String(value || "").trim().replace(/\s+/g, " ").slice(0, max);
 }
 
 async function setLockedBrandingText() {
   const config = await loadLockedBranding();
-  const text = buildLockedBrandingText(config);
-  if (extraText) extraText.textContent = text;
+
+  if (!config || config.enabled === false) {
+    brandFooter.classList.add("is-empty");
+    brandLeft.textContent = "";
+    brandCenter.textContent = "";
+    brandRight.textContent = "";
+    return;
+  }
+
+  const brand = cleanBrand(config.brandText, 24);
+  const cta = cleanBrand(config.callToAction, 30);
+  const discord = cleanBrand(config.discordText, 36);
+  const mode = String(config.mode || "split").toLowerCase();
+
+  brandFooter.classList.remove("is-empty");
+
+  if (mode === "discord") {
+    brandLeft.textContent = "";
+    brandCenter.textContent = "";
+    brandRight.textContent = discord;
+    return;
+  }
+
+  if (mode === "brand") {
+    brandLeft.textContent = brand;
+    brandCenter.textContent = "";
+    brandRight.textContent = "";
+    return;
+  }
+
+  if (mode === "cta") {
+    brandLeft.textContent = "";
+    brandCenter.textContent = cta;
+    brandRight.textContent = "";
+    return;
+  }
+
+  brandLeft.textContent = brand;
+  brandCenter.textContent = cta;
+  brandRight.textContent = discord;
+}
+
+function shouldShowStatus(status) {
+  const explicit = String(params.get("showStatus") || "").toLowerCase();
+  if (["1", "true", "yes"].includes(explicit)) return true;
+  if (["0", "false", "no"].includes(explicit)) return false;
+  return false;
 }
 
 function setLoading() {
@@ -348,11 +360,9 @@ async function loadAuto() {
     const player = getPlayerFromUrl();
     const leaderboard = normalizeLeaderboard(params.get("leaderboard"));
     const platform = (params.get("platform") || "crossplay").toLowerCase();
-
     const query = new URLSearchParams({ player, leaderboard, platform });
     const res = await fetch(`/api/player?${query.toString()}`, { cache: "no-store" });
     const data = await res.json();
-
     if (!res.ok || !data.ok) throw new Error(data.message || "Player non trovato");
     await setData(data, "LIVE");
   } catch (err) {

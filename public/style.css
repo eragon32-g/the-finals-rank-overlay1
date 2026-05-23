@@ -8,7 +8,8 @@
   --rank-color: #f5f7fa;
   --score-color: #f0d9aa;
   --name-color: rgba(232, 237, 244, 0.94);
-  --extra-color: rgba(168, 177, 189, 0.76);
+  --extra-color: rgba(245, 247, 251, 0.92);
+  --brand-accent: #ff2a17;
 }
 
 html, body {
@@ -47,7 +48,7 @@ html, body {
   place-items: center;
   flex: 0 0 102px;
   margin-right: -24px;
-  margin-top: 2px;
+  margin-top: 1px;
 }
 
 .badge-image {
@@ -75,12 +76,12 @@ html, body {
 .card-shell {
   position: relative;
   width: 372px;
-  height: 84px;
+  height: 94px;
   border-radius: 19px;
   overflow: hidden;
   border: var(--border-width) solid rgba(122, 130, 140, 0.98);
   background:
-    linear-gradient(180deg, rgba(51, 55, 62, 0.96) 0%, rgba(16, 18, 22, 0.98) 42%, rgba(6, 7, 9, 1) 100%);
+    linear-gradient(180deg, rgba(51, 55, 62, 0.96) 0%, rgba(16, 18, 22, 0.98) 39%, rgba(6, 7, 9, 1) 100%);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.18),
     inset 0 -2px 0 rgba(0,0,0,0.6),
@@ -111,16 +112,16 @@ html, body {
   position: absolute;
   left: 16px;
   right: 16px;
-  bottom: 3px;
+  bottom: 27px;
   height: 1px;
-  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.33), rgba(255,255,255,0));
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.28), rgba(255,255,255,0));
 }
 
 .card-side-glow {
   position: absolute;
   left: 0;
   top: 14px;
-  bottom: 14px;
+  bottom: 34px;
   width: 3px;
   background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.38), rgba(255,255,255,0));
   opacity: 0.8;
@@ -128,8 +129,8 @@ html, body {
 
 .rank-info {
   position: relative;
-  height: 100%;
-  padding: 10px 14px 10px 28px;
+  height: 68px;
+  padding: 10px 14px 5px 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -139,6 +140,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
 
 .rank-text {
@@ -201,6 +203,69 @@ html, body {
   text-shadow: 0 1px 4px rgba(0,0,0,0.55);
 }
 
+.brand-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 26px;
+  display: grid;
+  grid-template-columns: minmax(82px, .9fr) minmax(88px, 1fr) minmax(120px, 1.35fr);
+  align-items: center;
+  gap: 8px;
+  padding: 0 13px 0 30px;
+  color: var(--extra-color);
+  background:
+    linear-gradient(90deg, rgba(255,42,23,0.28), rgba(255,42,23,0.08) 18%, rgba(255,255,255,0.045) 46%, rgba(255,255,255,0.025)),
+    rgba(0,0,0,0.30);
+  border-top: 1px solid rgba(255,255,255,0.095);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  font-size: 9.5px;
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: 0.65px;
+  text-transform: uppercase;
+}
+
+.brand-footer:empty,
+.brand-footer.is-empty {
+  display: none;
+}
+
+.brand-footer::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, var(--brand-accent), #ffd36a);
+  box-shadow: 0 0 10px rgba(255,42,23,0.38);
+  transform: rotate(45deg);
+}
+
+.brand-left,
+.brand-center,
+.brand-right {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brand-left {
+  color: rgba(255,255,255,0.92);
+}
+
+.brand-center {
+  color: rgba(255,211,106,0.92);
+  text-align: center;
+}
+
+.brand-right {
+  color: rgba(255,255,255,0.78);
+  text-align: right;
+}
 
 .error .status {
   background: rgba(255, 56, 56, 0.18);
@@ -208,59 +273,3 @@ html, body {
 }
 
 .hidden { display: none; }
-
-
-/* V14 locked branding: più leggibile e non modificabile da URL */
-.branding-strip {
-  position: absolute;
-  left: 104px;
-  top: 106px;
-  width: 328px;
-  min-height: 30px;
-  display: flex;
-  align-items: center;
-  padding: 7px 14px 7px 34px;
-  border-radius: 999px;
-  color: var(--extra-color);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.035)),
-    linear-gradient(90deg, rgba(255,42,23,0.16), rgba(5,7,11,0.88) 28%, rgba(5,7,11,0.88));
-  border: 1px solid rgba(255,255,255,0.16);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.10),
-    inset 0 -1px 0 rgba(0,0,0,0.40),
-    0 7px 16px rgba(0,0,0,0.26);
-  font-size: 10.5px;
-  line-height: 1;
-  font-weight: 1000;
-  letter-spacing: 0.65px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.branding-strip:empty {
-  display: none;
-}
-
-.branding-strip::before {
-  content: "";
-  position: absolute;
-  left: 12px;
-  width: 11px;
-  height: 11px;
-  border-radius: 3px;
-  background:
-    linear-gradient(135deg, #ff2a17, #ffd36a);
-  box-shadow: 0 0 10px rgba(255,42,23,0.42);
-  transform: rotate(45deg);
-}
-
-.branding-strip::after {
-  content: "LOCKED";
-  position: absolute;
-  right: 10px;
-  top: -8px;
-  display: none;
-}

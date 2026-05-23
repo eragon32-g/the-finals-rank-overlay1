@@ -180,9 +180,9 @@
     <header class="header">
       <div>
         <h1>Overlay Generator</h1>
-        <p class="subtitle">Genera il link per il rank. Il branding è bloccato: chi apre il link non può modificarlo dai parametri.</p>
+        <p class="subtitle">Genera il link per il rank. Il branding è integrato nella card e resta bloccato lato progetto.</p>
       </div>
-      <div class="tag">🔒 V14 LOCKED BRAND</div>
+      <div class="tag">🔒 V15 INTEGRATED BRAND</div>
     </header>
 
     <div class="layout">
@@ -250,7 +250,7 @@
 
         <div class="section">
           <div class="section-title">
-            <h2>2. Branding bloccato</h2>
+            <h2>2. Branding integrato e bloccato</h2>
             <span class="tag">Solo owner</span>
           </div>
           <div class="locked-card">
@@ -260,7 +260,7 @@
             </div>
             <div id="lockedPreview" class="locked-preview">Caricamento branding...</div>
           </div>
-          <p class="help">Questo testo non viene più preso dal link. Per modificarlo devi cambiare il file <b>api/brand.js</b> su GitHub/Vercel, quindi solo chi gestisce il progetto può farlo.</p>
+          <p class="help">Il branding ora è integrato nella parte bassa della targhetta, non più in una pill esterna. Per modificarlo cambia <b>api/brand.js</b>.</p>
         </div>
 
         <div class="section">
@@ -350,12 +350,11 @@
       try {
         const res = await fetch("/api/brand", { cache: "no-store" });
         const cfg = await res.json();
-        const sep = cfg.separator || " • ";
         const parts = [];
-        if (cfg.brandText) parts.push(cfg.brandText);
-        if (cfg.callToAction) parts.push(cfg.callToAction);
-        if (cfg.discordText) parts.push(cfg.discordText);
-        get("lockedPreview").textContent = parts.join(sep) || "Branding disattivato";
+        if (cfg.brandText) parts.push("Brand: " + cfg.brandText);
+        if (cfg.callToAction) parts.push("CTA: " + cfg.callToAction);
+        if (cfg.discordText) parts.push("Discord: " + cfg.discordText);
+        get("lockedPreview").textContent = parts.join("  |  ") || "Branding disattivato";
       } catch {
         get("lockedPreview").textContent = "ERDRAGON3 • JOIN THE VOID • DISCORD.GG/TUOLINK";
       }
@@ -412,7 +411,7 @@
         url.searchParams.set("leaderboard", "s10");
       }
 
-      ["scoreLabel", "showStatus", "rankColor", "scoreColor", "nameColor", "extraColor", "backgroundColor", "borderColor", "borderWidth"].forEach((field) => {
+      ["scoreLabel", "showStatus", "rankColor", "scoreColor", "nameColor", "extraColor", "backgroundColor", "borderColor", "borderWidth", "brandAccent"].forEach((field) => {
         const value = get(field)?.value?.trim();
         if (value) url.searchParams.set(field, value);
       });
