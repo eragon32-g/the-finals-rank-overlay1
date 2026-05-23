@@ -193,9 +193,9 @@ async function setBadgeVisual({ league, division, forcedBadge, leagueNumber }) {
 function setLoading() {
   badge.classList.remove("error");
   badge.classList.add("loading");
-  statusText.textContent = "LOADING";
+  statusText.textContent = "LIVE";
   rankText.textContent = "RANKED";
-  scoreText.textContent = "Cerco il player...";
+  scoreText.textContent = "Caricamento...";
   nameText.textContent = getPlayerFromUrl();
   rankIcon.textContent = "TF";
   badgeImage.classList.add("hidden");
@@ -226,7 +226,7 @@ async function setData(data, status = "LIVE") {
 
   statusText.textContent = status;
   rankText.textContent = String(league).toUpperCase();
-  scoreText.textContent = `${compactNumber(rankScore)} RS ${rank}${changeText}`;
+  scoreText.textContent = `RS: ${compactNumber(rankScore)} ${rank}${changeText}`;
   nameText.textContent = data.player || data.name || getPlayerFromUrl();
 
   await setBadgeVisual({
