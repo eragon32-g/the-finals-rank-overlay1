@@ -215,7 +215,7 @@ async function loadLockedBranding() {
   } catch {
     lockedBrandConfig = {
       enabled: true,
-      brandText: "ERDRAGON3",
+      brandText: "ERDRAGON32",
       discordText: "DISCORD.GG/TUOLINK",
       callToAction: "JOIN THE VOID",
       mode: "marquee",

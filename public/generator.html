@@ -416,6 +416,7 @@
         if (value) url.searchParams.set(field, value);
       });
 
+      url.searchParams.set("cacheBust", Date.now().toString());
       get("output").value = url.toString();
       get("preview").src = url.toString();
     }

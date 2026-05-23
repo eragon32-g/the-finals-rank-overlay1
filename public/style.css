@@ -296,3 +296,13 @@ html, body {
 }
 
 .hidden { display: none; }
+
+
+/* V20 hard fix: il branding deve mantenere maiuscole/minuscole esatte */
+.brand-drawer,
+.brand-drawer *,
+.brand-marquee,
+.brand-marquee *,
+#brandMarqueeText {
+  text-transform: none !important;
+}
