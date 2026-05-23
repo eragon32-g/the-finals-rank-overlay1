@@ -3,8 +3,8 @@ const BRAND_CONFIG = {
 
   // MODIFICA SOLO QUI IL TUO BRANDING.
   // Chi apre il link overlay NON può cambiare questi dati dai parametri URL.
-  brandText: "ERDRAGON3",
-  discordText: "DISCORD.GG/TUOLINK",
+  brandText: "ERDRAGON32",
+  discordText: "discord.gg/cffTwCcCGD",
   callToAction: "JOIN THE VOID",
 
   // Opzioni: "marquee", "discord", "cta", "brand"
