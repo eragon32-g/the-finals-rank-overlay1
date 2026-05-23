@@ -52,9 +52,7 @@ function normalizeHexColor(value, fallback) {
   let raw = String(value).trim().replace("#", "");
   if (![3, 4, 6, 8].includes(raw.length)) return fallback;
 
-  if (raw.length === 3 || raw.length === 4) {
-    raw = raw.split("").map((c) => c + c).join("");
-  }
+  if (raw.length === 3 || raw.length === 4) raw = raw.split("").map((c) => c + c).join("");
 
   const rgb = raw.slice(0, 6);
   const alpha = raw.length === 8 ? parseInt(raw.slice(6, 8), 16) / 255 : 1;
@@ -68,19 +66,18 @@ function normalizeHexColor(value, fallback) {
 }
 
 function applyColors() {
-  const textColor = normalizeHexColor(params.get("textColor"), "#f3f5f8");
-  const backgroundColor = normalizeHexColor(params.get("backgroundColor"), "rgba(11,13,17,0.98)");
-  const borderColor = normalizeHexColor(params.get("borderColor"), "#6e7682");
+  const textColor = normalizeHexColor(params.get("textColor"), "#f4f7fb");
+  const backgroundColor = normalizeHexColor(params.get("backgroundColor"), "rgba(10,12,16,0.98)");
+  const borderColor = normalizeHexColor(params.get("borderColor"), "#7c848f");
   const borderWidth = Number(params.get("borderWidth") || 2);
-  const rankColor = normalizeHexColor(params.get("rankColor"), "#f2f4f7");
-  const scoreColor = normalizeHexColor(params.get("scoreColor"), "#dfe4ea");
-  const nameColor = normalizeHexColor(params.get("nameColor"), "rgba(214,221,229,0.88)");
-  const extraColor = normalizeHexColor(params.get("extraColor"), "rgba(172,180,191,0.72)");
+  const rankColor = normalizeHexColor(params.get("rankColor"), "#f5f7fa");
+  const scoreColor = normalizeHexColor(params.get("scoreColor"), "#f0d9aa");
+  const nameColor = normalizeHexColor(params.get("nameColor"), "rgba(232,237,244,0.94)");
+  const extraColor = normalizeHexColor(params.get("extraColor"), "rgba(168,177,189,0.76)");
 
   document.documentElement.style.setProperty("--text-color", textColor);
   document.documentElement.style.setProperty("--background-color", backgroundColor);
   document.documentElement.style.setProperty("--border-color", borderColor);
-  document.documentElement.style.setProperty("--accent-color", borderColor);
   document.documentElement.style.setProperty("--border-width", `${Math.max(0, Math.min(14, borderWidth))}px`);
   document.documentElement.style.setProperty("--rank-color", rankColor);
   document.documentElement.style.setProperty("--score-color", scoreColor);
@@ -129,12 +126,10 @@ function baseLeague(league) {
 
 function romanToFileDivision(divisionOrLeague) {
   const clean = String(divisionOrLeague || "").toLowerCase().trim();
-
   if (clean === "i" || clean === "1" || clean.endsWith(" i") || clean.includes("division 1")) return "1";
   if (clean === "ii" || clean === "2" || clean.endsWith(" ii") || clean.includes("division 2")) return "2";
   if (clean === "iii" || clean === "3" || clean.endsWith(" iii") || clean.includes("division 3")) return "3";
   if (clean === "iv" || clean === "4" || clean.endsWith(" iv") || clean.includes("division 4")) return "4";
-
   return "";
 }
 
@@ -150,11 +145,7 @@ function iconFromLeague(league) {
 }
 
 function sanitizeBadgeFile(value) {
-  const clean = String(value || "")
-    .toLowerCase()
-    .replace(".png", "")
-    .replace(/[^a-z0-9-]/g, "");
-
+  const clean = String(value || "").toLowerCase().replace(".png", "").replace(/[^a-z0-9-]/g, "");
   return ALLOWED_BADGE_FILES.has(clean) ? clean : "";
 }
 
@@ -163,9 +154,7 @@ function getOfficialBadgeFile({ league, division, badge, badgeFile, leagueNumber
   if (exactFile) return `${exactFile}.png`;
 
   const number = Number(leagueNumber);
-  if (Number.isInteger(number) && LEAGUE_NUMBER_TO_FILE[number]) {
-    return LEAGUE_NUMBER_TO_FILE[number];
-  }
+  if (Number.isInteger(number) && LEAGUE_NUMBER_TO_FILE[number]) return LEAGUE_NUMBER_TO_FILE[number];
 
   const cleanBadge = baseLeague(badge || league);
   if (cleanBadge === "ruby") return "ruby.png";
@@ -226,7 +215,7 @@ function shouldShowStatus(status) {
   const explicit = String(params.get("showStatus") || "").toLowerCase();
   if (["1", "true", "yes"].includes(explicit)) return true;
   if (["0", "false", "no"].includes(explicit)) return false;
-  return false; // default hidden for screenshot-like look
+  return false;
 }
 
 function setLoading() {
@@ -312,12 +301,10 @@ async function loadAuto() {
     const platform = (params.get("platform") || "crossplay").toLowerCase();
 
     const query = new URLSearchParams({ player, leaderboard, platform });
-
     const res = await fetch(`/api/player?${query.toString()}`, { cache: "no-store" });
     const data = await res.json();
 
     if (!res.ok || !data.ok) throw new Error(data.message || "Player non trovato");
-
     await setData(data, "LIVE");
   } catch (err) {
     setError("NON TROVATO", err.message);

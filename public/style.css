@@ -1,16 +1,14 @@
 * { box-sizing: border-box; }
 
 :root {
-  --text-color: #f3f5f8;
-  --background-color: rgba(11, 13, 17, 0.98);
-  --border-color: #6e7682;
+  --text-color: #f4f7fb;
+  --background-color: rgba(10, 12, 16, 0.98);
+  --border-color: #7c848f;
   --border-width: 2px;
-  --accent-color: #ffffff;
-  --muted-color: rgba(240, 243, 247, 0.95);
-  --rank-color: #f2f4f7;
-  --score-color: #dfe4ea;
-  --name-color: rgba(214, 221, 229, 0.88);
-  --extra-color: rgba(172, 180, 191, 0.72);
+  --rank-color: #f5f7fa;
+  --score-color: #f0d9aa;
+  --name-color: rgba(232, 237, 244, 0.94);
+  --extra-color: rgba(168, 177, 189, 0.76);
 }
 
 html, body {
@@ -37,121 +35,123 @@ html, body {
   height: 160px;
   display: flex;
   align-items: center;
-  padding-left: 0;
   color: var(--text-color);
 }
 
 .rank-mark {
   position: relative;
-  width: 92px;
-  height: 92px;
-  z-index: 3;
+  width: 102px;
+  height: 102px;
+  z-index: 4;
   display: grid;
   place-items: center;
-  flex: 0 0 92px;
-  margin-right: -16px;
-  margin-top: 4px;
+  flex: 0 0 102px;
+  margin-right: -24px;
+  margin-top: 2px;
 }
 
 .badge-image {
-  width: 88px;
-  height: 88px;
+  width: 98px;
+  height: 98px;
   object-fit: contain;
   filter:
-    drop-shadow(0 3px 6px rgba(0,0,0,0.45))
-    drop-shadow(0 1px 0 rgba(255,255,255,0.18));
+    drop-shadow(0 4px 10px rgba(0,0,0,0.48))
+    drop-shadow(0 1px 0 rgba(255,255,255,0.16));
 }
 
 .rank-icon {
-  width: 80px;
-  height: 80px;
+  width: 86px;
+  height: 86px;
   display: grid;
   place-items: center;
   border-radius: 18px;
   font-size: 24px;
   font-weight: 900;
-  letter-spacing: -1px;
-  background:
-    radial-gradient(circle at 35% 25%, rgba(255,255,255,0.48), transparent 30%),
-    linear-gradient(135deg, #d9dee7, #434b58);
-  border: 2px solid rgba(255,255,255,0.36);
-  box-shadow: 0 3px 14px rgba(0,0,0,0.5);
-  text-shadow: 0 2px 6px rgba(0,0,0,0.55);
+  background: linear-gradient(145deg, #d9dee7, #444c58);
+  border: 2px solid rgba(255,255,255,0.32);
   clip-path: polygon(50% 0%, 92% 24%, 92% 76%, 50% 100%, 8% 76%, 8% 24%);
 }
 
 .card-shell {
   position: relative;
-  width: 360px;
-  height: 80px;
-  border-radius: 18px;
+  width: 372px;
+  height: 84px;
+  border-radius: 19px;
   overflow: hidden;
-  border: var(--border-width) solid rgba(109,118,129,0.95);
+  border: var(--border-width) solid rgba(122, 130, 140, 0.98);
   background:
-    radial-gradient(circle at 18% 10%, rgba(255,255,255,0.10), transparent 24%),
-    linear-gradient(180deg, rgba(43,46,53,0.97) 0%, rgba(14,16,20,0.98) 54%, rgba(5,6,8,1) 100%);
+    linear-gradient(180deg, rgba(51, 55, 62, 0.96) 0%, rgba(16, 18, 22, 0.98) 42%, rgba(6, 7, 9, 1) 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.16),
-    inset 0 -2px 0 rgba(0,0,0,0.58),
-    0 7px 18px rgba(0,0,0,0.28);
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -2px 0 rgba(0,0,0,0.6),
+    0 9px 22px rgba(0,0,0,0.34);
 }
 
 .card-shell::before {
   content: "";
   position: absolute;
-  inset: 1px;
+  inset: 2px;
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.06);
   pointer-events: none;
 }
 
-.card-shine {
+.card-top-gloss {
   position: absolute;
-  left: 12px;
-  right: 12px;
-  top: 3px;
+  left: 10px;
+  right: 16px;
+  top: 4px;
   height: 20px;
-  border-radius: 14px 14px 40px 40px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.00));
+  border-radius: 14px 14px 30px 30px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0));
   pointer-events: none;
 }
 
-.card-inner-line {
+.card-bottom-line {
   position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 2px;
+  left: 16px;
+  right: 16px;
+  bottom: 3px;
   height: 1px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.00), rgba(255,255,255,0.28), rgba(255,255,255,0.00));
-  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.33), rgba(255,255,255,0));
+}
+
+.card-side-glow {
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 3px;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.38), rgba(255,255,255,0));
+  opacity: 0.8;
 }
 
 .rank-info {
   position: relative;
   height: 100%;
-  padding: 8px 14px 8px 24px;
+  padding: 10px 14px 10px 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 1;
 }
 
 .title-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 10px;
 }
 
 .rank-text {
-  font-size: 29px;
+  font-size: 30px;
   line-height: 1;
   font-weight: 1000;
   letter-spacing: 0.2px;
   text-transform: uppercase;
   white-space: nowrap;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.62);
   color: var(--rank-color);
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.16),
+    0 2px 7px rgba(0,0,0,0.55);
 }
 
 .status {
@@ -169,18 +169,16 @@ html, body {
   color: rgba(255,255,255,0.95);
 }
 
-.status.hidden {
-  display: none !important;
-}
+.status.hidden { display: none !important; }
 
 .meta-row {
   display: flex;
   align-items: baseline;
   gap: 12px;
-  margin-top: 6px;
+  margin-top: 8px;
+  min-width: 0;
   white-space: nowrap;
   overflow: hidden;
-  min-width: 0;
 }
 
 .score-text {
@@ -189,18 +187,18 @@ html, body {
   color: var(--score-color);
   text-transform: uppercase;
   flex: 0 0 auto;
-  text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.55);
 }
 
 .name-text {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
   color: var(--name-color);
   flex: 1 1 auto;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.55);
 }
 
 .extra-text {
@@ -212,7 +210,7 @@ html, body {
   letter-spacing: 0.6px;
   color: var(--extra-color);
   text-transform: uppercase;
-  max-width: 120px;
+  max-width: 130px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

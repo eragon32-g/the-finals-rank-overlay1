@@ -1,8 +1,8 @@
 {
-  "name": "the-finals-rank-overlay-v10-screenshot-style",
-  "version": "1.6.0",
+  "name": "the-finals-rank-overlay-v11-impact-style",
+  "version": "1.7.0",
   "private": true,
-  "description": "Overlay THE FINALS con stile pi\u00f9 vicino allo screenshot",
+  "description": "Overlay THE FINALS con look pi\u00f9 d'impatto e pi\u00f9 vicino allo screenshot",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
