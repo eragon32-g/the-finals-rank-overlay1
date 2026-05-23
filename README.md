@@ -1,15 +1,13 @@
-# THE FINALS Rank Overlay V17 - Animated Locked Branding
+# THE FINALS Rank Overlay V18 - Case Sensitive Branding
 
-Questa versione risolve il problema del testo tagliato nel branding.
+Questa versione corregge il problema del branding che diventava tutto maiuscolo.
 
 ## Cosa cambia
-- Il branding non è più sempre visibile
-- Compare ogni X secondi
-- Il testo scorre in stile marquee
-- Dopo alcuni secondi la finestra si richiude
-- Branding e tempi restano bloccati lato progetto, non modificabili dal link
+- Il testo animato del branding mantiene maiuscole/minuscole come scritto in `api/brand.js`
+- Esempio: `discord.gg/tuolink` resta minuscolo
+- Il branding resta bloccato lato progetto
 
-## Modificare branding e tempi
+## Modificare il branding
 
 Apri su GitHub:
 
@@ -17,20 +15,12 @@ Apri su GitHub:
 api/brand.js
 ```
 
-Puoi cambiare:
+E scrivi il testo come vuoi che venga mostrato:
 
 ```js
-brandText: "ERDRAGON3",
-discordText: "DISCORD.GG/TUOLINK",
-callToAction: "JOIN THE VOID",
-
-intervalSeconds: 18,
-visibleSeconds: 7,
-scrollSeconds: 8,
-showOnLoad: true
+brandText: "ErDragon32",
+discordText: "discord.gg/tuolink",
+callToAction: "Join the Void"
 ```
 
-## Generatore
-```text
-https://TUO-PROGETTO.vercel.app/generator.html
-```
+Poi fai **Commit changes** e aspetta Vercel.

@@ -1,8 +1,8 @@
 {
-  "name": "the-finals-rank-overlay-v17-animated-branding",
-  "version": "2.3.0",
+  "name": "the-finals-rank-overlay-v18-case-sensitive-branding",
+  "version": "2.4.0",
   "private": true,
-  "description": "Overlay THE FINALS con branding animato, scorrevole e bloccato",
+  "description": "Overlay THE FINALS con branding animato che mantiene maiuscole e minuscole",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
