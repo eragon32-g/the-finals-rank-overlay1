@@ -219,27 +219,52 @@ function shouldShowStatus(status) {
 }
 
 
-function getBrandingText() {
-  const explicitExtra = params.get("extraText");
-  const separator = params.get("brandSeparator") || " • ";
 
-  function clean(value) {
-    return String(value || "")
-      .trim()
-      .replace(/\s+/g, " ")
-      .slice(0, 80);
+
+let lockedBrandConfig = null;
+
+async function loadLockedBranding() {
+  if (lockedBrandConfig) return lockedBrandConfig;
+
+  try {
+    const res = await fetch("/api/brand", { cache: "no-store" });
+    if (!res.ok) throw new Error("Brand API not available");
+    lockedBrandConfig = await res.json();
+  } catch (error) {
+    lockedBrandConfig = {
+      enabled: true,
+      brandText: "ERDRAGON3",
+      discordText: "DISCORD.GG/TUOLINK",
+      callToAction: "JOIN THE VOID",
+      mode: "full",
+      separator: " • "
+    };
   }
 
-  if (explicitExtra && explicitExtra.trim()) return clean(explicitExtra);
+  return lockedBrandConfig;
+}
 
-  const brandText = clean(params.get("brandText"));
-  const discordText = clean(params.get("discordText"));
+function buildLockedBrandingText(config) {
+  if (!config || config.enabled === false) return "";
 
-  if (brandText && discordText) return `${brandText}${separator}${discordText}`;
-  if (brandText) return brandText;
-  if (discordText) return discordText;
+  const clean = (value) => String(value || "").trim().replace(/\s+/g, " ").slice(0, 90);
+  const brand = clean(config.brandText);
+  const discord = clean(config.discordText);
+  const cta = clean(config.callToAction);
+  const separator = config.separator || " • ";
+  const mode = String(config.mode || "full").toLowerCase();
 
-  return "";
+  if (mode === "discord") return discord;
+  if (mode === "cta") return cta;
+  if (mode === "brand") return brand;
+
+  return [brand, cta, discord].filter(Boolean).join(separator);
+}
+
+async function setLockedBrandingText() {
+  const config = await loadLockedBranding();
+  const text = buildLockedBrandingText(config);
+  if (extraText) extraText.textContent = text;
 }
 
 function setLoading() {
@@ -250,7 +275,7 @@ function setLoading() {
   rankText.textContent = "RANKED";
   scoreText.textContent = `${(params.get("scoreLabel") || "ELO").toUpperCase()}: ...`;
   nameText.textContent = getPlayerFromUrl();
-  extraText.textContent = getBrandingText();
+  setLockedBrandingText();
   rankIcon.textContent = "TF";
   badgeImage.classList.add("hidden");
   rankIcon.classList.remove("hidden");
@@ -265,7 +290,7 @@ function setError(message, detail) {
   rankText.textContent = message || "NON TROVATO";
   scoreText.textContent = detail || "Controlla Embark ID";
   nameText.textContent = getPlayerFromUrl();
-  extraText.textContent = getBrandingText();
+  setLockedBrandingText();
   rankIcon.textContent = "!";
   badgeImage.classList.add("hidden");
   rankIcon.classList.remove("hidden");
@@ -293,7 +318,7 @@ async function setData(data, status = "LIVE") {
   rankText.textContent = String(league).toUpperCase();
   scoreText.textContent = `${scoreLabel}: ${rankScore}${rank ? " " + rank : ""}${changeText}`;
   nameText.textContent = data.player || data.name || getPlayerFromUrl();
-  extraText.textContent = getBrandingText();
+  setLockedBrandingText();
 
   await setBadgeVisual({
     league,

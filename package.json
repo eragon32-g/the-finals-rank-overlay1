@@ -1,8 +1,8 @@
 {
-  "name": "the-finals-rank-overlay-v13-branding-fix",
-  "version": "1.9.0",
+  "name": "the-finals-rank-overlay-v14-locked-branding",
+  "version": "2.0.0",
   "private": true,
-  "description": "Overlay THE FINALS con branding Discord pi\u00f9 leggibile",
+  "description": "Overlay THE FINALS con branding Discord bloccato lato progetto",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
