@@ -1,0 +1,12 @@
+{
+  "name": "the-finals-rank-overlay-v1",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Overlay live per THE FINALS Rank su OBS / TikTok LIVE Studio",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
