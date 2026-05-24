@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "45";
+const OVERLAY_VERSION = "46";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {

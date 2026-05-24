@@ -1,5 +1,21 @@
 [
   {
+    "version": "46",
+    "date": "2026-05-24",
+    "title": "Cyber Red compatto",
+    "summary": "Cyber Red Impact è stato ridisegnato come strip premium più bassa e più vicina alla cover dello Shop.",
+    "added": [],
+    "improved": [
+      "Forma più compatta e orizzontale",
+      "Stemma più integrato nel pannello",
+      "Player, rank e punti più densi e vicini alla cover",
+      "Meno effetto card alta, più effetto targhetta esport"
+    ],
+    "fixed": [
+      "Cyber Red era ancora troppo lontano dalla reference mostrata nello Shop"
+    ]
+  },
+  {
     "version": "45",
     "date": "2026-05-24",
     "title": "Cyber Red rebuild",

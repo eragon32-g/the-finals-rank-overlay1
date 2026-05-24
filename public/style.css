@@ -1518,3 +1518,391 @@ html, body {
   }
 }
 
+
+
+/* RankTag V46 - Cyber Red compact premium strip
+   Goal: closer to the generated shop cover: low, wide, sharp, dense, premium. */
+
+.badge.rt43-root:has(.rt43-cyber-red),
+.badge:has(.rt43-cyber-red) {
+  width: 470px !important;
+  min-height: 96px !important;
+}
+
+.rt43-cyber-red.rt45-cyber-rebuild,
+.rt43-cyber-red {
+  width: 470px !important;
+  min-height: 88px !important;
+  height: 88px !important;
+  display: grid !important;
+  grid-template-columns: 88px minmax(0, 1fr) !important;
+  overflow: visible !important;
+  isolation: isolate !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  clip-path: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  position: relative !important;
+}
+
+/* main metal body */
+.rt43-cyber-red::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 42px !important;
+  right: 6px !important;
+  top: 9px !important;
+  height: 70px !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 42px) 0,
+    100% 16px,
+    calc(100% - 10px) 100%,
+    9px 100%,
+    0 calc(100% - 10px)
+  ) !important;
+  border: none !important;
+  background:
+    linear-gradient(115deg, rgba(255,42,23,.18) 0 20%, transparent 20% 62%, rgba(255,42,23,.13) 62% 100%),
+    repeating-linear-gradient(135deg, rgba(255,42,23,.10) 0 2px, transparent 2px 12px),
+    linear-gradient(180deg, #171a20 0%, #080a0e 58%, #020305 100%) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,42,23,.85),
+    inset 0 1px 0 rgba(255,255,255,.18),
+    0 0 18px rgba(255,42,23,.34),
+    0 10px 20px rgba(0,0,0,.34) !important;
+}
+
+/* red lower rail and top slices */
+.rt43-cyber-red::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 56px !important;
+  right: 22px !important;
+  top: 17px !important;
+  height: 58px !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  transform: none !important;
+  animation: none !important;
+  background:
+    linear-gradient(90deg, transparent 0 8%, rgba(255,42,23,.85) 8% 38%, transparent 38% 100%) top left / 100% 2px no-repeat,
+    linear-gradient(90deg, rgba(255,42,23,.95), rgba(255,42,23,.18), transparent) bottom left / 72% 2px no-repeat,
+    linear-gradient(110deg, transparent 0%, rgba(255,255,255,.10) 48%, transparent 58%);
+  opacity: .95 !important;
+}
+
+/* left emblem */
+.rt43-cyber-red .rt43-left {
+  position: relative !important;
+  z-index: 4 !important;
+  width: 88px !important;
+  height: 88px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.rt43-cyber-red .rt43-left::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 4px !important;
+  top: 7px !important;
+  width: 76px !important;
+  height: 76px !important;
+  z-index: 0 !important;
+  clip-path: polygon(50% 0, 92% 25%, 82% 88%, 50% 100%, 18% 88%, 8% 25%) !important;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(125,231,242,.18), rgba(0,0,0,.24) 58%),
+    linear-gradient(180deg, #171b22, #050608) !important;
+  border: 0 !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,42,23,.82),
+    0 0 16px rgba(255,42,23,.36),
+    0 8px 14px rgba(0,0,0,.55) !important;
+}
+
+.rt43-cyber-red .rt43-left::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 1px !important;
+  top: 4px !important;
+  width: 82px !important;
+  height: 82px !important;
+  z-index: -1 !important;
+  clip-path: polygon(50% 0, 94% 25%, 84% 90%, 50% 100%, 16% 90%, 6% 25%) !important;
+  background: linear-gradient(135deg, rgba(255,42,23,.95), rgba(255,42,23,.08)) !important;
+  opacity: .88 !important;
+}
+
+.rt43-cyber-red .rt43-emblem-frame {
+  width: 74px !important;
+  height: 74px !important;
+  display: grid !important;
+  place-items: center !important;
+  position: relative !important;
+  z-index: 2 !important;
+  transform: none !important;
+}
+
+.rt43-cyber-red .rt43-emblem-frame::before {
+  display: none !important;
+}
+
+.rt43-cyber-red .rt43-emblem {
+  width: 66px !important;
+  height: 66px !important;
+  object-fit: contain !important;
+  filter:
+    drop-shadow(0 8px 10px rgba(0,0,0,.75))
+    drop-shadow(0 0 8px rgba(125,231,242,.18)) !important;
+}
+
+/* central dense layout */
+.rt43-cyber-red .rt43-center {
+  position: relative !important;
+  z-index: 4 !important;
+  min-width: 0 !important;
+  height: 88px !important;
+  display: grid !important;
+  grid-template-rows: 42px 34px !important;
+  gap: 0 !important;
+  padding: 15px 16px 10px 12px !important;
+}
+
+.rt43-cyber-red .rt43-center::before,
+.rt43-cyber-red .rt43-center::after {
+  content: "" !important;
+  position: absolute !important;
+  pointer-events: none !important;
+}
+
+.rt43-cyber-red .rt43-center::before {
+  left: 6px !important;
+  right: 102px !important;
+  top: 11px !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent, rgba(255,42,23,.9), transparent) !important;
+  box-shadow: 0 0 8px rgba(255,42,23,.42) !important;
+}
+
+.rt43-cyber-red .rt43-center::after {
+  right: 10px !important;
+  top: 13px !important;
+  width: 42px !important;
+  height: 22px !important;
+  background:
+    linear-gradient(90deg, rgba(255,42,23,.95), rgba(255,42,23,.16)) top left / 100% 2px no-repeat,
+    linear-gradient(90deg, rgba(255,42,23,.55), transparent) bottom left / 72% 2px no-repeat;
+  transform: skewX(-20deg) !important;
+}
+
+/* top row */
+.rt43-cyber-red .rt43-topbar {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 76px !important;
+  align-items: start !important;
+  gap: 10px !important;
+  min-width: 0 !important;
+}
+
+.rt43-cyber-red .rt43-player {
+  min-width: 0 !important;
+  max-width: 235px !important;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif !important;
+  font-size: 27px !important;
+  line-height: .9 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: #f4f7fb !important;
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.85),
+    0 0 14px rgba(255,42,23,.28) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.rt43-cyber-red .rt43-topbar-right {
+  display: grid !important;
+  justify-items: end !important;
+  align-items: start !important;
+  gap: 0 !important;
+  min-width: 76px !important;
+}
+
+.rt43-cyber-red .rt43-live {
+  display: none !important;
+}
+
+.rt43-cyber-red .rt43-brand {
+  min-height: 18px !important;
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+  background: rgba(255,42,23,.18) !important;
+  border: 1px solid rgba(255,42,23,.45) !important;
+  color: #ff4437 !important;
+  font-size: 9px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 1.6px !important;
+  text-transform: uppercase !important;
+}
+
+/* bottom rank + score row */
+.rt43-cyber-red .rt43-bottomrow {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 92px !important;
+  gap: 10px !important;
+  align-items: stretch !important;
+  min-width: 0 !important;
+}
+
+.rt43-cyber-red .rt43-rank-box {
+  position: relative !important;
+  min-width: 0 !important;
+  height: 34px !important;
+  border-radius: 0 !important;
+  padding: 6px 10px 5px 12px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(125,231,242,.20) !important;
+  border-left: 3px solid rgba(125,231,242,.85) !important;
+  background:
+    linear-gradient(90deg, rgba(125,231,242,.10), rgba(0,0,0,.30)),
+    rgba(0,0,0,.18) !important;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 0 100%) !important;
+}
+
+.rt43-cyber-red .rt43-rank-box::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 11px !important;
+  right: 20px !important;
+  bottom: 4px !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, rgba(125,231,242,.70), transparent) !important;
+}
+
+.rt43-cyber-red .rt43-kicker {
+  color: rgba(255,255,255,.56) !important;
+  font-size: 8px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+
+.rt43-cyber-red .rt43-rank {
+  margin-top: 3px !important;
+  max-width: 190px !important;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif !important;
+  font-size: 17px !important;
+  line-height: .95 !important;
+  letter-spacing: .7px !important;
+  text-transform: uppercase !important;
+  color: #7be7f2 !important;
+  text-shadow: 0 0 10px rgba(125,231,242,.22) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.rt43-cyber-red .rt43-score-box {
+  position: relative !important;
+  min-width: 92px !important;
+  height: 42px !important;
+  transform: translateY(-8px) !important;
+  border-radius: 0 !important;
+  padding: 7px 9px 6px !important;
+  overflow: hidden !important;
+  text-align: right !important;
+  border: 1px solid rgba(255,42,23,.40) !important;
+  background:
+    radial-gradient(circle at 100% 52%, rgba(255,42,23,.32), transparent 68%),
+    linear-gradient(180deg, rgba(255,42,23,.17), rgba(0,0,0,.34)) !important;
+  clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%) !important;
+  box-shadow: inset 0 0 14px rgba(255,42,23,.08) !important;
+}
+
+.rt43-cyber-red .rt43-score-label {
+  color: #ff4b3c !important;
+  font-size: 8px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+
+.rt43-cyber-red .rt43-score-value {
+  margin-top: 4px !important;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif !important;
+  font-size: 24px !important;
+  line-height: .88 !important;
+  letter-spacing: .4px !important;
+  color: #fff !important;
+  text-shadow: 0 2px 0 rgba(0,0,0,.75) !important;
+  white-space: nowrap !important;
+}
+
+.rt43-cyber-red .rt43-score-extra {
+  display: none !important;
+}
+
+/* accents */
+.rt43-cyber-red .rt43-accent-a {
+  position: absolute !important;
+  z-index: 5 !important;
+  left: 112px !important;
+  top: 18px !important;
+  width: 8px !important;
+  height: 3px !important;
+  background: #ff2a17 !important;
+  box-shadow:
+    13px 0 0 rgba(255,42,23,.88),
+    26px 0 0 rgba(255,42,23,.52),
+    39px 0 0 rgba(255,42,23,.28) !important;
+  transform: skewX(-24deg) !important;
+}
+
+.rt43-cyber-red .rt43-accent-b {
+  position: absolute !important;
+  z-index: 1 !important;
+  right: 18px !important;
+  top: 24px !important;
+  width: 68px !important;
+  height: 52px !important;
+  opacity: .20 !important;
+  background: radial-gradient(circle at 55% 50%, rgba(255,42,23,.95), transparent 62%) !important;
+  clip-path: polygon(50% 0, 92% 27%, 78% 100%, 50% 78%, 22% 100%, 8% 27%) !important;
+}
+
+/* inherited layers */
+.rt43-cyber-red .rt43-noise {
+  z-index: 0 !important;
+  opacity: .18 !important;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 1px, transparent 1px 10px) !important;
+}
+
+.rt43-cyber-red .rt43-shine {
+  position: absolute !important;
+  inset: 10px 8px 10px 46px !important;
+  z-index: 3 !important;
+  background: linear-gradient(108deg, transparent 0%, rgba(255,255,255,.15) 45%, transparent 58%) !important;
+  transform: translateX(-140%) !important;
+  animation: rt46CyberSweep 5.8s ease-in-out infinite !important;
+  opacity: .55 !important;
+  pointer-events: none !important;
+}
+
+@keyframes rt46CyberSweep {
+  0%, 60%, 100% { transform: translateX(-140%); opacity: .22; }
+  76% { transform: translateX(120%); opacity: .68; }
+}
+
