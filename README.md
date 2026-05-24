@@ -1,13 +1,20 @@
-# RankTag for THE FINALS - V29
+# RankTag for THE FINALS - V30
 
-V29 aggiunge:
-- Profili locali nel generator
-- Salvataggio/caricamento progetti locali per nickname + password
-- Launch Kit nascosto dalla navigazione pubblica
-- Launch Kit con gate admin leggero
-- Fix link Home: Funzioni / Come funziona
-- `version.json` aggiornato a V29
+V30 aggiunge account online Supabase con nickname + password.
 
-## Nota sicurezza
-I profili locali salvano i dati nel browser dell'utente, non su server.
-Il gate admin del Launch Kit è una protezione leggera frontend. Per sicurezza reale serve auth server-side con database.
+## Cosa cambia
+- Login/registrazione online nel generator
+- Nessuna email richiesta
+- Salvataggio overlay online su Supabase
+- Caricamento overlay salvati da più dispositivi
+- Eliminazione overlay online
+- Launch Kit visibile solo ad admin verificato da Supabase
+- Admin previsto: Eraadmin32
+
+## Supabase
+Project URL:
+```text
+https://dgmhxldfhmcywamgigji.supabase.co
+```
+
+La anon public key è usata nel frontend. Non inserire mai service_role key nel codice pubblico.

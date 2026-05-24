@@ -347,7 +347,7 @@
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><div class="tag">RankTag V29</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><div class="tag">RankTag V30</div></div>
     </header>
 
     <div class="layout">
@@ -355,32 +355,36 @@
 
         <div class="section">
           <div class="section-title">
-            <h2>0. Profilo locale</h2>
+            <h2>0. Account online</h2>
             <span class="tag">Save</span>
           </div>
           <div class="profile-bar">
             <div class="profile-row">
               <label>
-                Nickname profilo
+                Nickname account
                 <input id="profileNick" value="" placeholder="IlTuoNickname" autocomplete="username" />
               </label>
               <label>
-                Password locale
+                Password account
                 <input id="profilePass" type="password" value="" placeholder="Password" autocomplete="current-password" />
               </label>
-              <button id="loginProfile" type="button" class="btn secondary small">Login / crea</button>
+              <button id="loginProfile" type="button" class="btn secondary small">Login / registrati</button>
               <button id="logoutProfile" type="button" class="btn secondary small">Logout</button>
             </div>
             <div id="profileStatus" class="profile-status">
-              Salvataggio locale: i progetti restano sul dispositivo/browser dell’utente e non sono pubblici.
+              Account online: i progetti vengono salvati su Supabase e li ritrovi da PC/telefono.
             </div>
-            <div class="quick-actions">
-              <button id="saveProject" type="button" class="btn small">Salva progetto</button>
+            <div class="profile-row" style="grid-template-columns: 1fr auto auto;">
+              <label>
+                Nome progetto
+                <input id="projectTitle" value="" placeholder="Es. Ranked Platinum" />
+              </label>
+              <button id="saveProject" type="button" class="btn small">Salva online</button>
               <button id="refreshProjects" type="button" class="btn secondary small">Aggiorna lista</button>
             </div>
             <div id="savedProjects" class="saved-grid"></div>
           </div>
-          <p class="help">MVP locale: utile per il lancio. Per account sincronizzati tra dispositivi servirà un database tipo Supabase/Firebase.</p>
+          <p class="help">Account online: nickname + password, nessuna email. Ogni utente vede solo i propri progetti.</p>
         </div>
 
         <div class="section">
@@ -551,40 +555,26 @@
     </div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const get = (id) => document.getElementById(id);
 
 
+    const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV4cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
     let currentProfile = null;
+    let currentToken = localStorage.getItem("ranktag_online_token") || "";
+    let currentRole = "user";
 
-    async function sha256(text) {
-      const data = new TextEncoder().encode(text);
-      const digest = await crypto.subtle.digest("SHA-256", data);
-      return [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, "0")).join("");
-    }
-
-    function profilesStore() {
-      try { return JSON.parse(localStorage.getItem("ranktag_profiles") || "{}"); }
-      catch { return {}; }
-    }
-
-    function setProfilesStore(data) {
-      localStorage.setItem("ranktag_profiles", JSON.stringify(data));
-    }
-
-    function profileKey(nick) {
-      return "ranktag_projects_" + String(nick || "").trim().toLowerCase();
-    }
-
-    function getCurrentProjects() {
-      if (!currentProfile) return [];
-      try { return JSON.parse(localStorage.getItem(profileKey(currentProfile)) || "[]"); }
-      catch { return []; }
-    }
-
-    function setCurrentProjects(projects) {
-      if (!currentProfile) return;
-      localStorage.setItem(profileKey(currentProfile), JSON.stringify(projects));
+    async function rpc(name, args) {
+      const { data, error } = await sb.rpc(name, args);
+      if (error) {
+        console.error(name, error);
+        return { ok: false, message: error.message || "Errore Supabase" };
+      }
+      return data || { ok: false, message: "Risposta vuota" };
     }
 
     function setProfileStatus(text) {
@@ -593,11 +583,7 @@
     }
 
     function collectProjectData() {
-      const fields = [
-        "mode", "player", "badgeFile", "rankScore", "scoreLabel", "showStatus",
-        "rankColor", "scoreColor", "nameColor", "extraColor",
-        "backgroundColor", "borderColor", "borderWidth", "brandAccent"
-      ];
+      const fields = ["mode","player","badgeFile","rankScore","scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent"];
       const data = {};
       fields.forEach((field) => {
         const el = get(field);
@@ -616,118 +602,132 @@
       buildLink();
     }
 
-    function renderSavedProjects() {
-      const wrap = get("savedProjects");
-      if (!wrap) return;
-      wrap.innerHTML = "";
-
-      if (!currentProfile) {
-        wrap.innerHTML = `<div class="profile-status">Fai login o crea un profilo locale per vedere i progetti salvati.</div>`;
+    async function verifyToken() {
+      if (!currentToken) {
+        currentProfile = null;
+        renderSavedProjects();
         return;
       }
-
-      const projects = getCurrentProjects();
-
-      if (!projects.length) {
-        wrap.innerHTML = `<div class="profile-status">Nessun progetto salvato per ${currentProfile}.</div>`;
-        return;
+      const res = await rpc("ranktag_get_user_by_token", { p_token: currentToken });
+      if (Array.isArray(res) && res.length) {
+        currentProfile = res[0].nickname;
+        currentRole = res[0].role || "user";
+        const nickInput = get("profileNick");
+        if (nickInput) nickInput.value = currentProfile;
+        setProfileStatus(`Accesso online attivo: ${currentProfile}. Progetti sincronizzati tra dispositivi.`);
+        await renderSavedProjects();
+      } else {
+        currentToken = "";
+        currentProfile = null;
+        localStorage.removeItem("ranktag_online_token");
+        setProfileStatus("Sessione scaduta. Fai login di nuovo.");
+        renderSavedProjects();
       }
-
-      projects.forEach((project, index) => {
-        const card = document.createElement("div");
-        card.className = "saved-card";
-        const title = `${project.player || "Player"} · ${project.badgeFile || "rank"} · ${project.rankScore || "0"}`;
-        const saved = project.savedAt ? new Date(project.savedAt).toLocaleString("it-IT") : "";
-        card.innerHTML = `
-          <div>
-            <div>${title}</div>
-            <small>Salvato: ${saved}</small>
-          </div>
-          <div class="saved-actions">
-            <button type="button" class="btn secondary small" data-load="${index}">Carica</button>
-            <button type="button" class="btn danger small" data-delete="${index}">Elimina</button>
-          </div>
-        `;
-        wrap.appendChild(card);
-      });
-
-      wrap.querySelectorAll("[data-load]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const index = Number(btn.getAttribute("data-load"));
-          applyProjectData(getCurrentProjects()[index]);
-        });
-      });
-
-      wrap.querySelectorAll("[data-delete]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const index = Number(btn.getAttribute("data-delete"));
-          const projects = getCurrentProjects();
-          projects.splice(index, 1);
-          setCurrentProjects(projects);
-          renderSavedProjects();
-        });
-      });
     }
 
     async function loginOrCreateProfile() {
       const nick = get("profileNick")?.value?.trim();
       const pass = get("profilePass")?.value || "";
-
       if (!nick || !pass) {
-        setProfileStatus("Inserisci nickname e password locale.");
+        setProfileStatus("Inserisci nickname e password.");
         return;
       }
-
-      const hash = await sha256(pass);
-      const profiles = profilesStore();
-      const key = nick.toLowerCase();
-
-      if (profiles[key] && profiles[key].passwordHash !== hash) {
-        setProfileStatus("Password non corretta per questo profilo locale.");
+      let res = await rpc("ranktag_login", { p_nickname: nick, p_password: pass });
+      if (!res.ok && String(res.message || "").toLowerCase().includes("non corretti")) {
+        res = await rpc("ranktag_register", { p_nickname: nick, p_password: pass });
+      }
+      if (!res.ok) {
+        setProfileStatus(res.message || "Login non riuscito.");
         return;
       }
-
-      if (!profiles[key]) {
-        profiles[key] = { nickname: nick, passwordHash: hash, createdAt: new Date().toISOString() };
-        setProfilesStore(profiles);
-      }
-
-      currentProfile = nick;
-      localStorage.setItem("ranktag_current_profile", nick);
-      setProfileStatus(`Accesso effettuato come ${nick}. I progetti vengono salvati solo su questo browser.`);
-      renderSavedProjects();
+      currentToken = res.token;
+      currentProfile = res.user?.nickname || nick;
+      currentRole = res.user?.role || "user";
+      localStorage.setItem("ranktag_online_token", currentToken);
+      setProfileStatus(`Accesso online effettuato come ${currentProfile}.`);
+      await renderSavedProjects();
     }
 
     function logoutProfile() {
+      currentToken = "";
       currentProfile = null;
-      localStorage.removeItem("ranktag_current_profile");
-      setProfileStatus("Logout effettuato. I progetti restano salvati nel browser.");
+      currentRole = "user";
+      localStorage.removeItem("ranktag_online_token");
+      setProfileStatus("Logout effettuato.");
       renderSavedProjects();
     }
 
-    function saveCurrentProject() {
-      if (!currentProfile) {
-        setProfileStatus("Prima fai login o crea un profilo locale.");
+    async function renderSavedProjects() {
+      const wrap = get("savedProjects");
+      if (!wrap) return;
+      wrap.innerHTML = "";
+      if (!currentToken || !currentProfile) {
+        wrap.innerHTML = `<div class="profile-status">Fai login o registrati per vedere i progetti salvati online.</div>`;
         return;
       }
-
-      buildLink();
-      const projects = getCurrentProjects();
-      projects.unshift(collectProjectData());
-      setCurrentProjects(projects.slice(0, 20));
-      setProfileStatus(`Progetto salvato per ${currentProfile}.`);
-      renderSavedProjects();
+      wrap.innerHTML = `<div class="profile-status">Caricamento progetti online...</div>`;
+      const res = await rpc("ranktag_list_overlays", { p_token: currentToken });
+      if (!res.ok) {
+        wrap.innerHTML = `<div class="profile-status">${res.message || "Errore caricamento progetti."}</div>`;
+        return;
+      }
+      const projects = res.overlays || [];
+      if (!projects.length) {
+        wrap.innerHTML = `<div class="profile-status">Nessun progetto salvato per ${currentProfile}.</div>`;
+        return;
+      }
+      wrap.innerHTML = "";
+      projects.forEach((project) => {
+        const config = project.config || {};
+        const card = document.createElement("div");
+        card.className = "saved-card";
+        const title = project.title || `${config.player || "Player"} · ${config.badgeFile || "rank"}`;
+        const saved = project.updated_at ? new Date(project.updated_at).toLocaleString("it-IT") : "";
+        card.innerHTML = `
+          <div>
+            <div>${title}</div>
+            <small>Salvato online: ${saved}</small>
+          </div>
+          <div class="saved-actions">
+            <button type="button" class="btn secondary small" data-load="${project.id}">Carica</button>
+            <button type="button" class="btn danger small" data-delete="${project.id}">Elimina</button>
+          </div>
+        `;
+        wrap.appendChild(card);
+        card.querySelector("[data-load]")?.addEventListener("click", () => {
+          applyProjectData(config);
+          if (get("projectTitle")) get("projectTitle").value = project.title || "";
+        });
+        card.querySelector("[data-delete]")?.addEventListener("click", async () => {
+          const del = await rpc("ranktag_delete_overlay", { p_token: currentToken, p_overlay_id: project.id });
+          if (!del.ok) setProfileStatus(del.message || "Errore eliminazione.");
+          await renderSavedProjects();
+        });
+      });
     }
 
-    function restoreLastProfile() {
-      const nick = localStorage.getItem("ranktag_current_profile");
-      if (nick) {
-        currentProfile = nick;
-        const el = get("profileNick");
-        if (el) el.value = nick;
-        setProfileStatus(`Profilo locale attivo: ${nick}.`);
+    async function saveCurrentProject() {
+      if (!currentToken || !currentProfile) {
+        setProfileStatus("Prima fai login o registrati.");
+        return;
       }
-      renderSavedProjects();
+      buildLink();
+      const title = get("projectTitle")?.value?.trim() || `${get("player")?.value || "Player"} · ${get("badgeFile")?.value || "rank"}`;
+      const res = await rpc("ranktag_save_overlay", {
+        p_token: currentToken,
+        p_title: title,
+        p_config: collectProjectData()
+      });
+      if (!res.ok) {
+        setProfileStatus(res.message || "Errore salvataggio online.");
+        return;
+      }
+      setProfileStatus(`Progetto salvato online per ${currentProfile}.`);
+      await renderSavedProjects();
+    }
+
+    async function restoreLastProfile() {
+      await verifyToken();
     }
 
     const rankMap = {

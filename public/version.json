@@ -1,7 +1,8 @@
 {
-  "version": "29",
+  "version": "30",
   "project": "RankTag",
+  "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Local profiles, project save, admin-gated launch kit and anchor fixes."
+  "note": "Supabase online nickname/password accounts and online saved overlays."
 }

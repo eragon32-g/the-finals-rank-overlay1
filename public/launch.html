@@ -41,7 +41,7 @@ h1{margin:0 0 8px;font-size:clamp(34px,5vw,58px);line-height:.95;letter-spacing:
     <label>Password admin<input id="adminPass" type="password" autocomplete="current-password" /></label>
     <button id="adminLogin" class="btn">Entra</button>
     <div id="adminError" class="gate-error"></div>
-    <p class="note">Protezione leggera lato frontend: per sicurezza reale serve auth server-side.</p>
+    <p class="note">Accesso verificato con account admin Supabase.</p>
   </div>
 </section>
 <main id="launchContent" class="page hidden">
@@ -127,6 +127,7 @@ Not affiliated with Embark Studios.</textarea>
 </div>
 </section>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 document.querySelectorAll("[data-copy]").forEach((btn)=>{
   btn.addEventListener("click", async ()=>{
@@ -139,30 +140,41 @@ document.querySelectorAll("[data-copy]").forEach((btn)=>{
   });
 });
 
-const ADMIN_USER = "eraadmin32";
-const ADMIN_HASH = "36991972019182482fa9ed6f01c1845d4bf67532534f9d4670f57ae2bd877e05";
-async function sha256Admin(text) {
-  const data = new TextEncoder().encode(text);
-  const digest = await crypto.subtle.digest("SHA-256", data);
-  return [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, "0")).join("");
+const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV4cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+async function rpc(name, args) {
+  const { data, error } = await sb.rpc(name, args);
+  if (error) return { ok: false, message: error.message };
+  return data || { ok: false, message: "Risposta vuota" };
 }
+
 function showLaunchContent() {
   document.getElementById("adminGate")?.classList.add("hidden");
   document.getElementById("launchContent")?.classList.remove("hidden");
 }
-if (sessionStorage.getItem("ranktag_admin_ok") === "1") showLaunchContent();
+
+async function verifyAdminToken() {
+  const token = sessionStorage.getItem("ranktag_admin_token") || "";
+  if (!token) return;
+  const res = await rpc("ranktag_get_user_by_token", { p_token: token });
+  if (Array.isArray(res) && res.length && res[0].role === "admin") showLaunchContent();
+}
+
+verifyAdminToken();
+
 document.getElementById("adminLogin")?.addEventListener("click", async () => {
-  const nick = (document.getElementById("adminNick")?.value || "").trim().toLowerCase();
+  const nick = (document.getElementById("adminNick")?.value || "").trim();
   const pass = document.getElementById("adminPass")?.value || "";
-  const hash = await sha256Admin(pass);
-  if (nick === ADMIN_USER && hash === ADMIN_HASH) {
-    sessionStorage.setItem("ranktag_admin_ok", "1");
+  const res = await rpc("ranktag_login", { p_nickname: nick, p_password: pass });
+  if (res.ok && res.user?.role === "admin") {
+    sessionStorage.setItem("ranktag_admin_token", res.token);
     showLaunchContent();
   } else {
-    document.getElementById("adminError").textContent = "Credenziali non corrette.";
+    document.getElementById("adminError").textContent = "Credenziali admin non corrette.";
   }
 });
-
 </script>
 </body>
 </html>
