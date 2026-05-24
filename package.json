@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v42-plus-cleaner-masks",
-  "version": "4.8.0",
+  "name": "ranktag-finals-overlay-v43-real-plus-layouts",
+  "version": "4.9.0",
   "private": true,
-  "description": "RankTag Plus cleaner processed masks",
+  "description": "RankTag with rebuilt real Plus layouts and official dynamic emblems",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

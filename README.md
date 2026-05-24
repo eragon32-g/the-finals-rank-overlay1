@@ -1,3 +1,3 @@
-# RankTag for THE FINALS - V42
+# RankTag for THE FINALS - V43
 
-V42 pulisce meglio le cover Plus processate e i residui del testo originale.
+V43 ricostruisce gli stili Plus come veri layout HTML/CSS con stemmi ufficiali dinamici.

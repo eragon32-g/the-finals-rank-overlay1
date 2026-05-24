@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "42";
+const OVERLAY_VERSION = "43";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -440,7 +440,7 @@ if (isManualMode()) {
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
-/* RankTag V39 Plus style finalizer */
+/* RankTag V38 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -476,231 +476,99 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
 
-/* RankTag V39 - real Plus layout renderer */
-(function renderRankTagPlusLayoutV39() {
-  const q = new URLSearchParams(window.location.search);
-  const allowed = ["cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
-  const style = String(q.get("themeStyle") || "default").toLowerCase();
-  if (!allowed.includes(style)) return;
+/* RankTag V43 - real Plus layouts */
+(function rankTagRealPlusLayoutsV43() {
+  const PLUS_STYLES = ["cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
 
-  const root =
-    document.querySelector(".rank-card") ||
-    document.querySelector(".overlay-card") ||
-    document.querySelector(".badge") ||
-    document.body.firstElementChild;
+  function parseScoreParts(text) {
+    const raw = String(text || '').trim();
+    const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
+    if (!match) {
+      return { label: 'ELO', value: raw || '-', extra: '' };
+    }
+    return {
+      label: String(match[1] || 'ELO').trim(),
+      value: String(match[2] || '-').trim(),
+      extra: String(match[3] || '').trim()
+    };
+  }
 
-  if (!root) return;
+  function getCurrentState() {
+    const style = normalizeThemeStyle(params.get('themeStyle'));
+    const status = statusText && !statusText.classList.contains('hidden') ? String(statusText.textContent || '').trim() : '';
+    const rank = normalizeRankDisplay(rankText?.textContent || '').toUpperCase() || 'PLATINUM 1';
+    const player = String(nameText?.textContent || getPlayerFromUrl() || 'ERDRAGON32#2577').trim();
+    const score = parseScoreParts(scoreText?.textContent || `${params.get('scoreLabel') || 'ELO'}: ${params.get('rankScore') || '37705'}`);
+    const emblemSrc = badgeImage?.getAttribute('src') || '';
+    return { style, status, rank, player, score, emblemSrc };
+  }
 
-  const badgeImg =
-    document.querySelector(".rank-badge img") ||
-    document.querySelector(".rank-badge-wrap img") ||
-    document.querySelector("#rankBadge") ||
-    root.querySelector("img");
+  function buildRealLayout(state) {
+    const liveBadge = state.status ? `<div class="rt43-live">${state.status}</div>` : '';
+    const scoreExtra = state.score.extra ? `<div class="rt43-score-extra">${state.score.extra}</div>` : '';
+    const emblem = state.emblemSrc
+      ? `<img class="rt43-emblem" src="${state.emblemSrc}" alt="rank emblem" />`
+      : `<div class="rt43-emblem-fallback">TF</div>`;
 
-  const badgeSrc = badgeImg?.getAttribute("src") || "";
-  const league =
-    (document.querySelector(".rank-title")?.textContent ||
-     document.querySelector("#rankText")?.textContent ||
-     q.get("league") ||
-     "PLATINUM 1").trim();
+    return `
+      <div class="rt43-shell rt43-${state.style}">
+        <div class="rt43-noise"></div>
+        <div class="rt43-shine"></div>
+        <div class="rt43-accent rt43-accent-a"></div>
+        <div class="rt43-accent rt43-accent-b"></div>
 
-  const score =
-    (document.querySelector(".rank-score")?.textContent ||
-     document.querySelector("#scoreText")?.textContent ||
-     q.get("rankScore") ||
-     q.get("score") ||
-     "37705").trim();
-
-  const player =
-    (document.querySelector(".rank-name")?.textContent ||
-     document.querySelector("#playerText")?.textContent ||
-     q.get("player") ||
-     "ERDRAGON32#2577").trim();
-
-  const scoreLabel = (q.get("scoreLabel") || "ELO").trim();
-
-  root.className = root.className
-    .split(/\s+/)
-    .filter(c => !c.startsWith("theme-"))
-    .join(" ");
-
-  root.classList.add("rank-card", "rt-plus-card", `theme-${style}`);
-  root.setAttribute("data-theme-style", style);
-
-  root.innerHTML = `
-    <div class="rtp-emblem-shell">
-      <div class="rtp-emblem-ring">
-        ${badgeSrc ? `<img class="rtp-emblem" src="${badgeSrc}" alt="">` : `<div class="rtp-emblem-placeholder"></div>`}
-      </div>
-    </div>
-
-    <div class="rtp-main">
-      <div class="rtp-player">${player}</div>
-      <div class="rtp-lower">
-        <div class="rtp-rank">${league}</div>
-        <div class="rtp-divider"></div>
-        <div class="rtp-score-block">
-          <div class="rtp-score-label">${scoreLabel}</div>
-          <div class="rtp-score">${score}</div>
+        <div class="rt43-left">
+          <div class="rt43-emblem-frame">${emblem}</div>
         </div>
-      </div>
-    </div>
 
-    <div class="rtp-brand">RANKTAG</div>
-  `;
+        <div class="rt43-center">
+          <div class="rt43-topbar">
+            <div class="rt43-player" title="${state.player}">${state.player}</div>
+            <div class="rt43-topbar-right">
+              ${liveBadge}
+              <div class="rt43-brand">RANKTAG</div>
+            </div>
+          </div>
 
-  document.documentElement.dataset.themeStyle = style;
-})();
+          <div class="rt43-bottomrow">
+            <div class="rt43-rank-box">
+              <div class="rt43-kicker">RANK</div>
+              <div class="rt43-rank">${state.rank}</div>
+            </div>
 
-
-
-/* RankTag V40 - exact generated Plus covers with official emblem */
-(function renderExactPlusCoverV40() {
-  const q = new URLSearchParams(window.location.search);
-  const style = String(q.get('themeStyle') || 'default').toLowerCase();
-  const allowed = ['cyber-red','glass-minimal','premium-gold','tournament-panel'];
-  if (!allowed.includes(style)) return;
-
-  const root = document.querySelector('#badge') || document.querySelector('.badge') || document.body.firstElementChild;
-  if (!root) return;
-
-  const getText = (selectors, fallback='') => {
-    for (const sel of selectors) {
-      const el = document.querySelector(sel);
-      const t = el?.textContent?.trim();
-      if (t) return t;
-    }
-    return fallback;
-  };
-
-  const badgeImg =
-    document.querySelector('#badgeImage') ||
-    document.querySelector('.rtp-emblem') ||
-    document.querySelector('.badge-image') ||
-    document.querySelector('img');
-  const badgeSrc = badgeImg?.getAttribute('src') || '';
-
-  const league = getText(['.rtp-rank', '.rank-text', '#rankText'], `${(q.get('league')||'PLATINUM').toUpperCase()} ${(q.get('division')||'1')}`);
-  const scoreRaw = getText(['.rtp-score', '.score-text', '#scoreText'], q.get('rankScore') || q.get('score') || '37705');
-  const player = getText(['.rtp-player', '.name-text', '#nameText'], q.get('player') || 'ERDRAGON32#2577');
-  const scoreLabel = String(q.get('scoreLabel') || 'ELO').trim();
-
-  const numericScore = scoreRaw.replace(/^[^0-9]*/,'').trim();
-  const backgroundMap = {
-    'cyber-red': '/assets/plus/cyber-red.png',
-    'glass-minimal': '/assets/plus/glass-minimal.png',
-    'premium-gold': '/assets/plus/premium-gold.png',
-    'tournament-panel': '/assets/plus/tournament-panel.png'
-  };
-
-  root.className = 'badge exact-plus-cover exact-plus-' + style;
-  root.setAttribute('data-theme-style', style);
-  root.innerHTML = `
-    <div class="exact-plus-bg" style="background-image:url('${backgroundMap[style]}')">
-      <div class="exact-plus-emblem-slot">
-        ${badgeSrc ? `<img class="exact-plus-emblem" src="${badgeSrc}" alt="rank emblem">` : ''}
-      </div>
-      <div class="exact-plus-mask exact-plus-mask-player"></div>
-      <div class="exact-plus-mask exact-plus-mask-rank"></div>
-      <div class="exact-plus-mask exact-plus-mask-score"></div>
-      <div class="exact-plus-player">${player}</div>
-      <div class="exact-plus-rank">${league}</div>
-      <div class="exact-plus-score-label">${scoreLabel}</div>
-      <div class="exact-plus-score">${numericScore}</div>
-    </div>
-  `;
-})();
-
-
-
-/* RankTag V41 - cropped exact Plus covers + dynamic official emblem */
-(function renderProcessedPlusV41() {
-  const q = new URLSearchParams(window.location.search);
-  const style = String(q.get('themeStyle') || 'default').toLowerCase();
-  const allowed = ['cyber-red','glass-minimal','premium-gold','tournament-panel'];
-  if (!allowed.includes(style)) return;
-
-  const wait = (ms) => new Promise(r => setTimeout(r, ms));
-  const getText = (selectors, fallback='') => {
-    for (const sel of selectors) {
-      const el = document.querySelector(sel);
-      const t = el?.textContent?.trim();
-      if (t) return t;
-    }
-    return fallback;
-  };
-
-  const bgMap = {
-    'cyber-red': '/assets/plus-processed/cyber-red.png',
-    'glass-minimal': '/assets/plus-processed/glass-minimal.png',
-    'premium-gold': '/assets/plus-processed/premium-gold.png',
-    'tournament-panel': '/assets/plus-processed/tournament-panel.png'
-  };
-
-  const pos = {
-    'cyber-red': {
-      emblem: 'left:23px; top:24px; width:92px; height:92px;',
-      player: 'left:141px; top:41px; max-width:190px; font-size:23px; color:#f2f2f2;',
-      rank: 'left:183px; top:91px; max-width:110px; font-size:16px; color:#b9edf4; letter-spacing:.6px;',
-      scoreLabel: 'left:368px; top:79px; font-size:9px; color:#ff5a48; letter-spacing:1px;',
-      score: 'left:352px; top:90px; max-width:78px; font-size:24px; color:#fff;'
-    },
-    'glass-minimal': {
-      emblem: 'left:27px; top:31px; width:72px; height:72px;',
-      player: 'left:124px; top:53px; max-width:128px; font-size:17px; color:#f4f7fb;',
-      rank: 'left:291px; top:53px; max-width:72px; font-size:13px; color:#65eef9; letter-spacing:.6px;',
-      scoreLabel: 'left:375px; top:47px; font-size:8px; color:rgba(255,255,255,.8); letter-spacing:.8px;',
-      score: 'left:370px; top:58px; max-width:56px; font-size:18px; color:#fff;'
-    },
-    'premium-gold': {
-      emblem: 'left:25px; top:25px; width:84px; height:84px;',
-      player: 'left:127px; top:45px; max-width:140px; font-size:17px; color:#e7c15d;',
-      rank: 'left:183px; top:84px; max-width:112px; font-size:14px; color:#fff1c9; letter-spacing:.5px;',
-      scoreLabel: 'left:353px; top:42px; font-size:8px; color:#ffd76a; letter-spacing:.8px;',
-      score: 'left:340px; top:55px; max-width:84px; font-size:23px; color:#fff7df;'
-    },
-    'tournament-panel': {
-      emblem: 'left:19px; top:24px; width:92px; height:92px;',
-      player: 'left:143px; top:50px; max-width:138px; font-size:24px; color:#f4f7fb;',
-      rank: 'left:341px; top:42px; max-width:88px; font-size:14px; color:#45d7dd; letter-spacing:.5px;',
-      scoreLabel: 'left:349px; top:79px; font-size:8px; color:rgba(255,255,255,.82); letter-spacing:.8px;',
-      score: 'left:348px; top:91px; max-width:80px; font-size:20px; color:#fff;'
-    }
-  };
-
-  async function run() {
-    for (let i = 0; i < 15; i++) {
-      const badgeImage = document.querySelector('#badgeImage') || document.querySelector('.badge-image');
-      if (badgeImage?.getAttribute('src')) break;
-      await wait(120);
-    }
-
-    const badgeImage = document.querySelector('#badgeImage') || document.querySelector('.badge-image');
-    const badgeSrc = badgeImage?.getAttribute('src') || '';
-    const root = document.querySelector('#badge') || document.querySelector('.badge') || document.body.firstElementChild;
-    if (!root) return;
-
-    let league = getText(['#rankText','.rank-text'], `${(q.get('league')||'PLATINUM').toUpperCase()} ${q.get('division')||'1'}`);
-    let scoreRaw = getText(['#scoreText','.score-text'], q.get('rankScore') || q.get('score') || '37705');
-    let player = getText(['#nameText','.name-text'], q.get('player') || 'ERDRAGON32#2577');
-
-    const scoreNumber = String(scoreRaw).replace(/^[^0-9]*/, '').trim();
-    const scoreLabel = String(q.get('scoreLabel') || 'ELO').trim().toUpperCase();
-
-    root.className = `badge plus-processed plus-processed-${style}`;
-    root.setAttribute('data-theme-style', style);
-    root.innerHTML = `
-      <div class="plus-processed-bgwrap">
-        <img class="plus-processed-bg" src="${bgMap[style]}?v=${Date.now()}" alt="style background">
-        ${badgeSrc ? `<img class="plus-processed-emblem" style="${pos[style].emblem}" src="${badgeSrc}" alt="rank emblem">` : ''}
-        <div class="plus-processed-text plus-player" style="${pos[style].player}">${player}</div>
-        <div class="plus-processed-text plus-rank" style="${pos[style].rank}">${league}</div>
-        <div class="plus-processed-text plus-score-label" style="${pos[style].scoreLabel}">${scoreLabel}</div>
-        <div class="plus-processed-text plus-score" style="${pos[style].score}">${scoreNumber}</div>
+            <div class="rt43-score-box">
+              <div class="rt43-score-label">${state.score.label}</div>
+              <div class="rt43-score-value">${state.score.value}</div>
+              ${scoreExtra}
+            </div>
+          </div>
+        </div>
       </div>
     `;
   }
 
-  run();
-})();
+  function renderRealPlusLayout(force = false) {
+    const state = getCurrentState();
+    if (!PLUS_STYLES.includes(state.style)) return;
+    const root = badge || document.getElementById('badge') || document.body.firstElementChild;
+    if (!root) return;
 
+    root.className = 'badge rt43-root';
+    root.setAttribute('data-theme-style', state.style);
+    document.documentElement.dataset.themeStyle = state.style;
+
+    const nextHtml = buildRealLayout(state);
+    if (!force && root.innerHTML === nextHtml) return;
+    root.innerHTML = nextHtml;
+  }
+
+  const __rankTagOrigSetData = setData;
+  setData = async function(...args) {
+    await __rankTagOrigSetData.apply(this, args);
+    renderRealPlusLayout(true);
+  };
+
+  window.addEventListener('load', () => {
+    setTimeout(() => renderRealPlusLayout(true), 600);
+  });
+})();
