@@ -1,12 +1,23 @@
-# RankTag for THE FINALS - V27
+# RankTag for THE FINALS - V28
 
-Punto 4 completato: homepage rifinita per il lancio pubblico.
+Punto 5 completato: test finale e launch kit.
 
 ## Cosa cambia
-- Homepage più professionale e pronta da condividere
-- Hero più forte con frase di valore
-- Preview overlay più curata
-- Statistiche rapide
-- Sezioni "Perché usarlo" e "Come funziona"
-- CTA finale per aprire il generator
-- `version.json` aggiornato a V27
+- Nuova pagina `/launch.html`
+- Checklist tecnica pre-lancio
+- Link rapidi di controllo
+- Messaggio Discord pronto
+- Testo TikTok pronto
+- Idee copertina video
+- Disclaimer pronto
+- Link al Launch Kit da homepage e generator
+- `version.json` aggiornato a V28
+
+## Link
+```text
+/home.html
+/generator.html
+/launch.html
+/version.json
+/brand.json
+```

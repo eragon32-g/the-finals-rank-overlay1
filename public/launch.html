@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RankTag Launch Kit</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:#f6f8fb;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 18% 0%,rgba(255,42,23,.18),transparent 34%),radial-gradient(circle at 80% 10%,rgba(125,211,252,.12),transparent 28%),linear-gradient(180deg,#090a10,#05060a)}
+.page{width:min(1060px,100%);margin:0 auto;padding:28px 18px 40px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:26px}
+.brand{font-weight:1000;letter-spacing:.3px}
+.nav a{color:rgba(255,255,255,.76);text-decoration:none;font-size:14px;font-weight:900}
+h1{margin:0 0 8px;font-size:clamp(34px,5vw,58px);line-height:.95;letter-spacing:-1.8px}
+.lead{margin:0 0 22px;color:rgba(246,248,251,.68);font-size:17px;line-height:1.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{border:1px solid rgba(255,255,255,.12);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));padding:20px;box-shadow:0 20px 54px rgba(0,0,0,.24)}
+.card h2{margin:0 0 12px;font-size:20px}
+.check{display:grid;gap:10px}
+.item{display:flex;align-items:flex-start;gap:10px;color:rgba(255,255,255,.80);font-size:14px;line-height:1.35}
+.box{width:18px;height:18px;border-radius:6px;border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.20);flex:0 0 18px;margin-top:1px}
+.code{width:100%;min-height:118px;margin-top:10px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(0,0,0,.24);color:#fff;padding:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;line-height:1.45;resize:vertical}
+.btn{display:inline-flex;justify-content:center;align-items:center;min-height:40px;border-radius:12px;padding:0 13px;border:0;background:linear-gradient(135deg,#ff2a17,#b30f23);color:white;font-weight:1000;cursor:pointer;margin-top:10px}
+.btn.secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.links{display:grid;gap:8px}
+.links a{color:#f0d9aa;text-decoration:none;font-weight:900;word-break:break-all}
+.full{grid-column:1/-1}
+.note{margin-top:10px;color:rgba(255,255,255,.56);font-size:13px;line-height:1.45}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<main class="page">
+<nav class="nav"><div class="brand">RankTag · Launch Kit</div><div><a href="/home.html">Home</a> · <a href="/generator.html">Generator</a></div></nav>
+<h1>Checklist pre-lancio</h1>
+<p class="lead">Usa questa pagina prima di pubblicare RankTag su Discord, TikTok o nelle live. Spunta mentalmente ogni punto e copia i testi pronti.</p>
+
+<section class="grid">
+<div class="card">
+<h2>Controlli tecnici</h2>
+<div class="check">
+<div class="item"><span class="box"></span><span><strong>version.json</strong> mostra la versione giusta.</span></div>
+<div class="item"><span class="box"></span><span><strong>brand.json</strong> mostra brand e Discord corretti.</span></div>
+<div class="item"><span class="box"></span><span>Homepage si apre correttamente.</span></div>
+<div class="item"><span class="box"></span><span>Generator si apre correttamente.</span></div>
+<div class="item"><span class="box"></span><span>Anteprima live visibile.</span></div>
+<div class="item"><span class="box"></span><span>Pulsante Copia link funzionante.</span></div>
+<div class="item"><span class="box"></span><span>Overlay manuale mostra rank, stemma e punti.</span></div>
+<div class="item"><span class="box"></span><span>Branding animato compare e non forza maiuscole.</span></div>
+</div>
+</div>
+
+<div class="card">
+<h2>Link rapidi</h2>
+<div class="links">
+<a href="/version.json?v=123" target="_blank">/version.json</a>
+<a href="/brand.json?v=123" target="_blank">/brand.json</a>
+<a href="/home.html?v=123" target="_blank">/home.html</a>
+<a href="/generator.html?v=123" target="_blank">/generator.html</a>
+</div>
+<p class="note">Dopo ogni deploy apri questi link con <strong>?v=123</strong> o in incognito per evitare cache.</p>
+</div>
+
+<div class="card">
+<h2>Messaggio Discord</h2>
+<textarea id="discordText" class="code" readonly>Ho creato RankTag, un overlay rank fan-made per THE FINALS 🎮
+
+✅ Compatibile con OBS
+✅ Compatibile con TikTok LIVE Studio
+✅ Modalità manuale anche se non sei in leaderboard
+✅ Stemmi rank e temi personalizzabili
+
+Crea il tuo overlay qui:
+https://the-finals-rank-overlay32.vercel.app/home.html</textarea>
+<button class="btn" data-copy="discordText">Copia messaggio Discord</button>
+</div>
+
+<div class="card">
+<h2>Testo TikTok</h2>
+<textarea id="tiktokText" class="code" readonly>Ho creato un overlay rank per THE FINALS.
+Funziona su OBS e TikTok LIVE Studio.
+E puoi usarlo anche se non sei in leaderboard grazie alla modalità manuale.
+
+Link nel Discord / bio.</textarea>
+<button class="btn" data-copy="tiktokText">Copia testo TikTok</button>
+</div>
+
+<div class="card">
+<h2>Copertina video</h2>
+<textarea id="coverText" class="code" readonly>HO CREATO UN OVERLAY RANK PER THE FINALS
+
+oppure
+
+ORA IL TUO RANK SI VEDE IN LIVE</textarea>
+<button class="btn" data-copy="coverText">Copia idee copertina</button>
+</div>
+
+<div class="card">
+<h2>Disclaimer</h2>
+<textarea id="disclaimerText" class="code" readonly>RankTag is a fan-made tool for THE FINALS streamers.
+Not affiliated with Embark Studios.</textarea>
+<button class="btn" data-copy="disclaimerText">Copia disclaimer</button>
+</div>
+
+<div class="card full">
+<h2>Test finale consigliato</h2>
+<div class="row">
+<a class="btn secondary" href="/generator.html?cacheBust=28">Apri Generator</a>
+<a class="btn secondary" href="/home.html?cacheBust=28">Apri Homepage</a>
+<a class="btn secondary" href="/?mode=manual&player=ERDRAGON32%232577&league=Platinum&division=I&rankScore=37705&badgeFile=platinum-1&scoreLabel=ELO&cacheBust=28">Apri Overlay test</a>
+</div>
+<p class="note">Apri anche da telefono e da finestra in incognito. Se tutto è ok, sei pronto per il lancio.</p>
+</div>
+</section>
+</main>
+<script>
+document.querySelectorAll("[data-copy]").forEach((btn)=>{
+  btn.addEventListener("click", async ()=>{
+    const id = btn.getAttribute("data-copy");
+    const text = document.getElementById(id).value;
+    await navigator.clipboard.writeText(text);
+    const old = btn.textContent;
+    btn.textContent = "Copiato!";
+    setTimeout(()=>btn.textContent=old, 1200);
+  });
+});
+</script>
+</body>
+</html>

@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "27";
+const OVERLAY_VERSION = "28";
 const params = new URLSearchParams(window.location.search);
 
 const EMBARK_BADGE_BASE = "https://id.embark.games/images/leaderboards/leagues/";
