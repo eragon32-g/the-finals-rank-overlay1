@@ -1,5 +1,20 @@
 [
   {
+    "version": "34",
+    "date": "2026-05-24",
+    "title": "Rank più leggibili",
+    "summary": "I livelli dei rank ora usano numeri normali invece dei numeri romani.",
+    "added": [],
+    "improved": [
+      "Rank mostrati come Platinum 1, Diamond 4, Gold 2",
+      "Menu rank più chiaro nel generator",
+      "Overlay più pulito da leggere in live"
+    ],
+    "fixed": [
+      "Rimossi i numeri romani dai livelli dei rank"
+    ]
+  },
+  {
     "version": "33",
     "date": "2026-05-24",
     "title": "Aggiornamenti più chiari",

@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "33";
+const OVERLAY_VERSION = "34";
 const params = new URLSearchParams(window.location.search);
 
 const EMBARK_BADGE_BASE = "https://id.embark.games/images/leaderboards/leagues/";
@@ -112,6 +112,16 @@ function compactNumber(n) {
   const num = Number(normalized);
   if (!Number.isFinite(num)) return String(n);
   return new Intl.NumberFormat("it-IT").format(num);
+}
+
+function normalizeRankDisplay(value) {
+  return String(value || "")
+    .replace(/\bIV\b/g, "4")
+    .replace(/\bIII\b/g, "3")
+    .replace(/\bII\b/g, "2")
+    .replace(/\bI\b/g, "1")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function baseLeague(league) {
@@ -346,7 +356,7 @@ async function setData(data, status = "LIVE") {
     statusText.classList.add("hidden");
   }
 
-  rankText.textContent = String(league).toUpperCase();
+  rankText.textContent = normalizeRankDisplay(league).toUpperCase();
   scoreText.textContent = `${scoreLabel}: ${rankScore}${rank ? " " + rank : ""}${changeText}`;
   nameText.textContent = data.player || data.name || getPlayerFromUrl();
   setupLockedBranding();
@@ -364,7 +374,7 @@ async function loadManual() {
   const player = getPlayerFromUrl();
   const leagueBase = params.get("league") || "Unranked";
   const division = params.get("division") || "";
-  const league = `${leagueBase}${division ? " " + division : ""}`.trim();
+  const league = normalizeRankDisplay(`${leagueBase}${division ? " " + division : ""}`.trim());
   const rankScore = params.get("rankScore") || params.get("score") || params.get("points") || "0";
   const rank = params.get("rank") || "";
   const badge = params.get("badge") || baseLeague(leagueBase);

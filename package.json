@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v33-user-friendly-updates",
-  "version": "3.9.0",
+  "name": "ranktag-finals-overlay-v34-rank-numbers-fix",
+  "version": "4.0.0",
   "private": true,
-  "description": "RankTag con aggiornamenti user-friendly e non tecnici",
+  "description": "RankTag con numeri rank normali al posto dei romani",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

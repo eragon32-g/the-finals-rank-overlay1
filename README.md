@@ -1,9 +1,11 @@
-# RankTag for THE FINALS - V33
+# RankTag for THE FINALS - V34
 
-V33 rende la pagina aggiornamenti più adatta agli utenti.
+V34 sostituisce i numeri romani dei rank con numeri normali.
 
 ## Cosa cambia
-- Changelog riscritto in modo pubblico e non tecnico
-- Rimosse parole come HTML, JSON, Supabase, RPC, API interne
-- Descrizioni orientate alle funzioni visibili dagli utenti
-- `version.json` aggiornato a V33
+- Platinum I diventa Platinum 1
+- Diamond IV diventa Diamond 4
+- Gold II diventa Gold 2
+- Dropdown rank del generator aggiornato
+- Overlay aggiornata anche per vecchi link con numeri romani
+- Changelog aggiornato
