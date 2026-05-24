@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "46";
+const OVERLAY_VERSION = "47";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -589,5 +589,104 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
   mark();
   setTimeout(mark, 250);
   setTimeout(mark, 800);
+})();
+
+
+
+/* RankTag V47 - Cyber Red Premium Rebuild renderer */
+(function rankTagCyberRedPremiumV47() {
+  const q = new URLSearchParams(window.location.search);
+  if (String(q.get("themeStyle") || "").toLowerCase() !== "cyber-red") return;
+
+  function esc(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (m) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[m]));
+  }
+
+  function parseScore(text) {
+    const raw = String(text || "").trim();
+    const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
+    return {
+      label: match ? String(match[1]).trim() : (q.get("scoreLabel") || "ELO"),
+      value: match ? String(match[2]).trim() : (q.get("rankScore") || q.get("score") || "37705"),
+      extra: match ? String(match[3] || "").trim() : ""
+    };
+  }
+
+  function readState() {
+    const rank = normalizeRankDisplay(rankText?.textContent || `${q.get("league") || "PLATINUM"} ${q.get("division") || "1"}`).toUpperCase();
+    const player = String(nameText?.textContent || q.get("player") || getPlayerFromUrl() || "ERDRAGON32#2577").trim();
+    const score = parseScore(scoreText?.textContent || `${q.get("scoreLabel") || "ELO"}: ${q.get("rankScore") || "37705"}`);
+    const emblemSrc = badgeImage?.getAttribute("src") || "";
+    return { rank, player, score, emblemSrc };
+  }
+
+  function render() {
+    const root = badge || document.getElementById("badge");
+    if (!root) return;
+
+    const state = readState();
+
+    root.className = "badge rt47-root";
+    root.setAttribute("data-theme-style", "cyber-red");
+    document.documentElement.dataset.themeStyle = "cyber-red";
+
+    root.innerHTML = `
+      <div class="rt47-cyber">
+        <div class="rt47-layer rt47-frame"></div>
+        <div class="rt47-layer rt47-inner"></div>
+        <div class="rt47-layer rt47-pattern"></div>
+        <div class="rt47-layer rt47-sweep"></div>
+
+        <div class="rt47-emblemDock">
+          <div class="rt47-emblemOuter">
+            <div class="rt47-emblemInner">
+              ${state.emblemSrc ? `<img class="rt47-emblem" src="${esc(state.emblemSrc)}" alt="rank emblem">` : `<div class="rt47-emblemFallback">TF</div>`}
+            </div>
+          </div>
+        </div>
+
+        <div class="rt47-main">
+          <div class="rt47-top">
+            <div class="rt47-slashes"><span></span><span></span><span></span></div>
+            <div class="rt47-brand">RANKTAG</div>
+          </div>
+
+          <div class="rt47-player" title="${esc(state.player)}">${esc(state.player)}</div>
+
+          <div class="rt47-bottom">
+            <div class="rt47-rankModule">
+              <div class="rt47-moduleLabel">RANK</div>
+              <div class="rt47-rank">${esc(state.rank)}</div>
+            </div>
+
+            <div class="rt47-scoreModule">
+              <div class="rt47-scoreLabel">${esc(state.score.label)}</div>
+              <div class="rt47-score">${esc(state.score.value)}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rt47-redGhost"></div>
+        <div class="rt47-cornerMark"></div>
+      </div>
+    `;
+  }
+
+  const originalSetData = setData;
+  setData = async function(...args) {
+    await originalSetData.apply(this, args);
+    render();
+  };
+
+  window.addEventListener("load", () => {
+    setTimeout(render, 250);
+    setTimeout(render, 800);
+  });
 })();
 

@@ -1,13 +1,14 @@
-# RankTag for THE FINALS - V46
+# RankTag for THE FINALS - V47
 
-V46 migliora solo Cyber Red Impact.
+V47 ricostruisce Cyber Red con un renderer dedicato.
 
 ## Cosa cambia
-- Cyber Red ora è più basso e compatto
-- Più vicino alla cover nello Shop
-- Stemma ufficiale integrato in un badge tecnico
-- Player, rank e punti più densi e allineati
-- Look più esport/premium strip
+- Cyber Red non usa più solo il layout generico
+- Frame esterno più illustrato
+- Emblema più protagonista
+- Player centrale più integrato
+- Rank e score più compatti
+- Più vicino alla reference dello Shop
 
 ## Test
-Apri `/test.html` nel branch test-lab.
+Usare solo su branch `test-lab` e aprire `/test.html`.

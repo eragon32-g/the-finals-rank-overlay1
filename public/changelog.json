@@ -1,5 +1,25 @@
 [
   {
+    "version": "47",
+    "date": "2026-05-24",
+    "title": "Cyber Red premium rebuild",
+    "summary": "Cyber Red ora usa un renderer dedicato con layout più vicino alla reference: denso, stratificato e meno generico.",
+    "added": [
+      "Renderer dedicato solo per Cyber Red",
+      "Frame esterno e piastra interna",
+      "Emblema esagonale protagonista",
+      "Moduli rank e punti più compatti"
+    ],
+    "improved": [
+      "Look più vicino alla cover dello Shop",
+      "Più profondità e layer visivi",
+      "Meno effetto barra piatta"
+    ],
+    "fixed": [
+      "Cyber Red era troppo lontano dalla reference"
+    ]
+  },
+  {
     "version": "46",
     "date": "2026-05-24",
     "title": "Cyber Red compatto",
