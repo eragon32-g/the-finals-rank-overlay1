@@ -1,7 +1,19 @@
-# RankTag for THE FINALS - V31
+# RankTag for THE FINALS - V32
 
-- Pulizia UI generator
-- Testi account ridotti
-- Descrizioni manuale/automatica rimosse
-- Controllo modalità manuale contro leaderboard top 10000
-- Se il player è presente, obbligo modalità automatica
+V32 aggiunge la sezione pubblica Aggiornamenti.
+
+## Cosa cambia
+- Nuova pagina `/updates.html`
+- Nuovo file `public/changelog.json`
+- Storico versioni da V24 a V32
+- Link Updates nella homepage
+- Link Updates nel generator
+
+## Come aggiornare il changelog
+Ogni nuova versione va aggiunta in alto nel file:
+
+```text
+public/changelog.json
+```
+
+La pagina `/updates.html` si aggiorna automaticamente leggendo quel file.
