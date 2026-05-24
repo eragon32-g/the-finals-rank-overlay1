@@ -1,7 +1,7 @@
 {
-  "version": "28",
+  "version": "29",
   "project": "RankTag",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Pre-launch checklist and launch copy added."
+  "note": "Local profiles, project save, admin-gated launch kit and anchor fixes."
 }

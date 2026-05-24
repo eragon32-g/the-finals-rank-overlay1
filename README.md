@@ -1,23 +1,13 @@
-# RankTag for THE FINALS - V28
+# RankTag for THE FINALS - V29
 
-Punto 5 completato: test finale e launch kit.
+V29 aggiunge:
+- Profili locali nel generator
+- Salvataggio/caricamento progetti locali per nickname + password
+- Launch Kit nascosto dalla navigazione pubblica
+- Launch Kit con gate admin leggero
+- Fix link Home: Funzioni / Come funziona
+- `version.json` aggiornato a V29
 
-## Cosa cambia
-- Nuova pagina `/launch.html`
-- Checklist tecnica pre-lancio
-- Link rapidi di controllo
-- Messaggio Discord pronto
-- Testo TikTok pronto
-- Idee copertina video
-- Disclaimer pronto
-- Link al Launch Kit da homepage e generator
-- `version.json` aggiornato a V28
-
-## Link
-```text
-/home.html
-/generator.html
-/launch.html
-/version.json
-/brand.json
-```
+## Nota sicurezza
+I profili locali salvano i dati nel browser dell'utente, non su server.
+Il gate admin del Launch Kit è una protezione leggera frontend. Per sicurezza reale serve auth server-side con database.

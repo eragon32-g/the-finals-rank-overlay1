@@ -277,6 +277,67 @@
       line-height: 1.45;
     }
 
+
+    .profile-bar {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(135deg, rgba(255,42,23,.10), transparent 32%),
+        rgba(0,0,0,.20);
+    }
+    .profile-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto auto;
+      gap: 10px;
+      align-items: end;
+    }
+    .profile-status {
+      color: rgba(255,255,255,.66);
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+    .saved-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .saved-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.045);
+      color: rgba(255,255,255,.84);
+      font-size: 13px;
+      font-weight: 850;
+    }
+    .saved-card small {
+      display: block;
+      margin-top: 3px;
+      color: rgba(255,255,255,.48);
+      font-weight: 700;
+    }
+    .saved-actions {
+      display: flex;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+    .btn.danger {
+      background: rgba(255,42,23,.15);
+      border: 1px solid rgba(255,42,23,.30);
+      box-shadow: none;
+    }
+    @media (max-width: 850px) {
+      .profile-row { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
@@ -286,11 +347,42 @@
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/launch.html" style="text-decoration:none;">Launch Kit</a><div class="tag">RankTag V28</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><div class="tag">RankTag V29</div></div>
     </header>
 
     <div class="layout">
       <section class="panel">
+
+        <div class="section">
+          <div class="section-title">
+            <h2>0. Profilo locale</h2>
+            <span class="tag">Save</span>
+          </div>
+          <div class="profile-bar">
+            <div class="profile-row">
+              <label>
+                Nickname profilo
+                <input id="profileNick" value="" placeholder="IlTuoNickname" autocomplete="username" />
+              </label>
+              <label>
+                Password locale
+                <input id="profilePass" type="password" value="" placeholder="Password" autocomplete="current-password" />
+              </label>
+              <button id="loginProfile" type="button" class="btn secondary small">Login / crea</button>
+              <button id="logoutProfile" type="button" class="btn secondary small">Logout</button>
+            </div>
+            <div id="profileStatus" class="profile-status">
+              Salvataggio locale: i progetti restano sul dispositivo/browser dell’utente e non sono pubblici.
+            </div>
+            <div class="quick-actions">
+              <button id="saveProject" type="button" class="btn small">Salva progetto</button>
+              <button id="refreshProjects" type="button" class="btn secondary small">Aggiorna lista</button>
+            </div>
+            <div id="savedProjects" class="saved-grid"></div>
+          </div>
+          <p class="help">MVP locale: utile per il lancio. Per account sincronizzati tra dispositivi servirà un database tipo Supabase/Firebase.</p>
+        </div>
+
         <div class="section">
           <div class="section-title">
             <h2>1. Dati rank</h2>
@@ -461,6 +553,182 @@
 
   <script>
     const get = (id) => document.getElementById(id);
+
+
+    let currentProfile = null;
+
+    async function sha256(text) {
+      const data = new TextEncoder().encode(text);
+      const digest = await crypto.subtle.digest("SHA-256", data);
+      return [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    function profilesStore() {
+      try { return JSON.parse(localStorage.getItem("ranktag_profiles") || "{}"); }
+      catch { return {}; }
+    }
+
+    function setProfilesStore(data) {
+      localStorage.setItem("ranktag_profiles", JSON.stringify(data));
+    }
+
+    function profileKey(nick) {
+      return "ranktag_projects_" + String(nick || "").trim().toLowerCase();
+    }
+
+    function getCurrentProjects() {
+      if (!currentProfile) return [];
+      try { return JSON.parse(localStorage.getItem(profileKey(currentProfile)) || "[]"); }
+      catch { return []; }
+    }
+
+    function setCurrentProjects(projects) {
+      if (!currentProfile) return;
+      localStorage.setItem(profileKey(currentProfile), JSON.stringify(projects));
+    }
+
+    function setProfileStatus(text) {
+      const el = get("profileStatus");
+      if (el) el.textContent = text;
+    }
+
+    function collectProjectData() {
+      const fields = [
+        "mode", "player", "badgeFile", "rankScore", "scoreLabel", "showStatus",
+        "rankColor", "scoreColor", "nameColor", "extraColor",
+        "backgroundColor", "borderColor", "borderWidth", "brandAccent"
+      ];
+      const data = {};
+      fields.forEach((field) => {
+        const el = get(field);
+        if (el) data[field] = el.value;
+      });
+      data.savedAt = new Date().toISOString();
+      data.url = get("output")?.value || "";
+      return data;
+    }
+
+    function applyProjectData(data) {
+      Object.entries(data || {}).forEach(([key, value]) => {
+        const el = get(key);
+        if (el && key !== "savedAt" && key !== "url") el.value = value;
+      });
+      buildLink();
+    }
+
+    function renderSavedProjects() {
+      const wrap = get("savedProjects");
+      if (!wrap) return;
+      wrap.innerHTML = "";
+
+      if (!currentProfile) {
+        wrap.innerHTML = `<div class="profile-status">Fai login o crea un profilo locale per vedere i progetti salvati.</div>`;
+        return;
+      }
+
+      const projects = getCurrentProjects();
+
+      if (!projects.length) {
+        wrap.innerHTML = `<div class="profile-status">Nessun progetto salvato per ${currentProfile}.</div>`;
+        return;
+      }
+
+      projects.forEach((project, index) => {
+        const card = document.createElement("div");
+        card.className = "saved-card";
+        const title = `${project.player || "Player"} · ${project.badgeFile || "rank"} · ${project.rankScore || "0"}`;
+        const saved = project.savedAt ? new Date(project.savedAt).toLocaleString("it-IT") : "";
+        card.innerHTML = `
+          <div>
+            <div>${title}</div>
+            <small>Salvato: ${saved}</small>
+          </div>
+          <div class="saved-actions">
+            <button type="button" class="btn secondary small" data-load="${index}">Carica</button>
+            <button type="button" class="btn danger small" data-delete="${index}">Elimina</button>
+          </div>
+        `;
+        wrap.appendChild(card);
+      });
+
+      wrap.querySelectorAll("[data-load]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const index = Number(btn.getAttribute("data-load"));
+          applyProjectData(getCurrentProjects()[index]);
+        });
+      });
+
+      wrap.querySelectorAll("[data-delete]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const index = Number(btn.getAttribute("data-delete"));
+          const projects = getCurrentProjects();
+          projects.splice(index, 1);
+          setCurrentProjects(projects);
+          renderSavedProjects();
+        });
+      });
+    }
+
+    async function loginOrCreateProfile() {
+      const nick = get("profileNick")?.value?.trim();
+      const pass = get("profilePass")?.value || "";
+
+      if (!nick || !pass) {
+        setProfileStatus("Inserisci nickname e password locale.");
+        return;
+      }
+
+      const hash = await sha256(pass);
+      const profiles = profilesStore();
+      const key = nick.toLowerCase();
+
+      if (profiles[key] && profiles[key].passwordHash !== hash) {
+        setProfileStatus("Password non corretta per questo profilo locale.");
+        return;
+      }
+
+      if (!profiles[key]) {
+        profiles[key] = { nickname: nick, passwordHash: hash, createdAt: new Date().toISOString() };
+        setProfilesStore(profiles);
+      }
+
+      currentProfile = nick;
+      localStorage.setItem("ranktag_current_profile", nick);
+      setProfileStatus(`Accesso effettuato come ${nick}. I progetti vengono salvati solo su questo browser.`);
+      renderSavedProjects();
+    }
+
+    function logoutProfile() {
+      currentProfile = null;
+      localStorage.removeItem("ranktag_current_profile");
+      setProfileStatus("Logout effettuato. I progetti restano salvati nel browser.");
+      renderSavedProjects();
+    }
+
+    function saveCurrentProject() {
+      if (!currentProfile) {
+        setProfileStatus("Prima fai login o crea un profilo locale.");
+        return;
+      }
+
+      buildLink();
+      const projects = getCurrentProjects();
+      projects.unshift(collectProjectData());
+      setCurrentProjects(projects.slice(0, 20));
+      setProfileStatus(`Progetto salvato per ${currentProfile}.`);
+      renderSavedProjects();
+    }
+
+    function restoreLastProfile() {
+      const nick = localStorage.getItem("ranktag_current_profile");
+      if (nick) {
+        currentProfile = nick;
+        const el = get("profileNick");
+        if (el) el.value = nick;
+        setProfileStatus(`Profilo locale attivo: ${nick}.`);
+      }
+      renderSavedProjects();
+    }
 
     const rankMap = {
       "bronze-4": ["Bronze", "IV"],
@@ -674,6 +942,10 @@
     get("generate").addEventListener("click", buildLink);
     get("resetStyle")?.addEventListener("click", resetStyle);
     get("randomStyle")?.addEventListener("click", randomStyle);
+    get("loginProfile")?.addEventListener("click", loginOrCreateProfile);
+    get("logoutProfile")?.addEventListener("click", logoutProfile);
+    get("saveProject")?.addEventListener("click", saveCurrentProject);
+    get("refreshProjects")?.addEventListener("click", renderSavedProjects);
     get("copy").addEventListener("click", async () => {
       buildLink();
       await navigator.clipboard.writeText(get("output").value);
@@ -684,6 +956,7 @@
     renderPalettes();
     loadBrandPreview();
     buildLink();
+    restoreLastProfile();
   </script>
 </body>
 </html>
