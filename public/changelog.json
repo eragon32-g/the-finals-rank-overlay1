@@ -1,5 +1,41 @@
 [
   {
+    "version": "45",
+    "date": "2026-05-24",
+    "title": "Cyber Red rebuild",
+    "summary": "Cyber Red Impact è stato ricostruito come layout più aggressivo e vicino alla direzione premium.",
+    "added": [
+      "Nuova silhouette Cyber Red più tecnica",
+      "Cornice stemma più importante",
+      "Modulo rank dedicato",
+      "Modulo punti separato",
+      "Accenti rossi e linea tech animata"
+    ],
+    "improved": [
+      "Gerarchia visiva: player, stemma, rank e punti più chiari",
+      "Look più competitivo e meno simile al layout base"
+    ],
+    "fixed": [
+      "Cyber Red non sembrava abbastanza diverso dal default"
+    ]
+  },
+  {
+    "version": "44",
+    "date": "2026-05-24",
+    "title": "Test Lab interno",
+    "summary": "Aggiunta un'area test per provare modifiche e stili prima del rilascio pubblico.",
+    "added": [
+      "Nuova pagina Test Lab",
+      "Anteprima isolata per provare rank, punti, player e stili",
+      "Checklist qualità prima del rilascio",
+      "Link test copiabile e apribile in nuova scheda"
+    ],
+    "improved": [
+      "Flusso di lavoro più sicuro prima di pubblicare nuove modifiche"
+    ],
+    "fixed": []
+  },
+  {
     "version": "43",
     "date": "2026-05-24",
     "title": "Plus layouts veri",

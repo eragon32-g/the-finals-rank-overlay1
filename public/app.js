@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "43";
+const OVERLAY_VERSION = "45";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -572,3 +572,22 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
     setTimeout(() => renderRealPlusLayout(true), 600);
   });
 })();
+
+
+/* RankTag V45 - Cyber Red Rebuild marker */
+(function rankTagV45CyberMarker() {
+  const q = new URLSearchParams(window.location.search);
+  if (String(q.get("themeStyle") || "").toLowerCase() !== "cyber-red") return;
+
+  const mark = () => {
+    const shell = document.querySelector(".rt43-shell.rt43-cyber-red");
+    if (shell) shell.classList.add("rt45-cyber-rebuild");
+  };
+
+  const observer = new MutationObserver(mark);
+  observer.observe(document.body, { childList: true, subtree: true });
+  mark();
+  setTimeout(mark, 250);
+  setTimeout(mark, 800);
+})();
+

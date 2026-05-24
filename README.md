@@ -1,3 +1,15 @@
-# RankTag for THE FINALS - V43
+# RankTag for THE FINALS - V45
 
-V43 ricostruisce gli stili Plus come veri layout HTML/CSS con stemmi ufficiali dinamici.
+V45 lavora solo su Cyber Red Impact.
+
+## Cosa cambia
+- Cyber Red ricostruito con silhouette più aggressiva
+- Stemma ufficiale più valorizzato
+- Nome player più dominante
+- Rank in modulo dedicato
+- Punti in box dedicato
+- Accenti tech rossi
+- Test Lab apre già su Cyber Red
+
+## Test
+Apri `/test.html` e controlla Cyber Red Impact.
