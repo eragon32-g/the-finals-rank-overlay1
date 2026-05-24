@@ -1,5 +1,21 @@
 [
   {
+    "version": "38",
+    "date": "2026-05-24",
+    "title": "Stili Plus corretti",
+    "summary": "Gli stili Plus ora si applicano davvero e usano lo stemma rank selezionato.",
+    "added": [],
+    "improved": [
+      "Applicazione più stabile degli stili premium",
+      "Slot emblema migliorato per usare gli stemmi rank importati",
+      "Anteprima live più coerente con la scelta nello Shop"
+    ],
+    "fixed": [
+      "Gli stili Plus non venivano sempre applicati",
+      "Gli stili non agganciavano correttamente lo stemma rank dinamico"
+    ]
+  },
+  {
     "version": "37",
     "date": "2026-05-24",
     "title": "Anteprime Plus migliorate",

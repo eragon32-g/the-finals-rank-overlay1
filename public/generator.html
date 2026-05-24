@@ -552,7 +552,7 @@
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><div class="tag">RankTag V37</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><div class="tag">RankTag V38</div></div>
     </header>
 
     <div class="layout">
@@ -757,7 +757,7 @@
           </div>
 
           <div id="plusSelectedNote" class="plus-note">
-            Stile attivo: Default. Gli stili Plus cambiano layout dell’overlay mantenendo lo stemma rank selezionato.
+            Stile attivo: Default. Clicca uno stile Plus per applicarlo subito alla preview.
           </div>
         </div>
 
@@ -1139,7 +1139,7 @@
       "tournament-panel": "Tournament Panel"
     };
 
-    function selectPlusStyle(style) {
+    async function selectPlusStyle(style) {
       setValue("themeStyle", style || "default");
       document.querySelectorAll(".plus-card").forEach((card) => {
         card.classList.toggle("active", card.dataset.themeStyle === style);
@@ -1147,7 +1147,7 @@
       const label = plusStyleLabels[style] || plusStyleLabels.default;
       const note = get("plusSelectedNote");
       if (note) note.textContent = `Stile attivo: ${label}. Lo stemma rank resta dinamico e segue il rank selezionato.`;
-      buildLink();
+      await buildLink();
     }
 
     function renderPalettes() {
@@ -1358,7 +1358,10 @@
     get("saveProject")?.addEventListener("click", saveCurrentProject);
     get("refreshProjects")?.addEventListener("click", renderSavedProjects);
     document.querySelectorAll(".plus-card").forEach((card) => {
-      card.addEventListener("click", () => selectPlusStyle(card.dataset.themeStyle));
+      card.addEventListener("click", async (event) => {
+        event.preventDefault();
+        await selectPlusStyle(card.dataset.themeStyle);
+      });
     });
     get("copy").addEventListener("click", async () => {
       const ok = await buildLink();

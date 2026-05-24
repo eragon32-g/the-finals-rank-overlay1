@@ -1,12 +1,12 @@
-# RankTag for THE FINALS - V37
+# RankTag for THE FINALS - V38
 
-V37 corregge Shop / Plus.
+V38 corregge due problemi Plus.
 
-## Cosa cambia
-- Le card Shop usano anteprime immagini degli stili premium
-- La preview live applica correttamente `themeStyle`
-- Gli stili Plus sono più riconoscibili
-- Gli stemmi rank restano dinamici
+## Fix
+- Gli stili Plus ora vengono applicati davvero alla preview/live overlay
+- Gli stili usano lo stemma rank dinamico già importato
+- Lo slot emblema è stato rinforzato per Cyber Red, Glass Minimal, Premium Gold e Tournament Panel
+- Il link continua a usare `themeStyle`
 
 ## Test
-Apri `/generator.html`, seleziona uno stile Plus e verifica che la preview live cambi.
+Apri il generator, seleziona uno stile Plus e cambia rank: lo stemma a sinistra deve cambiare insieme al rank.

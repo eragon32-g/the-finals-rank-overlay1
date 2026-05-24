@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "37";
+const OVERLAY_VERSION = "38";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -438,3 +438,39 @@ if (isManualMode()) {
 }
 
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
+
+
+/* RankTag V38 Plus style finalizer */
+(function applyRankTagPlusStyleV38() {
+  const allowed = ["default", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
+  const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
+  const normalized = allowed.includes(String(style).toLowerCase()) ? String(style).toLowerCase() : "default";
+  const card =
+    document.querySelector(".rank-card") ||
+    document.querySelector(".overlay-card") ||
+    document.querySelector(".badge") ||
+    document.querySelector("[data-rank-card]") ||
+    document.body.firstElementChild;
+
+  if (!card) return;
+
+  allowed.forEach((name) => card.classList.remove(`theme-${name}`));
+  card.classList.add("rank-card");
+  card.classList.add(`theme-${normalized}`);
+  card.setAttribute("data-theme-style", normalized);
+
+  const badgeImg =
+    document.querySelector(".rank-badge img") ||
+    document.querySelector(".rank-badge-wrap img") ||
+    document.querySelector("#rankBadge") ||
+    document.querySelector("img");
+
+  if (badgeImg) {
+    badgeImg.classList.add("rank-plus-emblem");
+    const wrap = badgeImg.closest(".rank-badge-wrap") || badgeImg.parentElement;
+    if (wrap) wrap.classList.add("rank-badge-wrap", "plus-emblem-wrap");
+  }
+
+  document.documentElement.dataset.themeStyle = normalized;
+})();
+

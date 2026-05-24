@@ -609,3 +609,211 @@ html, body {
   text-shadow: 0 2px 0 rgba(0,0,0,.55) !important;
 }
 .rank-card.theme-tournament-panel .rank-score::before { content: "POINTS "; color: rgba(255,255,255,.82); font-size: 12px; letter-spacing: 2px; }
+
+
+/* RankTag Plus Styles V38 - fixed active layouts + real dynamic emblem slot */
+.rank-card.theme-cyber-red,
+.rank-card.theme-glass-minimal,
+.rank-card.theme-premium-gold,
+.rank-card.theme-tournament-panel {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 470px !important;
+  min-height: 148px !important;
+  padding: 12px 18px 12px 14px !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+}
+
+.rank-card.theme-cyber-red *,
+.rank-card.theme-glass-minimal *,
+.rank-card.theme-premium-gold *,
+.rank-card.theme-tournament-panel * {
+  position: relative;
+  z-index: 2;
+}
+
+.rank-card.theme-cyber-red .rank-badge-wrap,
+.rank-card.theme-glass-minimal .rank-badge-wrap,
+.rank-card.theme-premium-gold .rank-badge-wrap,
+.rank-card.theme-tournament-panel .rank-badge-wrap,
+.rank-card.theme-cyber-red .plus-emblem-wrap,
+.rank-card.theme-glass-minimal .plus-emblem-wrap,
+.rank-card.theme-premium-gold .plus-emblem-wrap,
+.rank-card.theme-tournament-panel .plus-emblem-wrap {
+  width: 92px !important;
+  height: 92px !important;
+  min-width: 92px !important;
+  display: grid !important;
+  place-items: center !important;
+  margin-right: 16px !important;
+  overflow: visible !important;
+}
+
+.rank-card.theme-cyber-red .rank-badge-wrap img,
+.rank-card.theme-glass-minimal .rank-badge-wrap img,
+.rank-card.theme-premium-gold .rank-badge-wrap img,
+.rank-card.theme-tournament-panel .rank-badge-wrap img,
+.rank-card.theme-cyber-red .rank-plus-emblem,
+.rank-card.theme-glass-minimal .rank-plus-emblem,
+.rank-card.theme-premium-gold .rank-plus-emblem,
+.rank-card.theme-tournament-panel .rank-plus-emblem {
+  width: 82px !important;
+  height: 82px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 10px 16px rgba(0,0,0,.55)) !important;
+}
+
+.rank-card.theme-cyber-red .rank-content,
+.rank-card.theme-glass-minimal .rank-content,
+.rank-card.theme-premium-gold .rank-content,
+.rank-card.theme-tournament-panel .rank-content {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.rank-card.theme-cyber-red .rank-title,
+.rank-card.theme-glass-minimal .rank-title,
+.rank-card.theme-premium-gold .rank-title,
+.rank-card.theme-tournament-panel .rank-title {
+  font-size: 30px !important;
+  line-height: 1 !important;
+  letter-spacing: 2px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 310px !important;
+}
+
+.rank-card.theme-cyber-red .rank-meta,
+.rank-card.theme-glass-minimal .rank-meta,
+.rank-card.theme-premium-gold .rank-meta,
+.rank-card.theme-tournament-panel .rank-meta {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-top: 10px !important;
+  white-space: nowrap !important;
+}
+
+.rank-card.theme-cyber-red::before,
+.rank-card.theme-glass-minimal::before,
+.rank-card.theme-premium-gold::before,
+.rank-card.theme-tournament-panel::before,
+.rank-card.theme-cyber-red::after,
+.rank-card.theme-glass-minimal::after,
+.rank-card.theme-premium-gold::after,
+.rank-card.theme-tournament-panel::after {
+  pointer-events: none;
+}
+
+/* Cyber Red Impact */
+.rank-card.theme-cyber-red {
+  border-radius: 18px !important;
+  border: 2px solid rgba(255,42,23,.82) !important;
+  background:
+    radial-gradient(circle at 91% 42%, rgba(255,42,23,.22), transparent 25%),
+    linear-gradient(90deg, rgba(255,42,23,.15) 0 24%, transparent 24% 100%),
+    linear-gradient(180deg, #101116 0%, #050609 100%) !important;
+  box-shadow: 0 0 0 1px rgba(255,42,23,.18), 0 0 30px rgba(255,42,23,.26), inset 0 0 34px rgba(255,42,23,.08) !important;
+  clip-path: polygon(0 12px, 12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%) !important;
+}
+.rank-card.theme-cyber-red::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.14) 44%, transparent 60%);
+  transform: translateX(-130%);
+  animation: cyberSweepV38 4.8s ease-in-out infinite;
+}
+.rank-card.theme-cyber-red::after {
+  content: "RANKTAG";
+  position: absolute;
+  right: 20px;
+  top: 14px;
+  z-index: 1;
+  color: #ff2a17;
+  font-size: 10px;
+  font-weight: 1000;
+  letter-spacing: 1.6px;
+}
+.rank-card.theme-cyber-red .rank-badge-wrap { border: 1px solid rgba(255,42,23,.62) !important; border-radius: 16px !important; background: radial-gradient(circle, rgba(255,42,23,.20), rgba(0,0,0,.24)) !important; box-shadow: 0 0 22px rgba(255,42,23,.20) !important; }
+.rank-card.theme-cyber-red .rank-title { color: #fff !important; text-shadow: 0 2px 0 rgba(0,0,0,.65), 0 0 18px rgba(255,42,23,.32) !important; }
+.rank-card.theme-cyber-red .rank-score::before { content: "POINTS "; color: #ff2a17; font-size: 12px; letter-spacing: 2px; }
+
+/* Glass Minimal */
+.rank-card.theme-glass-minimal {
+  border-radius: 26px !important;
+  border: 1px solid rgba(125,211,252,.52) !important;
+  background:
+    linear-gradient(100deg, rgba(125,211,252,.12) 0%, transparent 24%, rgba(255,255,255,.04) 100%),
+    rgba(7,12,17,.76) !important;
+  box-shadow: 0 0 0 1px rgba(125,211,252,.12), 0 14px 42px rgba(0,0,0,.36), inset 0 1px 0 rgba(255,255,255,.12) !important;
+  backdrop-filter: blur(10px);
+}
+.rank-card.theme-glass-minimal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.18) 42%, transparent 62%);
+  transform: translateX(-130%);
+  animation: glassSweepV38 6.5s ease-in-out infinite;
+}
+.rank-card.theme-glass-minimal::after { content: "RANKTAG"; position: absolute; right: 20px; bottom: 18px; z-index: 1; color: #dff8ff; font-size: 10px; font-weight: 1000; letter-spacing: 1.6px; }
+.rank-card.theme-glass-minimal .rank-badge-wrap { border: 1px solid rgba(125,211,252,.42) !important; border-radius: 18px !important; background: rgba(125,211,252,.06) !important; box-shadow: 0 0 22px rgba(125,211,252,.16) !important; }
+.rank-card.theme-glass-minimal .rank-title { color: #ffffff !important; text-shadow: 0 0 12px rgba(125,211,252,.16) !important; }
+.rank-card.theme-glass-minimal .rank-score::before { content: "POINTS "; color: rgba(255,255,255,.72); font-size: 12px; letter-spacing: 2px; }
+
+/* Premium Gold */
+.rank-card.theme-premium-gold {
+  border-radius: 18px !important;
+  border: 2px solid rgba(255,215,106,.76) !important;
+  background:
+    linear-gradient(90deg, rgba(255,215,106,.13) 0 30%, transparent 30% 100%),
+    linear-gradient(180deg, #171207 0%, #050505 100%) !important;
+  box-shadow: 0 0 0 1px rgba(255,215,106,.22), 0 16px 44px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,236,180,.18) !important;
+}
+.rank-card.theme-premium-gold::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(115deg, transparent 0%, rgba(255,236,180,.22) 42%, transparent 58%);
+  transform: translateX(-130%);
+  animation: goldShineV38 6s ease-in-out infinite;
+}
+.rank-card.theme-premium-gold::after { content: "RANKTAG"; position: absolute; right: 20px; bottom: 18px; z-index: 1; color: #ffd76a; font-size: 10px; font-weight: 1000; letter-spacing: 1.6px; }
+.rank-card.theme-premium-gold .rank-badge-wrap { border: 1px solid rgba(255,215,106,.62) !important; border-radius: 18px !important; background: radial-gradient(circle, rgba(255,215,106,.16), rgba(0,0,0,.20)) !important; box-shadow: 0 0 24px rgba(255,215,106,.18) !important; }
+.rank-card.theme-premium-gold .rank-title { color: #e6c463 !important; text-shadow: 0 1px 0 rgba(255,255,255,.18), 0 0 18px rgba(255,215,106,.22) !important; }
+.rank-card.theme-premium-gold .rank-score::before { content: "POINTS "; color: #ffd76a; font-size: 12px; letter-spacing: 2px; }
+
+/* Tournament Panel */
+.rank-card.theme-tournament-panel {
+  border-radius: 10px !important;
+  border: 1px solid rgba(255,95,42,.72) !important;
+  background:
+    linear-gradient(115deg, rgba(255,95,42,.18) 0 24%, transparent 24% 72%, rgba(255,42,23,.18) 72% 100%),
+    linear-gradient(180deg, #111217, #050608) !important;
+  clip-path: polygon(0 0, 96% 0, 100% 18%, 100% 100%, 4% 100%, 0 82%) !important;
+  box-shadow: 0 0 0 1px rgba(255,95,42,.18), 0 16px 44px rgba(0,0,0,.36), inset 0 -3px 0 rgba(255,95,42,.30) !important;
+}
+.rank-card.theme-tournament-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: repeating-linear-gradient(135deg, rgba(255,95,42,.12) 0 6px, transparent 6px 18px);
+  animation: tournamentPulseV38 3.6s ease-in-out infinite;
+}
+.rank-card.theme-tournament-panel::after { content: "RANKTAG"; position: absolute; right: 166px; bottom: 12px; z-index: 1; color: #fff; font-size: 10px; font-weight: 1000; letter-spacing: 1.6px; background: rgba(255,42,23,.50); padding: 5px 22px; transform: skewX(-16deg); }
+.rank-card.theme-tournament-panel .rank-badge-wrap { border: 1px solid rgba(255,95,42,.56) !important; border-radius: 12px !important; background: rgba(255,95,42,.08) !important; clip-path: polygon(0 0, 92% 0, 100% 22%, 100% 100%, 8% 100%, 0 78%) !important; }
+.rank-card.theme-tournament-panel .rank-title { color: #ffffff !important; text-shadow: 0 2px 0 rgba(0,0,0,.55) !important; }
+.rank-card.theme-tournament-panel .rank-score::before { content: "POINTS "; color: rgba(255,255,255,.82); font-size: 12px; letter-spacing: 2px; }
+
+@keyframes cyberSweepV38 { 0%,55%,100%{transform:translateX(-130%);opacity:.40} 70%{transform:translateX(130%);opacity:.75} }
+@keyframes glassSweepV38 { 0%,62%,100%{transform:translateX(-130%);opacity:.35} 76%{transform:translateX(130%);opacity:.70} }
+@keyframes goldShineV38 { 0%,60%,100%{transform:translateX(-130%);opacity:.35} 78%{transform:translateX(130%);opacity:.82} }
+@keyframes tournamentPulseV38 { 0%,100%{opacity:.45} 50%{opacity:.92} }
