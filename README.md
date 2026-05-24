@@ -1,19 +1,9 @@
-# RankTag for THE FINALS - V32
+# RankTag for THE FINALS - V33
 
-V32 aggiunge la sezione pubblica Aggiornamenti.
+V33 rende la pagina aggiornamenti più adatta agli utenti.
 
 ## Cosa cambia
-- Nuova pagina `/updates.html`
-- Nuovo file `public/changelog.json`
-- Storico versioni da V24 a V32
-- Link Updates nella homepage
-- Link Updates nel generator
-
-## Come aggiornare il changelog
-Ogni nuova versione va aggiunta in alto nel file:
-
-```text
-public/changelog.json
-```
-
-La pagina `/updates.html` si aggiorna automaticamente leggendo quel file.
+- Changelog riscritto in modo pubblico e non tecnico
+- Rimosse parole come HTML, JSON, Supabase, RPC, API interne
+- Descrizioni orientate alle funzioni visibili dagli utenti
+- `version.json` aggiornato a V33

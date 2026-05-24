@@ -1,153 +1,171 @@
 [
   {
-    "version": "32",
+    "version": "33",
     "date": "2026-05-24",
-    "title": "Updates / Changelog Page",
-    "summary": "Aggiunta una sezione pubblica per seguire gli aggiornamenti di RankTag.",
+    "title": "Aggiornamenti più chiari",
+    "summary": "La sezione aggiornamenti ora è pensata per gli utenti, senza dettagli tecnici.",
     "added": [
-      "Nuova pagina /updates.html",
-      "Nuovo file public/changelog.json",
-      "Storico versioni leggibile dagli utenti",
-      "Link Updates nella homepage e nel generator"
+      "Storico aggiornamenti più semplice da leggere",
+      "Descrizioni orientate alle funzioni visibili dagli utenti"
     ],
     "improved": [
-      "Preparata una struttura più professionale per comunicare nuove release"
+      "Testi più puliti e meno tecnici",
+      "Pagina aggiornamenti più adatta al pubblico"
+    ],
+    "fixed": [
+      "Rimosse parole troppo tecniche dalla sezione aggiornamenti"
+    ]
+  },
+  {
+    "version": "32",
+    "date": "2026-05-24",
+    "title": "Pagina aggiornamenti",
+    "summary": "Aggiunta una sezione dove seguire le novità di RankTag.",
+    "added": [
+      "Pagina pubblica con lo storico degli aggiornamenti",
+      "Elenco delle novità diviso per versione",
+      "Link rapido agli aggiornamenti dalla homepage e dal generator"
+    ],
+    "improved": [
+      "Comunicazione più chiara sulle nuove funzioni"
     ],
     "fixed": []
   },
   {
     "version": "31",
     "date": "2026-05-24",
-    "title": "UI Cleanup + Manual Guard",
-    "summary": "Pulizia del generator e controllo anti-fake rank in modalità manuale.",
+    "title": "Generator più pulito e controllo rank",
+    "summary": "Pulita la schermata del generator e aggiunto un controllo per evitare rank manuali non corretti.",
     "added": [
-      "Controllo modalità manuale contro leaderboard pubblica top 10000",
-      "Messaggio di errore se il player è presente e deve usare la modalità automatica"
+      "Controllo sul player quando si usa la modalità manuale",
+      "Avviso se il player deve usare la modalità automatica"
     ],
     "improved": [
-      "Sezione account online più pulita",
-      "Rimosse descrizioni troppo lunghe da manuale/automatica",
-      "Allineamento migliore nella parte account"
+      "Sezione account più ordinata",
+      "Meno testo nella schermata principale",
+      "Layout più compatto"
     ],
     "fixed": [
-      "Ridotto lo spazio occupato dai testi informativi"
+      "Ridotto lo spazio occupato dalle spiegazioni"
     ]
   },
   {
     "version": "30",
     "date": "2026-05-24",
-    "title": "Supabase Online Accounts",
-    "summary": "Account online con nickname e password senza email.",
+    "title": "Account online",
+    "summary": "Ora puoi accedere con nickname e password e ritrovare i tuoi overlay salvati.",
     "added": [
-      "Registrazione online con nickname + password",
-      "Login online",
-      "Salvataggio overlay online su Supabase",
-      "Caricamento progetti salvati da più dispositivi",
-      "Eliminazione overlay salvati",
-      "Launch Kit accessibile solo ad admin verificato"
+      "Registrazione con nickname e password",
+      "Login e logout",
+      "Salvataggio overlay nel proprio account",
+      "Caricamento dei propri overlay salvati",
+      "Eliminazione dei propri overlay"
     ],
     "improved": [
-      "I progetti non dipendono più solo dal browser locale"
+      "I progetti salvati non dipendono più solo dal browser",
+      "Account utilizzabile anche da altri dispositivi"
     ],
     "fixed": []
   },
   {
     "version": "29",
     "date": "2026-05-24",
-    "title": "Local Profiles + Admin Gate",
-    "summary": "Prima versione con profili locali e Launch Kit protetto.",
+    "title": "Prime funzioni profilo",
+    "summary": "Prima versione con area profilo e progetti salvabili.",
     "added": [
-      "Profili locali nel generator",
-      "Salvataggio/caricamento progetti nel browser",
-      "Gate admin leggero per /launch.html"
+      "Area profilo nel generator",
+      "Salvataggio progetti",
+      "Caricamento progetti salvati",
+      "Area proprietario separata dagli utenti"
     ],
     "improved": [
-      "Link Funzioni e Come funziona sistemati nella homepage"
+      "Navigazione homepage migliorata"
     ],
     "fixed": [
-      "Rimossi link pubblici diretti al Launch Kit"
+      "Corretti alcuni pulsanti della homepage"
     ]
   },
   {
     "version": "28",
     "date": "2026-05-24",
-    "title": "Prelaunch Kit",
-    "summary": "Pagina di supporto per controlli e materiali di lancio.",
+    "title": "Kit di lancio",
+    "summary": "Aggiunta un'area interna con controlli e testi pronti per il lancio.",
     "added": [
-      "Nuova pagina /launch.html",
-      "Checklist tecnica pre-lancio",
+      "Checklist pre-lancio",
       "Messaggio Discord pronto",
       "Testo TikTok pronto",
-      "Idee copertina video",
+      "Idee per copertina video",
       "Disclaimer pronto"
     ],
-    "improved": [],
+    "improved": [
+      "Preparazione più veloce del lancio pubblico"
+    ],
     "fixed": []
   },
   {
     "version": "27",
     "date": "2026-05-24",
-    "title": "Homepage Launch",
-    "summary": "Homepage rifinita per presentare RankTag al pubblico.",
+    "title": "Homepage migliorata",
+    "summary": "La pagina iniziale è stata resa più chiara e professionale.",
     "added": [
-      "Hero più forte",
-      "Sezioni Perché usarlo e Come funziona",
-      "CTA finale per aprire il generator",
-      "Statistiche rapide"
+      "Presentazione più forte del progetto",
+      "Sezione con i vantaggi principali",
+      "Sezione con il funzionamento in tre passaggi",
+      "Pulsanti più chiari per iniziare"
     ],
     "improved": [
-      "Preview overlay più curata",
-      "Messaggi di valore più chiari"
+      "Anteprima overlay più curata",
+      "Messaggi più semplici per gli utenti"
     ],
     "fixed": []
   },
   {
     "version": "26",
     "date": "2026-05-24",
-    "title": "Premium Themes",
-    "summary": "Nuovi temi pronti per personalizzare velocemente l'overlay.",
+    "title": "Nuovi temi",
+    "summary": "Aggiunti più stili pronti per personalizzare l'overlay.",
     "added": [
       "8 temi pronti",
-      "Ruby Blood",
-      "Dark Minimal",
-      "Accento branding nei temi"
+      "Nuovi stili colore",
+      "Più varietà nel pulsante stile casuale"
     ],
     "improved": [
-      "Card tema più curate",
-      "Random style più vario"
+      "Scelta dei temi più visiva",
+      "Personalizzazione più veloce"
     ],
     "fixed": []
   },
   {
     "version": "25",
     "date": "2026-05-24",
-    "title": "Generator Refine",
-    "summary": "Generator più chiaro, con guida e azioni rapide.",
+    "title": "Generator più semplice",
+    "summary": "Il generator è stato reso più facile da usare.",
     "added": [
-      "Guida OBS",
-      "Guida TikTok LIVE Studio",
-      "Pulsante Reset stile",
-      "Pulsante Random style",
-      "Dropdown per Label punti"
+      "Guida per OBS",
+      "Guida per TikTok LIVE Studio",
+      "Pulsante per ripristinare lo stile",
+      "Pulsante per creare uno stile casuale",
+      "Scelta rapida della label dei punti"
     ],
     "improved": [
-      "Modalità manuale/automatica spiegate meglio"
+      "Campi più chiari",
+      "Uso più semplice per chi non ha esperienza"
     ],
     "fixed": []
   },
   {
     "version": "24",
     "date": "2026-05-24",
-    "title": "Identity + Homepage",
-    "summary": "Prima identità pubblica del progetto RankTag.",
+    "title": "Nasce RankTag",
+    "summary": "Prima versione con nome, homepage e identità del progetto.",
     "added": [
-      "Nome progetto RankTag",
-      "Pagina /home.html",
-      "Generator rinominato in RankTag Generator"
+      "Nome RankTag",
+      "Pagina iniziale",
+      "Generator con identità RankTag"
     ],
     "improved": [
-      "Frase chiave sulla modalità manuale",
-      "Branding aggiornato a Join the Discord"
+      "Messaggi principali più chiari",
+      "Branding più adatto al lancio"
     ],
     "fixed": []
   }

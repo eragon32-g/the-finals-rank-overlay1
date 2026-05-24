@@ -1,8 +1,8 @@
 {
-  "version": "32",
+  "version": "33",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Updates/changelog page added."
+  "note": "User-facing updates page; technical wording removed."
 }
