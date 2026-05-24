@@ -1,12 +1,12 @@
-# RankTag for THE FINALS - V38
+# RankTag for THE FINALS - V39
 
-V38 corregge due problemi Plus.
+V39 corregge il problema principale degli stili Plus.
 
-## Fix
-- Gli stili Plus ora vengono applicati davvero alla preview/live overlay
-- Gli stili usano lo stemma rank dinamico già importato
-- Lo slot emblema è stato rinforzato per Cyber Red, Glass Minimal, Premium Gold e Tournament Panel
-- Il link continua a usare `themeStyle`
+## Cosa cambia
+- Gli stili Plus ora non cambiano solo bordo/colore.
+- Viene renderizzato un layout premium dedicato.
+- Lo stemma rank importato viene inserito nel nuovo layout.
+- La preview si aggiorna con cacheBust quando cambi stile.
 
 ## Test
-Apri il generator, seleziona uno stile Plus e cambia rank: lo stemma a sinistra deve cambiare insieme al rank.
+Apri `/generator.html`, scegli Cyber Red Impact e controlla che la preview cambi in una targhetta larga premium.

@@ -817,3 +817,319 @@ html, body {
 @keyframes glassSweepV38 { 0%,62%,100%{transform:translateX(-130%);opacity:.35} 76%{transform:translateX(130%);opacity:.70} }
 @keyframes goldShineV38 { 0%,60%,100%{transform:translateX(-130%);opacity:.35} 78%{transform:translateX(130%);opacity:.82} }
 @keyframes tournamentPulseV38 { 0%,100%{opacity:.45} 50%{opacity:.92} }
+
+
+/* RankTag Plus V39 - real premium layouts replacing default card */
+.rt-plus-card {
+  width: 720px !important;
+  height: 166px !important;
+  min-height: 166px !important;
+  padding: 0 !important;
+  display: grid !important;
+  grid-template-columns: 156px 1fr 98px !important;
+  align-items: center !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  position: relative !important;
+  isolation: isolate !important;
+  color: #fff !important;
+  transform-origin: left top !important;
+}
+
+.rt-plus-card * {
+  box-sizing: border-box;
+}
+
+.rtp-emblem-shell {
+  position: relative;
+  z-index: 4;
+  width: 156px;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.rtp-emblem-ring {
+  width: 112px;
+  height: 112px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.rtp-emblem {
+  width: 98px !important;
+  height: 98px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 12px 16px rgba(0,0,0,.62));
+  position: relative;
+  z-index: 3;
+}
+
+.rtp-main {
+  min-width: 0;
+  position: relative;
+  z-index: 4;
+  padding: 24px 8px 20px 2px;
+}
+
+.rtp-player {
+  max-width: 420px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 48px;
+  line-height: .9;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+}
+
+.rtp-lower {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.rtp-rank {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.rtp-divider {
+  width: 2px;
+  height: 40px;
+  transform: skewX(-12deg);
+  opacity: .85;
+}
+
+.rtp-score-block {
+  min-width: 124px;
+}
+
+.rtp-score-label {
+  font-size: 12px;
+  font-weight: 1000;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.rtp-score {
+  margin-top: 3px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.rtp-brand {
+  position: relative;
+  z-index: 4;
+  align-self: start;
+  justify-self: end;
+  margin: 18px 18px 0 0;
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+/* Shared animated sweep */
+.rt-plus-card::before,
+.rt-plus-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+/* 1 Cyber Red Impact */
+.rt-plus-card.theme-cyber-red {
+  border: 2px solid rgba(255,42,23,.88) !important;
+  border-radius: 20px !important;
+  clip-path: polygon(0 16px, 16px 0, 96% 0, 100% 22%, 100% 84%, 96% 100%, 0 100%) !important;
+  background:
+    radial-gradient(circle at 88% 48%, rgba(255,42,23,.25), transparent 24%),
+    linear-gradient(90deg, rgba(255,42,23,.20) 0 22%, transparent 22% 100%),
+    repeating-linear-gradient(135deg, rgba(255,42,23,.08) 0 3px, transparent 3px 16px),
+    linear-gradient(180deg, #111217 0%, #050609 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,42,23,.22),
+    0 0 34px rgba(255,42,23,.30),
+    inset 0 0 40px rgba(255,42,23,.10) !important;
+}
+
+.rt-plus-card.theme-cyber-red::before {
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.15) 46%, transparent 60%);
+  transform: translateX(-130%);
+  animation: rtpSweep 5s ease-in-out infinite;
+}
+
+.rt-plus-card.theme-cyber-red::after {
+  right: 26px;
+  top: 48px;
+  width: 92px;
+  height: 70px;
+  z-index: 1;
+  opacity: .22;
+  background: radial-gradient(circle, rgba(255,42,23,.85), transparent 65%);
+  clip-path: polygon(50% 0, 90% 30%, 80% 100%, 50% 78%, 20% 100%, 10% 30%);
+}
+
+.theme-cyber-red .rtp-emblem-ring {
+  border: 1px solid rgba(255,42,23,.68);
+  border-radius: 20px;
+  background: radial-gradient(circle, rgba(255,42,23,.18), rgba(0,0,0,.30));
+  box-shadow: 0 0 26px rgba(255,42,23,.26);
+}
+
+.theme-cyber-red .rtp-player {
+  color: #fff;
+  text-shadow: 0 2px 0 #000, 0 0 18px rgba(255,42,23,.36);
+}
+
+.theme-cyber-red .rtp-rank { color: #bfeff2; text-shadow: 0 0 12px rgba(125,211,252,.24); }
+.theme-cyber-red .rtp-divider { background: #ff2a17; }
+.theme-cyber-red .rtp-score-label { color: #ff3b2c; }
+.theme-cyber-red .rtp-score { color: #fff; text-shadow: 0 2px 0 #000; }
+.theme-cyber-red .rtp-brand { color: #ff2a17; }
+
+/* 2 Glass Minimal */
+.rt-plus-card.theme-glass-minimal {
+  border: 1px solid rgba(125,211,252,.54) !important;
+  border-radius: 30px !important;
+  background:
+    linear-gradient(100deg, rgba(125,211,252,.13) 0%, transparent 24%, rgba(255,255,255,.04) 100%),
+    rgba(7,12,17,.78) !important;
+  box-shadow:
+    0 0 0 1px rgba(125,211,252,.12),
+    0 18px 46px rgba(0,0,0,.38),
+    inset 0 1px 0 rgba(255,255,255,.14) !important;
+  backdrop-filter: blur(10px);
+}
+
+.rt-plus-card.theme-glass-minimal::before {
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.19) 42%, transparent 62%);
+  transform: translateX(-130%);
+  animation: rtpGlass 6.6s ease-in-out infinite;
+}
+
+.theme-glass-minimal .rtp-emblem-ring {
+  border: 1px solid rgba(125,211,252,.44);
+  border-radius: 22px;
+  background: rgba(125,211,252,.07);
+  box-shadow: 0 0 26px rgba(125,211,252,.18);
+}
+
+.theme-glass-minimal .rtp-player {
+  color: #fff;
+  text-shadow: 0 0 14px rgba(125,211,252,.14);
+}
+
+.theme-glass-minimal .rtp-rank { color: #63e6f4; }
+.theme-glass-minimal .rtp-divider { background: rgba(255,255,255,.20); }
+.theme-glass-minimal .rtp-score-label { color: rgba(255,255,255,.72); }
+.theme-glass-minimal .rtp-score { color: #fff; }
+.theme-glass-minimal .rtp-brand { right: 8px; color: #dff8ff; align-self: center; margin-top: 0; }
+
+/* 3 Premium Gold */
+.rt-plus-card.theme-premium-gold {
+  border: 2px solid rgba(255,215,106,.80) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(90deg, rgba(255,215,106,.15) 0 30%, transparent 30% 100%),
+    linear-gradient(180deg, #171207 0%, #050505 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,215,106,.22),
+    0 18px 48px rgba(0,0,0,.40),
+    inset 0 1px 0 rgba(255,236,180,.18) !important;
+}
+
+.rt-plus-card.theme-premium-gold::before {
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(115deg, transparent 0%, rgba(255,236,180,.25) 42%, transparent 58%);
+  transform: translateX(-130%);
+  animation: rtpGold 6s ease-in-out infinite;
+}
+
+.theme-premium-gold .rtp-emblem-ring {
+  border: 1px solid rgba(255,215,106,.66);
+  border-radius: 22px;
+  background: radial-gradient(circle, rgba(255,215,106,.17), rgba(0,0,0,.22));
+  box-shadow: 0 0 28px rgba(255,215,106,.20);
+}
+
+.theme-premium-gold .rtp-player {
+  color: #e6c463;
+  text-shadow: 0 1px 0 rgba(255,255,255,.18), 0 0 18px rgba(255,215,106,.22);
+}
+
+.theme-premium-gold .rtp-rank { color: #fff5d6; }
+.theme-premium-gold .rtp-divider { background: rgba(255,215,106,.45); }
+.theme-premium-gold .rtp-score-label { color: #ffd76a; }
+.theme-premium-gold .rtp-score { color: #fff7df; }
+.theme-premium-gold .rtp-brand { color: #ffd76a; bottom: 16px; top: auto; align-self: end; margin-bottom: 18px; }
+
+/* 4 Tournament Panel */
+.rt-plus-card.theme-tournament-panel {
+  border: 1px solid rgba(255,95,42,.74) !important;
+  border-radius: 10px !important;
+  clip-path: polygon(0 0, 96% 0, 100% 18%, 100% 100%, 4% 100%, 0 82%) !important;
+  background:
+    linear-gradient(115deg, rgba(255,95,42,.20) 0 24%, transparent 24% 72%, rgba(255,42,23,.20) 72% 100%),
+    linear-gradient(180deg, #111217, #050608) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,95,42,.20),
+    0 18px 48px rgba(0,0,0,.38),
+    inset 0 -3px 0 rgba(255,95,42,.32) !important;
+}
+
+.rt-plus-card.theme-tournament-panel::before {
+  inset: 0;
+  z-index: 1;
+  background: repeating-linear-gradient(135deg, rgba(255,95,42,.13) 0 6px, transparent 6px 18px);
+  animation: rtpPulse 3.6s ease-in-out infinite;
+}
+
+.theme-tournament-panel .rtp-emblem-ring {
+  border: 1px solid rgba(255,95,42,.58);
+  border-radius: 12px;
+  background: rgba(255,95,42,.08);
+  clip-path: polygon(0 0, 92% 0, 100% 22%, 100% 100%, 8% 100%, 0 78%);
+}
+
+.theme-tournament-panel .rtp-player {
+  color: #fff;
+  text-shadow: 0 2px 0 rgba(0,0,0,.60);
+}
+
+.theme-tournament-panel .rtp-rank { color: #27c9d2; }
+.theme-tournament-panel .rtp-divider { background: rgba(255,42,23,.70); }
+.theme-tournament-panel .rtp-score-label { color: rgba(255,255,255,.82); }
+.theme-tournament-panel .rtp-score { color: #fff; }
+.theme-tournament-panel .rtp-brand {
+  align-self: end;
+  justify-self: start;
+  margin: 0 0 18px -160px;
+  background: rgba(255,42,23,.55);
+  padding: 6px 26px;
+  transform: skewX(-16deg);
+  color: #fff;
+}
+
+@keyframes rtpSweep { 0%,55%,100% { transform: translateX(-130%); opacity:.38; } 70% { transform: translateX(130%); opacity:.78; } }
+@keyframes rtpGlass { 0%,62%,100% { transform: translateX(-130%); opacity:.35; } 76% { transform: translateX(130%); opacity:.72; } }
+@keyframes rtpGold { 0%,60%,100% { transform: translateX(-130%); opacity:.36; } 78% { transform: translateX(130%); opacity:.85; } }
+@keyframes rtpPulse { 0%,100% { opacity:.42; } 50% { opacity:.92; } }

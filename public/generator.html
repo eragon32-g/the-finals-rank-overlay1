@@ -552,7 +552,7 @@
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><div class="tag">RankTag V38</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><div class="tag">RankTag V39</div></div>
     </header>
 
     <div class="layout">
@@ -712,7 +712,7 @@
             <h2>5. Shop / Stili Plus</h2>
             <span class="tag">PLUS</span>
           </div>
-          <p class="help">Scegli uno stile premium: la preview usa sempre gli stemmi rank già importati e aggiorna il link generato.</p>
+          <p class="help">Scegli uno stile premium: la preview cambia subito e usa lo stemma rank già importato.</p>
 
           <div class="plus-shop-grid">
             <button type="button" class="plus-card" data-theme-style="cyber-red">
@@ -1306,6 +1306,7 @@
 
     async function buildLink() {
       const url = new URL(window.location.origin + "/");
+      const previewBust = Date.now();
       const mode = get("mode").value;
       const manualAllowed = await validateManualGuard();
       if (mode === "manual" && !manualAllowed) {
@@ -1341,6 +1342,8 @@
       });
 
       url.searchParams.set("cacheBust", Date.now().toString());
+      url.searchParams.set("themeStyle", get("themeStyle")?.value || "default");
+      url.searchParams.set("cacheBust", String(previewBust));
       get("output").value = url.toString();
       get("preview").src = url.toString();
       return true;

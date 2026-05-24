@@ -1,5 +1,23 @@
 [
   {
+    "version": "39",
+    "date": "2026-05-24",
+    "title": "Layout Plus reali",
+    "summary": "Gli stili Plus ora cambiano davvero struttura della targhetta, non solo il bordo.",
+    "added": [
+      "Nuovo layout premium dedicato per gli stili Plus",
+      "Slot stemma dinamico dentro il layout premium"
+    ],
+    "improved": [
+      "Cyber Red, Glass Minimal, Premium Gold e Tournament Panel più simili alle anteprime",
+      "Preview aggiornata meglio quando scegli uno stile"
+    ],
+    "fixed": [
+      "Lo stile selezionato non cambiava abbastanza la targhetta",
+      "La preview poteva rimanere in cache"
+    ]
+  },
+  {
     "version": "38",
     "date": "2026-05-24",
     "title": "Stili Plus corretti",

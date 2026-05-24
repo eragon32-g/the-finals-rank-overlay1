@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "38";
+const OVERLAY_VERSION = "39";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -440,7 +440,7 @@ if (isManualMode()) {
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
-/* RankTag V38 Plus style finalizer */
+/* RankTag V39 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -472,5 +472,83 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
   }
 
   document.documentElement.dataset.themeStyle = normalized;
+})();
+
+
+
+/* RankTag V39 - real Plus layout renderer */
+(function renderRankTagPlusLayoutV39() {
+  const q = new URLSearchParams(window.location.search);
+  const allowed = ["cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
+  const style = String(q.get("themeStyle") || "default").toLowerCase();
+  if (!allowed.includes(style)) return;
+
+  const root =
+    document.querySelector(".rank-card") ||
+    document.querySelector(".overlay-card") ||
+    document.querySelector(".badge") ||
+    document.body.firstElementChild;
+
+  if (!root) return;
+
+  const badgeImg =
+    document.querySelector(".rank-badge img") ||
+    document.querySelector(".rank-badge-wrap img") ||
+    document.querySelector("#rankBadge") ||
+    root.querySelector("img");
+
+  const badgeSrc = badgeImg?.getAttribute("src") || "";
+  const league =
+    (document.querySelector(".rank-title")?.textContent ||
+     document.querySelector("#rankText")?.textContent ||
+     q.get("league") ||
+     "PLATINUM 1").trim();
+
+  const score =
+    (document.querySelector(".rank-score")?.textContent ||
+     document.querySelector("#scoreText")?.textContent ||
+     q.get("rankScore") ||
+     q.get("score") ||
+     "37705").trim();
+
+  const player =
+    (document.querySelector(".rank-name")?.textContent ||
+     document.querySelector("#playerText")?.textContent ||
+     q.get("player") ||
+     "ERDRAGON32#2577").trim();
+
+  const scoreLabel = (q.get("scoreLabel") || "ELO").trim();
+
+  root.className = root.className
+    .split(/\s+/)
+    .filter(c => !c.startsWith("theme-"))
+    .join(" ");
+
+  root.classList.add("rank-card", "rt-plus-card", `theme-${style}`);
+  root.setAttribute("data-theme-style", style);
+
+  root.innerHTML = `
+    <div class="rtp-emblem-shell">
+      <div class="rtp-emblem-ring">
+        ${badgeSrc ? `<img class="rtp-emblem" src="${badgeSrc}" alt="">` : `<div class="rtp-emblem-placeholder"></div>`}
+      </div>
+    </div>
+
+    <div class="rtp-main">
+      <div class="rtp-player">${player}</div>
+      <div class="rtp-lower">
+        <div class="rtp-rank">${league}</div>
+        <div class="rtp-divider"></div>
+        <div class="rtp-score-block">
+          <div class="rtp-score-label">${scoreLabel}</div>
+          <div class="rtp-score">${score}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rtp-brand">RANKTAG</div>
+  `;
+
+  document.documentElement.dataset.themeStyle = style;
 })();
 

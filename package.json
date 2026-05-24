@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v38-plus-styles-fixed",
-  "version": "4.4.0",
+  "name": "ranktag-finals-overlay-v39-plus-layouts-real",
+  "version": "4.5.0",
   "private": true,
-  "description": "RankTag fix stili Plus e stemmi dinamici",
+  "description": "RankTag con layout Plus reali e stemmi dinamici",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
