@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v39-plus-layouts-real",
-  "version": "4.5.0",
+  "name": "ranktag-finals-overlay-v40-exact-plus-covers",
+  "version": "4.6.0",
   "private": true,
-  "description": "RankTag con layout Plus reali e stemmi dinamici",
+  "description": "RankTag Plus uses exact generated cover art with official dynamic emblems",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

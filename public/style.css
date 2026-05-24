@@ -1133,3 +1133,96 @@ html, body {
 @keyframes rtpGlass { 0%,62%,100% { transform: translateX(-130%); opacity:.35; } 76% { transform: translateX(130%); opacity:.72; } }
 @keyframes rtpGold { 0%,60%,100% { transform: translateX(-130%); opacity:.36; } 78% { transform: translateX(130%); opacity:.85; } }
 @keyframes rtpPulse { 0%,100% { opacity:.42; } 50% { opacity:.92; } }
+
+
+/* RankTag V40 - exact generated Plus covers */
+.badge.exact-plus-cover {
+  width: 470px !important;
+  height: 160px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #fff;
+}
+.exact-plus-bg {
+  position: relative;
+  width: 470px;
+  height: 140px;
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  filter: saturate(1.04) contrast(1.02);
+}
+.exact-plus-emblem-slot {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+}
+.exact-plus-emblem {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 16px rgba(0,0,0,.68));
+}
+.exact-plus-mask {
+  position: absolute;
+  z-index: 3;
+  background: linear-gradient(180deg, rgba(3,5,8,.78), rgba(3,5,8,.58));
+  border-radius: 10px;
+  backdrop-filter: blur(1.5px);
+}
+.exact-plus-player,
+.exact-plus-rank,
+.exact-plus-score,
+.exact-plus-score-label {
+  position: absolute;
+  z-index: 6;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Cyber Red exact */
+.exact-plus-cyber-red .exact-plus-emblem-slot { left: 35px; top: 47px; width: 110px; height: 82px; }
+.exact-plus-cyber-red .exact-plus-mask-player { left: 152px; top: 48px; width: 205px; height: 38px; }
+.exact-plus-cyber-red .exact-plus-mask-rank { left: 188px; top: 94px; width: 126px; height: 28px; }
+.exact-plus-cyber-red .exact-plus-mask-score { left: 359px; top: 89px; width: 78px; height: 38px; }
+.exact-plus-cyber-red .exact-plus-player { left: 162px; top: 53px; max-width: 188px; font-size: 28px; letter-spacing: 1px; color: #f2f2f2; text-shadow: 0 2px 6px rgba(0,0,0,.75); }
+.exact-plus-cyber-red .exact-plus-rank { left: 207px; top: 98px; max-width: 106px; font-size: 16px; letter-spacing: .8px; color: #b9edf4; }
+.exact-plus-cyber-red .exact-plus-score-label { left: 366px; top: 92px; font-size: 9px; letter-spacing: 1px; color: #ff5a48; }
+.exact-plus-cyber-red .exact-plus-score { left: 366px; top: 101px; max-width: 68px; font-size: 20px; color: #fff; }
+
+/* Glass Minimal exact */
+.exact-plus-glass-minimal .exact-plus-emblem-slot { left: 28px; top: 50px; width: 73px; height: 73px; }
+.exact-plus-glass-minimal .exact-plus-mask-player { left: 103px; top: 58px; width: 132px; height: 26px; border-radius: 7px; }
+.exact-plus-glass-minimal .exact-plus-mask-rank { left: 276px; top: 57px; width: 72px; height: 25px; border-radius: 7px; }
+.exact-plus-glass-minimal .exact-plus-mask-score { left: 356px; top: 53px; width: 58px; height: 34px; border-radius: 7px; }
+.exact-plus-glass-minimal .exact-plus-player { left: 109px; top: 63px; max-width: 120px; font-size: 16px; letter-spacing: .5px; color: #f4f7fb; }
+.exact-plus-glass-minimal .exact-plus-rank { left: 283px; top: 63px; max-width: 62px; font-size: 11px; letter-spacing: .7px; color: #6feaf8; }
+.exact-plus-glass-minimal .exact-plus-score-label { left: 360px; top: 57px; font-size: 7px; letter-spacing: .8px; color: rgba(255,255,255,.78); }
+.exact-plus-glass-minimal .exact-plus-score { left: 360px; top: 66px; max-width: 50px; font-size: 16px; color: #fff; }
+
+/* Premium Gold exact */
+.exact-plus-premium-gold .exact-plus-emblem-slot { left: 24px; top: 52px; width: 84px; height: 84px; }
+.exact-plus-premium-gold .exact-plus-mask-player { left: 108px; top: 60px; width: 137px; height: 27px; border-radius: 7px; background: linear-gradient(180deg, rgba(8,6,2,.72), rgba(8,6,2,.52)); }
+.exact-plus-premium-gold .exact-plus-mask-rank { left: 183px; top: 94px; width: 75px; height: 21px; border-radius: 7px; background: linear-gradient(180deg, rgba(8,6,2,.72), rgba(8,6,2,.52)); }
+.exact-plus-premium-gold .exact-plus-mask-score { left: 322px; top: 57px; width: 58px; height: 42px; border-radius: 7px; background: linear-gradient(180deg, rgba(8,6,2,.72), rgba(8,6,2,.52)); }
+.exact-plus-premium-gold .exact-plus-player { left: 113px; top: 65px; max-width: 126px; font-size: 15px; color: #f0c85a; letter-spacing: .4px; }
+.exact-plus-premium-gold .exact-plus-rank { left: 187px; top: 98px; max-width: 70px; font-size: 10px; color: #fff1c9; letter-spacing: .6px; }
+.exact-plus-premium-gold .exact-plus-score-label { left: 331px; top: 61px; font-size: 7px; letter-spacing: .8px; color: #ffd76a; }
+.exact-plus-premium-gold .exact-plus-score { left: 331px; top: 71px; max-width: 46px; font-size: 18px; color: #fff7df; }
+
+/* Tournament exact */
+.exact-plus-tournament-panel .exact-plus-emblem-slot { left: 35px; top: 50px; width: 88px; height: 88px; }
+.exact-plus-tournament-panel .exact-plus-mask-player { left: 126px; top: 62px; width: 132px; height: 23px; border-radius: 6px; }
+.exact-plus-tournament-panel .exact-plus-mask-rank { left: 278px; top: 60px; width: 64px; height: 22px; border-radius: 6px; }
+.exact-plus-tournament-panel .exact-plus-mask-score { left: 353px; top: 77px; width: 58px; height: 34px; border-radius: 6px; }
+.exact-plus-tournament-panel .exact-plus-player { left: 132px; top: 66px; max-width: 122px; font-size: 17px; color: #f4f7fb; letter-spacing: .3px; }
+.exact-plus-tournament-panel .exact-plus-rank { left: 282px; top: 66px; max-width: 58px; font-size: 9px; color: #45d7dd; letter-spacing: .6px; }
+.exact-plus-tournament-panel .exact-plus-score-label { left: 360px; top: 80px; font-size: 7px; letter-spacing: .8px; color: rgba(255,255,255,.82); }
+.exact-plus-tournament-panel .exact-plus-score { left: 360px; top: 89px; max-width: 48px; font-size: 15px; color: #fff; }
+

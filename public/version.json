@@ -1,8 +1,8 @@
 {
-  "version": "39",
+  "version": "40",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Real Plus layouts render with dynamic imported rank emblems."
+  "note": "Exact Plus covers using generated style art with official dynamic rank emblem overlay."
 }

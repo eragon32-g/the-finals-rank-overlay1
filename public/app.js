@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "39";
+const OVERLAY_VERSION = "40";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -550,5 +550,64 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
   `;
 
   document.documentElement.dataset.themeStyle = style;
+})();
+
+
+
+/* RankTag V40 - exact generated Plus covers with official emblem */
+(function renderExactPlusCoverV40() {
+  const q = new URLSearchParams(window.location.search);
+  const style = String(q.get('themeStyle') || 'default').toLowerCase();
+  const allowed = ['cyber-red','glass-minimal','premium-gold','tournament-panel'];
+  if (!allowed.includes(style)) return;
+
+  const root = document.querySelector('#badge') || document.querySelector('.badge') || document.body.firstElementChild;
+  if (!root) return;
+
+  const getText = (selectors, fallback='') => {
+    for (const sel of selectors) {
+      const el = document.querySelector(sel);
+      const t = el?.textContent?.trim();
+      if (t) return t;
+    }
+    return fallback;
+  };
+
+  const badgeImg =
+    document.querySelector('#badgeImage') ||
+    document.querySelector('.rtp-emblem') ||
+    document.querySelector('.badge-image') ||
+    document.querySelector('img');
+  const badgeSrc = badgeImg?.getAttribute('src') || '';
+
+  const league = getText(['.rtp-rank', '.rank-text', '#rankText'], `${(q.get('league')||'PLATINUM').toUpperCase()} ${(q.get('division')||'1')}`);
+  const scoreRaw = getText(['.rtp-score', '.score-text', '#scoreText'], q.get('rankScore') || q.get('score') || '37705');
+  const player = getText(['.rtp-player', '.name-text', '#nameText'], q.get('player') || 'ERDRAGON32#2577');
+  const scoreLabel = String(q.get('scoreLabel') || 'ELO').trim();
+
+  const numericScore = scoreRaw.replace(/^[^0-9]*/,'').trim();
+  const backgroundMap = {
+    'cyber-red': '/assets/plus/cyber-red.png',
+    'glass-minimal': '/assets/plus/glass-minimal.png',
+    'premium-gold': '/assets/plus/premium-gold.png',
+    'tournament-panel': '/assets/plus/tournament-panel.png'
+  };
+
+  root.className = 'badge exact-plus-cover exact-plus-' + style;
+  root.setAttribute('data-theme-style', style);
+  root.innerHTML = `
+    <div class="exact-plus-bg" style="background-image:url('${backgroundMap[style]}')">
+      <div class="exact-plus-emblem-slot">
+        ${badgeSrc ? `<img class="exact-plus-emblem" src="${badgeSrc}" alt="rank emblem">` : ''}
+      </div>
+      <div class="exact-plus-mask exact-plus-mask-player"></div>
+      <div class="exact-plus-mask exact-plus-mask-rank"></div>
+      <div class="exact-plus-mask exact-plus-mask-score"></div>
+      <div class="exact-plus-player">${player}</div>
+      <div class="exact-plus-rank">${league}</div>
+      <div class="exact-plus-score-label">${scoreLabel}</div>
+      <div class="exact-plus-score">${numericScore}</div>
+    </div>
+  `;
 })();
 

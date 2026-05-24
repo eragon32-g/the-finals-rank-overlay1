@@ -1,5 +1,20 @@
 [
   {
+    "version": "40",
+    "date": "2026-05-24",
+    "title": "Cover Plus esatte",
+    "summary": "Gli stili Plus ora usano proprio le cover generate come base visiva, con emblema ufficiale dinamico sovrapposto.",
+    "added": [
+      "Uso delle cover generate come background reale degli stili Plus"
+    ],
+    "improved": [
+      "Cyber Red, Glass Minimal, Premium Gold e Tournament Panel ora sono molto più vicini alle cover viste nello shop"
+    ],
+    "fixed": [
+      "Gli stili Plus non corrispondevano alle cover mostrate nello shop"
+    ]
+  },
+  {
     "version": "39",
     "date": "2026-05-24",
     "title": "Layout Plus reali",
