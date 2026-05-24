@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "40";
+const OVERLAY_VERSION = "42";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -609,5 +609,98 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
       <div class="exact-plus-score">${numericScore}</div>
     </div>
   `;
+})();
+
+
+
+/* RankTag V41 - cropped exact Plus covers + dynamic official emblem */
+(function renderProcessedPlusV41() {
+  const q = new URLSearchParams(window.location.search);
+  const style = String(q.get('themeStyle') || 'default').toLowerCase();
+  const allowed = ['cyber-red','glass-minimal','premium-gold','tournament-panel'];
+  if (!allowed.includes(style)) return;
+
+  const wait = (ms) => new Promise(r => setTimeout(r, ms));
+  const getText = (selectors, fallback='') => {
+    for (const sel of selectors) {
+      const el = document.querySelector(sel);
+      const t = el?.textContent?.trim();
+      if (t) return t;
+    }
+    return fallback;
+  };
+
+  const bgMap = {
+    'cyber-red': '/assets/plus-processed/cyber-red.png',
+    'glass-minimal': '/assets/plus-processed/glass-minimal.png',
+    'premium-gold': '/assets/plus-processed/premium-gold.png',
+    'tournament-panel': '/assets/plus-processed/tournament-panel.png'
+  };
+
+  const pos = {
+    'cyber-red': {
+      emblem: 'left:23px; top:24px; width:92px; height:92px;',
+      player: 'left:141px; top:41px; max-width:190px; font-size:23px; color:#f2f2f2;',
+      rank: 'left:183px; top:91px; max-width:110px; font-size:16px; color:#b9edf4; letter-spacing:.6px;',
+      scoreLabel: 'left:368px; top:79px; font-size:9px; color:#ff5a48; letter-spacing:1px;',
+      score: 'left:352px; top:90px; max-width:78px; font-size:24px; color:#fff;'
+    },
+    'glass-minimal': {
+      emblem: 'left:27px; top:31px; width:72px; height:72px;',
+      player: 'left:124px; top:53px; max-width:128px; font-size:17px; color:#f4f7fb;',
+      rank: 'left:291px; top:53px; max-width:72px; font-size:13px; color:#65eef9; letter-spacing:.6px;',
+      scoreLabel: 'left:375px; top:47px; font-size:8px; color:rgba(255,255,255,.8); letter-spacing:.8px;',
+      score: 'left:370px; top:58px; max-width:56px; font-size:18px; color:#fff;'
+    },
+    'premium-gold': {
+      emblem: 'left:25px; top:25px; width:84px; height:84px;',
+      player: 'left:127px; top:45px; max-width:140px; font-size:17px; color:#e7c15d;',
+      rank: 'left:183px; top:84px; max-width:112px; font-size:14px; color:#fff1c9; letter-spacing:.5px;',
+      scoreLabel: 'left:353px; top:42px; font-size:8px; color:#ffd76a; letter-spacing:.8px;',
+      score: 'left:340px; top:55px; max-width:84px; font-size:23px; color:#fff7df;'
+    },
+    'tournament-panel': {
+      emblem: 'left:19px; top:24px; width:92px; height:92px;',
+      player: 'left:143px; top:50px; max-width:138px; font-size:24px; color:#f4f7fb;',
+      rank: 'left:341px; top:42px; max-width:88px; font-size:14px; color:#45d7dd; letter-spacing:.5px;',
+      scoreLabel: 'left:349px; top:79px; font-size:8px; color:rgba(255,255,255,.82); letter-spacing:.8px;',
+      score: 'left:348px; top:91px; max-width:80px; font-size:20px; color:#fff;'
+    }
+  };
+
+  async function run() {
+    for (let i = 0; i < 15; i++) {
+      const badgeImage = document.querySelector('#badgeImage') || document.querySelector('.badge-image');
+      if (badgeImage?.getAttribute('src')) break;
+      await wait(120);
+    }
+
+    const badgeImage = document.querySelector('#badgeImage') || document.querySelector('.badge-image');
+    const badgeSrc = badgeImage?.getAttribute('src') || '';
+    const root = document.querySelector('#badge') || document.querySelector('.badge') || document.body.firstElementChild;
+    if (!root) return;
+
+    let league = getText(['#rankText','.rank-text'], `${(q.get('league')||'PLATINUM').toUpperCase()} ${q.get('division')||'1'}`);
+    let scoreRaw = getText(['#scoreText','.score-text'], q.get('rankScore') || q.get('score') || '37705');
+    let player = getText(['#nameText','.name-text'], q.get('player') || 'ERDRAGON32#2577');
+
+    const scoreNumber = String(scoreRaw).replace(/^[^0-9]*/, '').trim();
+    const scoreLabel = String(q.get('scoreLabel') || 'ELO').trim().toUpperCase();
+
+    root.className = `badge plus-processed plus-processed-${style}`;
+    root.setAttribute('data-theme-style', style);
+    root.innerHTML = `
+      <div class="plus-processed-bgwrap">
+        <img class="plus-processed-bg" src="${bgMap[style]}?v=${Date.now()}" alt="style background">
+        ${badgeSrc ? `<img class="plus-processed-emblem" style="${pos[style].emblem}" src="${badgeSrc}" alt="rank emblem">` : ''}
+        <div class="plus-processed-text plus-player" style="${pos[style].player}">${player}</div>
+        <div class="plus-processed-text plus-rank" style="${pos[style].rank}">${league}</div>
+        <div class="plus-processed-text plus-score-label" style="${pos[style].scoreLabel}">${scoreLabel}</div>
+        <div class="plus-processed-text plus-score" style="${pos[style].score}">${scoreNumber}</div>
+      </div>
+    `;
+  }
+
+  run();
 })();
 

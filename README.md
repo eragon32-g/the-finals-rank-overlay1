@@ -1,3 +1,3 @@
-# RankTag for THE FINALS - V40
+# RankTag for THE FINALS - V42
 
-V40 usa le cover generate come base reale degli stili Plus e sovrappone l'emblema ufficiale dinamico.
+V42 pulisce meglio le cover Plus processate e i residui del testo originale.

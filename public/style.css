@@ -1226,3 +1226,44 @@ html, body {
 .exact-plus-tournament-panel .exact-plus-score-label { left: 360px; top: 80px; font-size: 7px; letter-spacing: .8px; color: rgba(255,255,255,.82); }
 .exact-plus-tournament-panel .exact-plus-score { left: 360px; top: 89px; max-width: 48px; font-size: 15px; color: #fff; }
 
+
+
+/* RankTag V41 - cleaned plus covers */
+.badge.plus-processed {
+  width: 470px !important;
+  height: 140px !important;
+  display: block !important;
+  position: relative !important;
+}
+.plus-processed-bgwrap {
+  width: 470px;
+  height: 140px;
+  position: relative;
+}
+.plus-processed-bg {
+  display: block;
+  width: 470px;
+  height: 140px;
+  object-fit: contain;
+}
+.plus-processed-emblem {
+  position: absolute;
+  z-index: 5;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 16px rgba(0,0,0,.68));
+}
+.plus-processed-text {
+  position: absolute;
+  z-index: 6;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 2px 8px rgba(0,0,0,.85);
+}
+.plus-processed .plus-player { letter-spacing: .4px; }
+.plus-processed .plus-rank { letter-spacing: .4px; }
+.plus-processed .plus-score { letter-spacing: .4px; }
+

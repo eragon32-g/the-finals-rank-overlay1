@@ -1,8 +1,8 @@
 {
-  "version": "40",
+  "version": "42",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Exact Plus covers using generated style art with official dynamic rank emblem overlay."
+  "note": "Cleaner masked processed Plus covers, better crop, and official emblem fix."
 }

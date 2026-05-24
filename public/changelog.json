@@ -1,5 +1,34 @@
 [
   {
+    "version": "42",
+    "date": "2026-05-24",
+    "title": "Mask Plus più pulite",
+    "summary": "Pulizia migliore delle aree dinamiche nelle cover Plus, con meno residui del testo originale e crop più pulito.",
+    "improved": [
+      "Zone stemma, player, rank e score coperte meglio nelle cover Plus"
+    ],
+    "fixed": [
+      "Residui del vecchio testo/artwork nelle cover Plus"
+    ]
+  },
+  {
+    "version": "41",
+    "date": "2026-05-24",
+    "title": "Crop e allineamento Plus corretti",
+    "summary": "Le cover Plus sono ritagliate meglio, senza nero inutile attorno, con testi più allineati e attesa dello stemma ufficiale dinamico.",
+    "added": [
+      "Asset Plus processati e ritagliati per la preview/live"
+    ],
+    "improved": [
+      "Allineamento generale degli overlay Plus",
+      "Niente più sfondo nero attorno alla cover"
+    ],
+    "fixed": [
+      "Stemmi ufficiali Plus non sempre aggiornati",
+      "Crop errato delle cover Plus"
+    ]
+  },
+  {
     "version": "40",
     "date": "2026-05-24",
     "title": "Cover Plus esatte",
