@@ -1,5 +1,22 @@
 [
   {
+    "version": "36",
+    "date": "2026-05-24",
+    "title": "Shop Plus e nuovi layout",
+    "summary": "Aggiunta la sezione Shop Plus con quattro stili premium selezionabili e visibili in anteprima.",
+    "added": [
+      "Nuova sezione Shop / Stili Plus nel generator",
+      "Cyber Red Impact, Glass Minimal, Premium Gold e Tournament Panel",
+      "Stili premium applicabili alla preview e al link generato",
+      "Gli stemmi rank già importati restano dinamici nei nuovi layout"
+    ],
+    "improved": [
+      "Overlay più personalizzabile",
+      "Base pronta per evolvere gli stili Plus con animazioni più avanzate"
+    ],
+    "fixed": []
+  },
+  {
     "version": "35",
     "date": "2026-05-24",
     "title": "Verifica rank manuale più precisa",

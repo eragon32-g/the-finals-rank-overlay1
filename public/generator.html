@@ -378,6 +378,148 @@
     .btn.is-disabled { opacity: .55; cursor: not-allowed; }
 
 
+
+    .plus-shop-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .plus-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255,42,23,.16), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025));
+      padding: 14px;
+      min-height: 150px;
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+      text-align: left;
+      color: white;
+      width: 100%;
+    }
+    .plus-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(240,217,170,.35);
+      box-shadow: 0 16px 42px rgba(0,0,0,.28);
+    }
+    .plus-card.active {
+      border-color: rgba(240,217,170,.72);
+      box-shadow: 0 0 0 1px rgba(240,217,170,.22), 0 18px 48px rgba(0,0,0,.32);
+    }
+    .plus-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.11) 42%, transparent 62%);
+      transform: translateX(-120%);
+      transition: transform .55s ease;
+      pointer-events: none;
+    }
+    .plus-card:hover::before { transform: translateX(120%); }
+    .plus-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .plus-title { font-weight: 1000; color: white; letter-spacing: .2px; font-size: 15px; }
+    .plus-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ffd76a, #b78322);
+      color: #160e04;
+      font-size: 10px;
+      font-weight: 1000;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      flex: 0 0 auto;
+    }
+    .plus-preview {
+      height: 58px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .plus-preview::after {
+      content: "";
+      position: absolute;
+      inset: 13px 16px;
+      border-radius: 9px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: linear-gradient(90deg, rgba(255,255,255,.10), rgba(255,255,255,.025));
+    }
+    .plus-preview .mini-badge {
+      position: absolute;
+      left: 13px;
+      top: 11px;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.20);
+      background: linear-gradient(135deg, #dff8ff, #64748b);
+      z-index: 2;
+      clip-path: polygon(50% 0, 94% 28%, 82% 88%, 50% 100%, 18% 88%, 6% 28%);
+    }
+    .plus-preview .mini-lines {
+      position: absolute;
+      left: 58px;
+      right: 20px;
+      top: 16px;
+      height: 28px;
+      z-index: 2;
+    }
+    .plus-preview .mini-lines span {
+      display: block;
+      height: 7px;
+      margin-bottom: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.70);
+    }
+    .plus-preview .mini-lines span:nth-child(2) { width: 55%; height: 5px; opacity: .75; }
+    .plus-preview.cyber { box-shadow: inset 0 0 0 1px rgba(255,42,23,.25), 0 0 20px rgba(255,42,23,.15); }
+    .plus-preview.cyber::after { border-color: rgba(255,42,23,.55); background: linear-gradient(90deg, rgba(255,42,23,.16), rgba(255,255,255,.035)); }
+    .plus-preview.glass { box-shadow: inset 0 0 0 1px rgba(125,211,252,.25), 0 0 20px rgba(125,211,252,.12); }
+    .plus-preview.glass::after { border-color: rgba(125,211,252,.45); background: linear-gradient(90deg, rgba(125,211,252,.12), rgba(255,255,255,.045)); }
+    .plus-preview.gold { box-shadow: inset 0 0 0 1px rgba(255,215,106,.25), 0 0 20px rgba(255,215,106,.12); }
+    .plus-preview.gold::after { border-color: rgba(255,215,106,.58); background: linear-gradient(90deg, rgba(255,215,106,.14), rgba(255,255,255,.035)); }
+    .plus-preview.tournament { box-shadow: inset 0 0 0 1px rgba(255,95,42,.25), 0 0 20px rgba(255,95,42,.12); }
+    .plus-preview.tournament::after { border-color: rgba(255,95,42,.50); clip-path: polygon(0 0, 94% 0, 100% 50%, 94% 100%, 0 100%); background: linear-gradient(90deg, rgba(255,95,42,.13), rgba(255,255,255,.035)); }
+    .plus-desc {
+      position: relative;
+      z-index: 1;
+      color: rgba(255,255,255,.62);
+      font-size: 12.5px;
+      line-height: 1.35;
+      min-height: 34px;
+      margin-bottom: 12px;
+    }
+    .plus-actions { position: relative; z-index: 1; display: flex; gap: 8px; flex-wrap: wrap; }
+    .plus-note {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(240,217,170,.18);
+      background: rgba(240,217,170,.065);
+      color: rgba(255,255,255,.72);
+      font-size: 12.5px;
+      line-height: 1.45;
+      font-weight: 800;
+    }
+    @media (max-width: 760px) { .plus-shop-grid { grid-template-columns: 1fr; } }
+
   </style>
 </head>
 <body>
@@ -387,10 +529,11 @@
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><div class="tag">RankTag V35</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><div class="tag">RankTag V36</div></div>
     </header>
 
     <div class="layout">
+      <input type="hidden" id="themeStyle" value="default" />
       <section class="panel">
 
         <div class="section">
@@ -540,9 +683,76 @@
           </div>
         </div>
 
+        
+        <div class="section" id="plus-shop">
+          <div class="section-title">
+            <h2>5. Shop / Stili Plus</h2>
+            <span class="tag">PLUS</span>
+          </div>
+          <p class="help">Scegli uno stile premium: la preview usa sempre gli stemmi rank già importati e aggiorna il link generato.</p>
+
+          <div class="plus-shop-grid">
+            <button type="button" class="plus-card" data-theme-style="cyber-red">
+              <div class="plus-card-top">
+                <div class="plus-title">Cyber Red Impact</div>
+                <div class="plus-badge">Plus</div>
+              </div>
+              <div class="plus-preview cyber">
+                <div class="mini-badge"></div>
+                <div class="mini-lines"><span></span><span></span></div>
+              </div>
+              <div class="plus-desc">Look aggressivo, glow rosso e vibe ranked competitiva.</div>
+              <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
+            </button>
+
+            <button type="button" class="plus-card" data-theme-style="glass-minimal">
+              <div class="plus-card-top">
+                <div class="plus-title">Glass Minimal</div>
+                <div class="plus-badge">Plus</div>
+              </div>
+              <div class="plus-preview glass">
+                <div class="mini-badge"></div>
+                <div class="mini-lines"><span></span><span></span></div>
+              </div>
+              <div class="plus-desc">Pulito, elegante, effetto vetro e accenti ciano.</div>
+              <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
+            </button>
+
+            <button type="button" class="plus-card" data-theme-style="premium-gold">
+              <div class="plus-card-top">
+                <div class="plus-title">Premium Gold</div>
+                <div class="plus-badge">Plus</div>
+              </div>
+              <div class="plus-preview gold">
+                <div class="mini-badge"></div>
+                <div class="mini-lines"><span></span><span></span></div>
+              </div>
+              <div class="plus-desc">Stile lusso con dettagli oro e look prestige.</div>
+              <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
+            </button>
+
+            <button type="button" class="plus-card" data-theme-style="tournament-panel">
+              <div class="plus-card-top">
+                <div class="plus-title">Tournament Panel</div>
+                <div class="plus-badge">Plus</div>
+              </div>
+              <div class="plus-preview tournament">
+                <div class="mini-badge"></div>
+                <div class="mini-lines"><span></span><span></span></div>
+              </div>
+              <div class="plus-desc">Formato esport, tagli aggressivi e pannelli dinamici.</div>
+              <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
+            </button>
+          </div>
+
+          <div id="plusSelectedNote" class="plus-note">
+            Stile attivo: Default. Gli stili Plus cambiano layout dell’overlay mantenendo lo stemma rank selezionato.
+          </div>
+        </div>
+
         <div id="guide" class="section">
           <div class="section-title">
-            <h2>5. Guida rapida</h2>
+            <h2>6. Guida rapida</h2>
             <span class="tag">OBS / TikTok</span>
           </div>
           <div class="guide-grid">
@@ -617,7 +827,7 @@
     }
 
     function collectProjectData() {
-      const fields = ["mode","player","badgeFile","rankScore","scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent"];
+      const fields = ["mode","player","badgeFile","rankScore","scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","themeStyle"];
       const data = {};
       fields.forEach((field) => {
         const el = get(field);
@@ -909,6 +1119,26 @@
       [...document.querySelectorAll(".palette")].find((el) => el.textContent.includes(random.name))?.classList.add("active");
     }
 
+
+    const plusStyleLabels = {
+      "default": "Default",
+      "cyber-red": "Cyber Red Impact",
+      "glass-minimal": "Glass Minimal",
+      "premium-gold": "Premium Gold",
+      "tournament-panel": "Tournament Panel"
+    };
+
+    function selectPlusStyle(style) {
+      setValue("themeStyle", style || "default");
+      document.querySelectorAll(".plus-card").forEach((card) => {
+        card.classList.toggle("active", card.dataset.themeStyle === style);
+      });
+      const label = plusStyleLabels[style] || plusStyleLabels.default;
+      const note = get("plusSelectedNote");
+      if (note) note.textContent = `Stile attivo: ${label}. Lo stemma rank resta dinamico e segue il rank selezionato.`;
+      buildLink();
+    }
+
     function renderPalettes() {
       const wrap = get("palettes");
       wrap.innerHTML = "";
@@ -1094,7 +1324,7 @@
         url.searchParams.set("leaderboard", "s10");
       }
 
-      ["scoreLabel", "showStatus", "rankColor", "scoreColor", "nameColor", "extraColor", "backgroundColor", "borderColor", "borderWidth", "brandAccent"].forEach((field) => {
+      ["scoreLabel", "showStatus", "rankColor", "scoreColor", "nameColor", "extraColor", "backgroundColor", "borderColor", "borderWidth", "brandAccent", "themeStyle"].forEach((field) => {
         const value = get(field)?.value?.trim();
         if (value) url.searchParams.set(field, value);
       });
@@ -1116,6 +1346,9 @@
     get("logoutProfile")?.addEventListener("click", logoutProfile);
     get("saveProject")?.addEventListener("click", saveCurrentProject);
     get("refreshProjects")?.addEventListener("click", renderSavedProjects);
+    document.querySelectorAll(".plus-card").forEach((card) => {
+      card.addEventListener("click", () => selectPlusStyle(card.dataset.themeStyle));
+    });
     get("copy").addEventListener("click", async () => {
       const ok = await buildLink();
       if (!ok) return;

@@ -1,8 +1,8 @@
 {
-  "version": "35",
+  "version": "36",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Manual mode now verifies both rank and points when public leaderboard data is available."
+  "note": "Plus Shop with selectable premium overlay layouts and dynamic rank badges."
 }

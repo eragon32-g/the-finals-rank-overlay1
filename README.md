@@ -1,15 +1,18 @@
-# RankTag for THE FINALS - V35
+# RankTag for THE FINALS - V36
 
-V35 migliora la verifica della modalità manuale.
+V36 unisce Step 1 + Step 2 + Step 3.
 
 ## Cosa cambia
-- Se il player è presente nella leaderboard pubblica:
-  - verifica che il rank selezionato sia quello reale
-  - verifica che i punti inseriti siano quelli reali
-  - blocca il link se rank o punti non coincidono
-- Se il player non è nella top pubblica:
-  - il manuale resta utilizzabile
-  - mostra un avviso che non è verificabile automaticamente
+- Sezione Shop / Stili Plus nel generator
+- 4 stili premium selezionabili:
+  - Cyber Red Impact
+  - Glass Minimal
+  - Premium Gold
+  - Tournament Panel
+- Il link generato include `themeStyle`
+- L'overlay legge `themeStyle` e cambia layout
+- Gli stemmi rank già importati restano dinamici
+- Prime animazioni leggere per gli stili Plus
 
-## Nota
-Non è possibile verificare automaticamente rank/punti dei player non presenti nei dati pubblici.
+## Test
+Apri `/generator.html`, scegli uno stile Plus, controlla la preview e copia il link.

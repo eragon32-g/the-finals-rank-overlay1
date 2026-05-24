@@ -324,3 +324,173 @@ html, body {
 .brand-drawer * {
   text-transform: none !important;
 }
+
+
+/* RankTag Plus Styles V36 */
+.rank-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.rank-card.theme-cyber-red,
+.rank-card.theme-glass-minimal,
+.rank-card.theme-premium-gold,
+.rank-card.theme-tournament-panel {
+  width: 470px;
+  min-height: 148px;
+  overflow: hidden;
+  transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+}
+
+.rank-card.theme-cyber-red::before,
+.rank-card.theme-glass-minimal::before,
+.rank-card.theme-premium-gold::before,
+.rank-card.theme-tournament-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rank-card.theme-cyber-red > *,
+.rank-card.theme-glass-minimal > *,
+.rank-card.theme-premium-gold > *,
+.rank-card.theme-tournament-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cyber Red Impact */
+.rank-card.theme-cyber-red {
+  border-radius: 18px;
+  border-color: rgba(255,42,23,.78) !important;
+  background:
+    linear-gradient(135deg, rgba(255,42,23,.16) 0%, transparent 34%),
+    linear-gradient(180deg, rgba(12,13,18,.98), rgba(4,5,8,.98)) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,42,23,.18),
+    0 0 28px rgba(255,42,23,.24),
+    inset 0 0 30px rgba(255,42,23,.08) !important;
+  clip-path: polygon(0 12px, 12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+}
+.rank-card.theme-cyber-red::before {
+  background:
+    repeating-linear-gradient(90deg, rgba(255,42,23,.12) 0 2px, transparent 2px 16px),
+    linear-gradient(110deg, transparent 0%, rgba(255,255,255,.13) 45%, transparent 58%);
+  transform: translateX(-130%);
+  animation: cyberSweep 4.8s ease-in-out infinite;
+}
+.rank-card.theme-cyber-red .rank-badge-wrap {
+  border-radius: 16px;
+  border: 1px solid rgba(255,42,23,.62);
+  background: radial-gradient(circle, rgba(255,42,23,.20), rgba(0,0,0,.24));
+  box-shadow: 0 0 22px rgba(255,42,23,.20);
+}
+.rank-card.theme-cyber-red .rank-title { color: #fff; text-shadow: 0 0 14px rgba(255,42,23,.55); }
+.rank-card.theme-cyber-red .rank-score { color: #f8fafc; }
+.rank-card.theme-cyber-red .rank-name { color: #ffd7d4; }
+
+/* Glass Minimal */
+.rank-card.theme-glass-minimal {
+  border-radius: 22px;
+  border-color: rgba(125,211,252,.42) !important;
+  background:
+    linear-gradient(135deg, rgba(125,211,252,.12), rgba(255,255,255,.035)),
+    rgba(8,13,18,.72) !important;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 0 1px rgba(125,211,252,.12),
+    0 14px 42px rgba(0,0,0,.36),
+    inset 0 1px 0 rgba(255,255,255,.12) !important;
+}
+.rank-card.theme-glass-minimal::before {
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.18) 42%, transparent 62%);
+  transform: translateX(-130%);
+  animation: glassSweep 6.5s ease-in-out infinite;
+}
+.rank-card.theme-glass-minimal .rank-badge-wrap {
+  border-radius: 18px;
+  border: 1px solid rgba(125,211,252,.35);
+  background: rgba(125,211,252,.06);
+  box-shadow: 0 0 22px rgba(125,211,252,.16);
+}
+.rank-card.theme-glass-minimal .rank-title { color: #dff8ff; }
+.rank-card.theme-glass-minimal .rank-score { color: #ffffff; }
+.rank-card.theme-glass-minimal .rank-name { color: #bdefff; }
+
+/* Premium Gold */
+.rank-card.theme-premium-gold {
+  border-radius: 18px;
+  border-color: rgba(255,215,106,.70) !important;
+  background:
+    linear-gradient(135deg, rgba(255,215,106,.13), transparent 34%),
+    linear-gradient(180deg, rgba(20,14,6,.98), rgba(5,5,7,.98)) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,215,106,.22),
+    0 16px 44px rgba(0,0,0,.38),
+    inset 0 1px 0 rgba(255,236,180,.18) !important;
+}
+.rank-card.theme-premium-gold::before {
+  background:
+    linear-gradient(90deg, transparent 0 12%, rgba(255,215,106,.15) 12% 13%, transparent 13% 100%),
+    linear-gradient(115deg, transparent 0%, rgba(255,236,180,.20) 42%, transparent 58%);
+  transform: translateX(-130%);
+  animation: goldShine 6s ease-in-out infinite;
+}
+.rank-card.theme-premium-gold .rank-badge-wrap {
+  border-radius: 18px;
+  border: 1px solid rgba(255,215,106,.58);
+  background: radial-gradient(circle, rgba(255,215,106,.16), rgba(0,0,0,.20));
+  box-shadow: 0 0 24px rgba(255,215,106,.18);
+}
+.rank-card.theme-premium-gold .rank-title { color: #ffe8a6; text-shadow: 0 0 12px rgba(255,215,106,.25); }
+.rank-card.theme-premium-gold .rank-score { color: #fff7df; }
+.rank-card.theme-premium-gold .rank-name { color: #f0d9aa; }
+
+/* Tournament Panel */
+.rank-card.theme-tournament-panel {
+  border-radius: 10px;
+  border-color: rgba(255,95,42,.58) !important;
+  background:
+    linear-gradient(135deg, rgba(255,95,42,.16), transparent 30%),
+    linear-gradient(180deg, rgba(14,14,18,.98), rgba(4,5,7,.98)) !important;
+  clip-path: polygon(0 0, 96% 0, 100% 18%, 100% 100%, 4% 100%, 0 82%);
+  box-shadow:
+    0 0 0 1px rgba(255,95,42,.18),
+    0 16px 44px rgba(0,0,0,.36),
+    inset 0 -3px 0 rgba(255,95,42,.28) !important;
+}
+.rank-card.theme-tournament-panel::before {
+  background:
+    linear-gradient(120deg, transparent 0 18%, rgba(255,95,42,.25) 18% 20%, transparent 20% 100%),
+    repeating-linear-gradient(135deg, rgba(255,95,42,.10) 0 6px, transparent 6px 18px);
+  opacity: .85;
+  animation: tournamentPulse 3.6s ease-in-out infinite;
+}
+.rank-card.theme-tournament-panel .rank-badge-wrap {
+  border-radius: 12px;
+  border: 1px solid rgba(255,95,42,.52);
+  background: rgba(255,95,42,.07);
+  clip-path: polygon(0 0, 92% 0, 100% 22%, 100% 100%, 8% 100%, 0 78%);
+}
+.rank-card.theme-tournament-panel .rank-title { color: #e8fdff; }
+.rank-card.theme-tournament-panel .rank-score { color: #ffffff; }
+.rank-card.theme-tournament-panel .rank-name { color: #ffd6ca; }
+
+@keyframes cyberSweep {
+  0%, 55%, 100% { transform: translateX(-130%); opacity: .45; }
+  70% { transform: translateX(130%); opacity: .75; }
+}
+@keyframes glassSweep {
+  0%, 62%, 100% { transform: translateX(-130%); opacity: .35; }
+  76% { transform: translateX(130%); opacity: .7; }
+}
+@keyframes goldShine {
+  0%, 60%, 100% { transform: translateX(-130%); opacity: .35; }
+  78% { transform: translateX(130%); opacity: .82; }
+}
+@keyframes tournamentPulse {
+  0%, 100% { opacity: .45; }
+  50% { opacity: .92; }
+}

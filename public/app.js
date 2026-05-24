@@ -10,8 +10,19 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "35";
+const OVERLAY_VERSION = "36";
 const params = new URLSearchParams(window.location.search);
+
+function normalizeThemeStyle(value) {
+  const input = String(value || "default").toLowerCase().trim();
+  const allowed = ["default", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
+  return allowed.includes(input) ? input : "default";
+}
+
+const themeStyle = normalizeThemeStyle(params.get("themeStyle"));
+document.documentElement.dataset.themeStyle = themeStyle;
+document.body?.classList?.add(`theme-${themeStyle}`);
+
 
 const EMBARK_BADGE_BASE = "https://id.embark.games/images/leaderboards/leagues/";
 

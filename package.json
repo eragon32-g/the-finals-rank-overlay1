@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v35-manual-rank-verification",
-  "version": "4.1.0",
+  "name": "ranktag-finals-overlay-v36-plus-shop-layouts",
+  "version": "4.2.0",
   "private": true,
-  "description": "RankTag verifica rank e punti in modalit\u00e0 manuale quando disponibili",
+  "description": "RankTag con Shop Plus e layout premium selezionabili",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
