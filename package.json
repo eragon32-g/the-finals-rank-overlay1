@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v24-identity-home",
-  "version": "3.0.0",
+  "name": "ranktag-finals-overlay-v25-generator-refine",
+  "version": "3.1.0",
   "private": true,
-  "description": "RankTag for THE FINALS con homepage e identit\u00e0 progetto",
+  "description": "RankTag con generator rifinito, guida e random style",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

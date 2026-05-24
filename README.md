@@ -1,12 +1,19 @@
-# RankTag for THE FINALS - V24
+# RankTag for THE FINALS - V25
 
-Punto 1 completato: identità + homepage.
+Punto 2 completato: generator rifinito.
 
-- Nome progetto: RankTag
-- Homepage pubblica: `/home.html`
-- Generator aggiornato con nome RankTag
-- Testi più chiari su manuale/automatico
-- Branding aggiornato: `Join the Discord`
-- `version.json` aggiornato a V24
+## Cosa cambia
+- Generator più chiaro e ordinato
+- Modalità manuale/automatica spiegate meglio
+- Label punti trasformata in dropdown
+- Aggiunta guida OBS/TikTok LIVE Studio
+- Aggiunti pulsanti Reset stile e Random style
+- Link Home aggiornato
 
-La root `/` resta l'overlay, così i link già generati non si rompono.
+## Link
+```text
+/home.html
+/generator.html
+/version.json
+/brand.json
+```
