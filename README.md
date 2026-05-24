@@ -1,19 +1,24 @@
-# RankTag for THE FINALS - V25
+# RankTag for THE FINALS - V26
 
-Punto 2 completato: generator rifinito.
+Punto 3 completato: temi e palette premium.
 
 ## Cosa cambia
-- Generator più chiaro e ordinato
-- Modalità manuale/automatica spiegate meglio
-- Label punti trasformata in dropdown
-- Aggiunta guida OBS/TikTok LIVE Studio
-- Aggiunti pulsanti Reset stile e Random style
-- Link Home aggiornato
-
-## Link
-```text
-/home.html
-/generator.html
-/version.json
-/brand.json
-```
+- 8 temi pronti:
+  - Original Steel
+  - Void Red
+  - Diamond Ice
+  - Gold Winner
+  - Ruby Blood
+  - Platinum Clean
+  - Neon Purple
+  - Dark Minimal
+- Ogni tema cambia:
+  - titolo rank
+  - punti
+  - nome player
+  - branding
+  - sfondo
+  - bordo
+  - accento branding
+- Card tema migliorate nel generator
+- `version.json` aggiornato a V26

@@ -248,6 +248,35 @@
       .mode-info, .guide-grid { grid-template-columns: 1fr; }
     }
 
+
+    .palette {
+      position: relative;
+      min-height: 92px;
+      overflow: hidden;
+    }
+    .palette::after {
+      content: "THEME";
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 9px;
+      letter-spacing: .8px;
+      color: rgba(255,255,255,.34);
+      font-weight: 1000;
+    }
+    .palette.active::after {
+      color: rgba(125,211,252,.85);
+    }
+    .palette-name {
+      padding-right: 48px;
+    }
+    .theme-note {
+      margin-top: 12px;
+      color: rgba(255,255,255,.56);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
   </style>
 </head>
 <body>
@@ -257,7 +286,7 @@
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><div class="tag">RankTag V25</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><div class="tag">RankTag V26</div></div>
     </header>
 
     <div class="layout">
@@ -353,10 +382,11 @@
 
         <div class="section">
           <div class="section-title">
-            <h2>3. Palette rapide</h2>
+            <h2>3. Temi premium</h2>
             <span class="tag">Colori</span>
           </div>
           <div id="palettes" class="palette-grid"></div>
+          <p class="theme-note">Scegli un tema pronto oppure usa i colori avanzati. I temi cambiano titolo, punti, nome, branding, sfondo e bordo.</p>
         </div>
 
         <div class="section">
@@ -372,6 +402,7 @@
             <label>Sfondo card <input id="backgroundColor" value="0a0c10fa" /></label>
             <label>Bordo card <input id="borderColor" value="7c848fff" /></label>
             <label>Spessore bordo <input id="borderWidth" value="2" inputmode="numeric" /></label>
+            <label>Accento branding <input id="brandAccent" value="ff2a17ff" /></label>
           </div>
           <div class="quick-actions">
             <button id="resetStyle" type="button" class="btn secondary small">Reset stile</button>
@@ -456,12 +487,86 @@
     };
 
     const palettes = [
-      { name: "Original Steel", rankColor: "f5f7faff", scoreColor: "f0d9aaff", nameColor: "e8edf4ff", extraColor: "f5f7fbff", backgroundColor: "0a0c10fa", borderColor: "7c848fff" },
-      { name: "Void Red", rankColor: "ff2a17ff", scoreColor: "ffffffff", nameColor: "f3f4f6ff", extraColor: "ffd6d6ff", backgroundColor: "06070bfa", borderColor: "d0021bff" },
-      { name: "Diamond Ice", rankColor: "dff8ffff", scoreColor: "7dd3fcff", nameColor: "eaf8ffff", extraColor: "dff8ffff", backgroundColor: "071019fa", borderColor: "6fe7ffff" },
-      { name: "Gold Winner", rankColor: "ffd76aff", scoreColor: "ffffffff", nameColor: "fff5d6ff", extraColor: "ffe9a6ff", backgroundColor: "120d05fa", borderColor: "d6a438ff" },
-      { name: "Platinum Clean", rankColor: "f8fbffff", scoreColor: "cbd5e1ff", nameColor: "f1f5f9ff", extraColor: "f1f5f9ff", backgroundColor: "10131afa", borderColor: "b5c2d1ff" },
-      { name: "Neon Purple", rankColor: "f5d0feff", scoreColor: "c084fcff", nameColor: "f8f0ffff", extraColor: "f5d0feff", backgroundColor: "10071afa", borderColor: "a855f7ff" }
+      {
+        name: "Original Steel",
+        rankColor: "f5f7faff",
+        scoreColor: "f0d9aaff",
+        nameColor: "e8edf4ff",
+        extraColor: "f5f7fbff",
+        backgroundColor: "0a0c10fa",
+        borderColor: "7c848fff",
+        brandAccent: "ff2a17ff"
+      },
+      {
+        name: "Void Red",
+        rankColor: "ff2a17ff",
+        scoreColor: "ffffffff",
+        nameColor: "f3f4f6ff",
+        extraColor: "ffd6d6ff",
+        backgroundColor: "06070bfa",
+        borderColor: "d0021bff",
+        brandAccent: "ff2a17ff"
+      },
+      {
+        name: "Diamond Ice",
+        rankColor: "dff8ffff",
+        scoreColor: "7dd3fcff",
+        nameColor: "eaf8ffff",
+        extraColor: "dff8ffff",
+        backgroundColor: "071019fa",
+        borderColor: "6fe7ffff",
+        brandAccent: "7dd3fcff"
+      },
+      {
+        name: "Gold Winner",
+        rankColor: "ffd76aff",
+        scoreColor: "ffffffff",
+        nameColor: "fff5d6ff",
+        extraColor: "ffe9a6ff",
+        backgroundColor: "120d05fa",
+        borderColor: "d6a438ff",
+        brandAccent: "ffd76aff"
+      },
+      {
+        name: "Ruby Blood",
+        rankColor: "ff4d6dff",
+        scoreColor: "ffe4eaff",
+        nameColor: "fff1f4ff",
+        extraColor: "ffc2ceff",
+        backgroundColor: "120409fa",
+        borderColor: "ff2f5fff",
+        brandAccent: "ff2f5fff"
+      },
+      {
+        name: "Platinum Clean",
+        rankColor: "f8fbffff",
+        scoreColor: "cbd5e1ff",
+        nameColor: "f1f5f9ff",
+        extraColor: "f1f5f9ff",
+        backgroundColor: "10131afa",
+        borderColor: "b5c2d1ff",
+        brandAccent: "b5c2d1ff"
+      },
+      {
+        name: "Neon Purple",
+        rankColor: "f5d0feff",
+        scoreColor: "c084fcff",
+        nameColor: "f8f0ffff",
+        extraColor: "f5d0feff",
+        backgroundColor: "10071afa",
+        borderColor: "a855f7ff",
+        brandAccent: "c084fcff"
+      },
+      {
+        name: "Dark Minimal",
+        rankColor: "f9fafbff",
+        scoreColor: "a1a1aaff",
+        nameColor: "d4d4d8ff",
+        extraColor: "e4e4e7ff",
+        backgroundColor: "050506fa",
+        borderColor: "52525bff",
+        brandAccent: "a1a1aaff"
+      }
     ];
 
     function setValue(id, value) { const el = get(id); if (el) el.value = value; }
@@ -515,6 +620,7 @@
             <div class="swatch" style="background:#${p.scoreColor.slice(0,6)}"></div>
             <div class="swatch" style="background:#${p.backgroundColor.slice(0,6)}"></div>
             <div class="swatch" style="background:#${p.borderColor.slice(0,6)}"></div>
+            <div class="swatch" style="background:#${(p.brandAccent || p.borderColor).slice(0,6)}"></div>
           </div>
         `;
         btn.addEventListener("click", () => {
