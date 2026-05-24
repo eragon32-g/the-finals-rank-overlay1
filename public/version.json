@@ -1,8 +1,8 @@
 {
-  "version": "47",
+  "version": "48",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Cyber Red uses dedicated V47 premium renderer; denser, layered, cover-inspired."
+  "note": "Cyber Red cover-match layout: closer to shop preview proportions and hierarchy."
 }

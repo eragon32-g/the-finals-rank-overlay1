@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "47";
+const OVERLAY_VERSION = "48";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -687,6 +687,80 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
   window.addEventListener("load", () => {
     setTimeout(render, 250);
     setTimeout(render, 800);
+  });
+})();
+
+
+
+/* RankTag V48 - Cyber Red cover-match renderer */
+(function rankTagCyberRedCoverMatchV48() {
+  const q = new URLSearchParams(window.location.search);
+  if (String(q.get("themeStyle") || "").toLowerCase() !== "cyber-red") return;
+
+  function esc(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (m) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[m]));
+  }
+
+  function parseScore(text) {
+    const raw = String(text || "").trim();
+    const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
+    return {
+      label: match ? String(match[1]).trim() : (q.get("scoreLabel") || "ELO"),
+      value: match ? String(match[2]).trim() : (q.get("rankScore") || q.get("score") || "37705")
+    };
+  }
+
+  function readState() {
+    const rank = normalizeRankDisplay(rankText?.textContent || `${q.get("league") || "PLATINUM"} ${q.get("division") || "1"}`).toUpperCase();
+    const player = String(nameText?.textContent || q.get("player") || getPlayerFromUrl() || "ERDRAGON32#2577").trim();
+    const score = parseScore(scoreText?.textContent || `${q.get("scoreLabel") || "ELO"}: ${q.get("rankScore") || "37705"}`);
+    const emblemSrc = badgeImage?.getAttribute("src") || "";
+    return { rank, player, score, emblemSrc };
+  }
+
+  function render() {
+    const root = badge || document.getElementById("badge");
+    if (!root) return;
+    const s = readState();
+
+    root.className = "badge rt48-root";
+    root.setAttribute("data-theme-style", "cyber-red");
+    document.documentElement.dataset.themeStyle = "cyber-red";
+
+    root.innerHTML = `
+      <div class="rt48-cyber">
+        <div class="rt48-backGlow"></div>
+        <div class="rt48-frame"></div>
+        <div class="rt48-mainPlate"></div>
+        <div class="rt48-diagonal"></div>
+        <div class="rt48-topRails"></div>
+        <div class="rt48-bottomRail"></div>
+        <div class="rt48-shine"></div>
+        <div class="rt48-emblemBlock">
+          <div class="rt48-emblemHex">
+            ${s.emblemSrc ? `<img class="rt48-emblem" src="${esc(s.emblemSrc)}" alt="rank emblem">` : `<div class="rt48-emblemFallback">TF</div>`}
+          </div>
+        </div>
+        <div class="rt48-playerPanel"><div class="rt48-player">${esc(s.player)}</div></div>
+        <div class="rt48-rankPanel"><div class="rt48-rankIcon"></div><div class="rt48-rank">${esc(s.rank)}</div></div>
+        <div class="rt48-scorePanel"><div class="rt48-scoreLabel">${esc(s.score.label)}</div><div class="rt48-score">${esc(s.score.value)}</div></div>
+        <div class="rt48-brand">RANKTAG</div>
+        <div class="rt48-redMark"></div>
+      </div>
+    `;
+  }
+
+  const oldSetData = setData;
+  setData = async function(...args) {
+    await oldSetData.apply(this, args);
+    render();
+  };
+
+  window.addEventListener("load", () => {
+    setTimeout(render, 450);
+    setTimeout(render, 950);
   });
 })();
 
