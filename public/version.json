@@ -1,8 +1,8 @@
 {
-  "version": "30",
+  "version": "31",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Supabase online nickname/password accounts and online saved overlays."
+  "note": "UI cleanup, centered account area, and manual mode leaderboard guard."
 }

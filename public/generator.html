@@ -290,15 +290,18 @@
     }
     .profile-row {
       display: grid;
-      grid-template-columns: 1fr 1fr auto auto;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr) auto auto;
       gap: 10px;
       align-items: end;
+      justify-content: center;
     }
     .profile-status {
-      color: rgba(255,255,255,.66);
+      color: rgba(255,255,255,.78);
       font-size: 13px;
       line-height: 1.35;
       font-weight: 800;
+      text-align: center;
+      min-height: 18px;
     }
     .saved-grid {
       display: grid;
@@ -337,6 +340,38 @@
     @media (max-width: 850px) {
       .profile-row { grid-template-columns: 1fr; }
     }
+    .profile-bar {
+      display: grid;
+      gap: 12px;
+      align-items: center;
+    }
+    .profile-bar .help {
+      margin-top: 0;
+      text-align: center;
+    }
+    .guard-message {
+      grid-column: 1 / -1;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 12.5px;
+      font-weight: 900;
+      line-height: 1.35;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
+    .guard-message.hidden { display:none; }
+    .guard-message.error {
+      background: rgba(255,42,23,.12);
+      border-color: rgba(255,42,23,.35);
+      color: #ffd5d0;
+    }
+    .guard-message.warn {
+      background: rgba(240,217,170,.09);
+      border-color: rgba(240,217,170,.26);
+      color: #f5e3b8;
+    }
+    .btn.is-disabled { opacity: .55; cursor: not-allowed; }
+
 
   </style>
 </head>
@@ -347,7 +382,7 @@
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><div class="tag">RankTag V30</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><div class="tag">RankTag V31</div></div>
     </header>
 
     <div class="layout">
@@ -371,9 +406,7 @@
               <button id="loginProfile" type="button" class="btn secondary small">Login / registrati</button>
               <button id="logoutProfile" type="button" class="btn secondary small">Logout</button>
             </div>
-            <div id="profileStatus" class="profile-status">
-              Account online: i progetti vengono salvati su Supabase e li ritrovi da PC/telefono.
-            </div>
+            <div id="profileStatus" class="profile-status">Accedi o registrati per salvare i tuoi progetti.</div>
             <div class="profile-row" style="grid-template-columns: 1fr auto auto;">
               <label>
                 Nome progetto
@@ -384,7 +417,7 @@
             </div>
             <div id="savedProjects" class="saved-grid"></div>
           </div>
-          <p class="help">Account online: nickname + password, nessuna email. Ogni utente vede solo i propri progetti.</p>
+          <p class="help">I tuoi progetti salvati restano nel tuo account.</p>
         </div>
 
         <div class="section">
@@ -392,24 +425,20 @@
             <h2>1. Dati rank</h2>
             <span class="tag">Rank</span>
           </div>
-          <div class="mode-info">
-            <div class="info-card"><strong>Manuale</strong>Consigliata per il lancio: funziona anche se non sei nella leaderboard.</div>
-            <div class="info-card"><strong>Automatica</strong>Prova a leggere i dati pubblici disponibili. Se non trova il player, usa la modalità manuale.</div>
-          </div>
           <div class="grid">
             <label>
               Modalità overlay
               <select id="mode">
-                <option value="manual" selected>Manuale, consigliata per tutti</option>
-                <option value="auto">Automatica, solo leaderboard pubblica</option>
+                <option value="manual" selected>Manuale</option>
+                <option value="auto">Automatica</option>
               </select>
-              <span class="field-note">Manuale funziona sempre. Automatica solo se il player è nei dati pubblici.</span>
             </label>
             <label>
               Player / Embark ID
               <input id="player" value="NomePlayer#1234" placeholder="NomePlayer#1234" />
               <span class="field-note">Esempio: ERDRAGON32#2577</span>
             </label>
+            <div id="rankGuard" class="guard-message hidden"></div>
             <label>
               Rank da mostrare
               <select id="badgeFile">
@@ -614,7 +643,7 @@
         currentRole = res[0].role || "user";
         const nickInput = get("profileNick");
         if (nickInput) nickInput.value = currentProfile;
-        setProfileStatus(`Accesso online attivo: ${currentProfile}. Progetti sincronizzati tra dispositivi.`);
+        setProfileStatus(`Accesso attivo: ${currentProfile}`);
         await renderSavedProjects();
       } else {
         currentToken = "";
@@ -644,7 +673,7 @@
       currentProfile = res.user?.nickname || nick;
       currentRole = res.user?.role || "user";
       localStorage.setItem("ranktag_online_token", currentToken);
-      setProfileStatus(`Accesso online effettuato come ${currentProfile}.`);
+      setProfileStatus(`Accesso effettuato: ${currentProfile}`);
       await renderSavedProjects();
     }
 
@@ -662,10 +691,10 @@
       if (!wrap) return;
       wrap.innerHTML = "";
       if (!currentToken || !currentProfile) {
-        wrap.innerHTML = `<div class="profile-status">Fai login o registrati per vedere i progetti salvati online.</div>`;
+        wrap.innerHTML = `<div class="profile-status">Nessun progetto visibile: effettua il login.</div>`;
         return;
       }
-      wrap.innerHTML = `<div class="profile-status">Caricamento progetti online...</div>`;
+      wrap.innerHTML = `<div class="profile-status">Caricamento progetti...</div>`;
       const res = await rpc("ranktag_list_overlays", { p_token: currentToken });
       if (!res.ok) {
         wrap.innerHTML = `<div class="profile-status">${res.message || "Errore caricamento progetti."}</div>`;
@@ -711,7 +740,8 @@
         setProfileStatus("Prima fai login o registrati.");
         return;
       }
-      buildLink();
+      const ok = await buildLink();
+      if (!ok) return;
       const title = get("projectTitle")?.value?.trim() || `${get("player")?.value || "Player"} · ${get("badgeFile")?.value || "rank"}`;
       const res = await rpc("ranktag_save_overlay", {
         p_token: currentToken,
@@ -722,7 +752,7 @@
         setProfileStatus(res.message || "Errore salvataggio online.");
         return;
       }
-      setProfileStatus(`Progetto salvato online per ${currentProfile}.`);
+      setProfileStatus(`Progetto salvato: ${currentProfile}`);
       await renderSavedProjects();
     }
 
@@ -900,9 +930,95 @@
       });
     }
 
-    function buildLink() {
+
+    let manualGuardRequest = 0;
+    let manualGuardBlocked = false;
+
+    function setGuardMessage(message = "", type = "") {
+      const el = get("rankGuard");
+      if (!el) return;
+      if (!message) {
+        el.textContent = "";
+        el.className = "guard-message hidden";
+        return;
+      }
+      el.textContent = message;
+      el.className = `guard-message ${type || ""}`.trim();
+    }
+
+    function setManualBlocked(blocked) {
+      manualGuardBlocked = blocked;
+      ["generate", "copy", "saveProject"].forEach((id) => {
+        const btn = get(id);
+        if (!btn) return;
+        btn.disabled = blocked;
+        btn.classList.toggle("is-disabled", blocked);
+      });
+    }
+
+    async function validateManualGuard() {
+      const mode = get("mode").value;
+      const player = get("player").value.trim();
+
+      if (mode !== "manual") {
+        setGuardMessage();
+        setManualBlocked(false);
+        return true;
+      }
+
+      if (!player) {
+        setGuardMessage();
+        setManualBlocked(false);
+        return true;
+      }
+
+      if (!player.includes("#")) {
+        setGuardMessage("Per usare la modalità manuale inserisci un Embark ID completo, ad esempio Nome#1234.", "warn");
+        setManualBlocked(true);
+        return false;
+      }
+
+      const reqId = ++manualGuardRequest;
+      setGuardMessage("Verifica player nella leaderboard pubblica...", "warn");
+
+      try {
+        const res = await fetch(`/api/player?player=${encodeURIComponent(player)}&leaderboard=s10&platform=crossplay`, { cache: "no-store" });
+        const data = await res.json().catch(() => ({}));
+
+        if (reqId !== manualGuardRequest) return !manualGuardBlocked;
+
+        if (res.ok && data.ok) {
+          setGuardMessage("Questo player è presente nella top 10000 pubblica. Per questo account usa la modalità automatica.", "error");
+          setManualBlocked(true);
+          return false;
+        }
+
+        if (res.status === 404) {
+          setGuardMessage();
+          setManualBlocked(false);
+          return true;
+        }
+
+        setGuardMessage("Impossibile verificare ora la leaderboard. Riprova tra qualche secondo.", "warn");
+        setManualBlocked(true);
+        return false;
+      } catch (err) {
+        if (reqId !== manualGuardRequest) return !manualGuardBlocked;
+        setGuardMessage("Impossibile verificare ora la leaderboard. Riprova tra qualche secondo.", "warn");
+        setManualBlocked(true);
+        return false;
+      }
+    }
+
+    async function buildLink() {
       const url = new URL(window.location.origin + "/");
       const mode = get("mode").value;
+      const manualAllowed = await validateManualGuard();
+      if (mode === "manual" && !manualAllowed) {
+        get("output").value = "";
+        get("preview").src = "about:blank";
+        return false;
+      }
       const player = get("player").value.trim();
       const badgeFile = get("badgeFile").value;
       const [league, division] = rankMap[badgeFile] || ["Unranked", ""];
@@ -933,6 +1049,7 @@
       url.searchParams.set("cacheBust", Date.now().toString());
       get("output").value = url.toString();
       get("preview").src = url.toString();
+      return true;
     }
 
     document.querySelectorAll("input, select").forEach((el) => {
@@ -947,7 +1064,8 @@
     get("saveProject")?.addEventListener("click", saveCurrentProject);
     get("refreshProjects")?.addEventListener("click", renderSavedProjects);
     get("copy").addEventListener("click", async () => {
-      buildLink();
+      const ok = await buildLink();
+      if (!ok) return;
       await navigator.clipboard.writeText(get("output").value);
       get("copy").textContent = "Copiato!";
       setTimeout(() => get("copy").textContent = "Copia link", 1200);
