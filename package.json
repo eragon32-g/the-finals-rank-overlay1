@@ -1,8 +1,8 @@
 {
-  "name": "the-finals-rank-overlay-v23-generator-label-fix",
-  "version": "2.9.0",
+  "name": "ranktag-finals-overlay-v24-identity-home",
+  "version": "3.0.0",
   "private": true,
-  "description": "Overlay THE FINALS con etichetta generator aggiornata",
+  "description": "RankTag for THE FINALS con homepage e identit\u00e0 progetto",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

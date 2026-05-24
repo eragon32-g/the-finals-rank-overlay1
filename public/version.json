@@ -1,6 +1,7 @@
 {
-  "version": "23",
+  "version": "24",
+  "project": "RankTag",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Static public config; generator label fixed."
+  "note": "Identity and homepage added."
 }

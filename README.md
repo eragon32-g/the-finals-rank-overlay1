@@ -1,22 +1,12 @@
-# THE FINALS Rank Overlay V23 - Generator Label Fix
+# RankTag for THE FINALS - V24
 
-Questa versione corregge solo il generatore che mostrava ancora "V17 Animated Brand".
+Punto 1 completato: identità + homepage.
 
-## Cosa cambia
-- Etichetta generatore aggiornata a V23 Static Brand
-- Testo corretto: il branding si modifica da `public/brand.json`
-- `public/version.json` aggiornato a versione 23
-- Cache di app/style aggiornata a v23
+- Nome progetto: RankTag
+- Homepage pubblica: `/home.html`
+- Generator aggiornato con nome RankTag
+- Testi più chiari su manuale/automatico
+- Branding aggiornato: `Join the Discord`
+- `version.json` aggiornato a V24
 
-## Controllo
-Dopo il deploy apri:
-
-```text
-https://TUO-PROGETTO.vercel.app/version.json?v=123
-```
-
-Deve mostrare:
-
-```json
-"version": "23"
-```
+La root `/` resta l'overlay, così i link già generati non si rompono.

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Generator THE FINALS Overlay</title>
+  <title>RankTag Generator</title>
   <style>
     * { box-sizing: border-box; }
     :root {
@@ -179,10 +179,10 @@
   <main class="page">
     <header class="header">
       <div>
-        <h1>Overlay Generator</h1>
-        <p class="subtitle">Genera il link per il rank. Il branding è bloccato lato progetto e viene letto da public/brand.json.</p>
+        <h1>RankTag Generator</h1>
+        <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Manuale per tutti, automatico per chi è nei dati pubblici.</p>
       </div>
-      <div class="tag">🔒 V23 STATIC BRAND</div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><div class="tag">RankTag V24</div></div>
     </header>
 
     <div class="layout">
@@ -192,6 +192,7 @@
             <h2>1. Dati rank</h2>
             <span class="tag">Rank</span>
           </div>
+          <p class="help" style="margin-top:-4px;margin-bottom:14px;">Manuale: consigliato se non compari nella leaderboard. Automatico: funziona solo con i dati pubblici disponibili.</p>
           <div class="grid">
             <label>
               Modalità
@@ -202,7 +203,7 @@
             </label>
             <label>
               Player / Embark ID
-              <input id="player" value="ERDRAGON3#2577" />
+              <input id="player" value="NomePlayer#1234" />
             </label>
             <label>
               Rank da mostrare
