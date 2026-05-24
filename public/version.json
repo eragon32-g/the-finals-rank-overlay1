@@ -1,8 +1,8 @@
 {
-  "version": "34",
+  "version": "35",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Rank divisions now use normal numbers instead of roman numerals."
+  "note": "Manual mode now verifies both rank and points when public leaderboard data is available."
 }

@@ -370,6 +370,11 @@
       border-color: rgba(240,217,170,.26);
       color: #f5e3b8;
     }
+    .guard-message.success {
+      background: rgba(34,197,94,.10);
+      border-color: rgba(34,197,94,.28);
+      color: #c9f7d5;
+    }
     .btn.is-disabled { opacity: .55; cursor: not-allowed; }
 
 
@@ -382,7 +387,7 @@
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><div class="tag">RankTag V34</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><div class="tag">RankTag V35</div></div>
     </header>
 
     <div class="layout">
@@ -956,6 +961,36 @@
       });
     }
 
+    function normalizeRankText(value) {
+      return String(value || "")
+        .toLowerCase()
+        .replace(/\biv\b/g, "4")
+        .replace(/\biii\b/g, "3")
+        .replace(/\bii\b/g, "2")
+        .replace(/\bi\b/g, "1")
+        .replace(/[^a-z0-9]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function expectedRankFromBadgeFile() {
+      const badgeFile = get("badgeFile")?.value || "";
+      const [league, division] = rankMap[badgeFile] || ["Unranked", ""];
+      return normalizeRankText(`${league} ${division}`);
+    }
+
+    function normalizeScore(value) {
+      const raw = String(value || "").replace(/[^\d]/g, "");
+      return raw ? Number(raw) : null;
+    }
+
+    function scoresMatch(a, b) {
+      const x = normalizeScore(a);
+      const y = normalizeScore(b);
+      if (x === null || y === null) return false;
+      return x === y;
+    }
+
     async function validateManualGuard() {
       const mode = get("mode").value;
       const player = get("player").value.trim();
@@ -973,13 +1008,13 @@
       }
 
       if (!player.includes("#")) {
-        setGuardMessage("Per usare la modalità manuale inserisci un Embark ID completo, ad esempio Nome#1234.", "warn");
+        setGuardMessage("Per verificare il manuale inserisci un Embark ID completo, ad esempio Nome#1234.", "warn");
         setManualBlocked(true);
         return false;
       }
 
       const reqId = ++manualGuardRequest;
-      setGuardMessage("Verifica player nella leaderboard pubblica...", "warn");
+      setGuardMessage("Verifica rank e punti nella leaderboard pubblica...", "warn");
 
       try {
         const res = await fetch(`/api/player?player=${encodeURIComponent(player)}&leaderboard=s10&platform=crossplay`, { cache: "no-store" });
@@ -988,13 +1023,31 @@
         if (reqId !== manualGuardRequest) return !manualGuardBlocked;
 
         if (res.ok && data.ok) {
-          setGuardMessage("Questo player è presente nella top 10000 pubblica. Per questo account usa la modalità automatica.", "error");
-          setManualBlocked(true);
-          return false;
+          const selectedRank = expectedRankFromBadgeFile();
+          const realRank = normalizeRankText(data.league || "");
+          const selectedScore = get("rankScore")?.value || "";
+          const realScore = data.rankScore ?? data.score ?? "";
+
+          const rankOk = selectedRank === realRank;
+          const scoreOk = scoresMatch(selectedScore, realScore);
+
+          if (!rankOk || !scoreOk) {
+            const realScoreText = realScore === null || realScore === undefined ? "non disponibile" : new Intl.NumberFormat("it-IT").format(Number(String(realScore).replace(/[^\d]/g, "")));
+            setGuardMessage(
+              `Dati non corretti per ${data.player || player}. Leaderboard: ${data.league || "rank non disponibile"} · ${realScoreText} punti. Correggi rank/punti oppure usa modalità automatica.`,
+              "error"
+            );
+            setManualBlocked(true);
+            return false;
+          }
+
+          setGuardMessage("Verifica ok: rank e punti corrispondono alla leaderboard pubblica.", "success");
+          setManualBlocked(false);
+          return true;
         }
 
         if (res.status === 404) {
-          setGuardMessage();
+          setGuardMessage("Player non presente nella top 10000 pubblica: il manuale non può essere verificato automaticamente.", "warn");
           setManualBlocked(false);
           return true;
         }

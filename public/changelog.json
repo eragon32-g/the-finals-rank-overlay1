@@ -1,5 +1,23 @@
 [
   {
+    "version": "35",
+    "date": "2026-05-24",
+    "title": "Verifica rank manuale più precisa",
+    "summary": "La modalità manuale ora controlla anche se rank e punti inseriti corrispondono ai dati pubblici quando disponibili.",
+    "added": [
+      "Controllo dei punti inseriti in modalità manuale",
+      "Controllo del rank selezionato in modalità manuale",
+      "Messaggio con rank e punti reali quando i dati non coincidono"
+    ],
+    "improved": [
+      "Il manuale resta disponibile per chi non compare nella top pubblica",
+      "Verifica più chiara prima di generare il link"
+    ],
+    "fixed": [
+      "Evitati rank o punti manuali non corretti per player presenti nella leaderboard pubblica"
+    ]
+  },
+  {
     "version": "34",
     "date": "2026-05-24",
     "title": "Rank più leggibili",

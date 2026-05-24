@@ -1,11 +1,15 @@
-# RankTag for THE FINALS - V34
+# RankTag for THE FINALS - V35
 
-V34 sostituisce i numeri romani dei rank con numeri normali.
+V35 migliora la verifica della modalità manuale.
 
 ## Cosa cambia
-- Platinum I diventa Platinum 1
-- Diamond IV diventa Diamond 4
-- Gold II diventa Gold 2
-- Dropdown rank del generator aggiornato
-- Overlay aggiornata anche per vecchi link con numeri romani
-- Changelog aggiornato
+- Se il player è presente nella leaderboard pubblica:
+  - verifica che il rank selezionato sia quello reale
+  - verifica che i punti inseriti siano quelli reali
+  - blocca il link se rank o punti non coincidono
+- Se il player non è nella top pubblica:
+  - il manuale resta utilizzabile
+  - mostra un avviso che non è verificabile automaticamente
+
+## Nota
+Non è possibile verificare automaticamente rank/punti dei player non presenti nei dati pubblici.
