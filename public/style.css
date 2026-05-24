@@ -494,3 +494,118 @@ html, body {
   0%, 100% { opacity: .45; }
   50% { opacity: .92; }
 }
+
+
+/* RankTag Plus Styles V37 - stronger concept-like layouts */
+.rank-card.theme-cyber-red,
+.rank-card.theme-glass-minimal,
+.rank-card.theme-premium-gold,
+.rank-card.theme-tournament-panel {
+  width: 470px !important;
+  height: 148px !important;
+  padding: 12px 16px 12px 12px !important;
+}
+
+.rank-card.theme-cyber-red .rank-badge-wrap,
+.rank-card.theme-glass-minimal .rank-badge-wrap,
+.rank-card.theme-premium-gold .rank-badge-wrap,
+.rank-card.theme-tournament-panel .rank-badge-wrap {
+  transform: scale(1.08);
+  margin-right: 12px;
+}
+
+.rank-card.theme-cyber-red .rank-title,
+.rank-card.theme-glass-minimal .rank-title,
+.rank-card.theme-premium-gold .rank-title,
+.rank-card.theme-tournament-panel .rank-title {
+  font-size: 30px !important;
+  letter-spacing: 2px !important;
+}
+
+.rank-card.theme-cyber-red .rank-meta,
+.rank-card.theme-glass-minimal .rank-meta,
+.rank-card.theme-premium-gold .rank-meta,
+.rank-card.theme-tournament-panel .rank-meta {
+  gap: 12px !important;
+}
+
+.rank-card.theme-cyber-red::after,
+.rank-card.theme-glass-minimal::after,
+.rank-card.theme-premium-gold::after,
+.rank-card.theme-tournament-panel::after {
+  content: "RANKTAG";
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  z-index: 1;
+  font-size: 10px;
+  font-weight: 1000;
+  letter-spacing: 1.6px;
+  opacity: .82;
+}
+
+/* Cyber Red Impact - closer to generated concept */
+.rank-card.theme-cyber-red {
+  border: 2px solid rgba(255,42,23,.78) !important;
+  background:
+    radial-gradient(circle at 88% 42%, rgba(255,42,23,.19), transparent 25%),
+    linear-gradient(90deg, rgba(255,42,23,.13) 0 18%, transparent 18% 100%),
+    linear-gradient(180deg, #101116 0%, #050609 100%) !important;
+}
+.rank-card.theme-cyber-red::after { color: #ff2a17; }
+.rank-card.theme-cyber-red .rank-title {
+  color: #f8fafc !important;
+  text-shadow: 0 2px 0 rgba(0,0,0,.65), 0 0 18px rgba(255,42,23,.28) !important;
+}
+.rank-card.theme-cyber-red .rank-score::before { content: "POINTS "; color: #ff2a17; font-size: 12px; letter-spacing: 2px; }
+
+/* Glass Minimal - closer to generated concept */
+.rank-card.theme-glass-minimal {
+  border: 1px solid rgba(125,211,252,.50) !important;
+  border-radius: 26px !important;
+  background:
+    linear-gradient(100deg, rgba(125,211,252,.10) 0%, transparent 24%, rgba(255,255,255,.035) 100%),
+    rgba(7,12,17,.72) !important;
+}
+.rank-card.theme-glass-minimal::after { color: #dff8ff; }
+.rank-card.theme-glass-minimal .rank-title {
+  color: #ffffff !important;
+  text-shadow: 0 0 12px rgba(125,211,252,.14) !important;
+}
+.rank-card.theme-glass-minimal .rank-score::before { content: "POINTS "; color: rgba(255,255,255,.72); font-size: 12px; letter-spacing: 2px; }
+
+/* Premium Gold - closer to generated concept */
+.rank-card.theme-premium-gold {
+  border: 2px solid rgba(255,215,106,.72) !important;
+  background:
+    linear-gradient(90deg, rgba(255,215,106,.12) 0 28%, transparent 28% 100%),
+    linear-gradient(180deg, #171207 0%, #050505 100%) !important;
+}
+.rank-card.theme-premium-gold::after { color: #ffd76a; }
+.rank-card.theme-premium-gold .rank-title {
+  color: #e6c463 !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.18), 0 0 18px rgba(255,215,106,.22) !important;
+}
+.rank-card.theme-premium-gold .rank-score::before { content: "POINTS "; color: #ffd76a; font-size: 12px; letter-spacing: 2px; }
+
+/* Tournament Panel - closer to generated concept */
+.rank-card.theme-tournament-panel {
+  border: 1px solid rgba(255,95,42,.70) !important;
+  background:
+    linear-gradient(115deg, rgba(255,95,42,.18) 0 22%, transparent 22% 72%, rgba(255,42,23,.18) 72% 100%),
+    linear-gradient(180deg, #111217, #050608) !important;
+}
+.rank-card.theme-tournament-panel::after {
+  color: #ffffff;
+  right: 178px;
+  top: auto;
+  bottom: 14px;
+  background: rgba(255,42,23,.45);
+  padding: 5px 24px;
+  transform: skewX(-16deg);
+}
+.rank-card.theme-tournament-panel .rank-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 0 rgba(0,0,0,.55) !important;
+}
+.rank-card.theme-tournament-panel .rank-score::before { content: "POINTS "; color: rgba(255,255,255,.82); font-size: 12px; letter-spacing: 2px; }

@@ -1,8 +1,8 @@
 {
-  "version": "36",
+  "version": "37",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Plus Shop with selectable premium overlay layouts and dynamic rank badges."
+  "note": "Real Plus shop preview images and fixed live preview theme application."
 }

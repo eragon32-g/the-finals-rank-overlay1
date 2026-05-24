@@ -1,5 +1,22 @@
 [
   {
+    "version": "37",
+    "date": "2026-05-24",
+    "title": "Anteprime Plus migliorate",
+    "summary": "Le card Shop ora mostrano anteprime più vicine agli stili premium e la preview live applica correttamente lo stile selezionato.",
+    "added": [
+      "Anteprime immagini per gli stili Plus",
+      "Applicazione più stabile dello stile nella preview live"
+    ],
+    "improved": [
+      "Cyber Red, Glass Minimal, Premium Gold e Tournament Panel più riconoscibili",
+      "Gli stemmi rank restano dinamici dentro gli stili Plus"
+    ],
+    "fixed": [
+      "Lo stile Plus selezionato ora viene applicato all'anteprima"
+    ]
+  },
+  {
     "version": "36",
     "date": "2026-05-24",
     "title": "Shop Plus e nuovi layout",

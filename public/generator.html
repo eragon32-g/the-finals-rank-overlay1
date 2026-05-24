@@ -520,6 +520,29 @@
     }
     @media (max-width: 760px) { .plus-shop-grid { grid-template-columns: 1fr; } }
 
+
+    .plus-preview.real {
+      height: 96px;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.35);
+    }
+    .plus-preview.real::after,
+    .plus-preview.real .mini-badge,
+    .plus-preview.real .mini-lines {
+      display: none !important;
+    }
+    .plus-card.active .plus-preview.real {
+      box-shadow:
+        inset 0 0 0 1px rgba(240,217,170,.55),
+        0 0 24px rgba(240,217,170,.14);
+    }
+    .plus-card {
+      padding: 12px;
+    }
+
   </style>
 </head>
 <body>
@@ -529,7 +552,7 @@
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><div class="tag">RankTag V36</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><div class="tag">RankTag V37</div></div>
     </header>
 
     <div class="layout">
@@ -697,10 +720,7 @@
                 <div class="plus-title">Cyber Red Impact</div>
                 <div class="plus-badge">Plus</div>
               </div>
-              <div class="plus-preview cyber">
-                <div class="mini-badge"></div>
-                <div class="mini-lines"><span></span><span></span></div>
-              </div>
+              <div class="plus-preview real cyber" style="background-image:url('/assets/plus/cyber-red.png')"></div>
               <div class="plus-desc">Look aggressivo, glow rosso e vibe ranked competitiva.</div>
               <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
             </button>
@@ -710,10 +730,7 @@
                 <div class="plus-title">Glass Minimal</div>
                 <div class="plus-badge">Plus</div>
               </div>
-              <div class="plus-preview glass">
-                <div class="mini-badge"></div>
-                <div class="mini-lines"><span></span><span></span></div>
-              </div>
+              <div class="plus-preview real glass" style="background-image:url('/assets/plus/glass-minimal.png')"></div>
               <div class="plus-desc">Pulito, elegante, effetto vetro e accenti ciano.</div>
               <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
             </button>
@@ -723,10 +740,7 @@
                 <div class="plus-title">Premium Gold</div>
                 <div class="plus-badge">Plus</div>
               </div>
-              <div class="plus-preview gold">
-                <div class="mini-badge"></div>
-                <div class="mini-lines"><span></span><span></span></div>
-              </div>
+              <div class="plus-preview real gold" style="background-image:url('/assets/plus/premium-gold.png')"></div>
               <div class="plus-desc">Stile lusso con dettagli oro e look prestige.</div>
               <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
             </button>
@@ -736,10 +750,7 @@
                 <div class="plus-title">Tournament Panel</div>
                 <div class="plus-badge">Plus</div>
               </div>
-              <div class="plus-preview tournament">
-                <div class="mini-badge"></div>
-                <div class="mini-lines"><span></span><span></span></div>
-              </div>
+              <div class="plus-preview real tournament" style="background-image:url('/assets/plus/tournament-panel.png')"></div>
               <div class="plus-desc">Formato esport, tagli aggressivi e pannelli dinamici.</div>
               <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
             </button>

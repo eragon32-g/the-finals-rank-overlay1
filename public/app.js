@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "36";
+const OVERLAY_VERSION = "37";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -22,6 +22,18 @@ function normalizeThemeStyle(value) {
 const themeStyle = normalizeThemeStyle(params.get("themeStyle"));
 document.documentElement.dataset.themeStyle = themeStyle;
 document.body?.classList?.add(`theme-${themeStyle}`);
+
+function applyThemeStyleClass() {
+  const card = document.querySelector(".rank-card") || document.getElementById("rankCard") || document.querySelector(".badge");
+  if (!card) return;
+  ["default","cyber-red","glass-minimal","premium-gold","tournament-panel"].forEach((s) => {
+    card.classList.remove(`theme-${s}`);
+  });
+  card.classList.add(`theme-${themeStyle}`);
+  card.setAttribute("data-theme-style", themeStyle);
+  document.documentElement.dataset.themeStyle = themeStyle;
+}
+
 
 
 const EMBARK_BADGE_BASE = "https://id.embark.games/images/leaderboards/leagues/";
@@ -424,3 +436,5 @@ if (isManualMode()) {
   const refreshSeconds = Math.max(30, Math.min(600, Number(params.get("refresh") || 60)));
   setInterval(loadAuto, refreshSeconds * 1000);
 }
+
+try { applyThemeStyleClass(); } catch(e) { console.warn(e); }

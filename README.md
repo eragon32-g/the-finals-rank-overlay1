@@ -1,18 +1,12 @@
-# RankTag for THE FINALS - V36
+# RankTag for THE FINALS - V37
 
-V36 unisce Step 1 + Step 2 + Step 3.
+V37 corregge Shop / Plus.
 
 ## Cosa cambia
-- Sezione Shop / Stili Plus nel generator
-- 4 stili premium selezionabili:
-  - Cyber Red Impact
-  - Glass Minimal
-  - Premium Gold
-  - Tournament Panel
-- Il link generato include `themeStyle`
-- L'overlay legge `themeStyle` e cambia layout
-- Gli stemmi rank già importati restano dinamici
-- Prime animazioni leggere per gli stili Plus
+- Le card Shop usano anteprime immagini degli stili premium
+- La preview live applica correttamente `themeStyle`
+- Gli stili Plus sono più riconoscibili
+- Gli stemmi rank restano dinamici
 
 ## Test
-Apri `/generator.html`, scegli uno stile Plus, controlla la preview e copia il link.
+Apri `/generator.html`, seleziona uno stile Plus e verifica che la preview live cambi.
