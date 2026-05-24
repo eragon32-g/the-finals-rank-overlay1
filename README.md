@@ -1,24 +1,12 @@
-# RankTag for THE FINALS - V26
+# RankTag for THE FINALS - V27
 
-Punto 3 completato: temi e palette premium.
+Punto 4 completato: homepage rifinita per il lancio pubblico.
 
 ## Cosa cambia
-- 8 temi pronti:
-  - Original Steel
-  - Void Red
-  - Diamond Ice
-  - Gold Winner
-  - Ruby Blood
-  - Platinum Clean
-  - Neon Purple
-  - Dark Minimal
-- Ogni tema cambia:
-  - titolo rank
-  - punti
-  - nome player
-  - branding
-  - sfondo
-  - bordo
-  - accento branding
-- Card tema migliorate nel generator
-- `version.json` aggiornato a V26
+- Homepage più professionale e pronta da condividere
+- Hero più forte con frase di valore
+- Preview overlay più curata
+- Statistiche rapide
+- Sezioni "Perché usarlo" e "Come funziona"
+- CTA finale per aprire il generator
+- `version.json` aggiornato a V27
