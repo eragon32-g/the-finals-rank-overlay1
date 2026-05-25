@@ -1,5 +1,22 @@
 [
   {
+    "version": "77",
+    "date": "2026-05-25",
+    "title": "Reset Premium Engine",
+    "summary": "Cyber Red Elite non usa più renderer/immagine base separati: ora è una skin CSS dell'overlay standard stabile.",
+    "improved": [
+      "Stessa struttura dell'overlay standard",
+      "Preview live e output finale più coerenti",
+      "Nessun posizionamento assoluto manuale dei testi",
+      "Card premium aggiornata con mock coerente"
+    ],
+    "fixed": [
+      "Layout premium fuori scala",
+      "Elementi premium non allineati",
+      "Conflitti tra renderer premium"
+    ]
+  },
+  {
     "version": "76",
     "date": "2026-05-25",
     "title": "Micro-allineamento Cyber Red Elite",

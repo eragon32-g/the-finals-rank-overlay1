@@ -1,8 +1,8 @@
 {
-  "version": "76",
+  "version": "77",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Punto 2: micro-allineamento Cyber Red Elite e preview card aggiornata."
+  "note": "Reset premium engine: Cyber Red Elite ora è una skin CSS dell'overlay standard stabile."
 }

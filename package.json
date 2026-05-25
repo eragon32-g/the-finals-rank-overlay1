@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v76-cyber-red-micro-align",
-  "version": "8.0.0",
+  "name": "ranktag-finals-overlay-v77-premium-skin-engine",
+  "version": "8.1.0",
   "private": true,
-  "description": "RankTag V76 Cyber Red Elite micro alignment",
+  "description": "RankTag V77 resets premium engine as CSS skin over standard overlay",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

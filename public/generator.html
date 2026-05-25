@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V76 generator real-preview lock */
+/* RankTag V77 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -598,7 +598,7 @@ iframe#preview,
       height:92px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.12);
-      background: #0a0b10 url('/assets/premium/cyber-red-elite-thumb.png?v=63') center/cover no-repeat;
+      background: #0a0b10 url('/assets/premium/cyber-red-elite-thumb.png?v=77') center/cover no-repeat;
       box-shadow: inset 0 0 0 1px rgba(0,0,0,.28);
     }
     .premium-copy-title { font-size: 13px; color: rgba(255,255,255,.66); }
@@ -611,7 +611,7 @@ iframe#preview,
 
 
 
-/* RankTag V76 - layout rework: account full width, settings grid, preview bottom */
+/* RankTag V77 - layout rework: account full width, settings grid, preview bottom */
 .layout {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -724,7 +724,7 @@ aside.panel {
   height:92px;
   border-radius:14px;
   border:1px solid rgba(255,255,255,.12);
-  background: #0a0b10 url('/assets/premium/cyber-red-elite-thumb.png?v=64') center/cover no-repeat;
+  background: #0a0b10 url('/assets/premium/cyber-red-elite-thumb.png?v=77') center/cover no-repeat;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.28);
 }
 
@@ -769,7 +769,7 @@ aside.panel {
 
 
 
-/* RankTag V76 - compact generator, account unchanged */
+/* RankTag V77 - compact generator, account unchanged */
 body {
   padding: 16px !important;
 }
@@ -1047,7 +1047,7 @@ body {
 
 
 
-/* RankTag V76 - order, compact alignment and premium preview fix */
+/* RankTag V77 - order, compact alignment and premium preview fix */
 .settings-panel {
   grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
   align-items: stretch !important;
@@ -1118,7 +1118,7 @@ body {
   width: 100% !important;
   border-radius: 12px !important;
   background-color: #05070b !important;
-  background-image: url('/assets/premium/cyber-red-elite-thumb.png?v=66') !important;
+  background-image: url('/assets/premium/cyber-red-elite-thumb.png?v=77') !important;
   background-size: contain !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -1163,7 +1163,7 @@ body {
 
 
 
-/* RankTag V76 - repaired generator layout */
+/* RankTag V77 - repaired generator layout */
 .settings-panel {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -1225,7 +1225,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 
 
 
-/* RankTag V76 - premium polish */
+/* RankTag V77 - premium polish */
 #livePreviewSection .preview-box {
   overflow: hidden !important;
   padding: 10px 0 !important;
@@ -1274,7 +1274,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 
 
 
-/* RankTag V76 - step 1/2 premium scale and alignment */
+/* RankTag V77 - step 1/2 premium scale and alignment */
 #livePreviewSection .preview-box {
   min-height: 230px !important;
   display: flex !important;
@@ -1323,7 +1323,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 }
 
 
-/* RankTag V76 - premium final override */
+/* RankTag V77 - premium final override */
 #livePreviewSection .preview-box,
 .preview-box {
   display:flex !important;
@@ -1367,7 +1367,7 @@ iframe#preview {
 
 
 
-/* RankTag V76 - premium card micro alignment */
+/* RankTag V77 - premium card micro alignment */
 #overlayPremium .premium-preview-real {
   min-height: 140px !important;
   padding: 12px !important;
@@ -1391,6 +1391,131 @@ iframe#preview {
   transform: none !important;
 }
 
+
+
+/* RankTag V77 - Premium reset engine card */
+#overlayPremium .premium-preview-real.premium-preview-skin {
+  min-height: 170px !important;
+  padding: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: #05070b !important;
+}
+
+.premium-preview-badge {
+  position: relative;
+  width: 470px;
+  height: 160px;
+  border-radius: 18px 46px 18px 36px;
+  border: 2px solid rgba(255,42,23,.88);
+  background:
+    radial-gradient(circle at 12% 50%, rgba(255,70,35,.22), transparent 22%),
+    linear-gradient(115deg, rgba(8,10,16,.98) 0%, rgba(11,16,22,.96) 42%, rgba(87,12,12,.88) 68%, rgba(18,8,12,.96) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    0 0 22px rgba(255,42,23,.18);
+  overflow: hidden;
+}
+
+.premium-preview-badge::before {
+  content: "";
+  position: absolute;
+  inset: 8px 12px 8px 80px;
+  border-radius: 9px 30px 9px 9px;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.05), transparent 34%),
+    repeating-linear-gradient(105deg, rgba(255,42,23,.12) 0 2px, transparent 2px 15px);
+  border: 1px solid rgba(255,42,23,.22);
+}
+
+.premium-preview-badge::after {
+  content: "";
+  position: absolute;
+  left: 96px;
+  right: 22px;
+  bottom: 25px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(79,234,255,.95), rgba(255,42,23,.75), transparent);
+}
+
+.premium-preview-emblem {
+  position: absolute;
+  left: 24px;
+  top: 48px;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: linear-gradient(135deg, rgba(210,220,235,.25), rgba(60,70,88,.35));
+  box-shadow: 0 0 12px rgba(255,42,23,.18);
+}
+
+.premium-preview-name {
+  position: absolute;
+  left: 112px;
+  top: 34px;
+  color: #f8f3f0;
+  font-weight: 1000;
+  font-size: 18px;
+  letter-spacing: .4px;
+}
+
+.premium-preview-rank-label {
+  position: absolute;
+  left: 116px;
+  top: 82px;
+  color: rgba(150,238,255,.78);
+  font-size: 8px;
+  font-weight: 1000;
+  letter-spacing: 1px;
+}
+
+.premium-preview-rank {
+  position: absolute;
+  left: 116px;
+  top: 95px;
+  color: #4feaff;
+  font-weight: 1000;
+  font-size: 16px;
+}
+
+.premium-preview-score-label {
+  position: absolute;
+  right: 50px;
+  top: 82px;
+  color: #ffb08c;
+  font-size: 8px;
+  font-weight: 1000;
+}
+
+.premium-preview-score {
+  position: absolute;
+  right: 50px;
+  top: 95px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 1000;
+}
+
+.premium-preview-corner {
+  position: absolute;
+  right: 22px;
+  top: 12px;
+  width: 86px;
+  height: 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,75,40,.28);
+  background: linear-gradient(90deg, rgba(255,42,23,.08), rgba(255,42,23,.22));
+  color: #ff7048;
+  font-size: 9px;
+  font-weight: 1000;
+  letter-spacing: 1.4px;
+  display: grid;
+  place-items: center;
+}
+
 </style>
 </head>
 <body>
@@ -1400,7 +1525,7 @@ iframe#preview {
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V76</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V77</div></div>
     </header>
 
     <div class="layout">
@@ -1562,8 +1687,18 @@ iframe#preview {
 </div>
 <span class="premium-status-pill">Beta</span>
 </div>
-<div aria-label="Anteprima Cyber Red Elite" class="premium-preview-real"><img id="premiumPreviewImage" src="/assets/premium/cyber-red-elite-thumb-card.png?v=76" alt="Anteprima Cyber Red Elite" /></div>
-<p>Layout premium rosso/aggressivo costruito da zero. Preview live e output finale usano lo stesso stile Cyber Red Elite.</p>
+<div aria-label="Anteprima Cyber Red Elite" class="premium-preview-real premium-preview-skin">
+              <div class="premium-preview-badge">
+                <div class="premium-preview-emblem"></div>
+                <div class="premium-preview-name">NOMEPLAYER#1234</div>
+                <div class="premium-preview-rank-label">RANK</div>
+                <div class="premium-preview-rank">PLATINUM 1</div>
+                <div class="premium-preview-score-label">ELO</div>
+                <div class="premium-preview-score">37.705</div>
+                <div class="premium-preview-corner">RANKTAG</div>
+              </div>
+            </div>
+<p>Skin premium rosso/aggressiva costruita sopra l’overlay standard stabile. Preview live e output finale usano la stessa struttura.</p>
 <div class="premium-actions">
 <button class="btn secondary small" id="previewCyberRedElite" type="button">Anteprima</button>
 <button class="btn small" id="useCyberRedElite" type="button">Usa premium</button>
@@ -2207,7 +2342,7 @@ iframe#preview {
   </script>
 
 <script>
-/* RankTag V76 force real iframe preview */
+/* RankTag V77 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');
