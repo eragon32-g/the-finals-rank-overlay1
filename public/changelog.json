@@ -1,5 +1,21 @@
 [
   {
+    "version": "90",
+    "date": "2026-05-25",
+    "title": "Hard fix layout sync",
+    "summary": "Il JSON del Layout Editor ora contiene chiaramente dimensioni e font, e l'overlay applica sempre quei valori sopra i default.",
+    "fixed": [
+      "L'anteprima poteva rimanere sul default",
+      "Il link finale poteva non applicare w/h/fontSize esportati dal JSON",
+      "I valori del Layout Editor non erano autorevoli dopo render"
+    ],
+    "added": [
+      "schema ranktag-premium-layout-v2 nel JSON esportato",
+      "motore autorevole runtime V90 per applicare X/Y/W/H/Font/Z",
+      "sincronizzazione finale del parametro layout nel generator"
+    ]
+  },
+  {
     "version": "89",
     "date": "2026-05-25",
     "title": "Layout Editor collegato al link finale",
@@ -32,7 +48,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=89",
+      "aggiornati thumb premium e cache buster a v=90",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -231,7 +247,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=89"
+      "riferimenti cache aggiornati a v=90"
     ]
   },
   {

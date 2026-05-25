@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v89-live-layout-param",
-  "version": "9.1.0",
+  "name": "ranktag-finals-overlay-v90-layout-sync-hard-fix",
+  "version": "9.2.0",
   "private": true,
-  "description": "RankTag V89 saves layout editor changes into generated premium overlay links",
+  "description": "RankTag V90 hard-fixes premium layout JSON sync across editor, preview and generated link",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

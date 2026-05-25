@@ -1,10 +1,10 @@
-# RankTag V89
+# RankTag V90
 
-Collega Layout Editor, anteprima e link finale.
+Hard fix sincronizzazione Layout Editor → Generator → Link finale.
 
 ## Cosa cambia
-- Layout Editor salva automaticamente X/Y/W/H/Font/Z in localStorage stabile
-- Generator legge il layout salvato
-- Se Cyber Red Elite è attivo, il link finale contiene il parametro `layout`
-- L'overlay pubblico legge `layout` e applica le coordinate in runtime
+- Il JSON esportato dal Layout Editor include chiaramente X/Y/W/H/Font/Z
+- Il generator inserisce il JSON completo nel parametro `layout`
+- L'overlay finale legge `layout` e lo applica sopra ogni default
+- Anteprima live e link stream devono combaciare
 - Il default non viene toccato

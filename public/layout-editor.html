@@ -114,7 +114,7 @@
       height: 160px;
       user-select: none;
       overflow: hidden;
-      background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=89') center / 100% 100% no-repeat;
+      background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=90') center / 100% 100% no-repeat;
       box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 16px 38px rgba(0,0,0,.34);
     }
     .item {
@@ -211,7 +211,7 @@
       <h1>Layout Editor</h1>
       <div class="sub">Area interna per spostare gli elementi premium e salvare coordinate bloccate per il sito pubblico. Questo editor è solo per i layout premium: non modifica e non vincola il default.</div>
     </div>
-    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="badge" href="/generator.html" style="text-decoration:none;color:inherit;">← Rank Generator</a><div class="badge">RankTag V89</div></div>
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="badge" href="/generator.html" style="text-decoration:none;color:inherit;">← Rank Generator</a><div class="badge">RankTag V90</div></div>
   </div>
 
   <div class="wrap">
@@ -231,7 +231,7 @@
       <div class="canvasWrap" id="canvasWrap">
         <div class="canvasScaler" id="canvasScaler">
           <div id="canvas">
-            <div class="item badgeEl" data-key="badge"><img src="/assets/badges/platinum.svg?v=89" alt="badge"/><div class="handle"></div></div>
+            <div class="item badgeEl" data-key="badge"><img src="/assets/badges/platinum.svg?v=90" alt="badge"/><div class="handle"></div></div>
             <div class="item rankEl" data-key="rank">PLATINUM 1<div class="handle"></div></div>
             <div class="item scoreEl" data-key="score">ELO: 37.705<div class="handle"></div></div>
             <div class="item playerEl" data-key="player">NOMEPLAYER#1234<div class="handle"></div></div>
@@ -353,12 +353,23 @@
     function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
 
     function publicJson() {
+      const clean = JSON.parse(JSON.stringify(layout));
+      Object.keys(clean).forEach((key) => {
+        clean[key].x = Number(clean[key].x || 0);
+        clean[key].y = Number(clean[key].y || 0);
+        clean[key].w = Number(clean[key].w || 0);
+        clean[key].h = Number(clean[key].h || 0);
+        clean[key].fontSize = Number(clean[key].fontSize || 0);
+        clean[key].z = Number(clean[key].z || 1);
+      });
       return {
         version: 1,
+        schema: "ranktag-premium-layout-v2",
         style: "cyber-red-elite",
+        note: "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.",
         canvas: { width: 470, height: 160 },
         background: "/assets/premium/cyber-red-elite-bg.png",
-        elements: layout
+        elements: clean
       };
     }
 
@@ -499,7 +510,7 @@
 
     document.getElementById("copyJson").onclick = async () => {
       await navigator.clipboard.writeText(jsonOut.value);
-      alert("JSON copiato.");
+      alert("JSON completo copiato: include X/Y/W/H/Font/Z.");
     };
 
     document.getElementById("downloadJson").onclick = () => {

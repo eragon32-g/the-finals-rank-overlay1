@@ -1,8 +1,8 @@
 {
-  "version": "89",
+  "version": "90",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V89: il Layout Editor salva automaticamente il JSON e il generator lo inserisce nel link finale premium tramite parametro layout."
+  "note": "V90: hard fix sincronizzazione layout. Il JSON esporta dimensioni, il generator le passa nel link e l'overlay le applica sempre sopra i default."
 }
