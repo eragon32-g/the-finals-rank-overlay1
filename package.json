@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v66-section-order-premium-fix",
-  "version": "7.2.0",
+  "name": "ranktag-finals-overlay-v67-preview-replaces-branding",
+  "version": "7.3.0",
   "private": true,
-  "description": "RankTag section order and premium preview fix",
+  "description": "RankTag hides Branding section and places live preview in point 4",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

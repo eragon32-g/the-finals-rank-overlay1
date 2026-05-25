@@ -2887,12 +2887,12 @@ html, body {
 
 
 /* RankTag V53 - preview/output consistency helpers */
-html[data-ranktag-version="66"] body {
+html[data-ranktag-version="67"] body {
   margin: 0 !important;
   background: transparent !important;
 }
 
-html[data-ranktag-version="66"] .overlay {
+html[data-ranktag-version="67"] .overlay {
   width: fit-content !important;
   height: fit-content !important;
   min-height: 0 !important;
@@ -2901,7 +2901,7 @@ html[data-ranktag-version="66"] .overlay {
   margin: 0 !important;
 }
 
-html[data-ranktag-version="66"] .badge.rt52-root {
+html[data-ranktag-version="67"] .badge.rt52-root {
   transform-origin: top left !important;
 }
 

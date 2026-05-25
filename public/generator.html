@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V66 generator real-preview lock */
+/* RankTag V67 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -611,7 +611,7 @@ iframe#preview,
 
 
 
-/* RankTag V66 - layout rework: account full width, settings grid, preview bottom */
+/* RankTag V67 - layout rework: account full width, settings grid, preview bottom */
 .layout {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -769,7 +769,7 @@ aside.panel {
 
 
 
-/* RankTag V66 - compact generator, account unchanged */
+/* RankTag V67 - compact generator, account unchanged */
 body {
   padding: 16px !important;
 }
@@ -1047,7 +1047,7 @@ body {
 
 
 
-/* RankTag V66 - order, compact alignment and premium preview fix */
+/* RankTag V67 - order, compact alignment and premium preview fix */
 .settings-panel {
   grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
   align-items: stretch !important;
@@ -1161,6 +1161,85 @@ body {
   }
 }
 
+
+
+/* RankTag V67 - branding hidden, live preview moved to point 4 */
+.preview-inline-section {
+  grid-column: span 2 !important;
+  min-height: auto !important;
+}
+
+.preview-inline-section .preview-box {
+  min-height: 190px !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+}
+
+.preview-inline-section iframe#preview {
+  width: 470px !important;
+  height: 160px !important;
+  transform: scale(1) !important;
+  transform-origin: center center !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.preview-inline-section .actions {
+  margin-top: 9px !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important;
+}
+
+.preview-inline-section textarea {
+  min-height: 58px !important;
+  font-size: 11px !important;
+  margin-top: 9px !important;
+}
+
+.preview-inline-section .help {
+  text-align: center !important;
+}
+
+/* The old Branding card is intentionally hidden from the generator */
+.locked-card,
+#lockedPreview {
+  display: none !important;
+}
+
+/* Keep premium next to preview when there is space, but make it clean */
+#overlayPremium {
+  grid-column: span 1 !important;
+}
+
+/* Remove old bottom preview leftovers */
+.bottom-preview-panel,
+.preview-panel.bottom-preview-panel {
+  display: none !important;
+}
+
+/* Keep sections compact */
+.settings-panel > .section:not(.account-section) {
+  padding: 12px !important;
+}
+
+@media (max-width: 1120px) {
+  .preview-inline-section {
+    grid-column: 1 / -1 !important;
+  }
+
+  #overlayPremium {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .preview-inline-section iframe#preview {
+    transform: scale(.72) !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1170,7 +1249,7 @@ body {
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V66</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V67</div></div>
     </header>
 
     <div class="layout">
@@ -1333,7 +1412,24 @@ body {
 
         
 
-<div id="overlayPremium" class="section premium-section">
+
+        <div id="livePreviewSection" class="section preview-inline-section">
+          <div class="section-title">
+            <h2>4. Anteprima live</h2>
+            <span class="tag">Preview</span>
+          </div>
+          <div class="preview-box">
+            <iframe id="preview" title="Overlay preview"></iframe>
+          </div>
+          <div class="actions">
+            <button id="generate" class="btn secondary">Aggiorna</button>
+            <button id="copy" class="btn">Copia link</button>
+          </div>
+          <textarea id="output" readonly></textarea>
+          <p class="help">Il link può modificare rank e colori, ma non branding e Discord.</p>
+        </div>
+
+        <div id="overlayPremium" class="section premium-section">
           <div class="section-title">
             <h2>5. Overlay Premium</h2>
             <span class="tag">1 alla volta</span>
@@ -1392,25 +1488,6 @@ body {
           <div class="size-note">Dimensione consigliata: 470 × 160 · Sfondo trasparente · Browser Source / Link Source</div>
         </div>
       </section>
-
-      
-<aside class="panel preview-panel bottom-preview-panel">
-        <div class="section">
-          <div class="section-title">
-            <h2>Anteprima live</h2>
-            <span class="tag">Preview</span>
-          </div>
-          <div class="preview-box">
-            <iframe id="preview" title="Overlay preview"></iframe>
-          </div>
-          <div class="actions">
-            <button id="generate" class="btn secondary">Aggiorna</button>
-            <button id="copy" class="btn">Copia link</button>
-          </div>
-          <textarea id="output" readonly></textarea>
-          <p class="help">Il link può modificare rank e colori, ma non branding e Discord.</p>
-        </div>
-      </aside>
     </div>
   </main>
 
@@ -1420,7 +1497,7 @@ body {
 
 
     const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV66cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV67cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentProfile = null;
@@ -1700,15 +1777,9 @@ body {
     function setValue(id, value) { const el = get(id); if (el) el.value = value; }
 
     async function loadBrandPreview() {
-      try {
-        const res = await fetch(`/brand.json?v=${Date.now()}`, { cache: "no-store" });
-        const cfg = await res.json();
-        const parts = [];
-        if (cfg.brandText) parts.push("Brand: " + cfg.brandText);
-        if (cfg.callToAction) parts.push("CTA: " + cfg.callToAction);
-        if (cfg.discordText) parts.push("Discord: " + cfg.discordText);
-        get("lockedPreview").textContent = parts.join("  •  ") || "Branding disattivato";
-      } catch {
+      // Branding nascosto nel generator. Resta gestito solo nell'overlay tramite brand.json.
+      return;
+    } catch {
         get("lockedPreview").textContent = "ERDRAGON32 • Join the Void • discord.gg/cffTwCcCGD";
       }
     }
@@ -2016,7 +2087,7 @@ body {
   </script>
 
 <script>
-/* RankTag V66 force real iframe preview */
+/* RankTag V67 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');

@@ -1,8 +1,8 @@
 {
-  "version": "66",
+  "version": "67",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Riordinate le sezioni: Temi al punto 2, Colori al 3, Branding al 4; sistemati Dati rank e preview premium."
+  "note": "Branding nascosto dal generator e sostituito con Anteprima live al punto 4."
 }

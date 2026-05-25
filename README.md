@@ -1,11 +1,12 @@
-# RankTag for THE FINALS - V66
+# RankTag for THE FINALS - V67
 
-V66 sistema ordine e dimensioni nel generator.
+V67 modifica il generator.
 
 ## Cambiamenti
-- Temi al punto 2
-- Colori avanzati al punto 3
-- Branding al punto 4
-- Branding con dimensioni più simili alla card premium
-- Dati rank più centrati
-- Preview Cyber Red Elite non tagliata
+- Branding nascosto dal generator
+- Anteprima live spostata al punto 4
+- Overlay mantiene dimensione 470 × 160
+- Premium resta punto 5
+- Meno scrolling nella pagina
+
+Il branding resta comunque gestito nell'overlay tramite `brand.json`.

@@ -1,5 +1,22 @@
 [
   {
+    "version": "67",
+    "date": "2026-05-25",
+    "title": "Anteprima al posto del branding",
+    "summary": "La sezione Branding viene nascosta nel generator e sostituita dall'Anteprima live al punto 4.",
+    "added": [
+      "Anteprima live come sezione 4 nel grid del generator"
+    ],
+    "improved": [
+      "Meno scrolling",
+      "Anteprima più vicina alle impostazioni",
+      "Branding resta gestito internamente da brand.json ma non occupa spazio nel generator"
+    ],
+    "fixed": [
+      "Rimossa la card branding visibile nel generator"
+    ]
+  },
+  {
     "version": "66",
     "date": "2026-05-25",
     "title": "Ordine sezioni e fix premium",
