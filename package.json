@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v75-cyber-red-single-render",
-  "version": "7.9.0",
+  "name": "ranktag-finals-overlay-v76-cyber-red-micro-align",
+  "version": "8.0.0",
   "private": true,
-  "description": "RankTag V74 fixes Cyber Red Elite scale and alignment",
+  "description": "RankTag V76 Cyber Red Elite micro alignment",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

@@ -1,6 +1,9 @@
-# RankTag V75
+# RankTag V76
 
-Punto 1: renderer premium unico per Cyber Red Elite.
-- rimossi i vecchi blocchi V73/V74
-- live preview bloccata a 470x160
-- allineamento base corretto
+Punto 2: micro-allineamento Cyber Red Elite.
+
+## Cambiamenti
+- Coordinate aggiornate
+- Stemma più centrato
+- Nome/rank/score più bilanciati
+- Preview card aggiornata

@@ -1,5 +1,21 @@
 [
   {
+    "version": "76",
+    "date": "2026-05-25",
+    "title": "Micro-allineamento Cyber Red Elite",
+    "summary": "Secondo passaggio: coordinate più precise e card premium aggiornata.",
+    "improved": [
+      "Stemma più centrato nel frame sinistro",
+      "Nome, rank e score spostati sui binari corretti",
+      "Preview card premium aggiornata con le nuove coordinate",
+      "Meno altezza inutile nella card premium"
+    ],
+    "fixed": [
+      "Preview card diversa dalla resa live",
+      "Testi ancora troppo fuori asse"
+    ]
+  },
+  {
     "version": "75",
     "date": "2026-05-25",
     "title": "Punto 1 - renderer premium unico",

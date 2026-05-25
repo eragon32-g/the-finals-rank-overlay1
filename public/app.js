@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "75";
+const OVERLAY_VERSION = "76";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -610,7 +610,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag V53 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "75");
+document.documentElement.setAttribute("data-ranktag-version", "76");
 
 
 
@@ -618,31 +618,176 @@ document.documentElement.setAttribute("data-ranktag-version", "75");
 
 
 
-/* RankTag V75 - Cyber Red Elite premium overlay: single clean renderer */
-(function rankTagCyberRedEliteV75(){
+
+
+/* RankTag V76 - Cyber Red Elite premium overlay: micro alignment pass */
+(function rankTagCyberRedEliteV76(){
   if (themeStyle !== 'cyber-red-elite') return;
 
   function ensureStyle(){
-    if (document.getElementById('rt75-elite-style')) return;
+    if (document.getElementById('rt76-elite-style')) return;
     const style = document.createElement('style');
-    style.id = 'rt75-elite-style';
+    style.id = 'rt76-elite-style';
     style.textContent = `
       html, body { width:100%; height:100%; margin:0; overflow:hidden; background:transparent; }
       body { display:grid; place-items:center; }
-      #overlay.overlay { width:470px !important; height:160px !important; display:grid !important; place-items:center !important; overflow:hidden !important; background:transparent !important; }
-      #badge.rt75-elite-root { position:relative !important; width:470px !important; height:160px !important; min-width:470px !important; min-height:160px !important; max-width:470px !important; max-height:160px !important; overflow:hidden !important; display:block !important; color:#fff !important; }
-      .rt75-elite-card{ position:absolute; inset:0; width:470px; height:160px; overflow:hidden; }
-      .rt75-elite-base{ position:absolute; left:0; top:0; width:470px; height:160px; display:block; object-fit:cover; pointer-events:none; }
-      .rt75-elite-emblem-wrap{ position:absolute; left:23px; top:46px; width:54px; height:54px; display:grid; place-items:center; filter:drop-shadow(0 8px 10px rgba(0,0,0,.55)); }
-      .rt75-elite-emblem{ width:54px; height:54px; object-fit:contain; display:block; }
-      .rt75-elite-player{ position:absolute; left:114px; top:33px; width:225px; color:#f8f3f0; font-weight:1000; font-size:17px; line-height:18px; letter-spacing:-0.2px; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-shadow:0 2px 8px rgba(0,0,0,.6); }
-      .rt75-elite-brand{ position:absolute; right:49px; top:35px; width:58px; color:#ff6e48; font-size:8px; line-height:8px; font-weight:1000; letter-spacing:1px; text-align:center; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-      .rt75-elite-rank-label{ position:absolute; left:121px; top:87px; width:38px; color:rgba(150,238,255,.82); font-size:8px; line-height:8px; font-weight:1000; letter-spacing:1px; text-transform:uppercase; }
-      .rt75-elite-rank{ position:absolute; left:121px; top:99px; width:155px; color:#46e8ff; font-weight:1000; font-size:15px; line-height:15px; letter-spacing:.1px; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-shadow:0 2px 8px rgba(0,0,0,.55),0 0 10px rgba(70,232,255,.18); }
-      .rt75-elite-score-label{ position:absolute; right:49px; top:86px; width:44px; color:#ffb08c; font-size:8px; line-height:8px; font-weight:1000; text-align:right; letter-spacing:1px; text-transform:uppercase; }
-      .rt75-elite-score{ position:absolute; right:49px; top:98px; width:85px; color:#fff; font-weight:1000; font-size:17px; line-height:18px; text-align:right; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-shadow:0 2px 8px rgba(0,0,0,.55); }
-      .rt75-elite-shine{ position:absolute; top:-26px; left:-130px; width:85px; height:210px; transform:skewX(-18deg); background:linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent); opacity:.42; animation:rt75EliteShine 5.5s linear infinite; }
-      @keyframes rt75EliteShine { 0% { left:-140px; } 100% { left:540px; } }
+
+      #overlay.overlay {
+        width:470px !important;
+        height:160px !important;
+        display:grid !important;
+        place-items:center !important;
+        overflow:hidden !important;
+        background:transparent !important;
+      }
+
+      #badge.rt76-elite-root {
+        position:relative !important;
+        width:470px !important;
+        height:160px !important;
+        min-width:470px !important;
+        min-height:160px !important;
+        max-width:470px !important;
+        max-height:160px !important;
+        overflow:hidden !important;
+        display:block !important;
+        color:#fff !important;
+      }
+
+      .rt76-elite-card{ position:absolute; inset:0; width:470px; height:160px; overflow:hidden; }
+      .rt76-elite-base{ position:absolute; left:0; top:0; width:470px; height:160px; display:block; object-fit:cover; pointer-events:none; }
+
+      .rt76-elite-emblem-wrap{
+        position:absolute;
+        left:28px;
+        top:49px;
+        width:46px;
+        height:46px;
+        display:grid;
+        place-items:center;
+        filter:drop-shadow(0 7px 10px rgba(0,0,0,.55)) drop-shadow(0 0 5px rgba(255,70,35,.22));
+      }
+
+      .rt76-elite-emblem{
+        width:46px;
+        height:46px;
+        object-fit:contain;
+        display:block;
+      }
+
+      .rt76-elite-player{
+        position:absolute;
+        left:112px;
+        top:33px;
+        width:225px;
+        height:20px;
+        color:#f8f3f0;
+        font-weight:1000;
+        font-size:17px;
+        line-height:20px;
+        letter-spacing:.15px;
+        text-transform:uppercase;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        text-shadow:0 2px 8px rgba(0,0,0,.62);
+      }
+
+      .rt76-elite-brand{
+        position:absolute;
+        right:49px;
+        top:35px;
+        width:58px;
+        height:9px;
+        color:#ff6e48;
+        font-size:8px;
+        line-height:9px;
+        font-weight:1000;
+        letter-spacing:1px;
+        text-align:center;
+        text-transform:uppercase;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+
+      .rt76-elite-rank-label{
+        position:absolute;
+        left:121px;
+        top:87px;
+        width:42px;
+        height:9px;
+        color:rgba(150,238,255,.82);
+        font-size:8px;
+        line-height:9px;
+        font-weight:1000;
+        letter-spacing:1px;
+        text-transform:uppercase;
+      }
+
+      .rt76-elite-rank{
+        position:absolute;
+        left:121px;
+        top:99px;
+        width:156px;
+        height:17px;
+        color:#46e8ff;
+        font-weight:1000;
+        font-size:15px;
+        line-height:17px;
+        letter-spacing:.1px;
+        text-transform:uppercase;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        text-shadow:0 2px 8px rgba(0,0,0,.55),0 0 10px rgba(70,232,255,.18);
+      }
+
+      .rt76-elite-score-label{
+        position:absolute;
+        right:49px;
+        top:86px;
+        width:44px;
+        height:9px;
+        color:#ffb08c;
+        font-size:8px;
+        line-height:9px;
+        font-weight:1000;
+        text-align:right;
+        letter-spacing:1px;
+        text-transform:uppercase;
+      }
+
+      .rt76-elite-score{
+        position:absolute;
+        right:49px;
+        top:98px;
+        width:85px;
+        height:19px;
+        color:#fff;
+        font-weight:1000;
+        font-size:17px;
+        line-height:19px;
+        text-align:right;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        text-shadow:0 2px 8px rgba(0,0,0,.55);
+      }
+
+      .rt76-elite-shine{
+        position:absolute;
+        top:-26px;
+        left:-130px;
+        width:82px;
+        height:210px;
+        transform:skewX(-18deg);
+        background:linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+        opacity:.36;
+        animation:rt76EliteShine 5.5s linear infinite;
+      }
+
+      @keyframes rt76EliteShine { 0% { left:-140px; } 100% { left:540px; } }
     `;
     document.head.appendChild(style);
   }
@@ -669,6 +814,7 @@ document.documentElement.setAttribute("data-ranktag-version", "75");
 
   function renderElite() {
     ensureStyle();
+
     const root = badge || document.getElementById('badge');
     const overlay = document.getElementById('overlay');
     if (!root || !overlay) return;
@@ -678,20 +824,21 @@ document.documentElement.setAttribute("data-ranktag-version", "75");
     const score = parseScore();
     const emblem = badgeImage?.getAttribute('src') || getOfficialBadgeUrl({ badgeFile: params.get('badgeFile') || 'platinum-1' });
 
-    overlay.className = 'overlay rt75-elite-overlay';
-    root.className = 'badge rt75-elite-root';
+    overlay.className = 'overlay rt76-elite-overlay';
+    root.className = 'badge rt76-elite-root';
     root.setAttribute('data-theme-style', 'cyber-red-elite');
+
     root.innerHTML = `
-      <div class="rt75-elite-card">
-        <img class="rt75-elite-base" src="/assets/premium/cyber-red-elite-base.png?v=${OVERLAY_VERSION}" alt="Cyber Red Elite" />
-        <div class="rt75-elite-emblem-wrap"><img class="rt75-elite-emblem" src="${esc(emblem)}" alt="rank emblem" /></div>
-        <div class="rt75-elite-player" style="font-size:${player.size}px">${esc(player.text)}</div>
-        <div class="rt75-elite-brand">RANKTAG</div>
-        <div class="rt75-elite-rank-label">RANK</div>
-        <div class="rt75-elite-rank" style="font-size:${rank.size}px">${esc(rank.text)}</div>
-        <div class="rt75-elite-score-label">${esc(score.label)}</div>
-        <div class="rt75-elite-score">${esc(score.value)}</div>
-        <div class="rt75-elite-shine"></div>
+      <div class="rt76-elite-card">
+        <img class="rt76-elite-base" src="/assets/premium/cyber-red-elite-base.png?v=${OVERLAY_VERSION}" alt="Cyber Red Elite" />
+        <div class="rt76-elite-emblem-wrap"><img class="rt76-elite-emblem" src="${esc(emblem)}" alt="rank emblem" /></div>
+        <div class="rt76-elite-player" style="font-size:${player.size}px">${esc(player.text)}</div>
+        <div class="rt76-elite-brand">RANKTAG</div>
+        <div class="rt76-elite-rank-label">RANK</div>
+        <div class="rt76-elite-rank" style="font-size:${rank.size}px">${esc(rank.text)}</div>
+        <div class="rt76-elite-score-label">${esc(score.label)}</div>
+        <div class="rt76-elite-score">${esc(score.value)}</div>
+        <div class="rt76-elite-shine"></div>
       </div>`;
   }
 
