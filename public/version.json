@@ -1,8 +1,8 @@
 {
-  "version": "77",
+  "version": "80",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Reset premium engine: Cyber Red Elite ora è una skin CSS dell'overlay standard stabile."
+  "note": "V80: Cyber Red Elite usa il background premium full-size 470x160 adattato al layout stabile."
 }

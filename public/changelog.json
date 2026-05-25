@@ -1,5 +1,35 @@
 [
   {
+    "version": "80",
+    "date": "2026-05-25",
+    "title": "Premium background full-size",
+    "summary": "Cyber Red Elite ora usa il background premium sull'intero overlay 470×160 invece della card ridotta.",
+    "improved": [
+      "Background premium più visibile",
+      "Overlay premium usa tutta la dimensione 470×160",
+      "Stemma, rank, score e nome riposizionati sul background",
+      "Preview card premium aggiornata"
+    ],
+    "fixed": [
+      "Premium troppo simile al layout base ridotto",
+      "Background premium poco valorizzato"
+    ]
+  },
+  {
+    "version": "79",
+    "date": "2026-05-25",
+    "title": "Fix versione e cache premium",
+    "summary": "Aggiornati tutti i riferimenti rimasti a V77/V78 e forzato cache bust V79.",
+    "fixed": [
+      "Il generator poteva mostrare ancora V77",
+      "Cache asset non sempre aggiornata",
+      "Version marker non coerenti"
+    ],
+    "improved": [
+      "Cyber Red Elite mantiene il background premium adattato al layout stabile"
+    ]
+  },
+  {
     "version": "77",
     "date": "2026-05-25",
     "title": "Reset Premium Engine",
@@ -72,7 +102,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=73"
+      "riferimenti cache aggiornati a v=80"
     ]
   },
   {

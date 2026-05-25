@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v77-premium-skin-engine",
-  "version": "8.1.0",
+  "name": "ranktag-finals-overlay-v80-premium-bg-fullsize",
+  "version": "8.3.0",
   "private": true,
-  "description": "RankTag V77 resets premium engine as CSS skin over standard overlay",
+  "description": "RankTag V80 full-size premium background for Cyber Red Elite",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
