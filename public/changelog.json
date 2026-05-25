@@ -1,5 +1,97 @@
 [
   {
+    "version": "57",
+    "date": "2026-05-25",
+    "title": "Shop rimosso",
+    "summary": "Rimossa tutta la parte relativa allo Shop/Stili Plus per tornare a un generator più pulito e stabile.",
+    "added": [],
+    "improved": [
+      "Generator più semplice",
+      "Test Lab più pulito",
+      "Meno elementi sperimentali che possono rompere la preview"
+    ],
+    "fixed": [
+      "Rimossi Shop/Stili Plus",
+      "Rimossi asset Plus dal pacchetto",
+      "Rimossi riferimenti themeStyle shop-only dal generator"
+    ]
+  },
+  {
+    "version": "56",
+    "date": "2026-05-25",
+    "title": "Cyber Red premium v5",
+    "summary": "Cyber Red ha una nuova base più compatta, densa e con score completamente dentro il pannello.",
+    "added": [
+      "Nuova base Cyber Red v5",
+      "Nuova thumbnail Shop v5"
+    ],
+    "improved": [
+      "Score dentro il modulo destro",
+      "Base più piena e premium",
+      "Slot player/rank più puliti",
+      "Stemma più stabile"
+    ],
+    "fixed": [
+      "Score ancora troppo vicino al bordo nella V55"
+    ]
+  },
+  {
+    "version": "55",
+    "date": "2026-05-25",
+    "title": "Cyber Red premium v4",
+    "summary": "Nuova base Cyber Red più piena, più vendibile e con score riportato dentro il pannello.",
+    "added": [
+      "Nuova base Cyber Red v4",
+      "Nuova thumbnail Shop Cyber Red v4"
+    ],
+    "improved": [
+      "Più dettagli e profondità visiva",
+      "Score spostato dentro il pannello",
+      "Player e rank più leggibili",
+      "Migliore coerenza tra card Shop e preview live"
+    ],
+    "fixed": [
+      "Score troppo esterno nella V54",
+      "Base ancora troppo semplice"
+    ]
+  },
+  {
+    "version": "54",
+    "date": "2026-05-25",
+    "title": "Cyber Red premium base",
+    "summary": "Nuova base grafica Cyber Red più elaborata, con thumbnail Shop coerente e layout config aggiornato.",
+    "added": [
+      "Nuova base cyber-red-base.png più dettagliata",
+      "Nuova thumbnail cyber-red.png coerente con la base reale"
+    ],
+    "improved": [
+      "Più profondità visiva e dettagli tech",
+      "Migliore leggibilità di player, rank e score",
+      "Migliore coerenza fra card Shop e preview live"
+    ],
+    "fixed": [
+      "Cyber Red risultava troppo semplice e poco vendibile"
+    ]
+  },
+  {
+    "version": "53",
+    "date": "2026-05-25",
+    "title": "Preview reale bloccata",
+    "summary": "Generator e Test Lab vengono forzati a mostrare l'overlay reale via iframe con dimensioni fisse.",
+    "added": [
+      "Guardia JS nel generator per ricostruire la preview iframe dal link finale",
+      "Dimensioni preview bloccate a 470x120",
+      "Marker versione nel render reale"
+    ],
+    "improved": [
+      "Migliore coerenza fra preview e output finale",
+      "Meno rischio di visualizzare vecchi renderer o preview locali"
+    ],
+    "fixed": [
+      "La preview del generator poteva non rispettare esattamente l'output finale"
+    ]
+  },
+  {
     "version": "52",
     "date": "2026-05-25",
     "title": "Preview e motore Plus ripuliti",

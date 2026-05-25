@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v52-unified-preview-image-engine",
-  "version": "5.8.0",
+  "name": "ranktag-finals-overlay-v57-shop-removed",
+  "version": "6.3.0",
   "private": true,
-  "description": "RankTag unified preview and single image-base Plus engine",
+  "description": "RankTag with Shop/Stili Plus removed",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
