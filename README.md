@@ -1,19 +1,16 @@
-# RankTag for THE FINALS - V58
+# RankTag for THE FINALS - V59
 
-V58 riparte pulita con gli Overlay Premium.
+V59 modifica la strategia Premium.
 
-## Principio
-Gli overlay premium verranno creati da zero.
-Non vengono riusati gli stili sperimentali precedenti.
+## Decisione
+Si parte con un solo overlay premium:
+- Cyber Red Elite
 
-## Incluso
-- Overlay standard invariato
-- Nuova sezione Overlay Premium
-- Placeholder:
-  - Cyber Red Elite
-  - Glass Cyan Pro
-  - Gold Prestige
-  - Tournament Edge
+Gli altri premium verranno creati solo dopo che il primo sarà:
+- stabile
+- bello
+- funzionale
+- semplice da usare
 
-## Prossimo step
-Creare il primo vero premium da zero: Cyber Red Elite.
+## Nota UI
+Il generator va semplificato in un prossimo step perché troppe personalizzazioni tutte insieme rendono la pagina lunga e poco chiara.

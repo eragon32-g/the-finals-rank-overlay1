@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V58 generator real-preview lock */
+/* RankTag V59 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -586,7 +586,7 @@ iframe#preview,
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V58</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V59</div></div>
     </header>
 
     <div class="layout">
@@ -744,38 +744,33 @@ iframe#preview,
         <div id="guide" class="section">
           <div class="section-title">
             
+
 <section class="premium-clean-section" id="overlayPremium">
   <div class="premium-clean-header">
     <h2>Overlay Premium</h2>
-    <span class="premium-clean-badge">Nuovi da zero</span>
+    <span class="premium-clean-badge">1 alla volta</span>
   </div>
   <p class="premium-clean-note">
-    Qui costruiremo overlay premium completamente nuovi, senza riusare gli esperimenti precedenti.
-    L’overlay standard resta invariato e stabile.
+    Partiamo con un solo premium. Quando sarà stabile, bello e funzionale, creeremo gli altri.
   </p>
-  <div class="premium-clean-grid">
-    <div class="premium-clean-card">
+
+  <div class="premium-one-card">
+    <div class="premium-one-top">
       <strong>Cyber Red Elite</strong>
-      <div class="premium-clean-preview">In sviluppo</div>
-      <p>Primo premium da creare da zero: stile esport aggressivo, glow rosso e animazioni leggere.</p>
+      <span class="premium-status-pill">In sviluppo</span>
     </div>
-    <div class="premium-clean-card">
-      <strong>Glass Cyan Pro</strong>
-      <div class="premium-clean-preview">In sviluppo</div>
-      <p>Stile pulito, vetro/ciano, più elegante e leggibile per live minimal.</p>
-    </div>
-    <div class="premium-clean-card">
-      <strong>Gold Prestige</strong>
-      <div class="premium-clean-preview">In sviluppo</div>
-      <p>Look nero/oro premium, pensato per sembrare più esclusivo.</p>
-    </div>
-    <div class="premium-clean-card">
-      <strong>Tournament Edge</strong>
-      <div class="premium-clean-preview">In sviluppo</div>
-      <p>Formato competitivo, pannelli tagliati e vibe da torneo.</p>
-    </div>
+    <div class="premium-one-preview">Premium da creare</div>
+    <p>
+      Primo overlay premium nuovo da zero, separato dallo standard. Niente vecchi esperimenti:
+      lo costruiamo solo quando la struttura sarà chiara e semplice.
+    </p>
+  </div>
+
+  <div class="generator-compact-note">
+    Prossimo step: semplificare il generator in sezioni più compatte, così l’utente non deve scorrere all’infinito.
   </div>
 </section>
+
 
 <h2>6. Guida rapida</h2>
             <span class="tag">OBS / TikTok</span>
@@ -830,7 +825,7 @@ iframe#preview,
 
 
     const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV58cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV59cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentProfile = null;
@@ -1392,7 +1387,7 @@ iframe#preview,
   </script>
 
 <script>
-/* RankTag V58 force real iframe preview */
+/* RankTag V59 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');

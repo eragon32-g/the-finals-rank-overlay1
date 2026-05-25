@@ -2887,12 +2887,12 @@ html, body {
 
 
 /* RankTag V53 - preview/output consistency helpers */
-html[data-ranktag-version="58"] body {
+html[data-ranktag-version="59"] body {
   margin: 0 !important;
   background: transparent !important;
 }
 
-html[data-ranktag-version="58"] .overlay {
+html[data-ranktag-version="59"] .overlay {
   width: fit-content !important;
   height: fit-content !important;
   min-height: 0 !important;
@@ -2901,7 +2901,7 @@ html[data-ranktag-version="58"] .overlay {
   margin: 0 !important;
 }
 
-html[data-ranktag-version="58"] .badge.rt52-root {
+html[data-ranktag-version="59"] .badge.rt52-root {
   transform-origin: top left !important;
 }
 
@@ -3017,5 +3017,116 @@ button[data-style],
   .premium-clean-grid {
     grid-template-columns: 1fr;
   }
+}
+
+
+
+/* RankTag V59 - one premium only + cleaner generator UI */
+.premium-clean-grid {
+  grid-template-columns: 1fr !important;
+}
+
+.premium-clean-card:not(:first-child) {
+  display: none !important;
+}
+
+.premium-clean-section {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 18px 0 !important;
+}
+
+.premium-clean-header {
+  margin-bottom: 10px !important;
+}
+
+.premium-clean-note {
+  margin-bottom: 12px !important;
+}
+
+.premium-one-card {
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255,42,23,.16), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+  padding: 14px;
+}
+
+.premium-one-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.premium-one-top strong {
+  margin: 0;
+  font-size: 16px;
+}
+
+.premium-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(240,217,170,.34);
+  background: rgba(240,217,170,.12);
+  color: #f0d9aa;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+.premium-one-preview {
+  height: 54px;
+  border-radius: 14px;
+  border: 1px dashed rgba(255,255,255,.18);
+  background:
+    linear-gradient(90deg, rgba(255,42,23,.20), rgba(255,42,23,.04) 45%, transparent),
+    rgba(0,0,0,.28);
+  display: grid;
+  place-items: center;
+  color: rgba(255,255,255,.48);
+  font-size: 12px;
+  font-weight: 1000;
+  letter-spacing: .9px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.premium-one-card p {
+  margin: 0;
+  color: rgba(255,255,255,.62);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.generator-compact-note {
+  border: 1px solid rgba(125,211,252,.18);
+  background: rgba(125,211,252,.07);
+  color: rgba(255,255,255,.72);
+  border-radius: 14px;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 10px 0 0;
+}
+
+/* Future clean-up helper: big sections can be collapsed by adding this class later */
+.generator-section-collapsible {
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.generator-section-collapsible summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 1000;
+}
+
+.generator-section-collapsible summary::-webkit-details-marker {
+  display: none;
 }
 

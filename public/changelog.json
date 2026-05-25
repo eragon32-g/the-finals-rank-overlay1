@@ -1,5 +1,23 @@
 [
   {
+    "version": "59",
+    "date": "2026-05-25",
+    "title": "Un solo premium",
+    "summary": "La sezione Overlay Premium ora parte con un solo stile: Cyber Red Elite.",
+    "added": [
+      "Card singola Cyber Red Elite",
+      "Nota per futura semplificazione del generator"
+    ],
+    "improved": [
+      "Meno confusione nella sezione premium",
+      "Niente quattro stili placeholder insieme",
+      "Approccio uno alla volta"
+    ],
+    "fixed": [
+      "Rimossi placeholder multipli non ancora utili"
+    ]
+  },
+  {
     "version": "58",
     "date": "2026-05-25",
     "title": "Premium clean start",
