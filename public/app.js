@@ -692,75 +692,84 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
 
-/* RankTag V48 - Cyber Red cover-match renderer */
-(function rankTagCyberRedCoverMatchV48() {
+/* RankTag V48 - Cyber Red asset-base renderer */
+(function rankTagCyberRedAssetBaseV48() {
   const q = new URLSearchParams(window.location.search);
   if (String(q.get("themeStyle") || "").toLowerCase() !== "cyber-red") return;
 
   function esc(value) {
     return String(value ?? "").replace(/[&<>"']/g, (m) => ({
-      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
     }[m]));
   }
 
-  function parseScore(text) {
-    const raw = String(text || "").trim();
+  function parseScoreParts(text) {
+    const raw = String(text || '').trim();
     const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
+    if (!match) {
+      return { label: String(q.get('scoreLabel') || 'ELO').trim(), value: raw || '-', extra: '' };
+    }
     return {
-      label: match ? String(match[1]).trim() : (q.get("scoreLabel") || "ELO"),
-      value: match ? String(match[2]).trim() : (q.get("rankScore") || q.get("score") || "37705")
+      label: String(match[1] || q.get('scoreLabel') || 'ELO').trim(),
+      value: String(match[2] || '-').trim(),
+      extra: String(match[3] || '').trim()
     };
   }
 
   function readState() {
-    const rank = normalizeRankDisplay(rankText?.textContent || `${q.get("league") || "PLATINUM"} ${q.get("division") || "1"}`).toUpperCase();
-    const player = String(nameText?.textContent || q.get("player") || getPlayerFromUrl() || "ERDRAGON32#2577").trim();
-    const score = parseScore(scoreText?.textContent || `${q.get("scoreLabel") || "ELO"}: ${q.get("rankScore") || "37705"}`);
-    const emblemSrc = badgeImage?.getAttribute("src") || "";
+    const rank = normalizeRankDisplay(rankText?.textContent || `${q.get('league') || 'Platinum'} ${q.get('division') || '1'}`);
+    const player = String(nameText?.textContent || getPlayerFromUrl() || q.get('player') || 'NomePlayer#1234').trim();
+    const score = parseScoreParts(scoreText?.textContent || `${q.get('scoreLabel') || 'ELO'}: ${q.get('rankScore') || '37705'}`);
+    const emblemSrc = badgeImage?.getAttribute('src') || buildBadgeImageUrl(q.get('badgeFile') || 'platinum-1');
     return { rank, player, score, emblemSrc };
   }
 
-  function render() {
-    const root = badge || document.getElementById("badge");
+  function renderCyberAsset() {
+    const root = badge || document.getElementById('badge');
     if (!root) return;
-    const s = readState();
 
-    root.className = "badge rt48-root";
-    root.setAttribute("data-theme-style", "cyber-red");
-    document.documentElement.dataset.themeStyle = "cyber-red";
+    const state = readState();
+    root.className = 'badge rt48-root';
+    root.setAttribute('data-theme-style', 'cyber-red');
+    document.documentElement.dataset.themeStyle = 'cyber-red';
 
     root.innerHTML = `
       <div class="rt48-cyber">
-        <div class="rt48-backGlow"></div>
-        <div class="rt48-frame"></div>
-        <div class="rt48-mainPlate"></div>
-        <div class="rt48-diagonal"></div>
-        <div class="rt48-topRails"></div>
-        <div class="rt48-bottomRail"></div>
-        <div class="rt48-shine"></div>
-        <div class="rt48-emblemBlock">
-          <div class="rt48-emblemHex">
-            ${s.emblemSrc ? `<img class="rt48-emblem" src="${esc(s.emblemSrc)}" alt="rank emblem">` : `<div class="rt48-emblemFallback">TF</div>`}
-          </div>
+        <img class="rt48-base" src="/assets/plus/cyber-red-base.png" alt="Cyber Red base" />
+        <div class="rt48-sheen"></div>
+
+        <div class="rt48-emblemWrap">
+          <img class="rt48-emblem" src="${esc(state.emblemSrc)}" alt="rank emblem" />
         </div>
-        <div class="rt48-playerPanel"><div class="rt48-player">${esc(s.player)}</div></div>
-        <div class="rt48-rankPanel"><div class="rt48-rankIcon"></div><div class="rt48-rank">${esc(s.rank)}</div></div>
-        <div class="rt48-scorePanel"><div class="rt48-scoreLabel">${esc(s.score.label)}</div><div class="rt48-score">${esc(s.score.value)}</div></div>
-        <div class="rt48-brand">RANKTAG</div>
-        <div class="rt48-redMark"></div>
+
+        <div class="rt48-player" title="${esc(state.player)}">${esc(state.player)}</div>
+
+        <div class="rt48-rankBlock">
+          <div class="rt48-rankLabel">RANK</div>
+          <div class="rt48-rankValue">${esc(state.rank)}</div>
+        </div>
+
+        <div class="rt48-scoreBlock">
+          <div class="rt48-scoreLabel">${esc(state.score.label)}</div>
+          <div class="rt48-scoreValue">${esc(state.score.value)}</div>
+        </div>
       </div>
     `;
   }
 
-  const oldSetData = setData;
+  const __rankTagOrigSetDataV48 = setData;
   setData = async function(...args) {
-    await oldSetData.apply(this, args);
-    render();
+    await __rankTagOrigSetDataV48.apply(this, args);
+    renderCyberAsset();
   };
 
-  window.addEventListener("load", () => {
-    setTimeout(render, 450);
-    setTimeout(render, 950);
+  window.addEventListener('load', () => {
+    setTimeout(renderCyberAsset, 200);
+    setTimeout(renderCyberAsset, 700);
   });
 })();
 

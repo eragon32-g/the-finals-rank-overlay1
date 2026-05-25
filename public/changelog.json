@@ -1,20 +1,20 @@
 [
   {
     "version": "48",
-    "date": "2026-05-24",
-    "title": "Cyber Red cover match",
-    "summary": "Cyber Red viene avvicinato alle proporzioni della cover: più denso, più integrato, meno spazio vuoto.",
+    "date": "2026-05-25",
+    "title": "Cyber Red base asset",
+    "summary": "Cyber Red non viene più costruito solo con CSS: ora usa una base grafica PNG pulita con contenuti dinamici sopra.",
     "added": [
-      "Renderer V48 dedicato per Cyber Red"
+      "Base asset cyber-red-base.png",
+      "Emblema ufficiale dinamico sopra la base",
+      "Nome, rank e punti dinamici sopra la base"
     ],
     "improved": [
-      "Proporzioni più vicine alla card Shop",
-      "Player, rank e punti più compatti",
-      "Emblema più integrato nel frame",
-      "Maggiore densità visiva"
+      "Look molto più vicino al concept illustrato",
+      "Più velocità nel rifinire gli overlay Plus"
     ],
     "fixed": [
-      "Cyber Red V47 era ancora troppo vuoto e poco simile alla cover"
+      "Ridotto il tempo sprecato nei rebuild solo CSS"
     ]
   },
   {

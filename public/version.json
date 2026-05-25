@@ -4,5 +4,5 @@
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Cyber Red cover-match layout: closer to shop preview proportions and hierarchy."
+  "note": "Cyber Red now uses a clean PNG base asset with dynamic emblem, player, rank and score."
 }

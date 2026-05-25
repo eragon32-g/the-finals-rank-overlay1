@@ -2241,29 +2241,148 @@ html, body {
 
 
 
-/* RankTag V48 - Cyber Red cover-match layout */
-.badge.rt48-root{width:500px!important;height:116px!important;min-height:116px!important;padding:0!important;margin:0!important;border:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important}
-.rt48-cyber{position:relative;width:500px;height:116px;isolation:isolate;overflow:visible;color:#fff;font-family:Arial,Helvetica,sans-serif}
-.rt48-backGlow{position:absolute;left:20px;right:18px;top:20px;height:76px;z-index:0;background:radial-gradient(circle at 85% 48%,rgba(255,42,23,.34),transparent 26%),radial-gradient(circle at 16% 48%,rgba(255,42,23,.22),transparent 24%);filter:blur(8px);opacity:.9}
-.rt48-frame{position:absolute;left:34px;right:8px;top:18px;height:78px;z-index:1;clip-path:polygon(0 0,calc(100% - 58px) 0,100% 18px,calc(100% - 14px) 100%,10px 100%,0 calc(100% - 12px));background:linear-gradient(135deg,rgba(255,42,23,.95),rgba(255,42,23,.28) 38%,rgba(255,42,23,.88) 100%);box-shadow:0 0 18px rgba(255,42,23,.40),0 10px 20px rgba(0,0,0,.40)}
-.rt48-mainPlate{position:absolute;left:40px;right:16px;top:23px;height:68px;z-index:2;clip-path:polygon(0 0,calc(100% - 53px) 0,100% 16px,calc(100% - 10px) 100%,8px 100%,0 calc(100% - 10px));background:linear-gradient(90deg,rgba(255,42,23,.20) 0 21%,rgba(255,42,23,.07) 21% 42%,transparent 42%),linear-gradient(180deg,#191d24 0%,#0a0d12 56%,#030406 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 -1px 0 rgba(255,42,23,.28)}
-.rt48-diagonal{position:absolute;left:40px;right:16px;top:23px;height:68px;z-index:3;clip-path:polygon(0 0,calc(100% - 53px) 0,100% 16px,calc(100% - 10px) 100%,8px 100%,0 calc(100% - 10px));opacity:.28;background:repeating-linear-gradient(135deg,rgba(255,42,23,.34) 0 2px,transparent 2px 13px),linear-gradient(90deg,transparent 0 68%,rgba(255,42,23,.30) 68% 69%,transparent 69%)}
-.rt48-topRails{position:absolute;left:126px;right:88px;top:27px;height:9px;z-index:5;background:linear-gradient(90deg,rgba(255,42,23,.10),rgba(255,42,23,.95),rgba(255,42,23,.18),transparent) top left/100% 2px no-repeat,linear-gradient(90deg,#ff2a17,rgba(255,42,23,.65),transparent) bottom left/82px 3px no-repeat;transform:skewX(-18deg)}
-.rt48-bottomRail{position:absolute;left:118px;right:38px;top:88px;height:2px;z-index:5;background:linear-gradient(90deg,rgba(255,42,23,.95),rgba(255,42,23,.24),transparent);box-shadow:0 0 8px rgba(255,42,23,.45)}
-.rt48-shine{position:absolute;left:40px;right:16px;top:23px;height:68px;z-index:6;pointer-events:none;clip-path:polygon(0 0,calc(100% - 53px) 0,100% 16px,calc(100% - 10px) 100%,8px 100%,0 calc(100% - 10px));background:linear-gradient(110deg,transparent 0%,rgba(255,255,255,.14) 45%,transparent 58%);transform:translateX(-138%);animation:rt48Sweep 6.2s ease-in-out infinite;opacity:.62}
-.rt48-emblemBlock{position:absolute;left:8px;top:12px;width:96px;height:96px;z-index:9;display:grid;place-items:center}
-.rt48-emblemBlock:before{content:"";position:absolute;inset:4px;clip-path:polygon(50% 0,94% 25%,83% 88%,50% 100%,17% 88%,6% 25%);background:linear-gradient(135deg,rgba(255,42,23,.95),rgba(255,42,23,.16));box-shadow:0 0 18px rgba(255,42,23,.42),0 9px 16px rgba(0,0,0,.52)}
-.rt48-emblemHex{width:80px;height:80px;display:grid;place-items:center;position:relative;z-index:2;clip-path:polygon(50% 0,92% 25%,82% 88%,50% 100%,18% 88%,8% 25%);background:radial-gradient(circle at 50% 40%,rgba(125,231,242,.18),rgba(0,0,0,.24) 61%),linear-gradient(180deg,#1f2530,#050607);box-shadow:inset 0 0 0 2px rgba(255,255,255,.13),inset 0 0 15px rgba(255,42,23,.14)}
-.rt48-emblem{width:74px;height:74px;object-fit:contain;filter:drop-shadow(0 9px 12px rgba(0,0,0,.76)) drop-shadow(0 0 8px rgba(125,231,242,.17))}
-.rt48-playerPanel{position:absolute;left:115px;top:36px;width:210px;height:32px;z-index:8;display:flex;align-items:center;padding-left:12px;background:linear-gradient(90deg,rgba(0,0,0,.48),rgba(0,0,0,.16),transparent);border-left:2px solid rgba(255,42,23,.72);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 100%,0 100%)}
-.rt48-player{max-width:190px;font-family:Impact,Haettenschweiler,"Arial Narrow Bold",system-ui,sans-serif;font-size:24px;line-height:.9;letter-spacing:.9px;color:#f5f7fb;text-transform:uppercase;text-shadow:0 2px 0 rgba(0,0,0,.82),0 0 12px rgba(255,42,23,.26);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rt48-rankPanel{position:absolute;left:124px;top:70px;width:154px;height:24px;z-index:8;display:flex;align-items:center;gap:7px;padding:4px 10px 4px 9px;background:linear-gradient(90deg,rgba(125,231,242,.13),rgba(0,0,0,.34));border-left:3px solid rgba(125,231,242,.90);box-shadow:inset 0 0 0 1px rgba(125,231,242,.15);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 100%,0 100%)}
-.rt48-rankIcon{width:9px;height:9px;flex:0 0 auto;transform:rotate(45deg);background:#7be7f2;box-shadow:0 0 8px rgba(125,231,242,.35)}
-.rt48-rank{max-width:118px;font-family:Impact,Haettenschweiler,"Arial Narrow Bold",system-ui,sans-serif;font-size:15px;line-height:.95;letter-spacing:.7px;color:#7be7f2;text-transform:uppercase;text-shadow:0 0 8px rgba(125,231,242,.20);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rt48-scorePanel{position:absolute;right:34px;top:47px;width:86px;height:42px;z-index:8;padding:6px 9px 5px;text-align:right;background:radial-gradient(circle at 100% 50%,rgba(255,42,23,.30),transparent 68%),linear-gradient(180deg,rgba(255,42,23,.18),rgba(0,0,0,.34));box-shadow:inset 0 0 0 1px rgba(255,42,23,.36);clip-path:polygon(10px 0,100% 0,100% 100%,0 100%)}
-.rt48-scoreLabel{color:#ff4b3c;font-size:8px;line-height:1;font-weight:1000;letter-spacing:1.4px;text-transform:uppercase}
-.rt48-score{margin-top:4px;font-family:Impact,Haettenschweiler,"Arial Narrow Bold",system-ui,sans-serif;font-size:22px;line-height:.88;letter-spacing:.3px;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.76);white-space:nowrap}
-.rt48-brand{position:absolute;right:32px;top:29px;z-index:9;padding:4px 11px;transform:skewX(-14deg);border-radius:3px;background:linear-gradient(90deg,rgba(255,42,23,.35),rgba(255,42,23,.16));border:1px solid rgba(255,42,23,.46);color:#ff3b2d;font-size:9px;font-weight:1000;letter-spacing:1.5px;text-transform:uppercase}
-.rt48-redMark{position:absolute;right:18px;top:44px;width:56px;height:44px;z-index:4;opacity:.20;background:radial-gradient(circle at 55% 50%,rgba(255,42,23,.95),transparent 62%);clip-path:polygon(50% 0,92% 27%,78% 100%,50% 78%,22% 100%,8% 27%)}
-@keyframes rt48Sweep{0%,61%,100%{transform:translateX(-138%);opacity:.20}77%{transform:translateX(132%);opacity:.70}}
+/* RankTag V48 - Cyber Red using clean PNG base */
+.badge.rt48-root {
+  width: 470px !important;
+  height: 157px !important;
+  min-height: 157px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  padding: 0 !important;
+}
+
+.rt48-cyber {
+  position: relative;
+  width: 470px;
+  height: 157px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.rt48-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rt48-sheen {
+  position: absolute;
+  left: 96px;
+  top: 12px;
+  width: 260px;
+  height: 120px;
+  background: linear-gradient(108deg, transparent 0%, rgba(255,255,255,.14) 48%, transparent 57%);
+  transform: translateX(-155%);
+  animation: rt48sheen 6s ease-in-out infinite;
+  opacity: .5;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.rt48-emblemWrap {
+  position: absolute;
+  left: 22px;
+  top: 35px;
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+}
+
+.rt48-emblem {
+  width: 78px;
+  height: 78px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 10px rgba(0,0,0,.78)) drop-shadow(0 0 8px rgba(255,255,255,.06));
+}
+
+.rt48-player {
+  position: absolute;
+  left: 122px;
+  top: 31px;
+  width: 204px;
+  z-index: 3;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 27px;
+  line-height: .9;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: #f6f7fb;
+  text-shadow: 0 2px 0 rgba(0,0,0,.82), 0 0 10px rgba(255,42,23,.22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt48-rankBlock {
+  position: absolute;
+  left: 130px;
+  top: 87px;
+  width: 162px;
+  z-index: 3;
+}
+
+.rt48-rankLabel,
+.rt48-scoreLabel {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.rt48-rankLabel {
+  color: rgba(255,255,255,.52);
+}
+
+.rt48-rankValue {
+  margin-top: 3px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: .95;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: #72f0ff;
+  text-shadow: 0 0 10px rgba(114,240,255,.24);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt48-scoreBlock {
+  position: absolute;
+  left: 357px;
+  top: 77px;
+  width: 78px;
+  z-index: 3;
+  text-align: center;
+}
+
+.rt48-scoreLabel {
+  color: #ff5a47;
+}
+
+.rt48-scoreValue {
+  margin-top: 4px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 21px;
+  line-height: .9;
+  letter-spacing: .3px;
+  color: #fff;
+  text-shadow: 0 2px 0 rgba(0,0,0,.72);
+  white-space: nowrap;
+}
+
+@keyframes rt48sheen {
+  0%, 62%, 100% { transform: translateX(-155%); opacity: .18; }
+  78% { transform: translateX(145%); opacity: .55; }
+}
 
