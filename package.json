@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v53-generator-preview-lock",
-  "version": "5.9.0",
+  "name": "ranktag-finals-overlay-v54-cyber-red-premium-base",
+  "version": "6.0.0",
   "private": true,
-  "description": "RankTag locks Test Lab and Generator preview to the real iframe output",
+  "description": "RankTag Cyber Red premium image base with unified preview engine",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

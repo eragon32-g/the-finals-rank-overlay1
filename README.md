@@ -1,12 +1,17 @@
-# RankTag for THE FINALS - V53
+# RankTag for THE FINALS - V54
 
-V53 sistema la preview prima di continuare con nuove grafiche premium.
+V54 usa il motore preview unificato e introduce una base Cyber Red più elaborata.
 
 ## Cosa cambia
-- Test Lab: iframe preview bloccato a 470x120
-- Generator: preview forzata a usare il link reale dentro iframe
-- Output finale: marker versione `data-ranktag-version="53"`
-- Minore rischio di preview diversa dal render reale
+- Nuova base grafica Cyber Red più dettagliata
+- Thumbnail Shop coerente con la preview live
+- Layout config aggiornato
+- Stemma, player, rank e score dinamici sopra la base
 
-## Nota
-Questa versione serve a stabilizzare la preview. Le grafiche premium nuove vanno create dopo che questa parte è verificata.
+## File importanti
+- `public/assets/plus/cyber-red-base.png`
+- `public/assets/plus/cyber-red.png`
+- `public/assets/plus/styles-layout.json`
+
+## Test
+Caricare solo su branch `test-lab`.

@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "53";
+const OVERLAY_VERSION = "54";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -610,4 +610,4 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag V53 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "53");
+document.documentElement.setAttribute("data-ranktag-version", "54");
