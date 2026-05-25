@@ -1,5 +1,21 @@
 [
   {
+    "version": "61",
+    "date": "2026-05-25",
+    "title": "Fix layout generator",
+    "summary": "Corretto il problema della sezione Premium affiancata alla Guida e ristilizzata la card Premium.",
+    "added": [],
+    "improved": [
+      "Overlay Premium ora occupa tutta la larghezza",
+      "Guida rapida separata correttamente",
+      "Card Cyber Red Elite più leggibile"
+    ],
+    "fixed": [
+      "Premium e Guida non vengono più mostrati sulla stessa riga",
+      "Stile Premium non appare più come testo grezzo"
+    ]
+  },
+  {
     "version": "60",
     "date": "2026-05-25",
     "title": "Generator compatto",

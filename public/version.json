@@ -1,8 +1,8 @@
 {
-  "version": "60",
+  "version": "61",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Generator compatto: sezioni richiudibili, navigazione rapida e anteprima sticky."
+  "note": "Fix layout generator: Premium e Guida non vanno più affiancati; sezione Premium ristilizzata."
 }

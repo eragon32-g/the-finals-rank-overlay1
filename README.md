@@ -1,14 +1,12 @@
-# RankTag for THE FINALS - V60
+# RankTag for THE FINALS - V61
 
-V60 semplifica il generator.
+V61 corregge il layout del generator.
 
-## Cosa cambia
-- Navigazione rapida in alto
-- Sezioni richiudibili
-- Premium resta uno solo
-- Anteprima sticky su desktop
-- Meno scrolling infinito
+## Fix principali
+- Overlay Premium non viene più affiancato alla Guida
+- La card Cyber Red Elite torna stilizzata
+- Guida rapida separata correttamente
+- Navigazione compatta mantenuta
 
 ## Nota
-Questa versione non costruisce ancora il premium definitivo.
-Prima rende il generator più facile da usare.
+Questa versione corregge l'interfaccia prima di passare alla creazione del vero premium.
