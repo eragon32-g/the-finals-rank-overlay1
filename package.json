@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v80-premium-bg-fullsize",
-  "version": "8.3.0",
+  "name": "ranktag-finals-overlay-v81-cyber-red-new-bg",
+  "version": "8.4.0",
   "private": true,
-  "description": "RankTag V80 full-size premium background for Cyber Red Elite",
+  "description": "RankTag V81 uses new Cyber Red Elite background",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

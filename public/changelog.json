@@ -1,5 +1,21 @@
 [
   {
+    "version": "81",
+    "date": "2026-05-25",
+    "title": "Nuova grafica Cyber Red Elite",
+    "summary": "Sostituito il background premium con la nuova grafica scelta e riallineati gli elementi.",
+    "improved": [
+      "Nuovo background premium senza foro inutile a destra",
+      "Sfondo pulito e adattato a 470×160",
+      "Badge più centrato nel frame sinistro",
+      "Testi leggermente riallineati"
+    ],
+    "fixed": [
+      "Grafica precedente con buco nero a destra",
+      "Contorno immagine eccessivamente visibile"
+    ]
+  },
+  {
     "version": "80",
     "date": "2026-05-25",
     "title": "Premium background full-size",
@@ -102,7 +118,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=80"
+      "riferimenti cache aggiornati a v=81"
     ]
   },
   {

@@ -1,9 +1,9 @@
-# RankTag V80
+# RankTag V81
 
-Continua l'implementazione Premium Background.
+Nuova grafica Cyber Red Elite.
 
-## Cambiamenti
-- Cyber Red Elite usa il background premium full-size 470×160
-- Il layout resta basato sul motore stabile
-- Stemma, rank, score e nome riposizionati sul background
-- Preview card aggiornata
+## Include
+- background premium scelto
+- rimozione foro nero inutile a destra
+- adattamento 470×160
+- badge e testi riallineati
