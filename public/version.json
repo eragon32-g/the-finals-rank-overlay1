@@ -1,8 +1,8 @@
 {
-  "version": "62",
+  "version": "63",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Premium spostato fuori dalla Guida; rimosso wrapping JS che rompeva il layout."
+  "note": "Primo overlay premium Cyber Red Elite attivabile dal generatore."
 }

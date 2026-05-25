@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V62 generator real-preview lock */
+/* RankTag V63 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -577,6 +577,38 @@ iframe#preview,
   margin:auto !important;
 }
 
+
+
+    .premium-one-card.premium-live-card {
+      display:grid;
+      gap:14px;
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+    }
+    .premium-one-card.premium-live-card.active {
+      border-color: rgba(240,217,170,.52);
+      box-shadow: 0 0 0 1px rgba(240,217,170,.12), 0 20px 50px rgba(0,0,0,.24);
+    }
+    .premium-live-head {
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .premium-preview-real {
+      height:92px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: #0a0b10 url('/assets/premium/cyber-red-elite-thumb.png?v=63') center/cover no-repeat;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.28);
+    }
+    .premium-copy-title { font-size: 13px; color: rgba(255,255,255,.66); }
+    .premium-actions { display:flex; gap:10px; flex-wrap:wrap; }
+    .premium-selected-note {
+      margin-top:12px; padding:12px; border-radius:14px;
+      border:1px solid rgba(240,217,170,.18); background: rgba(240,217,170,.065);
+      color: rgba(255,255,255,.78); font-size:13px; font-weight:800; line-height:1.45;
+    }
+
 </style>
 </head>
 <body>
@@ -586,7 +618,7 @@ iframe#preview,
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V62</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V63</div></div>
     </header>
 
     <div class="layout">
@@ -740,32 +772,36 @@ iframe#preview,
           </div>
         </div>
 
+        
         <div id="overlayPremium" class="section premium-section">
           <div class="section-title">
             <h2>5. Overlay Premium</h2>
             <span class="tag">1 alla volta</span>
           </div>
 
-          <div class="premium-one-card">
-            <div class="premium-one-top">
-              <strong>Cyber Red Elite</strong>
-              <span class="premium-status-pill">In sviluppo</span>
+          <div id="premiumCardCyberRedElite" class="premium-one-card premium-live-card">
+            <div class="premium-live-head">
+              <div>
+                <strong>Cyber Red Elite</strong>
+                <div class="premium-copy-title">Primo premium ufficiale, costruito da zero.</div>
+              </div>
+              <span class="premium-status-pill">Nuovo</span>
             </div>
 
-            <div class="premium-one-preview">Premium da creare</div>
+            <div class="premium-preview-real"></div>
 
             <p>
-              Primo overlay premium nuovo da zero, separato dallo standard.
-              Niente vecchi esperimenti: lo costruiamo solo quando la struttura sarà chiara e semplice.
+              Layout premium rosso/aggressivo con base grafica dedicata, stemma rank ufficiale dinamico e anteprima reale dentro il generatore.
             </p>
+
+            <div class="premium-actions">
+              <button id="previewCyberRedElite" type="button" class="btn secondary small">Anteprima</button>
+              <button id="useCyberRedElite" type="button" class="btn small">Usa premium</button>
+            </div>
           </div>
 
-          <div class="generator-compact-note">
-            Quando Cyber Red Elite sarà stabile, bello e funzionale, useremo lo stesso metodo per creare gli altri.
-          </div>
+          <div id="premiumSelectedNote" class="premium-selected-note">Premium attivo: nessuno. Al momento stai usando l’overlay standard.</div>
         </div>
-
-
 
 
         <div id="guide" class="section">
@@ -1126,8 +1162,10 @@ iframe#preview,
 
     function resetStyle() {
       applyPalette(palettes[0]);
+      setValue("themeStyle", "default");
       document.querySelectorAll(".palette").forEach((el) => el.classList.remove("active"));
       document.querySelectorAll(".palette")[0]?.classList.add("active");
+      syncPremiumSelection();
     }
 
     function randomStyle() {
@@ -1143,7 +1181,8 @@ iframe#preview,
       "cyber-red": "Cyber Red Impact",
       "glass-minimal": "Glass Minimal",
       "premium-gold": "Premium Gold",
-      "tournament-panel": "Tournament Panel"
+      "tournament-panel": "Tournament Panel",
+      "cyber-red-elite": "Cyber Red Elite"
     };
 
     async function selectPlusStyle(style) {
@@ -1155,6 +1194,32 @@ iframe#preview,
       const note = get("plusSelectedNote");
       if (note) note.textContent = `Stile attivo: ${label}. Layout Plus reale attivo con stemma rank ufficiale dinamico.`;
       await buildLink();
+    }
+
+    async function selectPremiumOverlay(style) {
+      const finalStyle = style || "default";
+      setValue("themeStyle", finalStyle);
+      const card = get("premiumCardCyberRedElite");
+      if (card) card.classList.toggle("active", finalStyle === "cyber-red-elite");
+      const note = get("premiumSelectedNote");
+      if (note) {
+        note.textContent = finalStyle === "cyber-red-elite"
+          ? "Premium attivo: Cyber Red Elite. L’anteprima live usa il nuovo layout premium."
+          : "Premium attivo: nessuno. Al momento stai usando l’overlay standard.";
+      }
+      await buildLink();
+    }
+
+    function syncPremiumSelection() {
+      const style = get("themeStyle")?.value || "default";
+      const card = get("premiumCardCyberRedElite");
+      if (card) card.classList.toggle("active", style === "cyber-red-elite");
+      const note = get("premiumSelectedNote");
+      if (note) {
+        note.textContent = style === "cyber-red-elite"
+          ? "Premium attivo: Cyber Red Elite. L’anteprima live usa il nuovo layout premium."
+          : "Premium attivo: nessuno. Al momento stai usando l’overlay standard.";
+      }
     }
 
     function renderPalettes() {
@@ -1350,6 +1415,7 @@ iframe#preview,
       url.searchParams.set("cacheBust", Date.now().toString());
       get("output").value = url.toString();
       get("preview").src = url.toString();
+      syncPremiumSelection();
       return true;
     }
 
@@ -1364,7 +1430,10 @@ iframe#preview,
     get("logoutProfile")?.addEventListener("click", logoutProfile);
     get("saveProject")?.addEventListener("click", saveCurrentProject);
     get("refreshProjects")?.addEventListener("click", renderSavedProjects);
-    document.querySelectorAll(".plus-card").forEach((card) => {
+    get("previewCyberRedElite")?.addEventListener("click", () => selectPremiumOverlay("cyber-red-elite"));
+    get("useCyberRedElite")?.addEventListener("click", () => selectPremiumOverlay("cyber-red-elite"));
+
+        document.querySelectorAll(".plus-card").forEach((card) => {
       card.addEventListener("click", async (event) => {
         event.preventDefault();
         await selectPlusStyle(card.dataset.themeStyle);
@@ -1380,12 +1449,13 @@ iframe#preview,
 
     renderPalettes();
     loadBrandPreview();
+    syncPremiumSelection();
     buildLink();
     restoreLastProfile();
   </script>
 
 <script>
-/* RankTag V62 force real iframe preview */
+/* RankTag V63 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');
@@ -1437,7 +1507,7 @@ iframe#preview,
 </script>
 
 <script>
-/* RankTag V62 - compact generator UI controller */
+/* RankTag V63 - compact generator UI controller */
 (function(){
   function ready(fn){
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
@@ -1563,7 +1633,7 @@ iframe#preview,
 
 
 <script>
-/* RankTag V62 - safe compact nav only */
+/* RankTag V63 - safe compact nav only */
 (function(){
   function ready(fn){
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);

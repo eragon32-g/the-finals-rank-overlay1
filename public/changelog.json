@@ -1,5 +1,22 @@
 [
   {
+    "version": "63",
+    "date": "2026-05-25",
+    "title": "Cyber Red Elite - primo premium",
+    "summary": "Aggiunto il primo overlay premium attivabile dal generatore.",
+    "added": [
+      "Sezione Overlay Premium con Cyber Red Elite",
+      "Preview e pulsante Usa premium"
+    ],
+    "improved": [
+      "Anteprima premium resa più chiara e immediata",
+      "Link generator include il nuovo premium"
+    ],
+    "fixed": [
+      "Preparata base stabile per i premium futuri"
+    ]
+  },
+  {
     "version": "62",
     "date": "2026-05-25",
     "title": "Premium fuori dalla Guida",

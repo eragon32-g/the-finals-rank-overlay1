@@ -10,12 +10,12 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "62";
+const OVERLAY_VERSION = "63";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
   const input = String(value || "default").toLowerCase().trim();
-  const allowed = ["default", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
+  const allowed = ["default", "cyber-red-elite", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   return allowed.includes(input) ? input : "default";
 }
 
@@ -26,7 +26,7 @@ document.body?.classList?.add(`theme-${themeStyle}`);
 function applyThemeStyleClass() {
   const card = document.querySelector(".rank-card") || document.getElementById("rankCard") || document.querySelector(".badge");
   if (!card) return;
-  ["default","cyber-red","glass-minimal","premium-gold","tournament-panel"].forEach((s) => {
+  ["default","cyber-red-elite","cyber-red","glass-minimal","premium-gold","tournament-panel"].forEach((s) => {
     card.classList.remove(`theme-${s}`);
   });
   card.classList.add(`theme-${themeStyle}`);
@@ -442,7 +442,7 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 /* RankTag V38 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
-  const allowed = ["default", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
+  const allowed = ["default", "cyber-red-elite", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
   const normalized = allowed.includes(String(style).toLowerCase()) ? String(style).toLowerCase() : "default";
   const card =
@@ -610,4 +610,94 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag V53 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "62");
+document.documentElement.setAttribute("data-ranktag-version", "63");
+
+
+/* RankTag V63 - Cyber Red Elite premium overlay */
+(function rankTagCyberRedEliteV63(){
+  if (themeStyle !== 'cyber-red-elite') return;
+
+  function ensureStyle(){
+    if (document.getElementById('rt63-elite-style')) return;
+    const style = document.createElement('style');
+    style.id = 'rt63-elite-style';
+    style.textContent = `
+      #badge.rt63-elite-root, .rt63-elite-root { width:470px; height:160px; position:relative; overflow:visible; }
+      .rt63-elite-card { position:relative; width:470px; height:160px; overflow:hidden; background:transparent; }
+      .rt63-elite-base { position:absolute; inset:0; width:470px; height:160px; display:block; object-fit:cover; }
+      .rt63-elite-grid { position:absolute; inset:0; pointer-events:none; }
+      .rt63-elite-shine { position:absolute; inset:-10px auto -10px -120px; width:120px; transform:skewX(-20deg); background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.16), rgba(255,255,255,0)); animation: rt63EliteShine 4.2s linear infinite; opacity:.75; }
+      @keyframes rt63EliteShine { 0% { left:-150px; } 100% { left:540px; } }
+      .rt63-elite-emblem-wrap { position:absolute; left:17px; top:29px; width:70px; height:82px; display:flex; align-items:center; justify-content:center; filter: drop-shadow(0 0 10px rgba(255,66,23,.22)); }
+      .rt63-elite-emblem { width:64px; height:64px; object-fit:contain; }
+      .rt63-elite-player { position:absolute; left:100px; top:26px; width:220px; color:#f8f5f3; font-weight:1000; font-size:18px; line-height:1; letter-spacing:-0.3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-transform:uppercase; text-shadow:0 2px 10px rgba(0,0,0,.45); }
+      .rt63-elite-rank-label { position:absolute; left:103px; top:79px; color:rgba(174,245,255,.66); font-size:9px; font-weight:900; letter-spacing:1px; text-transform:uppercase; }
+      .rt63-elite-rank { position:absolute; left:103px; top:91px; width:150px; color:#4fe5ff; font-weight:1000; font-size:16px; line-height:1; letter-spacing:0.2px; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .rt63-elite-score-label { position:absolute; right:39px; top:72px; width:55px; color:#ffb49a; font-size:10px; font-weight:900; text-align:right; letter-spacing:1px; text-transform:uppercase; }
+      .rt63-elite-score { position:absolute; right:38px; top:86px; width:86px; color:#ffffff; font-weight:1000; font-size:20px; line-height:1; text-align:right; text-shadow:0 2px 10px rgba(0,0,0,.4); }
+      .rt63-elite-brand { position:absolute; right:46px; top:30px; max-width:86px; color:#ff6f4d; font-size:10px; font-weight:1000; text-transform:uppercase; letter-spacing:1px; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .rt63-elite-chip { position:absolute; right:28px; top:25px; width:104px; height:24px; border-radius:8px; border:1px solid rgba(255,72,35,.28); background:linear-gradient(90deg, rgba(91,13,13,.18), rgba(255,42,23,.16)); }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function esc(value){
+    return String(value ?? '').replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  function parseScore(){
+    const raw = String(scoreText?.textContent || '').trim();
+    const match = raw.match(/^([^:]+):\s*([^#▲▼]+).*/i);
+    return {
+      label: (match?.[1] || params.get('scoreLabel') || 'ELO').trim(),
+      value: (match?.[2] || params.get('rankScore') || '0').trim()
+    };
+  }
+
+  async function renderElite(){
+    ensureStyle();
+    const root = badge || document.getElementById('badge');
+    if (!root) return;
+    const branding = await loadLockedBranding().catch(()=>({brandText:'RANKTAG'}));
+    const player = String(nameText?.textContent || getPlayerFromUrl() || 'NomePlayer#1234').trim();
+    const rank = String(rankText?.textContent || `${params.get('league')||'Platinum'} ${params.get('division')||'1'}`).trim().toUpperCase();
+    const score = parseScore();
+    const emblem = badgeImage?.getAttribute('src') || getOfficialBadgeUrl({ badgeFile: params.get('badgeFile') || 'platinum-1' });
+    const brand = String(branding?.brandText || 'RANKTAG').trim().toUpperCase();
+
+    root.className = 'badge rt63-elite-root';
+    root.innerHTML = `
+      <div class="rt63-elite-card">
+        <img class="rt63-elite-base" src="/assets/premium/cyber-red-elite-base.png?v=${OVERLAY_VERSION}" alt="Cyber Red Elite" />
+        <div class="rt63-elite-grid">
+          <div class="rt63-elite-shine"></div>
+          <div class="rt63-elite-emblem-wrap"><img class="rt63-elite-emblem" src="${esc(emblem)}" alt="rank emblem" /></div>
+          <div class="rt63-elite-player">${esc(player)}</div>
+          <div class="rt63-elite-rank-label">RANK</div>
+          <div class="rt63-elite-rank">${esc(rank)}</div>
+          <div class="rt63-elite-chip"></div>
+          <div class="rt63-elite-brand">${esc(brand)}</div>
+          <div class="rt63-elite-score-label">${esc(score.label)}</div>
+          <div class="rt63-elite-score">${esc(score.value)}</div>
+        </div>
+      </div>`;
+  }
+
+  const originalSetData = setData;
+  setData = async function(...args){
+    await originalSetData.apply(this, args);
+    await renderElite();
+  };
+
+  const originalSetLoading = setLoading;
+  setLoading = function(...args){
+    originalSetLoading.apply(this, args);
+    setTimeout(renderElite, 50);
+  };
+
+  window.addEventListener('load', () => {
+    setTimeout(renderElite, 120);
+    setTimeout(renderElite, 480);
+    setTimeout(renderElite, 1000);
+  });
+})();
