@@ -1,8 +1,8 @@
 {
-  "version": "52",
+  "version": "53",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Preview stabilizzata e motore Plus image-base ripulito: un solo renderer per Cyber Red."
+  "note": "Preview lock: Test Lab and Generator are forced to show the real overlay iframe at the correct dimensions."
 }

@@ -1,5 +1,23 @@
 [
   {
+    "version": "53",
+    "date": "2026-05-25",
+    "title": "Preview reale bloccata",
+    "summary": "Generator e Test Lab vengono forzati a mostrare l'overlay reale via iframe con dimensioni fisse.",
+    "added": [
+      "Guardia JS nel generator per ricostruire la preview iframe dal link finale",
+      "Dimensioni preview bloccate a 470x120",
+      "Marker versione nel render reale"
+    ],
+    "improved": [
+      "Migliore coerenza fra preview e output finale",
+      "Meno rischio di visualizzare vecchi renderer o preview locali"
+    ],
+    "fixed": [
+      "La preview del generator poteva non rispettare esattamente l'output finale"
+    ]
+  },
+  {
     "version": "52",
     "date": "2026-05-25",
     "title": "Preview e motore Plus ripuliti",

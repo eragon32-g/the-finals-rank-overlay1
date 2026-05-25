@@ -543,7 +543,41 @@
       padding: 12px;
     }
 
-  </style>
+  
+/* RankTag V53 generator real-preview lock */
+.preview-box,
+.live-preview,
+.preview-stage,
+#previewBox,
+#previewStage {
+  display:grid !important;
+  place-items:center !important;
+  overflow:hidden !important;
+}
+
+iframe#preview,
+#previewFrame,
+.preview-frame,
+.live-preview iframe,
+.preview-box iframe,
+.preview-stage iframe {
+  width:470px !important;
+  height:120px !important;
+  border:0 !important;
+  background:transparent !important;
+  transform:scale(1.10) !important;
+  transform-origin:center center !important;
+  display:block !important;
+}
+
+/* Prevent old inline/dom preview cards from visually fighting the iframe when present */
+.preview-box > .badge,
+.live-preview > .badge,
+.preview-stage > .badge {
+  margin:auto !important;
+}
+
+</style>
 </head>
 <body>
   <main class="page">
@@ -552,7 +586,7 @@
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V52</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V53</div></div>
     </header>
 
     <div class="layout">
@@ -816,7 +850,7 @@
 
 
     const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV4cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV53cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentProfile = null;
@@ -1376,5 +1410,57 @@
     buildLink();
     restoreLastProfile();
   </script>
+
+<script>
+/* RankTag V53 force real iframe preview */
+(function(){
+  function findPreviewIframe(){
+    return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');
+  }
+  function findPreviewHost(){
+    return document.querySelector('.live-preview, .preview-box, .preview-stage, #previewBox, #previewStage');
+  }
+  function getOutputUrl(){
+    const out = document.querySelector('#output, #linkOutput, textarea');
+    const value = out && (out.value || out.textContent || '').trim();
+    if (value && value.startsWith('http')) return value;
+    return null;
+  }
+  function ensureRealPreview(){
+    const url = getOutputUrl();
+    if (!url) return;
+    const host = findPreviewHost();
+    if (!host) return;
+    let frame = findPreviewIframe();
+    if (!frame) {
+      frame = document.createElement('iframe');
+      frame.id = 'previewFrame';
+      host.innerHTML = '';
+      host.appendChild(frame);
+    }
+    frame.style.width = '470px';
+    frame.style.height = '120px';
+    frame.style.border = '0';
+    frame.style.background = 'transparent';
+    frame.style.transform = 'scale(1.10)';
+    frame.style.transformOrigin = 'center center';
+    const next = new URL(url);
+    next.searchParams.set('previewBust', Date.now().toString());
+    if (frame.src !== next.toString()) frame.src = next.toString();
+  }
+  window.addEventListener('load', function(){
+    setTimeout(ensureRealPreview, 300);
+    setTimeout(ensureRealPreview, 900);
+    setTimeout(ensureRealPreview, 1500);
+  });
+  document.addEventListener('click', function(){
+    setTimeout(ensureRealPreview, 120);
+    setTimeout(ensureRealPreview, 420);
+  });
+  document.addEventListener('input', function(){
+    setTimeout(ensureRealPreview, 220);
+  });
+})();
+</script>
 </body>
 </html>
