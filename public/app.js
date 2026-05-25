@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "49";
+const OVERLAY_VERSION = "50";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -851,6 +851,74 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
   window.addEventListener("load", () => {
     setTimeout(renderCyberAsset, 120);
     setTimeout(renderCyberAsset, 600);
+  });
+})();
+
+
+
+/* RankTag V50 - Cyber Red final-format base renderer */
+(function rankTagCyberRedFinalBaseV50() {
+  const q = new URLSearchParams(window.location.search);
+  if (String(q.get('themeStyle') || '').toLowerCase() !== 'cyber-red') return;
+
+  function esc(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (m) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[m]));
+  }
+
+  function parseScore(text) {
+    const raw = String(text || '').trim();
+    const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
+    return {
+      label: match ? String(match[1]).trim() : String(q.get('scoreLabel') || 'ELO').trim(),
+      value: match ? String(match[2]).trim() : String(q.get('rankScore') || q.get('score') || '37705').trim(),
+      extra: match ? String(match[3] || '').trim() : ''
+    };
+  }
+
+  function state() {
+    return {
+      rank: normalizeRankDisplay(rankText?.textContent || `${q.get('league') || 'Platinum'} ${q.get('division') || '1'}`).toUpperCase(),
+      player: String(nameText?.textContent || getPlayerFromUrl() || q.get('player') || 'NomePlayer#1234').trim(),
+      score: parseScore(scoreText?.textContent || `${q.get('scoreLabel') || 'ELO'}: ${q.get('rankScore') || '37705'}`),
+      emblemSrc: badgeImage?.getAttribute('src') || buildBadgeImageUrl(q.get('badgeFile') || 'platinum-1')
+    };
+  }
+
+  function render() {
+    const root = badge || document.getElementById('badge');
+    if (!root) return;
+    const s = state();
+    root.className = 'badge rt50-root';
+    root.setAttribute('data-theme-style', 'cyber-red');
+    document.documentElement.dataset.themeStyle = 'cyber-red';
+    root.innerHTML = `
+      <div class="rt50-cyber">
+        <img class="rt50-base" src="/assets/plus/cyber-red-base.png" alt="Cyber Red base" />
+        <div class="rt50-shine"></div>
+        <div class="rt50-emblemWrap"><img class="rt50-emblem" src="${esc(s.emblemSrc)}" alt="rank emblem" /></div>
+        <div class="rt50-player" title="${esc(s.player)}">${esc(s.player)}</div>
+        <div class="rt50-rankBlock">
+          <div class="rt50-rankLabel">RANK</div>
+          <div class="rt50-rankValue">${esc(s.rank)}</div>
+        </div>
+        <div class="rt50-scoreBlock">
+          <div class="rt50-scoreLabel">${esc(s.score.label)}</div>
+          <div class="rt50-scoreValue">${esc(s.score.value)}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  const __origSetDataV50 = setData;
+  setData = async function(...args) {
+    await __origSetDataV50.apply(this, args);
+    render();
+  };
+  window.addEventListener('load', () => {
+    setTimeout(render, 120);
+    setTimeout(render, 500);
   });
 })();
 

@@ -2536,3 +2536,147 @@ html, body {
   78% { transform: translateX(150%); opacity: .46; }
 }
 
+
+
+/* RankTag V50 - Cyber Red on final-format base */
+.badge.rt50-root {
+  width: 470px !important;
+  height: 120px !important;
+  min-height: 120px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.rt50-cyber {
+  position: relative;
+  width: 470px;
+  height: 120px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.rt50-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rt50-shine {
+  position: absolute;
+  left: 170px;
+  top: 16px;
+  width: 84px;
+  height: 88px;
+  background: linear-gradient(112deg, transparent 0%, rgba(255,255,255,.16) 48%, transparent 58%);
+  transform: translateX(-260%);
+  animation: rt50Shine 5.8s ease-in-out infinite;
+  opacity: .34;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.rt50-emblemWrap {
+  position: absolute;
+  left: 28px;
+  top: 31px;
+  width: 66px;
+  height: 66px;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+}
+
+.rt50-emblem {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.84));
+}
+
+.rt50-player {
+  position: absolute;
+  left: 117px;
+  top: 24px;
+  width: 235px;
+  z-index: 3;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 28px;
+  line-height: .92;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  color: #f6f7fa;
+  text-shadow: 0 2px 0 rgba(0,0,0,.88), 0 0 8px rgba(255,58,30,.22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt50-rankBlock {
+  position: absolute;
+  left: 122px;
+  top: 72px;
+  width: 150px;
+  z-index: 3;
+}
+
+.rt50-rankLabel,
+.rt50-scoreLabel {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.rt50-rankLabel { color: rgba(255,255,255,.54); }
+
+.rt50-rankValue {
+  margin-top: 2px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: .95;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: #6fe8fb;
+  text-shadow: 0 0 8px rgba(111,232,251,.22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt50-scoreBlock {
+  position: absolute;
+  left: 382px;
+  top: 61px;
+  width: 56px;
+  z-index: 3;
+  text-align: center;
+}
+
+.rt50-scoreLabel { color: #ff5f47; }
+
+.rt50-scoreValue {
+  margin-top: 2px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: .92;
+  letter-spacing: .2px;
+  color: #ffffff;
+  text-shadow: 0 2px 0 rgba(0,0,0,.84);
+  white-space: nowrap;
+}
+
+@keyframes rt50Shine {
+  0%,60%,100% { transform: translateX(-260%); opacity: .12; }
+  78% { transform: translateX(280%); opacity: .36; }
+}
+

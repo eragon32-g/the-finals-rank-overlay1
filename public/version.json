@@ -1,8 +1,8 @@
 {
-  "version": "49",
+  "version": "50",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Cyber Red asset base alignment pass: improved text, emblem and score positioning."
+  "note": "Cyber Red now uses a true final-format RankTag base, not a generic HUD strip."
 }

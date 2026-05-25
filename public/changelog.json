@@ -1,5 +1,22 @@
 [
   {
+    "version": "50",
+    "date": "2026-05-25",
+    "title": "Cyber Red true RankTag base",
+    "summary": "Cyber Red è stato rifatto con una base grafica progettata direttamente per il formato RankTag finale.",
+    "added": [
+      "Nuova base cyber-red-base.png in formato finale RankTag",
+      "Nuova thumbnail Shop coerente con la preview live"
+    ],
+    "improved": [
+      "Stemma, nome, rank e punti ora cadono in slot dedicati del design",
+      "Preview live più vicina al concept Shop"
+    ],
+    "fixed": [
+      "Eliminato il problema della base HUD troppo lunga e vuota"
+    ]
+  },
+  {
     "version": "49",
     "date": "2026-05-25",
     "title": "Cyber Red alignment",
