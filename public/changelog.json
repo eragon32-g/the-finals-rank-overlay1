@@ -1,5 +1,22 @@
 [
   {
+    "version": "65",
+    "date": "2026-05-25",
+    "title": "Generator più compatto",
+    "summary": "Ridotte le finestre del generator tranne Account, così serve meno scrolling.",
+    "added": [],
+    "improved": [
+      "Sezioni più piccole e dense",
+      "Impostazioni in tre colonne su desktop",
+      "Account resta grande e a tutta larghezza",
+      "Anteprima in fondo resta full-width ma meno alta",
+      "Overlay mantiene dimensioni 470 × 160"
+    ],
+    "fixed": [
+      "Rimossi eventuali residui dell’interfaccia compatta in alto"
+    ]
+  },
+  {
     "version": "64",
     "date": "2026-05-25",
     "title": "Layout generator rifatto",

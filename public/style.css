@@ -2887,12 +2887,12 @@ html, body {
 
 
 /* RankTag V53 - preview/output consistency helpers */
-html[data-ranktag-version="64"] body {
+html[data-ranktag-version="65"] body {
   margin: 0 !important;
   background: transparent !important;
 }
 
-html[data-ranktag-version="64"] .overlay {
+html[data-ranktag-version="65"] .overlay {
   width: fit-content !important;
   height: fit-content !important;
   min-height: 0 !important;
@@ -2901,7 +2901,7 @@ html[data-ranktag-version="64"] .overlay {
   margin: 0 !important;
 }
 
-html[data-ranktag-version="64"] .badge.rt52-root {
+html[data-ranktag-version="65"] .badge.rt52-root {
   transform-origin: top left !important;
 }
 
@@ -3513,6 +3513,15 @@ section:has(.premium-one-card) {
 
 
 /* RankTag V64 - remove compact UI helpers globally */
+.generator-compact-nav,
+.generator-ui-note,
+.generator-compact-summary {
+  display: none !important;
+}
+
+
+
+/* RankTag V65 - no compact top interface */
 .generator-compact-nav,
 .generator-ui-note,
 .generator-compact-summary {

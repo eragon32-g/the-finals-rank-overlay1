@@ -1,8 +1,8 @@
 {
-  "version": "64",
+  "version": "65",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Layout generator rifatto: account full width, impostazioni su due colonne, anteprima full width in fondo."
+  "note": "Generator reso più compatto: finestre ridotte tranne Account, anteprima full-width ma meno alta."
 }

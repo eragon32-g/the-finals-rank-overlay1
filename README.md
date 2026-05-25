@@ -1,13 +1,11 @@
-# RankTag for THE FINALS - V64
+# RankTag for THE FINALS - V65
 
-V64 riorganizza il sito/generator.
+V65 rende il generator più compatto.
 
 ## Cambiamenti
-- Account a tutta larghezza in alto
-- Impostazioni e personalizzazioni affiancate
-- Anteprima live in fondo a tutta larghezza
-- Rimossa l’interfaccia compatta in alto
-- Overlay mantiene le dimensioni impostate
-
-## Premium
-Cyber Red Elite resta presente come primo premium da sviluppare.
+- Account resta grande e a tutta larghezza
+- Tutte le altre sezioni sono più piccole
+- Impostazioni su tre colonne desktop
+- Anteprima in fondo a tutta larghezza ma più compatta
+- Overlay mantiene dimensione 470 × 160
+- Rimossa l'interfaccia compatta in alto
