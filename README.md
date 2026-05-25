@@ -1,9 +1,8 @@
-# RankTag V85
+# RankTag V86
 
-Importato il nuovo JSON di Cyber Red Elite.
+Aggiornata la targhetta premium Cyber Red Elite.
 
-## Include
-- nuove coordinate badge
-- testi che rispettano le posizioni salvate
-- sincronizzazione tra preview premium, anteprima live e link finale
-- Layout Editor aggiornato con gli stessi valori
+## Novità
+- sfondo premium uniforme
+- area nera concentrata nella sola zona testo
+- asset preview e base aggiornati

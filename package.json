@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v85-json-update",
-  "version": "8.8.0",
+  "name": "ranktag-finals-overlay-v86-uniform-bg",
+  "version": "8.9.0",
   "private": true,
-  "description": "RankTag V85 imports the latest Cyber Red Elite JSON positions",
+  "description": "RankTag V86 - premium uniform background",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

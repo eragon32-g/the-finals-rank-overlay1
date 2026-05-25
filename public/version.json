@@ -1,8 +1,8 @@
 {
-  "version": "85",
+  "version": "87",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V85: nuovo JSON Cyber Red Elite importato. Badge e testi rispettano le posizioni salvate in anteprima, live preview e link finale."
+  "note": "V87: integrato lo sfondo premium VoidRage/The Finals, allineati cache-buster e asset premium."
 }
