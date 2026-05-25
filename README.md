@@ -1,6 +1,13 @@
-# RankTag V63
+# RankTag for THE FINALS - V64
 
-Primo overlay premium integrato: Cyber Red Elite.
-- Sezione Premium funzionante nel generator
-- Attivazione premium dal bottone “Usa premium”
-- Anteprima live con layout dedicato
+V64 riorganizza il sito/generator.
+
+## Cambiamenti
+- Account a tutta larghezza in alto
+- Impostazioni e personalizzazioni affiancate
+- Anteprima live in fondo a tutta larghezza
+- Rimossa l’interfaccia compatta in alto
+- Overlay mantiene le dimensioni impostate
+
+## Premium
+Cyber Red Elite resta presente come primo premium da sviluppare.

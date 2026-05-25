@@ -1,5 +1,21 @@
 [
   {
+    "version": "64",
+    "date": "2026-05-25",
+    "title": "Layout generator rifatto",
+    "summary": "Riorganizzata la pagina: Account a tutta larghezza, impostazioni affiancate e anteprima finale a tutta larghezza.",
+    "added": [],
+    "improved": [
+      "Account ora occupa tutta la riga",
+      "Impostazioni organizzate in due colonne",
+      "Anteprima live spostata in fondo e più grande",
+      "Rimossa l’interfaccia compatta in alto"
+    ],
+    "fixed": [
+      "Rimossi nav e nota compatta che creavano confusione"
+    ]
+  },
+  {
     "version": "63",
     "date": "2026-05-25",
     "title": "Cyber Red Elite - primo premium",

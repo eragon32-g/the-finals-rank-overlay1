@@ -1,8 +1,8 @@
 {
-  "version": "63",
+  "version": "64",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Primo overlay premium Cyber Red Elite attivabile dal generatore."
+  "note": "Layout generator rifatto: account full width, impostazioni su due colonne, anteprima full width in fondo."
 }
