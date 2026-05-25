@@ -1,12 +1,10 @@
-# RankTag for THE FINALS - V67
+# RankTag for THE FINALS - V68
 
-V67 modifica il generator.
+V68 corregge il layout del generator.
 
 ## Cambiamenti
-- Branding nascosto dal generator
-- Anteprima live spostata al punto 4
-- Overlay mantiene dimensione 470 × 160
-- Premium resta punto 5
-- Meno scrolling nella pagina
-
-Il branding resta comunque gestito nell'overlay tramite `brand.json`.
+- Vecchio punto 4 Branding rimosso/nascosto
+- Anteprima live a tutta larghezza
+- Temi resi visibili
+- Overlay Premium rinumerato al punto 4
+- Guida rapida rinumerata al punto 5

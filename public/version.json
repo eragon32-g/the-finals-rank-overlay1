@@ -1,8 +1,8 @@
 {
-  "version": "67",
+  "version": "68",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Branding nascosto dal generator e sostituito con Anteprima live al punto 4."
+  "note": "Anteprima live a tutta larghezza, vecchio punto 4 branding rimosso, temi resi visibili."
 }

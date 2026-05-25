@@ -1,5 +1,25 @@
 [
   {
+    "version": "68",
+    "date": "2026-05-25",
+    "title": "Anteprima full width",
+    "summary": "Rimosso il vecchio punto 4 Branding e resa l'anteprima live a tutta larghezza.",
+    "added": [
+      "Anteprima live full width"
+    ],
+    "improved": [
+      "Temi resi nuovamente visibili",
+      "Premium rinumerato come punto 4",
+      "Guida rinumerata come punto 5",
+      "Anteprima più larga e centrale"
+    ],
+    "fixed": [
+      "Vecchia sezione Branding ancora visibile",
+      "Temi spariti",
+      "Anteprima non copriva tutta la larghezza"
+    ]
+  },
+  {
     "version": "67",
     "date": "2026-05-25",
     "title": "Anteprima al posto del branding",

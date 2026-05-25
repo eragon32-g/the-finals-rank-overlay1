@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v67-preview-replaces-branding",
-  "version": "7.3.0",
+  "name": "ranktag-finals-overlay-v68-fullwidth-preview-fix",
+  "version": "7.4.0",
   "private": true,
-  "description": "RankTag hides Branding section and places live preview in point 4",
+  "description": "RankTag full width preview and hidden branding fix",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
