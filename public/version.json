@@ -1,8 +1,8 @@
 {
-  "version": "59",
+  "version": "60",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Overlay Premium ridotti a uno solo: Cyber Red Elite. Preparazione per semplificare il generator."
+  "note": "Generator compatto: sezioni richiudibili, navigazione rapida e anteprima sticky."
 }

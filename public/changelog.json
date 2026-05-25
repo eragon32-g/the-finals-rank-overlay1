@@ -1,5 +1,23 @@
 [
   {
+    "version": "60",
+    "date": "2026-05-25",
+    "title": "Generator compatto",
+    "summary": "Il generator è stato reso più leggibile con navigazione rapida, sezioni richiudibili e anteprima sticky.",
+    "added": [
+      "Navigazione rapida in alto",
+      "Sezioni richiudibili",
+      "Pulsante rapido copia link",
+      "Anteprima sticky su desktop"
+    ],
+    "improved": [
+      "Meno scrolling infinito",
+      "Interfaccia più ordinata",
+      "Premium resta uno solo"
+    ],
+    "fixed": []
+  },
+  {
     "version": "59",
     "date": "2026-05-25",
     "title": "Un solo premium",

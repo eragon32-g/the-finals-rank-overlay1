@@ -1,16 +1,14 @@
-# RankTag for THE FINALS - V59
+# RankTag for THE FINALS - V60
 
-V59 modifica la strategia Premium.
+V60 semplifica il generator.
 
-## Decisione
-Si parte con un solo overlay premium:
-- Cyber Red Elite
+## Cosa cambia
+- Navigazione rapida in alto
+- Sezioni richiudibili
+- Premium resta uno solo
+- Anteprima sticky su desktop
+- Meno scrolling infinito
 
-Gli altri premium verranno creati solo dopo che il primo sarà:
-- stabile
-- bello
-- funzionale
-- semplice da usare
-
-## Nota UI
-Il generator va semplificato in un prossimo step perché troppe personalizzazioni tutte insieme rendono la pagina lunga e poco chiara.
+## Nota
+Questa versione non costruisce ancora il premium definitivo.
+Prima rende il generator più facile da usare.

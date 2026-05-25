@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V59 generator real-preview lock */
+/* RankTag V60 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -586,7 +586,7 @@ iframe#preview,
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V59</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V60</div></div>
     </header>
 
     <div class="layout">
@@ -825,7 +825,7 @@ iframe#preview,
 
 
     const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV59cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV60cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentProfile = null;
@@ -1387,7 +1387,7 @@ iframe#preview,
   </script>
 
 <script>
-/* RankTag V59 force real iframe preview */
+/* RankTag V60 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');
@@ -1437,5 +1437,131 @@ iframe#preview,
   });
 })();
 </script>
+
+<script>
+/* RankTag V60 - compact generator UI controller */
+(function(){
+  function ready(fn){
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+    else fn();
+  }
+
+  function textOf(el){
+    return (el && el.textContent || "").replace(/\s+/g, " ").trim();
+  }
+
+  function findMainColumn(){
+    return document.querySelector(".layout > .panel, main .panel, .left-panel, .generator-panel, main");
+  }
+
+  function createNav(){
+    if (document.querySelector(".generator-compact-nav")) return;
+    const host = findMainColumn();
+    if (!host) return;
+
+    const nav = document.createElement("div");
+    nav.className = "generator-compact-nav";
+    nav.innerHTML = `
+      <button type="button" data-target-label="Account">Account</button>
+      <button type="button" data-target-label="Dati rank">Dati rank</button>
+      <button type="button" data-target-label="Aspetto">Aspetto</button>
+      <button type="button" data-target-label="Overlay Premium">Premium</button>
+      <button type="button" data-target-label="Guida">Guida</button>
+      <button type="button" class="primary-action" data-rt-action="copy">Copia link</button>
+    `;
+
+    const note = document.createElement("div");
+    note.className = "generator-ui-note";
+    note.textContent = "Interfaccia compatta: apri solo la sezione che ti serve. L’anteprima resta visibile a destra.";
+
+    host.insertBefore(note, host.firstChild);
+    host.insertBefore(nav, note);
+
+    nav.addEventListener("click", (event) => {
+      const btn = event.target.closest("button");
+      if (!btn) return;
+
+      if (btn.dataset.rtAction === "copy") {
+        const copyBtn = [...document.querySelectorAll("button")].find((b) => /copia/i.test(textOf(b)));
+        if (copyBtn) copyBtn.click();
+        return;
+      }
+
+      const label = btn.dataset.targetLabel || "";
+      const target = [...document.querySelectorAll(".generator-compact-block")].find((block) => {
+        return textOf(block.querySelector(".generator-compact-summary")).toLowerCase().includes(label.toLowerCase());
+      });
+
+      if (target) {
+        document.querySelectorAll(".generator-compact-block").forEach((block) => {
+          if (block !== target) block.classList.add("is-collapsed");
+        });
+        target.classList.remove("is-collapsed");
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      }
+    });
+  }
+
+  function wrapSections(){
+    const host = findMainColumn();
+    if (!host || host.dataset.compactReady === "1") return;
+
+    const sections = [...host.children].filter((el) => {
+      if (el.classList.contains("generator-compact-nav") || el.classList.contains("generator-ui-note")) return false;
+      const t = textOf(el);
+      return /^\\d+\\.\\s/.test(t) || /Overlay Premium/i.test(t) || /Guida rapida/i.test(t);
+    });
+
+    sections.forEach((section, index) => {
+      if (section.classList.contains("generator-compact-block")) return;
+
+      const title = section.querySelector("h1,h2,h3,.section-title") || section.firstElementChild;
+      if (!title) return;
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "generator-compact-block" + (index > 1 ? " is-collapsed" : "");
+
+      const summary = document.createElement("div");
+      summary.className = "generator-compact-summary";
+      summary.appendChild(title.cloneNode(true));
+
+      const content = document.createElement("div");
+      content.className = "generator-compact-content";
+
+      section.parentNode.insertBefore(wrapper, section);
+      wrapper.appendChild(summary);
+      wrapper.appendChild(content);
+      content.appendChild(section);
+
+      summary.addEventListener("click", () => {
+        const isCollapsed = wrapper.classList.contains("is-collapsed");
+        document.querySelectorAll(".generator-compact-block").forEach((block) => {
+          if (block !== wrapper) block.classList.add("is-collapsed");
+        });
+        wrapper.classList.toggle("is-collapsed", !isCollapsed);
+      });
+    });
+
+    host.dataset.compactReady = "1";
+  }
+
+  function simplifyPremiumCopy(){
+    const premium = document.querySelector("#overlayPremium");
+    if (!premium) return;
+    const cards = premium.querySelectorAll(".premium-clean-card, .premium-one-card");
+    cards.forEach((card, index) => {
+      if (index > 0) card.remove();
+    });
+  }
+
+  ready(() => {
+    createNav();
+    wrapSections();
+    simplifyPremiumCopy();
+    setTimeout(() => { createNav(); wrapSections(); simplifyPremiumCopy(); }, 600);
+  });
+})();
+</script>
+
 </body>
 </html>

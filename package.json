@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v59-one-premium-clean-ui",
-  "version": "6.5.0",
+  "name": "ranktag-finals-overlay-v60-ui-clean-accordion",
+  "version": "6.6.0",
   "private": true,
-  "description": "RankTag starts premium section with one overlay only",
+  "description": "RankTag compact generator UI with collapsible sections",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

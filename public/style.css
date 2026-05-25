@@ -2887,12 +2887,12 @@ html, body {
 
 
 /* RankTag V53 - preview/output consistency helpers */
-html[data-ranktag-version="59"] body {
+html[data-ranktag-version="60"] body {
   margin: 0 !important;
   background: transparent !important;
 }
 
-html[data-ranktag-version="59"] .overlay {
+html[data-ranktag-version="60"] .overlay {
   width: fit-content !important;
   height: fit-content !important;
   min-height: 0 !important;
@@ -2901,7 +2901,7 @@ html[data-ranktag-version="59"] .overlay {
   margin: 0 !important;
 }
 
-html[data-ranktag-version="59"] .badge.rt52-root {
+html[data-ranktag-version="60"] .badge.rt52-root {
   transform-origin: top left !important;
 }
 
@@ -3128,5 +3128,127 @@ button[data-style],
 
 .generator-section-collapsible summary::-webkit-details-marker {
   display: none;
+}
+
+
+
+/* RankTag V60 - compact generator UI */
+.generator-compact-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 0 14px;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 18px;
+  background: rgba(10,12,17,.86);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 14px 40px rgba(0,0,0,.28);
+}
+
+.generator-compact-nav button {
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  background: rgba(255,255,255,.065);
+  color: rgba(255,255,255,.82);
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: 1000;
+  letter-spacing: .45px;
+  cursor: pointer;
+}
+
+.generator-compact-nav button:hover {
+  border-color: rgba(255,42,23,.45);
+  background: rgba(255,42,23,.12);
+  color: #fff;
+}
+
+.generator-compact-nav .primary-action {
+  background: linear-gradient(135deg, #ff2a17, #b30f23);
+  border-color: rgba(255,42,23,.55);
+  color: #fff;
+}
+
+.generator-compact-block {
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.generator-compact-block.is-collapsed .generator-compact-content {
+  display: none !important;
+}
+
+.generator-compact-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  margin: 0;
+  padding: 16px 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.generator-compact-summary h2,
+.generator-compact-summary h3 {
+  margin: 0 !important;
+}
+
+.generator-compact-summary::after {
+  content: "Apri";
+  flex: 0 0 auto;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 999px;
+  background: rgba(255,255,255,.065);
+  color: rgba(255,255,255,.72);
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: .45px;
+  text-transform: uppercase;
+}
+
+.generator-compact-block:not(.is-collapsed) .generator-compact-summary::after {
+  content: "Chiudi";
+}
+
+.generator-compact-content {
+  padding-bottom: 16px;
+}
+
+.generator-ui-note {
+  border: 1px solid rgba(125,211,252,.18);
+  background: rgba(125,211,252,.07);
+  color: rgba(255,255,255,.72);
+  border-radius: 14px;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0 0 14px;
+}
+
+@media (min-width: 980px) {
+  .preview-panel,
+  .right-panel,
+  aside.panel {
+    position: sticky;
+    top: 16px;
+    align-self: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .generator-compact-nav {
+    position: static;
+  }
+
+  .generator-compact-nav button {
+    flex: 1 1 auto;
+  }
 }
 
