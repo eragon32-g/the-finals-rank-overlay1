@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "91";
+const OVERLAY_VERSION = "92";
 const params = new URLSearchParams(window.location.search);
 
 const CYBER_RED_ELITE_LAYOUT_LOCKED = {
@@ -495,7 +495,7 @@ if (isManualMode()) {
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
-/* RankTag V91 Plus style finalizer */
+/* RankTag V92 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red-elite", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -530,7 +530,7 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 })();
 
 
-/* RankTag V91 - single source image-base Plus engine */
+/* RankTag V92 - single source image-base Plus engine */
 let rankTagPlusLayoutsPromise = null;
 
 function loadRankTagPlusLayouts() {
@@ -664,8 +664,8 @@ function loadRankTagPlusLayouts() {
   });
 })();
 
-/* RankTag V91 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "91");
+/* RankTag V92 render marker */
+document.documentElement.setAttribute("data-ranktag-version", "92");
 
 
 
@@ -677,7 +677,7 @@ document.documentElement.setAttribute("data-ranktag-version", "91");
 
 
 
-/* RankTag V91 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
+/* RankTag V92 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
 (function rankTagPremiumBackdropV78(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -718,7 +718,7 @@ document.documentElement.setAttribute("data-ranktag-version", "91");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=91') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=92') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -910,7 +910,7 @@ document.documentElement.setAttribute("data-ranktag-version", "91");
     style.textContent += `
 `;
     style.textContent += `
-/* RankTag V91 - locked premium coordinates from Layout Editor */
+/* RankTag V92 - locked premium coordinates from Layout Editor */
 #badge.rt78-cyber-red-elite .rank-mark,
 #badge.rt80-cyber-red-elite .rank-mark {
   left: 7px !important;
@@ -1012,7 +1012,7 @@ document.documentElement.setAttribute("data-ranktag-version", "91");
 })();
 
 
-/* RankTag V91 - Premium backdrop engine: full 470x160 background adapted to stable layout */
+/* RankTag V92 - Premium backdrop engine: full 470x160 background adapted to stable layout */
 (function rankTagPremiumBackdropV80(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -1054,7 +1054,7 @@ document.documentElement.setAttribute("data-ranktag-version", "91");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=91') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=92') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -1285,7 +1285,7 @@ document.documentElement.setAttribute("data-ranktag-version", "91");
 
 
 
-/* RankTag V91 - runtime premium layout from URL param */
+/* RankTag V92 - runtime premium layout from URL param */
 (function rankTagPremiumRuntimeLayoutV89(){
   if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
 
@@ -1418,7 +1418,7 @@ document.documentElement.setAttribute("data-ranktag-version", "91");
 
 
 
-/* RankTag V91 - AUTHORITATIVE premium layout sync */
+/* RankTag V92 - AUTHORITATIVE premium layout sync */
 (function rankTagPremiumLayoutAuthoritativeV90(){
   if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
 
@@ -1625,4 +1625,280 @@ document.documentElement.setAttribute("data-ranktag-version", "91");
   applyLayout();
   setTimeout(applyLayout, 120);
   setTimeout(applyLayout, 600);
+})();
+
+
+
+/* RankTag V92 - DETACHED PREMIUM RENDERER
+   Premium Cyber Red Elite no longer uses the standard card layout.
+   It renders the exact same JSON layer model used by layout-editor.html. */
+(function rankTagDetachedPremiumRendererV92(){
+  if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
+
+  const DEFAULT_LAYOUT = (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" && CYBER_RED_ELITE_LAYOUT_LOCKED)
+    ? CYBER_RED_ELITE_LAYOUT_LOCKED
+    : {
+      version: 1,
+      schema: "ranktag-premium-layout-v2",
+      style: "cyber-red-elite",
+      canvas: { width: 470, height: 160 },
+      background: "/assets/premium/cyber-red-elite-bg.png",
+      elements: {
+        badge:  { x: 7, y: 9, w: 136, h: 121, fontSize: 0, z: 5 },
+        rank:   { x: 164, y: 39, w: 215, h: 30, fontSize: 25, z: 6 },
+        score:  { x: 165, y: 78, w: 120, h: 16, fontSize: 12, z: 6 },
+        player: { x: 271, y: 78, w: 142, h: 16, fontSize: 10.5, z: 6 },
+        brand:  { x: 165, y: 100, w: 270, h: 16, fontSize: 9.5, z: 6 }
+      }
+    };
+
+  function safeNumber(value, fallback) {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : fallback;
+  }
+
+  function decodeLayoutParam() {
+    const raw = new URLSearchParams(window.location.search).get("layout");
+    if (!raw) return null;
+    try {
+      const json = decodeURIComponent(escape(atob(raw)));
+      const parsed = JSON.parse(json);
+      if (parsed && parsed.elements) return parsed;
+    } catch {}
+    try {
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.elements) return parsed;
+    } catch {}
+    return null;
+  }
+
+  function normalizeLayout(layout) {
+    const src = layout && layout.elements ? layout : DEFAULT_LAYOUT;
+    const def = DEFAULT_LAYOUT.elements || {};
+    const elements = src.elements || {};
+    const out = {};
+
+    ["badge","rank","score","player","brand"].forEach((key) => {
+      const d = def[key] || {};
+      const v = elements[key] || {};
+      out[key] = {
+        x: safeNumber(v.x, d.x || 0),
+        y: safeNumber(v.y, d.y || 0),
+        w: safeNumber(v.w, d.w || 10),
+        h: safeNumber(v.h, d.h || 10),
+        fontSize: safeNumber(v.fontSize, d.fontSize || 0),
+        z: safeNumber(v.z, d.z || 1)
+      };
+    });
+
+    return {
+      version: src.version || 1,
+      schema: src.schema || "ranktag-premium-layout-v2",
+      style: "cyber-red-elite",
+      canvas: {
+        width: safeNumber(src.canvas?.width, 470),
+        height: safeNumber(src.canvas?.height, 160)
+      },
+      background: src.background || "/assets/premium/cyber-red-elite-bg.png",
+      elements: out
+    };
+  }
+
+  function esc(text) {
+    return String(text ?? "").replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[c]));
+  }
+
+  function getCurrentData() {
+    const rankValue = (rankText?.textContent || "PLATINUM 1").trim();
+    const scoreValue = (scoreText?.textContent || "ELO: 37.705").trim();
+    const playerValue = (nameText?.textContent || getPlayerFromUrl?.() || "NOMEPLAYER#1234").trim();
+    const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
+    const badgeSrc = badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum.svg?v=92";
+    return { rankValue, scoreValue, playerValue, brandValue, badgeSrc };
+  }
+
+  function ensureStyle() {
+    if (document.getElementById("rt92-detached-premium-style")) return;
+    const style = document.createElement("style");
+    style.id = "rt92-detached-premium-style";
+    style.textContent = `
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: transparent !important;
+      }
+
+      body {
+        display: grid !important;
+        place-items: center !important;
+      }
+
+      #overlay.overlay {
+        width: 470px !important;
+        height: 160px !important;
+        display: grid !important;
+        place-items: center !important;
+        overflow: hidden !important;
+        background: transparent !important;
+      }
+
+      #badge.badge.rt92-premium-detached {
+        position: relative !important;
+        width: 470px !important;
+        height: 160px !important;
+        min-width: 470px !important;
+        min-height: 160px !important;
+        max-width: 470px !important;
+        max-height: 160px !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        transform: none !important;
+      }
+
+      .rt92-layer-bg {
+        position: absolute;
+        inset: 0;
+        width: 470px;
+        height: 160px;
+        object-fit: fill;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .rt92-layer {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: hidden;
+        white-space: nowrap;
+        box-sizing: border-box;
+      }
+
+      .rt92-badge {
+        align-items: center;
+        justify-content: center;
+        overflow: visible;
+      }
+
+      .rt92-badge img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter:
+          drop-shadow(0 2px 10px rgba(255,255,255,.30))
+          drop-shadow(0 2px 12px rgba(138,43,226,.42));
+      }
+
+      .rt92-rank {
+        color: #54eaff;
+        font-weight: 1000;
+        letter-spacing: .7px;
+        text-transform: uppercase;
+        text-shadow: 0 0 12px rgba(84,234,255,.34), 0 2px 8px rgba(0,0,0,.9);
+      }
+
+      .rt92-score {
+        color: #f7f2ff;
+        font-weight: 1000;
+        text-transform: uppercase;
+        text-shadow: 0 1px 7px rgba(0,0,0,.95);
+      }
+
+      .rt92-player {
+        color: #f7f2ff;
+        font-weight: 1000;
+        text-transform: uppercase;
+        text-overflow: ellipsis;
+        text-shadow: 0 1px 7px rgba(0,0,0,.95);
+      }
+
+      .rt92-brand {
+        color: #f7f2ff;
+        font-weight: 1000;
+        text-overflow: ellipsis;
+        text-shadow: 0 0 8px rgba(168,85,247,.32), 0 1px 7px rgba(0,0,0,.95);
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function layerStyle(cfg) {
+    return [
+      `left:${cfg.x}px`,
+      `top:${cfg.y}px`,
+      `width:${cfg.w}px`,
+      `height:${cfg.h}px`,
+      `z-index:${cfg.z}`,
+      cfg.fontSize ? `font-size:${cfg.fontSize}px` : "",
+      `line-height:${cfg.h}px`
+    ].filter(Boolean).join(";");
+  }
+
+  function renderDetached() {
+    ensureStyle();
+
+    const root = badge || document.getElementById("badge");
+    if (!root) return;
+
+    const layout = normalizeLayout(decodeLayoutParam());
+    const e = layout.elements;
+    const d = getCurrentData();
+
+    root.className = "badge rt92-premium-detached";
+    root.dataset.themeStyle = "cyber-red-elite";
+    root.dataset.renderer = "premium-detached-v92";
+
+    root.innerHTML = `
+      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=92" alt="" />
+      <div class="rt92-layer rt92-badge" style="${layerStyle(e.badge)}">
+        <img src="${esc(d.badgeSrc)}" alt="" />
+      </div>
+      <div class="rt92-layer rt92-rank" style="${layerStyle(e.rank)}">${esc(d.rankValue)}</div>
+      <div class="rt92-layer rt92-score" style="${layerStyle(e.score)}">${esc(d.scoreValue)}</div>
+      <div class="rt92-layer rt92-player" style="${layerStyle(e.player)}">${esc(d.playerValue)}</div>
+      <div class="rt92-layer rt92-brand" style="${layerStyle(e.brand)}">${esc(d.brandValue)}</div>
+    `;
+
+    document.documentElement.dataset.premiumRenderer = "detached-v92";
+    document.documentElement.dataset.premiumLayoutApplied = new URLSearchParams(window.location.search).get("layout") ? "url" : "locked";
+  }
+
+  const oldSetData = typeof setData === "function" ? setData : null;
+  if (oldSetData && !window.__rt92DetachedSetDataPatched) {
+    window.__rt92DetachedSetDataPatched = true;
+    setData = async function(...args) {
+      await oldSetData.apply(this, args);
+      renderDetached();
+      setTimeout(renderDetached, 80);
+      setTimeout(renderDetached, 250);
+    };
+  }
+
+  const oldSetLoading = typeof setLoading === "function" ? setLoading : null;
+  if (oldSetLoading && !window.__rt92DetachedSetLoadingPatched) {
+    window.__rt92DetachedSetLoadingPatched = true;
+    setLoading = function(...args) {
+      oldSetLoading.apply(this, args);
+      setTimeout(renderDetached, 80);
+    };
+  }
+
+  window.addEventListener("load", () => {
+    renderDetached();
+    setTimeout(renderDetached, 100);
+    setTimeout(renderDetached, 400);
+    setTimeout(renderDetached, 1000);
+  });
+
+  renderDetached();
 })();

@@ -1,8 +1,8 @@
 {
-  "version": "91",
+  "version": "92",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V91: importato il JSON completo ranktag-premium-layout-v2 come riferimento autorevole per pubblico, editor e link finale."
+  "note": "V92: premium staccato dal motore standard. Cyber Red Elite usa renderer separato identico al Layout Editor per rispettare X/Y/W/H/fontSize/z."
 }

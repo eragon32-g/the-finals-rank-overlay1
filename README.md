@@ -1,8 +1,10 @@
-# RankTag V91
+# RankTag V92
 
-Import confermato del JSON completo.
+Renderer premium separato.
 
-## Include
-- JSON `ranktag-premium-layout-v2` salvato come sorgente autorevole
-- layout editor aggiornato sugli stessi valori
-- pubblico e link finale allineati al medesimo JSON
+## Cosa cambia
+- Cyber Red Elite non usa più il motore standard
+- Premium renderizzato con layer assoluti 470×160
+- Stesso modello JSON del Layout Editor
+- X/Y/W/H/fontSize/z rispettati davvero
+- Default intatto

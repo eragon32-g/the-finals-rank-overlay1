@@ -1,5 +1,21 @@
 [
   {
+    "version": "92",
+    "date": "2026-05-25",
+    "title": "Renderer premium separato",
+    "summary": "Cyber Red Elite non usa più il renderer standard: viene renderizzato come layer assoluti dal JSON.",
+    "fixed": [
+      "Differenza tra Layout Editor e anteprima live",
+      "CSS standard che interferiva con dimensioni e posizioni premium",
+      "Badge/testi non identici tra editor e link finale"
+    ],
+    "added": [
+      "renderer detached V92 per Cyber Red Elite",
+      "layer assoluti 470x160",
+      "lettura JSON layout come sorgente unica"
+    ]
+  },
+  {
     "version": "91",
     "date": "2026-05-25",
     "title": "Import confermato del JSON completo",
@@ -61,7 +77,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=91",
+      "aggiornati thumb premium e cache buster a v=92",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -260,7 +276,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=91"
+      "riferimenti cache aggiornati a v=92"
     ]
   },
   {
