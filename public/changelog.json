@@ -1,5 +1,21 @@
 [
   {
+    "version": "82",
+    "date": "2026-05-25",
+    "title": "Layout Editor interno",
+    "summary": "Aggiunta pagina interna per spostare badge, rank, score, player e brand con il mouse ed esportare coordinate JSON.",
+    "added": [
+      "/layout-editor.html",
+      "drag & drop elementi premium",
+      "ridimensionamento elementi",
+      "salvataggio locale",
+      "copia/scarica JSON coordinate"
+    ],
+    "improved": [
+      "Flusso premium più veloce: si regolano le posizioni senza rifare build per ogni pixel"
+    ]
+  },
+  {
     "version": "81",
     "date": "2026-05-25",
     "title": "Nuova grafica Cyber Red Elite",
@@ -118,7 +134,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=81"
+      "riferimenti cache aggiornati a v=82"
     ]
   },
   {

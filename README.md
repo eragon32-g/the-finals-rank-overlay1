@@ -1,9 +1,13 @@
-# RankTag V81
+# RankTag V82
 
-Nuova grafica Cyber Red Elite.
+Aggiunto Layout Editor interno.
 
-## Include
-- background premium scelto
-- rimozione foro nero inutile a destra
-- adattamento 470×160
-- badge e testi riallineati
+## Apri
+/layout-editor.html
+
+## Funzioni
+- sposta badge, rank, score, player e brand col mouse
+- modifica coordinate manualmente
+- salva in locale
+- copia o scarica JSON
+- usa il JSON per bloccare le posizioni nel sito pubblico

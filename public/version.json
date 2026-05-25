@@ -1,8 +1,8 @@
 {
-  "version": "81",
+  "version": "82",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V81: nuova grafica Cyber Red Elite senza foro inutile a destra, adattata al layout 470x160."
+  "note": "V82: aggiunto Layout Editor interno draggable per posizionare elementi premium e copiare JSON coordinate."
 }
