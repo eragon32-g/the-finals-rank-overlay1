@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v65-compact-generator",
-  "version": "7.1.0",
+  "name": "ranktag-finals-overlay-v66-section-order-premium-fix",
+  "version": "7.2.0",
   "private": true,
-  "description": "RankTag compact generator layout, account unchanged",
+  "description": "RankTag section order and premium preview fix",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
