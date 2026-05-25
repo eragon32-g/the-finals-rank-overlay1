@@ -114,7 +114,7 @@
       height: 160px;
       user-select: none;
       overflow: hidden;
-      background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=87') center / 100% 100% no-repeat;
+      background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=88') center / 100% 100% no-repeat;
       box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 16px 38px rgba(0,0,0,.34);
     }
     .item {
@@ -211,7 +211,7 @@
       <h1>Layout Editor</h1>
       <div class="sub">Area interna per spostare gli elementi premium e salvare coordinate bloccate per il sito pubblico. Questo editor è solo per i layout premium: non modifica e non vincola il default.</div>
     </div>
-    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="badge" href="/generator.html" style="text-decoration:none;color:inherit;">← Rank Generator</a><div class="badge">RankTag V87</div></div>
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="badge" href="/generator.html" style="text-decoration:none;color:inherit;">← Rank Generator</a><div class="badge">RankTag V88</div></div>
   </div>
 
   <div class="wrap">
@@ -219,7 +219,7 @@
       <div class="stageHead">
         <div>
           <strong>Cyber Red Elite</strong>
-          <div class="help">Trascina gli elementi. Seleziona un elemento e modifica numeri/font dal pannello a destra.</div>
+          <div class="help">Trascina gli elementi. Ridimensiona dal pallino. Il JSON salva X/Y/W/H/Font/Z per mantenere proporzioni corrette.</div>
         </div>
         <div class="toolbar">
           <button class="small" id="zoomOut">- Zoom</button>
@@ -231,7 +231,7 @@
       <div class="canvasWrap" id="canvasWrap">
         <div class="canvasScaler" id="canvasScaler">
           <div id="canvas">
-            <div class="item badgeEl" data-key="badge"><img src="/assets/badges/platinum.svg?v=87" alt="badge"/><div class="handle"></div></div>
+            <div class="item badgeEl" data-key="badge"><img src="/assets/badges/platinum.svg?v=88" alt="badge"/><div class="handle"></div></div>
             <div class="item rankEl" data-key="rank">PLATINUM 1<div class="handle"></div></div>
             <div class="item scoreEl" data-key="score">ELO: 37.705<div class="handle"></div></div>
             <div class="item playerEl" data-key="player">NOMEPLAYER#1234<div class="handle"></div></div>
@@ -272,7 +272,7 @@
       </div>
 
       <div class="status">
-        Questo editor è destinato solo ai layout premium. Non tocca il default. Quando il layout è perfetto, copi il JSON e lo importiamo nel codice pubblico premium.
+        Questo editor è solo per layout premium. Non tocca il default. Il JSON esporta posizione, dimensioni e font così preview e link finale mantengono le proporzioni.
       </div>
 
       <div class="divider"></div>
@@ -286,26 +286,26 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "ranktag-layout-editor-cyber-red-elite-v82";
+    const STORAGE_KEY = "ranktag-layout-editor-cyber-red-elite-v88";
     const defaults = {
       "badge": {
-            "x": 3,
-            "y": 23,
-            "w": 111,
-            "h": 100,
+            "x": 7,
+            "y": 9,
+            "w": 136,
+            "h": 121,
             "fontSize": 0,
             "z": 5
       },
       "rank": {
-            "x": 114,
-            "y": 41,
+            "x": 164,
+            "y": 39,
             "w": 215,
             "h": 30,
             "fontSize": 25,
             "z": 6
       },
       "score": {
-            "x": 115,
+            "x": 165,
             "y": 78,
             "w": 120,
             "h": 16,
@@ -313,16 +313,16 @@
             "z": 6
       },
       "player": {
-            "x": 212,
-            "y": 77,
+            "x": 271,
+            "y": 78,
             "w": 142,
             "h": 16,
             "fontSize": 10.5,
             "z": 6
       },
       "brand": {
-            "x": 118,
-            "y": 120,
+            "x": 165,
+            "y": 100,
             "w": 270,
             "h": 16,
             "fontSize": 9.5,

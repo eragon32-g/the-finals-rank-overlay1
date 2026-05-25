@@ -1,11 +1,23 @@
 [
   {
+    "version": "88",
+    "date": "2026-05-25",
+    "title": "VoidRage layout JSON importato",
+    "summary": "Applicato il nuovo JSON con dimensioni/proporzioni salvate per badge e testi.",
+    "improved": [
+      "Badge ridimensionato a 136×121",
+      "Rank, score, player e brand riposizionati sulla nuova targhetta VoidRage",
+      "Layout Editor chiarisce che esporta X/Y/W/H/Font/Z",
+      "Preview generator, live preview e link finale restano sincronizzati"
+    ]
+  },
+  {
     "version": "87",
     "title": "Premium VoidRage background integrated",
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=87",
+      "aggiornati thumb premium e cache buster a v=88",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -204,7 +216,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=86"
+      "riferimenti cache aggiornati a v=88"
     ]
   },
   {

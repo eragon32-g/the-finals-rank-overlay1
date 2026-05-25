@@ -1,8 +1,8 @@
 {
-  "version": "87",
+  "version": "88",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V87: integrato lo sfondo premium VoidRage/The Finals, allineati cache-buster e asset premium."
+  "note": "V88: nuovo JSON VoidRage importato. Posizioni, dimensioni e font di badge/testi sono salvati e sincronizzati tra editor, preview e link finale."
 }
