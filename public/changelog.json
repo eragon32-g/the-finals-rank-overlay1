@@ -1,5 +1,24 @@
 [
   {
+    "version": "66",
+    "date": "2026-05-25",
+    "title": "Ordine sezioni e fix premium",
+    "summary": "Riordinate le sezioni e corrette le dimensioni della preview premium.",
+    "added": [],
+    "improved": [
+      "Temi spostati al punto 2",
+      "Colori avanzati spostati al punto 3",
+      "Branding spostato al punto 4",
+      "Branding reso più simile come dimensione alla card premium",
+      "Dati rank più centrati e ordinati",
+      "Preview Cyber Red Elite non viene più tagliata"
+    ],
+    "fixed": [
+      "Anteprima premium tagliata",
+      "Disallineamenti nella sezione Dati rank"
+    ]
+  },
+  {
     "version": "65",
     "date": "2026-05-25",
     "title": "Generator più compatto",

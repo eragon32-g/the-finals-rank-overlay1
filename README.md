@@ -1,11 +1,11 @@
-# RankTag for THE FINALS - V65
+# RankTag for THE FINALS - V66
 
-V65 rende il generator più compatto.
+V66 sistema ordine e dimensioni nel generator.
 
 ## Cambiamenti
-- Account resta grande e a tutta larghezza
-- Tutte le altre sezioni sono più piccole
-- Impostazioni su tre colonne desktop
-- Anteprima in fondo a tutta larghezza ma più compatta
-- Overlay mantiene dimensione 470 × 160
-- Rimossa l'interfaccia compatta in alto
+- Temi al punto 2
+- Colori avanzati al punto 3
+- Branding al punto 4
+- Branding con dimensioni più simili alla card premium
+- Dati rank più centrati
+- Preview Cyber Red Elite non tagliata

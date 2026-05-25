@@ -1,8 +1,8 @@
 {
-  "version": "65",
+  "version": "66",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Generator reso più compatto: finestre ridotte tranne Account, anteprima full-width ma meno alta."
+  "note": "Riordinate le sezioni: Temi al punto 2, Colori al 3, Branding al 4; sistemati Dati rank e preview premium."
 }

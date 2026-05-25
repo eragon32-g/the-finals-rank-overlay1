@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V65 generator real-preview lock */
+/* RankTag V66 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -611,7 +611,7 @@ iframe#preview,
 
 
 
-/* RankTag V65 - layout rework: account full width, settings grid, preview bottom */
+/* RankTag V66 - layout rework: account full width, settings grid, preview bottom */
 .layout {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -769,7 +769,7 @@ aside.panel {
 
 
 
-/* RankTag V65 - compact generator, account unchanged */
+/* RankTag V66 - compact generator, account unchanged */
 body {
   padding: 16px !important;
 }
@@ -1045,6 +1045,122 @@ body {
   }
 }
 
+
+
+/* RankTag V66 - order, compact alignment and premium preview fix */
+.settings-panel {
+  grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
+  align-items: stretch !important;
+}
+
+.settings-panel > .section:not(.account-section) {
+  padding: 14px !important;
+}
+
+.settings-panel > .section:not(.account-section) .section-title {
+  min-height: 30px !important;
+}
+
+/* Dati rank: more centered and balanced */
+.settings-panel > .section:first-of-type + .section,
+.settings-panel > .section:nth-of-type(2) {
+  display: block !important;
+}
+
+.settings-panel > .section:nth-of-type(2) .grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px 12px !important;
+  align-items: start !important;
+}
+
+.settings-panel > .section:nth-of-type(2) label {
+  justify-content: start !important;
+}
+
+.settings-panel > .section:nth-of-type(2) input,
+.settings-panel > .section:nth-of-type(2) select {
+  width: 100% !important;
+}
+
+#rankGuard {
+  grid-column: 1 / -1 !important;
+  text-align: center !important;
+  padding: 9px 12px !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+}
+
+/* Branding should be same visual size family as premium */
+.locked-card {
+  min-height: 132px !important;
+  display: grid !important;
+  align-content: start !important;
+}
+
+.locked-preview {
+  min-height: 54px !important;
+  display: grid !important;
+  align-items: center !important;
+}
+
+/* Overlay premium: stop image being cut and keep it centered */
+#overlayPremium {
+  grid-column: auto !important;
+}
+
+#overlayPremium .premium-one-card {
+  min-height: 218px !important;
+  overflow: visible !important;
+}
+
+#overlayPremium .premium-preview-real {
+  height: 76px !important;
+  width: 100% !important;
+  border-radius: 12px !important;
+  background-color: #05070b !important;
+  background-image: url('/assets/premium/cyber-red-elite-thumb.png?v=66') !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+#overlayPremium .premium-actions {
+  margin-top: 2px !important;
+}
+
+/* Make themes/colors/branding/premium visually equal and compact */
+#palettes.palette-grid {
+  grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+}
+
+.palette {
+  min-height: 54px !important;
+}
+
+#guide {
+  grid-column: 1 / -1 !important;
+}
+
+/* Preview remains full-width bottom */
+.bottom-preview-panel {
+  grid-column: 1 / -1 !important;
+}
+
+@media (max-width: 1120px) {
+  .settings-panel {
+    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .settings-panel {
+    grid-template-columns: 1fr !important;
+  }
+  #overlayPremium {
+    grid-column: 1 / -1 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1054,7 +1170,7 @@ body {
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V65</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V66</div></div>
     </header>
 
     <div class="layout">
@@ -1163,33 +1279,22 @@ body {
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">
-            <h2>2. Branding animato e bloccato</h2>
-            <span class="tag">Solo owner</span>
-          </div>
-          <div class="locked-card">
-            <div class="locked-title">
-              <span>Branding attivo</span>
-              <span class="tag">🔒 Non da URL</span>
-            </div>
-            <div id="lockedPreview" class="locked-preview">Caricamento branding...</div>
-          </div>
-          <p class="help">Il branding viene letto da <b>public/brand.json</b>. Lo puoi modificare solo tu da GitHub.</p>
-        </div>
+        
 
-        <div class="section">
+<div class="section">
           <div class="section-title">
-            <h2>3. Temi premium</h2>
+            <h2>2. Temi</h2>
             <span class="tag">Colori</span>
           </div>
           <div id="palettes" class="palette-grid"></div>
           <p class="theme-note">Scegli un tema pronto oppure usa i colori avanzati. I temi cambiano titolo, punti, nome, branding, sfondo e bordo.</p>
         </div>
 
-        <div class="section">
+        
+
+<div class="section">
           <div class="section-title">
-            <h2>4. Colori avanzati</h2>
+            <h2>3. Colori avanzati</h2>
             <span class="tag">Custom</span>
           </div>
           <div class="grid">
@@ -1209,7 +1314,26 @@ body {
         </div>
 
         
-        <div id="overlayPremium" class="section premium-section">
+        
+
+<div class="section">
+          <div class="section-title">
+            <h2>4. Branding</h2>
+            <span class="tag">Solo owner</span>
+          </div>
+          <div class="locked-card">
+            <div class="locked-title">
+              <span>Branding attivo</span>
+              <span class="tag">🔒 Non da URL</span>
+            </div>
+            <div id="lockedPreview" class="locked-preview">Caricamento branding...</div>
+          </div>
+          <p class="help">Il branding viene letto da <b>public/brand.json</b>. Lo puoi modificare solo tu da GitHub.</p>
+        </div>
+
+        
+
+<div id="overlayPremium" class="section premium-section">
           <div class="section-title">
             <h2>5. Overlay Premium</h2>
             <span class="tag">1 alla volta</span>
@@ -1224,7 +1348,7 @@ body {
               <span class="premium-status-pill">In sviluppo</span>
             </div>
 
-            <div class="premium-preview-real"></div>
+            <div class="premium-preview-real" aria-label="Anteprima Cyber Red Elite"></div>
 
             <p>Layout premium rosso/aggressivo con base grafica dedicata, stemma rank ufficiale dinamico e anteprima reale.</p>
 
@@ -1238,7 +1362,9 @@ body {
         </div>
 
         
-        <div id="guide" class="section">
+        
+
+<div id="guide" class="section">
           <div class="section-title">
             <h2>6. Guida rapida</h2>
             <span class="tag">OBS / TikTok</span>
@@ -1267,7 +1393,8 @@ body {
         </div>
       </section>
 
-      <aside class="panel preview-panel bottom-preview-panel">
+      
+<aside class="panel preview-panel bottom-preview-panel">
         <div class="section">
           <div class="section-title">
             <h2>Anteprima live</h2>
@@ -1293,7 +1420,7 @@ body {
 
 
     const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV65cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV66cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentProfile = null;
@@ -1889,7 +2016,7 @@ body {
   </script>
 
 <script>
-/* RankTag V65 force real iframe preview */
+/* RankTag V66 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');
