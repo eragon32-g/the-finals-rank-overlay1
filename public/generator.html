@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V69 generator real-preview lock */
+/* RankTag V71 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -611,7 +611,7 @@ iframe#preview,
 
 
 
-/* RankTag V69 - layout rework: account full width, settings grid, preview bottom */
+/* RankTag V71 - layout rework: account full width, settings grid, preview bottom */
 .layout {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -769,7 +769,7 @@ aside.panel {
 
 
 
-/* RankTag V69 - compact generator, account unchanged */
+/* RankTag V71 - compact generator, account unchanged */
 body {
   padding: 16px !important;
 }
@@ -1047,7 +1047,7 @@ body {
 
 
 
-/* RankTag V69 - order, compact alignment and premium preview fix */
+/* RankTag V71 - order, compact alignment and premium preview fix */
 .settings-panel {
   grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
   align-items: stretch !important;
@@ -1163,302 +1163,64 @@ body {
 
 
 
-/* RankTag V69 - branding hidden, live preview moved to point 4 */
-.preview-inline-section {
-  grid-column: span 2 !important;
-  min-height: auto !important;
-}
-
-.preview-inline-section .preview-box {
-  min-height: 190px !important;
-  display: grid !important;
-  place-items: center !important;
-  overflow: hidden !important;
-}
-
-.preview-inline-section iframe#preview {
-  width: 470px !important;
-  height: 160px !important;
-  transform: scale(1) !important;
-  transform-origin: center center !important;
-  background: transparent !important;
-  border: 0 !important;
-}
-
-.preview-inline-section .actions {
-  margin-top: 9px !important;
-  display: flex !important;
-  justify-content: center !important;
-  gap: 10px !important;
-}
-
-.preview-inline-section textarea {
-  min-height: 58px !important;
-  font-size: 11px !important;
-  margin-top: 9px !important;
-}
-
-.preview-inline-section .help {
-  text-align: center !important;
-}
-
-/* The old Branding card is intentionally hidden from the generator */
-.locked-card,
-#lockedPreview {
-  display: none !important;
-}
-
-/* Keep premium next to preview when there is space, but make it clean */
-#overlayPremium {
-  grid-column: span 1 !important;
-}
-
-/* Remove old bottom preview leftovers */
-.bottom-preview-panel,
-.preview-panel.bottom-preview-panel {
-  display: none !important;
-}
-
-/* Keep sections compact */
-.settings-panel > .section:not(.account-section) {
-  padding: 12px !important;
-}
-
-@media (max-width: 1120px) {
-  .preview-inline-section {
-    grid-column: 1 / -1 !important;
-  }
-
-  #overlayPremium {
-    grid-column: 1 / -1 !important;
-  }
-}
-
-@media (max-width: 760px) {
-  .preview-inline-section iframe#preview {
-    transform: scale(.72) !important;
-  }
-}
-
-
-
-/* RankTag V69 - full width preview, point 4 hidden/removed, themes visible */
+/* RankTag V71 - repaired generator layout */
 .settings-panel {
-  grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
-  align-items: stretch !important;
-}
-
-#palettes {
   display: grid !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  min-height: 58px !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  align-items: start !important;
 }
-
-#palettes .palette {
-  display: block !important;
+.settings-panel > .section,
+.settings-panel > .account-section { min-width: 0 !important; }
+.settings-panel > .account-section,
+.settings-panel > #livePreviewSection,
+.settings-panel > #overlayPremium,
+.settings-panel > #guide { grid-column: 1 / -1 !important; }
+.preview-panel.bottom-preview-panel,
+aside.preview-panel.bottom-preview-panel { display: none !important; }
+#palettes,
+#palettes.palette-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  min-height: 88px !important;
 }
-
-/* Preview must take full row from left to right */
-#livePreviewSection.preview-full-row,
-.preview-inline-section,
-.preview-full-row {
-  grid-column: 1 / -1 !important;
-  width: 100% !important;
-  border-right: 0 !important;
-}
-
+#palettes .palette { display: block !important; }
+#livePreviewSection { border-top: 1px solid rgba(255,255,255,.08); padding-top: 16px; }
 #livePreviewSection .preview-box {
   width: 100% !important;
-  min-height: 210px !important;
-  display: grid !important;
-  place-items: center !important;
-  overflow: hidden !important;
+  min-height: 220px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
-
 #livePreviewSection iframe#preview {
   width: 470px !important;
   height: 160px !important;
-  transform: scale(1) !important;
-  transform-origin: center center !important;
   border: 0 !important;
   background: transparent !important;
 }
-
 #livePreviewSection .actions {
-  margin-top: 10px !important;
   display: flex !important;
   justify-content: center !important;
   gap: 10px !important;
-}
-
-#livePreviewSection textarea {
-  width: 100% !important;
-  min-height: 58px !important;
-  margin-top: 9px !important;
-  font-size: 11px !important;
-}
-
-#livePreviewSection .help {
-  text-align: center !important;
-  margin-top: 6px !important;
-}
-
-/* Branding card/old point 4 stays hidden everywhere in generator */
-.locked-card,
-#lockedPreview,
-.section:has(#lockedPreview) {
-  display: none !important;
-}
-
-/* Premium back to compact normal section after preview */
-#overlayPremium {
-  grid-column: 1 / -1 !important;
-  border-right: 0 !important;
-}
-
-#overlayPremium .premium-preview-real {
-  background-size: contain !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-}
-
-/* Guide full width */
-#guide {
-  grid-column: 1 / -1 !important;
-  border-right: 0 !important;
-}
-
-/* Remove old bottom preview leftovers */
-.bottom-preview-panel,
-.preview-panel.bottom-preview-panel {
-  display: none !important;
-}
-
-@media (max-width: 1120px) {
-  .settings-panel {
-    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
-  }
-}
-
-@media (max-width: 760px) {
-  .settings-panel {
-    grid-template-columns: 1fr !important;
-  }
-
-  #livePreviewSection iframe#preview {
-    transform: scale(.72) !important;
-  }
-}
-
-
-
-/* RankTag V69 - remove old point 4, themes visible, full-width preview */
-.settings-panel {
-  grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
-  align-items: stretch !important;
-}
-
-/* Force Temi to show properly */
-#palettes.palette-grid,
-#palettes {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0,1fr)) !important;
-  gap: 7px !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  min-height: 70px !important;
-}
-
-#palettes .palette {
-  display: block !important;
-  min-height: 54px !important;
-}
-
-/* Hide any old Branding/Bnding card that may survive in HTML */
-.section:has(#lockedPreview),
-.locked-card,
-#lockedPreview {
-  display: none !important;
-}
-
-/* Preview takes entire row from left to right */
-#livePreviewSection.preview-full-row,
-#livePreviewSection {
-  grid-column: 1 / -1 !important;
-  width: 100% !important;
-  border-right: 0 !important;
-}
-
-#livePreviewSection .preview-box {
-  width: 100% !important;
-  min-height: 210px !important;
-  display: grid !important;
-  place-items: center !important;
-  overflow: hidden !important;
-}
-
-#livePreviewSection iframe#preview {
-  width: 470px !important;
-  height: 160px !important;
-  transform: scale(1) !important;
-  transform-origin: center center !important;
-  border: 0 !important;
-  background: transparent !important;
-}
-
-#livePreviewSection .actions {
   margin-top: 10px !important;
-  display: flex !important;
-  justify-content: center !important;
-  gap: 10px !important;
 }
-
-#livePreviewSection textarea {
-  width: 100% !important;
-  min-height: 58px !important;
-  margin-top: 9px !important;
-  font-size: 11px !important;
-}
-
-#livePreviewSection .help {
-  text-align: center !important;
-  margin-top: 6px !important;
-}
-
-/* Premium and guide full width after preview */
-#overlayPremium,
-#guide {
-  grid-column: 1 / -1 !important;
-  border-right: 0 !important;
-}
-
+#livePreviewSection textarea { width: 100% !important; min-height: 64px !important; }
+#livePreviewSection .help { text-align: center !important; }
+#overlayPremium, #guide { border-top: 1px solid rgba(255,255,255,.08); padding-top: 16px; }
 #overlayPremium .premium-preview-real {
+  width: 100% !important;
+  min-height: 88px !important;
   background-size: contain !important;
-  background-position: center !important;
   background-repeat: no-repeat !important;
+  background-position: center !important;
 }
-
-/* Remove bottom preview leftovers */
-.bottom-preview-panel,
-.preview-panel.bottom-preview-panel {
-  display: none !important;
+@media (max-width: 1100px) {
+  .settings-panel { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 }
-
-@media (max-width: 1120px) {
-  .settings-panel {
-    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
-  }
-}
-
 @media (max-width: 760px) {
-  .settings-panel {
-    grid-template-columns: 1fr !important;
-  }
-
-  #livePreviewSection iframe#preview {
-    transform: scale(.72) !important;
-  }
+  .settings-panel { grid-template-columns: 1fr !important; }
 }
 
 </style>
@@ -1470,180 +1232,205 @@ body {
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V69</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V71</div></div>
     </header>
 
     <div class="layout">
       <input type="hidden" id="themeStyle" value="default" />
       <section class="panel settings-panel">
-
-        <div id="accountSection" class="section account-section">
-          <div class="section-title">
-            <h2>Account</h2>
-            <span class="tag">Progetti</span>
-          </div>
-          <div class="profile-bar">
-            <div class="profile-row">
-              <label>
+<div class="section account-section" id="accountSection">
+<div class="section-title">
+<h2>Account</h2>
+<span class="tag">Progetti</span>
+</div>
+<div class="profile-bar">
+<div class="profile-row">
+<label>
                 Nickname account
-                <input id="profileNick" value="" placeholder="IlTuoNickname" autocomplete="username" />
-              </label>
-              <label>
+                <input autocomplete="username" id="profileNick" placeholder="IlTuoNickname" value=""/>
+</label>
+<label>
                 Password account
-                <input id="profilePass" type="password" value="" placeholder="Password" autocomplete="current-password" />
-              </label>
-              <button id="loginProfile" type="button" class="btn secondary small">Login / registrati</button>
-              <button id="logoutProfile" type="button" class="btn secondary small">Logout</button>
-            </div>
-            <div id="profileStatus" class="profile-status">Accedi o registrati per salvare i tuoi progetti.</div>
-            <div class="profile-row" style="grid-template-columns: 1fr auto auto;">
-              <label>
+                <input autocomplete="current-password" id="profilePass" placeholder="Password" type="password" value=""/>
+</label>
+<button class="btn secondary small" id="loginProfile" type="button">Login / registrati</button>
+<button class="btn secondary small" id="logoutProfile" type="button">Logout</button>
+</div>
+<div class="profile-status" id="profileStatus">Accedi o registrati per salvare i tuoi progetti.</div>
+<div class="profile-row" style="grid-template-columns: 1fr auto auto;">
+<label>
                 Nome progetto
-                <input id="projectTitle" value="" placeholder="Es. Ranked Platinum" />
-              </label>
-              <button id="saveProject" type="button" class="btn small">Salva online</button>
-              <button id="refreshProjects" type="button" class="btn secondary small">Aggiorna lista</button>
-            </div>
-            <div id="savedProjects" class="saved-grid"></div>
-          </div>
-          <p class="help">I tuoi progetti salvati restano nel tuo account.</p>
-        </div>
-
-        <div class="section">
-          <div class="section-title">
-            <h2>1. Dati rank</h2>
-            <span class="tag">Rank</span>
-          </div>
-          <div class="grid">
-            <label>
+                <input id="projectTitle" placeholder="Es. Ranked Platinum" value=""/>
+</label>
+<button class="btn small" id="saveProject" type="button">Salva online</button>
+<button class="btn secondary small" id="refreshProjects" type="button">Aggiorna lista</button>
+</div>
+<div class="saved-grid" id="savedProjects"></div>
+</div>
+<p class="help">I tuoi progetti salvati restano nel tuo account.</p>
+</div>
+<div class="section">
+<div class="section-title">
+<h2>1. Dati rank</h2>
+<span class="tag">Rank</span>
+</div>
+<div class="grid">
+<label>
               Modalità overlay
               <select id="mode">
-                <option value="manual" selected>Manuale</option>
-                <option value="auto">Automatica</option>
-              </select>
-            </label>
-            <label>
+<option selected="" value="manual">Manuale</option>
+<option value="auto">Automatica</option>
+</select>
+</label>
+<label>
               Player / Embark ID
-              <input id="player" value="NomePlayer#1234" placeholder="NomePlayer#1234" />
-              <span class="field-note">Esempio: ERDRAGON32#2577</span>
-            </label>
-            <div id="rankGuard" class="guard-message hidden"></div>
-            <label>
+              <input id="player" placeholder="NomePlayer#1234" value="NomePlayer#1234"/>
+<span class="field-note">Esempio: ERDRAGON32#2577</span>
+</label>
+<div class="guard-message hidden" id="rankGuard"></div>
+<label>
               Rank da mostrare
               <select id="badgeFile">
-                <option value="bronze-4" >Bronze 4</option>
-<option value="bronze-3" >Bronze 3</option>
-<option value="bronze-2" >Bronze 2</option>
-<option value="bronze-1" >Bronze 1</option>
-<option value="silver-4" >Silver 4</option>
-<option value="silver-3" >Silver 3</option>
-<option value="silver-2" >Silver 2</option>
-<option value="silver-1" >Silver 1</option>
-<option value="gold-4" >Gold 4</option>
-<option value="gold-3" >Gold 3</option>
-<option value="gold-2" >Gold 2</option>
-<option value="gold-1" >Gold 1</option>
-<option value="platinum-4" >Platinum 4</option>
-<option value="platinum-3" >Platinum 3</option>
-<option value="platinum-2" >Platinum 2</option>
-<option value="platinum-1" selected>Platinum 1</option>
-<option value="diamond-4" >Diamond 4</option>
-<option value="diamond-3" >Diamond 3</option>
-<option value="diamond-2" >Diamond 2</option>
-<option value="diamond-1" >Diamond 1</option>
-<option value="ruby" >Ruby</option>
-              </select>
-            </label>
-            <label>
+<option value="bronze-4">Bronze 4</option>
+<option value="bronze-3">Bronze 3</option>
+<option value="bronze-2">Bronze 2</option>
+<option value="bronze-1">Bronze 1</option>
+<option value="silver-4">Silver 4</option>
+<option value="silver-3">Silver 3</option>
+<option value="silver-2">Silver 2</option>
+<option value="silver-1">Silver 1</option>
+<option value="gold-4">Gold 4</option>
+<option value="gold-3">Gold 3</option>
+<option value="gold-2">Gold 2</option>
+<option value="gold-1">Gold 1</option>
+<option value="platinum-4">Platinum 4</option>
+<option value="platinum-3">Platinum 3</option>
+<option value="platinum-2">Platinum 2</option>
+<option selected="" value="platinum-1">Platinum 1</option>
+<option value="diamond-4">Diamond 4</option>
+<option value="diamond-3">Diamond 3</option>
+<option value="diamond-2">Diamond 2</option>
+<option value="diamond-1">Diamond 1</option>
+<option value="ruby">Ruby</option>
+</select>
+</label>
+<label>
               Punti / Rank Score
-              <input id="rankScore" value="37705" inputmode="numeric" placeholder="37705" />
-              <span class="field-note">Inserisci i punti da mostrare nell’overlay.</span>
-            </label>
-            <label>
+              <input id="rankScore" inputmode="numeric" placeholder="37705" value="37705"/>
+<span class="field-note">Inserisci i punti da mostrare nell’overlay.</span>
+</label>
+<label>
               Label punti
               <select id="scoreLabel">
-                <option value="ELO" selected>ELO</option>
-                <option value="RS">RS</option>
-                <option value="Rank Score">Rank Score</option>
-                <option value="Punti">Punti</option>
-              </select>
-              <span class="field-note">Scegli come chiamare i punti nella targhetta.</span>
-            </label>
-            <label>
+<option selected="" value="ELO">ELO</option>
+<option value="RS">RS</option>
+<option value="Rank Score">Rank Score</option>
+<option value="Punti">Punti</option>
+</select>
+<span class="field-note">Scegli come chiamare i punti nella targhetta.</span>
+</label>
+<label>
               Mostra LIVE
               <select id="showStatus">
-                <option value="0" selected>No</option>
-                <option value="1">Sì</option>
-              </select>
-            </label>
-          </div>
-        </div>
-
-        
-
+<option selected="" value="0">No</option>
+<option value="1">Sì</option>
+</select>
+</label>
+</div>
+</div>
 <div class="section">
-          <div class="section-title">
-            <h2>2. Temi</h2>
-            <span class="tag">Colori</span>
-          </div>
-          <div id="palettes" class="palette-grid"></div>
-          <p class="theme-note">Scegli un tema pronto oppure usa i colori avanzati. I temi cambiano titolo, punti, nome, branding, sfondo e bordo.</p>
-        </div>
-
-        
-
+<div class="section-title">
+<h2>2. Temi</h2>
+<span class="tag">Colori</span>
+</div>
+<div class="palette-grid" id="palettes"></div>
+<p class="theme-note">Scegli un tema pronto oppure usa i colori avanzati. I temi cambiano titolo, punti, nome, branding, sfondo e bordo.</p>
+</div>
 <div class="section">
-          <div class="section-title">
-            <h2>3. Colori avanzati</h2>
-            <span class="tag">Custom</span>
-          </div>
-          <div class="grid">
-            <label>Titolo rank <input id="rankColor" value="f5f7faff" /></label>
-            <label>Punti <input id="scoreColor" value="f0d9aaff" /></label>
-            <label>Nome player <input id="nameColor" value="e8edf4ff" /></label>
-            <label>Branding <input id="extraColor" value="f5f7fbff" /></label>
-            <label>Sfondo card <input id="backgroundColor" value="0a0c10fa" /></label>
-            <label>Bordo card <input id="borderColor" value="7c848fff" /></label>
-            <label>Spessore bordo <input id="borderWidth" value="2" inputmode="numeric" /></label>
-            <label>Accento branding <input id="brandAccent" value="ff2a17ff" /></label>
-          </div>
-          <div class="quick-actions">
-            <button id="resetStyle" type="button" class="btn secondary small">Reset stile</button>
-            <button id="randomStyle" type="button" class="btn secondary small">Random style</button>
-          </div>
-        </div>
-
-          <div id="premiumSelectedNote" class="premium-selected-note">Premium attivo: nessuno. Stai usando l’overlay standard.</div>
-        </div>
-
-        <div id="guide" class="section">
-          <div class="section-title">
-            <h2>5. Guida rapida</h2>
-            <span class="tag">OBS / TikTok</span>
-          </div>
-          <div class="guide-grid">
-            <div class="guide-card">
-              <h3>OBS</h3>
-              <ol>
-                <li>Clicca “Copia link”.</li>
-                <li>Apri OBS e aggiungi una Fonte Browser.</li>
-                <li>Incolla il link generato.</li>
-                <li>Imposta dimensione 470 × 160.</li>
-              </ol>
-            </div>
-            <div class="guide-card">
-              <h3>TikTok LIVE Studio</h3>
-              <ol>
-                <li>Copia il link generato.</li>
-                <li>Aggiungi una sorgente Link / Browser.</li>
-                <li>Incolla il link.</li>
-                <li>Ridimensionalo dove vuoi in live.</li>
-              </ol>
-            </div>
-          </div>
-          <div class="size-note">Dimensione consigliata: 470 × 160 · Sfondo trasparente · Browser Source / Link Source</div>
-        </div>
-      </section>
+<div class="section-title">
+<h2>3. Colori avanzati</h2>
+<span class="tag">Custom</span>
+</div>
+<div class="grid">
+<label>Titolo rank <input id="rankColor" value="f5f7faff"/></label>
+<label>Punti <input id="scoreColor" value="f0d9aaff"/></label>
+<label>Nome player <input id="nameColor" value="e8edf4ff"/></label>
+<label>Branding <input id="extraColor" value="f5f7fbff"/></label>
+<label>Sfondo card <input id="backgroundColor" value="0a0c10fa"/></label>
+<label>Bordo card <input id="borderColor" value="7c848fff"/></label>
+<label>Spessore bordo <input id="borderWidth" inputmode="numeric" value="2"/></label>
+<label>Accento branding <input id="brandAccent" value="ff2a17ff"/></label>
+</div>
+<div class="quick-actions">
+<button class="btn secondary small" id="resetStyle" type="button">Reset stile</button>
+<button class="btn secondary small" id="randomStyle" type="button">Random style</button>
+</div>
+</div>
+<div class="section preview-wide-section" id="livePreviewSection">
+<div class="section-title">
+<h2>Anteprima live</h2>
+<span class="tag">Preview</span>
+</div>
+<div class="preview-box">
+<iframe id="preview" title="Overlay preview"></iframe>
+</div>
+<div class="actions">
+<button class="btn secondary" id="generate">Aggiorna</button>
+<button class="btn" id="copy">Copia link</button>
+</div>
+<textarea id="output" readonly=""></textarea>
+<p class="help">Il link può modificare rank e colori, ma non branding e Discord.</p>
+</div>
+<div class="section premium-section" id="overlayPremium">
+<div class="section-title">
+<h2>4. Overlay Premium</h2>
+<span class="tag">1 alla volta</span>
+</div>
+<div class="premium-one-card premium-live-card" id="premiumCardCyberRedElite">
+<div class="premium-live-head">
+<div>
+<strong>Cyber Red Elite</strong>
+<div class="premium-copy-title">Primo premium ufficiale, costruito da zero.</div>
+</div>
+<span class="premium-status-pill">In sviluppo</span>
+</div>
+<div aria-label="Anteprima Cyber Red Elite" class="premium-preview-real"></div>
+<p>Layout premium rosso/aggressivo con base grafica dedicata, stemma rank ufficiale dinamico e anteprima reale.</p>
+<div class="premium-actions">
+<button class="btn secondary small" id="previewCyberRedElite" type="button">Anteprima</button>
+<button class="btn small" id="useCyberRedElite" type="button">Usa premium</button>
+</div>
+</div>
+<div class="premium-selected-note" id="premiumSelectedNote">Premium attivo: nessuno. Stai usando l’overlay standard.</div>
+</div>
+<div class="section" id="guide">
+<div class="section-title">
+<h2>5. Guida rapida</h2>
+<span class="tag">OBS / TikTok</span>
+</div>
+<div class="guide-grid">
+<div class="guide-card">
+<h3>OBS</h3>
+<ol>
+<li>Clicca “Copia link”.</li>
+<li>Apri OBS e aggiungi una Fonte Browser.</li>
+<li>Incolla il link generato.</li>
+<li>Imposta dimensione 470 × 160.</li>
+</ol>
+</div>
+<div class="guide-card">
+<h3>TikTok LIVE Studio</h3>
+<ol>
+<li>Copia il link generato.</li>
+<li>Aggiungi una sorgente Link / Browser.</li>
+<li>Incolla il link.</li>
+<li>Ridimensionalo dove vuoi in live.</li>
+</ol>
+</div>
+</div>
+<div class="size-note">Dimensione consigliata: 470 × 160 · Sfondo trasparente · Browser Source / Link Source</div>
+</div>
+</section>
     </div>
   </main>
 
@@ -1653,7 +1440,7 @@ body {
 
 
     const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV69cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV66cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentProfile = null;
@@ -1933,9 +1720,18 @@ body {
     function setValue(id, value) { const el = get(id); if (el) el.value = value; }
 
     async function loadBrandPreview() {
-      return;
-    } catch {
-        get("lockedPreview").textContent = "ERDRAGON32 • Join the Void • discord.gg/cffTwCcCGD";
+      const locked = get("lockedPreview");
+      if (!locked) return;
+      try {
+        const res = await fetch(`/brand.json?v=${Date.now()}`, { cache: "no-store" });
+        const cfg = await res.json();
+        const parts = [];
+        if (cfg.brandText) parts.push("Brand: " + cfg.brandText);
+        if (cfg.callToAction) parts.push("CTA: " + cfg.callToAction);
+        if (cfg.discordText) parts.push("Discord: " + cfg.discordText);
+        locked.textContent = parts.join("  •  ") || "Branding disattivato";
+      } catch {
+        locked.textContent = "ERDRAGON32 • Join the Void • discord.gg/cffTwCcCGD";
       }
     }
 
@@ -2235,11 +2031,6 @@ body {
     });
 
     renderPalettes();
-    /* RankTag V69 palette visibility fallback */
-    setTimeout(() => {
-      const wrap = get("palettes");
-      if (wrap && !wrap.children.length && typeof renderPalettes === "function") renderPalettes();
-    }, 150);
     loadBrandPreview();
     syncPremiumSelection();
     buildLink();
@@ -2247,7 +2038,7 @@ body {
   </script>
 
 <script>
-/* RankTag V69 force real iframe preview */
+/* RankTag V71 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');

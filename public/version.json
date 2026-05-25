@@ -1,8 +1,8 @@
 {
-  "version": "69",
+  "version": "71",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Vecchio punto 4 rimosso, temi ripristinati, anteprima a tutta larghezza."
+  "note": "Ripristino completo layout generator: Temi, Anteprima live e Overlay Premium."
 }

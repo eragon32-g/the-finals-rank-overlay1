@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v69-clean-point4-full-preview",
-  "version": "7.5.0",
+  "name": "ranktag-finals-overlay-v71-layout-restore",
+  "version": "7.7.0",
   "private": true,
-  "description": "RankTag removes old point 4, restores themes and full-width preview",
+  "description": "RankTag V71 restores themes, live preview and premium section in generator",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

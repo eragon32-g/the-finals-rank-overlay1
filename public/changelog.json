@@ -1,56 +1,14 @@
 [
   {
-    "version": "69",
+    "version": "71",
     "date": "2026-05-25",
-    "title": "Pulizia punto 4 e temi",
-    "summary": "Rimosso definitivamente il vecchio punto 4, ripristinati i Temi e resa l'Anteprima live a tutta larghezza.",
-    "added": [],
-    "improved": [
-      "Anteprima live copre tutta la riga",
-      "Temi visibili di nuovo",
-      "Premium e Guida ordinati sotto la preview"
-    ],
+    "title": "Ripristino layout generator",
+    "summary": "Corregge la sparizione di Anteprima live e Overlay Premium e ripristina Temi.",
     "fixed": [
-      "Vecchio punto 4 Branding/Bnding ancora visibile",
-      "Temi spariti",
-      "Preview non full width"
-    ]
-  },
-  {
-    "version": "68",
-    "date": "2026-05-25",
-    "title": "Anteprima full width",
-    "summary": "Rimosso il vecchio punto 4 Branding e resa l'anteprima live a tutta larghezza.",
-    "added": [
-      "Anteprima live full width"
-    ],
-    "improved": [
-      "Temi resi nuovamente visibili",
-      "Premium rinumerato come punto 4",
-      "Guida rinumerata come punto 5",
-      "Anteprima più larga e centrale"
-    ],
-    "fixed": [
-      "Vecchia sezione Branding ancora visibile",
-      "Temi spariti",
-      "Anteprima non copriva tutta la larghezza"
-    ]
-  },
-  {
-    "version": "67",
-    "date": "2026-05-25",
-    "title": "Anteprima al posto del branding",
-    "summary": "La sezione Branding viene nascosta nel generator e sostituita dall'Anteprima live al punto 4.",
-    "added": [
-      "Anteprima live come sezione 4 nel grid del generator"
-    ],
-    "improved": [
-      "Meno scrolling",
-      "Anteprima più vicina alle impostazioni",
-      "Branding resta gestito internamente da brand.json ma non occupa spazio nel generator"
-    ],
-    "fixed": [
-      "Rimossa la card branding visibile nel generator"
+      "Anteprima live non visibile",
+      "Overlay Premium non visibile",
+      "Temi buggati",
+      "Branding rimosso come richiesto"
     ]
   },
   {
