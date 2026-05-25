@@ -1,12 +1,12 @@
-# RankTag for THE FINALS - V55
+# RankTag for THE FINALS - V56
 
-V55 migliora Cyber Red usando il motore preview unificato.
+V56 aggiorna Cyber Red alla base premium v5.
 
 ## Cosa cambia
-- Base Cyber Red v4 più dettagliata
-- Score riportato dentro il pannello
-- Player/rank più leggibili
+- Score completamente dentro il pannello
+- Base più densa e più premium
+- Player/rank più ordinati
 - Thumbnail Shop aggiornata
 
 ## Test
-Caricare solo su branch `test-lab`.
+Caricare solo su `test-lab`.

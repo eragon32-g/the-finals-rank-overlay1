@@ -1,5 +1,24 @@
 [
   {
+    "version": "56",
+    "date": "2026-05-25",
+    "title": "Cyber Red premium v5",
+    "summary": "Cyber Red ha una nuova base più compatta, densa e con score completamente dentro il pannello.",
+    "added": [
+      "Nuova base Cyber Red v5",
+      "Nuova thumbnail Shop v5"
+    ],
+    "improved": [
+      "Score dentro il modulo destro",
+      "Base più piena e premium",
+      "Slot player/rank più puliti",
+      "Stemma più stabile"
+    ],
+    "fixed": [
+      "Score ancora troppo vicino al bordo nella V55"
+    ]
+  },
+  {
     "version": "55",
     "date": "2026-05-25",
     "title": "Cyber Red premium v4",
