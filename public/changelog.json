@@ -1,6 +1,6 @@
 [
   {
-    "version": "94",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Sfondo premium pulito",
     "summary": "Sostituito il background premium con la nuova versione ritagliata meglio.",
@@ -11,7 +11,7 @@
     ]
   },
   {
-    "version": "93",
+    "version": "95",
     "title": "Animazione branding premium",
     "summary": "I layout premium ora hanno il branding animato come il default.",
     "fixed": [
@@ -23,7 +23,7 @@
     ]
   },
   {
-    "version": "92",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Renderer premium separato",
     "summary": "Cyber Red Elite non usa più il renderer standard: viene renderizzato come layer assoluti dal JSON.",
@@ -39,7 +39,7 @@
     ]
   },
   {
-    "version": "91",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Import confermato del JSON completo",
     "summary": "Applicato il JSON ranktag-premium-layout-v2 come sorgente autorevole.",
@@ -52,7 +52,7 @@
     ]
   },
   {
-    "version": "90",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Hard fix layout sync",
     "summary": "Il JSON del Layout Editor ora contiene chiaramente dimensioni e font, e l'overlay applica sempre quei valori sopra i default.",
@@ -68,7 +68,7 @@
     ]
   },
   {
-    "version": "89",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Layout Editor collegato al link finale",
     "summary": "Le modifiche fatte nel Layout Editor ora vengono lette dal generator e inserite nel link stream premium.",
@@ -83,7 +83,7 @@
     ]
   },
   {
-    "version": "88",
+    "version": "95",
     "date": "2026-05-25",
     "title": "VoidRage layout JSON importato",
     "summary": "Applicato il nuovo JSON con dimensioni/proporzioni salvate per badge e testi.",
@@ -95,17 +95,17 @@
     ]
   },
   {
-    "version": "87",
+    "version": "95",
     "title": "Premium VoidRage background integrated",
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=94",
+      "aggiornati thumb premium e cache buster a v=95",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Sfondo premium rifatto",
     "summary": "Nuova targhetta premium più uniforme.",
@@ -119,7 +119,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Nuovo layout JSON importato",
     "summary": "Applicate le nuove coordinate del Layout Editor a Cyber Red Elite.",
@@ -133,7 +133,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Preview/link allineati al Layout Editor",
     "summary": "Le coordinate premium ora valgono per anteprima, link generato e output pubblico. Aggiunto ritorno al generator.",
@@ -152,7 +152,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Coordinate importate dal Layout Editor",
     "summary": "Applicato al pubblico il layout JSON salvato dall'editor per Cyber Red Elite.",
@@ -165,7 +165,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Layout Editor interno",
     "summary": "Aggiunta pagina interna per spostare badge, rank, score, player e brand con il mouse ed esportare coordinate JSON.",
@@ -181,7 +181,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Nuova grafica Cyber Red Elite",
     "summary": "Sostituito il background premium con la nuova grafica scelta e riallineati gli elementi.",
@@ -197,7 +197,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Premium background full-size",
     "summary": "Cyber Red Elite ora usa il background premium sull'intero overlay 470×160 invece della card ridotta.",
@@ -213,7 +213,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Fix versione e cache premium",
     "summary": "Aggiornati tutti i riferimenti rimasti a V77/V78 e forzato cache bust V79.",
@@ -227,7 +227,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Reset Premium Engine",
     "summary": "Cyber Red Elite non usa più renderer/immagine base separati: ora è una skin CSS dell'overlay standard stabile.",
@@ -244,7 +244,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Micro-allineamento Cyber Red Elite",
     "summary": "Secondo passaggio: coordinate più precise e card premium aggiornata.",
@@ -260,7 +260,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Punto 1 - renderer premium unico",
     "summary": "Eliminato il doppio renderer Cyber Red Elite e riallineati gli elementi principali.",
@@ -276,7 +276,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Fix scala e allineamento Cyber Red Elite",
     "summary": "Primo intervento punto per punto: anteprima bloccata a 470×160 e griglia premium riallineata.",
@@ -293,17 +293,17 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Fix metadati deploy",
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=94"
+      "riferimenti cache aggiornati a v=95"
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Cyber Red Elite rifinito",
     "summary": "Primo premium rifinito con base dedicata, preview più chiara e stesso layout tra anteprima e output finale.",
@@ -319,7 +319,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Ripristino layout generator",
     "summary": "Corregge la sparizione di Anteprima live e Overlay Premium e ripristina Temi.",
@@ -331,7 +331,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Ordine sezioni e fix premium",
     "summary": "Riordinate le sezioni e corrette le dimensioni della preview premium.",
@@ -350,7 +350,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Generator più compatto",
     "summary": "Ridotte le finestre del generator tranne Account, così serve meno scrolling.",
@@ -367,7 +367,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Layout generator rifatto",
     "summary": "Riorganizzata la pagina: Account a tutta larghezza, impostazioni affiancate e anteprima finale a tutta larghezza.",
@@ -383,7 +383,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Cyber Red Elite - primo premium",
     "summary": "Aggiunto il primo overlay premium attivabile dal generatore.",
@@ -400,7 +400,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Premium fuori dalla Guida",
     "summary": "La sezione Premium ora è separata correttamente dalla Guida rapida.",
@@ -417,7 +417,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Fix layout generator",
     "summary": "Corretto il problema della sezione Premium affiancata alla Guida e ristilizzata la card Premium.",
@@ -433,7 +433,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Generator compatto",
     "summary": "Il generator è stato reso più leggibile con navigazione rapida, sezioni richiudibili e anteprima sticky.",
@@ -451,7 +451,7 @@
     "fixed": []
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Un solo premium",
     "summary": "La sezione Overlay Premium ora parte con un solo stile: Cyber Red Elite.",
@@ -469,7 +469,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Premium clean start",
     "summary": "Aggiunta una sezione Overlay Premium pulita, senza riutilizzare gli stili sperimentali precedenti.",
@@ -485,7 +485,7 @@
     "fixed": []
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Shop rimosso",
     "summary": "Rimossa tutta la parte relativa allo Shop/Stili Plus per tornare a un generator più pulito e stabile.",
@@ -502,7 +502,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Cyber Red premium v5",
     "summary": "Cyber Red ha una nuova base più compatta, densa e con score completamente dentro il pannello.",
@@ -521,7 +521,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Cyber Red premium v4",
     "summary": "Nuova base Cyber Red più piena, più vendibile e con score riportato dentro il pannello.",
@@ -541,7 +541,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Cyber Red premium base",
     "summary": "Nuova base grafica Cyber Red più elaborata, con thumbnail Shop coerente e layout config aggiornato.",
@@ -559,7 +559,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Preview reale bloccata",
     "summary": "Generator e Test Lab vengono forzati a mostrare l'overlay reale via iframe con dimensioni fisse.",
@@ -577,7 +577,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Preview e motore Plus ripuliti",
     "summary": "Rimosse le sovrapposizioni dei vecchi renderer Plus e resa la preview più fedele al render reale.",
@@ -596,7 +596,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Image-base engine",
     "summary": "Nuovo sistema per gli overlay Plus: immagini base + configurazione layout + testi dinamici.",
@@ -614,7 +614,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Cyber Red true RankTag base",
     "summary": "Cyber Red è stato rifatto con una base grafica progettata direttamente per il formato RankTag finale.",
@@ -631,7 +631,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Cyber Red alignment",
     "summary": "Rifinito il posizionamento dei contenuti dinamici sopra la base Cyber Red.",
@@ -647,7 +647,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-25",
     "title": "Cyber Red base asset",
     "summary": "Cyber Red non viene più costruito solo con CSS: ora usa una base grafica PNG pulita con contenuti dinamici sopra.",
@@ -665,7 +665,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Cyber Red premium rebuild",
     "summary": "Cyber Red ora usa un renderer dedicato con layout più vicino alla reference: denso, stratificato e meno generico.",
@@ -685,7 +685,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Cyber Red compatto",
     "summary": "Cyber Red Impact è stato ridisegnato come strip premium più bassa e più vicina alla cover dello Shop.",
@@ -701,7 +701,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Cyber Red rebuild",
     "summary": "Cyber Red Impact è stato ricostruito come layout più aggressivo e vicino alla direzione premium.",
@@ -721,7 +721,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Test Lab interno",
     "summary": "Aggiunta un'area test per provare modifiche e stili prima del rilascio pubblico.",
@@ -737,7 +737,7 @@
     "fixed": []
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Plus layouts veri",
     "summary": "Gli stili Plus sono stati ricostruiti come layout veri in HTML/CSS, senza usare immagini come overlay finale.",
@@ -758,7 +758,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Stili Plus corretti",
     "summary": "Gli stili Plus ora si applicano davvero e usano lo stemma rank selezionato.",
@@ -774,7 +774,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Anteprime Plus migliorate",
     "summary": "Le card Shop ora mostrano anteprime più vicine agli stili premium e la preview live applica correttamente lo stile selezionato.",
@@ -791,7 +791,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Shop Plus e nuovi layout",
     "summary": "Aggiunta la sezione Shop Plus con quattro stili premium selezionabili e visibili in anteprima.",
@@ -808,7 +808,7 @@
     "fixed": []
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Verifica rank manuale più precisa",
     "summary": "La modalità manuale ora controlla anche se rank e punti inseriti corrispondono ai dati pubblici quando disponibili.",
@@ -826,7 +826,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Rank più leggibili",
     "summary": "I livelli dei rank ora usano numeri normali invece dei numeri romani.",
@@ -841,7 +841,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Aggiornamenti più chiari",
     "summary": "La sezione aggiornamenti ora è pensata per gli utenti, senza dettagli tecnici.",
@@ -858,7 +858,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Pagina aggiornamenti",
     "summary": "Aggiunta una sezione dove seguire le novità di RankTag.",
@@ -873,7 +873,7 @@
     "fixed": []
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Generator più pulito e controllo rank",
     "summary": "Pulita la schermata del generator e aggiunto un controllo per evitare rank manuali non corretti.",
@@ -891,7 +891,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Account online",
     "summary": "Ora puoi accedere con nickname e password e ritrovare i tuoi overlay salvati.",
@@ -909,7 +909,7 @@
     "fixed": []
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Prime funzioni profilo",
     "summary": "Prima versione con area profilo e progetti salvabili.",
@@ -927,7 +927,7 @@
     ]
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Kit di lancio",
     "summary": "Aggiunta un'area interna con controlli e testi pronti per il lancio.",
@@ -944,7 +944,7 @@
     "fixed": []
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Homepage migliorata",
     "summary": "La pagina iniziale è stata resa più chiara e professionale.",
@@ -961,7 +961,7 @@
     "fixed": []
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Nuovi temi",
     "summary": "Aggiunti più stili pronti per personalizzare l'overlay.",
@@ -977,7 +977,7 @@
     "fixed": []
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Generator più semplice",
     "summary": "Il generator è stato reso più facile da usare.",
@@ -995,7 +995,7 @@
     "fixed": []
   },
   {
-    "version": "86",
+    "version": "95",
     "date": "2026-05-24",
     "title": "Nasce RankTag",
     "summary": "Prima versione con nome, homepage e identità del progetto.",

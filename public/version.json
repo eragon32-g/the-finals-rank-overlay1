@@ -1,8 +1,8 @@
 {
-  "version": "94",
+  "version": "95",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V94: sostituito lo sfondo premium VoidRage con versione più pulita/ritagliata, riducendo nero extra sui contorni."
+  "note": "V95: rimosso il fondo bianco dal background premium, ora trasparente."
 }

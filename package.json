@@ -1,8 +1,8 @@
 {
   "name": "ranktag-finals-overlay-v94-clean-premium-bg",
-  "version": "9.6.0",
+  "version": "95".6.0",
   "private": true,
-  "description": "RankTag V94 replaces premium background with cleaner cropped VoidRage asset",
+  "description": "RankTag V95 replaces premium background with cleaner cropped VoidRage asset",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""
