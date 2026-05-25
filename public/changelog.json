@@ -1,5 +1,21 @@
 [
   {
+    "version": "72",
+    "date": "2026-05-25",
+    "title": "Cyber Red Elite rifinito",
+    "summary": "Primo premium rifinito con base dedicata, preview più chiara e stesso layout tra anteprima e output finale.",
+    "improved": [
+      "Cyber Red Elite aggiornato con testi dinamici più leggibili",
+      "Card premium con anteprima statica più chiara e completa",
+      "Anteprima live centrata e coerente col premium selezionato",
+      "Gestione migliore dei nomi lunghi"
+    ],
+    "fixed": [
+      "Preview premium tagliata nella card",
+      "Possibili disallineamenti del premium nella live preview"
+    ]
+  },
+  {
     "version": "71",
     "date": "2026-05-25",
     "title": "Ripristino layout generator",

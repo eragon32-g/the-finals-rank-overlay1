@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V71 generator real-preview lock */
+/* RankTag V72 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -611,7 +611,7 @@ iframe#preview,
 
 
 
-/* RankTag V71 - layout rework: account full width, settings grid, preview bottom */
+/* RankTag V72 - layout rework: account full width, settings grid, preview bottom */
 .layout {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -769,7 +769,7 @@ aside.panel {
 
 
 
-/* RankTag V71 - compact generator, account unchanged */
+/* RankTag V72 - compact generator, account unchanged */
 body {
   padding: 16px !important;
 }
@@ -1047,7 +1047,7 @@ body {
 
 
 
-/* RankTag V71 - order, compact alignment and premium preview fix */
+/* RankTag V72 - order, compact alignment and premium preview fix */
 .settings-panel {
   grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
   align-items: stretch !important;
@@ -1163,7 +1163,7 @@ body {
 
 
 
-/* RankTag V71 - repaired generator layout */
+/* RankTag V72 - repaired generator layout */
 .settings-panel {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -1223,6 +1223,55 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
   .settings-panel { grid-template-columns: 1fr !important; }
 }
 
+
+
+/* RankTag V72 - premium polish */
+#livePreviewSection .preview-box {
+  overflow: hidden !important;
+  padding: 10px 0 !important;
+}
+#livePreviewSection iframe#preview,
+#livePreviewSection iframe#previewFrame,
+#previewFrame {
+  display: block !important;
+  margin: 0 auto !important;
+}
+#overlayPremium .premium-one-card {
+  padding: 16px !important;
+  border-radius: 20px !important;
+}
+#overlayPremium .premium-live-head {
+  align-items: flex-start !important;
+}
+#overlayPremium .premium-preview-real {
+  width: 100% !important;
+  min-height: 150px !important;
+  padding: 12px 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: linear-gradient(180deg, rgba(10,11,16,.9), rgba(5,7,12,.95)) !important;
+}
+#overlayPremium .premium-preview-real img {
+  width: min(100%, 470px) !important;
+  height: auto !important;
+  display: block !important;
+  object-fit: contain !important;
+}
+#overlayPremium .premium-copy-title {
+  max-width: 520px;
+}
+#overlayPremium .premium-actions {
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  margin-top: 12px !important;
+}
+#overlayPremium .premium-selected-note {
+  margin-top: 12px !important;
+}
+
 </style>
 </head>
 <body>
@@ -1232,7 +1281,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V71</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V72</div></div>
     </header>
 
     <div class="layout">
@@ -1390,12 +1439,12 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 <div class="premium-live-head">
 <div>
 <strong>Cyber Red Elite</strong>
-<div class="premium-copy-title">Primo premium ufficiale, costruito da zero.</div>
+<div class="premium-copy-title">Primo premium ufficiale: base grafica dedicata, testi dinamici e stemma rank ufficiale.</div>
 </div>
-<span class="premium-status-pill">In sviluppo</span>
+<span class="premium-status-pill">Beta</span>
 </div>
-<div aria-label="Anteprima Cyber Red Elite" class="premium-preview-real"></div>
-<p>Layout premium rosso/aggressivo con base grafica dedicata, stemma rank ufficiale dinamico e anteprima reale.</p>
+<div aria-label="Anteprima Cyber Red Elite" class="premium-preview-real"><img id="premiumPreviewImage" src="/assets/premium/cyber-red-elite-thumb-card.png?v=72" alt="Anteprima Cyber Red Elite" /></div>
+<p>Layout premium rosso/aggressivo costruito da zero. Preview live e output finale usano lo stesso stile Cyber Red Elite.</p>
 <div class="premium-actions">
 <button class="btn secondary small" id="previewCyberRedElite" type="button">Anteprima</button>
 <button class="btn small" id="useCyberRedElite" type="button">Usa premium</button>
@@ -1787,10 +1836,11 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
       const note = get("premiumSelectedNote");
       if (note) {
         note.textContent = finalStyle === "cyber-red-elite"
-          ? "Premium attivo: Cyber Red Elite. L’anteprima live usa il nuovo layout premium."
+          ? "Premium attivo: Cyber Red Elite. Anteprima live e link finale usano lo stesso layout premium."
           : "Premium attivo: nessuno. Al momento stai usando l’overlay standard.";
       }
       await buildLink();
+      document.getElementById("livePreviewSection")?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
     function syncPremiumSelection() {
@@ -1800,7 +1850,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
       const note = get("premiumSelectedNote");
       if (note) {
         note.textContent = style === "cyber-red-elite"
-          ? "Premium attivo: Cyber Red Elite. L’anteprima live usa il nuovo layout premium."
+          ? "Premium attivo: Cyber Red Elite. Anteprima live e link finale usano lo stesso layout premium."
           : "Premium attivo: nessuno. Al momento stai usando l’overlay standard.";
       }
     }
@@ -2038,7 +2088,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
   </script>
 
 <script>
-/* RankTag V71 force real iframe preview */
+/* RankTag V72 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');

@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "71";
+const OVERLAY_VERSION = "72";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -610,33 +610,183 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag V53 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "71");
+document.documentElement.setAttribute("data-ranktag-version", "72");
 
 
-/* RankTag V63 - Cyber Red Elite premium overlay */
-(function rankTagCyberRedEliteV63(){
+
+/* RankTag V72 - Cyber Red Elite premium overlay */
+(function rankTagCyberRedEliteV72(){
   if (themeStyle !== 'cyber-red-elite') return;
 
   function ensureStyle(){
-    if (document.getElementById('rt63-elite-style')) return;
+    if (document.getElementById('rt72-elite-style')) return;
     const style = document.createElement('style');
-    style.id = 'rt63-elite-style';
+    style.id = 'rt72-elite-style';
     style.textContent = `
-      #badge.rt63-elite-root, .rt63-elite-root { width:470px; height:160px; position:relative; overflow:visible; }
-      .rt63-elite-card { position:relative; width:470px; height:160px; overflow:hidden; background:transparent; }
-      .rt63-elite-base { position:absolute; inset:0; width:470px; height:160px; display:block; object-fit:cover; }
-      .rt63-elite-grid { position:absolute; inset:0; pointer-events:none; }
-      .rt63-elite-shine { position:absolute; inset:-10px auto -10px -120px; width:120px; transform:skewX(-20deg); background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.16), rgba(255,255,255,0)); animation: rt63EliteShine 4.2s linear infinite; opacity:.75; }
-      @keyframes rt63EliteShine { 0% { left:-150px; } 100% { left:540px; } }
-      .rt63-elite-emblem-wrap { position:absolute; left:17px; top:29px; width:70px; height:82px; display:flex; align-items:center; justify-content:center; filter: drop-shadow(0 0 10px rgba(255,66,23,.22)); }
-      .rt63-elite-emblem { width:64px; height:64px; object-fit:contain; }
-      .rt63-elite-player { position:absolute; left:100px; top:26px; width:220px; color:#f8f5f3; font-weight:1000; font-size:18px; line-height:1; letter-spacing:-0.3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-transform:uppercase; text-shadow:0 2px 10px rgba(0,0,0,.45); }
-      .rt63-elite-rank-label { position:absolute; left:103px; top:79px; color:rgba(174,245,255,.66); font-size:9px; font-weight:900; letter-spacing:1px; text-transform:uppercase; }
-      .rt63-elite-rank { position:absolute; left:103px; top:91px; width:150px; color:#4fe5ff; font-weight:1000; font-size:16px; line-height:1; letter-spacing:0.2px; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-      .rt63-elite-score-label { position:absolute; right:39px; top:72px; width:55px; color:#ffb49a; font-size:10px; font-weight:900; text-align:right; letter-spacing:1px; text-transform:uppercase; }
-      .rt63-elite-score { position:absolute; right:38px; top:86px; width:86px; color:#ffffff; font-weight:1000; font-size:20px; line-height:1; text-align:right; text-shadow:0 2px 10px rgba(0,0,0,.4); }
-      .rt63-elite-brand { position:absolute; right:46px; top:30px; max-width:86px; color:#ff6f4d; font-size:10px; font-weight:1000; text-transform:uppercase; letter-spacing:1px; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-      .rt63-elite-chip { position:absolute; right:28px; top:25px; width:104px; height:24px; border-radius:8px; border:1px solid rgba(255,72,35,.28); background:linear-gradient(90deg, rgba(91,13,13,.18), rgba(255,42,23,.16)); }
+      #badge.rt72-elite-root, .rt72-elite-root {
+        width: 470px;
+        height: 160px;
+        position: relative;
+        overflow: hidden;
+      }
+      .rt72-elite-card {
+        position: relative;
+        width: 470px;
+        height: 160px;
+        overflow: hidden;
+        background: transparent;
+      }
+      .rt72-elite-base {
+        position: absolute;
+        inset: 0;
+        width: 470px;
+        height: 160px;
+        display: block;
+        object-fit: cover;
+      }
+      .rt72-elite-layer { position:absolute; inset:0; }
+      .rt72-elite-scan {
+        position:absolute;
+        inset:0;
+        background: repeating-linear-gradient(180deg, rgba(255,255,255,0.03) 0 1px, rgba(255,255,255,0) 1px 4px);
+        opacity:.14;
+        mix-blend-mode: screen;
+        pointer-events:none;
+      }
+      .rt72-elite-shine {
+        position:absolute;
+        top:-15px;
+        left:-120px;
+        width:110px;
+        height:190px;
+        transform: skewX(-18deg);
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.22), rgba(255,255,255,0));
+        opacity:.55;
+        animation: rt72EliteShine 4.8s linear infinite;
+        pointer-events:none;
+      }
+      @keyframes rt72EliteShine {
+        0% { transform: translateX(0) skewX(-18deg); }
+        100% { transform: translateX(610px) skewX(-18deg); }
+      }
+      .rt72-elite-emblem-wrap {
+        position:absolute;
+        left:20px;
+        top:38px;
+        width:72px;
+        height:72px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        filter: drop-shadow(0 10px 18px rgba(0,0,0,.42)) drop-shadow(0 0 8px rgba(255,72,35,.22));
+      }
+      .rt72-elite-emblem {
+        width:66px;
+        height:66px;
+        object-fit:contain;
+      }
+      .rt72-elite-player {
+        position:absolute;
+        left:104px;
+        top:24px;
+        width:224px;
+        color:#f8f4f2;
+        font-weight:1000;
+        font-size:18px;
+        line-height:1;
+        letter-spacing:-0.4px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        text-transform:uppercase;
+        text-shadow:0 2px 10px rgba(0,0,0,.50);
+      }
+      .rt72-elite-rank-label {
+        position:absolute;
+        left:109px;
+        top:82px;
+        color:rgba(145,237,255,.78);
+        font-size:9px;
+        font-weight:900;
+        letter-spacing:1.2px;
+        text-transform:uppercase;
+      }
+      .rt72-elite-rank {
+        position:absolute;
+        left:109px;
+        top:94px;
+        width:166px;
+        color:#48e7ff;
+        font-weight:1000;
+        font-size:16px;
+        line-height:1;
+        letter-spacing:0.15px;
+        text-transform:uppercase;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        text-shadow:0 2px 10px rgba(0,0,0,.38);
+      }
+      .rt72-elite-score-label {
+        position:absolute;
+        right:44px;
+        top:78px;
+        width:58px;
+        color:#ffb18f;
+        font-size:9px;
+        font-weight:900;
+        text-align:right;
+        letter-spacing:1.3px;
+        text-transform:uppercase;
+      }
+      .rt72-elite-score {
+        position:absolute;
+        right:42px;
+        top:92px;
+        width:88px;
+        color:#ffffff;
+        font-weight:1000;
+        font-size:19px;
+        line-height:1;
+        text-align:right;
+        text-shadow:0 2px 10px rgba(0,0,0,.45);
+      }
+      .rt72-elite-brand-chip {
+        position:absolute;
+        right:34px;
+        top:26px;
+        width:88px;
+        height:24px;
+        border-radius:7px;
+        border:1px solid rgba(255,72,35,.22);
+        background: linear-gradient(90deg, rgba(82,10,10,.10), rgba(255,42,23,.16));
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+      }
+      .rt72-elite-brand {
+        position:absolute;
+        right:39px;
+        top:32px;
+        width:78px;
+        color:#ff714a;
+        font-size:9px;
+        font-weight:1000;
+        text-transform:uppercase;
+        letter-spacing:1.35px;
+        text-align:center;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+      .rt72-elite-corner-glow {
+        position:absolute;
+        right:16px;
+        top:22px;
+        width:42px;
+        height:42px;
+        border-radius:10px;
+        background: radial-gradient(circle, rgba(255,72,35,.20), rgba(255,72,35,0) 70%);
+        filter: blur(0.5px);
+      }
     `;
     document.head.appendChild(style);
   }
@@ -645,40 +795,59 @@ document.documentElement.setAttribute("data-ranktag-version", "71");
     return String(value ?? '').replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   }
 
-  function parseScore(){
-    const raw = String(scoreText?.textContent || '').trim();
-    const match = raw.match(/^([^:]+):\s*([^#▲▼]+).*/i);
-    return {
-      label: (match?.[1] || params.get('scoreLabel') || 'ELO').trim(),
-      value: (match?.[2] || params.get('rankScore') || '0').trim()
-    };
+  function fitPlayerText(text) {
+    const raw = String(text || 'NOMEPLAYER#1234').trim().toUpperCase();
+    const len = raw.length;
+    if (len <= 14) return { text: raw, size: 18 };
+    if (len <= 18) return { text: raw, size: 17 };
+    if (len <= 22) return { text: raw, size: 15.5 };
+    return { text: raw, size: 14 };
   }
 
-  async function renderElite(){
+  function fitRankText(text) {
+    const raw = normalizeRankDisplay(text).toUpperCase();
+    const len = raw.length;
+    if (len <= 12) return { text: raw, size: 16 };
+    if (len <= 16) return { text: raw, size: 14.5 };
+    return { text: raw, size: 13 };
+  }
+
+  function parseScore() {
+    const raw = String(scoreText?.textContent || '').trim();
+    const match = raw.match(/^([^:]+):\s*([^#▲▼]+).*/i);
+    const label = (match?.[1] || params.get('scoreLabel') || 'ELO').trim().toUpperCase();
+    const value = compactNumber(match?.[2] || params.get('rankScore') || '0');
+    return { label, value };
+  }
+
+  async function renderElite() {
     ensureStyle();
     const root = badge || document.getElementById('badge');
     if (!root) return;
-    const branding = await loadLockedBranding().catch(()=>({brandText:'RANKTAG'}));
-    const player = String(nameText?.textContent || getPlayerFromUrl() || 'NomePlayer#1234').trim();
-    const rank = String(rankText?.textContent || `${params.get('league')||'Platinum'} ${params.get('division')||'1'}`).trim().toUpperCase();
+    const branding = await loadLockedBranding().catch(() => ({ brandText: 'RANKTAG' }));
+    const playerFit = fitPlayerText(nameText?.textContent || getPlayerFromUrl() || 'NomePlayer#1234');
+    const rankFit = fitRankText(rankText?.textContent || `${params.get('league') || 'Platinum'} ${params.get('division') || '1'}`);
     const score = parseScore();
     const emblem = badgeImage?.getAttribute('src') || getOfficialBadgeUrl({ badgeFile: params.get('badgeFile') || 'platinum-1' });
     const brand = String(branding?.brandText || 'RANKTAG').trim().toUpperCase();
 
-    root.className = 'badge rt63-elite-root';
+    root.className = 'badge rt72-elite-root';
+    root.setAttribute('data-theme-style', 'cyber-red-elite');
     root.innerHTML = `
-      <div class="rt63-elite-card">
-        <img class="rt63-elite-base" src="/assets/premium/cyber-red-elite-base.png?v=${OVERLAY_VERSION}" alt="Cyber Red Elite" />
-        <div class="rt63-elite-grid">
-          <div class="rt63-elite-shine"></div>
-          <div class="rt63-elite-emblem-wrap"><img class="rt63-elite-emblem" src="${esc(emblem)}" alt="rank emblem" /></div>
-          <div class="rt63-elite-player">${esc(player)}</div>
-          <div class="rt63-elite-rank-label">RANK</div>
-          <div class="rt63-elite-rank">${esc(rank)}</div>
-          <div class="rt63-elite-chip"></div>
-          <div class="rt63-elite-brand">${esc(brand)}</div>
-          <div class="rt63-elite-score-label">${esc(score.label)}</div>
-          <div class="rt63-elite-score">${esc(score.value)}</div>
+      <div class="rt72-elite-card">
+        <img class="rt72-elite-base" src="/assets/premium/cyber-red-elite-base.png?v=${OVERLAY_VERSION}" alt="Cyber Red Elite" />
+        <div class="rt72-elite-layer">
+          <div class="rt72-elite-corner-glow"></div>
+          <div class="rt72-elite-emblem-wrap"><img class="rt72-elite-emblem" src="${esc(emblem)}" alt="rank emblem" /></div>
+          <div class="rt72-elite-player" style="font-size:${playerFit.size}px">${esc(playerFit.text)}</div>
+          <div class="rt72-elite-rank-label">RANK</div>
+          <div class="rt72-elite-rank" style="font-size:${rankFit.size}px">${esc(rankFit.text)}</div>
+          <div class="rt72-elite-brand-chip"></div>
+          <div class="rt72-elite-brand">${esc(brand)}</div>
+          <div class="rt72-elite-score-label">${esc(score.label)}</div>
+          <div class="rt72-elite-score">${esc(score.value)}</div>
+          <div class="rt72-elite-scan"></div>
+          <div class="rt72-elite-shine"></div>
         </div>
       </div>`;
   }
@@ -692,12 +861,12 @@ document.documentElement.setAttribute("data-ranktag-version", "71");
   const originalSetLoading = setLoading;
   setLoading = function(...args){
     originalSetLoading.apply(this, args);
-    setTimeout(renderElite, 50);
+    setTimeout(renderElite, 40);
   };
 
   window.addEventListener('load', () => {
-    setTimeout(renderElite, 120);
-    setTimeout(renderElite, 480);
-    setTimeout(renderElite, 1000);
+    setTimeout(renderElite, 100);
+    setTimeout(renderElite, 420);
+    setTimeout(renderElite, 900);
   });
 })();
