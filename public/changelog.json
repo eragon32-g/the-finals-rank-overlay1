@@ -1,5 +1,22 @@
 [
   {
+    "version": "62",
+    "date": "2026-05-25",
+    "title": "Premium fuori dalla Guida",
+    "summary": "La sezione Premium ora è separata correttamente dalla Guida rapida.",
+    "added": [],
+    "improved": [
+      "Navigazione compatta meno invasiva",
+      "Sezione Premium come blocco indipendente",
+      "Layout più stabile"
+    ],
+    "fixed": [
+      "Premium era stato inserito dentro il titolo della Guida",
+      "Guida e Premium apparivano affiancati",
+      "Il wrapping automatico rompeva il DOM"
+    ]
+  },
+  {
     "version": "61",
     "date": "2026-05-25",
     "title": "Fix layout generator",

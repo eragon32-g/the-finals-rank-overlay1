@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V61 generator real-preview lock */
+/* RankTag V62 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -586,7 +586,7 @@ iframe#preview,
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V61</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V62</div></div>
     </header>
 
     <div class="layout">
@@ -740,44 +740,37 @@ iframe#preview,
           </div>
         </div>
 
+        <div id="overlayPremium" class="section premium-section">
+          <div class="section-title">
+            <h2>5. Overlay Premium</h2>
+            <span class="tag">1 alla volta</span>
+          </div>
+
+          <div class="premium-one-card">
+            <div class="premium-one-top">
+              <strong>Cyber Red Elite</strong>
+              <span class="premium-status-pill">In sviluppo</span>
+            </div>
+
+            <div class="premium-one-preview">Premium da creare</div>
+
+            <p>
+              Primo overlay premium nuovo da zero, separato dallo standard.
+              Niente vecchi esperimenti: lo costruiamo solo quando la struttura sarà chiara e semplice.
+            </p>
+          </div>
+
+          <div class="generator-compact-note">
+            Quando Cyber Red Elite sarà stabile, bello e funzionale, useremo lo stesso metodo per creare gli altri.
+          </div>
+        </div>
+
+
+
 
         <div id="guide" class="section">
           <div class="section-title">
-            
-
-
-<section class="premium-clean-section" id="overlayPremium">
-  <div class="premium-clean-header">
-    <h2>Overlay Premium</h2>
-    <span class="premium-clean-badge">1 alla volta</span>
-  </div>
-
-  <p class="premium-clean-note">
-    Partiamo con un solo premium. Quando sarà stabile, bello e funzionale, creeremo gli altri.
-  </p>
-
-  <div class="premium-one-card">
-    <div class="premium-one-top">
-      <strong>Cyber Red Elite</strong>
-      <span class="premium-status-pill">In sviluppo</span>
-    </div>
-
-    <div class="premium-one-preview">Premium da creare</div>
-
-    <p>
-      Primo overlay premium nuovo da zero, separato dallo standard. Niente vecchi esperimenti:
-      lo costruiamo solo quando la struttura sarà chiara e semplice.
-    </p>
-  </div>
-
-  <div class="generator-compact-note">
-    Prossimo step: semplificare ancora le personalizzazioni in schede più chiare.
-  </div>
-</section>
-
-
-
-<h2>6. Guida rapida</h2>
+            <h2>6. Guida rapida</h2>
             <span class="tag">OBS / TikTok</span>
           </div>
           <div class="guide-grid">
@@ -830,7 +823,7 @@ iframe#preview,
 
 
     const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV61cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV62cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentProfile = null;
@@ -1392,7 +1385,7 @@ iframe#preview,
   </script>
 
 <script>
-/* RankTag V61 force real iframe preview */
+/* RankTag V62 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');
@@ -1444,7 +1437,7 @@ iframe#preview,
 </script>
 
 <script>
-/* RankTag V61 - compact generator UI controller */
+/* RankTag V62 - compact generator UI controller */
 (function(){
   function ready(fn){
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
@@ -1564,6 +1557,74 @@ iframe#preview,
     wrapSections();
     simplifyPremiumCopy();
     setTimeout(() => { createNav(); wrapSections(); simplifyPremiumCopy(); }, 600);
+  });
+})();
+</script>
+
+
+<script>
+/* RankTag V62 - safe compact nav only */
+(function(){
+  function ready(fn){
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+    else fn();
+  }
+
+  function textOf(el){
+    return (el && el.textContent || "").replace(/\s+/g, " ").trim();
+  }
+
+  function mainPanel(){
+    return document.querySelector(".layout > .panel, main .panel, .left-panel, .generator-panel, main");
+  }
+
+  function createNav(){
+    if (document.querySelector(".generator-compact-nav")) return;
+    const host = mainPanel();
+    if (!host) return;
+
+    const nav = document.createElement("div");
+    nav.className = "generator-compact-nav";
+    nav.innerHTML = `
+      <button type="button" data-target="#accountSection">Account</button>
+      <button type="button" data-text="Dati">Dati rank</button>
+      <button type="button" data-text="Aspetto">Aspetto</button>
+      <button type="button" data-target="#overlayPremium">Premium</button>
+      <button type="button" data-target="#guide">Guida</button>
+      <button type="button" class="primary-action" data-action="copy">Copia link</button>
+    `;
+
+    const note = document.createElement("div");
+    note.className = "generator-ui-note";
+    note.textContent = "Interfaccia più compatta: usa i pulsanti rapidi per saltare alla sezione che ti serve.";
+
+    host.insertBefore(note, host.firstChild);
+    host.insertBefore(nav, note);
+
+    nav.addEventListener("click", (event) => {
+      const btn = event.target.closest("button");
+      if (!btn) return;
+
+      if (btn.dataset.action === "copy") {
+        const copyBtn = [...document.querySelectorAll("button")].find((b) => /copia/i.test(textOf(b)));
+        if (copyBtn) copyBtn.click();
+        return;
+      }
+
+      let target = null;
+      if (btn.dataset.target) target = document.querySelector(btn.dataset.target);
+      if (!target && btn.dataset.text) {
+        const wanted = btn.dataset.text.toLowerCase();
+        target = [...document.querySelectorAll(".section")].find((s) => textOf(s).toLowerCase().includes(wanted));
+      }
+
+      if (target) target.scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  }
+
+  ready(() => {
+    createNav();
+    setTimeout(createNav, 500);
   });
 })();
 </script>

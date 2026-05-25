@@ -1,8 +1,8 @@
 {
-  "version": "61",
+  "version": "62",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Fix layout generator: Premium e Guida non vanno più affiancati; sezione Premium ristilizzata."
+  "note": "Premium spostato fuori dalla Guida; rimosso wrapping JS che rompeva il layout."
 }

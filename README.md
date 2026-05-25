@@ -1,12 +1,12 @@
-# RankTag for THE FINALS - V61
+# RankTag for THE FINALS - V62
 
-V61 corregge il layout del generator.
+V62 corregge il problema layout della sezione Premium.
 
-## Fix principali
-- Overlay Premium non viene più affiancato alla Guida
-- La card Cyber Red Elite torna stilizzata
-- Guida rapida separata correttamente
-- Navigazione compatta mantenuta
+## Fix
+- Overlay Premium spostato fuori dalla Guida rapida
+- Guida rapida torna separata
+- Rimosso il wrapping automatico che rompeva la struttura
+- Navigazione compatta mantenuta ma meno invasiva
 
 ## Nota
-Questa versione corregge l'interfaccia prima di passare alla creazione del vero premium.
+Questa versione serve a stabilizzare l'interfaccia prima di costruire Cyber Red Elite.
