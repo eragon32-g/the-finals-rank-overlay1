@@ -2386,3 +2386,153 @@ html, body {
   78% { transform: translateX(145%); opacity: .55; }
 }
 
+
+
+/* RankTag V49 - Cyber Red asset alignment */
+.badge.rt49-root {
+  width: 470px !important;
+  height: 157px !important;
+  min-height: 157px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.rt49-cyber {
+  position: relative;
+  width: 470px;
+  height: 157px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.rt49-base {
+  position: absolute;
+  inset: 0;
+  width: 470px;
+  height: 157px;
+  object-fit: contain;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rt49-sheen {
+  position: absolute;
+  left: 118px;
+  top: 22px;
+  width: 230px;
+  height: 96px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .38;
+  background: linear-gradient(108deg, transparent 0%, rgba(255,255,255,.14) 48%, transparent 58%);
+  transform: translateX(-160%);
+  animation: rt49sheen 6.2s ease-in-out infinite;
+}
+
+.rt49-emblemWrap {
+  position: absolute;
+  left: 21px;
+  top: 36px;
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+}
+
+.rt49-emblem {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 8px 10px rgba(0,0,0,.78))
+    drop-shadow(0 0 8px rgba(255,255,255,.05));
+}
+
+.rt49-player {
+  position: absolute;
+  left: 139px;
+  top: 36px;
+  width: 205px;
+  z-index: 3;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 24px;
+  line-height: .9;
+  letter-spacing: .9px;
+  text-transform: uppercase;
+  color: #f7f8fb;
+  text-shadow: 0 2px 0 rgba(0,0,0,.84), 0 0 10px rgba(255,42,23,.22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt49-rankBlock {
+  position: absolute;
+  left: 141px;
+  top: 88px;
+  width: 150px;
+  z-index: 3;
+}
+
+.rt49-rankLabel,
+.rt49-scoreLabel {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.rt49-rankLabel {
+  color: rgba(255,255,255,.52);
+}
+
+.rt49-rankValue {
+  margin-top: 3px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: .95;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: #72f0ff;
+  text-shadow: 0 0 10px rgba(114,240,255,.24);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt49-scoreBlock {
+  position: absolute;
+  left: 366px;
+  top: 74px;
+  width: 72px;
+  z-index: 3;
+  text-align: center;
+}
+
+.rt49-scoreLabel {
+  color: #ff5a47;
+}
+
+.rt49-scoreValue {
+  margin-top: 4px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 20px;
+  line-height: .9;
+  letter-spacing: .3px;
+  color: #fff;
+  text-shadow: 0 2px 0 rgba(0,0,0,.72);
+  white-space: nowrap;
+}
+
+@keyframes rt49sheen {
+  0%, 62%, 100% { transform: translateX(-160%); opacity: .16; }
+  78% { transform: translateX(150%); opacity: .46; }
+}
+

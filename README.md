@@ -1,13 +1,12 @@
-# RankTag for THE FINALS - V48
+# RankTag for THE FINALS - V49
 
-V48 introduce il nuovo metodo Plus: base grafica PNG + contenuti dinamici.
+V49 rifinisce Cyber Red su base grafica PNG.
 
-## Incluso
-- Cyber Red completo con base grafica pulita
-- stemma ufficiale dinamico
-- nome player dinamico
-- rank dinamico
-- punti dinamici
+## Miglioramenti
+- Test Lab aggiornato a V49
+- Stemma più grande e centrato meglio
+- Player spostato e ridimensionato
+- Rank e score più coerenti con la base grafica
 
-## Nota
-Usare prima su `test-lab`.
+## Uso
+Caricare solo su `test-lab`.

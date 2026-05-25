@@ -1,5 +1,21 @@
 [
   {
+    "version": "49",
+    "date": "2026-05-25",
+    "title": "Cyber Red alignment",
+    "summary": "Rifinito il posizionamento dei contenuti dinamici sopra la base Cyber Red.",
+    "added": [],
+    "improved": [
+      "Player più centrato nel pannello centrale",
+      "Rank e score più allineati alla base grafica",
+      "Stemma leggermente più grande",
+      "Tag Test Lab aggiornato"
+    ],
+    "fixed": [
+      "Il Test Lab mostrava ancora una vecchia etichetta versione"
+    ]
+  },
+  {
     "version": "48",
     "date": "2026-05-25",
     "title": "Cyber Red base asset",

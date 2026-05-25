@@ -1,8 +1,8 @@
 {
-  "version": "48",
+  "version": "49",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Cyber Red now uses a clean PNG base asset with dynamic emblem, player, rank and score."
+  "note": "Cyber Red asset base alignment pass: improved text, emblem and score positioning."
 }

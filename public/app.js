@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "48";
+const OVERLAY_VERSION = "49";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -770,6 +770,87 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
   window.addEventListener('load', () => {
     setTimeout(renderCyberAsset, 200);
     setTimeout(renderCyberAsset, 700);
+  });
+})();
+
+
+
+/* RankTag V49 - Cyber Red asset alignment override */
+(function rankTagCyberRedAssetAlignV49() {
+  const q = new URLSearchParams(window.location.search);
+  if (String(q.get("themeStyle") || "").toLowerCase() !== "cyber-red") return;
+
+  function esc(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (m) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[m]));
+  }
+
+  function parseScoreParts(text) {
+    const raw = String(text || "").trim();
+    const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
+    if (!match) return { label: String(q.get("scoreLabel") || "ELO").trim(), value: raw || "-", extra: "" };
+    return {
+      label: String(match[1] || q.get("scoreLabel") || "ELO").trim(),
+      value: String(match[2] || "-").trim(),
+      extra: String(match[3] || "").trim()
+    };
+  }
+
+  function readState() {
+    const rank = normalizeRankDisplay(rankText?.textContent || `${q.get("league") || "Platinum"} ${q.get("division") || "1"}`).toUpperCase();
+    const player = String(nameText?.textContent || getPlayerFromUrl() || q.get("player") || "NomePlayer#1234").trim();
+    const score = parseScoreParts(scoreText?.textContent || `${q.get("scoreLabel") || "ELO"}: ${q.get("rankScore") || "37705"}`);
+    const emblemSrc = badgeImage?.getAttribute("src") || buildBadgeImageUrl(q.get("badgeFile") || "platinum-1");
+    return { rank, player, score, emblemSrc };
+  }
+
+  function renderCyberAsset() {
+    const root = badge || document.getElementById("badge");
+    if (!root) return;
+
+    const state = readState();
+    root.className = "badge rt49-root";
+    root.setAttribute("data-theme-style", "cyber-red");
+    document.documentElement.dataset.themeStyle = "cyber-red";
+
+    root.innerHTML = `
+      <div class="rt49-cyber">
+        <img class="rt49-base" src="/assets/plus/cyber-red-base.png" alt="Cyber Red base" />
+        <div class="rt49-sheen"></div>
+
+        <div class="rt49-emblemWrap">
+          <img class="rt49-emblem" src="${esc(state.emblemSrc)}" alt="rank emblem" />
+        </div>
+
+        <div class="rt49-player" title="${esc(state.player)}">${esc(state.player)}</div>
+
+        <div class="rt49-rankBlock">
+          <div class="rt49-rankLabel">RANK</div>
+          <div class="rt49-rankValue">${esc(state.rank)}</div>
+        </div>
+
+        <div class="rt49-scoreBlock">
+          <div class="rt49-scoreLabel">${esc(state.score.label)}</div>
+          <div class="rt49-scoreValue">${esc(state.score.value)}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  const __rankTagSetDataV49 = setData;
+  setData = async function(...args) {
+    await __rankTagSetDataV49.apply(this, args);
+    renderCyberAsset();
+  };
+
+  window.addEventListener("load", () => {
+    setTimeout(renderCyberAsset, 120);
+    setTimeout(renderCyberAsset, 600);
   });
 })();
 
