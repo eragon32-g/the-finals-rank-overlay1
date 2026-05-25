@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v54-cyber-red-premium-base",
-  "version": "6.0.0",
+  "name": "ranktag-finals-overlay-v55-cyber-red-premium-v4",
+  "version": "6.1.0",
   "private": true,
-  "description": "RankTag Cyber Red premium image base with unified preview engine",
+  "description": "RankTag Cyber Red premium v4 with score alignment fix",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

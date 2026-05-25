@@ -1,5 +1,25 @@
 [
   {
+    "version": "55",
+    "date": "2026-05-25",
+    "title": "Cyber Red premium v4",
+    "summary": "Nuova base Cyber Red più piena, più vendibile e con score riportato dentro il pannello.",
+    "added": [
+      "Nuova base Cyber Red v4",
+      "Nuova thumbnail Shop Cyber Red v4"
+    ],
+    "improved": [
+      "Più dettagli e profondità visiva",
+      "Score spostato dentro il pannello",
+      "Player e rank più leggibili",
+      "Migliore coerenza tra card Shop e preview live"
+    ],
+    "fixed": [
+      "Score troppo esterno nella V54",
+      "Base ancora troppo semplice"
+    ]
+  },
+  {
     "version": "54",
     "date": "2026-05-25",
     "title": "Cyber Red premium base",
