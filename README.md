@@ -1,13 +1,8 @@
-# RankTag V82
+# RankTag V83
 
-Aggiunto Layout Editor interno.
+Coordinate Cyber Red Elite importate dal Layout Editor.
 
-## Apri
-/layout-editor.html
-
-## Funzioni
-- sposta badge, rank, score, player e brand col mouse
-- modifica coordinate manualmente
-- salva in locale
-- copia o scarica JSON
-- usa il JSON per bloccare le posizioni nel sito pubblico
+## Include
+- coordinate salvate in /assets/premium/cyber-red-elite-layout.json
+- posizioni bloccate nel pubblico
+- Layout Editor aggiornato con gli stessi default

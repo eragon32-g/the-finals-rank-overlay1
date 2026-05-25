@@ -1,5 +1,18 @@
 [
   {
+    "version": "83",
+    "date": "2026-05-25",
+    "title": "Coordinate importate dal Layout Editor",
+    "summary": "Applicato al pubblico il layout JSON salvato dall'editor per Cyber Red Elite.",
+    "added": [
+      "File /assets/premium/cyber-red-elite-layout.json con coordinate bloccate"
+    ],
+    "improved": [
+      "Badge, rank, score, player e brand usano le coordinate scelte nell'editor",
+      "Layout editor riapre con le stesse coordinate salvate"
+    ]
+  },
+  {
     "version": "82",
     "date": "2026-05-25",
     "title": "Layout Editor interno",
@@ -134,7 +147,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=82"
+      "riferimenti cache aggiornati a v=83"
     ]
   },
   {
