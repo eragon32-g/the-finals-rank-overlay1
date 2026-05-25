@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "88";
+const OVERLAY_VERSION = "89";
 const params = new URLSearchParams(window.location.search);
 
 const CYBER_RED_ELITE_LAYOUT_LOCKED = {
@@ -493,7 +493,7 @@ if (isManualMode()) {
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
-/* RankTag V88 Plus style finalizer */
+/* RankTag V89 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red-elite", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -528,7 +528,7 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 })();
 
 
-/* RankTag V88 - single source image-base Plus engine */
+/* RankTag V89 - single source image-base Plus engine */
 let rankTagPlusLayoutsPromise = null;
 
 function loadRankTagPlusLayouts() {
@@ -662,8 +662,8 @@ function loadRankTagPlusLayouts() {
   });
 })();
 
-/* RankTag V88 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "88");
+/* RankTag V89 render marker */
+document.documentElement.setAttribute("data-ranktag-version", "89");
 
 
 
@@ -675,7 +675,7 @@ document.documentElement.setAttribute("data-ranktag-version", "88");
 
 
 
-/* RankTag V88 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
+/* RankTag V89 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
 (function rankTagPremiumBackdropV78(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -716,7 +716,7 @@ document.documentElement.setAttribute("data-ranktag-version", "88");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=88') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=89') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -908,7 +908,7 @@ document.documentElement.setAttribute("data-ranktag-version", "88");
     style.textContent += `
 `;
     style.textContent += `
-/* RankTag V88 - locked premium coordinates from Layout Editor */
+/* RankTag V89 - locked premium coordinates from Layout Editor */
 #badge.rt78-cyber-red-elite .rank-mark,
 #badge.rt80-cyber-red-elite .rank-mark {
   left: 7px !important;
@@ -1010,7 +1010,7 @@ document.documentElement.setAttribute("data-ranktag-version", "88");
 })();
 
 
-/* RankTag V88 - Premium backdrop engine: full 470x160 background adapted to stable layout */
+/* RankTag V89 - Premium backdrop engine: full 470x160 background adapted to stable layout */
 (function rankTagPremiumBackdropV80(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -1052,7 +1052,7 @@ document.documentElement.setAttribute("data-ranktag-version", "88");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=88') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=89') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -1279,4 +1279,137 @@ document.documentElement.setAttribute("data-ranktag-version", "88");
     setTimeout(applyPremiumBackdrop, 320);
     setTimeout(applyPremiumBackdrop, 900);
   });
+})();
+
+
+
+/* RankTag V89 - runtime premium layout from URL param */
+(function rankTagPremiumRuntimeLayoutV89(){
+  if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
+
+  function decodeLayoutParam() {
+    const raw = new URLSearchParams(window.location.search).get("layout");
+    if (!raw) return null;
+    try {
+      const json = decodeURIComponent(escape(atob(raw)));
+      const parsed = JSON.parse(json);
+      if (!parsed || !parsed.elements) return null;
+      return parsed;
+    } catch (err) {
+      try {
+        const parsed = JSON.parse(raw);
+        if (!parsed || !parsed.elements) return null;
+        return parsed;
+      } catch (err2) {
+        return null;
+      }
+    }
+  }
+
+  function cssFromLayout(layout) {
+    const e = layout.elements || {};
+    const badge = e.badge || {};
+    const rank = e.rank || {};
+    const score = e.score || {};
+    const player = e.player || {};
+    const brand = e.brand || {};
+    const canvasW = Number(layout.canvas?.width || 470);
+    const canvasH = Number(layout.canvas?.height || 160);
+
+    const px = (v, fallback = 0) => Number.isFinite(Number(v)) ? Number(v) : fallback;
+    const right = (cfg) => canvasW - px(cfg.x) - px(cfg.w);
+    const bottom = (cfg) => canvasH - px(cfg.y) - px(cfg.h);
+
+    return `
+      /* runtime JSON layout override */
+      #badge.rt78-cyber-red-elite .rank-mark,
+      #badge.rt80-cyber-red-elite .rank-mark {
+        left: ${px(badge.x)}px !important;
+        top: ${px(badge.y)}px !important;
+        width: ${px(badge.w, 80)}px !important;
+        height: ${px(badge.h, 80)}px !important;
+        flex: 0 0 ${px(badge.w, 80)}px !important;
+        z-index: ${px(badge.z, 5)} !important;
+      }
+
+      #badge.rt78-cyber-red-elite .badge-image,
+      #badge.rt78-cyber-red-elite .rank-icon,
+      #badge.rt80-cyber-red-elite .badge-image,
+      #badge.rt80-cyber-red-elite .rank-icon {
+        width: ${px(badge.w, 80)}px !important;
+        height: ${px(badge.h, 80)}px !important;
+      }
+
+      #badge.rt78-cyber-red-elite .rank-text,
+      #badge.rt80-cyber-red-elite .rank-text {
+        left: ${px(rank.x)}px !important;
+        top: ${px(rank.y)}px !important;
+        width: ${px(rank.w, 180)}px !important;
+        height: ${px(rank.h, 30)}px !important;
+        font-size: ${px(rank.fontSize, 25)}px !important;
+        line-height: ${px(rank.h, 30)}px !important;
+        z-index: ${px(rank.z, 6)} !important;
+      }
+
+      #badge.rt78-cyber-red-elite .score-text,
+      #badge.rt80-cyber-red-elite .score-text {
+        left: ${px(score.x)}px !important;
+        top: ${px(score.y)}px !important;
+        width: ${px(score.w, 120)}px !important;
+        height: ${px(score.h, 16)}px !important;
+        font-size: ${px(score.fontSize, 12)}px !important;
+        line-height: ${px(score.h, 16)}px !important;
+        z-index: ${px(score.z, 6)} !important;
+      }
+
+      #badge.rt78-cyber-red-elite .name-text,
+      #badge.rt80-cyber-red-elite .name-text {
+        left: ${px(player.x)}px !important;
+        right: ${right(player)}px !important;
+        top: ${px(player.y)}px !important;
+        width: ${px(player.w, 140)}px !important;
+        height: ${px(player.h, 16)}px !important;
+        font-size: ${px(player.fontSize, 10.5)}px !important;
+        line-height: ${px(player.h, 16)}px !important;
+        z-index: ${px(player.z, 6)} !important;
+      }
+
+      #badge.rt78-cyber-red-elite .brand-drawer,
+      #badge.rt80-cyber-red-elite .brand-drawer {
+        left: ${px(brand.x)}px !important;
+        right: ${right(brand)}px !important;
+        bottom: ${bottom(brand)}px !important;
+        width: ${px(brand.w, 270)}px !important;
+        height: ${px(brand.h, 16)}px !important;
+        z-index: ${px(brand.z, 6)} !important;
+      }
+
+      #badge.rt78-cyber-red-elite .brand-marquee span,
+      #badge.rt80-cyber-red-elite .brand-marquee span {
+        font-size: ${px(brand.fontSize, 9.5)}px !important;
+        line-height: ${px(brand.h, 16)}px !important;
+      }
+    `;
+  }
+
+  function applyRuntimeLayout() {
+    const layout = decodeLayoutParam();
+    if (!layout) return;
+    let style = document.getElementById("rt89-runtime-layout-style");
+    if (!style) {
+      style = document.createElement("style");
+      style.id = "rt89-runtime-layout-style";
+      document.head.appendChild(style);
+    }
+    style.textContent = cssFromLayout(layout);
+    document.documentElement.dataset.runtimePremiumLayout = "1";
+  }
+
+  window.addEventListener("load", () => {
+    setTimeout(applyRuntimeLayout, 60);
+    setTimeout(applyRuntimeLayout, 250);
+    setTimeout(applyRuntimeLayout, 900);
+  });
+  setTimeout(applyRuntimeLayout, 40);
+  setTimeout(applyRuntimeLayout, 400);
 })();

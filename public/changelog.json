@@ -1,5 +1,20 @@
 [
   {
+    "version": "89",
+    "date": "2026-05-25",
+    "title": "Layout Editor collegato al link finale",
+    "summary": "Le modifiche fatte nel Layout Editor ora vengono lette dal generator e inserite nel link stream premium.",
+    "fixed": [
+      "Le modifiche del Layout Editor non arrivavano all'anteprima live",
+      "Il link finale non conteneva le coordinate personalizzate"
+    ],
+    "added": [
+      "salvataggio automatico layout editor su localStorage stabile",
+      "parametro layout nel link finale premium",
+      "runtime overlay che legge layout e applica X/Y/W/H/Font/Z"
+    ]
+  },
+  {
     "version": "88",
     "date": "2026-05-25",
     "title": "VoidRage layout JSON importato",
@@ -17,7 +32,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=88",
+      "aggiornati thumb premium e cache buster a v=89",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -216,7 +231,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=88"
+      "riferimenti cache aggiornati a v=89"
     ]
   },
   {
