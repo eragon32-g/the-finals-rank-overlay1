@@ -1,8 +1,8 @@
 {
-  "version": "50",
+  "version": "51",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Cyber Red now uses a true final-format RankTag base, not a generic HUD strip."
+  "note": "Nuovo motore image-base per gli stili Plus: base grafica + layout config + testi dinamici."
 }

@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "50";
+const OVERLAY_VERSION = "51";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -919,6 +919,117 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
   window.addEventListener('load', () => {
     setTimeout(render, 120);
     setTimeout(render, 500);
+  });
+})();
+
+
+
+/* RankTag V51 - image-base style engine */
+let rankTagImageBaseLayoutsPromise = null;
+function loadRankTagImageBaseLayouts() {
+  if (!rankTagImageBaseLayoutsPromise) {
+    rankTagImageBaseLayoutsPromise = fetch('/assets/plus/styles-layout.json?v=' + OVERLAY_VERSION)
+      .then((r) => r.ok ? r.json() : {})
+      .catch(() => ({}));
+  }
+  return rankTagImageBaseLayoutsPromise;
+}
+
+(function rankTagImageBaseEngineV51() {
+  const IMAGE_BASE_STYLES = ['cyber-red'];
+  if (!IMAGE_BASE_STYLES.includes(themeStyle)) return;
+
+  function esc(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  function parseScoreParts(text) {
+    const raw = String(text || '').trim();
+    const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
+    if (!match) {
+      return { label: String(params.get('scoreLabel') || 'ELO').trim(), value: raw || '-', extra: '' };
+    }
+    return { label: String(match[1] || 'ELO').trim(), value: String(match[2] || '-').trim(), extra: String(match[3] || '').trim() };
+  }
+
+  function getState() {
+    return {
+      player: String(nameText?.textContent || getPlayerFromUrl() || params.get('player') || 'NomePlayer#1234').trim(),
+      rank: normalizeRankDisplay(rankText?.textContent || `${params.get('league') || 'Platinum'} ${params.get('division') || '1'}`).toUpperCase(),
+      score: parseScoreParts(scoreText?.textContent || `${params.get('scoreLabel') || 'ELO'}: ${params.get('rankScore') || '37705'}`),
+      emblemSrc: badgeImage?.getAttribute('src') || buildBadgeImageUrl(params.get('badgeFile') || 'platinum-1')
+    };
+  }
+
+    function styleBox(box, cfg) {
+    if (!box || !cfg) return;
+    box.style.left = `${cfg.x}px`;
+    box.style.top = `${cfg.y}px`;
+    if (cfg.w != null) box.style.width = `${cfg.w}px`;
+    if (cfg.h != null) box.style.height = `${cfg.h}px`;
+    if (cfg.fontSize != null) box.style.fontSize = `${cfg.fontSize}px`;
+    if (cfg.lineHeight != null) box.style.lineHeight = String(cfg.lineHeight);
+    if (cfg.letterSpacing != null) box.style.letterSpacing = `${cfg.letterSpacing}px`;
+    if (cfg.textTransform) box.style.textTransform = cfg.textTransform;
+    if (cfg.align) box.style.textAlign = cfg.align;
+  }
+
+  async function renderImageBaseStyle() {
+    const layouts = await loadRankTagImageBaseLayouts();
+    const cfg = layouts[themeStyle];
+    const root = badge || document.getElementById('badge');
+    if (!cfg || !root) return;
+
+    const state = getState();
+    root.className = 'badge rt51-root';
+    root.setAttribute('data-theme-style', themeStyle);
+    root.style.setProperty('--rt51-width', `${cfg.canvas.width}px`);
+    root.style.setProperty('--rt51-height', `${cfg.canvas.height}px`);
+
+    root.innerHTML = `
+      <div class="rt51-card rt51-${themeStyle}" data-animation="${esc(cfg.animation || '')}">
+        <img class="rt51-base" src="${esc(cfg.baseImage)}" alt="${esc(themeStyle)} base" />
+        <div class="rt51-shine"></div>
+        <div class="rt51-emblemWrap"><img class="rt51-emblem" src="${esc(state.emblemSrc)}" alt="rank emblem" /></div>
+        <div class="rt51-player">${esc(state.player)}</div>
+        <div class="rt51-rankLabel">RANK</div>
+        <div class="rt51-rankValue">${esc(state.rank)}</div>
+        <div class="rt51-scoreLabel">${esc(state.score.label)}</div>
+        <div class="rt51-scoreValue">${esc(state.score.value)}</div>
+      </div>
+    `;
+
+    const card = root.querySelector('.rt51-card');
+    const emblemWrap = root.querySelector('.rt51-emblemWrap');
+    const emblem = root.querySelector('.rt51-emblem');
+    const player = root.querySelector('.rt51-player');
+    const rankLabel = root.querySelector('.rt51-rankLabel');
+    const rankValue = root.querySelector('.rt51-rankValue');
+    const scoreLabel = root.querySelector('.rt51-scoreLabel');
+    const scoreValue = root.querySelector('.rt51-scoreValue');
+
+    card.style.width = `${cfg.canvas.width}px`;
+    card.style.height = `${cfg.canvas.height}px`;
+
+    styleBox(emblemWrap, cfg.emblem);
+    if (cfg.emblem?.w != null) emblem.style.width = `${cfg.emblem.w}px`;
+    if (cfg.emblem?.h != null) emblem.style.height = `${cfg.emblem.h}px`;
+    styleBox(player, cfg.player);
+    styleBox(rankLabel, cfg.rankLabel);
+    styleBox(rankValue, cfg.rank);
+    styleBox(scoreLabel, cfg.scoreLabel);
+    styleBox(scoreValue, cfg.score);
+  }
+
+  const __rankTagOrigSetDataV51 = setData;
+  setData = async function(...args) {
+    await __rankTagOrigSetDataV51.apply(this, args);
+    await renderImageBaseStyle();
+  };
+
+  window.addEventListener('load', () => {
+    setTimeout(() => renderImageBaseStyle(), 120);
+    setTimeout(() => renderImageBaseStyle(), 500);
   });
 })();
 

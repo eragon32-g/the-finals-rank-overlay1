@@ -1,14 +1,17 @@
-# RankTag for THE FINALS - V50
+# RankTag for THE FINALS - V51
 
-V50 introduce una vera base grafica Cyber Red progettata direttamente per il formato RankTag finale.
+V51 introduce il nuovo motore per gli stili Plus:
 
-## Incluso
-- base Cyber Red compatta e già strutturata
-- stemma dinamico ufficiale
-- nome dinamico
-- rank dinamico
-- punti dinamici
-- thumbnail Shop coerente con la preview
+- immagine base finale
+- file di configurazione layout
+- stemma dinamico
+- nome/rank/punti dinamici
+- anteprima e live più coerenti
 
-## Test
-Usare prima su `test-lab`.
+## File chiave
+- `public/assets/plus/cyber-red-base.png`
+- `public/assets/plus/cyber-red.png`
+- `public/assets/plus/styles-layout.json`
+
+## Nota
+Per ora il nuovo engine è attivo su **Cyber Red**. Gli altri stili possono essere migrati dopo.

@@ -1,5 +1,23 @@
 [
   {
+    "version": "51",
+    "date": "2026-05-25",
+    "title": "Image-base engine",
+    "summary": "Nuovo sistema per gli overlay Plus: immagini base + configurazione layout + testi dinamici.",
+    "added": [
+      "/assets/plus/styles-layout.json",
+      "Renderer image-base per Cyber Red",
+      "Anteprima Shop coerente con la base reale"
+    ],
+    "improved": [
+      "Più stabilità tra preview e live overlay",
+      "Posizionamento gestito da config invece che da tentativi CSS casuali"
+    ],
+    "fixed": [
+      "Ridotto il rischio che l’overlay si scomponga nel passaggio tra Shop, preview e output"
+    ]
+  },
+  {
     "version": "50",
     "date": "2026-05-25",
     "title": "Cyber Red true RankTag base",
