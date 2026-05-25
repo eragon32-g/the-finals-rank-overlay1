@@ -1,5 +1,19 @@
 [
   {
+    "version": "85",
+    "date": "2026-05-25",
+    "title": "Nuovo layout JSON importato",
+    "summary": "Applicate le nuove coordinate del Layout Editor a Cyber Red Elite.",
+    "improved": [
+      "Badge aggiornato a x 3 / y 23 / w 111 / h 100",
+      "Anche i testi continuano a rispettare le coordinate salvate",
+      "Preview premium, live preview e link finale restano sincronizzati"
+    ],
+    "fixed": [
+      "Disallineamento tra ultimo JSON salvato e layout pubblico"
+    ]
+  },
+  {
     "version": "84",
     "date": "2026-05-25",
     "title": "Preview/link allineati al Layout Editor",
@@ -166,7 +180,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=84"
+      "riferimenti cache aggiornati a v=85"
     ]
   },
   {

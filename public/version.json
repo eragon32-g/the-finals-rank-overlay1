@@ -1,8 +1,8 @@
 {
-  "version": "84",
+  "version": "85",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V84: coordinate premium applicate a preview, link generato e pubblico; Layout Editor con tasto ritorno e nota premium-only."
+  "note": "V85: nuovo JSON Cyber Red Elite importato. Badge e testi rispettano le posizioni salvate in anteprima, live preview e link finale."
 }

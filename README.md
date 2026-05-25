@@ -1,9 +1,9 @@
-# RankTag V84
+# RankTag V85
 
-Sincronizzazione coordinate premium.
+Importato il nuovo JSON di Cyber Red Elite.
 
 ## Include
-- coordinate Cyber Red Elite applicate a preview e link finale
-- generatore forza `themeStyle` nel link
-- Layout Editor con tasto ritorno al Rank Generator
-- nota chiara: Layout Editor riguarda solo premium, non default
+- nuove coordinate badge
+- testi che rispettano le posizioni salvate
+- sincronizzazione tra preview premium, anteprima live e link finale
+- Layout Editor aggiornato con gli stessi valori

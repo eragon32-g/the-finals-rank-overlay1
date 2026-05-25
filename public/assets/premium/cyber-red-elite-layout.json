@@ -8,10 +8,10 @@
   "background": "/assets/premium/cyber-red-elite-bg.png",
   "elements": {
     "badge": {
-      "x": 18,
-      "y": 35,
-      "w": 77,
-      "h": 75,
+      "x": 3,
+      "y": 23,
+      "w": 111,
+      "h": 100,
       "fontSize": 0,
       "z": 5
     },

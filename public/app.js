@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "84";
+const OVERLAY_VERSION = "85";
 const params = new URLSearchParams(window.location.search);
 
 const CYBER_RED_ELITE_LAYOUT_LOCKED = {
@@ -23,10 +23,10 @@ const CYBER_RED_ELITE_LAYOUT_LOCKED = {
   "background": "/assets/premium/cyber-red-elite-bg.png",
   "elements": {
     "badge": {
-      "x": 18,
-      "y": 35,
-      "w": 77,
-      "h": 75,
+      "x": 3,
+      "y": 23,
+      "w": 111,
+      "h": 100,
       "fontSize": 0,
       "z": 5
     },
@@ -493,7 +493,7 @@ if (isManualMode()) {
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
-/* RankTag V84 Plus style finalizer */
+/* RankTag V85 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red-elite", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -528,7 +528,7 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 })();
 
 
-/* RankTag V84 - single source image-base Plus engine */
+/* RankTag V85 - single source image-base Plus engine */
 let rankTagPlusLayoutsPromise = null;
 
 function loadRankTagPlusLayouts() {
@@ -662,8 +662,8 @@ function loadRankTagPlusLayouts() {
   });
 })();
 
-/* RankTag V84 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "84");
+/* RankTag V85 render marker */
+document.documentElement.setAttribute("data-ranktag-version", "85");
 
 
 
@@ -675,7 +675,7 @@ document.documentElement.setAttribute("data-ranktag-version", "84");
 
 
 
-/* RankTag V84 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
+/* RankTag V85 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
 (function rankTagPremiumBackdropV78(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -716,7 +716,7 @@ document.documentElement.setAttribute("data-ranktag-version", "84");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=84') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=85') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -906,7 +906,7 @@ document.documentElement.setAttribute("data-ranktag-version", "84");
       }
     `;
     style.textContent += `
-/* RankTag V84 - locked public premium coordinates from Layout Editor */
+/* RankTag V85 - locked public premium coordinates from Layout Editor */
 html[data-theme-style="cyber-red-elite"] #badge.rt80-cyber-red-elite .rank-mark,
 #badge.rt80-cyber-red-elite .rank-mark {
   left: 18px !important;
@@ -1001,7 +1001,7 @@ html[data-theme-style="cyber-red-elite"] #badge.rt80-cyber-red-elite .rank-mark,
 })();
 
 
-/* RankTag V84 - Premium backdrop engine: full 470x160 background adapted to stable layout */
+/* RankTag V85 - Premium backdrop engine: full 470x160 background adapted to stable layout */
 (function rankTagPremiumBackdropV80(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -1043,7 +1043,7 @@ html[data-theme-style="cyber-red-elite"] #badge.rt80-cyber-red-elite .rank-mark,
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=84') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=85') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
