@@ -1,8 +1,8 @@
 {
-  "version": "73",
+  "version": "74",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V73: stesso Cyber Red Elite della V72, con metadati package/version corretti per evitare deploy che resta su V71."
+  "note": "Step 1 e 2: scala anteprima premium bloccata e griglia Cyber Red Elite riallineata."
 }

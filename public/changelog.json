@@ -1,5 +1,22 @@
 [
   {
+    "version": "74",
+    "date": "2026-05-25",
+    "title": "Fix scala e allineamento Cyber Red Elite",
+    "summary": "Primo intervento punto per punto: anteprima bloccata a 470×160 e griglia premium riallineata.",
+    "improved": [
+      "Anteprima live premium centrata",
+      "Overlay Cyber Red Elite bloccato a 470×160",
+      "Nome, rank, score e stemma riallineati su coordinate fisse",
+      "Gestione più sicura di nomi lunghi e branding"
+    ],
+    "fixed": [
+      "Premium fuori scala in anteprima live",
+      "Elementi interni non allineati",
+      "Preview card premium tagliata"
+    ]
+  },
+  {
     "version": "73",
     "date": "2026-05-25",
     "title": "Fix metadati deploy",

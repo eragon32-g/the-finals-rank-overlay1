@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v73-cyber-red-elite-premium-polish",
+  "name": "ranktag-finals-overlay-v74-cyber-red-scale-align-fix",
   "version": "7.8.0",
   "private": true,
-  "description": "RankTag V73 - Cyber Red Elite premium polish with corrected deployment metadata",
+  "description": "RankTag V74 fixes Cyber Red Elite scale and alignment",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

@@ -1,3 +1,10 @@
-# RankTag for THE FINALS - V73
+# RankTag for THE FINALS - V74
 
-Fix metadati deploy: questa versione contiene Cyber Red Elite Premium Polish e aggiorna anche package.json, cache query e version.json a V73.
+Step 1 e Step 2 sul Cyber Red Elite.
+
+## Fix
+- Anteprima live premium bloccata a 470×160
+- Overlay centrato nel box preview
+- Cyber Red Elite riallineato con coordinate fisse
+- Stemma, nome, rank e score riposizionati
+- Card premium non taglia più la preview
