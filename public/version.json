@@ -1,8 +1,8 @@
 {
-  "version": "92",
+  "version": "93",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V92: premium staccato dal motore standard. Cyber Red Elite usa renderer separato identico al Layout Editor per rispettare X/Y/W/H/fontSize/z."
+  "note": "V93: branding premium con la stessa animazione del default (drawer + marquee)"
 }

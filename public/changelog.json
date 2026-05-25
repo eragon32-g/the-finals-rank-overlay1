@@ -1,5 +1,17 @@
 [
   {
+    "version": "93",
+    "title": "Animazione branding premium",
+    "summary": "I layout premium ora hanno il branding animato come il default.",
+    "fixed": [
+      "branding statico nel premium"
+    ],
+    "added": [
+      "drawer branding premium",
+      "marquee premium sincronizzato al premium renderer separato"
+    ]
+  },
+  {
     "version": "92",
     "date": "2026-05-25",
     "title": "Renderer premium separato",
@@ -77,7 +89,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=92",
+      "aggiornati thumb premium e cache buster a v=93",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -276,7 +288,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=92"
+      "riferimenti cache aggiornati a v=93"
     ]
   },
   {
