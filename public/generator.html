@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V68 generator real-preview lock */
+/* RankTag V69 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -611,7 +611,7 @@ iframe#preview,
 
 
 
-/* RankTag V68 - layout rework: account full width, settings grid, preview bottom */
+/* RankTag V69 - layout rework: account full width, settings grid, preview bottom */
 .layout {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -769,7 +769,7 @@ aside.panel {
 
 
 
-/* RankTag V68 - compact generator, account unchanged */
+/* RankTag V69 - compact generator, account unchanged */
 body {
   padding: 16px !important;
 }
@@ -1047,7 +1047,7 @@ body {
 
 
 
-/* RankTag V68 - order, compact alignment and premium preview fix */
+/* RankTag V69 - order, compact alignment and premium preview fix */
 .settings-panel {
   grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
   align-items: stretch !important;
@@ -1163,7 +1163,7 @@ body {
 
 
 
-/* RankTag V68 - branding hidden, live preview moved to point 4 */
+/* RankTag V69 - branding hidden, live preview moved to point 4 */
 .preview-inline-section {
   grid-column: span 2 !important;
   min-height: auto !important;
@@ -1242,7 +1242,7 @@ body {
 
 
 
-/* RankTag V68 - full width preview, point 4 hidden/removed, themes visible */
+/* RankTag V69 - full width preview, point 4 hidden/removed, themes visible */
 .settings-panel {
   grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
   align-items: stretch !important;
@@ -1351,6 +1351,116 @@ body {
   }
 }
 
+
+
+/* RankTag V69 - remove old point 4, themes visible, full-width preview */
+.settings-panel {
+  grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
+  align-items: stretch !important;
+}
+
+/* Force Temi to show properly */
+#palettes.palette-grid,
+#palettes {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  gap: 7px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 70px !important;
+}
+
+#palettes .palette {
+  display: block !important;
+  min-height: 54px !important;
+}
+
+/* Hide any old Branding/Bnding card that may survive in HTML */
+.section:has(#lockedPreview),
+.locked-card,
+#lockedPreview {
+  display: none !important;
+}
+
+/* Preview takes entire row from left to right */
+#livePreviewSection.preview-full-row,
+#livePreviewSection {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  border-right: 0 !important;
+}
+
+#livePreviewSection .preview-box {
+  width: 100% !important;
+  min-height: 210px !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+}
+
+#livePreviewSection iframe#preview {
+  width: 470px !important;
+  height: 160px !important;
+  transform: scale(1) !important;
+  transform-origin: center center !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+#livePreviewSection .actions {
+  margin-top: 10px !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important;
+}
+
+#livePreviewSection textarea {
+  width: 100% !important;
+  min-height: 58px !important;
+  margin-top: 9px !important;
+  font-size: 11px !important;
+}
+
+#livePreviewSection .help {
+  text-align: center !important;
+  margin-top: 6px !important;
+}
+
+/* Premium and guide full width after preview */
+#overlayPremium,
+#guide {
+  grid-column: 1 / -1 !important;
+  border-right: 0 !important;
+}
+
+#overlayPremium .premium-preview-real {
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Remove bottom preview leftovers */
+.bottom-preview-panel,
+.preview-panel.bottom-preview-panel {
+  display: none !important;
+}
+
+@media (max-width: 1120px) {
+  .settings-panel {
+    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .settings-panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  #livePreviewSection iframe#preview {
+    transform: scale(.72) !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1360,7 +1470,7 @@ body {
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V68</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V69</div></div>
     </header>
 
     <div class="layout">
@@ -1506,29 +1616,6 @@ body {
           <div id="premiumSelectedNote" class="premium-selected-note">Premium attivo: nessuno. Stai usando l’overlay standard.</div>
         </div>
 
-        
-        
-
-
-        <div id="livePreviewSection" class="section preview-inline-section preview-full-row">
-          <div class="section-title">
-            <h2>Anteprima live</h2>
-            <span class="tag">Preview</span>
-          </div>
-
-          <div class="preview-box">
-            <iframe id="preview" title="Overlay preview"></iframe>
-          </div>
-
-          <div class="actions">
-            <button id="generate" class="btn secondary">Aggiorna</button>
-            <button id="copy" class="btn">Copia link</button>
-          </div>
-
-          <textarea id="output" readonly></textarea>
-          <p class="help">Il link può modificare rank e colori. Branding e Discord restano bloccati da file interno.</p>
-        </div>
-
         <div id="guide" class="section">
           <div class="section-title">
             <h2>5. Guida rapida</h2>
@@ -1566,7 +1653,7 @@ body {
 
 
     const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV68cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV69cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentProfile = null;
@@ -2148,7 +2235,7 @@ body {
     });
 
     renderPalettes();
-    /* RankTag V68 palette visibility fallback */
+    /* RankTag V69 palette visibility fallback */
     setTimeout(() => {
       const wrap = get("palettes");
       if (wrap && !wrap.children.length && typeof renderPalettes === "function") renderPalettes();
@@ -2160,7 +2247,7 @@ body {
   </script>
 
 <script>
-/* RankTag V68 force real iframe preview */
+/* RankTag V69 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');

@@ -1,10 +1,10 @@
-# RankTag for THE FINALS - V68
+# RankTag for THE FINALS - V69
 
-V68 corregge il layout del generator.
+V69 corregge il generator.
 
 ## Cambiamenti
-- Vecchio punto 4 Branding rimosso/nascosto
+- Vecchio punto 4 Branding/Bnding rimosso definitivamente
+- Temi ripristinati
 - Anteprima live a tutta larghezza
-- Temi resi visibili
-- Overlay Premium rinumerato al punto 4
-- Guida rapida rinumerata al punto 5
+- Overlay Premium sotto la preview
+- Guida rapida sotto il Premium

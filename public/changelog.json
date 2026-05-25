@@ -1,5 +1,22 @@
 [
   {
+    "version": "69",
+    "date": "2026-05-25",
+    "title": "Pulizia punto 4 e temi",
+    "summary": "Rimosso definitivamente il vecchio punto 4, ripristinati i Temi e resa l'Anteprima live a tutta larghezza.",
+    "added": [],
+    "improved": [
+      "Anteprima live copre tutta la riga",
+      "Temi visibili di nuovo",
+      "Premium e Guida ordinati sotto la preview"
+    ],
+    "fixed": [
+      "Vecchio punto 4 Branding/Bnding ancora visibile",
+      "Temi spariti",
+      "Preview non full width"
+    ]
+  },
+  {
     "version": "68",
     "date": "2026-05-25",
     "title": "Anteprima full width",

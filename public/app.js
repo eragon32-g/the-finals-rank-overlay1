@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "68";
+const OVERLAY_VERSION = "69";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -610,7 +610,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag V53 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "68");
+document.documentElement.setAttribute("data-ranktag-version", "69");
 
 
 /* RankTag V63 - Cyber Red Elite premium overlay */
