@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "72";
+const OVERLAY_VERSION = "73";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -610,12 +610,12 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag V53 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "72");
+document.documentElement.setAttribute("data-ranktag-version", "73");
 
 
 
-/* RankTag V72 - Cyber Red Elite premium overlay */
-(function rankTagCyberRedEliteV72(){
+/* RankTag V73 - Cyber Red Elite premium overlay */
+(function rankTagCyberRedEliteV73(){
   if (themeStyle !== 'cyber-red-elite') return;
 
   function ensureStyle(){

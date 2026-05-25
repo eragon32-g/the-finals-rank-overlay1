@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v71-layout-restore",
-  "version": "7.7.0",
+  "name": "ranktag-finals-overlay-v73-cyber-red-elite-premium-polish",
+  "version": "7.8.0",
   "private": true,
-  "description": "RankTag V71 restores themes, live preview and premium section in generator",
+  "description": "RankTag V73 - Cyber Red Elite premium polish with corrected deployment metadata",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

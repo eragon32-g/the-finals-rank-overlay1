@@ -1,6 +1,3 @@
-# RankTag for THE FINALS - V71
+# RankTag for THE FINALS - V73
 
-- Temi ripristinati
-- Anteprima live ripristinata a tutta larghezza
-- Overlay Premium ripristinato sotto la preview
-- Branding rimosso
+Fix metadati deploy: questa versione contiene Cyber Red Elite Premium Polish e aggiorna anche package.json, cache query e version.json a V73.

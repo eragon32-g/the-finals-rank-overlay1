@@ -1,5 +1,15 @@
 [
   {
+    "version": "73",
+    "date": "2026-05-25",
+    "title": "Fix metadati deploy",
+    "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
+    "fixed": [
+      "package.json ancora indicava V71",
+      "riferimenti cache aggiornati a v=73"
+    ]
+  },
+  {
     "version": "72",
     "date": "2026-05-25",
     "title": "Cyber Red Elite rifinito",

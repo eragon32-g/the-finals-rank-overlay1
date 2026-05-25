@@ -1,8 +1,8 @@
 {
-  "version": "72",
+  "version": "73",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Primo premium Cyber Red Elite rifinito: base dedicata, preview coerente e output finale allineato."
+  "note": "V73: stesso Cyber Red Elite della V72, con metadati package/version corretti per evitare deploy che resta su V71."
 }
