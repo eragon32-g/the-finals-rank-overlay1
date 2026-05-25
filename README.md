@@ -1,17 +1,17 @@
-# RankTag for THE FINALS - V51
+# RankTag for THE FINALS - V52
 
-V51 introduce il nuovo motore per gli stili Plus:
+V52 sistema la parte più importante prima di creare altri stili premium.
 
-- immagine base finale
-- file di configurazione layout
-- stemma dinamico
-- nome/rank/punti dinamici
-- anteprima e live più coerenti
+## Cosa cambia
+- Rimosso il conflitto fra vecchi renderer Plus
+- Cyber Red ora usa un solo motore image-base
+- La preview del Test Lab mostra il render reale via iframe
+- Il layout dinamico è controllato da `styles-layout.json`
 
-## File chiave
+## File importanti
 - `public/assets/plus/cyber-red-base.png`
 - `public/assets/plus/cyber-red.png`
 - `public/assets/plus/styles-layout.json`
 
 ## Nota
-Per ora il nuovo engine è attivo su **Cyber Red**. Gli altri stili possono essere migrati dopo.
+Caricare e testare solo su branch `test-lab`.

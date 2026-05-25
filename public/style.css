@@ -2772,3 +2772,115 @@ html, body {
   78% { transform: translateX(620%); opacity: .3; }
 }
 
+
+
+/* RankTag V52 - single source image-base Plus engine */
+.badge.rt52-root {
+  width: var(--rt52-width, 470px) !important;
+  height: var(--rt52-height, 120px) !important;
+  min-height: var(--rt52-height, 120px) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.rt52-card {
+  position: relative;
+  width: var(--rt52-width, 470px);
+  height: var(--rt52-height, 120px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.rt52-base {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.rt52-shine {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  z-index: 1;
+  width: 90px;
+  height: calc(100% - 16px);
+  background: linear-gradient(112deg, transparent 0%, rgba(255,255,255,.16) 48%, transparent 58%);
+  transform: translateX(-240%);
+  opacity: .25;
+  pointer-events: none;
+}
+
+.rt52-card[data-animation="shine"] .rt52-shine {
+  animation: rt52-shine 5.8s ease-in-out infinite;
+}
+
+.rt52-emblemWrap,
+.rt52-player,
+.rt52-rankLabel,
+.rt52-rankValue,
+.rt52-scoreLabel,
+.rt52-scoreValue {
+  position: absolute;
+  z-index: 3;
+}
+
+.rt52-emblemWrap {
+  display: grid;
+  place-items: center;
+}
+
+.rt52-emblem {
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.84));
+}
+
+.rt52-player,
+.rt52-rankValue,
+.rt52-scoreValue {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  color: #f8f8fb;
+  text-shadow: 0 2px 0 rgba(0,0,0,.88);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt52-player {
+  text-shadow: 0 2px 0 rgba(0,0,0,.88), 0 0 8px rgba(255,58,30,.18);
+}
+
+.rt52-rankLabel,
+.rt52-scoreLabel {
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 1000;
+  color: rgba(255,255,255,.56);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.rt52-rankValue {
+  color: #71ebff;
+  text-shadow: 0 2px 0 rgba(0,0,0,.88), 0 0 8px rgba(111,232,251,.18);
+}
+
+.rt52-scoreLabel {
+  color: #ff6048;
+}
+
+.rt52-scoreValue {
+  color: #ffffff;
+}
+
+@keyframes rt52-shine {
+  0%, 60%, 100% { transform: translateX(-240%); opacity: .10; }
+  78% { transform: translateX(620%); opacity: .30; }
+}
+

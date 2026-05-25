@@ -1,5 +1,24 @@
 [
   {
+    "version": "52",
+    "date": "2026-05-25",
+    "title": "Preview e motore Plus ripuliti",
+    "summary": "Rimosse le sovrapposizioni dei vecchi renderer Plus e resa la preview più fedele al render reale.",
+    "added": [
+      "Motore Plus image-base come singola fonte di rendering per Cyber Red",
+      "Preview Test Lab bloccata sul render iframe reale",
+      "File layout config per posizioni dinamiche"
+    ],
+    "improved": [
+      "Meno rischio che il layout si scomponga",
+      "Più coerenza fra Test Lab, output finale e card Shop"
+    ],
+    "fixed": [
+      "Conflitti tra i vecchi renderer V43/V47/V48/V49/V50/V51",
+      "Preview Test Lab troppo scalata e poco leggibile"
+    ]
+  },
+  {
     "version": "51",
     "date": "2026-05-25",
     "title": "Image-base engine",

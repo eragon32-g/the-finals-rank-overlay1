@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v51-image-base-engine",
-  "version": "5.7.0",
+  "name": "ranktag-finals-overlay-v52-unified-preview-image-engine",
+  "version": "5.8.0",
   "private": true,
-  "description": "RankTag image-base engine for Plus styles",
+  "description": "RankTag unified preview and single image-base Plus engine",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

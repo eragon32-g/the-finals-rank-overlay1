@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "51";
+const OVERLAY_VERSION = "52";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -475,310 +475,21 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 })();
 
 
+/* RankTag V52 - single source image-base Plus engine */
+let rankTagPlusLayoutsPromise = null;
 
-/* RankTag V43 - real Plus layouts */
-(function rankTagRealPlusLayoutsV43() {
-  const PLUS_STYLES = ["cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
-
-  function parseScoreParts(text) {
-    const raw = String(text || '').trim();
-    const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
-    if (!match) {
-      return { label: 'ELO', value: raw || '-', extra: '' };
-    }
-    return {
-      label: String(match[1] || 'ELO').trim(),
-      value: String(match[2] || '-').trim(),
-      extra: String(match[3] || '').trim()
-    };
+function loadRankTagPlusLayouts() {
+  if (!rankTagPlusLayoutsPromise) {
+    rankTagPlusLayoutsPromise = fetch(`/assets/plus/styles-layout.json?v=${OVERLAY_VERSION}`)
+      .then((response) => response.ok ? response.json() : {})
+      .catch(() => ({}));
   }
+  return rankTagPlusLayoutsPromise;
+}
 
-  function getCurrentState() {
-    const style = normalizeThemeStyle(params.get('themeStyle'));
-    const status = statusText && !statusText.classList.contains('hidden') ? String(statusText.textContent || '').trim() : '';
-    const rank = normalizeRankDisplay(rankText?.textContent || '').toUpperCase() || 'PLATINUM 1';
-    const player = String(nameText?.textContent || getPlayerFromUrl() || 'ERDRAGON32#2577').trim();
-    const score = parseScoreParts(scoreText?.textContent || `${params.get('scoreLabel') || 'ELO'}: ${params.get('rankScore') || '37705'}`);
-    const emblemSrc = badgeImage?.getAttribute('src') || '';
-    return { style, status, rank, player, score, emblemSrc };
-  }
-
-  function buildRealLayout(state) {
-    const liveBadge = state.status ? `<div class="rt43-live">${state.status}</div>` : '';
-    const scoreExtra = state.score.extra ? `<div class="rt43-score-extra">${state.score.extra}</div>` : '';
-    const emblem = state.emblemSrc
-      ? `<img class="rt43-emblem" src="${state.emblemSrc}" alt="rank emblem" />`
-      : `<div class="rt43-emblem-fallback">TF</div>`;
-
-    return `
-      <div class="rt43-shell rt43-${state.style}">
-        <div class="rt43-noise"></div>
-        <div class="rt43-shine"></div>
-        <div class="rt43-accent rt43-accent-a"></div>
-        <div class="rt43-accent rt43-accent-b"></div>
-
-        <div class="rt43-left">
-          <div class="rt43-emblem-frame">${emblem}</div>
-        </div>
-
-        <div class="rt43-center">
-          <div class="rt43-topbar">
-            <div class="rt43-player" title="${state.player}">${state.player}</div>
-            <div class="rt43-topbar-right">
-              ${liveBadge}
-              <div class="rt43-brand">RANKTAG</div>
-            </div>
-          </div>
-
-          <div class="rt43-bottomrow">
-            <div class="rt43-rank-box">
-              <div class="rt43-kicker">RANK</div>
-              <div class="rt43-rank">${state.rank}</div>
-            </div>
-
-            <div class="rt43-score-box">
-              <div class="rt43-score-label">${state.score.label}</div>
-              <div class="rt43-score-value">${state.score.value}</div>
-              ${scoreExtra}
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  function renderRealPlusLayout(force = false) {
-    const state = getCurrentState();
-    if (!PLUS_STYLES.includes(state.style)) return;
-    const root = badge || document.getElementById('badge') || document.body.firstElementChild;
-    if (!root) return;
-
-    root.className = 'badge rt43-root';
-    root.setAttribute('data-theme-style', state.style);
-    document.documentElement.dataset.themeStyle = state.style;
-
-    const nextHtml = buildRealLayout(state);
-    if (!force && root.innerHTML === nextHtml) return;
-    root.innerHTML = nextHtml;
-  }
-
-  const __rankTagOrigSetData = setData;
-  setData = async function(...args) {
-    await __rankTagOrigSetData.apply(this, args);
-    renderRealPlusLayout(true);
-  };
-
-  window.addEventListener('load', () => {
-    setTimeout(() => renderRealPlusLayout(true), 600);
-  });
-})();
-
-
-/* RankTag V45 - Cyber Red Rebuild marker */
-(function rankTagV45CyberMarker() {
-  const q = new URLSearchParams(window.location.search);
-  if (String(q.get("themeStyle") || "").toLowerCase() !== "cyber-red") return;
-
-  const mark = () => {
-    const shell = document.querySelector(".rt43-shell.rt43-cyber-red");
-    if (shell) shell.classList.add("rt45-cyber-rebuild");
-  };
-
-  const observer = new MutationObserver(mark);
-  observer.observe(document.body, { childList: true, subtree: true });
-  mark();
-  setTimeout(mark, 250);
-  setTimeout(mark, 800);
-})();
-
-
-
-/* RankTag V47 - Cyber Red Premium Rebuild renderer */
-(function rankTagCyberRedPremiumV47() {
-  const q = new URLSearchParams(window.location.search);
-  if (String(q.get("themeStyle") || "").toLowerCase() !== "cyber-red") return;
-
-  function esc(value) {
-    return String(value ?? "").replace(/[&<>"']/g, (m) => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    }[m]));
-  }
-
-  function parseScore(text) {
-    const raw = String(text || "").trim();
-    const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
-    return {
-      label: match ? String(match[1]).trim() : (q.get("scoreLabel") || "ELO"),
-      value: match ? String(match[2]).trim() : (q.get("rankScore") || q.get("score") || "37705"),
-      extra: match ? String(match[3] || "").trim() : ""
-    };
-  }
-
-  function readState() {
-    const rank = normalizeRankDisplay(rankText?.textContent || `${q.get("league") || "PLATINUM"} ${q.get("division") || "1"}`).toUpperCase();
-    const player = String(nameText?.textContent || q.get("player") || getPlayerFromUrl() || "ERDRAGON32#2577").trim();
-    const score = parseScore(scoreText?.textContent || `${q.get("scoreLabel") || "ELO"}: ${q.get("rankScore") || "37705"}`);
-    const emblemSrc = badgeImage?.getAttribute("src") || "";
-    return { rank, player, score, emblemSrc };
-  }
-
-  function render() {
-    const root = badge || document.getElementById("badge");
-    if (!root) return;
-
-    const state = readState();
-
-    root.className = "badge rt47-root";
-    root.setAttribute("data-theme-style", "cyber-red");
-    document.documentElement.dataset.themeStyle = "cyber-red";
-
-    root.innerHTML = `
-      <div class="rt47-cyber">
-        <div class="rt47-layer rt47-frame"></div>
-        <div class="rt47-layer rt47-inner"></div>
-        <div class="rt47-layer rt47-pattern"></div>
-        <div class="rt47-layer rt47-sweep"></div>
-
-        <div class="rt47-emblemDock">
-          <div class="rt47-emblemOuter">
-            <div class="rt47-emblemInner">
-              ${state.emblemSrc ? `<img class="rt47-emblem" src="${esc(state.emblemSrc)}" alt="rank emblem">` : `<div class="rt47-emblemFallback">TF</div>`}
-            </div>
-          </div>
-        </div>
-
-        <div class="rt47-main">
-          <div class="rt47-top">
-            <div class="rt47-slashes"><span></span><span></span><span></span></div>
-            <div class="rt47-brand">RANKTAG</div>
-          </div>
-
-          <div class="rt47-player" title="${esc(state.player)}">${esc(state.player)}</div>
-
-          <div class="rt47-bottom">
-            <div class="rt47-rankModule">
-              <div class="rt47-moduleLabel">RANK</div>
-              <div class="rt47-rank">${esc(state.rank)}</div>
-            </div>
-
-            <div class="rt47-scoreModule">
-              <div class="rt47-scoreLabel">${esc(state.score.label)}</div>
-              <div class="rt47-score">${esc(state.score.value)}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="rt47-redGhost"></div>
-        <div class="rt47-cornerMark"></div>
-      </div>
-    `;
-  }
-
-  const originalSetData = setData;
-  setData = async function(...args) {
-    await originalSetData.apply(this, args);
-    render();
-  };
-
-  window.addEventListener("load", () => {
-    setTimeout(render, 250);
-    setTimeout(render, 800);
-  });
-})();
-
-
-
-/* RankTag V48 - Cyber Red asset-base renderer */
-(function rankTagCyberRedAssetBaseV48() {
-  const q = new URLSearchParams(window.location.search);
-  if (String(q.get("themeStyle") || "").toLowerCase() !== "cyber-red") return;
-
-  function esc(value) {
-    return String(value ?? "").replace(/[&<>"']/g, (m) => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    }[m]));
-  }
-
-  function parseScoreParts(text) {
-    const raw = String(text || '').trim();
-    const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
-    if (!match) {
-      return { label: String(q.get('scoreLabel') || 'ELO').trim(), value: raw || '-', extra: '' };
-    }
-    return {
-      label: String(match[1] || q.get('scoreLabel') || 'ELO').trim(),
-      value: String(match[2] || '-').trim(),
-      extra: String(match[3] || '').trim()
-    };
-  }
-
-  function readState() {
-    const rank = normalizeRankDisplay(rankText?.textContent || `${q.get('league') || 'Platinum'} ${q.get('division') || '1'}`);
-    const player = String(nameText?.textContent || getPlayerFromUrl() || q.get('player') || 'NomePlayer#1234').trim();
-    const score = parseScoreParts(scoreText?.textContent || `${q.get('scoreLabel') || 'ELO'}: ${q.get('rankScore') || '37705'}`);
-    const emblemSrc = badgeImage?.getAttribute('src') || buildBadgeImageUrl(q.get('badgeFile') || 'platinum-1');
-    return { rank, player, score, emblemSrc };
-  }
-
-  function renderCyberAsset() {
-    const root = badge || document.getElementById('badge');
-    if (!root) return;
-
-    const state = readState();
-    root.className = 'badge rt48-root';
-    root.setAttribute('data-theme-style', 'cyber-red');
-    document.documentElement.dataset.themeStyle = 'cyber-red';
-
-    root.innerHTML = `
-      <div class="rt48-cyber">
-        <img class="rt48-base" src="/assets/plus/cyber-red-base.png" alt="Cyber Red base" />
-        <div class="rt48-sheen"></div>
-
-        <div class="rt48-emblemWrap">
-          <img class="rt48-emblem" src="${esc(state.emblemSrc)}" alt="rank emblem" />
-        </div>
-
-        <div class="rt48-player" title="${esc(state.player)}">${esc(state.player)}</div>
-
-        <div class="rt48-rankBlock">
-          <div class="rt48-rankLabel">RANK</div>
-          <div class="rt48-rankValue">${esc(state.rank)}</div>
-        </div>
-
-        <div class="rt48-scoreBlock">
-          <div class="rt48-scoreLabel">${esc(state.score.label)}</div>
-          <div class="rt48-scoreValue">${esc(state.score.value)}</div>
-        </div>
-      </div>
-    `;
-  }
-
-  const __rankTagOrigSetDataV48 = setData;
-  setData = async function(...args) {
-    await __rankTagOrigSetDataV48.apply(this, args);
-    renderCyberAsset();
-  };
-
-  window.addEventListener('load', () => {
-    setTimeout(renderCyberAsset, 200);
-    setTimeout(renderCyberAsset, 700);
-  });
-})();
-
-
-
-/* RankTag V49 - Cyber Red asset alignment override */
-(function rankTagCyberRedAssetAlignV49() {
-  const q = new URLSearchParams(window.location.search);
-  if (String(q.get("themeStyle") || "").toLowerCase() !== "cyber-red") return;
+(function rankTagImageBaseEngineV52() {
+  const IMAGE_BASE_STYLES = ["cyber-red"];
+  if (!IMAGE_BASE_STYLES.includes(themeStyle)) return;
 
   function esc(value) {
     return String(value ?? "").replace(/[&<>"']/g, (m) => ({
@@ -793,243 +504,107 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
   function parseScoreParts(text) {
     const raw = String(text || "").trim();
     const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
-    if (!match) return { label: String(q.get("scoreLabel") || "ELO").trim(), value: raw || "-", extra: "" };
+
+    if (!match) {
+      return {
+        label: String(params.get("scoreLabel") || "ELO").trim(),
+        value: raw || "-",
+        extra: ""
+      };
+    }
+
     return {
-      label: String(match[1] || q.get("scoreLabel") || "ELO").trim(),
+      label: String(match[1] || "ELO").trim(),
       value: String(match[2] || "-").trim(),
       extra: String(match[3] || "").trim()
     };
   }
 
-  function readState() {
-    const rank = normalizeRankDisplay(rankText?.textContent || `${q.get("league") || "Platinum"} ${q.get("division") || "1"}`).toUpperCase();
-    const player = String(nameText?.textContent || getPlayerFromUrl() || q.get("player") || "NomePlayer#1234").trim();
-    const score = parseScoreParts(scoreText?.textContent || `${q.get("scoreLabel") || "ELO"}: ${q.get("rankScore") || "37705"}`);
-    const emblemSrc = badgeImage?.getAttribute("src") || buildBadgeImageUrl(q.get("badgeFile") || "platinum-1");
-    return { rank, player, score, emblemSrc };
-  }
-
-  function renderCyberAsset() {
-    const root = badge || document.getElementById("badge");
-    if (!root) return;
-
-    const state = readState();
-    root.className = "badge rt49-root";
-    root.setAttribute("data-theme-style", "cyber-red");
-    document.documentElement.dataset.themeStyle = "cyber-red";
-
-    root.innerHTML = `
-      <div class="rt49-cyber">
-        <img class="rt49-base" src="/assets/plus/cyber-red-base.png" alt="Cyber Red base" />
-        <div class="rt49-sheen"></div>
-
-        <div class="rt49-emblemWrap">
-          <img class="rt49-emblem" src="${esc(state.emblemSrc)}" alt="rank emblem" />
-        </div>
-
-        <div class="rt49-player" title="${esc(state.player)}">${esc(state.player)}</div>
-
-        <div class="rt49-rankBlock">
-          <div class="rt49-rankLabel">RANK</div>
-          <div class="rt49-rankValue">${esc(state.rank)}</div>
-        </div>
-
-        <div class="rt49-scoreBlock">
-          <div class="rt49-scoreLabel">${esc(state.score.label)}</div>
-          <div class="rt49-scoreValue">${esc(state.score.value)}</div>
-        </div>
-      </div>
-    `;
-  }
-
-  const __rankTagSetDataV49 = setData;
-  setData = async function(...args) {
-    await __rankTagSetDataV49.apply(this, args);
-    renderCyberAsset();
-  };
-
-  window.addEventListener("load", () => {
-    setTimeout(renderCyberAsset, 120);
-    setTimeout(renderCyberAsset, 600);
-  });
-})();
-
-
-
-/* RankTag V50 - Cyber Red final-format base renderer */
-(function rankTagCyberRedFinalBaseV50() {
-  const q = new URLSearchParams(window.location.search);
-  if (String(q.get('themeStyle') || '').toLowerCase() !== 'cyber-red') return;
-
-  function esc(value) {
-    return String(value ?? '').replace(/[&<>"']/g, (m) => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-    }[m]));
-  }
-
-  function parseScore(text) {
-    const raw = String(text || '').trim();
-    const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
+  function readOverlayState() {
+    const rankFromDom = rankText?.textContent || `${params.get("league") || "Platinum"} ${params.get("division") || "1"}`;
     return {
-      label: match ? String(match[1]).trim() : String(q.get('scoreLabel') || 'ELO').trim(),
-      value: match ? String(match[2]).trim() : String(q.get('rankScore') || q.get('score') || '37705').trim(),
-      extra: match ? String(match[3] || '').trim() : ''
+      player: String(nameText?.textContent || getPlayerFromUrl() || params.get("player") || "NomePlayer#1234").trim(),
+      rank: normalizeRankDisplay(rankFromDom).toUpperCase(),
+      score: parseScoreParts(scoreText?.textContent || `${params.get("scoreLabel") || "ELO"}: ${params.get("rankScore") || "37705"}`),
+      emblemSrc: badgeImage?.getAttribute("src") || buildBadgeImageUrl(params.get("badgeFile") || "platinum-1")
     };
   }
 
-  function state() {
-    return {
-      rank: normalizeRankDisplay(rankText?.textContent || `${q.get('league') || 'Platinum'} ${q.get('division') || '1'}`).toUpperCase(),
-      player: String(nameText?.textContent || getPlayerFromUrl() || q.get('player') || 'NomePlayer#1234').trim(),
-      score: parseScore(scoreText?.textContent || `${q.get('scoreLabel') || 'ELO'}: ${q.get('rankScore') || '37705'}`),
-      emblemSrc: badgeImage?.getAttribute('src') || buildBadgeImageUrl(q.get('badgeFile') || 'platinum-1')
-    };
-  }
+  function applyPosition(element, config) {
+    if (!element || !config) return;
 
-  function render() {
-    const root = badge || document.getElementById('badge');
-    if (!root) return;
-    const s = state();
-    root.className = 'badge rt50-root';
-    root.setAttribute('data-theme-style', 'cyber-red');
-    document.documentElement.dataset.themeStyle = 'cyber-red';
-    root.innerHTML = `
-      <div class="rt50-cyber">
-        <img class="rt50-base" src="/assets/plus/cyber-red-base.png" alt="Cyber Red base" />
-        <div class="rt50-shine"></div>
-        <div class="rt50-emblemWrap"><img class="rt50-emblem" src="${esc(s.emblemSrc)}" alt="rank emblem" /></div>
-        <div class="rt50-player" title="${esc(s.player)}">${esc(s.player)}</div>
-        <div class="rt50-rankBlock">
-          <div class="rt50-rankLabel">RANK</div>
-          <div class="rt50-rankValue">${esc(s.rank)}</div>
-        </div>
-        <div class="rt50-scoreBlock">
-          <div class="rt50-scoreLabel">${esc(s.score.label)}</div>
-          <div class="rt50-scoreValue">${esc(s.score.value)}</div>
-        </div>
-      </div>
-    `;
-  }
+    element.style.left = `${config.x}px`;
+    element.style.top = `${config.y}px`;
 
-  const __origSetDataV50 = setData;
-  setData = async function(...args) {
-    await __origSetDataV50.apply(this, args);
-    render();
-  };
-  window.addEventListener('load', () => {
-    setTimeout(render, 120);
-    setTimeout(render, 500);
-  });
-})();
-
-
-
-/* RankTag V51 - image-base style engine */
-let rankTagImageBaseLayoutsPromise = null;
-function loadRankTagImageBaseLayouts() {
-  if (!rankTagImageBaseLayoutsPromise) {
-    rankTagImageBaseLayoutsPromise = fetch('/assets/plus/styles-layout.json?v=' + OVERLAY_VERSION)
-      .then((r) => r.ok ? r.json() : {})
-      .catch(() => ({}));
-  }
-  return rankTagImageBaseLayoutsPromise;
-}
-
-(function rankTagImageBaseEngineV51() {
-  const IMAGE_BASE_STYLES = ['cyber-red'];
-  if (!IMAGE_BASE_STYLES.includes(themeStyle)) return;
-
-  function esc(value) {
-    return String(value ?? '').replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-  }
-
-  function parseScoreParts(text) {
-    const raw = String(text || '').trim();
-    const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
-    if (!match) {
-      return { label: String(params.get('scoreLabel') || 'ELO').trim(), value: raw || '-', extra: '' };
-    }
-    return { label: String(match[1] || 'ELO').trim(), value: String(match[2] || '-').trim(), extra: String(match[3] || '').trim() };
-  }
-
-  function getState() {
-    return {
-      player: String(nameText?.textContent || getPlayerFromUrl() || params.get('player') || 'NomePlayer#1234').trim(),
-      rank: normalizeRankDisplay(rankText?.textContent || `${params.get('league') || 'Platinum'} ${params.get('division') || '1'}`).toUpperCase(),
-      score: parseScoreParts(scoreText?.textContent || `${params.get('scoreLabel') || 'ELO'}: ${params.get('rankScore') || '37705'}`),
-      emblemSrc: badgeImage?.getAttribute('src') || buildBadgeImageUrl(params.get('badgeFile') || 'platinum-1')
-    };
-  }
-
-    function styleBox(box, cfg) {
-    if (!box || !cfg) return;
-    box.style.left = `${cfg.x}px`;
-    box.style.top = `${cfg.y}px`;
-    if (cfg.w != null) box.style.width = `${cfg.w}px`;
-    if (cfg.h != null) box.style.height = `${cfg.h}px`;
-    if (cfg.fontSize != null) box.style.fontSize = `${cfg.fontSize}px`;
-    if (cfg.lineHeight != null) box.style.lineHeight = String(cfg.lineHeight);
-    if (cfg.letterSpacing != null) box.style.letterSpacing = `${cfg.letterSpacing}px`;
-    if (cfg.textTransform) box.style.textTransform = cfg.textTransform;
-    if (cfg.align) box.style.textAlign = cfg.align;
+    if (config.w != null) element.style.width = `${config.w}px`;
+    if (config.h != null) element.style.height = `${config.h}px`;
+    if (config.fontSize != null) element.style.fontSize = `${config.fontSize}px`;
+    if (config.lineHeight != null) element.style.lineHeight = String(config.lineHeight);
+    if (config.letterSpacing != null) element.style.letterSpacing = `${config.letterSpacing}px`;
+    if (config.textTransform) element.style.textTransform = config.textTransform;
+    if (config.align) element.style.textAlign = config.align;
   }
 
   async function renderImageBaseStyle() {
-    const layouts = await loadRankTagImageBaseLayouts();
-    const cfg = layouts[themeStyle];
-    const root = badge || document.getElementById('badge');
-    if (!cfg || !root) return;
+    const layouts = await loadRankTagPlusLayouts();
+    const config = layouts[themeStyle];
+    const root = badge || document.getElementById("badge");
 
-    const state = getState();
-    root.className = 'badge rt51-root';
-    root.setAttribute('data-theme-style', themeStyle);
-    root.style.setProperty('--rt51-width', `${cfg.canvas.width}px`);
-    root.style.setProperty('--rt51-height', `${cfg.canvas.height}px`);
+    if (!config || !root) return;
+
+    const state = readOverlayState();
+
+    root.className = "badge rt52-root";
+    root.setAttribute("data-theme-style", themeStyle);
+    root.style.setProperty("--rt52-width", `${config.canvas.width}px`);
+    root.style.setProperty("--rt52-height", `${config.canvas.height}px`);
 
     root.innerHTML = `
-      <div class="rt51-card rt51-${themeStyle}" data-animation="${esc(cfg.animation || '')}">
-        <img class="rt51-base" src="${esc(cfg.baseImage)}" alt="${esc(themeStyle)} base" />
-        <div class="rt51-shine"></div>
-        <div class="rt51-emblemWrap"><img class="rt51-emblem" src="${esc(state.emblemSrc)}" alt="rank emblem" /></div>
-        <div class="rt51-player">${esc(state.player)}</div>
-        <div class="rt51-rankLabel">RANK</div>
-        <div class="rt51-rankValue">${esc(state.rank)}</div>
-        <div class="rt51-scoreLabel">${esc(state.score.label)}</div>
-        <div class="rt51-scoreValue">${esc(state.score.value)}</div>
+      <div class="rt52-card rt52-${themeStyle}" data-animation="${esc(config.animation || "")}">
+        <img class="rt52-base" src="${esc(config.baseImage)}?v=${OVERLAY_VERSION}" alt="${esc(themeStyle)} base" />
+        <div class="rt52-shine"></div>
+
+        <div class="rt52-emblemWrap">
+          <img class="rt52-emblem" src="${esc(state.emblemSrc)}" alt="rank emblem" />
+        </div>
+
+        <div class="rt52-player" title="${esc(state.player)}">${esc(state.player)}</div>
+
+        <div class="rt52-rankLabel">RANK</div>
+        <div class="rt52-rankValue">${esc(state.rank)}</div>
+
+        <div class="rt52-scoreLabel">${esc(state.score.label)}</div>
+        <div class="rt52-scoreValue">${esc(state.score.value)}</div>
       </div>
     `;
 
-    const card = root.querySelector('.rt51-card');
-    const emblemWrap = root.querySelector('.rt51-emblemWrap');
-    const emblem = root.querySelector('.rt51-emblem');
-    const player = root.querySelector('.rt51-player');
-    const rankLabel = root.querySelector('.rt51-rankLabel');
-    const rankValue = root.querySelector('.rt51-rankValue');
-    const scoreLabel = root.querySelector('.rt51-scoreLabel');
-    const scoreValue = root.querySelector('.rt51-scoreValue');
+    const card = root.querySelector(".rt52-card");
+    const emblemWrap = root.querySelector(".rt52-emblemWrap");
+    const emblem = root.querySelector(".rt52-emblem");
 
-    card.style.width = `${cfg.canvas.width}px`;
-    card.style.height = `${cfg.canvas.height}px`;
+    card.style.width = `${config.canvas.width}px`;
+    card.style.height = `${config.canvas.height}px`;
 
-    styleBox(emblemWrap, cfg.emblem);
-    if (cfg.emblem?.w != null) emblem.style.width = `${cfg.emblem.w}px`;
-    if (cfg.emblem?.h != null) emblem.style.height = `${cfg.emblem.h}px`;
-    styleBox(player, cfg.player);
-    styleBox(rankLabel, cfg.rankLabel);
-    styleBox(rankValue, cfg.rank);
-    styleBox(scoreLabel, cfg.scoreLabel);
-    styleBox(scoreValue, cfg.score);
+    applyPosition(emblemWrap, config.emblem);
+    if (config.emblem?.w != null) emblem.style.width = `${config.emblem.w}px`;
+    if (config.emblem?.h != null) emblem.style.height = `${config.emblem.h}px`;
+
+    applyPosition(root.querySelector(".rt52-player"), config.player);
+    applyPosition(root.querySelector(".rt52-rankLabel"), config.rankLabel);
+    applyPosition(root.querySelector(".rt52-rankValue"), config.rank);
+    applyPosition(root.querySelector(".rt52-scoreLabel"), config.scoreLabel);
+    applyPosition(root.querySelector(".rt52-scoreValue"), config.score);
   }
 
-  const __rankTagOrigSetDataV51 = setData;
+  const originalSetData = setData;
   setData = async function(...args) {
-    await __rankTagOrigSetDataV51.apply(this, args);
+    await originalSetData.apply(this, args);
     await renderImageBaseStyle();
   };
 
-  window.addEventListener('load', () => {
+  window.addEventListener("load", () => {
     setTimeout(() => renderImageBaseStyle(), 120);
     setTimeout(() => renderImageBaseStyle(), 500);
+    setTimeout(() => renderImageBaseStyle(), 1000);
   });
 })();
-

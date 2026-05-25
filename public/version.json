@@ -1,8 +1,8 @@
 {
-  "version": "51",
+  "version": "52",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Nuovo motore image-base per gli stili Plus: base grafica + layout config + testi dinamici."
+  "note": "Preview stabilizzata e motore Plus image-base ripulito: un solo renderer per Cyber Red."
 }
