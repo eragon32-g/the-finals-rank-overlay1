@@ -1,8 +1,8 @@
 {
-  "version": "95",
+  "version": "96",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V95: rimosso il fondo bianco dal background premium, ora trasparente."
+  "note": "V96: cache-proof. Background premium rinominato in cyber-red-elite-bg-v96.png e riferimenti aggiornati ovunque."
 }

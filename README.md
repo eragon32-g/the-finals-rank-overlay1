@@ -1,10 +1,9 @@
-# RankTag V95
+# RankTag V96
 
-Sfondo premium VoidRage aggiornato.
+Cache-proof background premium.
 
-## Include
-- nuovo background premium più pulito
-- meno nero extra sui contorni
-- thumb/base aggiornate
-- renderer premium detached mantenuto
-- branding animato premium mantenuto
+## Cosa cambia
+- nuovo nome immagine premium: `/assets/premium/cyber-red-elite-bg-v96.png`
+- riferimenti aggiornati in generator, layout editor e renderer finale
+- versione aggiornata a V96
+- evita che Vercel/browser continuino a mostrare la vecchia V94/V95

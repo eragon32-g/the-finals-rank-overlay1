@@ -1,5 +1,19 @@
 [
   {
+    "version": "96",
+    "date": "2026-05-25",
+    "title": "Cache proof premium background",
+    "summary": "Background premium rinominato in cyber-red-elite-bg-v96.png per forzare il browser a scaricare l'asset nuovo.",
+    "fixed": [
+      "Il sito poteva continuare a mostrare V94/V95 per cache",
+      "Il background premium poteva rimanere vecchio perché aveva lo stesso nome file"
+    ],
+    "changed": [
+      "Nuovo asset: /assets/premium/cyber-red-elite-bg-v96.png",
+      "Riferimenti generator/editor/renderer aggiornati"
+    ]
+  },
+  {
     "version": "95",
     "date": "2026-05-25",
     "title": "Sfondo premium pulito",
@@ -100,7 +114,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=95",
+      "aggiornati thumb premium e cache buster a v=96",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -299,7 +313,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=95"
+      "riferimenti cache aggiornati a v=96"
     ]
   },
   {
