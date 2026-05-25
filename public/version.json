@@ -1,8 +1,8 @@
 {
-  "version": "74",
+  "version": "75",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Step 1 e 2: scala anteprima premium bloccata e griglia Cyber Red Elite riallineata."
+  "note": "Punto 1: rimossi vecchi renderer premium e riallineato Cyber Red Elite."
 }

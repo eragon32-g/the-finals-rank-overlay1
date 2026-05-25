@@ -1,5 +1,21 @@
 [
   {
+    "version": "75",
+    "date": "2026-05-25",
+    "title": "Punto 1 - renderer premium unico",
+    "summary": "Eliminato il doppio renderer Cyber Red Elite e riallineati gli elementi principali.",
+    "improved": [
+      "Un solo renderer premium attivo",
+      "Live preview bloccata a 470x160",
+      "Preview card premium centrata"
+    ],
+    "fixed": [
+      "Conflitto fra V73 e V74",
+      "Branding top-right incoerente",
+      "Allineamento nome/rank/score/emblema"
+    ]
+  },
+  {
     "version": "74",
     "date": "2026-05-25",
     "title": "Fix scala e allineamento Cyber Red Elite",

@@ -1,10 +1,6 @@
-# RankTag for THE FINALS - V74
+# RankTag V75
 
-Step 1 e Step 2 sul Cyber Red Elite.
-
-## Fix
-- Anteprima live premium bloccata a 470×160
-- Overlay centrato nel box preview
-- Cyber Red Elite riallineato con coordinate fisse
-- Stemma, nome, rank e score riposizionati
-- Card premium non taglia più la preview
+Punto 1: renderer premium unico per Cyber Red Elite.
+- rimossi i vecchi blocchi V73/V74
+- live preview bloccata a 470x160
+- allineamento base corretto

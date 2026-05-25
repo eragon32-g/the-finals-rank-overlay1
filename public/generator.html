@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V74 generator real-preview lock */
+/* RankTag V75 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -611,7 +611,7 @@ iframe#preview,
 
 
 
-/* RankTag V74 - layout rework: account full width, settings grid, preview bottom */
+/* RankTag V75 - layout rework: account full width, settings grid, preview bottom */
 .layout {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -769,7 +769,7 @@ aside.panel {
 
 
 
-/* RankTag V74 - compact generator, account unchanged */
+/* RankTag V75 - compact generator, account unchanged */
 body {
   padding: 16px !important;
 }
@@ -1047,7 +1047,7 @@ body {
 
 
 
-/* RankTag V74 - order, compact alignment and premium preview fix */
+/* RankTag V75 - order, compact alignment and premium preview fix */
 .settings-panel {
   grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
   align-items: stretch !important;
@@ -1163,7 +1163,7 @@ body {
 
 
 
-/* RankTag V74 - repaired generator layout */
+/* RankTag V75 - repaired generator layout */
 .settings-panel {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -1225,7 +1225,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 
 
 
-/* RankTag V74 - premium polish */
+/* RankTag V75 - premium polish */
 #livePreviewSection .preview-box {
   overflow: hidden !important;
   padding: 10px 0 !important;
@@ -1274,7 +1274,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 
 
 
-/* RankTag V74 - step 1/2 premium scale and alignment */
+/* RankTag V75 - step 1/2 premium scale and alignment */
 #livePreviewSection .preview-box {
   min-height: 230px !important;
   display: flex !important;
@@ -1322,6 +1322,49 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
   box-shadow: 0 0 0 1px rgba(255,62,35,.12), 0 22px 50px rgba(0,0,0,.28) !important;
 }
 
+
+/* RankTag V75 - premium final override */
+#livePreviewSection .preview-box,
+.preview-box {
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+#livePreviewSection iframe#previewFrame,
+#livePreviewSection iframe#preview,
+iframe#previewFrame,
+iframe#preview {
+  width:470px !important;
+  height:160px !important;
+  min-width:470px !important;
+  min-height:160px !important;
+  max-width:470px !important;
+  max-height:160px !important;
+  display:block !important;
+  margin:0 auto !important;
+  border:0 !important;
+  transform:none !important;
+}
+#overlayPremium .premium-preview-real {
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:176px !important;
+  padding:14px !important;
+  overflow:hidden !important;
+}
+#overlayPremium .premium-preview-real img,
+#premiumPreviewImage {
+  width:470px !important;
+  max-width:100% !important;
+  height:auto !important;
+  display:block !important;
+  margin:0 auto !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+
 </style>
 </head>
 <body>
@@ -1331,7 +1374,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V74</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V75</div></div>
     </header>
 
     <div class="layout">
@@ -1493,7 +1536,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 </div>
 <span class="premium-status-pill">Beta</span>
 </div>
-<div aria-label="Anteprima Cyber Red Elite" class="premium-preview-real"><img id="premiumPreviewImage" src="/assets/premium/cyber-red-elite-thumb-card.png?v=74" alt="Anteprima Cyber Red Elite" /></div>
+<div aria-label="Anteprima Cyber Red Elite" class="premium-preview-real"><img id="premiumPreviewImage" src="/assets/premium/cyber-red-elite-thumb-card.png?v=75" alt="Anteprima Cyber Red Elite" /></div>
 <p>Layout premium rosso/aggressivo costruito da zero. Preview live e output finale usano lo stesso stile Cyber Red Elite.</p>
 <div class="premium-actions">
 <button class="btn secondary small" id="previewCyberRedElite" type="button">Anteprima</button>
@@ -2138,7 +2181,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
   </script>
 
 <script>
-/* RankTag V74 force real iframe preview */
+/* RankTag V75 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');
