@@ -1,10 +1,8 @@
-# RankTag V90
+# RankTag V91
 
-Hard fix sincronizzazione Layout Editor → Generator → Link finale.
+Import confermato del JSON completo.
 
-## Cosa cambia
-- Il JSON esportato dal Layout Editor include chiaramente X/Y/W/H/Font/Z
-- Il generator inserisce il JSON completo nel parametro `layout`
-- L'overlay finale legge `layout` e lo applica sopra ogni default
-- Anteprima live e link stream devono combaciare
-- Il default non viene toccato
+## Include
+- JSON `ranktag-premium-layout-v2` salvato come sorgente autorevole
+- layout editor aggiornato sugli stessi valori
+- pubblico e link finale allineati al medesimo JSON

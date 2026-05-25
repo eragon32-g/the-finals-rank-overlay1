@@ -1,8 +1,8 @@
 {
-  "version": "90",
+  "version": "91",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V90: hard fix sincronizzazione layout. Il JSON esporta dimensioni, il generator le passa nel link e l'overlay le applica sempre sopra i default."
+  "note": "V91: importato il JSON completo ranktag-premium-layout-v2 come riferimento autorevole per pubblico, editor e link finale."
 }

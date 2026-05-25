@@ -10,12 +10,14 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "90";
+const OVERLAY_VERSION = "91";
 const params = new URLSearchParams(window.location.search);
 
 const CYBER_RED_ELITE_LAYOUT_LOCKED = {
   "version": 1,
+  "schema": "ranktag-premium-layout-v2",
   "style": "cyber-red-elite",
+  "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.",
   "canvas": {
     "width": 470,
     "height": 160
@@ -493,7 +495,7 @@ if (isManualMode()) {
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
-/* RankTag V90 Plus style finalizer */
+/* RankTag V91 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red-elite", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -528,7 +530,7 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 })();
 
 
-/* RankTag V90 - single source image-base Plus engine */
+/* RankTag V91 - single source image-base Plus engine */
 let rankTagPlusLayoutsPromise = null;
 
 function loadRankTagPlusLayouts() {
@@ -662,8 +664,8 @@ function loadRankTagPlusLayouts() {
   });
 })();
 
-/* RankTag V90 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "90");
+/* RankTag V91 render marker */
+document.documentElement.setAttribute("data-ranktag-version", "91");
 
 
 
@@ -675,7 +677,7 @@ document.documentElement.setAttribute("data-ranktag-version", "90");
 
 
 
-/* RankTag V90 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
+/* RankTag V91 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
 (function rankTagPremiumBackdropV78(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -716,7 +718,7 @@ document.documentElement.setAttribute("data-ranktag-version", "90");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=90') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=91') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -908,7 +910,7 @@ document.documentElement.setAttribute("data-ranktag-version", "90");
     style.textContent += `
 `;
     style.textContent += `
-/* RankTag V90 - locked premium coordinates from Layout Editor */
+/* RankTag V91 - locked premium coordinates from Layout Editor */
 #badge.rt78-cyber-red-elite .rank-mark,
 #badge.rt80-cyber-red-elite .rank-mark {
   left: 7px !important;
@@ -1010,7 +1012,7 @@ document.documentElement.setAttribute("data-ranktag-version", "90");
 })();
 
 
-/* RankTag V90 - Premium backdrop engine: full 470x160 background adapted to stable layout */
+/* RankTag V91 - Premium backdrop engine: full 470x160 background adapted to stable layout */
 (function rankTagPremiumBackdropV80(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -1052,7 +1054,7 @@ document.documentElement.setAttribute("data-ranktag-version", "90");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=90') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg.png?v=91') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -1283,7 +1285,7 @@ document.documentElement.setAttribute("data-ranktag-version", "90");
 
 
 
-/* RankTag V90 - runtime premium layout from URL param */
+/* RankTag V91 - runtime premium layout from URL param */
 (function rankTagPremiumRuntimeLayoutV89(){
   if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
 
@@ -1416,7 +1418,7 @@ document.documentElement.setAttribute("data-ranktag-version", "90");
 
 
 
-/* RankTag V90 - AUTHORITATIVE premium layout sync */
+/* RankTag V91 - AUTHORITATIVE premium layout sync */
 (function rankTagPremiumLayoutAuthoritativeV90(){
   if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
 

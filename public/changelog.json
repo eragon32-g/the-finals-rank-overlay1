@@ -1,5 +1,18 @@
 [
   {
+    "version": "91",
+    "date": "2026-05-25",
+    "title": "Import confermato del JSON completo",
+    "summary": "Applicato il JSON ranktag-premium-layout-v2 come sorgente autorevole.",
+    "added": [
+      "schema ranktag-premium-layout-v2 nel file pubblico",
+      "nota esplicita su x/y/w/h/fontSize/z"
+    ],
+    "improved": [
+      "editor, pubblico e link finale partono dallo stesso JSON completo"
+    ]
+  },
+  {
     "version": "90",
     "date": "2026-05-25",
     "title": "Hard fix layout sync",
@@ -48,7 +61,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=90",
+      "aggiornati thumb premium e cache buster a v=91",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -247,7 +260,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=90"
+      "riferimenti cache aggiornati a v=91"
     ]
   },
   {
