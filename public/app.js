@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "43";
+const OVERLAY_VERSION = "52";
 const params = new URLSearchParams(window.location.search);
 
 function normalizeThemeStyle(value) {
@@ -475,100 +475,136 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 })();
 
 
+/* RankTag V52 - single source image-base Plus engine */
+let rankTagPlusLayoutsPromise = null;
 
-/* RankTag V43 - real Plus layouts */
-(function rankTagRealPlusLayoutsV43() {
-  const PLUS_STYLES = ["cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
+function loadRankTagPlusLayouts() {
+  if (!rankTagPlusLayoutsPromise) {
+    rankTagPlusLayoutsPromise = fetch(`/assets/plus/styles-layout.json?v=${OVERLAY_VERSION}`)
+      .then((response) => response.ok ? response.json() : {})
+      .catch(() => ({}));
+  }
+  return rankTagPlusLayoutsPromise;
+}
+
+(function rankTagImageBaseEngineV52() {
+  const IMAGE_BASE_STYLES = ["cyber-red"];
+  if (!IMAGE_BASE_STYLES.includes(themeStyle)) return;
+
+  function esc(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (m) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[m]));
+  }
 
   function parseScoreParts(text) {
-    const raw = String(text || '').trim();
+    const raw = String(text || "").trim();
     const match = raw.match(/^([^:]+):\s*([^#▲▼]+)(.*)$/i);
+
     if (!match) {
-      return { label: 'ELO', value: raw || '-', extra: '' };
+      return {
+        label: String(params.get("scoreLabel") || "ELO").trim(),
+        value: raw || "-",
+        extra: ""
+      };
     }
+
     return {
-      label: String(match[1] || 'ELO').trim(),
-      value: String(match[2] || '-').trim(),
-      extra: String(match[3] || '').trim()
+      label: String(match[1] || "ELO").trim(),
+      value: String(match[2] || "-").trim(),
+      extra: String(match[3] || "").trim()
     };
   }
 
-  function getCurrentState() {
-    const style = normalizeThemeStyle(params.get('themeStyle'));
-    const status = statusText && !statusText.classList.contains('hidden') ? String(statusText.textContent || '').trim() : '';
-    const rank = normalizeRankDisplay(rankText?.textContent || '').toUpperCase() || 'PLATINUM 1';
-    const player = String(nameText?.textContent || getPlayerFromUrl() || 'ERDRAGON32#2577').trim();
-    const score = parseScoreParts(scoreText?.textContent || `${params.get('scoreLabel') || 'ELO'}: ${params.get('rankScore') || '37705'}`);
-    const emblemSrc = badgeImage?.getAttribute('src') || '';
-    return { style, status, rank, player, score, emblemSrc };
+  function readOverlayState() {
+    const rankFromDom = rankText?.textContent || `${params.get("league") || "Platinum"} ${params.get("division") || "1"}`;
+    return {
+      player: String(nameText?.textContent || getPlayerFromUrl() || params.get("player") || "NomePlayer#1234").trim(),
+      rank: normalizeRankDisplay(rankFromDom).toUpperCase(),
+      score: parseScoreParts(scoreText?.textContent || `${params.get("scoreLabel") || "ELO"}: ${params.get("rankScore") || "37705"}`),
+      emblemSrc: badgeImage?.getAttribute("src") || buildBadgeImageUrl(params.get("badgeFile") || "platinum-1")
+    };
   }
 
-  function buildRealLayout(state) {
-    const liveBadge = state.status ? `<div class="rt43-live">${state.status}</div>` : '';
-    const scoreExtra = state.score.extra ? `<div class="rt43-score-extra">${state.score.extra}</div>` : '';
-    const emblem = state.emblemSrc
-      ? `<img class="rt43-emblem" src="${state.emblemSrc}" alt="rank emblem" />`
-      : `<div class="rt43-emblem-fallback">TF</div>`;
+  function applyPosition(element, config) {
+    if (!element || !config) return;
 
-    return `
-      <div class="rt43-shell rt43-${state.style}">
-        <div class="rt43-noise"></div>
-        <div class="rt43-shine"></div>
-        <div class="rt43-accent rt43-accent-a"></div>
-        <div class="rt43-accent rt43-accent-b"></div>
+    element.style.left = `${config.x}px`;
+    element.style.top = `${config.y}px`;
 
-        <div class="rt43-left">
-          <div class="rt43-emblem-frame">${emblem}</div>
+    if (config.w != null) element.style.width = `${config.w}px`;
+    if (config.h != null) element.style.height = `${config.h}px`;
+    if (config.fontSize != null) element.style.fontSize = `${config.fontSize}px`;
+    if (config.lineHeight != null) element.style.lineHeight = String(config.lineHeight);
+    if (config.letterSpacing != null) element.style.letterSpacing = `${config.letterSpacing}px`;
+    if (config.textTransform) element.style.textTransform = config.textTransform;
+    if (config.align) element.style.textAlign = config.align;
+  }
+
+  async function renderImageBaseStyle() {
+    const layouts = await loadRankTagPlusLayouts();
+    const config = layouts[themeStyle];
+    const root = badge || document.getElementById("badge");
+
+    if (!config || !root) return;
+
+    const state = readOverlayState();
+
+    root.className = "badge rt52-root";
+    root.setAttribute("data-theme-style", themeStyle);
+    root.style.setProperty("--rt52-width", `${config.canvas.width}px`);
+    root.style.setProperty("--rt52-height", `${config.canvas.height}px`);
+
+    root.innerHTML = `
+      <div class="rt52-card rt52-${themeStyle}" data-animation="${esc(config.animation || "")}">
+        <img class="rt52-base" src="${esc(config.baseImage)}?v=${OVERLAY_VERSION}" alt="${esc(themeStyle)} base" />
+        <div class="rt52-shine"></div>
+
+        <div class="rt52-emblemWrap">
+          <img class="rt52-emblem" src="${esc(state.emblemSrc)}" alt="rank emblem" />
         </div>
 
-        <div class="rt43-center">
-          <div class="rt43-topbar">
-            <div class="rt43-player" title="${state.player}">${state.player}</div>
-            <div class="rt43-topbar-right">
-              ${liveBadge}
-              <div class="rt43-brand">RANKTAG</div>
-            </div>
-          </div>
+        <div class="rt52-player" title="${esc(state.player)}">${esc(state.player)}</div>
 
-          <div class="rt43-bottomrow">
-            <div class="rt43-rank-box">
-              <div class="rt43-kicker">RANK</div>
-              <div class="rt43-rank">${state.rank}</div>
-            </div>
+        <div class="rt52-rankLabel">RANK</div>
+        <div class="rt52-rankValue">${esc(state.rank)}</div>
 
-            <div class="rt43-score-box">
-              <div class="rt43-score-label">${state.score.label}</div>
-              <div class="rt43-score-value">${state.score.value}</div>
-              ${scoreExtra}
-            </div>
-          </div>
-        </div>
+        <div class="rt52-scoreLabel">${esc(state.score.label)}</div>
+        <div class="rt52-scoreValue">${esc(state.score.value)}</div>
       </div>
     `;
+
+    const card = root.querySelector(".rt52-card");
+    const emblemWrap = root.querySelector(".rt52-emblemWrap");
+    const emblem = root.querySelector(".rt52-emblem");
+
+    card.style.width = `${config.canvas.width}px`;
+    card.style.height = `${config.canvas.height}px`;
+
+    applyPosition(emblemWrap, config.emblem);
+    if (config.emblem?.w != null) emblem.style.width = `${config.emblem.w}px`;
+    if (config.emblem?.h != null) emblem.style.height = `${config.emblem.h}px`;
+
+    applyPosition(root.querySelector(".rt52-player"), config.player);
+    applyPosition(root.querySelector(".rt52-rankLabel"), config.rankLabel);
+    applyPosition(root.querySelector(".rt52-rankValue"), config.rank);
+    applyPosition(root.querySelector(".rt52-scoreLabel"), config.scoreLabel);
+    applyPosition(root.querySelector(".rt52-scoreValue"), config.score);
   }
 
-  function renderRealPlusLayout(force = false) {
-    const state = getCurrentState();
-    if (!PLUS_STYLES.includes(state.style)) return;
-    const root = badge || document.getElementById('badge') || document.body.firstElementChild;
-    if (!root) return;
-
-    root.className = 'badge rt43-root';
-    root.setAttribute('data-theme-style', state.style);
-    document.documentElement.dataset.themeStyle = state.style;
-
-    const nextHtml = buildRealLayout(state);
-    if (!force && root.innerHTML === nextHtml) return;
-    root.innerHTML = nextHtml;
-  }
-
-  const __rankTagOrigSetData = setData;
+  const originalSetData = setData;
   setData = async function(...args) {
-    await __rankTagOrigSetData.apply(this, args);
-    renderRealPlusLayout(true);
+    await originalSetData.apply(this, args);
+    await renderImageBaseStyle();
   };
 
-  window.addEventListener('load', () => {
-    setTimeout(() => renderRealPlusLayout(true), 600);
+  window.addEventListener("load", () => {
+    setTimeout(() => renderImageBaseStyle(), 120);
+    setTimeout(() => renderImageBaseStyle(), 500);
+    setTimeout(() => renderImageBaseStyle(), 1000);
   });
 })();

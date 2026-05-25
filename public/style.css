@@ -1118,3 +1118,1769 @@ html, body {
   0%, 58%, 100% { transform: translateX(-135%); opacity: .22; }
   74% { transform: translateX(130%); opacity: .72; }
 }
+
+
+/* RankTag V45 - Cyber Red Impact Rebuild
+   Only Cyber Red is rebuilt here. Other Plus styles remain unchanged for now. */
+
+.rt43-cyber-red.rt45-cyber-rebuild,
+.rt43-cyber-red {
+  width: 470px !important;
+  min-height: 148px !important;
+  display: grid !important;
+  grid-template-columns: 116px minmax(0, 1fr) !important;
+  align-items: stretch !important;
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  border: 2px solid rgba(255,42,23,.88) !important;
+  border-radius: 0 !important;
+  clip-path: polygon(
+    0 16px,
+    16px 0,
+    calc(100% - 46px) 0,
+    100% 26px,
+    100% calc(100% - 18px),
+    calc(100% - 18px) 100%,
+    0 100%
+  ) !important;
+  background:
+    radial-gradient(circle at 92% 46%, rgba(255,42,23,.36), transparent 22%),
+    linear-gradient(90deg, rgba(255,42,23,.18) 0 24%, rgba(255,42,23,.05) 24% 46%, transparent 46%),
+    linear-gradient(180deg, #15171f 0%, #090b10 46%, #030406 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,42,23,.22),
+    0 0 28px rgba(255,42,23,.32),
+    inset 0 0 28px rgba(255,42,23,.10),
+    inset 0 1px 0 rgba(255,255,255,.10) !important;
+}
+
+/* base decorative grid, tech diagonal pattern */
+.rt43-cyber-red.rt45-cyber-rebuild::before,
+.rt43-cyber-red::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  opacity: .72 !important;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,42,23,.10) 0 2px, transparent 2px 14px),
+    linear-gradient(90deg, transparent 0 71%, rgba(255,42,23,.14) 71% 72%, transparent 72% 100%),
+    linear-gradient(180deg, rgba(255,255,255,.06), transparent 20%, transparent 80%, rgba(0,0,0,.22));
+  transform: none !important;
+  animation: none !important;
+}
+
+/* animated shine */
+.rt43-cyber-red.rt45-cyber-rebuild::after,
+.rt43-cyber-red::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  background: linear-gradient(108deg, transparent 0%, rgba(255,255,255,.16) 45%, transparent 59%) !important;
+  transform: translateX(-135%) !important;
+  animation: rt45CyberSweep 5.4s ease-in-out infinite !important;
+}
+
+/* left emblem area */
+.rt43-cyber-red .rt43-left {
+  position: relative !important;
+  z-index: 3 !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  border-right: 1px solid rgba(255,42,23,.34) !important;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,42,23,.20), transparent 60%),
+    linear-gradient(180deg, rgba(255,42,23,.08), rgba(0,0,0,.20)) !important;
+}
+
+.rt43-cyber-red .rt43-left::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 10px !important;
+  top: 18px !important;
+  width: 92px !important;
+  height: 92px !important;
+  z-index: 0 !important;
+  border: 1px solid rgba(255,42,23,.62) !important;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255,42,23,.30), rgba(0,0,0,.20) 62%),
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.16)) !important;
+  box-shadow:
+    0 0 22px rgba(255,42,23,.25),
+    inset 0 0 18px rgba(255,42,23,.08) !important;
+  clip-path: polygon(50% 0, 94% 23%, 94% 77%, 50% 100%, 6% 77%, 6% 23%) !important;
+}
+
+.rt43-cyber-red .rt43-left::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 4px !important;
+  top: 8px !important;
+  width: 108px !important;
+  height: 112px !important;
+  z-index: 0 !important;
+  border-left: 4px solid rgba(255,42,23,.75) !important;
+  border-bottom: 3px solid rgba(255,42,23,.45) !important;
+  clip-path: polygon(0 10px, 12px 0, 100% 0, 100% 100%, 0 100%) !important;
+  opacity: .95 !important;
+}
+
+.rt43-cyber-red .rt43-emblem-frame {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 96px !important;
+  height: 96px !important;
+  display: grid !important;
+  place-items: center !important;
+  transform: translateX(-1px) !important;
+}
+
+.rt43-cyber-red .rt43-emblem-frame::before {
+  display: none !important;
+}
+
+.rt43-cyber-red .rt43-emblem {
+  width: 86px !important;
+  height: 86px !important;
+  object-fit: contain !important;
+  filter:
+    drop-shadow(0 10px 14px rgba(0,0,0,.72))
+    drop-shadow(0 0 12px rgba(125,231,242,.16)) !important;
+}
+
+/* center content */
+.rt43-cyber-red .rt43-center {
+  position: relative !important;
+  z-index: 3 !important;
+  min-width: 0 !important;
+  padding: 18px 18px 16px 18px !important;
+  display: grid !important;
+  grid-template-rows: auto 1fr !important;
+  gap: 12px !important;
+}
+
+.rt43-cyber-red .rt43-center::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 18px !important;
+  right: 112px !important;
+  top: 12px !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, rgba(255,42,23,.12), rgba(255,42,23,.78), rgba(255,42,23,.08)) !important;
+  box-shadow: 0 0 10px rgba(255,42,23,.42) !important;
+}
+
+.rt43-cyber-red .rt43-center::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 18px !important;
+  bottom: 13px !important;
+  width: 52px !important;
+  height: 3px !important;
+  background: #ff2a17 !important;
+  box-shadow:
+    -18px 0 0 rgba(255,42,23,.65),
+    18px 0 0 rgba(255,42,23,.30),
+    0 0 12px rgba(255,42,23,.50) !important;
+}
+
+/* top line with player + brand/status */
+.rt43-cyber-red .rt43-topbar {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: start !important;
+  gap: 14px !important;
+  min-width: 0 !important;
+}
+
+.rt43-cyber-red .rt43-player {
+  min-width: 0 !important;
+  max-width: 222px !important;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif !important;
+  font-size: 31px !important;
+  line-height: .92 !important;
+  letter-spacing: 1.1px !important;
+  text-transform: uppercase !important;
+  color: #f6f7fb !important;
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.75),
+    0 0 18px rgba(255,42,23,.32) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.rt43-cyber-red .rt43-topbar-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  flex-shrink: 0 !important;
+}
+
+.rt43-cyber-red .rt43-brand {
+  order: 2 !important;
+  min-height: 22px !important;
+  padding: 5px 8px !important;
+  border-radius: 6px !important;
+  background: linear-gradient(135deg, rgba(255,42,23,.28), rgba(255,42,23,.10)) !important;
+  border: 1px solid rgba(255,42,23,.44) !important;
+  color: #ff4b3c !important;
+  font-size: 10px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+}
+
+.rt43-cyber-red .rt43-live {
+  order: 1 !important;
+  min-height: 22px !important;
+  padding: 4px 7px !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.07) !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+  color: rgba(255,255,255,.88) !important;
+  font-size: 9px !important;
+  letter-spacing: 1px !important;
+}
+
+/* lower row: rank module + score module */
+.rt43-cyber-red .rt43-bottomrow {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 114px !important;
+  gap: 12px !important;
+  align-items: stretch !important;
+  min-width: 0 !important;
+}
+
+.rt43-cyber-red .rt43-rank-box {
+  min-width: 0 !important;
+  position: relative !important;
+  border-radius: 0 !important;
+  padding: 10px 13px 9px 14px !important;
+  background:
+    linear-gradient(90deg, rgba(125,231,242,.10), rgba(0,0,0,.18)),
+    rgba(0,0,0,.26) !important;
+  border: 1px solid rgba(125,231,242,.18) !important;
+  border-left: 3px solid rgba(125,231,242,.82) !important;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 0 100%) !important;
+  overflow: hidden !important;
+}
+
+.rt43-cyber-red .rt43-rank-box::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(90deg, rgba(125,231,242,.12), transparent 54%) !important;
+  opacity: .65 !important;
+  pointer-events: none !important;
+}
+
+.rt43-cyber-red .rt43-kicker {
+  position: relative !important;
+  z-index: 1 !important;
+  color: rgba(255,255,255,.58) !important;
+  font-size: 10px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+}
+
+.rt43-cyber-red .rt43-rank {
+  position: relative !important;
+  z-index: 1 !important;
+  margin-top: 4px !important;
+  max-width: 190px !important;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif !important;
+  font-size: 22px !important;
+  line-height: .95 !important;
+  letter-spacing: .8px !important;
+  text-transform: uppercase !important;
+  color: #7be7f2 !important;
+  text-shadow: 0 0 12px rgba(125,231,242,.22) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.rt43-cyber-red .rt43-score-box {
+  position: relative !important;
+  min-width: 114px !important;
+  border-radius: 0 !important;
+  padding: 10px 12px 9px !important;
+  text-align: right !important;
+  background:
+    radial-gradient(circle at 100% 50%, rgba(255,42,23,.24), transparent 64%),
+    linear-gradient(180deg, rgba(255,42,23,.18), rgba(0,0,0,.30)) !important;
+  border: 1px solid rgba(255,42,23,.36) !important;
+  clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%) !important;
+  box-shadow:
+    inset 0 0 16px rgba(255,42,23,.08),
+    0 0 18px rgba(255,42,23,.10) !important;
+  overflow: hidden !important;
+}
+
+.rt43-cyber-red .rt43-score-box::before {
+  content: "" !important;
+  position: absolute !important;
+  right: -18px !important;
+  top: 50% !important;
+  width: 66px !important;
+  height: 66px !important;
+  transform: translateY(-50%) !important;
+  border-radius: 50% !important;
+  background: rgba(255,42,23,.20) !important;
+  filter: blur(3px) !important;
+  pointer-events: none !important;
+}
+
+.rt43-cyber-red .rt43-score-label {
+  position: relative !important;
+  z-index: 1 !important;
+  color: #ff4b3c !important;
+  font-size: 10px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 1.7px !important;
+  text-transform: uppercase !important;
+}
+
+.rt43-cyber-red .rt43-score-value {
+  position: relative !important;
+  z-index: 1 !important;
+  margin-top: 3px !important;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif !important;
+  font-size: 30px !important;
+  line-height: .95 !important;
+  letter-spacing: .5px !important;
+  color: #fff !important;
+  text-shadow: 0 2px 0 rgba(0,0,0,.70) !important;
+  white-space: nowrap !important;
+}
+
+.rt43-cyber-red .rt43-score-extra {
+  position: relative !important;
+  z-index: 1 !important;
+  margin-top: 4px !important;
+  color: rgba(255,255,255,.72) !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+}
+
+/* red slash accents */
+.rt43-cyber-red .rt43-accent-a {
+  left: 128px !important;
+  top: 20px !important;
+  width: 8px !important;
+  height: 3px !important;
+  background: #ff2a17 !important;
+  box-shadow:
+    12px 0 0 rgba(255,42,23,.92),
+    24px 0 0 rgba(255,42,23,.62) !important;
+  transform: skewX(-24deg) !important;
+}
+
+.rt43-cyber-red .rt43-accent-b {
+  right: 18px !important;
+  top: 50px !important;
+  width: 78px !important;
+  height: 62px !important;
+  opacity: .18 !important;
+  background:
+    radial-gradient(circle at 60% 50%, rgba(255,42,23,.95), transparent 62%) !important;
+  clip-path: polygon(50% 0, 92% 26%, 78% 100%, 50% 78%, 22% 100%, 8% 26%) !important;
+}
+
+/* clean up inherited decorative layers for Cyber Red */
+.rt43-cyber-red .rt43-noise {
+  z-index: 0 !important;
+  opacity: .22 !important;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.07) 0 1px, transparent 1px 10px) !important;
+}
+
+.rt43-cyber-red .rt43-shine {
+  z-index: 1 !important;
+  opacity: .55 !important;
+}
+
+@keyframes rt45CyberSweep {
+  0%, 56%, 100% {
+    transform: translateX(-135%);
+    opacity: .25;
+  }
+  72% {
+    transform: translateX(135%);
+    opacity: .75;
+  }
+}
+
+
+
+/* RankTag V46 - Cyber Red compact premium strip
+   Goal: closer to the generated shop cover: low, wide, sharp, dense, premium. */
+
+.badge.rt43-root:has(.rt43-cyber-red),
+.badge:has(.rt43-cyber-red) {
+  width: 470px !important;
+  min-height: 96px !important;
+}
+
+.rt43-cyber-red.rt45-cyber-rebuild,
+.rt43-cyber-red {
+  width: 470px !important;
+  min-height: 88px !important;
+  height: 88px !important;
+  display: grid !important;
+  grid-template-columns: 88px minmax(0, 1fr) !important;
+  overflow: visible !important;
+  isolation: isolate !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  clip-path: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  position: relative !important;
+}
+
+/* main metal body */
+.rt43-cyber-red::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 42px !important;
+  right: 6px !important;
+  top: 9px !important;
+  height: 70px !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 42px) 0,
+    100% 16px,
+    calc(100% - 10px) 100%,
+    9px 100%,
+    0 calc(100% - 10px)
+  ) !important;
+  border: none !important;
+  background:
+    linear-gradient(115deg, rgba(255,42,23,.18) 0 20%, transparent 20% 62%, rgba(255,42,23,.13) 62% 100%),
+    repeating-linear-gradient(135deg, rgba(255,42,23,.10) 0 2px, transparent 2px 12px),
+    linear-gradient(180deg, #171a20 0%, #080a0e 58%, #020305 100%) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,42,23,.85),
+    inset 0 1px 0 rgba(255,255,255,.18),
+    0 0 18px rgba(255,42,23,.34),
+    0 10px 20px rgba(0,0,0,.34) !important;
+}
+
+/* red lower rail and top slices */
+.rt43-cyber-red::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 56px !important;
+  right: 22px !important;
+  top: 17px !important;
+  height: 58px !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  transform: none !important;
+  animation: none !important;
+  background:
+    linear-gradient(90deg, transparent 0 8%, rgba(255,42,23,.85) 8% 38%, transparent 38% 100%) top left / 100% 2px no-repeat,
+    linear-gradient(90deg, rgba(255,42,23,.95), rgba(255,42,23,.18), transparent) bottom left / 72% 2px no-repeat,
+    linear-gradient(110deg, transparent 0%, rgba(255,255,255,.10) 48%, transparent 58%);
+  opacity: .95 !important;
+}
+
+/* left emblem */
+.rt43-cyber-red .rt43-left {
+  position: relative !important;
+  z-index: 4 !important;
+  width: 88px !important;
+  height: 88px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.rt43-cyber-red .rt43-left::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 4px !important;
+  top: 7px !important;
+  width: 76px !important;
+  height: 76px !important;
+  z-index: 0 !important;
+  clip-path: polygon(50% 0, 92% 25%, 82% 88%, 50% 100%, 18% 88%, 8% 25%) !important;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(125,231,242,.18), rgba(0,0,0,.24) 58%),
+    linear-gradient(180deg, #171b22, #050608) !important;
+  border: 0 !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,42,23,.82),
+    0 0 16px rgba(255,42,23,.36),
+    0 8px 14px rgba(0,0,0,.55) !important;
+}
+
+.rt43-cyber-red .rt43-left::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 1px !important;
+  top: 4px !important;
+  width: 82px !important;
+  height: 82px !important;
+  z-index: -1 !important;
+  clip-path: polygon(50% 0, 94% 25%, 84% 90%, 50% 100%, 16% 90%, 6% 25%) !important;
+  background: linear-gradient(135deg, rgba(255,42,23,.95), rgba(255,42,23,.08)) !important;
+  opacity: .88 !important;
+}
+
+.rt43-cyber-red .rt43-emblem-frame {
+  width: 74px !important;
+  height: 74px !important;
+  display: grid !important;
+  place-items: center !important;
+  position: relative !important;
+  z-index: 2 !important;
+  transform: none !important;
+}
+
+.rt43-cyber-red .rt43-emblem-frame::before {
+  display: none !important;
+}
+
+.rt43-cyber-red .rt43-emblem {
+  width: 66px !important;
+  height: 66px !important;
+  object-fit: contain !important;
+  filter:
+    drop-shadow(0 8px 10px rgba(0,0,0,.75))
+    drop-shadow(0 0 8px rgba(125,231,242,.18)) !important;
+}
+
+/* central dense layout */
+.rt43-cyber-red .rt43-center {
+  position: relative !important;
+  z-index: 4 !important;
+  min-width: 0 !important;
+  height: 88px !important;
+  display: grid !important;
+  grid-template-rows: 42px 34px !important;
+  gap: 0 !important;
+  padding: 15px 16px 10px 12px !important;
+}
+
+.rt43-cyber-red .rt43-center::before,
+.rt43-cyber-red .rt43-center::after {
+  content: "" !important;
+  position: absolute !important;
+  pointer-events: none !important;
+}
+
+.rt43-cyber-red .rt43-center::before {
+  left: 6px !important;
+  right: 102px !important;
+  top: 11px !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent, rgba(255,42,23,.9), transparent) !important;
+  box-shadow: 0 0 8px rgba(255,42,23,.42) !important;
+}
+
+.rt43-cyber-red .rt43-center::after {
+  right: 10px !important;
+  top: 13px !important;
+  width: 42px !important;
+  height: 22px !important;
+  background:
+    linear-gradient(90deg, rgba(255,42,23,.95), rgba(255,42,23,.16)) top left / 100% 2px no-repeat,
+    linear-gradient(90deg, rgba(255,42,23,.55), transparent) bottom left / 72% 2px no-repeat;
+  transform: skewX(-20deg) !important;
+}
+
+/* top row */
+.rt43-cyber-red .rt43-topbar {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 76px !important;
+  align-items: start !important;
+  gap: 10px !important;
+  min-width: 0 !important;
+}
+
+.rt43-cyber-red .rt43-player {
+  min-width: 0 !important;
+  max-width: 235px !important;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif !important;
+  font-size: 27px !important;
+  line-height: .9 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: #f4f7fb !important;
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.85),
+    0 0 14px rgba(255,42,23,.28) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.rt43-cyber-red .rt43-topbar-right {
+  display: grid !important;
+  justify-items: end !important;
+  align-items: start !important;
+  gap: 0 !important;
+  min-width: 76px !important;
+}
+
+.rt43-cyber-red .rt43-live {
+  display: none !important;
+}
+
+.rt43-cyber-red .rt43-brand {
+  min-height: 18px !important;
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+  background: rgba(255,42,23,.18) !important;
+  border: 1px solid rgba(255,42,23,.45) !important;
+  color: #ff4437 !important;
+  font-size: 9px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 1.6px !important;
+  text-transform: uppercase !important;
+}
+
+/* bottom rank + score row */
+.rt43-cyber-red .rt43-bottomrow {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 92px !important;
+  gap: 10px !important;
+  align-items: stretch !important;
+  min-width: 0 !important;
+}
+
+.rt43-cyber-red .rt43-rank-box {
+  position: relative !important;
+  min-width: 0 !important;
+  height: 34px !important;
+  border-radius: 0 !important;
+  padding: 6px 10px 5px 12px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(125,231,242,.20) !important;
+  border-left: 3px solid rgba(125,231,242,.85) !important;
+  background:
+    linear-gradient(90deg, rgba(125,231,242,.10), rgba(0,0,0,.30)),
+    rgba(0,0,0,.18) !important;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 0 100%) !important;
+}
+
+.rt43-cyber-red .rt43-rank-box::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 11px !important;
+  right: 20px !important;
+  bottom: 4px !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, rgba(125,231,242,.70), transparent) !important;
+}
+
+.rt43-cyber-red .rt43-kicker {
+  color: rgba(255,255,255,.56) !important;
+  font-size: 8px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+
+.rt43-cyber-red .rt43-rank {
+  margin-top: 3px !important;
+  max-width: 190px !important;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif !important;
+  font-size: 17px !important;
+  line-height: .95 !important;
+  letter-spacing: .7px !important;
+  text-transform: uppercase !important;
+  color: #7be7f2 !important;
+  text-shadow: 0 0 10px rgba(125,231,242,.22) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.rt43-cyber-red .rt43-score-box {
+  position: relative !important;
+  min-width: 92px !important;
+  height: 42px !important;
+  transform: translateY(-8px) !important;
+  border-radius: 0 !important;
+  padding: 7px 9px 6px !important;
+  overflow: hidden !important;
+  text-align: right !important;
+  border: 1px solid rgba(255,42,23,.40) !important;
+  background:
+    radial-gradient(circle at 100% 52%, rgba(255,42,23,.32), transparent 68%),
+    linear-gradient(180deg, rgba(255,42,23,.17), rgba(0,0,0,.34)) !important;
+  clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%) !important;
+  box-shadow: inset 0 0 14px rgba(255,42,23,.08) !important;
+}
+
+.rt43-cyber-red .rt43-score-label {
+  color: #ff4b3c !important;
+  font-size: 8px !important;
+  font-weight: 1000 !important;
+  letter-spacing: 1.4px !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+
+.rt43-cyber-red .rt43-score-value {
+  margin-top: 4px !important;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif !important;
+  font-size: 24px !important;
+  line-height: .88 !important;
+  letter-spacing: .4px !important;
+  color: #fff !important;
+  text-shadow: 0 2px 0 rgba(0,0,0,.75) !important;
+  white-space: nowrap !important;
+}
+
+.rt43-cyber-red .rt43-score-extra {
+  display: none !important;
+}
+
+/* accents */
+.rt43-cyber-red .rt43-accent-a {
+  position: absolute !important;
+  z-index: 5 !important;
+  left: 112px !important;
+  top: 18px !important;
+  width: 8px !important;
+  height: 3px !important;
+  background: #ff2a17 !important;
+  box-shadow:
+    13px 0 0 rgba(255,42,23,.88),
+    26px 0 0 rgba(255,42,23,.52),
+    39px 0 0 rgba(255,42,23,.28) !important;
+  transform: skewX(-24deg) !important;
+}
+
+.rt43-cyber-red .rt43-accent-b {
+  position: absolute !important;
+  z-index: 1 !important;
+  right: 18px !important;
+  top: 24px !important;
+  width: 68px !important;
+  height: 52px !important;
+  opacity: .20 !important;
+  background: radial-gradient(circle at 55% 50%, rgba(255,42,23,.95), transparent 62%) !important;
+  clip-path: polygon(50% 0, 92% 27%, 78% 100%, 50% 78%, 22% 100%, 8% 27%) !important;
+}
+
+/* inherited layers */
+.rt43-cyber-red .rt43-noise {
+  z-index: 0 !important;
+  opacity: .18 !important;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 1px, transparent 1px 10px) !important;
+}
+
+.rt43-cyber-red .rt43-shine {
+  position: absolute !important;
+  inset: 10px 8px 10px 46px !important;
+  z-index: 3 !important;
+  background: linear-gradient(108deg, transparent 0%, rgba(255,255,255,.15) 45%, transparent 58%) !important;
+  transform: translateX(-140%) !important;
+  animation: rt46CyberSweep 5.8s ease-in-out infinite !important;
+  opacity: .55 !important;
+  pointer-events: none !important;
+}
+
+@keyframes rt46CyberSweep {
+  0%, 60%, 100% { transform: translateX(-140%); opacity: .22; }
+  76% { transform: translateX(120%); opacity: .68; }
+}
+
+
+
+/* RankTag V47 - Cyber Red premium rebuild, real layout */
+.badge.rt47-root {
+  width: 470px !important;
+  height: 128px !important;
+  min-height: 128px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.rt47-cyber {
+  position: relative;
+  width: 470px;
+  height: 128px;
+  isolation: isolate;
+  overflow: visible;
+  color: #fff;
+  transform: translateZ(0);
+}
+
+.rt47-layer {
+  position: absolute;
+  pointer-events: none;
+}
+
+.rt47-frame {
+  left: 42px;
+  right: 8px;
+  top: 15px;
+  height: 88px;
+  z-index: 0;
+  clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 22px, calc(100% - 12px) 100%, 8px 100%, 0 calc(100% - 12px));
+  background:
+    linear-gradient(90deg, rgba(255,42,23,.18) 0 24%, transparent 24% 100%),
+    linear-gradient(180deg, #1b1e27 0%, #090c12 54%, #020305 100%);
+  box-shadow:
+    inset 0 0 0 2px rgba(255,42,23,.90),
+    inset 0 1px 0 rgba(255,255,255,.18),
+    0 0 24px rgba(255,42,23,.28),
+    0 12px 24px rgba(0,0,0,.45);
+}
+
+.rt47-inner {
+  left: 122px;
+  right: 24px;
+  top: 28px;
+  height: 58px;
+  z-index: 1;
+  clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 16px, calc(100% - 8px) 100%, 0 100%);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+    linear-gradient(180deg, rgba(6,9,14,.78), rgba(2,4,7,.64));
+  border-top: 1px solid rgba(255,42,23,.45);
+  border-bottom: 1px solid rgba(255,42,23,.30);
+}
+
+.rt47-pattern {
+  left: 48px;
+  right: 10px;
+  top: 16px;
+  height: 86px;
+  z-index: 2;
+  clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 22px, calc(100% - 12px) 100%, 8px 100%, 0 calc(100% - 12px));
+  opacity: .34;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,42,23,.22) 0 2px, transparent 2px 13px),
+    linear-gradient(90deg, transparent 0 70%, rgba(255,42,23,.22) 70% 71%, transparent 71% 100%);
+}
+
+.rt47-sweep {
+  left: 46px;
+  right: 10px;
+  top: 16px;
+  height: 86px;
+  z-index: 3;
+  clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 22px, calc(100% - 12px) 100%, 8px 100%, 0 calc(100% - 12px));
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.15) 45%, transparent 58%);
+  transform: translateX(-135%);
+  animation: rt47Sweep 5.8s ease-in-out infinite;
+  opacity: .72;
+}
+
+.rt47-emblemDock {
+  position: absolute;
+  left: 6px;
+  top: 9px;
+  width: 106px;
+  height: 106px;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+}
+
+.rt47-emblemOuter {
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  clip-path: polygon(50% 0, 94% 25%, 83% 88%, 50% 100%, 17% 88%, 6% 25%);
+  background:
+    linear-gradient(135deg, rgba(255,42,23,.95), rgba(255,42,23,.18)),
+    radial-gradient(circle at 50% 50%, rgba(255,42,23,.30), rgba(0,0,0,.15));
+  box-shadow:
+    0 0 22px rgba(255,42,23,.42),
+    0 12px 20px rgba(0,0,0,.55);
+}
+
+.rt47-emblemInner {
+  width: 82px;
+  height: 82px;
+  display: grid;
+  place-items: center;
+  clip-path: polygon(50% 0, 92% 25%, 82% 88%, 50% 100%, 18% 88%, 8% 25%);
+  background:
+    radial-gradient(circle at 50% 40%, rgba(125,231,242,.18), rgba(0,0,0,.22) 60%),
+    linear-gradient(180deg, #202530, #050608);
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.12),
+    inset 0 0 16px rgba(255,42,23,.16);
+}
+
+.rt47-emblem {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 10px 14px rgba(0,0,0,.75))
+    drop-shadow(0 0 10px rgba(125,231,242,.18));
+}
+
+.rt47-emblemFallback {
+  font-size: 20px;
+  font-weight: 1000;
+}
+
+.rt47-main {
+  position: absolute;
+  left: 116px;
+  right: 24px;
+  top: 24px;
+  height: 72px;
+  z-index: 6;
+  display: grid;
+  grid-template-rows: 16px 28px 28px;
+  gap: 0;
+}
+
+.rt47-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  min-width: 0;
+}
+
+.rt47-slashes {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  height: 10px;
+  padding-left: 2px;
+}
+
+.rt47-slashes span {
+  width: 18px;
+  height: 3px;
+  transform: skewX(-25deg);
+  background: #ff2a17;
+  box-shadow: 0 0 8px rgba(255,42,23,.48);
+}
+
+.rt47-slashes span:nth-child(2) { opacity: .70; }
+.rt47-slashes span:nth-child(3) { opacity: .38; }
+
+.rt47-brand {
+  transform: translateY(-2px) skewX(-14deg);
+  padding: 5px 11px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgba(255,42,23,.34), rgba(255,42,23,.16));
+  border: 1px solid rgba(255,42,23,.48);
+  color: #ff3b2d;
+  font-size: 9px;
+  font-weight: 1000;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.rt47-player {
+  max-width: 244px;
+  min-width: 0;
+  align-self: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 28px;
+  line-height: .90;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #f5f7fb;
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.84),
+    0 0 14px rgba(255,42,23,.26);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt47-bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 92px;
+  gap: 12px;
+  align-items: end;
+  height: 30px;
+}
+
+.rt47-rankModule {
+  min-width: 0;
+  height: 30px;
+  padding: 5px 11px 4px 13px;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 100%, 0 100%);
+  background:
+    linear-gradient(90deg, rgba(125,231,242,.14), rgba(0,0,0,.34)),
+    rgba(0,0,0,.18);
+  border-left: 3px solid rgba(125,231,242,.88);
+  box-shadow:
+    inset 0 0 0 1px rgba(125,231,242,.18),
+    0 0 14px rgba(125,231,242,.06);
+}
+
+.rt47-rankModule::after {
+  content: "";
+  position: absolute;
+  left: 13px;
+  right: 24px;
+  bottom: 4px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(125,231,242,.70), transparent);
+}
+
+.rt47-moduleLabel,
+.rt47-scoreLabel {
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.rt47-moduleLabel {
+  color: rgba(255,255,255,.56);
+}
+
+.rt47-rank {
+  margin-top: 3px;
+  max-width: 190px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: .92;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: #7be7f2;
+  text-shadow: 0 0 10px rgba(125,231,242,.22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt47-scoreModule {
+  height: 38px;
+  transform: translateY(-4px);
+  padding: 6px 9px 5px;
+  text-align: right;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(9px 0, 100% 0, 100% 100%, 0 100%);
+  background:
+    radial-gradient(circle at 100% 50%, rgba(255,42,23,.32), transparent 66%),
+    linear-gradient(180deg, rgba(255,42,23,.18), rgba(0,0,0,.34));
+  box-shadow:
+    inset 0 0 0 1px rgba(255,42,23,.38),
+    inset 0 0 14px rgba(255,42,23,.08);
+}
+
+.rt47-scoreLabel {
+  color: #ff4b3c;
+}
+
+.rt47-score {
+  margin-top: 4px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 22px;
+  line-height: .88;
+  letter-spacing: .4px;
+  color: #fff;
+  text-shadow: 0 2px 0 rgba(0,0,0,.75);
+  white-space: nowrap;
+}
+
+.rt47-redGhost {
+  position: absolute;
+  z-index: 2;
+  right: 23px;
+  top: 28px;
+  width: 66px;
+  height: 52px;
+  opacity: .20;
+  background: radial-gradient(circle at 55% 50%, rgba(255,42,23,.95), transparent 63%);
+  clip-path: polygon(50% 0, 92% 27%, 78% 100%, 50% 78%, 22% 100%, 8% 27%);
+}
+
+.rt47-cornerMark {
+  position: absolute;
+  z-index: 4;
+  right: 14px;
+  bottom: 20px;
+  width: 52px;
+  height: 3px;
+  background: #ff2a17;
+  box-shadow:
+    -18px 0 0 rgba(255,42,23,.64),
+    18px 0 0 rgba(255,42,23,.28),
+    0 0 12px rgba(255,42,23,.46);
+}
+
+@keyframes rt47Sweep {
+  0%, 60%, 100% { transform: translateX(-135%); opacity: .22; }
+  76% { transform: translateX(135%); opacity: .70; }
+}
+
+
+
+/* RankTag V48 - Cyber Red using clean PNG base */
+.badge.rt48-root {
+  width: 470px !important;
+  height: 157px !important;
+  min-height: 157px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  padding: 0 !important;
+}
+
+.rt48-cyber {
+  position: relative;
+  width: 470px;
+  height: 157px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.rt48-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rt48-sheen {
+  position: absolute;
+  left: 96px;
+  top: 12px;
+  width: 260px;
+  height: 120px;
+  background: linear-gradient(108deg, transparent 0%, rgba(255,255,255,.14) 48%, transparent 57%);
+  transform: translateX(-155%);
+  animation: rt48sheen 6s ease-in-out infinite;
+  opacity: .5;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.rt48-emblemWrap {
+  position: absolute;
+  left: 22px;
+  top: 35px;
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+}
+
+.rt48-emblem {
+  width: 78px;
+  height: 78px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 10px rgba(0,0,0,.78)) drop-shadow(0 0 8px rgba(255,255,255,.06));
+}
+
+.rt48-player {
+  position: absolute;
+  left: 122px;
+  top: 31px;
+  width: 204px;
+  z-index: 3;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 27px;
+  line-height: .9;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: #f6f7fb;
+  text-shadow: 0 2px 0 rgba(0,0,0,.82), 0 0 10px rgba(255,42,23,.22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt48-rankBlock {
+  position: absolute;
+  left: 130px;
+  top: 87px;
+  width: 162px;
+  z-index: 3;
+}
+
+.rt48-rankLabel,
+.rt48-scoreLabel {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.rt48-rankLabel {
+  color: rgba(255,255,255,.52);
+}
+
+.rt48-rankValue {
+  margin-top: 3px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: .95;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: #72f0ff;
+  text-shadow: 0 0 10px rgba(114,240,255,.24);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt48-scoreBlock {
+  position: absolute;
+  left: 357px;
+  top: 77px;
+  width: 78px;
+  z-index: 3;
+  text-align: center;
+}
+
+.rt48-scoreLabel {
+  color: #ff5a47;
+}
+
+.rt48-scoreValue {
+  margin-top: 4px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 21px;
+  line-height: .9;
+  letter-spacing: .3px;
+  color: #fff;
+  text-shadow: 0 2px 0 rgba(0,0,0,.72);
+  white-space: nowrap;
+}
+
+@keyframes rt48sheen {
+  0%, 62%, 100% { transform: translateX(-155%); opacity: .18; }
+  78% { transform: translateX(145%); opacity: .55; }
+}
+
+
+
+/* RankTag V49 - Cyber Red asset alignment */
+.badge.rt49-root {
+  width: 470px !important;
+  height: 157px !important;
+  min-height: 157px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.rt49-cyber {
+  position: relative;
+  width: 470px;
+  height: 157px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.rt49-base {
+  position: absolute;
+  inset: 0;
+  width: 470px;
+  height: 157px;
+  object-fit: contain;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rt49-sheen {
+  position: absolute;
+  left: 118px;
+  top: 22px;
+  width: 230px;
+  height: 96px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .38;
+  background: linear-gradient(108deg, transparent 0%, rgba(255,255,255,.14) 48%, transparent 58%);
+  transform: translateX(-160%);
+  animation: rt49sheen 6.2s ease-in-out infinite;
+}
+
+.rt49-emblemWrap {
+  position: absolute;
+  left: 21px;
+  top: 36px;
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+}
+
+.rt49-emblem {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 8px 10px rgba(0,0,0,.78))
+    drop-shadow(0 0 8px rgba(255,255,255,.05));
+}
+
+.rt49-player {
+  position: absolute;
+  left: 139px;
+  top: 36px;
+  width: 205px;
+  z-index: 3;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 24px;
+  line-height: .9;
+  letter-spacing: .9px;
+  text-transform: uppercase;
+  color: #f7f8fb;
+  text-shadow: 0 2px 0 rgba(0,0,0,.84), 0 0 10px rgba(255,42,23,.22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt49-rankBlock {
+  position: absolute;
+  left: 141px;
+  top: 88px;
+  width: 150px;
+  z-index: 3;
+}
+
+.rt49-rankLabel,
+.rt49-scoreLabel {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.rt49-rankLabel {
+  color: rgba(255,255,255,.52);
+}
+
+.rt49-rankValue {
+  margin-top: 3px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: .95;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: #72f0ff;
+  text-shadow: 0 0 10px rgba(114,240,255,.24);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt49-scoreBlock {
+  position: absolute;
+  left: 366px;
+  top: 74px;
+  width: 72px;
+  z-index: 3;
+  text-align: center;
+}
+
+.rt49-scoreLabel {
+  color: #ff5a47;
+}
+
+.rt49-scoreValue {
+  margin-top: 4px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  font-size: 20px;
+  line-height: .9;
+  letter-spacing: .3px;
+  color: #fff;
+  text-shadow: 0 2px 0 rgba(0,0,0,.72);
+  white-space: nowrap;
+}
+
+@keyframes rt49sheen {
+  0%, 62%, 100% { transform: translateX(-160%); opacity: .16; }
+  78% { transform: translateX(150%); opacity: .46; }
+}
+
+
+
+/* RankTag V50 - Cyber Red on final-format base */
+.badge.rt50-root {
+  width: 470px !important;
+  height: 120px !important;
+  min-height: 120px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.rt50-cyber {
+  position: relative;
+  width: 470px;
+  height: 120px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.rt50-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rt50-shine {
+  position: absolute;
+  left: 170px;
+  top: 16px;
+  width: 84px;
+  height: 88px;
+  background: linear-gradient(112deg, transparent 0%, rgba(255,255,255,.16) 48%, transparent 58%);
+  transform: translateX(-260%);
+  animation: rt50Shine 5.8s ease-in-out infinite;
+  opacity: .34;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.rt50-emblemWrap {
+  position: absolute;
+  left: 28px;
+  top: 31px;
+  width: 66px;
+  height: 66px;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+}
+
+.rt50-emblem {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.84));
+}
+
+.rt50-player {
+  position: absolute;
+  left: 117px;
+  top: 24px;
+  width: 235px;
+  z-index: 3;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 28px;
+  line-height: .92;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  color: #f6f7fa;
+  text-shadow: 0 2px 0 rgba(0,0,0,.88), 0 0 8px rgba(255,58,30,.22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt50-rankBlock {
+  position: absolute;
+  left: 122px;
+  top: 72px;
+  width: 150px;
+  z-index: 3;
+}
+
+.rt50-rankLabel,
+.rt50-scoreLabel {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.rt50-rankLabel { color: rgba(255,255,255,.54); }
+
+.rt50-rankValue {
+  margin-top: 2px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: .95;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: #6fe8fb;
+  text-shadow: 0 0 8px rgba(111,232,251,.22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt50-scoreBlock {
+  position: absolute;
+  left: 382px;
+  top: 61px;
+  width: 56px;
+  z-index: 3;
+  text-align: center;
+}
+
+.rt50-scoreLabel { color: #ff5f47; }
+
+.rt50-scoreValue {
+  margin-top: 2px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: .92;
+  letter-spacing: .2px;
+  color: #ffffff;
+  text-shadow: 0 2px 0 rgba(0,0,0,.84);
+  white-space: nowrap;
+}
+
+@keyframes rt50Shine {
+  0%,60%,100% { transform: translateX(-260%); opacity: .12; }
+  78% { transform: translateX(280%); opacity: .36; }
+}
+
+
+
+/* RankTag V51 - image-base style engine */
+.badge.rt51-root {
+  width: var(--rt51-width, 470px) !important;
+  height: var(--rt51-height, 120px) !important;
+  min-height: var(--rt51-height, 120px) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+.rt51-card {
+  position: relative;
+  width: var(--rt51-width, 470px);
+  height: var(--rt51-height, 120px);
+  overflow: hidden;
+  isolation: isolate;
+}
+.rt51-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 0;
+  pointer-events: none;
+}
+.rt51-shine {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 90px;
+  height: calc(100% - 16px);
+  background: linear-gradient(112deg, transparent 0%, rgba(255,255,255,.16) 48%, transparent 58%);
+  transform: translateX(-240%);
+  opacity: .25;
+  pointer-events: none;
+  z-index: 1;
+}
+.rt51-card[data-animation="shine"] .rt51-shine {
+  animation: rt51-shine 5.8s ease-in-out infinite;
+}
+.rt51-emblemWrap,
+.rt51-player,
+.rt51-rankLabel,
+.rt51-rankValue,
+.rt51-scoreLabel,
+.rt51-scoreValue {
+  position: absolute;
+  z-index: 3;
+}
+.rt51-emblemWrap {
+  display: grid;
+  place-items: center;
+}
+.rt51-emblem {
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.84));
+}
+.rt51-player,
+.rt51-rankValue,
+.rt51-scoreValue {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', system-ui, sans-serif;
+  color: #f8f8fb;
+  text-shadow: 0 2px 0 rgba(0,0,0,.88);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rt51-player { text-shadow: 0 2px 0 rgba(0,0,0,.88), 0 0 8px rgba(255,58,30,.18); }
+.rt51-rankLabel,
+.rt51-scoreLabel {
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 1000;
+  color: rgba(255,255,255,.56);
+  text-transform: uppercase;
+  line-height: 1;
+}
+.rt51-rankValue {
+  color: #71ebff;
+  text-shadow: 0 2px 0 rgba(0,0,0,.88), 0 0 8px rgba(111,232,251,.18);
+}
+.rt51-scoreLabel { color: #ff6048; }
+.rt51-scoreValue { color: #ffffff; }
+@keyframes rt51-shine {
+  0%,60%,100% { transform: translateX(-240%); opacity: .1; }
+  78% { transform: translateX(620%); opacity: .3; }
+}
+
+
+
+/* RankTag V52 - single source image-base Plus engine */
+.badge.rt52-root {
+  width: var(--rt52-width, 470px) !important;
+  height: var(--rt52-height, 120px) !important;
+  min-height: var(--rt52-height, 120px) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.rt52-card {
+  position: relative;
+  width: var(--rt52-width, 470px);
+  height: var(--rt52-height, 120px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.rt52-base {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.rt52-shine {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  z-index: 1;
+  width: 90px;
+  height: calc(100% - 16px);
+  background: linear-gradient(112deg, transparent 0%, rgba(255,255,255,.16) 48%, transparent 58%);
+  transform: translateX(-240%);
+  opacity: .25;
+  pointer-events: none;
+}
+
+.rt52-card[data-animation="shine"] .rt52-shine {
+  animation: rt52-shine 5.8s ease-in-out infinite;
+}
+
+.rt52-emblemWrap,
+.rt52-player,
+.rt52-rankLabel,
+.rt52-rankValue,
+.rt52-scoreLabel,
+.rt52-scoreValue {
+  position: absolute;
+  z-index: 3;
+}
+
+.rt52-emblemWrap {
+  display: grid;
+  place-items: center;
+}
+
+.rt52-emblem {
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.84));
+}
+
+.rt52-player,
+.rt52-rankValue,
+.rt52-scoreValue {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", system-ui, sans-serif;
+  color: #f8f8fb;
+  text-shadow: 0 2px 0 rgba(0,0,0,.88);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rt52-player {
+  text-shadow: 0 2px 0 rgba(0,0,0,.88), 0 0 8px rgba(255,58,30,.18);
+}
+
+.rt52-rankLabel,
+.rt52-scoreLabel {
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 1000;
+  color: rgba(255,255,255,.56);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.rt52-rankValue {
+  color: #71ebff;
+  text-shadow: 0 2px 0 rgba(0,0,0,.88), 0 0 8px rgba(111,232,251,.18);
+}
+
+.rt52-scoreLabel {
+  color: #ff6048;
+}
+
+.rt52-scoreValue {
+  color: #ffffff;
+}
+
+@keyframes rt52-shine {
+  0%, 60%, 100% { transform: translateX(-240%); opacity: .10; }
+  78% { transform: translateX(620%); opacity: .30; }
+}
+

@@ -1,0 +1,57 @@
+{
+  "cyber-red": {
+    "canvas": {
+      "width": 470,
+      "height": 120
+    },
+    "baseImage": "/assets/plus/cyber-red-base.png",
+    "thumbImage": "/assets/plus/cyber-red.png",
+    "animation": "shine",
+    "emblem": {
+      "x": 27,
+      "y": 30,
+      "w": 62,
+      "h": 62
+    },
+    "player": {
+      "x": 116,
+      "y": 23,
+      "w": 222,
+      "fontSize": 27,
+      "lineHeight": 0.92,
+      "letterSpacing": 0.4,
+      "textTransform": "uppercase"
+    },
+    "rankLabel": {
+      "x": 126,
+      "y": 72,
+      "fontSize": 8,
+      "letterSpacing": 1.4
+    },
+    "rank": {
+      "x": 126,
+      "y": 82,
+      "w": 145,
+      "fontSize": 16,
+      "lineHeight": 0.95,
+      "letterSpacing": 0.3,
+      "textTransform": "uppercase"
+    },
+    "scoreLabel": {
+      "x": 394,
+      "y": 67,
+      "fontSize": 8,
+      "letterSpacing": 1.4,
+      "align": "center"
+    },
+    "score": {
+      "x": 394,
+      "y": 79,
+      "w": 56,
+      "fontSize": 18,
+      "lineHeight": 0.92,
+      "letterSpacing": 0.2,
+      "align": "center"
+    }
+  }
+}

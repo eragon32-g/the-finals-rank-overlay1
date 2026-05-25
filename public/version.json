@@ -1,8 +1,8 @@
 {
-  "version": "43",
+  "version": "52",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Real Plus layouts rebuilt in HTML/CSS. Official dynamic rank emblem preserved."
+  "note": "Preview stabilizzata e motore Plus image-base ripulito: un solo renderer per Cyber Red."
 }
