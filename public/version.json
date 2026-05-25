@@ -1,8 +1,8 @@
 {
-  "version": "56",
+  "version": "57",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Cyber Red premium v5: denser base, score fully inside, cleaner text slots."
+  "note": "Shop/Stili Plus rimossi dal progetto. Generator e Test Lab tornano senza sezione shop."
 }

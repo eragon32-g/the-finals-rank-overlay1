@@ -1,5 +1,22 @@
 [
   {
+    "version": "57",
+    "date": "2026-05-25",
+    "title": "Shop rimosso",
+    "summary": "Rimossa tutta la parte relativa allo Shop/Stili Plus per tornare a un generator più pulito e stabile.",
+    "added": [],
+    "improved": [
+      "Generator più semplice",
+      "Test Lab più pulito",
+      "Meno elementi sperimentali che possono rompere la preview"
+    ],
+    "fixed": [
+      "Rimossi Shop/Stili Plus",
+      "Rimossi asset Plus dal pacchetto",
+      "Rimossi riferimenti themeStyle shop-only dal generator"
+    ]
+  },
+  {
     "version": "56",
     "date": "2026-05-25",
     "title": "Cyber Red premium v5",

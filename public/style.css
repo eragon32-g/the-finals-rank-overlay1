@@ -2887,12 +2887,12 @@ html, body {
 
 
 /* RankTag V53 - preview/output consistency helpers */
-html[data-ranktag-version="56"] body {
+html[data-ranktag-version="57"] body {
   margin: 0 !important;
   background: transparent !important;
 }
 
-html[data-ranktag-version="56"] .overlay {
+html[data-ranktag-version="57"] .overlay {
   width: fit-content !important;
   height: fit-content !important;
   min-height: 0 !important;
@@ -2901,7 +2901,26 @@ html[data-ranktag-version="56"] .overlay {
   margin: 0 !important;
 }
 
-html[data-ranktag-version="56"] .badge.rt52-root {
+html[data-ranktag-version="57"] .badge.rt52-root {
   transform-origin: top left !important;
+}
+
+
+
+/* RankTag V57 - shop removed */
+.shop-section,
+.plus-shop,
+.plus-styles,
+.styles-plus,
+#shopSection,
+#plusShop,
+#styleShop,
+[data-section="shop"],
+[data-shop],
+.shop-card,
+.style-card[data-style],
+button[data-style],
+.rt-shop-only {
+  display: none !important;
 }
 

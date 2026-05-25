@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V56 generator real-preview lock */
+/* RankTag V57 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -586,7 +586,7 @@ iframe#preview,
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V56</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V57</div></div>
     </header>
 
     <div class="layout">
@@ -740,60 +740,6 @@ iframe#preview,
           </div>
         </div>
 
-        
-        <div class="section" id="plus-shop">
-          <div class="section-title">
-            <h2>5. Shop / Stili Plus</h2>
-            <span class="tag">PLUS</span>
-          </div>
-          <p class="help">Scegli uno stile premium: la preview usa un vero layout Plus con stemma rank ufficiale dinamico.</p>
-
-          <div class="plus-shop-grid">
-            <button type="button" class="plus-card" data-theme-style="cyber-red">
-              <div class="plus-card-top">
-                <div class="plus-title">Cyber Red Impact</div>
-                <div class="plus-badge">Plus</div>
-              </div>
-              <div class="plus-preview real cyber" style="background-image:url('/assets/plus/cyber-red.png')"></div>
-              <div class="plus-desc">Look aggressivo, glow rosso e vibe ranked competitiva.</div>
-              <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
-            </button>
-
-            <button type="button" class="plus-card" data-theme-style="glass-minimal">
-              <div class="plus-card-top">
-                <div class="plus-title">Glass Minimal</div>
-                <div class="plus-badge">Plus</div>
-              </div>
-              <div class="plus-preview real glass" style="background-image:url('/assets/plus/glass-minimal.png')"></div>
-              <div class="plus-desc">Pulito, elegante, effetto vetro e accenti ciano.</div>
-              <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
-            </button>
-
-            <button type="button" class="plus-card" data-theme-style="premium-gold">
-              <div class="plus-card-top">
-                <div class="plus-title">Premium Gold</div>
-                <div class="plus-badge">Plus</div>
-              </div>
-              <div class="plus-preview real gold" style="background-image:url('/assets/plus/premium-gold.png')"></div>
-              <div class="plus-desc">Stile lusso con dettagli oro e look prestige.</div>
-              <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
-            </button>
-
-            <button type="button" class="plus-card" data-theme-style="tournament-panel">
-              <div class="plus-card-top">
-                <div class="plus-title">Tournament Panel</div>
-                <div class="plus-badge">Plus</div>
-              </div>
-              <div class="plus-preview real tournament" style="background-image:url('/assets/plus/tournament-panel.png')"></div>
-              <div class="plus-desc">Formato esport, tagli aggressivi e pannelli dinamici.</div>
-              <div class="plus-actions"><span class="btn secondary small">Anteprima</span><span class="btn small">Usa stile</span></div>
-            </button>
-          </div>
-
-          <div id="plusSelectedNote" class="plus-note">
-            Stile attivo: Default. Clicca uno stile Plus per applicarlo subito alla preview.
-          </div>
-        </div>
 
         <div id="guide" class="section">
           <div class="section-title">
@@ -850,7 +796,7 @@ iframe#preview,
 
 
     const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV56cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV57cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentProfile = null;
@@ -1412,7 +1358,7 @@ iframe#preview,
   </script>
 
 <script>
-/* RankTag V56 force real iframe preview */
+/* RankTag V57 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');
