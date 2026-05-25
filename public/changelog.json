@@ -1,5 +1,24 @@
 [
   {
+    "version": "84",
+    "date": "2026-05-25",
+    "title": "Preview/link allineati al Layout Editor",
+    "summary": "Le coordinate premium ora valgono per anteprima, link generato e output pubblico. Aggiunto ritorno al generator.",
+    "added": [
+      "Tasto ritorno al Rank Generator nel Layout Editor",
+      "Nota che l'editor riguarda solo layout premium"
+    ],
+    "improved": [
+      "Anteprima generator usa le stesse coordinate bloccate",
+      "Link generato forza themeStyle selezionato",
+      "Output pubblico premium usa coordinate importate"
+    ],
+    "fixed": [
+      "Possibile differenza tra card preview, live preview e link finale",
+      "Mancanza collegamento per tornare dal Layout Editor al generator"
+    ]
+  },
+  {
     "version": "83",
     "date": "2026-05-25",
     "title": "Coordinate importate dal Layout Editor",
@@ -147,7 +166,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=83"
+      "riferimenti cache aggiornati a v=84"
     ]
   },
   {

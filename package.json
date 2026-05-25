@@ -1,8 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-v83-cyber-red-layout-locked",
-  "version": "8.6.0",
+  "name": "ranktag-finals-overlay-v84-premium-preview-link-sync",
+  "version": "8.7.0",
   "private": true,
-  "description": "RankTag V83 locks Cyber Red Elite positions from layout editor",
+  "description": "RankTag V84 syncs premium layout coordinates across preview and generated link",
   "scripts": {
     "build": "node -e \"console.log('Build ok - public folder ready')\"",
     "start": "node -e \"console.log('Use Vercel to run this overlay')\""

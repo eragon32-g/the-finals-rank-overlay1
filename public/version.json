@@ -1,8 +1,8 @@
 {
-  "version": "83",
+  "version": "84",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V83: coordinate Cyber Red Elite importate dal Layout Editor e bloccate nel pubblico."
+  "note": "V84: coordinate premium applicate a preview, link generato e pubblico; Layout Editor con tasto ritorno e nota premium-only."
 }

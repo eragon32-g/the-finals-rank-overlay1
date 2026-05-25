@@ -1,8 +1,9 @@
-# RankTag V83
+# RankTag V84
 
-Coordinate Cyber Red Elite importate dal Layout Editor.
+Sincronizzazione coordinate premium.
 
 ## Include
-- coordinate salvate in /assets/premium/cyber-red-elite-layout.json
-- posizioni bloccate nel pubblico
-- Layout Editor aggiornato con gli stessi default
+- coordinate Cyber Red Elite applicate a preview e link finale
+- generatore forza `themeStyle` nel link
+- Layout Editor con tasto ritorno al Rank Generator
+- nota chiara: Layout Editor riguarda solo premium, non default
