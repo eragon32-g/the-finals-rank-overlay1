@@ -2887,12 +2887,12 @@ html, body {
 
 
 /* RankTag V53 - preview/output consistency helpers */
-html[data-ranktag-version="57"] body {
+html[data-ranktag-version="58"] body {
   margin: 0 !important;
   background: transparent !important;
 }
 
-html[data-ranktag-version="57"] .overlay {
+html[data-ranktag-version="58"] .overlay {
   width: fit-content !important;
   height: fit-content !important;
   min-height: 0 !important;
@@ -2901,7 +2901,7 @@ html[data-ranktag-version="57"] .overlay {
   margin: 0 !important;
 }
 
-html[data-ranktag-version="57"] .badge.rt52-root {
+html[data-ranktag-version="58"] .badge.rt52-root {
   transform-origin: top left !important;
 }
 
@@ -2922,5 +2922,100 @@ html[data-ranktag-version="57"] .badge.rt52-root {
 button[data-style],
 .rt-shop-only {
   display: none !important;
+}
+
+
+
+/* RankTag V58 - clean Premium section, no old shop assets */
+.premium-clean-section {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 22px 0;
+}
+
+.premium-clean-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.premium-clean-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.premium-clean-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(240,217,170,.34);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: rgba(240,217,170,.10);
+  color: #f0d9aa;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+.premium-clean-note {
+  margin: 0 0 14px;
+  color: rgba(255,255,255,.68);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.premium-clean-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+}
+
+.premium-clean-card {
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+  padding: 14px;
+  min-height: 132px;
+  opacity: .86;
+}
+
+.premium-clean-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 15px;
+}
+
+.premium-clean-preview {
+  height: 42px;
+  border-radius: 12px;
+  border: 1px dashed rgba(255,255,255,.18);
+  background:
+    linear-gradient(90deg, rgba(255,42,23,.20), transparent),
+    rgba(0,0,0,.26);
+  margin-bottom: 10px;
+  display: grid;
+  place-items: center;
+  color: rgba(255,255,255,.45);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.premium-clean-card p {
+  margin: 0;
+  color: rgba(255,255,255,.58);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+@media (max-width: 720px) {
+  .premium-clean-grid {
+    grid-template-columns: 1fr;
+  }
 }
 

@@ -1,8 +1,8 @@
 {
-  "version": "57",
+  "version": "58",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Shop/Stili Plus rimossi dal progetto. Generator e Test Lab tornano senza sezione shop."
+  "note": "Ripartenza pulita: sezione Overlay Premium nuova da zero, senza riusare vecchi esperimenti."
 }

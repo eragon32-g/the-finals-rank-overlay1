@@ -1,5 +1,21 @@
 [
   {
+    "version": "58",
+    "date": "2026-05-25",
+    "title": "Premium clean start",
+    "summary": "Aggiunta una sezione Overlay Premium pulita, senza riutilizzare gli stili sperimentali precedenti.",
+    "added": [
+      "Nuova sezione Overlay Premium",
+      "Placeholder per Cyber Red Elite, Glass Cyan Pro, Gold Prestige e Tournament Edge"
+    ],
+    "improved": [
+      "Overlay standard resta invariato",
+      "Premium separati dallo standard",
+      "Nessun vecchio asset shop riutilizzato"
+    ],
+    "fixed": []
+  },
+  {
     "version": "57",
     "date": "2026-05-25",
     "title": "Shop rimosso",
