@@ -825,7 +825,7 @@ body {
 @keyframes tournamentPulseV38 { 0%,100%{opacity:.45} 50%{opacity:.92} }
 
 
-/* RankTag V93 - true Plus layouts */
+/* RankTag V94 - true Plus layouts */
 .badge.rt43-root {
   width: 470px !important;
   min-height: 150px !important;
@@ -1126,7 +1126,7 @@ body {
 }
 
 
-/* RankTag V93 - Cyber Red Impact Rebuild
+/* RankTag V94 - Cyber Red Impact Rebuild
    Only Cyber Red is rebuilt here. Other Plus styles remain unchanged for now. */
 
 .rt43-cyber-red.rt45-cyber-rebuild,
@@ -1526,7 +1526,7 @@ body {
 
 
 
-/* RankTag V93 - Cyber Red compact premium strip
+/* RankTag V94 - Cyber Red compact premium strip
    Goal: closer to the generated shop cover: low, wide, sharp, dense, premium. */
 
 .badge.rt43-root:has(.rt43-cyber-red),
@@ -1914,7 +1914,7 @@ body {
 
 
 
-/* RankTag V93 - Cyber Red premium rebuild, real layout */
+/* RankTag V94 - Cyber Red premium rebuild, real layout */
 .badge.rt47-root {
   width: 470px !important;
   height: 128px !important;
@@ -2247,7 +2247,7 @@ body {
 
 
 
-/* RankTag V93 - Cyber Red using clean PNG base */
+/* RankTag V94 - Cyber Red using clean PNG base */
 .badge.rt48-root {
   width: 470px !important;
   height: 157px !important;
@@ -2394,7 +2394,7 @@ body {
 
 
 
-/* RankTag V93 - Cyber Red asset alignment */
+/* RankTag V94 - Cyber Red asset alignment */
 .badge.rt49-root {
   width: 470px !important;
   height: 157px !important;
@@ -2544,7 +2544,7 @@ body {
 
 
 
-/* RankTag V93 - Cyber Red on final-format base */
+/* RankTag V94 - Cyber Red on final-format base */
 .badge.rt50-root {
   width: 470px !important;
   height: 120px !important;
@@ -2688,7 +2688,7 @@ body {
 
 
 
-/* RankTag V93 - image-base style engine */
+/* RankTag V94 - image-base style engine */
 .badge.rt51-root {
   width: var(--rt51-width, 470px) !important;
   height: var(--rt51-height, 120px) !important;
@@ -2780,7 +2780,7 @@ body {
 
 
 
-/* RankTag V93 - single source image-base Plus engine */
+/* RankTag V94 - single source image-base Plus engine */
 .badge.rt52-root {
   width: var(--rt52-width, 470px) !important;
   height: var(--rt52-height, 120px) !important;
@@ -2892,13 +2892,13 @@ body {
 
 
 
-/* RankTag V93 - preview/output consistency helpers */
-html[data-ranktag-version="92"] body {
+/* RankTag V94 - preview/output consistency helpers */
+html[data-ranktag-version="94"] body {
   margin: 0 !important;
   background: transparent !important;
 }
 
-html[data-ranktag-version="92"] .overlay {
+html[data-ranktag-version="94"] .overlay {
   width: fit-content !important;
   height: fit-content !important;
   min-height: 0 !important;
@@ -2907,13 +2907,13 @@ html[data-ranktag-version="92"] .overlay {
   margin: 0 !important;
 }
 
-html[data-ranktag-version="92"] .badge.rt52-root {
+html[data-ranktag-version="94"] .badge.rt52-root {
   transform-origin: top left !important;
 }
 
 
 
-/* RankTag V93 - shop removed */
+/* RankTag V94 - shop removed */
 .shop-section,
 .plus-shop,
 .plus-styles,
@@ -2932,7 +2932,7 @@ button[data-style],
 
 
 
-/* RankTag V93 - clean Premium section, no old shop assets */
+/* RankTag V94 - clean Premium section, no old shop assets */
 .premium-clean-section {
   border-top: 1px solid rgba(255,255,255,.08);
   padding: 22px 0;
@@ -3027,7 +3027,7 @@ button[data-style],
 
 
 
-/* RankTag V93 - one premium only + cleaner generator UI */
+/* RankTag V94 - one premium only + cleaner generator UI */
 .premium-clean-grid {
   grid-template-columns: 1fr !important;
 }
@@ -3138,7 +3138,7 @@ button[data-style],
 
 
 
-/* RankTag V93 - compact generator UI */
+/* RankTag V94 - compact generator UI */
 .generator-compact-nav {
   position: sticky;
   top: 0;
@@ -3260,7 +3260,7 @@ button[data-style],
 
 
 
-/* RankTag V93 - generator layout hotfix */
+/* RankTag V94 - generator layout hotfix */
 #overlayPremium,
 .premium-clean-section,
 .guide-section,
@@ -3415,7 +3415,7 @@ section:has(.premium-one-card) {
 
 
 
-/* RankTag V93 - Premium position fix, no DOM wrapping */
+/* RankTag V94 - Premium position fix, no DOM wrapping */
 #overlayPremium,
 .premium-section {
   display: block !important;
@@ -3518,7 +3518,7 @@ section:has(.premium-one-card) {
 
 
 
-/* RankTag V93 - remove compact UI helpers globally */
+/* RankTag V94 - remove compact UI helpers globally */
 .generator-compact-nav,
 .generator-ui-note,
 .generator-compact-summary {
@@ -3527,7 +3527,7 @@ section:has(.premium-one-card) {
 
 
 
-/* RankTag V93 - no compact top interface */
+/* RankTag V94 - no compact top interface */
 .generator-compact-nav,
 .generator-ui-note,
 .generator-compact-summary {

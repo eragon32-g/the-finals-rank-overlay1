@@ -1,5 +1,16 @@
 [
   {
+    "version": "94",
+    "date": "2026-05-25",
+    "title": "Sfondo premium pulito",
+    "summary": "Sostituito il background premium con la nuova versione ritagliata meglio.",
+    "improved": [
+      "contorni più puliti",
+      "meno nero extra attorno alla targhetta",
+      "asset bg, thumb e base aggiornati"
+    ]
+  },
+  {
     "version": "93",
     "title": "Animazione branding premium",
     "summary": "I layout premium ora hanno il branding animato come il default.",
@@ -89,7 +100,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=93",
+      "aggiornati thumb premium e cache buster a v=94",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -288,7 +299,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=93"
+      "riferimenti cache aggiornati a v=94"
     ]
   },
   {

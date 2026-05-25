@@ -1,8 +1,8 @@
 {
-  "version": "93",
+  "version": "94",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V93: branding premium con la stessa animazione del default (drawer + marquee)"
+  "note": "V94: sostituito lo sfondo premium VoidRage con versione più pulita/ritagliata, riducendo nero extra sui contorni."
 }

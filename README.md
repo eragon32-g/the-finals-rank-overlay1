@@ -1,10 +1,10 @@
-# RankTag V93
+# RankTag V94
 
-Renderer premium separato.
+Sfondo premium VoidRage aggiornato.
 
-## Cosa cambia
-- Cyber Red Elite non usa più il motore standard
-- Premium renderizzato con layer assoluti 470×160
-- Stesso modello JSON del Layout Editor
-- X/Y/W/H/fontSize/z rispettati davvero
-- Default intatto
+## Include
+- nuovo background premium più pulito
+- meno nero extra sui contorni
+- thumb/base aggiornate
+- renderer premium detached mantenuto
+- branding animato premium mantenuto
