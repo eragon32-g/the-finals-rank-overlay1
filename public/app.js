@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "99";
+const OVERLAY_VERSION = "100";
 const params = new URLSearchParams(window.location.search);
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
@@ -22,7 +22,7 @@ const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
     "width": 470,
     "height": 160
   },
-  "background": "/assets/premium/voidrage-inferno-bg-v99.png",
+  "background": "/assets/premium/voidrage-inferno-bg-v100.png",
   "elements": {
     "badge": {
       "x": 12,
@@ -68,7 +68,7 @@ const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
 };
 
 const CYBER_RED_ELITE_LAYOUT_LOCKED = {
-  "version": "99",
+  "version": "100",
   "schema": "ranktag-premium-layout-v2",
   "style": "cyber-red-elite",
   "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.",
@@ -549,7 +549,7 @@ if (isManualMode()) {
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
-/* RankTag V99 Plus style finalizer */
+/* RankTag V100 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red-elite", "voidrage-inferno", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -584,7 +584,7 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 })();
 
 
-/* RankTag V99 - single source image-base Plus engine */
+/* RankTag V100 - single source image-base Plus engine */
 let rankTagPlusLayoutsPromise = null;
 
 function loadRankTagPlusLayouts() {
@@ -718,8 +718,8 @@ function loadRankTagPlusLayouts() {
   });
 })();
 
-/* RankTag V99 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "99");
+/* RankTag V100 render marker */
+document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
@@ -731,7 +731,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
 
 
 
-/* RankTag V99 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
+/* RankTag V100 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
 (function rankTagPremiumBackdropV78(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -772,7 +772,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=99') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=100') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -964,7 +964,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
     style.textContent += `
 `;
     style.textContent += `
-/* RankTag V99 - locked premium coordinates from Layout Editor */
+/* RankTag V100 - locked premium coordinates from Layout Editor */
 #badge.rt78-cyber-red-elite .rank-mark,
 #badge.rt80-cyber-red-elite .rank-mark {
   left: 7px !important;
@@ -1066,7 +1066,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
 })();
 
 
-/* RankTag V99 - Premium backdrop engine: full 470x160 background adapted to stable layout */
+/* RankTag V100 - Premium backdrop engine: full 470x160 background adapted to stable layout */
 (function rankTagPremiumBackdropV80(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -1108,7 +1108,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=99') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=100') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -1339,7 +1339,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
 
 
 
-/* RankTag V99 - runtime premium layout from URL param */
+/* RankTag V100 - runtime premium layout from URL param */
 (function rankTagPremiumRuntimeLayoutV89(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
@@ -1472,7 +1472,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
 
 
 
-/* RankTag V99 - AUTHORITATIVE premium layout sync */
+/* RankTag V100 - AUTHORITATIVE premium layout sync */
 (function rankTagPremiumLayoutAuthoritativeV90(){
   if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
 
@@ -1683,7 +1683,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
 
 
 
-/* RankTag V99 - DETACHED PREMIUM RENDERER
+/* RankTag V100 - DETACHED PREMIUM RENDERER
    Premium Cyber Red Elite no longer uses the standard card layout.
    It renders the exact same JSON layer model used by layout-editor.html. */
 (function rankTagDetachedPremiumRendererV92(){
@@ -1769,7 +1769,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
     const scoreValue = (scoreText?.textContent || "ELO: 37.705").trim();
     const playerValue = (nameText?.textContent || getPlayerFromUrl?.() || "NOMEPLAYER#1234").trim();
     const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
-    const badgeSrc = badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum.svg?v=99";
+    const badgeSrc = badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum.svg?v=100";
     return { rankValue, scoreValue, playerValue, brandValue, badgeSrc };
   }
 
@@ -2033,7 +2033,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
     root.dataset.renderer = "premium-detached-v93";
 
     root.innerHTML = `
-      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=99" alt="" />
+      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=100" alt="" />
       <div class="rt92-layer rt92-badge" style="${layerStyle(e.badge)}">
         <img src="${esc(d.badgeSrc)}" alt="" />
       </div>
@@ -2083,13 +2083,13 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
 
 
 
-/* RankTag V99 - MULTI PREMIUM DETACHED RENDERER */
+/* RankTag V100 - MULTI PREMIUM DETACHED RENDERER */
 (function rankTagMultiPremiumDetachedRendererV97(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
   const PREMIUM_LAYOUTS = {
     "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : null),
-    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": 1, "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-bg-v99.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
+    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": 1, "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-bg-v100.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
   };
 
   function safeNumber(value, fallback) {
@@ -2156,7 +2156,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
     const scoreValue = (scoreText?.textContent || "ELO: 37.705").trim();
     const playerValue = (nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim();
     const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
-    const badgeSrc = badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=99";
+    const badgeSrc = badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=100";
     return { rankValue, scoreValue, playerValue, brandValue, badgeSrc };
   }
 
@@ -2369,7 +2369,7 @@ document.documentElement.setAttribute("data-ranktag-version", "99");
     root.dataset.themeStyle = themeStyle;
     root.dataset.renderer = "multi-premium-detached-v97";
     root.innerHTML = `
-      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=99" alt="" />
+      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=100" alt="" />
       <div class="rt97-layer rt97-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badgeSrc)}" alt="" /></div>
       <div class="rt97-layer rt97-rank" style="${layerStyle(e.rank)}">${esc(d.rankValue)}</div>
       <div class="rt97-layer rt97-score" style="${layerStyle(e.score)}">${esc(d.scoreValue)}</div>

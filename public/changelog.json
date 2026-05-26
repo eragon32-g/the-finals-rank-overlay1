@@ -1,5 +1,16 @@
 [
   {
+    "version": "100",
+    "date": "2026-05-25",
+    "title": "VoidRage Inferno dentro Overlay Premium",
+    "summary": "Card Inferno inserita staticamente nel punto 4, non più in fondo pagina.",
+    "fixed": [
+      "card Inferno fuori dalla sezione Overlay Premium",
+      "anteprima Inferno ereditava CSS Cyber Red Elite",
+      "posizionamento tramite script instabile"
+    ]
+  },
+  {
     "version": "99",
     "date": "2026-05-25",
     "title": "Overlay premium in sezione 4",
@@ -150,7 +161,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=99",
+      "aggiornati thumb premium e cache buster a v=100",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -349,7 +360,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=99"
+      "riferimenti cache aggiornati a v=100"
     ]
   },
   {

@@ -1,9 +1,9 @@
-# RankTag V99
+# RankTag V100
 
-Fix posizionamento Overlay Premium.
+Fix statico sezione Overlay Premium.
 
 ## Include
-- VoidRage Inferno dentro il punto 4 Overlay Premium
-- griglia premium per contenere entrambe le card
-- rimosse card Inferno piazzate a fondo pagina
-- asset Inferno rinominati v99 per cache
+- VoidRage Inferno dentro punto 4 Overlay Premium
+- griglia premium con Cyber Red Elite + VoidRage Inferno
+- preview Inferno con classe dedicata, senza ereditare CSS Cyber
+- rimossi script che piazzavano la card in fondo pagina

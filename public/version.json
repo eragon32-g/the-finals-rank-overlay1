@@ -1,8 +1,8 @@
 {
-  "version": "99",
+  "version": "100",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V99: VoidRage Inferno viene inserito dentro la sezione 4 Overlay Premium, nella stessa finestra/card area."
+  "note": "V100: VoidRage Inferno inserito staticamente dentro la sezione 4 Overlay Premium, accanto a Cyber Red Elite."
 }

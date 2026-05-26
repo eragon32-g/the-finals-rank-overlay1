@@ -1,5 +1,5 @@
 {
-  "name": "ranktag-finals-overlay-v99-premium-section-layout-fix",
-  "version": "10.1.0",
-  "description": "RankTag V99 fixes premium cards placement inside section 4"
+  "name": "ranktag-finals-overlay-v100-premium-section-static-fix",
+  "version": "10.2.0",
+  "description": "RankTag V100 statically places VoidRage Inferno inside premium section"
 }
