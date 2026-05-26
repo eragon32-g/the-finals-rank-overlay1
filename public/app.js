@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "1.0.5";
+const OVERLAY_VERSION = "1.0.7";
 const params = new URLSearchParams(window.location.search);
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
@@ -22,7 +22,7 @@ const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
     "width": 470,
     "height": 160
   },
-  "background": "/assets/premium/voidrage-inferno-v105-solid.png",
+  "background": "/assets/premium/voidrage-inferno-v107-clean.png",
   "elements": {
     "badge": {
       "x": 12,
@@ -549,7 +549,7 @@ if (isManualMode()) {
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
-/* RankTag v1.0.5 Plus style finalizer */
+/* RankTag v1.0.7 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red-elite", "voidrage-inferno", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -584,7 +584,7 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 })();
 
 
-/* RankTag v1.0.5 - single source image-base Plus engine */
+/* RankTag v1.0.7 - single source image-base Plus engine */
 let rankTagPlusLayoutsPromise = null;
 
 function loadRankTagPlusLayouts() {
@@ -718,7 +718,7 @@ function loadRankTagPlusLayouts() {
   });
 })();
 
-/* RankTag v1.0.5 render marker */
+/* RankTag v1.0.7 render marker */
 document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
@@ -731,7 +731,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.5 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
+/* RankTag v1.0.7 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
 (function rankTagPremiumBackdropV78(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -964,7 +964,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     style.textContent += `
 `;
     style.textContent += `
-/* RankTag v1.0.5 - locked premium coordinates from Layout Editor */
+/* RankTag v1.0.7 - locked premium coordinates from Layout Editor */
 #badge.rt78-cyber-red-elite .rank-mark,
 #badge.rt80-cyber-red-elite .rank-mark {
   left: 7px !important;
@@ -1066,7 +1066,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 })();
 
 
-/* RankTag v1.0.5 - Premium backdrop engine: full 470x160 background adapted to stable layout */
+/* RankTag v1.0.7 - Premium backdrop engine: full 470x160 background adapted to stable layout */
 (function rankTagPremiumBackdropV80(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -1339,7 +1339,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.5 - runtime premium layout from URL param */
+/* RankTag v1.0.7 - runtime premium layout from URL param */
 (function rankTagPremiumRuntimeLayoutV89(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
@@ -1472,7 +1472,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.5 - AUTHORITATIVE premium layout sync */
+/* RankTag v1.0.7 - AUTHORITATIVE premium layout sync */
 (function rankTagPremiumLayoutAuthoritativeV90(){
   if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
 
@@ -1683,7 +1683,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.5 - DETACHED PREMIUM RENDERER
+/* RankTag v1.0.7 - DETACHED PREMIUM RENDERER
    Premium Cyber Red Elite no longer uses the standard card layout.
    It renders the exact same JSON layer model used by layout-editor.html. */
 (function rankTagDetachedPremiumRendererV92(){
@@ -2083,13 +2083,13 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.5 - MULTI PREMIUM DETACHED RENDERER */
+/* RankTag v1.0.7 - MULTI PREMIUM DETACHED RENDERER */
 (function rankTagMultiPremiumDetachedRendererV97(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
   const PREMIUM_LAYOUTS = {
     "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : null),
-    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-v105-solid.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
+    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-v107-clean.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
   };
 
   function safeNumber(value, fallback) {
@@ -2403,14 +2403,14 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.5 - FINAL AUTHORITATIVE PREMIUM RENDERER */
+/* RankTag v1.0.7 - FINAL AUTHORITATIVE PREMIUM RENDERER */
 (function rankTagV105FinalPremiumRenderer(){
   const premiumStyles = ["cyber-red-elite", "voidrage-inferno"];
   if (typeof themeStyle === "undefined" || !premiumStyles.includes(themeStyle)) return;
 
   const DEFAULTS = {
     "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "cyber-red-elite", "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/cyber-red-elite-bg-v96.png", "elements": {"badge": {"x": 7, "y": 9, "w": 136, "h": 121, "fontSize": 0, "z": 5}, "rank": {"x": 164, "y": 39, "w": 215, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 165, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 271, "y": 78, "w": 142, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 165, "y": 100, "w": 270, "h": 16, "fontSize": 9.5, "z": 6}}}),
-    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-v105-solid.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
+    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-v107-clean.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
   };
 
   function esc(v) {
@@ -2561,14 +2561,14 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.5.3 - SINGLE AUTHORITATIVE PREMIUM RENDERER FIX
+/* RankTag v1.0.7.3 - SINGLE AUTHORITATIVE PREMIUM RENDERER FIX
    Fixes VoidRage Inferno test link: always renders a detached 470x160 overlay,
    ignores older premium renderers, transparent page/OBS output, correct selected style. */
 (function rankTagV1053AuthoritativePremiumRenderer(){
   const allowed = ["cyber-red-elite", "voidrage-inferno"];
   if (typeof themeStyle === "undefined" || !allowed.includes(themeStyle)) return;
 
-  const VOID_DEFAULT = {"version":"105.3","schema":"ranktag-premium-layout-v2","style":"voidrage-inferno","canvas":{"width":470,"height":160},"background":"/assets/premium/voidrage-inferno-v105-solid.png","elements":{"badge":{"x":20,"y":26,"w":102,"h":102,"fontSize":0,"z":5},"rank":{"x":150,"y":43,"w":245,"h":30,"fontSize":25,"z":6},"score":{"x":152,"y":79,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":268,"y":79,"w":160,"h":16,"fontSize":10.5,"z":6},"brand":{"x":152,"y":108,"w":260,"h":18,"fontSize":9.5,"z":6}}};
+  const VOID_DEFAULT = {"version":"105.3","schema":"ranktag-premium-layout-v2","style":"voidrage-inferno","canvas":{"width":470,"height":160},"background":"/assets/premium/voidrage-inferno-v107-clean.png","elements":{"badge":{"x":20,"y":26,"w":102,"h":102,"fontSize":0,"z":5},"rank":{"x":150,"y":43,"w":245,"h":30,"fontSize":25,"z":6},"score":{"x":152,"y":79,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":268,"y":79,"w":160,"h":16,"fontSize":10.5,"z":6},"brand":{"x":152,"y":108,"w":260,"h":18,"fontSize":9.5,"z":6}}};
   const CYBER_DEFAULT = (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" && CYBER_RED_ELITE_LAYOUT_LOCKED)
     ? CYBER_RED_ELITE_LAYOUT_LOCKED
     : {"version":"105.3","schema":"ranktag-premium-layout-v2","style":"cyber-red-elite","canvas":{"width":470,"height":160},"background":"/assets/premium/cyber-red-elite-bg-v96.png","elements":{"badge":{"x":7,"y":9,"w":136,"h":121,"fontSize":0,"z":5},"rank":{"x":164,"y":39,"w":215,"h":30,"fontSize":25,"z":6},"score":{"x":165,"y":78,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":271,"y":78,"w":142,"h":16,"fontSize":10.5,"z":6},"brand":{"x":165,"y":100,"w":270,"h":16,"fontSize":9.5,"z":6}}};
@@ -2709,7 +2709,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.5 - release premium renderer guard
+/* RankTag v1.0.7 - release premium renderer guard
    Keeps premium overlays self-contained. Public links only need themeStyle. */
 (function rankTagV100ReleasePremiumGuard(){
   const allowed = ["cyber-red-elite", "voidrage-inferno"];
@@ -2744,7 +2744,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.5 - FINAL PREMIUM RENDERER
+/* RankTag v1.0.7 - FINAL PREMIUM RENDERER
    Fix:
    - premium copied links no longer need layout param
    - VoidRage Inferno render matches the generator preview sizing/position
@@ -2767,7 +2767,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     },
     "voidrage-inferno": {
       version:"1.0.5", schema:"ranktag-premium-layout-v2", style:"voidrage-inferno",
-      canvas:{width:470,height:160}, background:"/assets/premium/voidrage-inferno-v105-solid.png",
+      canvas:{width:470,height:160}, background:"/assets/premium/voidrage-inferno-v107-clean.png",
       elements:{
         badge:{x:28,y:20,w:112,h:112,fontSize:0,z:5},
         rank:{x:157,y:42,w:245,h:30,fontSize:25,z:6},

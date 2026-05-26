@@ -1,6 +1,6 @@
 [
   {
-    "version": "1.0.6",
+    "version": "1.0.7",
     "date": "2026-05-26",
     "title": "Fix definitivo accesso admin Layout Editor",
     "summary": "Rimosso il tasto Layout Editor pubblico e corretta la login admin che ora apre direttamente l’API protetta.",
@@ -70,7 +70,7 @@
   {
     "version": "1.0.0",
     "date": "2026-05-26",
-    "title": "Pubblicazione RankTag v1.0.0",
+    "title": "Pubblicazione RankTag v1.0.7",
     "summary": "Prima release pubblica pulita con generator, overlay premium, accesso admin protetto e sezione updates ripulita.",
     "added": [
       "Overlay premium Cyber Red Elite",

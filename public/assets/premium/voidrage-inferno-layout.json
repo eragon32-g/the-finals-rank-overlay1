@@ -1,13 +1,13 @@
 {
-  "version": "1.0.5",
+  "version": "1.0.7",
   "schema": "ranktag-premium-layout-v2",
   "style": "voidrage-inferno",
-  "note": "v1.0.5: inner transparency fully sealed; public layout editor removed.",
+  "note": "v1.0.7: rebuilt VoidRage Inferno overlay using new clean frame asset.",
   "canvas": {
     "width": 470,
     "height": 160
   },
-  "background": "/assets/premium/voidrage-inferno-v105-solid.png",
+  "background": "/assets/premium/voidrage-inferno-v107-clean.png",
   "elements": {
     "badge": {
       "x": 28,
