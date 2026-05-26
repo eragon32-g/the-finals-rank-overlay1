@@ -1767,7 +1767,7 @@ iframe#preview {
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><a class="tag" href="/layout-editor.html" style="text-decoration:none;">Layout Editor</a><div class="tag">RankTag V105</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><a class="tag admin-only-link" href="/api/layout-editor" style="text-decoration:none; display:none;">Layout Editor</a><div class="tag">RankTag V105</div></div>
     </header>
 
     <div class="layout">
@@ -2607,7 +2607,7 @@ iframe#preview {
       }
       /* RankTag V105 final layout param sync */
       if ((get("themeStyle")?.value || "default") === "cyber-red-elite" || (get("themeStyle")?.value || "default") === "voidrage-inferno") {
-        const completeLayout = typeof getCompletePremiumLayoutForLink === "function" ? getCompletePremiumLayoutForLink() : null;
+        const completeLayout = typeof getCompletePremiumLayoutForLink === "function" ? getCompletePremiumLayoutForLink(selectedThemeStyle) : null;
         const encodedLayout = completeLayout && typeof encodeCompletePremiumLayout === "function" ? encodeCompletePremiumLayout(completeLayout) : "";
         if (encodedLayout) url.searchParams.set("layout", encodedLayout);
       }
@@ -2908,6 +2908,78 @@ iframe#preview {
   window.addEventListener("load", () => {
     setTimeout(forcePremiumLink, 600);
     setTimeout(forcePremiumLink, 1400);
+  });
+})();
+</script>
+
+
+<script>
+/* RankTag V105.1 - definitive premium link copier + admin-only editor link */
+(function rankTagV1051DefinitivePremiumLink(){
+  const PREMIUM = ["cyber-red-elite", "voidrage-inferno"];
+  const DEFAULTS = {
+    "cyber-red-elite": {"version":"105","schema":"ranktag-premium-layout-v2","style":"cyber-red-elite","canvas":{"width":470,"height":160},"background":"/assets/premium/cyber-red-elite-bg-v96.png","elements":{"badge":{"x":7,"y":9,"w":136,"h":121,"fontSize":0,"z":5},"rank":{"x":164,"y":39,"w":215,"h":30,"fontSize":25,"z":6},"score":{"x":165,"y":78,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":271,"y":78,"w":142,"h":16,"fontSize":10.5,"z":6},"brand":{"x":165,"y":100,"w":270,"h":16,"fontSize":9.5,"z":6}}},
+    "voidrage-inferno": {"version":"105","schema":"ranktag-premium-layout-v2","style":"voidrage-inferno","canvas":{"width":470,"height":160},"background":"/assets/premium/voidrage-inferno-fit-v105.png","elements":{"badge":{"x":12,"y":20,"w":118,"h":110,"fontSize":0,"z":5},"rank":{"x":150,"y":42,"w":230,"h":30,"fontSize":25,"z":6},"score":{"x":152,"y":78,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":265,"y":78,"w":150,"h":16,"fontSize":10.5,"z":6},"brand":{"x":152,"y":108,"w":260,"h":18,"fontSize":9.5,"z":6}}}
+  };
+  const KEYS = {
+    "cyber-red-elite": ["ranktag-layout-editor-cyber-red-elite-current-v105","ranktag-layout-editor-cyber-red-elite-current-v103","ranktag-layout-editor-cyber-red-elite-current","ranktag-layout-editor-cyber-red-elite-v89","ranktag-layout-editor-cyber-red-elite-v88","ranktag-layout-editor-cyber-red-elite-v82"],
+    "voidrage-inferno": ["ranktag-layout-editor-voidrage-inferno-current-v105","ranktag-layout-editor-voidrage-inferno-current-v104","ranktag-layout-editor-voidrage-inferno-current"]
+  };
+  function enc(obj){ try { return btoa(unescape(encodeURIComponent(JSON.stringify(obj)))); } catch { return ""; } }
+  function currentStyle(){ return document.getElementById("themeStyle")?.value || "default"; }
+  function layout(style){
+    try {
+      for (const key of KEYS[style] || []) {
+        const raw = localStorage.getItem(key); if (!raw) continue;
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed.elements && (!parsed.style || parsed.style === style)) { parsed.style = style; parsed.version = "105"; parsed.schema = parsed.schema || "ranktag-premium-layout-v2"; return parsed; }
+      }
+    } catch {}
+    return DEFAULTS[style] || null;
+  }
+  function force(){
+    const out = document.getElementById("output");
+    const frame = document.getElementById("preview");
+    const style = currentStyle();
+    if (!out || !out.value || !PREMIUM.includes(style)) return null;
+    try {
+      const u = new URL(out.value, window.location.origin);
+      u.searchParams.set("themeStyle", style);
+      u.searchParams.delete("previewBust");
+      const l = layout(style);
+      if (l) u.searchParams.set("layout", enc(l));
+      u.searchParams.set("cacheBust", Date.now().toString());
+      out.value = u.toString();
+      if (frame) {
+        const previewUrl = new URL(u.toString());
+        previewUrl.searchParams.set("previewBust", Date.now().toString());
+        frame.src = previewUrl.toString();
+      }
+      return u.toString();
+    } catch { return null; }
+  }
+  window.rankTagV105ForcePremiumLink = force;
+  document.addEventListener("click", async function(e){
+    const copy = e.target.closest("#copy");
+    if (!copy) return;
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    if (typeof buildLink === "function") await buildLink();
+    const finalUrl = force() || document.getElementById("output")?.value || "";
+    if (finalUrl) await navigator.clipboard.writeText(finalUrl);
+    copy.textContent = "Copiato!";
+    setTimeout(() => copy.textContent = "Copia link", 1200);
+  }, true);
+  document.addEventListener("click", function(e){
+    if (e.target.closest("#useCyberRedElite,#previewCyberRedElite,#useVoidrageInferno,#previewVoidrageInferno,[data-use-premium],[data-preview-premium]")) {
+      setTimeout(force, 100); setTimeout(force, 350); setTimeout(force, 800);
+    }
+  }, true);
+  document.addEventListener("change", function(){ setTimeout(force, 120); }, true);
+  window.addEventListener("load", function(){
+    if (localStorage.getItem("ranktag-admin") === "1") document.querySelectorAll(".admin-only-link").forEach(a => a.style.display = "inline-flex");
+    setTimeout(force, 500); setTimeout(force, 1300);
   });
 })();
 </script>

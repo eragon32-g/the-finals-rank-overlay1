@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RankTag Layout Editor</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --bg: #080a0f;
+      --panel: rgba(17,20,28,.96);
+      --panel2: rgba(10,12,18,.98);
+      --line: rgba(255,255,255,.12);
+      --text: #f5f7fb;
+      --muted: rgba(245,247,251,.68);
+      --red: #ef1724;
+      --gold: #d7b23b;
+      --cyan: #4feaff;
+    }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%),
+        linear-gradient(180deg, #111923, #06070b 46%, #030407);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    body { padding: 28px; }
+    .top {
+      max-width: 1280px;
+      margin: 0 auto 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    h1 { margin: 0; font-size: 42px; line-height: .95; letter-spacing: -1px; }
+    .sub { margin-top: 8px; color: var(--muted); font-size: 14px; }
+    .badge {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 14px;
+      background: rgba(255,255,255,.06);
+      font-weight: 1000;
+      letter-spacing: 1.4px;
+      font-size: 12px;
+    }
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+      align-items: start;
+    }
+    .panel {
+      background: linear-gradient(180deg, rgba(20,23,32,.96), rgba(9,11,17,.98));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 22px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.26);
+    }
+    .stagePanel { padding: 18px; }
+    .stageHead {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .stageHead strong { font-size: 18px; }
+    .help { color: var(--muted); font-size: 12px; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 8px; }
+    button, select, input, textarea {
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.07);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 900;
+      font-size: 13px;
+      outline: none;
+    }
+    button {
+      cursor: pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    button:hover { transform: translateY(-1px); border-color: rgba(255,255,255,.28); }
+    button.primary { background: linear-gradient(180deg, #ff2734, #bf0613); border-color: rgba(255,255,255,.18); }
+    button.gold { background: linear-gradient(180deg, #f5cc4c, #b98712); color: #161006; }
+    button.small { padding: 7px 9px; font-size: 12px; border-radius: 8px; }
+    .canvasWrap {
+      width: 100%;
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background:
+        linear-gradient(45deg, rgba(255,255,255,.03) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.03) 75%),
+        linear-gradient(45deg, rgba(255,255,255,.03) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.03) 75%),
+        #0b0e14;
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+      overflow: auto;
+      padding: 28px;
+    }
+    .canvasScaler {
+      transform-origin: center;
+      position: relative;
+    }
+    #canvas {
+      position: relative;
+      width: 470px;
+      height: 160px;
+      user-select: none;
+      overflow: hidden;
+      background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=105') center / 100% 100% no-repeat;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 16px 38px rgba(0,0,0,.34);
+    }
+    .item {
+      position: absolute;
+      cursor: grab;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      border: 1px dashed rgba(255,255,255,0);
+      min-width: 6px;
+      min-height: 6px;
+    }
+    .item:hover, .item.active {
+      border-color: rgba(79,234,255,.78);
+      background: rgba(79,234,255,.06);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.32);
+    }
+    .item:active { cursor: grabbing; }
+    .item .handle {
+      position: absolute;
+      right: -6px;
+      bottom: -6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--cyan);
+      border: 2px solid #061015;
+      display: none;
+      cursor: nwse-resize;
+    }
+    .item.active .handle { display: block; }
+    .badgeEl {
+      display: grid;
+      place-items: center;
+    }
+    .badgeEl img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 10px rgba(255,255,255,.2)) drop-shadow(0 2px 10px rgba(255,42,23,.28));
+      pointer-events: none;
+    }
+    .rankEl {
+      color: var(--cyan);
+      font-weight: 1000;
+      letter-spacing: .7px;
+      line-height: 1;
+      text-transform: uppercase;
+      text-shadow: 0 0 14px rgba(79,234,255,.25), 0 2px 8px rgba(0,0,0,.78);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .scoreEl, .playerEl, .brandEl {
+      color: #fff3ea;
+      font-weight: 1000;
+      line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 1px 6px rgba(0,0,0,.78);
+    }
+    .playerEl { color: #f0f1f6; }
+    .brandEl { color: rgba(246,248,255,.93); }
+    .side { padding: 16px; position: sticky; top: 16px; }
+    .side h2 { font-size: 16px; margin: 0 0 10px; }
+    .formGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    label { display: grid; gap: 5px; color: var(--muted); font-size: 11px; font-weight: 800; }
+    input, textarea, select { width: 100%; }
+    textarea { min-height: 210px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; resize: vertical; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 12px 0; }
+    .divider { height: 1px; background: rgba(255,255,255,.10); margin: 14px 0; }
+    .status {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .activeName { color: var(--cyan); font-weight: 1000; }
+    @media (max-width: 980px) {
+      body { padding: 14px; }
+      .wrap { grid-template-columns: 1fr; }
+      .side { position: static; }
+      h1 { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div>
+      <h1>Layout Editor</h1>
+      <div class="sub">Area interna per spostare gli elementi premium e salvare coordinate bloccate per il sito pubblico. Questo editor è solo per i layout premium: non modifica e non vincola il default.</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="badge" href="/generator.html" style="text-decoration:none;color:inherit;">← Rank Generator</a><div class="badge">RankTag V105</div></div>
+  </div>
+
+  <div class="wrap">
+    <section class="panel stagePanel">
+      <div class="stageHead">
+        <div>
+          <strong id="editorStyleTitle">Cyber Red Elite</strong>
+          <select id="premiumStyleSelect" style="margin-left:12px;">
+            <option value="cyber-red-elite">Cyber Red Elite</option>
+            <option value="voidrage-inferno">VoidRage Inferno</option>
+          </select>
+          <div class="help">Trascina e ridimensiona. Questo è il renderer premium separato: anteprima e link finale devono usare le stesse coordinate JSON.</div>
+        </div>
+        <div class="toolbar">
+          <button class="small" id="zoomOut">- Zoom</button>
+          <button class="small" id="zoomIn">+ Zoom</button>
+          <button class="small" id="centerAll">Centra canvas</button>
+        </div>
+      </div>
+
+      <div class="canvasWrap" id="canvasWrap">
+        <div class="canvasScaler" id="canvasScaler">
+          <div id="canvas">
+            <div class="item badgeEl" data-key="badge"><img src="/assets/badges/platinum.svg?v=105" alt="badge"/><div class="handle"></div></div>
+            <div class="item rankEl" data-key="rank">PLATINUM 1<div class="handle"></div></div>
+            <div class="item scoreEl" data-key="score">ELO: 37.705<div class="handle"></div></div>
+            <div class="item playerEl" data-key="player">NOMEPLAYER#1234<div class="handle"></div></div>
+            <div class="item brandEl" data-key="brand">ERDRAGON32 • Join the Discord<div class="handle"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel side">
+      <h2>Elemento selezionato: <span class="activeName" id="activeName">badge</span></h2>
+
+      <div class="formGrid">
+        <label>X <input id="x" type="number" step="1"></label>
+        <label>Y <input id="y" type="number" step="1"></label>
+        <label>W <input id="w" type="number" step="1"></label>
+        <label>H <input id="h" type="number" step="1"></label>
+        <label>Font <input id="fontSize" type="number" step="0.5"></label>
+        <label>Z <input id="z" type="number" step="1"></label>
+      </div>
+
+      <div class="row">
+        <button id="applyFields">Applica</button>
+        <button id="resetSelected">Reset elemento</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Azioni layout</h2>
+      <div class="row">
+        <button class="primary" id="saveLocal">Salva locale</button>
+        <button id="loadLocal">Carica locale</button>
+        <button id="resetAll">Reset tutto</button>
+      </div>
+      <div class="row">
+        <button class="gold" id="copyJson">Copia JSON</button>
+        <button id="downloadJson">Scarica JSON</button>
+      </div>
+
+      <div class="status">
+        Questo editor è solo per layout premium. Non tocca il default. Salva X/Y/W/H/Font/Z: il generator legge questi dati e li mette nel link stream.
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>JSON coordinate</h2>
+      <textarea id="jsonOut" spellcheck="false"></textarea>
+      <div class="row">
+        <button id="applyJson">Applica JSON</button>
+      </div>
+    </aside>
+  </div>
+
+  
+</html>
+
+  <script>
+    const STYLE_CONFIGS = {
+      "cyber-red-elite": {
+        label: "Cyber Red Elite",
+        background: "/assets/premium/cyber-red-elite-bg-v96.png",
+        download: "cyber-red-elite-layout.json",
+        storageKey: "ranktag-layout-editor-cyber-red-elite-current-v105",
+        legacyKeys: ["ranktag-layout-editor-cyber-red-elite-current-v103","ranktag-layout-editor-cyber-red-elite-current","ranktag-layout-editor-cyber-red-elite-v89","ranktag-layout-editor-cyber-red-elite-v88","ranktag-layout-editor-cyber-red-elite-v82"],
+        defaults: {
+          badge: {x:7,y:9,w:136,h:121,fontSize:0,z:5},
+          rank: {x:164,y:39,w:215,h:30,fontSize:25,z:6},
+          score: {x:165,y:78,w:120,h:16,fontSize:12,z:6},
+          player: {x:271,y:78,w:142,h:16,fontSize:10.5,z:6},
+          brand: {x:165,y:100,w:270,h:16,fontSize:9.5,z:6}
+        }
+      },
+      "voidrage-inferno": {
+        label: "VoidRage Inferno",
+        background: "/assets/premium/voidrage-inferno-fit-v105.png",
+        download: "voidrage-inferno-layout.json",
+        storageKey: "ranktag-layout-editor-voidrage-inferno-current-v105",
+        legacyKeys: ["ranktag-layout-editor-voidrage-inferno-current-v104","ranktag-layout-editor-voidrage-inferno-current"],
+        defaults: {
+          badge: {x:12,y:20,w:118,h:110,fontSize:0,z:5},
+          rank: {x:150,y:42,w:230,h:30,fontSize:25,z:6},
+          score: {x:152,y:78,w:120,h:16,fontSize:12,z:6},
+          player: {x:265,y:78,w:150,h:16,fontSize:10.5,z:6},
+          brand: {x:152,y:108,w:260,h:18,fontSize:9.5,z:6}
+        }
+      }
+    };
+
+    let currentStyle = document.getElementById("premiumStyleSelect")?.value || "cyber-red-elite";
+    let styleLayouts = {};
+    let activeKey = "badge";
+    let zoom = 1.65;
+    const els = {};
+    const canvas = document.getElementById("canvas");
+    const scaler = document.getElementById("canvasScaler");
+    const jsonOut = document.getElementById("jsonOut");
+    const title = document.getElementById("editorStyleTitle");
+    const styleSelect = document.getElementById("premiumStyleSelect");
+
+    document.querySelectorAll(".item").forEach(el => {
+      els[el.dataset.key] = el;
+      el.addEventListener("pointerdown", startDrag);
+      el.querySelector(".handle").addEventListener("pointerdown", startResize);
+      el.addEventListener("click", () => select(el.dataset.key));
+    });
+
+    const fields = ["x","y","w","h","fontSize","z"].reduce((acc, id) => {
+      acc[id] = document.getElementById(id);
+      return acc;
+    }, {});
+
+    function clone(v){ return JSON.parse(JSON.stringify(v)); }
+    function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+    function currentConfig(){ return STYLE_CONFIGS[currentStyle] || STYLE_CONFIGS["cyber-red-elite"]; }
+    function currentLayout(){ return styleLayouts[currentStyle]; }
+    function storageKey(style=currentStyle){ return STYLE_CONFIGS[style].storageKey; }
+
+    function normalizeElements(src, style=currentStyle) {
+      const defaults = clone(STYLE_CONFIGS[style].defaults);
+      const elements = src && src.elements ? src.elements : src;
+      if (!elements) return defaults;
+      Object.keys(defaults).forEach((key) => {
+        defaults[key] = Object.assign({}, defaults[key], elements[key] || {});
+        ["x","y","w","h","fontSize","z"].forEach(k => defaults[key][k] = Number(defaults[key][k] || 0));
+      });
+      return defaults;
+    }
+
+    function publicJson(style=currentStyle) {
+      const clean = clone(currentLayout());
+      Object.keys(clean).forEach((key) => {
+        clean[key].x = Number(clean[key].x || 0);
+        clean[key].y = Number(clean[key].y || 0);
+        clean[key].w = Number(clean[key].w || 0);
+        clean[key].h = Number(clean[key].h || 0);
+        clean[key].fontSize = Number(clean[key].fontSize || 0);
+        clean[key].z = Number(clean[key].z || 1);
+      });
+      return {
+        version: 1,
+        schema: "ranktag-premium-layout-v2",
+        style,
+        note: "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.",
+        canvas: { width: 470, height: 160 },
+        background: STYLE_CONFIGS[style].background,
+        elements: clean
+      };
+    }
+
+    function saveCurrentLayoutSilent() {
+      try {
+        localStorage.setItem(storageKey(), JSON.stringify(publicJson()));
+      } catch {}
+    }
+
+    function applyCanvasStyle() {
+      const cfg = currentConfig();
+      if (title) title.textContent = cfg.label;
+      canvas.style.background = `transparent url('${cfg.background}?v=105') center / 100% 100% no-repeat`;
+    }
+
+    function render() {
+      scaler.style.transform = `scale(${zoom})`;
+      const layout = currentLayout();
+      for (const [key, cfg] of Object.entries(layout)) {
+        const el = els[key];
+        if (!el) continue;
+        el.style.left = `${cfg.x}px`;
+        el.style.top = `${cfg.y}px`;
+        el.style.width = `${cfg.w}px`;
+        el.style.height = `${cfg.h}px`;
+        el.style.zIndex = cfg.z || 1;
+        if (cfg.fontSize) el.style.fontSize = `${cfg.fontSize}px`;
+        else el.style.removeProperty('font-size');
+        if (cfg.h) el.style.lineHeight = `${cfg.h}px`;
+        else el.style.removeProperty('line-height');
+        el.classList.toggle("active", key === activeKey);
+      }
+      document.getElementById("activeName").textContent = activeKey;
+      const active = layout[activeKey];
+      Object.keys(fields).forEach(k => fields[k].value = active[k] ?? 0);
+      jsonOut.value = JSON.stringify(publicJson(), null, 2);
+      applyCanvasStyle();
+      saveCurrentLayoutSilent();
+    }
+
+    function select(key) {
+      activeKey = key;
+      render();
+    }
+
+    function pointToCanvas(e) {
+      const rect = canvas.getBoundingClientRect();
+      return { x: (e.clientX - rect.left) / zoom, y: (e.clientY - rect.top) / zoom };
+    }
+
+    function startDrag(e) {
+      if (e.target.classList.contains("handle")) return;
+      e.preventDefault();
+      const key = e.currentTarget.dataset.key;
+      select(key);
+      const start = pointToCanvas(e);
+      const cfg = currentLayout()[key];
+      const ox = start.x - cfg.x;
+      const oy = start.y - cfg.y;
+      function move(ev) {
+        const p = pointToCanvas(ev);
+        cfg.x = Math.round(clamp(p.x - ox, -50, 470));
+        cfg.y = Math.round(clamp(p.y - oy, -50, 160));
+        render();
+      }
+      function up() { window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); }
+      window.addEventListener("pointermove", move);
+      window.addEventListener("pointerup", up);
+    }
+
+    function startResize(e) {
+      e.preventDefault(); e.stopPropagation();
+      const key = e.currentTarget.closest(".item").dataset.key;
+      select(key);
+      const start = pointToCanvas(e);
+      const cfg = currentLayout()[key];
+      const sw = cfg.w, sh = cfg.h;
+      function move(ev) {
+        const p = pointToCanvas(ev);
+        cfg.w = Math.round(clamp(sw + (p.x - start.x), 4, 470));
+        cfg.h = Math.round(clamp(sh + (p.y - start.y), 4, 160));
+        render();
+      }
+      function up() { window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); }
+      window.addEventListener("pointermove", move);
+      window.addEventListener("pointerup", up);
+    }
+
+    document.getElementById("applyFields").onclick = () => {
+      const cfg = currentLayout()[activeKey];
+      Object.keys(fields).forEach(k => cfg[k] = Number(fields[k].value || 0));
+      render();
+    };
+    document.getElementById("resetSelected").onclick = () => {
+      currentLayout()[activeKey] = clone(currentConfig().defaults[activeKey]);
+      render();
+    };
+    document.getElementById("resetAll").onclick = () => {
+      styleLayouts[currentStyle] = clone(currentConfig().defaults);
+      render();
+    };
+    document.getElementById("saveLocal").onclick = () => {
+      localStorage.setItem(storageKey(), JSON.stringify(publicJson()));
+      alert(`Layout ${currentConfig().label} salvato in locale.`);
+    };
+    document.getElementById("loadLocal").onclick = () => {
+      let saved = localStorage.getItem(storageKey());
+      if (!saved) {
+        for (const key of currentConfig().legacyKeys || []) {
+          saved = localStorage.getItem(key);
+          if (saved) break;
+        }
+      }
+      if (!saved) return alert("Nessun layout locale salvato per questo premium.");
+      const parsed = JSON.parse(saved);
+      styleLayouts[currentStyle] = normalizeElements(parsed, currentStyle);
+      render();
+    };
+    document.getElementById("copyJson").onclick = async () => {
+      await navigator.clipboard.writeText(jsonOut.value);
+      alert(`JSON ${currentConfig().label} copiato.`);
+    };
+    document.getElementById("downloadJson").onclick = () => {
+      const blob = new Blob([jsonOut.value], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = currentConfig().download;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    };
+    document.getElementById("applyJson").onclick = () => {
+      try {
+        const parsed = JSON.parse(jsonOut.value);
+        if (!parsed.elements) throw new Error("Manca elements");
+        if (parsed.style && parsed.style !== currentStyle) {
+          throw new Error(`Questo JSON è per ${parsed.style}, non per ${currentStyle}`);
+        }
+        styleLayouts[currentStyle] = normalizeElements(parsed, currentStyle);
+        render();
+      } catch (err) {
+        alert("JSON non valido: " + err.message);
+      }
+    };
+    document.getElementById("zoomIn").onclick = () => { zoom = Math.min(3, zoom + .15); render(); };
+    document.getElementById("zoomOut").onclick = () => { zoom = Math.max(.7, zoom - .15); render(); };
+    document.getElementById("centerAll").onclick = () => document.getElementById("canvasWrap").scrollTo({ left: 0, top: 0, behavior: "smooth" });
+
+    function loadSavedOrDefault(style) {
+      const cfg = STYLE_CONFIGS[style];
+      let saved = null;
+      try { saved = localStorage.getItem(cfg.storageKey); } catch {}
+      if (!saved && cfg.legacyKeys) {
+        for (const key of cfg.legacyKeys) {
+          try { saved = localStorage.getItem(key); } catch {}
+          if (saved) break;
+        }
+      }
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          return normalizeElements(parsed, style);
+        } catch {}
+      }
+      return clone(cfg.defaults);
+    }
+
+    function switchStyle(style) {
+      currentStyle = style;
+      if (!styleLayouts[currentStyle]) styleLayouts[currentStyle] = loadSavedOrDefault(currentStyle);
+      render();
+    }
+
+    Object.keys(STYLE_CONFIGS).forEach(style => {
+      styleLayouts[style] = loadSavedOrDefault(style);
+    });
+    styleSelect?.addEventListener('change', () => switchStyle(styleSelect.value));
+    switchStyle(currentStyle);
+  </script>
+</body>
+</html>
