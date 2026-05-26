@@ -1,5 +1,16 @@
 [
   {
+    "version": "1.0.3",
+    "date": "2026-05-26",
+    "title": "Hardfix VoidRage e protezione Layout Editor",
+    "summary": "VoidRage Inferno ora usa un pannello interno opaco, mentre il Layout Editor pubblico è solo una pagina login e l’editor reale resta servito solo da API con chiave.",
+    "fixed": [
+      "Trasparenze interne residue di VoidRage Inferno",
+      "Layout Editor accessibile pubblicamente",
+      "Asset premium VoidRage aggiornato con cache v103"
+    ]
+  },
+  {
     "version": "1.0.2",
     "date": "2026-05-26",
     "title": "Fix trasparenze interne VoidRage Inferno",

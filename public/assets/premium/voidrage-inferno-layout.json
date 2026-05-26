@@ -1,13 +1,13 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "schema": "ranktag-premium-layout-v2",
   "style": "voidrage-inferno",
-  "note": "v1.0.2: inner transparent holes filled dark, outside stays transparent.",
+  "note": "v1.0.3: hard solid internal panel, only outside remains transparent.",
   "canvas": {
     "width": 470,
     "height": 160
   },
-  "background": "/assets/premium/voidrage-inferno-fit-v102-solid-inner.png",
+  "background": "/assets/premium/voidrage-inferno-fit-v103-solid-panel.png",
   "elements": {
     "badge": {
       "x": 28,
