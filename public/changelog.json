@@ -1,5 +1,17 @@
 [
   {
+    "version": "1.0.4",
+    "date": "2026-05-26",
+    "title": "Pulizia progetto, README e admin-only Layout Editor",
+    "summary": "Aggiornato README, rimossa l’esposizione pubblica del Layout Editor, puliti asset vecchi e ricaricato VoidRage Inferno con trasparenza solo esterna.",
+    "fixed": [
+      "README ancora fermo a V105",
+      "Layout Editor visibile anche fuori dall’accesso admin",
+      "File e asset delle vecchie patch non più usati",
+      "VoidRage Inferno ricaricato con interno opaco e trasparenza solo fuori dai contorni"
+    ]
+  },
+  {
     "version": "1.0.3",
     "date": "2026-05-26",
     "title": "Hardfix VoidRage e protezione Layout Editor",

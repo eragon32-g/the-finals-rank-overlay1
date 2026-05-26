@@ -1,13 +1,13 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "schema": "ranktag-premium-layout-v2",
   "style": "voidrage-inferno",
-  "note": "v1.0.3: hard solid internal panel, only outside remains transparent.",
+  "note": "v1.0.4: overlay premium ricaricato; trasparenza solo fuori dai contorni, interno opaco/scuro.",
   "canvas": {
     "width": 470,
     "height": 160
   },
-  "background": "/assets/premium/voidrage-inferno-fit-v103-solid-panel.png",
+  "background": "/assets/premium/voidrage-inferno-v104.png",
   "elements": {
     "badge": {
       "x": 28,

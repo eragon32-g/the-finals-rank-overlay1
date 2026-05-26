@@ -1,9 +1,33 @@
-# RankTag V105
+# RankTag v1.0.4
 
-Build corretta da V104.
+Patch correttiva e pulizia progetto.
 
-- VoidRage Inferno usa asset v105 con contorno esterno trasparente
-- Cyber Red Elite e VoidRage Inferno hanno salvataggi Layout Editor separati v105
-- Generator passa sempre themeStyle + layout corretto per lo stile premium selezionato
-- Renderer finale legge themeStyle + layout e applica x/y/w/h/fontSize/z
-- Cache busting aggiornato a v105
+## Cosa include
+
+- README aggiornato al versionamento ufficiale `v1.0.x`
+- Layout Editor non pubblico
+- Accesso Layout Editor solo tramite area admin e chiave `ADMIN_LAYOUT_KEY`
+- Pulizia asset e file vecchi delle patch precedenti
+- VoidRage Inferno ricaricato con trasparenza solo fuori dai contorni
+- Interno VoidRage Inferno opaco/scuro per evitare bug visivi in OBS, browser source e link finale
+- Link premium stabile e senza parametro `layout` pubblico
+
+## Accesso admin
+
+Imposta su Vercel la variabile ambiente:
+
+```txt
+ADMIN_LAYOUT_KEY
+```
+
+Poi accedi da:
+
+```txt
+/api/layout-editor?key=LA_TUA_CHIAVE
+```
+
+La pagina pubblica `/layout-editor.html` non contiene l’editor reale: serve solo come login admin.
+
+## Versione
+
+Release corrente: `v1.0.4`
