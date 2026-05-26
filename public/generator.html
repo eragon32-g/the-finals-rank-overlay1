@@ -2598,7 +2598,7 @@ iframe#preview {
       const selectedThemeStyle = get("themeStyle")?.value || "default";
       url.searchParams.set("themeStyle", selectedThemeStyle);
       /* RankTag V105 attach editor layout to generated premium link */
-      if (selectedThemeStyle === "cyber-red-elite") {
+      if (selectedThemeStyle === "cyber-red-elite" || selectedThemeStyle === "voidrage-inferno") {
         const savedPremiumLayout = getSavedPremiumLayout();
         const encodedPremiumLayout = savedPremiumLayout ? encodePremiumLayoutForUrl(savedPremiumLayout) : "";
         if (encodedPremiumLayout) url.searchParams.set("layout", encodedPremiumLayout);
@@ -2606,14 +2606,14 @@ iframe#preview {
         url.searchParams.delete("layout");
       }
       /* RankTag V105 final layout param sync */
-      if ((get("themeStyle")?.value || "default") === "cyber-red-elite") {
+      if ((get("themeStyle")?.value || "default") === "cyber-red-elite" || (get("themeStyle")?.value || "default") === "voidrage-inferno") {
         const completeLayout = typeof getCompletePremiumLayoutForLink === "function" ? getCompletePremiumLayoutForLink() : null;
         const encodedLayout = completeLayout && typeof encodeCompletePremiumLayout === "function" ? encodeCompletePremiumLayout(completeLayout) : "";
         if (encodedLayout) url.searchParams.set("layout", encodedLayout);
       }
       get("output").value = url.toString();
       /* RankTag V105 guarantee layout param */
-      if ((get("themeStyle")?.value || "default") === "cyber-red-elite") {
+      if ((get("themeStyle")?.value || "default") === "cyber-red-elite" || (get("themeStyle")?.value || "default") === "voidrage-inferno") {
         try {
           const rawLayout = localStorage.getItem("ranktag-layout-editor-cyber-red-elite-current")
             || localStorage.getItem("ranktag-layout-editor-cyber-red-elite-v89")
@@ -2655,6 +2655,14 @@ iframe#preview {
     get("copy").addEventListener("click", async () => {
       const ok = await buildLink();
       if (!ok) return;
+
+      const finalTheme = get("themeStyle")?.value || "default";
+      if (finalTheme === "cyber-red-elite" || finalTheme === "voidrage-inferno") {
+        const currentUrl = new URL(get("output").value);
+        currentUrl.searchParams.set("themeStyle", finalTheme);
+        get("output").value = currentUrl.toString();
+      }
+
       await navigator.clipboard.writeText(get("output").value);
       get("copy").textContent = "Copiato!";
       setTimeout(() => get("copy").textContent = "Copia link", 1200);
