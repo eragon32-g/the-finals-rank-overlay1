@@ -1,8 +1,8 @@
 {
-  "version": "1.0.10",
+  "version": "1.0.11",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "1.0.10: fix trasparenza VoidRage Inferno senza rimuovere gli elementi neri interni e pulizia file premium inutilizzati."
+  "note": "1.0.11: fix maschera VoidRage Inferno: esterno trasparente, interno nero preservato."
 }

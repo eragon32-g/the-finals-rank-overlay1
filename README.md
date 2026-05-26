@@ -1,10 +1,10 @@
-# RankTag 1.0.10
+# RankTag 1.0.11
 
-VoidRage Inferno transparency mask fix + cleanup.
+VoidRage Inferno solid-inside fix.
 
 ## Include
-- trasparenza esterna corretta
+- esterno cornice trasparente
+- interno della cornice pieno/solido
 - dettagli neri interni preservati
-- asset Inferno aggiornati a v110
-- file Inferno vecchi rimossi
-- versione pubblica aggiornata a 1.0.10
+- asset Inferno aggiornati a v111
+- versione pubblica 1.0.11
