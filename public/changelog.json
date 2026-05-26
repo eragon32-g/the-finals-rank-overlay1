@@ -1,5 +1,23 @@
 [
   {
+    "version": "1.0.14",
+    "date": "2026-05-26",
+    "title": "Admin restore",
+    "summary": "Ripristinata la parte admin dalla v1.0.6 admin access fix, mantenendo i fix premium più recenti.",
+    "restored": [
+      "api/layout-editor.js con controllo ADMIN_LAYOUT_KEY",
+      "private/layout-editor.html protetto",
+      "public/admin-login.html",
+      "blocco accesso diretto a /layout-editor e /layout-editor.html",
+      "pulsante Admin nel generator"
+    ],
+    "kept": [
+      "VoidRage Inferno edge trace fix",
+      "Cyber Red Elite",
+      "Overlay standard non modificato"
+    ]
+  },
+  {
     "version": "1.0.13",
     "date": "2026-05-26",
     "title": "VoidRage Inferno edge trace fix",
@@ -320,7 +338,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=113",
+      "aggiornati thumb premium e cache buster a v=114",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -519,7 +537,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=113"
+      "riferimenti cache aggiornati a v=114"
     ]
   },
   {

@@ -1,8 +1,8 @@
 {
-  "version": "1.0.13",
+  "version": "1.0.14",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "1.0.13: VoidRage Inferno ritagliato seguendo il bordo reale; nero interno preservato."
+  "note": "1.0.14: ripristinato accesso admin protetto e mantenuti i fix premium/VoidRage Inferno."
 }
