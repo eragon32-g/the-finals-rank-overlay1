@@ -1,5 +1,18 @@
 [
   {
+    "version": "99",
+    "date": "2026-05-25",
+    "title": "Overlay premium in sezione 4",
+    "summary": "VoidRage Inferno ora viene posizionato correttamente dentro la finestra Overlay Premium.",
+    "fixed": [
+      "secondo overlay premium finiva in fondo pagina",
+      "sezione Overlay Premium non conteneva entrambe le card"
+    ],
+    "improved": [
+      "griglia premium responsive per contenere Cyber Red Elite e VoidRage Inferno"
+    ]
+  },
+  {
     "version": "98",
     "date": "2026-05-25",
     "title": "Fix card VoidRage Inferno",
@@ -137,7 +150,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=98",
+      "aggiornati thumb premium e cache buster a v=99",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -336,7 +349,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=98"
+      "riferimenti cache aggiornati a v=99"
     ]
   },
   {

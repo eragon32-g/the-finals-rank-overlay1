@@ -1,10 +1,9 @@
-# RankTag V98
+# RankTag V99
 
-Fix visibilità secondo overlay premium.
+Fix posizionamento Overlay Premium.
 
 ## Include
-- VoidRage Inferno visibile come seconda card nella sezione Overlay Premium
-- opzione themeStyle voidrage-inferno aggiunta se mancante
-- asset inferno rinominati v98 per cache
-- Cyber Red Elite resta separato
-- default non toccato
+- VoidRage Inferno dentro il punto 4 Overlay Premium
+- griglia premium per contenere entrambe le card
+- rimosse card Inferno piazzate a fondo pagina
+- asset Inferno rinominati v99 per cache

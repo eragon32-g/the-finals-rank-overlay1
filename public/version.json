@@ -1,8 +1,8 @@
 {
-  "version": "98",
+  "version": "99",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V98: fix visibilità seconda card premium VoidRage Inferno nel generator."
+  "note": "V99: VoidRage Inferno viene inserito dentro la sezione 4 Overlay Premium, nella stessa finestra/card area."
 }
