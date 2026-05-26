@@ -1,8 +1,8 @@
 {
-  "version": "1.0.11",
+  "version": "1.0.12",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "1.0.11: fix maschera VoidRage Inferno: esterno trasparente, interno nero preservato."
+  "note": "1.0.12: fix ritaglio esterno VoidRage Inferno con maschera ottagonale; interno nero preservato."
 }

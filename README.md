@@ -1,10 +1,10 @@
-# RankTag 1.0.11
+# RankTag 1.0.12
 
-VoidRage Inferno solid-inside fix.
+VoidRage Inferno outer cut fix.
 
 ## Include
-- esterno cornice trasparente
-- interno della cornice pieno/solido
-- dettagli neri interni preservati
-- asset Inferno aggiornati a v111
-- versione pubblica 1.0.11
+- esterno cornice ritagliato meglio
+- interno nero preservato
+- maschera ottagonale pulita per overlay
+- asset Inferno aggiornati a v112
+- versione pubblica 1.0.12
