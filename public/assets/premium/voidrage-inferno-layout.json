@@ -1,32 +1,32 @@
 {
-  "version": "1.0.7",
+  "version": "1.0.9",
   "schema": "ranktag-premium-layout-v2",
   "style": "voidrage-inferno",
-  "note": "v1.0.7: rebuilt VoidRage Inferno overlay using new clean frame asset.",
+  "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.",
   "canvas": {
     "width": 470,
     "height": 160
   },
-  "background": "/assets/premium/voidrage-inferno-v107-clean.png",
+  "background": "/assets/premium/voidrage-inferno-fit-v105.png",
   "elements": {
     "badge": {
-      "x": 28,
+      "x": 12,
       "y": 20,
-      "w": 112,
-      "h": 112,
+      "w": 118,
+      "h": 110,
       "fontSize": 0,
       "z": 5
     },
     "rank": {
-      "x": 157,
+      "x": 150,
       "y": 42,
-      "w": 245,
+      "w": 230,
       "h": 30,
       "fontSize": 25,
       "z": 6
     },
     "score": {
-      "x": 158,
+      "x": 152,
       "y": 78,
       "w": 120,
       "h": 16,
@@ -34,7 +34,7 @@
       "z": 6
     },
     "player": {
-      "x": 278,
+      "x": 265,
       "y": 78,
       "w": 150,
       "h": 16,
@@ -42,7 +42,7 @@
       "z": 6
     },
     "brand": {
-      "x": 158,
+      "x": 152,
       "y": 108,
       "w": 260,
       "h": 18,

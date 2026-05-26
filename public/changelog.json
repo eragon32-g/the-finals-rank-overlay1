@@ -1,101 +1,1140 @@
 [
   {
-    "version": "1.0.8",
+    "version": "1.0.9",
     "date": "2026-05-26",
-    "title": "Animations Beta",
-    "summary": "Aggiunta sezione Animazioni nel generator con parametri salvati nel link.",
+    "title": "VoidRage Inferno resize fix",
+    "summary": "Versione pubblica 1.0.9: sfondo VoidRage Inferno ridimensionato a 470x160 e pulito con trasparenza esterna.",
+    "fixed": [
+      "contorno esterno non trasparente",
+      "immagine non proporzionata correttamente come overlay",
+      "versione pubblica aggiornata da 1.0.8 a 1.0.9"
+    ]
+  },
+  {
+    "version": "105",
+    "date": "2026-05-26",
+    "title": "VoidRage Inferno resize fix",
+    "summary": "Sfondo VoidRage Inferno ridimensionato a 470x160 e pulito con trasparenza esterna.",
+    "fixed": [
+      "contorno esterno non trasparente",
+      "immagine non proporzionata correttamente come overlay",
+      "asset rinominati v105 per evitare cache"
+    ]
+  },
+  {
+    "version": "104",
+    "date": "2026-05-26",
+    "title": "VoidRage Inferno transparent contour update",
+    "summary": "The new red futuristic frame is now integrated as the VoidRage Inferno premium overlay, with transparency outside the border.",
+    "fixed": [
+      "replaced the Inferno background with the selected red frame",
+      "made the outer contour transparent so it behaves like a real overlay",
+      "bumped asset/version references to avoid stale cache"
+    ]
+  },
+  {
+    "version": "103",
+    "date": "2026-05-26",
+    "title": "Premium renderer cleanup",
+    "summary": "Final authoritative premium renderer for both Cyber Red Elite and VoidRage Inferno.",
+    "fixed": [
+      "Cyber Red Elite preview not loading reliably",
+      "VoidRage Inferno edge/crop looked bad",
+      "per-premium layout separation reinforced with v103 storage keys"
+    ]
+  },
+  {
+    "version": "102",
+    "date": "2026-05-26",
+    "title": "Inferno transparency fix + per-premium editor split",
+    "summary": "VoidRage Inferno now uses a truly transparent PNG and the layout editor stores Cyber Red Elite and VoidRage Inferno separately.",
+    "fixed": [
+      "removed white non-transparent checkerboard from VoidRage Inferno background",
+      "style-specific editor storage keys to stop one premium from overwriting the other",
+      "generator fallback reads the correct per-style saved layout"
+    ]
+  },
+  {
+    "version": "101",
+    "date": "2026-05-26",
+    "title": "Inferno image fix + per-style layout editor",
+    "summary": "VoidRage Inferno now uses its correct red/black image and the Layout Editor saves separate JSON/state for each premium overlay.",
+    "fixed": [
+      "wrong/stale Inferno background asset",
+      "Layout Editor changes leaking across premium overlays",
+      "generator layout param now works per premium style"
+    ]
+  },
+  {
+    "version": "100",
+    "date": "2026-05-25",
+    "title": "VoidRage Inferno dentro Overlay Premium",
+    "summary": "Card Inferno inserita staticamente nel punto 4, non più in fondo pagina.",
+    "fixed": [
+      "card Inferno fuori dalla sezione Overlay Premium",
+      "anteprima Inferno ereditava CSS Cyber Red Elite",
+      "posizionamento tramite script instabile"
+    ]
+  },
+  {
+    "version": "99",
+    "date": "2026-05-25",
+    "title": "Overlay premium in sezione 4",
+    "summary": "VoidRage Inferno ora viene posizionato correttamente dentro la finestra Overlay Premium.",
+    "fixed": [
+      "secondo overlay premium finiva in fondo pagina",
+      "sezione Overlay Premium non conteneva entrambe le card"
+    ],
+    "improved": [
+      "griglia premium responsive per contenere Cyber Red Elite e VoidRage Inferno"
+    ]
+  },
+  {
+    "version": "98",
+    "date": "2026-05-25",
+    "title": "Fix card VoidRage Inferno",
+    "summary": "La seconda card premium ora viene iniettata nel generator anche se la struttura HTML cambia.",
+    "fixed": [
+      "VoidRage Inferno non visibile nella sezione Overlay Premium",
+      "aggiunta opzione themeStyle voidrage-inferno se manca"
+    ]
+  },
+  {
+    "version": "97",
+    "date": "2026-05-25",
+    "title": "Nuovo premium VoidRage Inferno",
+    "summary": "Aggiunto secondo overlay premium rosso/nero separato da Cyber Red Elite.",
     "added": [
-      "Animazione entrata fade, slide, zoom e glitch",
-      "Controllo intensità e velocità",
-      "Glow bordo on/off",
-      "Brand animation on/off"
+      "style voidrage-inferno",
+      "/assets/premium/voidrage-inferno-bg-v105.png",
+      "/assets/premium/voidrage-inferno-layout.json",
+      "card premium nel generator",
+      "supporto renderer detached multi-premium"
     ]
   },
   {
-    "version": "1.0.7",
-    "date": "2026-05-26",
-    "title": "Fix definitivo accesso admin Layout Editor",
-    "summary": "Rimosso il tasto Layout Editor pubblico e corretta la login admin che ora apre direttamente l’API protetta.",
+    "version": "96",
+    "date": "2026-05-25",
+    "title": "Cache proof premium background",
+    "summary": "Background premium rinominato in cyber-red-elite-bg-v96.png per forzare il browser a scaricare l'asset nuovo.",
     "fixed": [
-      "Login admin indirizzata per errore a /api/admin-login.html",
-      "Tasto Layout Editor ancora visibile nel generator",
-      "Accesso admin non avviava più il Layout Editor"
+      "Il sito poteva continuare a mostrare V94/V95 per cache",
+      "Il background premium poteva rimanere vecchio perché aveva lo stesso nome file"
+    ],
+    "changed": [
+      "Nuovo asset: /assets/premium/cyber-red-elite-bg-v96.png",
+      "Riferimenti generator/editor/renderer aggiornati"
     ]
   },
   {
-    "version": "1.0.5",
-    "date": "2026-05-26",
-    "title": "Truefix Layout Editor e VoidRage",
-    "summary": "Il Layout Editor pubblico è stato rimosso e VoidRage Inferno è stato rigenerato con interno completamente opaco.",
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Sfondo premium pulito",
+    "summary": "Sostituito il background premium con la nuova versione ritagliata meglio.",
+    "improved": [
+      "contorni più puliti",
+      "meno nero extra attorno alla targhetta",
+      "asset bg, thumb e base aggiornati"
+    ]
+  },
+  {
+    "version": "95",
+    "title": "Animazione branding premium",
+    "summary": "I layout premium ora hanno il branding animato come il default.",
     "fixed": [
-      "Layout Editor ancora visibile pubblicamente",
-      "Vecchio URL /layout-editor.html ancora raggiungibile",
-      "Trasparenze interne residue in VoidRage Inferno",
-      "Asset premium aggiornato con cache v105"
-    ]
-  },
-  {
-    "version": "1.0.4",
-    "date": "2026-05-26",
-    "title": "Pulizia progetto, README e admin-only Layout Editor",
-    "summary": "Aggiornato README, rimossa l’esposizione pubblica del Layout Editor, puliti asset vecchi e ricaricato VoidRage Inferno con trasparenza solo esterna.",
-    "fixed": [
-      "README ancora fermo a V105",
-      "Layout Editor visibile anche fuori dall’accesso admin",
-      "File e asset delle vecchie patch non più usati",
-      "VoidRage Inferno ricaricato con interno opaco e trasparenza solo fuori dai contorni"
-    ]
-  },
-  {
-    "version": "1.0.3",
-    "date": "2026-05-26",
-    "title": "Hardfix VoidRage e protezione Layout Editor",
-    "summary": "VoidRage Inferno ora usa un pannello interno opaco, mentre il Layout Editor pubblico è solo una pagina login e l’editor reale resta servito solo da API con chiave.",
-    "fixed": [
-      "Trasparenze interne residue di VoidRage Inferno",
-      "Layout Editor accessibile pubblicamente",
-      "Asset premium VoidRage aggiornato con cache v103"
-    ]
-  },
-  {
-    "version": "1.0.2",
-    "date": "2026-05-26",
-    "title": "Fix trasparenze interne VoidRage Inferno",
-    "summary": "Corrette le trasparenze interne della cornice VoidRage Inferno: l’esterno resta trasparente, l’interno resta scuro e coerente tra anteprima e link finale.",
-    "fixed": [
-      "Zone trasparenti interne della cornice che mostravano sfondi indesiderati",
-      "Differenza visiva tra anteprima e link finale VoidRage Inferno",
-      "Cache asset aggiornata con nuovo background premium"
-    ]
-  },
-  {
-    "version": "1.0.1",
-    "date": "2026-05-26",
-    "title": "Bugfix overlay premium",
-    "summary": "Correzione del copia link premium e allineamento del render reale di VoidRage Inferno con l’anteprima.",
-    "fixed": [
-      "Copia link non funzionante con overlay premium",
-      "VoidRage Inferno diverso tra anteprima e link finale",
-      "Link premium ripulito dal parametro layout per evitare URL lunghi o instabili"
-    ]
-  },
-  {
-    "version": "1.0.0",
-    "date": "2026-05-26",
-    "title": "Pubblicazione RankTag v1.0.8",
-    "summary": "Prima release pubblica pulita con generator, overlay premium, accesso admin protetto e sezione updates ripulita.",
+      "branding statico nel premium"
+    ],
     "added": [
-      "Overlay premium Cyber Red Elite",
-      "Overlay premium VoidRage Inferno",
-      "Generator con anteprima live e copia link",
-      "Layout Editor riservato solo admin",
-      "Tasto per tornare al layout default"
+      "drawer branding premium",
+      "marquee premium sincronizzato al premium renderer separato"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Renderer premium separato",
+    "summary": "Cyber Red Elite non usa più il renderer standard: viene renderizzato come layer assoluti dal JSON.",
+    "fixed": [
+      "Differenza tra Layout Editor e anteprima live",
+      "CSS standard che interferiva con dimensioni e posizioni premium",
+      "Badge/testi non identici tra editor e link finale"
+    ],
+    "added": [
+      "renderer detached V92 per Cyber Red Elite",
+      "layer assoluti 470x160",
+      "lettura JSON layout come sorgente unica"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Import confermato del JSON completo",
+    "summary": "Applicato il JSON ranktag-premium-layout-v2 come sorgente autorevole.",
+    "added": [
+      "schema ranktag-premium-layout-v2 nel file pubblico",
+      "nota esplicita su x/y/w/h/fontSize/z"
+    ],
+    "improved": [
+      "editor, pubblico e link finale partono dallo stesso JSON completo"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Hard fix layout sync",
+    "summary": "Il JSON del Layout Editor ora contiene chiaramente dimensioni e font, e l'overlay applica sempre quei valori sopra i default.",
+    "fixed": [
+      "L'anteprima poteva rimanere sul default",
+      "Il link finale poteva non applicare w/h/fontSize esportati dal JSON",
+      "I valori del Layout Editor non erano autorevoli dopo render"
+    ],
+    "added": [
+      "schema ranktag-premium-layout-v2 nel JSON esportato",
+      "motore autorevole runtime V90 per applicare X/Y/W/H/Font/Z",
+      "sincronizzazione finale del parametro layout nel generator"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Layout Editor collegato al link finale",
+    "summary": "Le modifiche fatte nel Layout Editor ora vengono lette dal generator e inserite nel link stream premium.",
+    "fixed": [
+      "Le modifiche del Layout Editor non arrivavano all'anteprima live",
+      "Il link finale non conteneva le coordinate personalizzate"
+    ],
+    "added": [
+      "salvataggio automatico layout editor su localStorage stabile",
+      "parametro layout nel link finale premium",
+      "runtime overlay che legge layout e applica X/Y/W/H/Font/Z"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "VoidRage layout JSON importato",
+    "summary": "Applicato il nuovo JSON con dimensioni/proporzioni salvate per badge e testi.",
+    "improved": [
+      "Badge ridimensionato a 136×121",
+      "Rank, score, player e brand riposizionati sulla nuova targhetta VoidRage",
+      "Layout Editor chiarisce che esporta X/Y/W/H/Font/Z",
+      "Preview generator, live preview e link finale restano sincronizzati"
+    ]
+  },
+  {
+    "version": "95",
+    "title": "Premium VoidRage background integrated",
+    "date": "2026-05-25",
+    "items": [
+      "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
+      "aggiornati thumb premium e cache buster a v=109",
+      "allineati generator, preview live e layout editor agli stessi asset premium"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Sfondo premium rifatto",
+    "summary": "Nuova targhetta premium più uniforme.",
+    "improved": [
+      "Cornice premium rossa uniforme",
+      "Area nera lasciata solo nella zona testo",
+      "Aggiornati anche gli asset statici di preview"
     ],
     "fixed": [
-      "Link premium più corto e stabile",
-      "Copia link corretto anche per overlay premium",
-      "Accesso admin senza chiave precompilata",
-      "Sezione Updates ripulita dai vecchi aggiornamenti"
+      "Ridotto l'effetto di buchi / vuoti visivi nella targhetta"
     ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Nuovo layout JSON importato",
+    "summary": "Applicate le nuove coordinate del Layout Editor a Cyber Red Elite.",
+    "improved": [
+      "Badge aggiornato a x 3 / y 23 / w 111 / h 100",
+      "Anche i testi continuano a rispettare le coordinate salvate",
+      "Preview premium, live preview e link finale restano sincronizzati"
+    ],
+    "fixed": [
+      "Disallineamento tra ultimo JSON salvato e layout pubblico"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Preview/link allineati al Layout Editor",
+    "summary": "Le coordinate premium ora valgono per anteprima, link generato e output pubblico. Aggiunto ritorno al generator.",
+    "added": [
+      "Tasto ritorno al Rank Generator nel Layout Editor",
+      "Nota che l'editor riguarda solo layout premium"
+    ],
+    "improved": [
+      "Anteprima generator usa le stesse coordinate bloccate",
+      "Link generato forza themeStyle selezionato",
+      "Output pubblico premium usa coordinate importate"
+    ],
+    "fixed": [
+      "Possibile differenza tra card preview, live preview e link finale",
+      "Mancanza collegamento per tornare dal Layout Editor al generator"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Coordinate importate dal Layout Editor",
+    "summary": "Applicato al pubblico il layout JSON salvato dall'editor per Cyber Red Elite.",
+    "added": [
+      "File /assets/premium/cyber-red-elite-layout.json con coordinate bloccate"
+    ],
+    "improved": [
+      "Badge, rank, score, player e brand usano le coordinate scelte nell'editor",
+      "Layout editor riapre con le stesse coordinate salvate"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Layout Editor interno",
+    "summary": "Aggiunta pagina interna per spostare badge, rank, score, player e brand con il mouse ed esportare coordinate JSON.",
+    "added": [
+      "/layout-editor.html",
+      "drag & drop elementi premium",
+      "ridimensionamento elementi",
+      "salvataggio locale",
+      "copia/scarica JSON coordinate"
+    ],
+    "improved": [
+      "Flusso premium più veloce: si regolano le posizioni senza rifare build per ogni pixel"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Nuova grafica Cyber Red Elite",
+    "summary": "Sostituito il background premium con la nuova grafica scelta e riallineati gli elementi.",
+    "improved": [
+      "Nuovo background premium senza foro inutile a destra",
+      "Sfondo pulito e adattato a 470×160",
+      "Badge più centrato nel frame sinistro",
+      "Testi leggermente riallineati"
+    ],
+    "fixed": [
+      "Grafica precedente con buco nero a destra",
+      "Contorno immagine eccessivamente visibile"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Premium background full-size",
+    "summary": "Cyber Red Elite ora usa il background premium sull'intero overlay 470×160 invece della card ridotta.",
+    "improved": [
+      "Background premium più visibile",
+      "Overlay premium usa tutta la dimensione 470×160",
+      "Stemma, rank, score e nome riposizionati sul background",
+      "Preview card premium aggiornata"
+    ],
+    "fixed": [
+      "Premium troppo simile al layout base ridotto",
+      "Background premium poco valorizzato"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Fix versione e cache premium",
+    "summary": "Aggiornati tutti i riferimenti rimasti a V77/V78 e forzato cache bust V79.",
+    "fixed": [
+      "Il generator poteva mostrare ancora V77",
+      "Cache asset non sempre aggiornata",
+      "Version marker non coerenti"
+    ],
+    "improved": [
+      "Cyber Red Elite mantiene il background premium adattato al layout stabile"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Reset Premium Engine",
+    "summary": "Cyber Red Elite non usa più renderer/immagine base separati: ora è una skin CSS dell'overlay standard stabile.",
+    "improved": [
+      "Stessa struttura dell'overlay standard",
+      "Preview live e output finale più coerenti",
+      "Nessun posizionamento assoluto manuale dei testi",
+      "Card premium aggiornata con mock coerente"
+    ],
+    "fixed": [
+      "Layout premium fuori scala",
+      "Elementi premium non allineati",
+      "Conflitti tra renderer premium"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Micro-allineamento Cyber Red Elite",
+    "summary": "Secondo passaggio: coordinate più precise e card premium aggiornata.",
+    "improved": [
+      "Stemma più centrato nel frame sinistro",
+      "Nome, rank e score spostati sui binari corretti",
+      "Preview card premium aggiornata con le nuove coordinate",
+      "Meno altezza inutile nella card premium"
+    ],
+    "fixed": [
+      "Preview card diversa dalla resa live",
+      "Testi ancora troppo fuori asse"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Punto 1 - renderer premium unico",
+    "summary": "Eliminato il doppio renderer Cyber Red Elite e riallineati gli elementi principali.",
+    "improved": [
+      "Un solo renderer premium attivo",
+      "Live preview bloccata a 470x160",
+      "Preview card premium centrata"
+    ],
+    "fixed": [
+      "Conflitto fra V73 e V74",
+      "Branding top-right incoerente",
+      "Allineamento nome/rank/score/emblema"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Fix scala e allineamento Cyber Red Elite",
+    "summary": "Primo intervento punto per punto: anteprima bloccata a 470×160 e griglia premium riallineata.",
+    "improved": [
+      "Anteprima live premium centrata",
+      "Overlay Cyber Red Elite bloccato a 470×160",
+      "Nome, rank, score e stemma riallineati su coordinate fisse",
+      "Gestione più sicura di nomi lunghi e branding"
+    ],
+    "fixed": [
+      "Premium fuori scala in anteprima live",
+      "Elementi interni non allineati",
+      "Preview card premium tagliata"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Fix metadati deploy",
+    "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
+    "fixed": [
+      "package.json ancora indicava V71",
+      "riferimenti cache aggiornati a v=109"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Cyber Red Elite rifinito",
+    "summary": "Primo premium rifinito con base dedicata, preview più chiara e stesso layout tra anteprima e output finale.",
+    "improved": [
+      "Cyber Red Elite aggiornato con testi dinamici più leggibili",
+      "Card premium con anteprima statica più chiara e completa",
+      "Anteprima live centrata e coerente col premium selezionato",
+      "Gestione migliore dei nomi lunghi"
+    ],
+    "fixed": [
+      "Preview premium tagliata nella card",
+      "Possibili disallineamenti del premium nella live preview"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Ripristino layout generator",
+    "summary": "Corregge la sparizione di Anteprima live e Overlay Premium e ripristina Temi.",
+    "fixed": [
+      "Anteprima live non visibile",
+      "Overlay Premium non visibile",
+      "Temi buggati",
+      "Branding rimosso come richiesto"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Ordine sezioni e fix premium",
+    "summary": "Riordinate le sezioni e corrette le dimensioni della preview premium.",
+    "added": [],
+    "improved": [
+      "Temi spostati al punto 2",
+      "Colori avanzati spostati al punto 3",
+      "Branding spostato al punto 4",
+      "Branding reso più simile come dimensione alla card premium",
+      "Dati rank più centrati e ordinati",
+      "Preview Cyber Red Elite non viene più tagliata"
+    ],
+    "fixed": [
+      "Anteprima premium tagliata",
+      "Disallineamenti nella sezione Dati rank"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Generator più compatto",
+    "summary": "Ridotte le finestre del generator tranne Account, così serve meno scrolling.",
+    "added": [],
+    "improved": [
+      "Sezioni più piccole e dense",
+      "Impostazioni in tre colonne su desktop",
+      "Account resta grande e a tutta larghezza",
+      "Anteprima in fondo resta full-width ma meno alta",
+      "Overlay mantiene dimensioni 470 × 160"
+    ],
+    "fixed": [
+      "Rimossi eventuali residui dell’interfaccia compatta in alto"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Layout generator rifatto",
+    "summary": "Riorganizzata la pagina: Account a tutta larghezza, impostazioni affiancate e anteprima finale a tutta larghezza.",
+    "added": [],
+    "improved": [
+      "Account ora occupa tutta la riga",
+      "Impostazioni organizzate in due colonne",
+      "Anteprima live spostata in fondo e più grande",
+      "Rimossa l’interfaccia compatta in alto"
+    ],
+    "fixed": [
+      "Rimossi nav e nota compatta che creavano confusione"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Cyber Red Elite - primo premium",
+    "summary": "Aggiunto il primo overlay premium attivabile dal generatore.",
+    "added": [
+      "Sezione Overlay Premium con Cyber Red Elite",
+      "Preview e pulsante Usa premium"
+    ],
+    "improved": [
+      "Anteprima premium resa più chiara e immediata",
+      "Link generator include il nuovo premium"
+    ],
+    "fixed": [
+      "Preparata base stabile per i premium futuri"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Premium fuori dalla Guida",
+    "summary": "La sezione Premium ora è separata correttamente dalla Guida rapida.",
+    "added": [],
+    "improved": [
+      "Navigazione compatta meno invasiva",
+      "Sezione Premium come blocco indipendente",
+      "Layout più stabile"
+    ],
+    "fixed": [
+      "Premium era stato inserito dentro il titolo della Guida",
+      "Guida e Premium apparivano affiancati",
+      "Il wrapping automatico rompeva il DOM"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Fix layout generator",
+    "summary": "Corretto il problema della sezione Premium affiancata alla Guida e ristilizzata la card Premium.",
+    "added": [],
+    "improved": [
+      "Overlay Premium ora occupa tutta la larghezza",
+      "Guida rapida separata correttamente",
+      "Card Cyber Red Elite più leggibile"
+    ],
+    "fixed": [
+      "Premium e Guida non vengono più mostrati sulla stessa riga",
+      "Stile Premium non appare più come testo grezzo"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Generator compatto",
+    "summary": "Il generator è stato reso più leggibile con navigazione rapida, sezioni richiudibili e anteprima sticky.",
+    "added": [
+      "Navigazione rapida in alto",
+      "Sezioni richiudibili",
+      "Pulsante rapido copia link",
+      "Anteprima sticky su desktop"
+    ],
+    "improved": [
+      "Meno scrolling infinito",
+      "Interfaccia più ordinata",
+      "Premium resta uno solo"
+    ],
+    "fixed": []
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Un solo premium",
+    "summary": "La sezione Overlay Premium ora parte con un solo stile: Cyber Red Elite.",
+    "added": [
+      "Card singola Cyber Red Elite",
+      "Nota per futura semplificazione del generator"
+    ],
+    "improved": [
+      "Meno confusione nella sezione premium",
+      "Niente quattro stili placeholder insieme",
+      "Approccio uno alla volta"
+    ],
+    "fixed": [
+      "Rimossi placeholder multipli non ancora utili"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Premium clean start",
+    "summary": "Aggiunta una sezione Overlay Premium pulita, senza riutilizzare gli stili sperimentali precedenti.",
+    "added": [
+      "Nuova sezione Overlay Premium",
+      "Placeholder per Cyber Red Elite, Glass Cyan Pro, Gold Prestige e Tournament Edge"
+    ],
+    "improved": [
+      "Overlay standard resta invariato",
+      "Premium separati dallo standard",
+      "Nessun vecchio asset shop riutilizzato"
+    ],
+    "fixed": []
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Shop rimosso",
+    "summary": "Rimossa tutta la parte relativa allo Shop/Stili Plus per tornare a un generator più pulito e stabile.",
+    "added": [],
+    "improved": [
+      "Generator più semplice",
+      "Test Lab più pulito",
+      "Meno elementi sperimentali che possono rompere la preview"
+    ],
+    "fixed": [
+      "Rimossi Shop/Stili Plus",
+      "Rimossi asset Plus dal pacchetto",
+      "Rimossi riferimenti themeStyle shop-only dal generator"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Cyber Red premium v5",
+    "summary": "Cyber Red ha una nuova base più compatta, densa e con score completamente dentro il pannello.",
+    "added": [
+      "Nuova base Cyber Red v5",
+      "Nuova thumbnail Shop v5"
+    ],
+    "improved": [
+      "Score dentro il modulo destro",
+      "Base più piena e premium",
+      "Slot player/rank più puliti",
+      "Stemma più stabile"
+    ],
+    "fixed": [
+      "Score ancora troppo vicino al bordo nella V55"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Cyber Red premium v4",
+    "summary": "Nuova base Cyber Red più piena, più vendibile e con score riportato dentro il pannello.",
+    "added": [
+      "Nuova base Cyber Red v4",
+      "Nuova thumbnail Shop Cyber Red v4"
+    ],
+    "improved": [
+      "Più dettagli e profondità visiva",
+      "Score spostato dentro il pannello",
+      "Player e rank più leggibili",
+      "Migliore coerenza tra card Shop e preview live"
+    ],
+    "fixed": [
+      "Score troppo esterno nella V54",
+      "Base ancora troppo semplice"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Cyber Red premium base",
+    "summary": "Nuova base grafica Cyber Red più elaborata, con thumbnail Shop coerente e layout config aggiornato.",
+    "added": [
+      "Nuova base cyber-red-base.png più dettagliata",
+      "Nuova thumbnail cyber-red.png coerente con la base reale"
+    ],
+    "improved": [
+      "Più profondità visiva e dettagli tech",
+      "Migliore leggibilità di player, rank e score",
+      "Migliore coerenza fra card Shop e preview live"
+    ],
+    "fixed": [
+      "Cyber Red risultava troppo semplice e poco vendibile"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Preview reale bloccata",
+    "summary": "Generator e Test Lab vengono forzati a mostrare l'overlay reale via iframe con dimensioni fisse.",
+    "added": [
+      "Guardia JS nel generator per ricostruire la preview iframe dal link finale",
+      "Dimensioni preview bloccate a 470x120",
+      "Marker versione nel render reale"
+    ],
+    "improved": [
+      "Migliore coerenza fra preview e output finale",
+      "Meno rischio di visualizzare vecchi renderer o preview locali"
+    ],
+    "fixed": [
+      "La preview del generator poteva non rispettare esattamente l'output finale"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Preview e motore Plus ripuliti",
+    "summary": "Rimosse le sovrapposizioni dei vecchi renderer Plus e resa la preview più fedele al render reale.",
+    "added": [
+      "Motore Plus image-base come singola fonte di rendering per Cyber Red",
+      "Preview Test Lab bloccata sul render iframe reale",
+      "File layout config per posizioni dinamiche"
+    ],
+    "improved": [
+      "Meno rischio che il layout si scomponga",
+      "Più coerenza fra Test Lab, output finale e card Shop"
+    ],
+    "fixed": [
+      "Conflitti tra i vecchi renderer V43/V47/V48/V49/V50/V51",
+      "Preview Test Lab troppo scalata e poco leggibile"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Image-base engine",
+    "summary": "Nuovo sistema per gli overlay Plus: immagini base + configurazione layout + testi dinamici.",
+    "added": [
+      "/assets/plus/styles-layout.json",
+      "Renderer image-base per Cyber Red",
+      "Anteprima Shop coerente con la base reale"
+    ],
+    "improved": [
+      "Più stabilità tra preview e live overlay",
+      "Posizionamento gestito da config invece che da tentativi CSS casuali"
+    ],
+    "fixed": [
+      "Ridotto il rischio che l’overlay si scomponga nel passaggio tra Shop, preview e output"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Cyber Red true RankTag base",
+    "summary": "Cyber Red è stato rifatto con una base grafica progettata direttamente per il formato RankTag finale.",
+    "added": [
+      "Nuova base cyber-red-base.png in formato finale RankTag",
+      "Nuova thumbnail Shop coerente con la preview live"
+    ],
+    "improved": [
+      "Stemma, nome, rank e punti ora cadono in slot dedicati del design",
+      "Preview live più vicina al concept Shop"
+    ],
+    "fixed": [
+      "Eliminato il problema della base HUD troppo lunga e vuota"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Cyber Red alignment",
+    "summary": "Rifinito il posizionamento dei contenuti dinamici sopra la base Cyber Red.",
+    "added": [],
+    "improved": [
+      "Player più centrato nel pannello centrale",
+      "Rank e score più allineati alla base grafica",
+      "Stemma leggermente più grande",
+      "Tag Test Lab aggiornato"
+    ],
+    "fixed": [
+      "Il Test Lab mostrava ancora una vecchia etichetta versione"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-25",
+    "title": "Cyber Red base asset",
+    "summary": "Cyber Red non viene più costruito solo con CSS: ora usa una base grafica PNG pulita con contenuti dinamici sopra.",
+    "added": [
+      "Base asset cyber-red-base.png",
+      "Emblema ufficiale dinamico sopra la base",
+      "Nome, rank e punti dinamici sopra la base"
+    ],
+    "improved": [
+      "Look molto più vicino al concept illustrato",
+      "Più velocità nel rifinire gli overlay Plus"
+    ],
+    "fixed": [
+      "Ridotto il tempo sprecato nei rebuild solo CSS"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Cyber Red premium rebuild",
+    "summary": "Cyber Red ora usa un renderer dedicato con layout più vicino alla reference: denso, stratificato e meno generico.",
+    "added": [
+      "Renderer dedicato solo per Cyber Red",
+      "Frame esterno e piastra interna",
+      "Emblema esagonale protagonista",
+      "Moduli rank e punti più compatti"
+    ],
+    "improved": [
+      "Look più vicino alla cover dello Shop",
+      "Più profondità e layer visivi",
+      "Meno effetto barra piatta"
+    ],
+    "fixed": [
+      "Cyber Red era troppo lontano dalla reference"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Cyber Red compatto",
+    "summary": "Cyber Red Impact è stato ridisegnato come strip premium più bassa e più vicina alla cover dello Shop.",
+    "added": [],
+    "improved": [
+      "Forma più compatta e orizzontale",
+      "Stemma più integrato nel pannello",
+      "Player, rank e punti più densi e vicini alla cover",
+      "Meno effetto card alta, più effetto targhetta esport"
+    ],
+    "fixed": [
+      "Cyber Red era ancora troppo lontano dalla reference mostrata nello Shop"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Cyber Red rebuild",
+    "summary": "Cyber Red Impact è stato ricostruito come layout più aggressivo e vicino alla direzione premium.",
+    "added": [
+      "Nuova silhouette Cyber Red più tecnica",
+      "Cornice stemma più importante",
+      "Modulo rank dedicato",
+      "Modulo punti separato",
+      "Accenti rossi e linea tech animata"
+    ],
+    "improved": [
+      "Gerarchia visiva: player, stemma, rank e punti più chiari",
+      "Look più competitivo e meno simile al layout base"
+    ],
+    "fixed": [
+      "Cyber Red non sembrava abbastanza diverso dal default"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Test Lab interno",
+    "summary": "Aggiunta un'area test per provare modifiche e stili prima del rilascio pubblico.",
+    "added": [
+      "Nuova pagina Test Lab",
+      "Anteprima isolata per provare rank, punti, player e stili",
+      "Checklist qualità prima del rilascio",
+      "Link test copiabile e apribile in nuova scheda"
+    ],
+    "improved": [
+      "Flusso di lavoro più sicuro prima di pubblicare nuove modifiche"
+    ],
+    "fixed": []
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Plus layouts veri",
+    "summary": "Gli stili Plus sono stati ricostruiti come layout veri in HTML/CSS, senza usare immagini come overlay finale.",
+    "added": [
+      "Nuovi layout reali per Cyber Red Impact",
+      "Nuovi layout reali per Glass Minimal",
+      "Nuovi layout reali per Premium Gold",
+      "Nuovi layout reali per Tournament Panel"
+    ],
+    "improved": [
+      "Uso dello stemma rank ufficiale dinamico",
+      "Allineamento pulito di player, rank e punti",
+      "Animazioni leggere e sfondi nativi senza crop sporchi"
+    ],
+    "fixed": [
+      "Eliminato l’uso delle cover come base del render live",
+      "Risolti problemi di crop, sfondo nero e incoerenza fra shop e preview"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Stili Plus corretti",
+    "summary": "Gli stili Plus ora si applicano davvero e usano lo stemma rank selezionato.",
+    "added": [],
+    "improved": [
+      "Applicazione più stabile degli stili premium",
+      "Slot emblema migliorato per usare gli stemmi rank importati",
+      "Anteprima live più coerente con la scelta nello Shop"
+    ],
+    "fixed": [
+      "Gli stili Plus non venivano sempre applicati",
+      "Gli stili non agganciavano correttamente lo stemma rank dinamico"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Anteprime Plus migliorate",
+    "summary": "Le card Shop ora mostrano anteprime più vicine agli stili premium e la preview live applica correttamente lo stile selezionato.",
+    "added": [
+      "Anteprime immagini per gli stili Plus",
+      "Applicazione più stabile dello stile nella preview live"
+    ],
+    "improved": [
+      "Cyber Red, Glass Minimal, Premium Gold e Tournament Panel più riconoscibili",
+      "Gli stemmi rank restano dinamici dentro gli stili Plus"
+    ],
+    "fixed": [
+      "Lo stile Plus selezionato ora viene applicato all'anteprima"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Shop Plus e nuovi layout",
+    "summary": "Aggiunta la sezione Shop Plus con quattro stili premium selezionabili e visibili in anteprima.",
+    "added": [
+      "Nuova sezione Shop / Stili Plus nel generator",
+      "Cyber Red Impact, Glass Minimal, Premium Gold e Tournament Panel",
+      "Stili premium applicabili alla preview e al link generato",
+      "Gli stemmi rank già importati restano dinamici nei nuovi layout"
+    ],
+    "improved": [
+      "Overlay più personalizzabile",
+      "Base pronta per evolvere gli stili Plus con animazioni più avanzate"
+    ],
+    "fixed": []
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Verifica rank manuale più precisa",
+    "summary": "La modalità manuale ora controlla anche se rank e punti inseriti corrispondono ai dati pubblici quando disponibili.",
+    "added": [
+      "Controllo dei punti inseriti in modalità manuale",
+      "Controllo del rank selezionato in modalità manuale",
+      "Messaggio con rank e punti reali quando i dati non coincidono"
+    ],
+    "improved": [
+      "Il manuale resta disponibile per chi non compare nella top pubblica",
+      "Verifica più chiara prima di generare il link"
+    ],
+    "fixed": [
+      "Evitati rank o punti manuali non corretti per player presenti nella leaderboard pubblica"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Rank più leggibili",
+    "summary": "I livelli dei rank ora usano numeri normali invece dei numeri romani.",
+    "added": [],
+    "improved": [
+      "Rank mostrati come Platinum 1, Diamond 4, Gold 2",
+      "Menu rank più chiaro nel generator",
+      "Overlay più pulito da leggere in live"
+    ],
+    "fixed": [
+      "Rimossi i numeri romani dai livelli dei rank"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Aggiornamenti più chiari",
+    "summary": "La sezione aggiornamenti ora è pensata per gli utenti, senza dettagli tecnici.",
+    "added": [
+      "Storico aggiornamenti più semplice da leggere",
+      "Descrizioni orientate alle funzioni visibili dagli utenti"
+    ],
+    "improved": [
+      "Testi più puliti e meno tecnici",
+      "Pagina aggiornamenti più adatta al pubblico"
+    ],
+    "fixed": [
+      "Rimosse parole troppo tecniche dalla sezione aggiornamenti"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Pagina aggiornamenti",
+    "summary": "Aggiunta una sezione dove seguire le novità di RankTag.",
+    "added": [
+      "Pagina pubblica con lo storico degli aggiornamenti",
+      "Elenco delle novità diviso per versione",
+      "Link rapido agli aggiornamenti dalla homepage e dal generator"
+    ],
+    "improved": [
+      "Comunicazione più chiara sulle nuove funzioni"
+    ],
+    "fixed": []
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Generator più pulito e controllo rank",
+    "summary": "Pulita la schermata del generator e aggiunto un controllo per evitare rank manuali non corretti.",
+    "added": [
+      "Controllo sul player quando si usa la modalità manuale",
+      "Avviso se il player deve usare la modalità automatica"
+    ],
+    "improved": [
+      "Sezione account più ordinata",
+      "Meno testo nella schermata principale",
+      "Layout più compatto"
+    ],
+    "fixed": [
+      "Ridotto lo spazio occupato dalle spiegazioni"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Account online",
+    "summary": "Ora puoi accedere con nickname e password e ritrovare i tuoi overlay salvati.",
+    "added": [
+      "Registrazione con nickname e password",
+      "Login e logout",
+      "Salvataggio overlay nel proprio account",
+      "Caricamento dei propri overlay salvati",
+      "Eliminazione dei propri overlay"
+    ],
+    "improved": [
+      "I progetti salvati non dipendono più solo dal browser",
+      "Account utilizzabile anche da altri dispositivi"
+    ],
+    "fixed": []
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Prime funzioni profilo",
+    "summary": "Prima versione con area profilo e progetti salvabili.",
+    "added": [
+      "Area profilo nel generator",
+      "Salvataggio progetti",
+      "Caricamento progetti salvati",
+      "Area proprietario separata dagli utenti"
+    ],
+    "improved": [
+      "Navigazione homepage migliorata"
+    ],
+    "fixed": [
+      "Corretti alcuni pulsanti della homepage"
+    ]
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Kit di lancio",
+    "summary": "Aggiunta un'area interna con controlli e testi pronti per il lancio.",
+    "added": [
+      "Checklist pre-lancio",
+      "Messaggio Discord pronto",
+      "Testo TikTok pronto",
+      "Idee per copertina video",
+      "Disclaimer pronto"
+    ],
+    "improved": [
+      "Preparazione più veloce del lancio pubblico"
+    ],
+    "fixed": []
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Homepage migliorata",
+    "summary": "La pagina iniziale è stata resa più chiara e professionale.",
+    "added": [
+      "Presentazione più forte del progetto",
+      "Sezione con i vantaggi principali",
+      "Sezione con il funzionamento in tre passaggi",
+      "Pulsanti più chiari per iniziare"
+    ],
+    "improved": [
+      "Anteprima overlay più curata",
+      "Messaggi più semplici per gli utenti"
+    ],
+    "fixed": []
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Nuovi temi",
+    "summary": "Aggiunti più stili pronti per personalizzare l'overlay.",
+    "added": [
+      "8 temi pronti",
+      "Nuovi stili colore",
+      "Più varietà nel pulsante stile casuale"
+    ],
+    "improved": [
+      "Scelta dei temi più visiva",
+      "Personalizzazione più veloce"
+    ],
+    "fixed": []
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Generator più semplice",
+    "summary": "Il generator è stato reso più facile da usare.",
+    "added": [
+      "Guida per OBS",
+      "Guida per TikTok LIVE Studio",
+      "Pulsante per ripristinare lo stile",
+      "Pulsante per creare uno stile casuale",
+      "Scelta rapida della label dei punti"
+    ],
+    "improved": [
+      "Campi più chiari",
+      "Uso più semplice per chi non ha esperienza"
+    ],
+    "fixed": []
+  },
+  {
+    "version": "95",
+    "date": "2026-05-24",
+    "title": "Nasce RankTag",
+    "summary": "Prima versione con nome, homepage e identità del progetto.",
+    "added": [
+      "Nome RankTag",
+      "Pagina iniziale",
+      "Generator con identità RankTag"
+    ],
+    "improved": [
+      "Messaggi principali più chiari",
+      "Branding più adatto al lancio"
+    ],
+    "fixed": []
   }
 ]

@@ -1,6 +1,8 @@
 {
-  "version": "1.0.8",
-  "name": "RankTag v1.0.8",
-  "date": "2026-05-26",
-  "status": "animations-beta"
+  "version": "1.0.9",
+  "project": "RankTag",
+  "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
+  "expectedBrand": "ERDRAGON32",
+  "expectedDiscord": "discord.gg/cffTwCcCGD",
+  "note": "1.0.9: VoidRage Inferno ridimensionato correttamente a 470x160 con contorno esterno trasparente."
 }

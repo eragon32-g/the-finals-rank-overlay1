@@ -10,11 +10,11 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "1.0.8";
+const OVERLAY_VERSION = "109";
 const params = new URLSearchParams(window.location.search);
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
-  "version": "105",
+  "version": "1.0.9",
   "schema": "ranktag-premium-layout-v2",
   "style": "voidrage-inferno",
   "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.",
@@ -22,7 +22,7 @@ const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
     "width": 470,
     "height": 160
   },
-  "background": "/assets/premium/voidrage-inferno-v107-clean.png",
+  "background": "/assets/premium/voidrage-inferno-fit-v105.png",
   "elements": {
     "badge": {
       "x": 12,
@@ -68,7 +68,7 @@ const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
 };
 
 const CYBER_RED_ELITE_LAYOUT_LOCKED = {
-  "version": "105",
+  "version": "1.0.9",
   "schema": "ranktag-premium-layout-v2",
   "style": "cyber-red-elite",
   "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.",
@@ -549,7 +549,7 @@ if (isManualMode()) {
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
-/* RankTag v1.0.8 Plus style finalizer */
+/* RankTag 1.0.9 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red-elite", "voidrage-inferno", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -584,7 +584,7 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 })();
 
 
-/* RankTag v1.0.8 - single source image-base Plus engine */
+/* RankTag 1.0.9 - single source image-base Plus engine */
 let rankTagPlusLayoutsPromise = null;
 
 function loadRankTagPlusLayouts() {
@@ -718,8 +718,8 @@ function loadRankTagPlusLayouts() {
   });
 })();
 
-/* RankTag v1.0.8 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "100");
+/* RankTag 1.0.9 render marker */
+document.documentElement.setAttribute("data-ranktag-version", "1.0.9");
 
 
 
@@ -731,7 +731,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.8 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
+/* RankTag 1.0.9 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
 (function rankTagPremiumBackdropV78(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -772,7 +772,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=105') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=109') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -964,7 +964,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     style.textContent += `
 `;
     style.textContent += `
-/* RankTag v1.0.8 - locked premium coordinates from Layout Editor */
+/* RankTag 1.0.9 - locked premium coordinates from Layout Editor */
 #badge.rt78-cyber-red-elite .rank-mark,
 #badge.rt80-cyber-red-elite .rank-mark {
   left: 7px !important;
@@ -1066,7 +1066,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 })();
 
 
-/* RankTag v1.0.8 - Premium backdrop engine: full 470x160 background adapted to stable layout */
+/* RankTag 1.0.9 - Premium backdrop engine: full 470x160 background adapted to stable layout */
 (function rankTagPremiumBackdropV80(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -1108,7 +1108,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=105') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=109') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -1339,7 +1339,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.8 - runtime premium layout from URL param */
+/* RankTag 1.0.9 - runtime premium layout from URL param */
 (function rankTagPremiumRuntimeLayoutV89(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
@@ -1472,7 +1472,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.8 - AUTHORITATIVE premium layout sync */
+/* RankTag 1.0.9 - AUTHORITATIVE premium layout sync */
 (function rankTagPremiumLayoutAuthoritativeV90(){
   if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
 
@@ -1683,7 +1683,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.8 - DETACHED PREMIUM RENDERER
+/* RankTag 1.0.9 - DETACHED PREMIUM RENDERER
    Premium Cyber Red Elite no longer uses the standard card layout.
    It renders the exact same JSON layer model used by layout-editor.html. */
 (function rankTagDetachedPremiumRendererV92(){
@@ -1769,7 +1769,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     const scoreValue = (scoreText?.textContent || "ELO: 37.705").trim();
     const playerValue = (nameText?.textContent || getPlayerFromUrl?.() || "NOMEPLAYER#1234").trim();
     const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
-    const badgeSrc = badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum.svg?v=105";
+    const badgeSrc = badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum.svg?v=109";
     return { rankValue, scoreValue, playerValue, brandValue, badgeSrc };
   }
 
@@ -2033,7 +2033,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     root.dataset.renderer = "premium-detached-v93";
 
     root.innerHTML = `
-      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=105" alt="" />
+      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=109" alt="" />
       <div class="rt92-layer rt92-badge" style="${layerStyle(e.badge)}">
         <img src="${esc(d.badgeSrc)}" alt="" />
       </div>
@@ -2083,13 +2083,13 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.8 - MULTI PREMIUM DETACHED RENDERER */
+/* RankTag 1.0.9 - MULTI PREMIUM DETACHED RENDERER */
 (function rankTagMultiPremiumDetachedRendererV97(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
   const PREMIUM_LAYOUTS = {
     "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : null),
-    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-v107-clean.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
+    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "1.0.9", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v105.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
   };
 
   function safeNumber(value, fallback) {
@@ -2156,7 +2156,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     const scoreValue = (scoreText?.textContent || "ELO: 37.705").trim();
     const playerValue = (nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim();
     const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
-    const badgeSrc = badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=105";
+    const badgeSrc = badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=109";
     return { rankValue, scoreValue, playerValue, brandValue, badgeSrc };
   }
 
@@ -2369,7 +2369,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     root.dataset.themeStyle = themeStyle;
     root.dataset.renderer = "multi-premium-detached-v97";
     root.innerHTML = `
-      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=105" alt="" />
+      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=109" alt="" />
       <div class="rt97-layer rt97-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badgeSrc)}" alt="" /></div>
       <div class="rt97-layer rt97-rank" style="${layerStyle(e.rank)}">${esc(d.rankValue)}</div>
       <div class="rt97-layer rt97-score" style="${layerStyle(e.score)}">${esc(d.scoreValue)}</div>
@@ -2403,14 +2403,14 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.8 - FINAL AUTHORITATIVE PREMIUM RENDERER */
-(function rankTagV105FinalPremiumRenderer(){
+/* RankTag 1.0.9 - FINAL AUTHORITATIVE PREMIUM RENDERER */
+(function rankTagV103FinalPremiumRenderer(){
   const premiumStyles = ["cyber-red-elite", "voidrage-inferno"];
   if (typeof themeStyle === "undefined" || !premiumStyles.includes(themeStyle)) return;
 
   const DEFAULTS = {
-    "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "cyber-red-elite", "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/cyber-red-elite-bg-v96.png", "elements": {"badge": {"x": 7, "y": 9, "w": 136, "h": 121, "fontSize": 0, "z": 5}, "rank": {"x": 164, "y": 39, "w": 215, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 165, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 271, "y": 78, "w": 142, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 165, "y": 100, "w": 270, "h": 16, "fontSize": 9.5, "z": 6}}}),
-    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-v107-clean.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
+    "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : {"version": "1.0.9", "schema": "ranktag-premium-layout-v2", "style": "cyber-red-elite", "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/cyber-red-elite-bg-v96.png", "elements": {"badge": {"x": 7, "y": 9, "w": 136, "h": 121, "fontSize": 0, "z": 5}, "rank": {"x": 164, "y": 39, "w": 215, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 165, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 271, "y": 78, "w": 142, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 165, "y": 100, "w": 270, "h": 16, "fontSize": 9.5, "z": 6}}}),
+    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "1.0.9", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v105.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
   };
 
   function esc(v) {
@@ -2471,7 +2471,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
       score: (scoreText?.textContent || "ELO: 37.705").trim(),
       player: (nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim(),
       brand: (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim(),
-      badge: badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=105"
+      badge: badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=109"
     };
   }
 
@@ -2529,7 +2529,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     root.dataset.themeStyle = themeStyle;
     root.dataset.renderer = "rt103-final";
     root.innerHTML = `
-      <img class="rt103-bg" src="${esc(layout.background)}?v=105" alt="" />
+      <img class="rt103-bg" src="${esc(layout.background)}?v=109" alt="" />
       <div class="rt103-layer rt103-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badge)}" alt="" /></div>
       <div class="rt103-layer rt103-rank" style="${layerStyle(e.rank)}">${esc(d.rank)}</div>
       <div class="rt103-layer rt103-score" style="${layerStyle(e.score)}">${esc(d.score)}</div>
@@ -2558,447 +2558,3 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
   });
   render();
 })();
-
-
-
-/* RankTag v1.0.8.3 - SINGLE AUTHORITATIVE PREMIUM RENDERER FIX
-   Fixes VoidRage Inferno test link: always renders a detached 470x160 overlay,
-   ignores older premium renderers, transparent page/OBS output, correct selected style. */
-(function rankTagV1053AuthoritativePremiumRenderer(){
-  const allowed = ["cyber-red-elite", "voidrage-inferno"];
-  if (typeof themeStyle === "undefined" || !allowed.includes(themeStyle)) return;
-
-  const VOID_DEFAULT = {"version":"105.3","schema":"ranktag-premium-layout-v2","style":"voidrage-inferno","canvas":{"width":470,"height":160},"background":"/assets/premium/voidrage-inferno-v107-clean.png","elements":{"badge":{"x":20,"y":26,"w":102,"h":102,"fontSize":0,"z":5},"rank":{"x":150,"y":43,"w":245,"h":30,"fontSize":25,"z":6},"score":{"x":152,"y":79,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":268,"y":79,"w":160,"h":16,"fontSize":10.5,"z":6},"brand":{"x":152,"y":108,"w":260,"h":18,"fontSize":9.5,"z":6}}};
-  const CYBER_DEFAULT = (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" && CYBER_RED_ELITE_LAYOUT_LOCKED)
-    ? CYBER_RED_ELITE_LAYOUT_LOCKED
-    : {"version":"105.3","schema":"ranktag-premium-layout-v2","style":"cyber-red-elite","canvas":{"width":470,"height":160},"background":"/assets/premium/cyber-red-elite-bg-v96.png","elements":{"badge":{"x":7,"y":9,"w":136,"h":121,"fontSize":0,"z":5},"rank":{"x":164,"y":39,"w":215,"h":30,"fontSize":25,"z":6},"score":{"x":165,"y":78,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":271,"y":78,"w":142,"h":16,"fontSize":10.5,"z":6},"brand":{"x":165,"y":100,"w":270,"h":16,"fontSize":9.5,"z":6}}};
-
-  const DEFAULTS = {
-    "cyber-red-elite": CYBER_DEFAULT,
-    "voidrage-inferno": VOID_DEFAULT
-  };
-
-  function esc(v) {
-    return String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  }
-  function n(v, d) {
-    const x = Number(v);
-    return Number.isFinite(x) ? x : d;
-  }
-  function decodeLayoutParam() {
-    const raw = new URLSearchParams(window.location.search).get("layout");
-    if (!raw) return null;
-    try {
-      const parsed = JSON.parse(decodeURIComponent(escape(atob(raw))));
-      if (parsed && parsed.elements && (!parsed.style || parsed.style === themeStyle)) return parsed;
-    } catch {}
-    try {
-      const parsed = JSON.parse(raw);
-      if (parsed && parsed.elements && (!parsed.style || parsed.style === themeStyle)) return parsed;
-    } catch {}
-    return null;
-  }
-  function normalize(layout) {
-    const base = DEFAULTS[themeStyle] || VOID_DEFAULT;
-    const src = layout && layout.elements ? layout : base;
-    const out = JSON.parse(JSON.stringify(base));
-    out.style = themeStyle;
-    out.background = src.background || base.background;
-    out.canvas = { width: 470, height: 160 };
-    for (const key of ["badge","rank","score","player","brand"]) {
-      out.elements[key] = Object.assign({}, base.elements[key], src.elements?.[key] || {});
-      for (const k of ["x","y","w","h","fontSize","z"]) out.elements[key][k] = n(out.elements[key][k], base.elements[key][k] || 0);
-    }
-    return out;
-  }
-  function layerStyle(cfg) {
-    return [
-      `left:${cfg.x}px`,`top:${cfg.y}px`,`width:${cfg.w}px`,`height:${cfg.h}px`,`z-index:${cfg.z}`,
-      cfg.fontSize ? `font-size:${cfg.fontSize}px` : "", `line-height:${cfg.h}px`
-    ].filter(Boolean).join(";");
-  }
-  function data() {
-    return {
-      rank: (rankText?.textContent || "PLATINUM 1").trim(),
-      score: (scoreText?.textContent || "ELO: 37.705").trim(),
-      player: (nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim(),
-      brand: (brandMarqueeText?.textContent || "VOIDRAGE32 • THE FINALS").trim(),
-      badge: badgeImage?.getAttribute("src") || "/assets/badges/platinum-1.png?v=105"
-    };
-  }
-  function ensureStyle() {
-    let style = document.getElementById("rt1053-premium-style");
-    if (style) return;
-    style = document.createElement("style");
-    style.id = "rt1053-premium-style";
-    style.textContent = `
-      html, body { margin:0!important; width:100%!important; height:100%!important; overflow:hidden!important; background:transparent!important; }
-      body { display:grid!important; place-items:center!important; }
-      #overlay.overlay { width:470px!important; height:160px!important; min-width:470px!important; min-height:160px!important; max-width:470px!important; max-height:160px!important; display:grid!important; place-items:center!important; overflow:hidden!important; background:transparent!important; }
-      #badge.rt1053-premium { position:relative!important; width:470px!important; height:160px!important; min-width:470px!important; min-height:160px!important; max-width:470px!important; max-height:160px!important; display:block!important; padding:0!important; margin:0!important; overflow:hidden!important; border:0!important; box-shadow:none!important; background:transparent!important; transform:none!important; }
-      .rt1053-bg { position:absolute; inset:0; width:470px!important; height:160px!important; object-fit:contain!important; pointer-events:none; z-index:0; }
-      .rt1053-layer { position:absolute; display:flex; align-items:center; justify-content:flex-start; white-space:nowrap; overflow:hidden; box-sizing:border-box; }
-      .rt1053-badge { justify-content:center; overflow:visible; }
-      .rt1053-badge img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 2px 10px rgba(255,255,255,.28)) drop-shadow(0 2px 12px rgba(255,42,23,.38)); }
-      .rt1053-rank { color:#54eaff; font-weight:1000; letter-spacing:.7px; text-transform:uppercase; text-shadow:0 0 12px rgba(84,234,255,.34),0 2px 8px rgba(0,0,0,.9); }
-      .theme-voidrage-inferno .rt1053-rank { color:#fff6f2; text-shadow:0 0 12px rgba(255,42,23,.62),0 2px 8px rgba(0,0,0,.95); }
-      .rt1053-score,.rt1053-player { color:#f7f2ff; font-weight:1000; text-transform:uppercase; text-overflow:ellipsis; text-shadow:0 1px 7px rgba(0,0,0,.95); }
-      .rt1053-brand { display:flex; align-items:center; gap:7px; padding:0 8px; border-radius:999px; background:linear-gradient(180deg,rgba(12,10,16,.88),rgba(5,4,10,.78)); border:1px solid rgba(255,255,255,.14); transform:translateY(105%); opacity:0; transition:transform 360ms cubic-bezier(.2,.9,.2,1),opacity 260ms ease; }
-      .rt1053-brand.is-visible { transform:translateY(0); opacity:1; }
-      .rt1053-brand-icon { width:11px; height:11px; border-radius:3px; background:linear-gradient(135deg,#ff2a17,#ffd36a); box-shadow:0 0 12px rgba(255,42,23,.46); transform:rotate(45deg); flex:0 0 11px; }
-      .rt1053-marquee { min-width:0; flex:1; overflow:hidden; white-space:nowrap; mask-image:linear-gradient(90deg, transparent, black 9%, black 91%, transparent); }
-      .rt1053-marquee span { display:inline-block; min-width:max-content; padding-left:100%; font-weight:1000; color:#f7f2ff; text-shadow:0 0 8px rgba(255,42,23,.38),0 1px 7px rgba(0,0,0,.95); animation:rt1053Marquee var(--brand-duration,8s) linear infinite; animation-play-state:paused; }
-      .rt1053-brand.is-visible .rt1053-marquee span { animation-play-state:running; }
-      @keyframes rt1053Marquee { from{transform:translateX(0)} to{transform:translateX(-100%)} }
-    `;
-    document.head.appendChild(style);
-  }
-  let brandStarted = false;
-  function startBrand() {
-    if (brandStarted) return;
-    brandStarted = true;
-    const show = () => {
-      const el = document.querySelector("#badge .rt1053-brand");
-      if (!el) return;
-      el.classList.add("is-visible");
-      setTimeout(() => el.classList.remove("is-visible"), 4500);
-    };
-    setTimeout(show, 800);
-    setInterval(show, 12000);
-  }
-  function render() {
-    ensureStyle();
-    const root = document.getElementById("badge") || badge;
-    if (!root) return;
-    const layout = normalize(decodeLayoutParam());
-    const e = layout.elements;
-    const d = data();
-    root.className = "badge rt1053-premium theme-" + themeStyle;
-    root.dataset.themeStyle = themeStyle;
-    root.dataset.renderer = "rt1053-authoritative";
-    root.innerHTML = `
-      <img class="rt1053-bg" src="${esc(layout.background)}?v=1053" alt="" />
-      <div class="rt1053-layer rt1053-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badge)}" alt="" /></div>
-      <div class="rt1053-layer rt1053-rank" style="${layerStyle(e.rank)}">${esc(d.rank)}</div>
-      <div class="rt1053-layer rt1053-score" style="${layerStyle(e.score)}">${esc(d.score)}</div>
-      <div class="rt1053-layer rt1053-player" style="${layerStyle(e.player)}">${esc(d.player)}</div>
-      <div class="rt1053-layer rt1053-brand" style="${layerStyle(e.brand)}"><div class="rt1053-brand-icon"></div><div class="rt1053-marquee"><span>${esc(d.brand)}</span></div></div>
-    `;
-    startBrand();
-  }
-  const previousSetData = typeof setData === "function" ? setData : null;
-  if (previousSetData && !window.__rt1053PremiumSetData) {
-    window.__rt1053PremiumSetData = true;
-    setData = async function(...args) {
-      await previousSetData.apply(this, args);
-      render();
-      setTimeout(render, 80);
-      setTimeout(render, 260);
-    };
-  }
-  window.addEventListener("load", () => {
-    render();
-    setTimeout(render, 80);
-    setTimeout(render, 300);
-    setTimeout(render, 900);
-    setTimeout(render, 1600);
-  });
-  render();
-})();
-
-
-
-
-/* RankTag v1.0.8 - release premium renderer guard
-   Keeps premium overlays self-contained. Public links only need themeStyle. */
-(function rankTagV100ReleasePremiumGuard(){
-  const allowed = ["cyber-red-elite", "voidrage-inferno"];
-  if (typeof themeStyle === "undefined" || !allowed.includes(themeStyle)) return;
-
-  function ensureReleaseMeta(){
-    document.documentElement.dataset.ranktagVersion = "1.0.0";
-    document.body?.classList?.add("ranktag-release-v100");
-  }
-
-  function ensureSizeGuard(){
-    if (document.getElementById("rt-v100-size-guard")) return;
-    const style = document.createElement("style");
-    style.id = "rt-v100-size-guard";
-    style.textContent = `
-      html,body{margin:0!important;width:100%!important;height:100%!important;overflow:hidden!important;background:transparent!important}
-      body{display:grid!important;place-items:center!important}
-      #overlay.overlay{width:470px!important;height:160px!important;min-width:470px!important;min-height:160px!important;max-width:470px!important;max-height:160px!important;overflow:hidden!important;background:transparent!important}
-      #badge.rt1053-premium,#badge.rt103-premium{width:470px!important;height:160px!important;min-width:470px!important;min-height:160px!important;max-width:470px!important;max-height:160px!important;overflow:hidden!important;background:transparent!important}
-    `;
-    document.head.appendChild(style);
-  }
-
-  window.addEventListener("load", () => {
-    ensureReleaseMeta();
-    ensureSizeGuard();
-  });
-  ensureReleaseMeta();
-  ensureSizeGuard();
-})();
-
-
-
-
-/* RankTag v1.0.8 - FINAL PREMIUM RENDERER
-   Fix:
-   - premium copied links no longer need layout param
-   - VoidRage Inferno render matches the generator preview sizing/position
-   - page stays transparent and fixed at 470x160 for OBS/browser source */
-(function rankTagV101FinalPremiumRenderer(){
-  const allowed = ["cyber-red-elite", "voidrage-inferno"];
-  if (typeof themeStyle === "undefined" || !allowed.includes(themeStyle)) return;
-
-  const DEFAULTS = {
-    "cyber-red-elite": {
-      version:"1.0.5", schema:"ranktag-premium-layout-v2", style:"cyber-red-elite",
-      canvas:{width:470,height:160}, background:"/assets/premium/cyber-red-elite-bg-v96.png",
-      elements:{
-        badge:{x:7,y:9,w:136,h:121,fontSize:0,z:5},
-        rank:{x:164,y:39,w:215,h:30,fontSize:25,z:6},
-        score:{x:165,y:78,w:120,h:16,fontSize:12,z:6},
-        player:{x:271,y:78,w:142,h:16,fontSize:10.5,z:6},
-        brand:{x:165,y:100,w:270,h:16,fontSize:9.5,z:6}
-      }
-    },
-    "voidrage-inferno": {
-      version:"1.0.5", schema:"ranktag-premium-layout-v2", style:"voidrage-inferno",
-      canvas:{width:470,height:160}, background:"/assets/premium/voidrage-inferno-v107-clean.png",
-      elements:{
-        badge:{x:28,y:20,w:112,h:112,fontSize:0,z:5},
-        rank:{x:157,y:42,w:245,h:30,fontSize:25,z:6},
-        score:{x:158,y:78,w:120,h:16,fontSize:12,z:6},
-        player:{x:278,y:78,w:150,h:16,fontSize:10.5,z:6},
-        brand:{x:158,y:108,w:260,h:18,fontSize:9.5,z:6}
-      }
-    }
-  };
-
-  function esc(v){return String(v ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-  function n(v,d){const x=Number(v);return Number.isFinite(x)?x:d;}
-  function layout(){
-    const base = DEFAULTS[themeStyle] || DEFAULTS["voidrage-inferno"];
-    const out = JSON.parse(JSON.stringify(base));
-    // Only admin/debug URLs may override layout. Public copied links should not include it.
-    const raw = new URLSearchParams(window.location.search).get("layout");
-    if (raw) {
-      try {
-        const parsed = JSON.parse(decodeURIComponent(escape(atob(raw))));
-        if (parsed?.elements && (!parsed.style || parsed.style === themeStyle)) {
-          for (const key of ["badge","rank","score","player","brand"]) {
-            out.elements[key] = Object.assign({}, out.elements[key], parsed.elements[key] || {});
-            for (const k of ["x","y","w","h","fontSize","z"]) out.elements[key][k] = n(out.elements[key][k], base.elements[key][k]);
-          }
-          if (parsed.background) out.background = parsed.background;
-        }
-      } catch {}
-    }
-    return out;
-  }
-  function layerStyle(c){
-    return [`left:${c.x}px`,`top:${c.y}px`,`width:${c.w}px`,`height:${c.h}px`,`z-index:${c.z}`,c.fontSize?`font-size:${c.fontSize}px`:"",`line-height:${c.h}px`].filter(Boolean).join(";");
-  }
-  function currentData(){
-    return {
-      rank:(rankText?.textContent || "PLATINUM 1").trim(),
-      score:(scoreText?.textContent || "ELO: 37.705").trim(),
-      player:(nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim(),
-      brand:(brandMarqueeText?.textContent || "VOIDRAGE32 • THE FINALS").trim(),
-      badge:badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum-1.png?v=105"
-    };
-  }
-  function ensureStyle(){
-    let s=document.getElementById("rt-v101-final-style");
-    if(s) return;
-    s=document.createElement("style");
-    s.id="rt-v101-final-style";
-    s.textContent=`
-      html,body{margin:0!important;width:100%!important;height:100%!important;overflow:hidden!important;background:transparent!important}
-      body{display:grid!important;place-items:center!important}
-      #overlay.overlay{width:470px!important;height:160px!important;min-width:470px!important;min-height:160px!important;max-width:470px!important;max-height:160px!important;display:grid!important;place-items:center!important;overflow:hidden!important;background:transparent!important}
-      #badge.rt-v101-premium{position:relative!important;width:470px!important;height:160px!important;min-width:470px!important;min-height:160px!important;max-width:470px!important;max-height:160px!important;display:block!important;padding:0!important;margin:0!important;border:0!important;box-shadow:none!important;background:transparent!important;overflow:hidden!important;transform:none!important}
-      .rt-v101-bg{position:absolute!important;inset:0!important;width:470px!important;height:160px!important;object-fit:contain!important;z-index:0!important;pointer-events:none!important}
-      .rt-v101-layer{position:absolute!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;white-space:nowrap!important;overflow:hidden!important;box-sizing:border-box!important}
-      .rt-v101-badge{justify-content:center!important;overflow:visible!important}
-      .rt-v101-badge img{width:100%!important;height:100%!important;object-fit:contain!important;filter:drop-shadow(0 2px 10px rgba(255,255,255,.28)) drop-shadow(0 2px 12px rgba(255,42,23,.38))}
-      .rt-v101-rank{color:#fff6f2!important;font-weight:1000!important;letter-spacing:.7px!important;text-transform:uppercase!important;text-shadow:0 0 12px rgba(255,42,23,.62),0 2px 8px rgba(0,0,0,.95)!important}
-      .theme-cyber-red-elite .rt-v101-rank{color:#54eaff!important;text-shadow:0 0 12px rgba(84,234,255,.34),0 2px 8px rgba(0,0,0,.9)!important}
-      .rt-v101-score,.rt-v101-player{color:#f7f2ff!important;font-weight:1000!important;text-transform:uppercase!important;text-overflow:ellipsis!important;text-shadow:0 1px 7px rgba(0,0,0,.95)!important}
-      .rt-v101-brand{display:flex!important;align-items:center!important;gap:7px!important;padding:0 8px!important;border-radius:999px!important;background:linear-gradient(180deg,rgba(12,10,16,.88),rgba(5,4,10,.78))!important;border:1px solid rgba(255,255,255,.14)!important;transform:translateY(105%);opacity:0;transition:transform 360ms cubic-bezier(.2,.9,.2,1),opacity 260ms ease}
-      .rt-v101-brand.is-visible{transform:translateY(0);opacity:1}
-      .rt-v101-brand-icon{width:11px;height:11px;border-radius:3px;background:linear-gradient(135deg,#ff2a17,#ffd36a);box-shadow:0 0 12px rgba(255,42,23,.46);transform:rotate(45deg);flex:0 0 11px}
-      .rt-v101-marquee{min-width:0;flex:1;overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,transparent,black 9%,black 91%,transparent)}
-      .rt-v101-marquee span{display:inline-block;min-width:max-content;padding-left:100%;font-weight:1000;color:#f7f2ff;text-shadow:0 0 8px rgba(255,42,23,.38),0 1px 7px rgba(0,0,0,.95);animation:rtV101Marquee var(--brand-duration,8s) linear infinite;animation-play-state:paused}
-      .rt-v101-brand.is-visible .rt-v101-marquee span{animation-play-state:running}
-      @keyframes rtV101Marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
-    `;
-    document.head.appendChild(s);
-  }
-  let started=false;
-  function startBrand(){
-    if(started) return;
-    started=true;
-    const show=()=>{const el=document.querySelector("#badge .rt-v101-brand");if(!el)return;el.classList.add("is-visible");setTimeout(()=>el.classList.remove("is-visible"),4500);};
-    setTimeout(show,800);
-    setInterval(show,12000);
-  }
-  function render(){
-    ensureStyle();
-    const root=document.getElementById("badge") || badge;
-    if(!root) return;
-    const l=layout(), e=l.elements, d=currentData();
-    root.className="badge rt-v101-premium theme-"+themeStyle;
-    root.dataset.themeStyle=themeStyle;
-    root.dataset.renderer="rt-v101-final";
-    root.innerHTML=`
-      <img class="rt-v101-bg" src="${esc(l.background)}?v=105" alt="" />
-      <div class="rt-v101-layer rt-v101-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badge)}" alt="" /></div>
-      <div class="rt-v101-layer rt-v101-rank" style="${layerStyle(e.rank)}">${esc(d.rank)}</div>
-      <div class="rt-v101-layer rt-v101-score" style="${layerStyle(e.score)}">${esc(d.score)}</div>
-      <div class="rt-v101-layer rt-v101-player" style="${layerStyle(e.player)}">${esc(d.player)}</div>
-      <div class="rt-v101-layer rt-v101-brand" style="${layerStyle(e.brand)}"><div class="rt-v101-brand-icon"></div><div class="rt-v101-marquee"><span>${esc(d.brand)}</span></div></div>
-    `;
-    startBrand();
-  }
-  const oldSetData = typeof setData === "function" ? setData : null;
-  if(oldSetData && !window.__rtV101SetData){
-    window.__rtV101SetData=true;
-    setData=async function(...args){await oldSetData.apply(this,args);render();setTimeout(render,80);setTimeout(render,260);};
-  }
-  window.addEventListener("load",()=>{render();setTimeout(render,80);setTimeout(render,300);setTimeout(render,900);setTimeout(render,1600);});
-  render();
-})();
-
-
-
-
-/* RankTag v1.0.8 - Animations Beta runtime */
-(function rankTagAnimationsBetaV108(){
-  const qs = new URLSearchParams(window.location.search);
-
-  const animationType = (qs.get("animationType") || "none").toLowerCase();
-  const animationIntensity = (qs.get("animationIntensity") || "normal").toLowerCase();
-  const animationSpeed = (qs.get("animationSpeed") || "normal").toLowerCase();
-  const glowPulse = (qs.get("glowPulse") || "off").toLowerCase();
-  const brandAnimation = (qs.get("brandAnimation") || "on").toLowerCase();
-
-  const allowedTypes = ["none","fade","slide","zoom","glitch"];
-  const allowedIntensity = ["soft","normal","aggressive"];
-  const allowedSpeed = ["slow","normal","fast"];
-
-  const type = allowedTypes.includes(animationType) ? animationType : "none";
-  const intensity = allowedIntensity.includes(animationIntensity) ? animationIntensity : "normal";
-  const speed = allowedSpeed.includes(animationSpeed) ? animationSpeed : "normal";
-
-  function speedMs() {
-    if (speed === "slow") return "900ms";
-    if (speed === "fast") return "380ms";
-    return "620ms";
-  }
-
-  function ensureStyle() {
-    if (document.getElementById("rt-v108-animations-style")) return;
-    const style = document.createElement("style");
-    style.id = "rt-v108-animations-style";
-    style.textContent = `
-      :root { --rt-anim-speed: ${speedMs()}; --rt-glitch-shift: ${intensity === "aggressive" ? "4px" : intensity === "soft" ? "1px" : "2px"}; }
-
-      .rt-anim-fade { animation: rtAnimFade var(--rt-anim-speed) ease both; }
-      .rt-anim-slide { animation: rtAnimSlide var(--rt-anim-speed) cubic-bezier(.2,.9,.2,1) both; }
-      .rt-anim-zoom { animation: rtAnimZoom var(--rt-anim-speed) cubic-bezier(.2,.9,.2,1) both; }
-      .rt-anim-glitch { animation: rtAnimGlitch var(--rt-anim-speed) steps(2,end) both; }
-
-      .rt-glow-pulse {
-        animation: rtGlowPulse ${speed === "fast" ? "1.2s" : speed === "slow" ? "2.8s" : "1.8s"} ease-in-out infinite alternate;
-      }
-
-      .rt-brand-off .brand-drawer,
-      .rt-brand-off .rt103-brand,
-      .rt-brand-off .rt1053-brand,
-      .rt-brand-off .rt-v101-brand,
-      .rt-brand-off .rt-v101-marquee span {
-        animation: none !important;
-        transition: none !important;
-      }
-
-      @keyframes rtAnimFade {
-        from { opacity: 0; filter: blur(4px); }
-        to { opacity: 1; filter: blur(0); }
-      }
-
-      @keyframes rtAnimSlide {
-        from { opacity: 0; transform: translateX(${intensity === "aggressive" ? "-42px" : intensity === "soft" ? "-14px" : "-26px"}); }
-        to { opacity: 1; transform: translateX(0); }
-      }
-
-      @keyframes rtAnimZoom {
-        from { opacity: 0; transform: scale(${intensity === "aggressive" ? ".78" : intensity === "soft" ? ".94" : ".86"}); }
-        to { opacity: 1; transform: scale(1); }
-      }
-
-      @keyframes rtAnimGlitch {
-        0% { opacity: 0; transform: translateX(calc(var(--rt-glitch-shift) * -1)); filter: hue-rotate(22deg); }
-        25% { opacity: 1; transform: translateX(var(--rt-glitch-shift)); }
-        50% { transform: translateX(calc(var(--rt-glitch-shift) * -1)); filter: contrast(1.4); }
-        75% { transform: translateX(var(--rt-glitch-shift)); }
-        100% { transform: translateX(0); filter: none; }
-      }
-
-      @keyframes rtGlowPulse {
-        from { filter: drop-shadow(0 0 ${intensity === "aggressive" ? "8px" : "4px"} rgba(255,42,23,.42)); }
-        to { filter: drop-shadow(0 0 ${intensity === "aggressive" ? "24px" : intensity === "soft" ? "10px" : "16px"} rgba(255,42,23,.82)); }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  function applyAnimations() {
-    ensureStyle();
-    const root = document.getElementById("badge") || document.querySelector(".badge") || document.getElementById("overlay");
-    if (!root) return;
-
-    root.classList.remove("rt-anim-fade","rt-anim-slide","rt-anim-zoom","rt-anim-glitch","rt-glow-pulse","rt-brand-off");
-
-    if (type !== "none") {
-      root.classList.add("rt-anim-" + type);
-    }
-
-    if (glowPulse === "on") {
-      root.classList.add("rt-glow-pulse");
-    }
-
-    if (brandAnimation === "off") {
-      root.classList.add("rt-brand-off");
-    }
-
-    root.dataset.animationType = type;
-    root.dataset.animationIntensity = intensity;
-    root.dataset.animationSpeed = speed;
-    root.dataset.glowPulse = glowPulse;
-    root.dataset.brandAnimation = brandAnimation;
-  }
-
-  window.addEventListener("load", () => {
-    applyAnimations();
-    setTimeout(applyAnimations, 120);
-    setTimeout(applyAnimations, 500);
-    setTimeout(applyAnimations, 1200);
-  });
-
-  const observer = new MutationObserver(() => {
-    clearTimeout(window.__rtV108AnimTimer);
-    window.__rtV108AnimTimer = setTimeout(applyAnimations, 60);
-  });
-
-  window.addEventListener("load", () => {
-    const target = document.getElementById("overlay") || document.body;
-    if (target) observer.observe(target, { childList: true, subtree: true, attributes: true });
-  });
-
-  applyAnimations();
-})();
-

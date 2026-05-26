@@ -1,25 +1,9 @@
-# RankTag v1.0.8
+# RankTag 1.0.9
 
-Animations Beta.
+VoidRage Inferno resize fix.
 
-## Novità
-
-- Nuova sezione **Animazioni** nel generator
-- Animazione entrata: none, fade, slide, zoom, glitch
-- Intensità: soft, normal, aggressive
-- Velocità: slow, normal, fast
-- Glow bordo on/off
-- Brand animation on/off
-- Parametri salvati direttamente nel link copiato
-
-## Parametri URL
-
-```txt
-animationType=glitch
-animationIntensity=normal
-animationSpeed=normal
-glowPulse=on
-brandAnimation=on
-```
-
-Release corrente: `v1.0.8`
+## Include
+- immagine VoidRage Inferno ridimensionata a 470x160
+- esterno cornice reso trasparente
+- versione pubblica aggiornata a 1.0.9
+- layout JSON aggiornato al nuovo background

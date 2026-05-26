@@ -9,15 +9,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/layout-editor",
-      "destination": "/404.html"
-    },
-    {
-      "source": "/layout-editor.html",
-      "destination": "/404.html"
-    }
   ]
 }
