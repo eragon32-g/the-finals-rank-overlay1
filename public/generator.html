@@ -1767,7 +1767,7 @@ iframe#preview {
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><a class="tag admin-only-link" href="/api/layout-editor" style="text-decoration:none; display:none;">Layout Editor</a><div class="tag">RankTag V105</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><button class="tag" id="adminUnlock" type="button" style="cursor:pointer;">Admin</button><a class="tag admin-only-link" href="/layout-editor.html" style="text-decoration:none; display:none;">Layout Editor</a><div class="tag">RankTag V105</div></div>
     </header>
 
     <div class="layout">
@@ -1965,6 +1965,7 @@ iframe#preview {
 </div>
 
 </div>
+<div class="premium-actions" style="margin-top:12px;"><button class="btn secondary small" id="resetDefaultLayout" type="button">Torna al layout default</button></div>
 <div class="premium-selected-note" id="premiumSelectedNote">Premium attivo: nessuno. Stai usando l’overlay standard.</div>
 </div>
 <div class="section" id="guide">
@@ -2657,16 +2658,84 @@ iframe#preview {
       if (!ok) return;
 
       const finalTheme = get("themeStyle")?.value || "default";
-      if (finalTheme === "cyber-red-elite" || finalTheme === "voidrage-inferno") {
-        const currentUrl = new URL(get("output").value);
+      try {
+        const currentUrl = new URL(get("output").value || (window.location.origin + "/"));
         currentUrl.searchParams.set("themeStyle", finalTheme);
+        if (finalTheme === "default") currentUrl.searchParams.delete("layout");
         get("output").value = currentUrl.toString();
+      } catch {}
+
+      const valueToCopy = get("output").value;
+      let copied = false;
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(valueToCopy);
+          copied = true;
+        }
+      } catch {}
+      if (!copied) {
+        const out = get("output");
+        out.focus();
+        out.select();
+        out.setSelectionRange(0, out.value.length);
+        try { copied = document.execCommand("copy"); } catch {}
       }
 
-      await navigator.clipboard.writeText(get("output").value);
-      get("copy").textContent = "Copiato!";
-      setTimeout(() => get("copy").textContent = "Copia link", 1200);
+      get("copy").textContent = copied ? "Copiato!" : "Selezionato: copia manualmente";
+      setTimeout(() => get("copy").textContent = "Copia link", 1600);
     });
+
+
+    function showAdminSections() {
+      document.querySelectorAll(".admin-only-link, .admin-only, [data-admin-only]").forEach((el) => {
+        el.style.display = "";
+        el.hidden = false;
+      });
+    }
+
+    function hideAdminSections() {
+      document.querySelectorAll(".admin-only-link, .admin-only, [data-admin-only]").forEach((el) => {
+        el.style.display = "none";
+      });
+    }
+
+    function unlockAdmin() {
+      const current = localStorage.getItem("ranktag-admin-key") || "";
+      const key = prompt("Inserisci chiave admin:", current);
+      if (!key) return;
+      localStorage.setItem("ranktag-admin-key", key.trim());
+      showAdminSections();
+      const editor = document.querySelector(".admin-only-link");
+      if (editor) editor.href = "/api/layout-editor?key=" + encodeURIComponent(key.trim());
+    }
+
+    get("adminUnlock")?.addEventListener("click", unlockAdmin);
+
+    function resetToDefaultLayout() {
+      setValue("themeStyle", "default");
+      document.querySelectorAll(".plus-card, .premium-one-card").forEach((el) => el.classList.remove("active"));
+      const note = get("premiumSelectedNote");
+      if (note) note.textContent = "Premium attivo: nessuno. Sei tornato al layout default.";
+      try {
+        const outUrl = new URL(get("output").value || (window.location.origin + "/"));
+        outUrl.searchParams.set("themeStyle", "default");
+        outUrl.searchParams.delete("layout");
+        get("output").value = outUrl.toString();
+      } catch {}
+      buildLink();
+    }
+
+    get("resetDefaultLayout")?.addEventListener("click", resetToDefaultLayout);
+
+    const storedAdminKey = localStorage.getItem("ranktag-admin-key");
+    if (storedAdminKey) {
+      showAdminSections();
+      const editor = document.querySelector(".admin-only-link");
+      if (editor) editor.href = "/api/layout-editor?key=" + encodeURIComponent(storedAdminKey);
+    } else {
+      hideAdminSections();
+    }
+
 
     renderPalettes();
     loadBrandPreview();

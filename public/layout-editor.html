@@ -1,1 +1,54 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Layout Editor riservato</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#07080c;color:#fff;font-family:Arial,sans-serif}.box{max-width:560px;padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:22px;background:rgba(255,255,255,.06)}a{color:#ff3b2f}</style></head><body><div class="box"><h1>Layout Editor riservato</h1><p>Questa sezione non è pubblica. Accedi come admin da <code>/api/layout-editor?key=LA_TUA_CHIAVE</code>.</p><p>Su Vercel imposta la variabile ambiente <b>ADMIN_LAYOUT_KEY</b>.</p><p><a href="/generator.html">Torna al generator</a></p></div></body></html>
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RankTag Admin Login</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 20% 0,rgba(255,42,23,.18),transparent 30%),#07080c;color:#fff;font-family:Arial,sans-serif;padding:22px}
+    .box{width:min(560px,100%);padding:28px;border:1px solid rgba(255,255,255,.14);border-radius:22px;background:rgba(255,255,255,.06);box-shadow:0 22px 70px rgba(0,0,0,.35)}
+    h1{margin:0 0 10px;font-size:34px}
+    p{color:rgba(255,255,255,.72);line-height:1.45}
+    label{display:grid;gap:8px;margin:18px 0 12px;color:rgba(255,255,255,.78);font-weight:700}
+    input{width:100%;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.28);color:#fff;font-size:16px}
+    button,a.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:#ff2a17;color:#fff;text-decoration:none;font-weight:900;cursor:pointer}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .ghost{background:rgba(255,255,255,.08)!important}
+    code{color:#ffd36a}
+    .msg{margin-top:12px;color:#ffd36a;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Accesso admin</h1>
+    <p>Inserisci la chiave admin per aprire il Layout Editor riservato. La chiave deve essere la stessa impostata su Vercel come <code>ADMIN_LAYOUT_KEY</code>.</p>
+    <label>Chiave admin
+      <input id="adminKey" type="password" placeholder="Inserisci ADMIN_LAYOUT_KEY" autocomplete="current-password">
+    </label>
+    <div class="row">
+      <button id="go" type="button">Entra nel Layout Editor</button>
+      <a class="btn ghost" href="/generator.html">Torna al generator</a>
+    </div>
+    <div class="msg" id="msg"></div>
+  </div>
+  <script>
+    const input = document.getElementById("adminKey");
+    const msg = document.getElementById("msg");
+    const saved = localStorage.getItem("ranktag-admin-key") || "";
+    input.value = saved;
+    document.getElementById("go").addEventListener("click", () => {
+      const key = input.value.trim();
+      if (!key) {
+        msg.textContent = "Inserisci prima la chiave admin.";
+        return;
+      }
+      localStorage.setItem("ranktag-admin-key", key);
+      window.location.href = "/api/layout-editor?key=" + encodeURIComponent(key);
+    });
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") document.getElementById("go").click();
+    });
+  </script>
+</body>
+</html>
