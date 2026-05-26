@@ -1,8 +1,19 @@
 {
-  "version": "1.0.14",
+  "version": "0.0.1",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "1.0.14: ripristinato accesso admin protetto e mantenuti i fix premium/VoidRage Inferno."
+  "note": "Beta iniziale 0.0.1. La pagina Updates è stata ripulita; gli update pubblici partiranno dal prossimo rilascio importante.",
+  "status": "BETA",
+  "label": "BETA 0.0.1",
+  "versioning": {
+    "beta": true,
+    "rules": [
+      "Si parte da 0.0.1",
+      "Dopo 0.0.9 il successivo è 0.1.0",
+      "Dopo 0.9.0 il successivo è 1.0.0",
+      "Gli aggiornamenti pubblici verranno pubblicati solo quando importanti"
+    ]
+  }
 }
