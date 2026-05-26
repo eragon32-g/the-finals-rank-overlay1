@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "1.0.0";
+const OVERLAY_VERSION = "1.0.1";
 const params = new URLSearchParams(window.location.search);
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
@@ -2739,5 +2739,137 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
   });
   ensureReleaseMeta();
   ensureSizeGuard();
+})();
+
+
+
+
+/* RankTag v1.0.1 - FINAL PREMIUM RENDERER
+   Fix:
+   - premium copied links no longer need layout param
+   - VoidRage Inferno render matches the generator preview sizing/position
+   - page stays transparent and fixed at 470x160 for OBS/browser source */
+(function rankTagV101FinalPremiumRenderer(){
+  const allowed = ["cyber-red-elite", "voidrage-inferno"];
+  if (typeof themeStyle === "undefined" || !allowed.includes(themeStyle)) return;
+
+  const DEFAULTS = {
+    "cyber-red-elite": {
+      version:"1.0.1", schema:"ranktag-premium-layout-v2", style:"cyber-red-elite",
+      canvas:{width:470,height:160}, background:"/assets/premium/cyber-red-elite-bg-v96.png",
+      elements:{
+        badge:{x:7,y:9,w:136,h:121,fontSize:0,z:5},
+        rank:{x:164,y:39,w:215,h:30,fontSize:25,z:6},
+        score:{x:165,y:78,w:120,h:16,fontSize:12,z:6},
+        player:{x:271,y:78,w:142,h:16,fontSize:10.5,z:6},
+        brand:{x:165,y:100,w:270,h:16,fontSize:9.5,z:6}
+      }
+    },
+    "voidrage-inferno": {
+      version:"1.0.1", schema:"ranktag-premium-layout-v2", style:"voidrage-inferno",
+      canvas:{width:470,height:160}, background:"/assets/premium/voidrage-inferno-fit-v105.png",
+      elements:{
+        badge:{x:28,y:20,w:112,h:112,fontSize:0,z:5},
+        rank:{x:157,y:42,w:245,h:30,fontSize:25,z:6},
+        score:{x:158,y:78,w:120,h:16,fontSize:12,z:6},
+        player:{x:278,y:78,w:150,h:16,fontSize:10.5,z:6},
+        brand:{x:158,y:108,w:260,h:18,fontSize:9.5,z:6}
+      }
+    }
+  };
+
+  function esc(v){return String(v ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+  function n(v,d){const x=Number(v);return Number.isFinite(x)?x:d;}
+  function layout(){
+    const base = DEFAULTS[themeStyle] || DEFAULTS["voidrage-inferno"];
+    const out = JSON.parse(JSON.stringify(base));
+    // Only admin/debug URLs may override layout. Public copied links should not include it.
+    const raw = new URLSearchParams(window.location.search).get("layout");
+    if (raw) {
+      try {
+        const parsed = JSON.parse(decodeURIComponent(escape(atob(raw))));
+        if (parsed?.elements && (!parsed.style || parsed.style === themeStyle)) {
+          for (const key of ["badge","rank","score","player","brand"]) {
+            out.elements[key] = Object.assign({}, out.elements[key], parsed.elements[key] || {});
+            for (const k of ["x","y","w","h","fontSize","z"]) out.elements[key][k] = n(out.elements[key][k], base.elements[key][k]);
+          }
+          if (parsed.background) out.background = parsed.background;
+        }
+      } catch {}
+    }
+    return out;
+  }
+  function layerStyle(c){
+    return [`left:${c.x}px`,`top:${c.y}px`,`width:${c.w}px`,`height:${c.h}px`,`z-index:${c.z}`,c.fontSize?`font-size:${c.fontSize}px`:"",`line-height:${c.h}px`].filter(Boolean).join(";");
+  }
+  function currentData(){
+    return {
+      rank:(rankText?.textContent || "PLATINUM 1").trim(),
+      score:(scoreText?.textContent || "ELO: 37.705").trim(),
+      player:(nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim(),
+      brand:(brandMarqueeText?.textContent || "VOIDRAGE32 • THE FINALS").trim(),
+      badge:badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum-1.png?v=101"
+    };
+  }
+  function ensureStyle(){
+    let s=document.getElementById("rt-v101-final-style");
+    if(s) return;
+    s=document.createElement("style");
+    s.id="rt-v101-final-style";
+    s.textContent=`
+      html,body{margin:0!important;width:100%!important;height:100%!important;overflow:hidden!important;background:transparent!important}
+      body{display:grid!important;place-items:center!important}
+      #overlay.overlay{width:470px!important;height:160px!important;min-width:470px!important;min-height:160px!important;max-width:470px!important;max-height:160px!important;display:grid!important;place-items:center!important;overflow:hidden!important;background:transparent!important}
+      #badge.rt-v101-premium{position:relative!important;width:470px!important;height:160px!important;min-width:470px!important;min-height:160px!important;max-width:470px!important;max-height:160px!important;display:block!important;padding:0!important;margin:0!important;border:0!important;box-shadow:none!important;background:transparent!important;overflow:hidden!important;transform:none!important}
+      .rt-v101-bg{position:absolute!important;inset:0!important;width:470px!important;height:160px!important;object-fit:contain!important;z-index:0!important;pointer-events:none!important}
+      .rt-v101-layer{position:absolute!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;white-space:nowrap!important;overflow:hidden!important;box-sizing:border-box!important}
+      .rt-v101-badge{justify-content:center!important;overflow:visible!important}
+      .rt-v101-badge img{width:100%!important;height:100%!important;object-fit:contain!important;filter:drop-shadow(0 2px 10px rgba(255,255,255,.28)) drop-shadow(0 2px 12px rgba(255,42,23,.38))}
+      .rt-v101-rank{color:#fff6f2!important;font-weight:1000!important;letter-spacing:.7px!important;text-transform:uppercase!important;text-shadow:0 0 12px rgba(255,42,23,.62),0 2px 8px rgba(0,0,0,.95)!important}
+      .theme-cyber-red-elite .rt-v101-rank{color:#54eaff!important;text-shadow:0 0 12px rgba(84,234,255,.34),0 2px 8px rgba(0,0,0,.9)!important}
+      .rt-v101-score,.rt-v101-player{color:#f7f2ff!important;font-weight:1000!important;text-transform:uppercase!important;text-overflow:ellipsis!important;text-shadow:0 1px 7px rgba(0,0,0,.95)!important}
+      .rt-v101-brand{display:flex!important;align-items:center!important;gap:7px!important;padding:0 8px!important;border-radius:999px!important;background:linear-gradient(180deg,rgba(12,10,16,.88),rgba(5,4,10,.78))!important;border:1px solid rgba(255,255,255,.14)!important;transform:translateY(105%);opacity:0;transition:transform 360ms cubic-bezier(.2,.9,.2,1),opacity 260ms ease}
+      .rt-v101-brand.is-visible{transform:translateY(0);opacity:1}
+      .rt-v101-brand-icon{width:11px;height:11px;border-radius:3px;background:linear-gradient(135deg,#ff2a17,#ffd36a);box-shadow:0 0 12px rgba(255,42,23,.46);transform:rotate(45deg);flex:0 0 11px}
+      .rt-v101-marquee{min-width:0;flex:1;overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,transparent,black 9%,black 91%,transparent)}
+      .rt-v101-marquee span{display:inline-block;min-width:max-content;padding-left:100%;font-weight:1000;color:#f7f2ff;text-shadow:0 0 8px rgba(255,42,23,.38),0 1px 7px rgba(0,0,0,.95);animation:rtV101Marquee var(--brand-duration,8s) linear infinite;animation-play-state:paused}
+      .rt-v101-brand.is-visible .rt-v101-marquee span{animation-play-state:running}
+      @keyframes rtV101Marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+    `;
+    document.head.appendChild(s);
+  }
+  let started=false;
+  function startBrand(){
+    if(started) return;
+    started=true;
+    const show=()=>{const el=document.querySelector("#badge .rt-v101-brand");if(!el)return;el.classList.add("is-visible");setTimeout(()=>el.classList.remove("is-visible"),4500);};
+    setTimeout(show,800);
+    setInterval(show,12000);
+  }
+  function render(){
+    ensureStyle();
+    const root=document.getElementById("badge") || badge;
+    if(!root) return;
+    const l=layout(), e=l.elements, d=currentData();
+    root.className="badge rt-v101-premium theme-"+themeStyle;
+    root.dataset.themeStyle=themeStyle;
+    root.dataset.renderer="rt-v101-final";
+    root.innerHTML=`
+      <img class="rt-v101-bg" src="${esc(l.background)}?v=101" alt="" />
+      <div class="rt-v101-layer rt-v101-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badge)}" alt="" /></div>
+      <div class="rt-v101-layer rt-v101-rank" style="${layerStyle(e.rank)}">${esc(d.rank)}</div>
+      <div class="rt-v101-layer rt-v101-score" style="${layerStyle(e.score)}">${esc(d.score)}</div>
+      <div class="rt-v101-layer rt-v101-player" style="${layerStyle(e.player)}">${esc(d.player)}</div>
+      <div class="rt-v101-layer rt-v101-brand" style="${layerStyle(e.brand)}"><div class="rt-v101-brand-icon"></div><div class="rt-v101-marquee"><span>${esc(d.brand)}</span></div></div>
+    `;
+    startBrand();
+  }
+  const oldSetData = typeof setData === "function" ? setData : null;
+  if(oldSetData && !window.__rtV101SetData){
+    window.__rtV101SetData=true;
+    setData=async function(...args){await oldSetData.apply(this,args);render();setTimeout(render,80);setTimeout(render,260);};
+  }
+  window.addEventListener("load",()=>{render();setTimeout(render,80);setTimeout(render,300);setTimeout(render,900);setTimeout(render,1600);});
+  render();
 })();
 

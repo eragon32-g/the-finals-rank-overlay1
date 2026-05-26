@@ -1,5 +1,16 @@
 [
   {
+    "version": "1.0.1",
+    "date": "2026-05-26",
+    "title": "Bugfix overlay premium",
+    "summary": "Correzione del copia link premium e allineamento del render reale di VoidRage Inferno con l’anteprima.",
+    "fixed": [
+      "Copia link non funzionante con overlay premium",
+      "VoidRage Inferno diverso tra anteprima e link finale",
+      "Link premium ripulito dal parametro layout per evitare URL lunghi o instabili"
+    ]
+  },
+  {
     "version": "1.0.0",
     "date": "2026-05-26",
     "title": "Pubblicazione RankTag v1.0.0",
