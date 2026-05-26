@@ -1,13 +1,9 @@
-# RankTag for THE FINALS - V57
+# RankTag V105
 
-V57 rimuove tutta la parte relativa allo Shop/Stili Plus.
+Build corretta da V104.
 
-## Rimosso
-- Sezione Shop / Stili Plus
-- Card degli stili premium
-- Pulsanti Anteprima / Usa stile degli stili Plus
-- Asset Plus dal pacchetto
-- Riferimenti al themeStyle shop-only nel generator
-
-## Risultato
-Generator più pulito e stabile, senza la parte shop sperimentale.
+- VoidRage Inferno usa asset v105 con contorno esterno trasparente
+- Cyber Red Elite e VoidRage Inferno hanno salvataggi Layout Editor separati v105
+- Generator passa sempre themeStyle + layout corretto per lo stile premium selezionato
+- Renderer finale legge themeStyle + layout e applica x/y/w/h/fontSize/z
+- Cache busting aggiornato a v105

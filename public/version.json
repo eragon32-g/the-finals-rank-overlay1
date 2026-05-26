@@ -1,8 +1,8 @@
 {
-  "version": "57",
+  "version": "105",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Shop/Stili Plus rimossi dal progetto. Generator e Test Lab tornano senza sezione shop."
+  "note": "V105: corrected premium separation, v105 cache busting, VoidRage transparent asset, and layout propagation for generator/renderer."
 }

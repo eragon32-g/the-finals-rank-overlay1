@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V57 generator real-preview lock */
+/* RankTag V105 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -577,7 +577,1188 @@ iframe#preview,
   margin:auto !important;
 }
 
+
+
+    .premium-one-card.premium-live-card {
+      display:grid;
+      gap:14px;
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+    }
+    .premium-one-card.premium-live-card.active {
+      border-color: rgba(240,217,170,.52);
+      box-shadow: 0 0 0 1px rgba(240,217,170,.12), 0 20px 50px rgba(0,0,0,.24);
+    }
+    .premium-live-head {
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .premium-preview-real {
+      height:92px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: #0a0b10 url('/assets/premium/cyber-red-elite-thumb-v96.png?v=105') center/cover no-repeat;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.28);
+    }
+    .premium-copy-title { font-size: 13px; color: rgba(255,255,255,.66); }
+    .premium-actions { display:flex; gap:10px; flex-wrap:wrap; }
+    .premium-selected-note {
+      margin-top:12px; padding:12px; border-radius:14px;
+      border:1px solid rgba(240,217,170,.18); background: rgba(240,217,170,.065);
+      color: rgba(255,255,255,.78); font-size:13px; font-weight:800; line-height:1.45;
+    }
+
+
+
+/* RankTag V105 - layout rework: account full width, settings grid, preview bottom */
+.layout {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 22px !important;
+}
+
+.settings-panel {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+}
+
+.settings-panel > .section {
+  border-bottom: 1px solid rgba(255,255,255,.08) !important;
+}
+
+.settings-panel > .section:nth-child(odd) {
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+
+.settings-panel > .account-section,
+.settings-panel > #guide {
+  grid-column: 1 / -1 !important;
+  border-right: 0 !important;
+}
+
+.settings-panel > #overlayPremium {
+  grid-column: 1 / -1 !important;
+  border-right: 0 !important;
+}
+
+.account-section .section-title {
+  margin-bottom: 14px !important;
+}
+
+.account-section .section-title h2 {
+  font-size: 20px !important;
+}
+
+.profile-row {
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr) auto auto !important;
+}
+
+.bottom-preview-panel {
+  width: 100% !important;
+  position: static !important;
+}
+
+.bottom-preview-panel .section {
+  padding: 22px !important;
+}
+
+.bottom-preview-panel .preview-box {
+  min-height: 260px !important;
+}
+
+.bottom-preview-panel iframe#preview {
+  width: 470px !important;
+  height: 160px !important;
+  transform: scale(1.25) !important;
+  transform-origin: center center !important;
+}
+
+.bottom-preview-panel .actions {
+  justify-content: center !important;
+}
+
+.bottom-preview-panel textarea {
+  min-height: 84px !important;
+}
+
+.preview-panel,
+.right-panel,
+aside.panel {
+  position: static !important;
+}
+
+.generator-compact-nav,
+.generator-ui-note,
+.generator-compact-summary {
+  display: none !important;
+}
+
+.generator-compact-block.is-collapsed .generator-compact-content {
+  display: block !important;
+}
+
+.premium-one-card.premium-live-card {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+}
+
+.premium-one-card.premium-live-card.active {
+  border-color: rgba(240,217,170,.52);
+  box-shadow: 0 0 0 1px rgba(240,217,170,.12), 0 20px 50px rgba(0,0,0,.24);
+}
+
+.premium-live-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.premium-preview-real {
+  height:92px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background: #0a0b10 url('/assets/premium/cyber-red-elite-thumb-v96.png?v=105') center/cover no-repeat;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.28);
+}
+
+.premium-copy-title { font-size: 13px; color: rgba(255,255,255,.66); }
+.premium-actions { display:flex; gap:10px; flex-wrap:wrap; }
+
+.premium-selected-note {
+  margin-top:12px;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid rgba(240,217,170,.18);
+  background: rgba(240,217,170,.065);
+  color: rgba(255,255,255,.78);
+  font-size:13px;
+  font-weight:800;
+  line-height:1.45;
+}
+
+@media (max-width: 980px) {
+  .settings-panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  .settings-panel > .section {
+    border-right: 0 !important;
+  }
+
+  .profile-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .bottom-preview-panel iframe#preview {
+    transform: scale(.9) !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .bottom-preview-panel iframe#preview {
+    transform: scale(.68) !important;
+  }
+}
+
+
+
+/* RankTag V105 - compact generator, account unchanged */
+body {
+  padding: 16px !important;
+}
+
+.header {
+  margin-bottom: 12px !important;
+}
+
+.header h1 {
+  font-size: clamp(28px, 3.4vw, 42px) !important;
+}
+
+.subtitle {
+  font-size: 14px !important;
+}
+
+.layout {
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+}
+
+.settings-panel {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+}
+
+/* Account stays large and full-width */
+.settings-panel > .account-section {
+  grid-column: 1 / -1 !important;
+  padding: 18px !important;
+  border-right: 0 !important;
+}
+
+.account-section .section-title h2 {
+  font-size: 20px !important;
+}
+
+.account-section .profile-bar {
+  padding: 14px !important;
+}
+
+.account-section input {
+  min-height: 42px !important;
+  padding: 11px 12px !important;
+}
+
+/* All other cards become smaller and denser */
+.settings-panel > .section:not(.account-section) {
+  padding: 12px !important;
+  min-height: auto !important;
+}
+
+.settings-panel > .section:not(.account-section) .section-title {
+  margin-bottom: 9px !important;
+}
+
+.settings-panel > .section:not(.account-section) .section-title h2 {
+  font-size: 14px !important;
+  line-height: 1.15 !important;
+}
+
+.settings-panel > .section:not(.account-section) .tag {
+  padding: 4px 8px !important;
+  font-size: 9px !important;
+}
+
+.settings-panel > .section:not(.account-section) .grid {
+  gap: 8px !important;
+}
+
+.settings-panel > .section:not(.account-section) label {
+  gap: 4px !important;
+  font-size: 11.5px !important;
+}
+
+.settings-panel > .section:not(.account-section) input,
+.settings-panel > .section:not(.account-section) select {
+  min-height: 36px !important;
+  padding: 8px 10px !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+}
+
+.settings-panel > .section:not(.account-section) .field-note,
+.settings-panel > .section:not(.account-section) .help,
+.settings-panel > .section:not(.account-section) .theme-note {
+  font-size: 11px !important;
+  margin-top: 5px !important;
+  line-height: 1.25 !important;
+}
+
+.locked-card {
+  padding: 10px !important;
+  border-radius: 13px !important;
+  gap: 7px !important;
+}
+
+.locked-preview {
+  padding: 9px !important;
+  font-size: 11.5px !important;
+}
+
+.palette-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 7px !important;
+}
+
+.palette {
+  min-height: 58px !important;
+  padding: 8px !important;
+  border-radius: 12px !important;
+}
+
+.palette-name {
+  margin-bottom: 6px !important;
+  font-size: 11.5px !important;
+}
+
+.swatch {
+  height: 14px !important;
+  border-radius: 5px !important;
+}
+
+.quick-actions {
+  margin-top: 8px !important;
+  gap: 7px !important;
+}
+
+.btn.small,
+.settings-panel > .section:not(.account-section) .btn {
+  min-height: 34px !important;
+  padding: 8px 11px !important;
+  font-size: 12px !important;
+  border-radius: 10px !important;
+}
+
+/* Premium is compact and sits with the other settings */
+#overlayPremium {
+  grid-column: auto !important;
+  border-right: 1px solid rgba(255,255,255,.08) !important;
+}
+
+#overlayPremium .premium-one-card {
+  padding: 10px !important;
+  border-radius: 14px !important;
+  gap: 8px !important;
+}
+
+#overlayPremium .premium-live-head {
+  gap: 8px !important;
+}
+
+#overlayPremium .premium-live-head strong {
+  font-size: 13px !important;
+}
+
+#overlayPremium .premium-copy-title {
+  font-size: 11px !important;
+}
+
+#overlayPremium .premium-status-pill {
+  padding: 4px 7px !important;
+  font-size: 9px !important;
+}
+
+#overlayPremium .premium-preview-real {
+  height: 52px !important;
+  border-radius: 11px !important;
+}
+
+#overlayPremium .premium-one-card p {
+  font-size: 11.5px !important;
+  line-height: 1.25 !important;
+}
+
+#overlayPremium .premium-selected-note {
+  margin-top: 8px !important;
+  padding: 9px !important;
+  font-size: 11px !important;
+  border-radius: 12px !important;
+}
+
+/* Guide is full-width but compact */
+#guide {
+  grid-column: 1 / -1 !important;
+  border-right: 0 !important;
+}
+
+#guide .guide-grid {
+  gap: 10px !important;
+}
+
+#guide .guide-card {
+  padding: 11px !important;
+  border-radius: 13px !important;
+}
+
+#guide .guide-card h3 {
+  font-size: 13px !important;
+  margin-bottom: 6px !important;
+}
+
+#guide .guide-card ol {
+  font-size: 11.5px !important;
+  line-height: 1.35 !important;
+}
+
+#guide .size-note {
+  margin-top: 9px !important;
+  padding: 9px !important;
+  font-size: 11.5px !important;
+}
+
+/* Preview full-width but less tall; overlay keeps 470 x 160 */
+.bottom-preview-panel .section {
+  padding: 14px !important;
+}
+
+.bottom-preview-panel .preview-box {
+  min-height: 190px !important;
+}
+
+.bottom-preview-panel iframe#preview {
+  width: 470px !important;
+  height: 160px !important;
+  transform: scale(1) !important;
+  transform-origin: center center !important;
+}
+
+.bottom-preview-panel .actions {
+  margin-top: 9px !important;
+}
+
+.bottom-preview-panel textarea {
+  min-height: 62px !important;
+  font-size: 11px !important;
+}
+
+/* Remove old compact interface completely */
+.generator-compact-nav,
+.generator-ui-note,
+.generator-compact-summary {
+  display: none !important;
+}
+
+@media (max-width: 1120px) {
+  .settings-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    padding: 12px !important;
+  }
+
+  .settings-panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  #overlayPremium {
+    grid-column: 1 / -1 !important;
+    border-right: 0 !important;
+  }
+
+  .profile-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .bottom-preview-panel iframe#preview {
+    transform: scale(.75) !important;
+  }
+}
+
+
+
+/* RankTag V105 - order, compact alignment and premium preview fix */
+.settings-panel {
+  grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
+  align-items: stretch !important;
+}
+
+.settings-panel > .section:not(.account-section) {
+  padding: 14px !important;
+}
+
+.settings-panel > .section:not(.account-section) .section-title {
+  min-height: 30px !important;
+}
+
+/* Dati rank: more centered and balanced */
+.settings-panel > .section:first-of-type + .section,
+.settings-panel > .section:nth-of-type(2) {
+  display: block !important;
+}
+
+.settings-panel > .section:nth-of-type(2) .grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px 12px !important;
+  align-items: start !important;
+}
+
+.settings-panel > .section:nth-of-type(2) label {
+  justify-content: start !important;
+}
+
+.settings-panel > .section:nth-of-type(2) input,
+.settings-panel > .section:nth-of-type(2) select {
+  width: 100% !important;
+}
+
+#rankGuard {
+  grid-column: 1 / -1 !important;
+  text-align: center !important;
+  padding: 9px 12px !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+}
+
+/* Branding should be same visual size family as premium */
+.locked-card {
+  min-height: 132px !important;
+  display: grid !important;
+  align-content: start !important;
+}
+
+.locked-preview {
+  min-height: 54px !important;
+  display: grid !important;
+  align-items: center !important;
+}
+
+/* Overlay premium: stop image being cut and keep it centered */
+#overlayPremium {
+  grid-column: auto !important;
+}
+
+#overlayPremium .premium-one-card {
+  min-height: 218px !important;
+  overflow: visible !important;
+}
+
+#overlayPremium .premium-preview-real {
+  height: 76px !important;
+  width: 100% !important;
+  border-radius: 12px !important;
+  background-color: #05070b !important;
+  background-image: url('/assets/premium/cyber-red-elite-thumb-v96.png?v=105') !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+#overlayPremium .premium-actions {
+  margin-top: 2px !important;
+}
+
+/* Make themes/colors/branding/premium visually equal and compact */
+#palettes.palette-grid {
+  grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+}
+
+.palette {
+  min-height: 54px !important;
+}
+
+#guide {
+  grid-column: 1 / -1 !important;
+}
+
+/* Preview remains full-width bottom */
+.bottom-preview-panel {
+  grid-column: 1 / -1 !important;
+}
+
+@media (max-width: 1120px) {
+  .settings-panel {
+    grid-template-columns: repeat(2, minmax(260px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .settings-panel {
+    grid-template-columns: 1fr !important;
+  }
+  #overlayPremium {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+
+
+/* RankTag V105 - repaired generator layout */
+.settings-panel {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  align-items: start !important;
+}
+.settings-panel > .section,
+.settings-panel > .account-section { min-width: 0 !important; }
+.settings-panel > .account-section,
+.settings-panel > #livePreviewSection,
+.settings-panel > #overlayPremium,
+.settings-panel > #guide { grid-column: 1 / -1 !important; }
+.preview-panel.bottom-preview-panel,
+aside.preview-panel.bottom-preview-panel { display: none !important; }
+#palettes,
+#palettes.palette-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  min-height: 88px !important;
+}
+#palettes .palette { display: block !important; }
+#livePreviewSection { border-top: 1px solid rgba(255,255,255,.08); padding-top: 16px; }
+#livePreviewSection .preview-box {
+  width: 100% !important;
+  min-height: 220px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+#livePreviewSection iframe#preview {
+  width: 470px !important;
+  height: 160px !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+#livePreviewSection .actions {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  margin-top: 10px !important;
+}
+#livePreviewSection textarea { width: 100% !important; min-height: 64px !important; }
+#livePreviewSection .help { text-align: center !important; }
+#overlayPremium, #guide { border-top: 1px solid rgba(255,255,255,.08); padding-top: 16px; }
+#overlayPremium .premium-preview-real {
+  width: 100% !important;
+  min-height: 88px !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+@media (max-width: 1100px) {
+  .settings-panel { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 760px) {
+  .settings-panel { grid-template-columns: 1fr !important; }
+}
+
+
+
+/* RankTag V105 - premium polish */
+#livePreviewSection .preview-box {
+  overflow: hidden !important;
+  padding: 10px 0 !important;
+}
+#livePreviewSection iframe#preview,
+#livePreviewSection iframe#previewFrame,
+#previewFrame {
+  display: block !important;
+  margin: 0 auto !important;
+}
+#overlayPremium .premium-one-card {
+  padding: 16px !important;
+  border-radius: 20px !important;
+}
+#overlayPremium .premium-live-head {
+  align-items: flex-start !important;
+}
+#overlayPremium .premium-preview-real {
+  width: 100% !important;
+  min-height: 150px !important;
+  padding: 12px 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: linear-gradient(180deg, rgba(10,11,16,.9), rgba(5,7,12,.95)) !important;
+}
+#overlayPremium .premium-preview-real img {
+  width: min(100%, 470px) !important;
+  height: auto !important;
+  display: block !important;
+  object-fit: contain !important;
+}
+#overlayPremium .premium-copy-title {
+  max-width: 520px;
+}
+#overlayPremium .premium-actions {
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  margin-top: 12px !important;
+}
+#overlayPremium .premium-selected-note {
+  margin-top: 12px !important;
+}
+
+
+
+/* RankTag V105 - step 1/2 premium scale and alignment */
+#livePreviewSection .preview-box {
+  min-height: 230px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  padding: 12px 0 !important;
+}
+
+#livePreviewSection iframe#preview,
+#livePreviewSection iframe#previewFrame,
+#previewFrame {
+  width: 470px !important;
+  height: 160px !important;
+  min-width: 470px !important;
+  min-height: 160px !important;
+  max-width: 470px !important;
+  max-height: 160px !important;
+  transform: none !important;
+  display: block !important;
+  margin: 0 auto !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+#overlayPremium .premium-preview-real {
+  min-height: 170px !important;
+  padding: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: linear-gradient(180deg, rgba(6,8,13,.94), rgba(3,5,9,.96)) !important;
+}
+
+#overlayPremium .premium-preview-real img {
+  width: min(100%, 470px) !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+#overlayPremium .premium-one-card.active {
+  border-color: rgba(255, 62, 35, .72) !important;
+  box-shadow: 0 0 0 1px rgba(255,62,35,.12), 0 22px 50px rgba(0,0,0,.28) !important;
+}
+
+
+/* RankTag V105 - premium final override */
+#livePreviewSection .preview-box,
+.preview-box {
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+#livePreviewSection iframe#previewFrame,
+#livePreviewSection iframe#preview,
+iframe#previewFrame,
+iframe#preview {
+  width:470px !important;
+  height:160px !important;
+  min-width:470px !important;
+  min-height:160px !important;
+  max-width:470px !important;
+  max-height:160px !important;
+  display:block !important;
+  margin:0 auto !important;
+  border:0 !important;
+  transform:none !important;
+}
+#overlayPremium .premium-preview-real {
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:176px !important;
+  padding:14px !important;
+  overflow:hidden !important;
+}
+#overlayPremium .premium-preview-real img,
+#premiumPreviewImage {
+  width:470px !important;
+  max-width:100% !important;
+  height:auto !important;
+  display:block !important;
+  margin:0 auto !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+
+
+
+/* RankTag V105 - premium card micro alignment */
+#overlayPremium .premium-preview-real {
+  min-height: 140px !important;
+  padding: 12px !important;
+}
+
+#overlayPremium .premium-preview-real img,
+#premiumPreviewImage {
+  width: 470px !important;
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+#livePreviewSection iframe#preview,
+#livePreviewSection iframe#previewFrame,
+#previewFrame {
+  width: 470px !important;
+  height: 160px !important;
+  transform: none !important;
+}
+
+
+
+/* RankTag V105 - Premium reset engine card */
+#overlayPremium .premium-preview-real.premium-preview-skin {
+  min-height: 170px !important;
+  padding: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: #05070b !important;
+}
+
+.premium-preview-badge {
+  position: relative;
+  width: 470px;
+  height: 160px;
+  border-radius: 18px 46px 18px 36px;
+  border: 2px solid rgba(255,42,23,.88);
+  background:
+    radial-gradient(circle at 12% 50%, rgba(255,70,35,.22), transparent 22%),
+    linear-gradient(115deg, rgba(8,10,16,.98) 0%, rgba(11,16,22,.96) 42%, rgba(87,12,12,.88) 68%, rgba(18,8,12,.96) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    0 0 22px rgba(255,42,23,.18);
+  overflow: hidden;
+}
+
+.premium-preview-badge::before {
+  content: "";
+  position: absolute;
+  inset: 8px 12px 8px 80px;
+  border-radius: 9px 30px 9px 9px;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.05), transparent 34%),
+    repeating-linear-gradient(105deg, rgba(255,42,23,.12) 0 2px, transparent 2px 15px);
+  border: 1px solid rgba(255,42,23,.22);
+}
+
+.premium-preview-badge::after {
+  content: "";
+  position: absolute;
+  left: 96px;
+  right: 22px;
+  bottom: 25px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(79,234,255,.95), rgba(255,42,23,.75), transparent);
+}
+
+.premium-preview-emblem {
+  position: absolute;
+  left: 24px;
+  top: 48px;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: linear-gradient(135deg, rgba(210,220,235,.25), rgba(60,70,88,.35));
+  box-shadow: 0 0 12px rgba(255,42,23,.18);
+}
+
+.premium-preview-name {
+  position: absolute;
+  left: 112px;
+  top: 34px;
+  color: #f8f3f0;
+  font-weight: 1000;
+  font-size: 18px;
+  letter-spacing: .4px;
+}
+
+.premium-preview-rank-label {
+  position: absolute;
+  left: 116px;
+  top: 82px;
+  color: rgba(150,238,255,.78);
+  font-size: 8px;
+  font-weight: 1000;
+  letter-spacing: 1px;
+}
+
+.premium-preview-rank {
+  position: absolute;
+  left: 116px;
+  top: 95px;
+  color: #4feaff;
+  font-weight: 1000;
+  font-size: 16px;
+}
+
+.premium-preview-score-label {
+  position: absolute;
+  right: 50px;
+  top: 82px;
+  color: #ffb08c;
+  font-size: 8px;
+  font-weight: 1000;
+}
+
+.premium-preview-score {
+  position: absolute;
+  right: 50px;
+  top: 95px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 1000;
+}
+
+.premium-preview-corner {
+  position: absolute;
+  right: 22px;
+  top: 12px;
+  width: 86px;
+  height: 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,75,40,.28);
+  background: linear-gradient(90deg, rgba(255,42,23,.08), rgba(255,42,23,.22));
+  color: #ff7048;
+  font-size: 9px;
+  font-weight: 1000;
+  letter-spacing: 1.4px;
+  display: grid;
+  place-items: center;
+}
+
+
+
+/* RankTag V105 - Premium card preview full background */
+#overlayPremium .premium-preview-real.premium-preview-skin {
+  min-height: 202px !important;
+  padding: 18px !important;
+  background: #05070b !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.premium-preview-badge {
+  width: 470px !important;
+  height: 160px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=105') center / 100% 100% no-repeat !important;
+  box-shadow: none !important;
+}
+
+.premium-preview-badge::before,
+.premium-preview-badge::after {
+  display: none !important;
+}
+
+.premium-preview-emblem {
+  left: 26px !important;
+  top: 42px !important;
+  width: 82px !important;
+  height: 82px !important;
+  border-radius: 18px !important;
+  background: linear-gradient(145deg, rgba(210,220,235,.22), rgba(55,64,82,.42)) !important;
+  border: 1px solid rgba(255,255,255,.20) !important;
+}
+
+.premium-preview-name {
+  left: 253px !important;
+  top: 83px !important;
+  font-size: 10.5px !important;
+  color: #f0f1f6 !important;
+}
+
+.premium-preview-rank-label {
+  display: none !important;
+}
+
+.premium-preview-rank {
+  left: 126px !important;
+  top: 45px !important;
+  font-size: 25px !important;
+  color: #4feaff !important;
+}
+
+.premium-preview-score-label {
+  display: none !important;
+}
+
+.premium-preview-score {
+  left: 126px !important;
+  top: 83px !important;
+  right: auto !important;
+  font-size: 12px !important;
+  color: #fff3ea !important;
+}
+
+.premium-preview-score::before {
+  content: "ELO: ";
+}
+
+.premium-preview-corner {
+  right: 62px !important;
+  top: 24px !important;
+  width: 56px !important;
+  height: 16px !important;
+  font-size: 8px !important;
+  border-radius: 999px !important;
+  background: rgba(255,42,23,.20) !important;
+}
+
+
+
+/* RankTag V105 - new premium background alignment */
+.premium-preview-badge {
+  background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=105') center / 100% 100% no-repeat !important;
+}
+
+.premium-preview-emblem {
+  left: 24px !important;
+  top: 38px !important;
+  width: 88px !important;
+  height: 88px !important;
+  border-radius: 22px !important;
+}
+
+.premium-preview-rank {
+  left: 126px !important;
+  top: 42px !important;
+  width: 215px !important;
+  font-size: 25px !important;
+}
+
+.premium-preview-score {
+  left: 126px !important;
+  top: 79px !important;
+  font-size: 12px !important;
+}
+
+.premium-preview-name {
+  left: 252px !important;
+  top: 79px !important;
+  right: 76px !important;
+  font-size: 10.5px !important;
+}
+
+.premium-preview-corner {
+  right: 62px !important;
+  top: 24px !important;
+}
+
+
+
+/* RankTag V105 - locked coordinates from Layout Editor */
+.premium-preview-emblem {
+  left: 18px !important;
+  top: 35px !important;
+  width: 77px !important;
+  height: 75px !important;
+}
+
+.premium-preview-rank {
+  left: 114px !important;
+  top: 41px !important;
+  width: 215px !important;
+  height: 30px !important;
+  font-size: 25px !important;
+}
+
+.premium-preview-score {
+  left: 115px !important;
+  top: 78px !important;
+  width: 120px !important;
+  height: 16px !important;
+  font-size: 12px !important;
+}
+
+.premium-preview-name {
+  left: 212px !important;
+  top: 77px !important;
+  right: 116px !important;
+  height: 16px !important;
+  font-size: 10.5px !important;
+}
+
+.premium-preview-corner {
+  display: none !important;
+}
+
+
+
+
+/* RankTag V105 - generator premium preview uses locked coordinates */
+.premium-preview-emblem {
+  left: 7px !important;
+  top: 9px !important;
+  width: 136px !important;
+  height: 121px !important;
+}
+
+.premium-preview-rank {
+  left: 164px !important;
+  top: 39px !important;
+  width: 215px !important;
+  height: 30px !important;
+  font-size: 25px !important;
+  line-height: 30px !important;
+}
+
+.premium-preview-score {
+  left: 165px !important;
+  top: 78px !important;
+  width: 120px !important;
+  height: 16px !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+}
+
+.premium-preview-name {
+  left: 271px !important;
+  top: 78px !important;
+  right: 57px !important;
+  width: 142px !important;
+  height: 16px !important;
+  font-size: 10.5px !important;
+  line-height: 16px !important;
+}
+
+.premium-preview-corner {
+  display: none !important;
+}
+
+
 </style>
+
+<style id="rt100-premium-static-section-style">
+  #overlayPremium .premium-cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)) !important;
+    gap: 14px !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
+
+  #overlayPremium .premium-cards-grid > .premium-one-card {
+    margin: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #overlayPremium .premium-inferno-card {
+    border-color: rgba(255, 42, 23, .58) !important;
+    background: linear-gradient(180deg, rgba(31,18,21,.88), rgba(14,15,22,.96)) !important;
+  }
+
+  #overlayPremium .premium-inferno-preview-real {
+    width: 100% !important;
+    min-height: 190px !important;
+    border-radius: 12px !important;
+    background:
+      rgba(0,0,0,.42)
+      url('/assets/premium/voidrage-inferno-fit-v105.png?v=105')
+      center / contain
+      no-repeat !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+  }
+
+  @media (max-width: 920px) {
+    #overlayPremium .premium-cards-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
 </head>
 <body>
   <main class="page">
@@ -586,207 +1767,234 @@ iframe#preview,
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><div class="tag">RankTag V57</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><a class="tag" href="/layout-editor.html" style="text-decoration:none;">Layout Editor</a><div class="tag">RankTag V105</div></div>
     </header>
 
     <div class="layout">
       <input type="hidden" id="themeStyle" value="default" />
-      <section class="panel">
-
-        <div class="section">
-          <div class="section-title">
-            <h2>0. Account online</h2>
-            <span class="tag">Save</span>
-          </div>
-          <div class="profile-bar">
-            <div class="profile-row">
-              <label>
+      <section class="panel settings-panel">
+<div class="section account-section" id="accountSection">
+<div class="section-title">
+<h2>Account</h2>
+<span class="tag">Progetti</span>
+</div>
+<div class="profile-bar">
+<div class="profile-row">
+<label>
                 Nickname account
-                <input id="profileNick" value="" placeholder="IlTuoNickname" autocomplete="username" />
-              </label>
-              <label>
+                <input autocomplete="username" id="profileNick" placeholder="IlTuoNickname" value=""/>
+</label>
+<label>
                 Password account
-                <input id="profilePass" type="password" value="" placeholder="Password" autocomplete="current-password" />
-              </label>
-              <button id="loginProfile" type="button" class="btn secondary small">Login / registrati</button>
-              <button id="logoutProfile" type="button" class="btn secondary small">Logout</button>
-            </div>
-            <div id="profileStatus" class="profile-status">Accedi o registrati per salvare i tuoi progetti.</div>
-            <div class="profile-row" style="grid-template-columns: 1fr auto auto;">
-              <label>
+                <input autocomplete="current-password" id="profilePass" placeholder="Password" type="password" value=""/>
+</label>
+<button class="btn secondary small" id="loginProfile" type="button">Login / registrati</button>
+<button class="btn secondary small" id="logoutProfile" type="button">Logout</button>
+</div>
+<div class="profile-status" id="profileStatus">Accedi o registrati per salvare i tuoi progetti.</div>
+<div class="profile-row" style="grid-template-columns: 1fr auto auto;">
+<label>
                 Nome progetto
-                <input id="projectTitle" value="" placeholder="Es. Ranked Platinum" />
-              </label>
-              <button id="saveProject" type="button" class="btn small">Salva online</button>
-              <button id="refreshProjects" type="button" class="btn secondary small">Aggiorna lista</button>
-            </div>
-            <div id="savedProjects" class="saved-grid"></div>
-          </div>
-          <p class="help">I tuoi progetti salvati restano nel tuo account.</p>
-        </div>
-
-        <div class="section">
-          <div class="section-title">
-            <h2>1. Dati rank</h2>
-            <span class="tag">Rank</span>
-          </div>
-          <div class="grid">
-            <label>
+                <input id="projectTitle" placeholder="Es. Ranked Platinum" value=""/>
+</label>
+<button class="btn small" id="saveProject" type="button">Salva online</button>
+<button class="btn secondary small" id="refreshProjects" type="button">Aggiorna lista</button>
+</div>
+<div class="saved-grid" id="savedProjects"></div>
+</div>
+<p class="help">I tuoi progetti salvati restano nel tuo account.</p>
+</div>
+<div class="section">
+<div class="section-title">
+<h2>1. Dati rank</h2>
+<span class="tag">Rank</span>
+</div>
+<div class="grid">
+<label>
               Modalità overlay
               <select id="mode">
-                <option value="manual" selected>Manuale</option>
-                <option value="auto">Automatica</option>
-              </select>
-            </label>
-            <label>
+<option selected="" value="manual">Manuale</option>
+<option value="auto">Automatica</option>
+</select>
+</label>
+<label>
               Player / Embark ID
-              <input id="player" value="NomePlayer#1234" placeholder="NomePlayer#1234" />
-              <span class="field-note">Esempio: ERDRAGON32#2577</span>
-            </label>
-            <div id="rankGuard" class="guard-message hidden"></div>
-            <label>
+              <input id="player" placeholder="NomePlayer#1234" value="NomePlayer#1234"/>
+<span class="field-note">Esempio: ERDRAGON32#2577</span>
+</label>
+<div class="guard-message hidden" id="rankGuard"></div>
+<label>
               Rank da mostrare
               <select id="badgeFile">
-                <option value="bronze-4" >Bronze 4</option>
-<option value="bronze-3" >Bronze 3</option>
-<option value="bronze-2" >Bronze 2</option>
-<option value="bronze-1" >Bronze 1</option>
-<option value="silver-4" >Silver 4</option>
-<option value="silver-3" >Silver 3</option>
-<option value="silver-2" >Silver 2</option>
-<option value="silver-1" >Silver 1</option>
-<option value="gold-4" >Gold 4</option>
-<option value="gold-3" >Gold 3</option>
-<option value="gold-2" >Gold 2</option>
-<option value="gold-1" >Gold 1</option>
-<option value="platinum-4" >Platinum 4</option>
-<option value="platinum-3" >Platinum 3</option>
-<option value="platinum-2" >Platinum 2</option>
-<option value="platinum-1" selected>Platinum 1</option>
-<option value="diamond-4" >Diamond 4</option>
-<option value="diamond-3" >Diamond 3</option>
-<option value="diamond-2" >Diamond 2</option>
-<option value="diamond-1" >Diamond 1</option>
-<option value="ruby" >Ruby</option>
-              </select>
-            </label>
-            <label>
+<option value="bronze-4">Bronze 4</option>
+<option value="bronze-3">Bronze 3</option>
+<option value="bronze-2">Bronze 2</option>
+<option value="bronze-1">Bronze 1</option>
+<option value="silver-4">Silver 4</option>
+<option value="silver-3">Silver 3</option>
+<option value="silver-2">Silver 2</option>
+<option value="silver-1">Silver 1</option>
+<option value="gold-4">Gold 4</option>
+<option value="gold-3">Gold 3</option>
+<option value="gold-2">Gold 2</option>
+<option value="gold-1">Gold 1</option>
+<option value="platinum-4">Platinum 4</option>
+<option value="platinum-3">Platinum 3</option>
+<option value="platinum-2">Platinum 2</option>
+<option selected="" value="platinum-1">Platinum 1</option>
+<option value="diamond-4">Diamond 4</option>
+<option value="diamond-3">Diamond 3</option>
+<option value="diamond-2">Diamond 2</option>
+<option value="diamond-1">Diamond 1</option>
+<option value="ruby">Ruby</option>
+</select>
+</label>
+<label>
               Punti / Rank Score
-              <input id="rankScore" value="37705" inputmode="numeric" placeholder="37705" />
-              <span class="field-note">Inserisci i punti da mostrare nell’overlay.</span>
-            </label>
-            <label>
+              <input id="rankScore" inputmode="numeric" placeholder="37705" value="37705"/>
+<span class="field-note">Inserisci i punti da mostrare nell’overlay.</span>
+</label>
+<label>
               Label punti
               <select id="scoreLabel">
-                <option value="ELO" selected>ELO</option>
-                <option value="RS">RS</option>
-                <option value="Rank Score">Rank Score</option>
-                <option value="Punti">Punti</option>
-              </select>
-              <span class="field-note">Scegli come chiamare i punti nella targhetta.</span>
-            </label>
-            <label>
+<option selected="" value="ELO">ELO</option>
+<option value="RS">RS</option>
+<option value="Rank Score">Rank Score</option>
+<option value="Punti">Punti</option>
+</select>
+<span class="field-note">Scegli come chiamare i punti nella targhetta.</span>
+</label>
+<label>
               Mostra LIVE
               <select id="showStatus">
-                <option value="0" selected>No</option>
-                <option value="1">Sì</option>
-              </select>
-            </label>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title">
-            <h2>2. Branding animato e bloccato</h2>
-            <span class="tag">Solo owner</span>
-          </div>
-          <div class="locked-card">
-            <div class="locked-title">
-              <span>Branding attivo</span>
-              <span class="tag">🔒 Non da URL</span>
+<option selected="" value="0">No</option>
+<option value="1">Sì</option>
+</select>
+</label>
+</div>
+</div>
+<div class="section">
+<div class="section-title">
+<h2>2. Temi</h2>
+<span class="tag">Colori</span>
+</div>
+<div class="palette-grid" id="palettes"></div>
+<p class="theme-note">Scegli un tema pronto oppure usa i colori avanzati. I temi cambiano titolo, punti, nome, branding, sfondo e bordo.</p>
+</div>
+<div class="section">
+<div class="section-title">
+<h2>3. Colori avanzati</h2>
+<span class="tag">Custom</span>
+</div>
+<div class="grid">
+<label>Titolo rank <input id="rankColor" value="f5f7faff"/></label>
+<label>Punti <input id="scoreColor" value="f0d9aaff"/></label>
+<label>Nome player <input id="nameColor" value="e8edf4ff"/></label>
+<label>Branding <input id="extraColor" value="f5f7fbff"/></label>
+<label>Sfondo card <input id="backgroundColor" value="0a0c10fa"/></label>
+<label>Bordo card <input id="borderColor" value="7c848fff"/></label>
+<label>Spessore bordo <input id="borderWidth" inputmode="numeric" value="2"/></label>
+<label>Accento branding <input id="brandAccent" value="ff2a17ff"/></label>
+</div>
+<div class="quick-actions">
+<button class="btn secondary small" id="resetStyle" type="button">Reset stile</button>
+<button class="btn secondary small" id="randomStyle" type="button">Random style</button>
+</div>
+</div>
+<div class="section preview-wide-section" id="livePreviewSection">
+<div class="section-title">
+<h2>Anteprima live</h2>
+<span class="tag">Preview</span>
+</div>
+<div class="preview-box">
+<iframe id="preview" title="Overlay preview"></iframe>
+</div>
+<div class="actions">
+<button class="btn secondary" id="generate">Aggiorna</button>
+<button class="btn" id="copy">Copia link</button>
+</div>
+<textarea id="output" readonly=""></textarea>
+<p class="help">Il link può modificare rank e colori, ma non branding e Discord.</p>
+</div>
+<div class="section premium-section" id="overlayPremium">
+<div class="section-title">
+<h2>4. Overlay Premium</h2>
+<span class="tag">1 alla volta</span>
+</div>
+<div class="premium-cards-grid">
+<div class="premium-one-card premium-live-card" id="premiumCardCyberRedElite">
+<div class="premium-live-head">
+<div>
+<strong>Cyber Red Elite</strong>
+<div class="premium-copy-title">Primo premium ufficiale: base grafica dedicata, testi dinamici e stemma rank ufficiale.</div>
+</div>
+<span class="premium-status-pill">Beta</span>
+</div>
+<div aria-label="Anteprima Cyber Red Elite" class="premium-preview-real premium-preview-skin">
+              <div class="premium-preview-badge">
+                <div class="premium-preview-emblem"></div>
+                <div class="premium-preview-name">NOMEPLAYER#1234</div>
+                <div class="premium-preview-rank-label">RANK</div>
+                <div class="premium-preview-rank">PLATINUM 1</div>
+                <div class="premium-preview-score-label">ELO</div>
+                <div class="premium-preview-score">37.705</div>
+                <div class="premium-preview-corner">RANKTAG</div>
+              </div>
             </div>
-            <div id="lockedPreview" class="locked-preview">Caricamento branding...</div>
-          </div>
-          <p class="help">Il branding viene letto da <b>public/brand.json</b>. Lo puoi modificare solo tu da GitHub.</p>
-        </div>
+<p>Skin premium full-size con nuova grafica Cyber Red Elite senza foro inutile a destra, adattata al layout stabile 470×160.</p>
+<div class="premium-actions">
+<button class="btn secondary small" id="previewCyberRedElite" type="button">Anteprima</button>
+<button class="btn small" id="useCyberRedElite" type="button">Usa premium</button>
+</div>
+</div>
 
-        <div class="section">
-          <div class="section-title">
-            <h2>3. Temi premium</h2>
-            <span class="tag">Colori</span>
-          </div>
-          <div id="palettes" class="palette-grid"></div>
-          <p class="theme-note">Scegli un tema pronto oppure usa i colori avanzati. I temi cambiano titolo, punti, nome, branding, sfondo e bordo.</p>
-        </div>
+<div class="premium-one-card premium-live-card premium-inferno-card" id="premiumCardVoidrageInferno" data-premium-style="voidrage-inferno">
+  <div class="premium-live-head">
+    <div>
+      <strong>VoidRage Inferno</strong>
+      <div class="premium-copy-title">Secondo premium rosso/nero: effetto wow, testi dinamici, branding animato e layout editabile.</div>
+    </div>
+    <span class="premium-status-pill">Beta</span>
+  </div>
+  <div aria-label="Anteprima VoidRage Inferno" class="premium-preview-real premium-inferno-preview-real"></div>
+  <p>Skin premium rosso/nero con cornice aggressiva, separata da Cyber Red Elite e gestibile dal Layout Editor.</p>
+  <div class="premium-actions">
+    <button class="btn secondary small" id="previewVoidrageInferno" type="button" data-preview-premium="voidrage-inferno">Anteprima</button>
+    <button class="btn small" id="useVoidrageInferno" type="button" data-use-premium="voidrage-inferno">Usa premium</button>
+  </div>
+</div>
 
-        <div class="section">
-          <div class="section-title">
-            <h2>4. Colori avanzati</h2>
-            <span class="tag">Custom</span>
-          </div>
-          <div class="grid">
-            <label>Titolo rank <input id="rankColor" value="f5f7faff" /></label>
-            <label>Punti <input id="scoreColor" value="f0d9aaff" /></label>
-            <label>Nome player <input id="nameColor" value="e8edf4ff" /></label>
-            <label>Branding <input id="extraColor" value="f5f7fbff" /></label>
-            <label>Sfondo card <input id="backgroundColor" value="0a0c10fa" /></label>
-            <label>Bordo card <input id="borderColor" value="7c848fff" /></label>
-            <label>Spessore bordo <input id="borderWidth" value="2" inputmode="numeric" /></label>
-            <label>Accento branding <input id="brandAccent" value="ff2a17ff" /></label>
-          </div>
-          <div class="quick-actions">
-            <button id="resetStyle" type="button" class="btn secondary small">Reset stile</button>
-            <button id="randomStyle" type="button" class="btn secondary small">Random style</button>
-          </div>
-        </div>
-
-
-        <div id="guide" class="section">
-          <div class="section-title">
-            <h2>6. Guida rapida</h2>
-            <span class="tag">OBS / TikTok</span>
-          </div>
-          <div class="guide-grid">
-            <div class="guide-card">
-              <h3>OBS</h3>
-              <ol>
-                <li>Clicca “Copia link”.</li>
-                <li>Apri OBS e aggiungi una Fonte Browser.</li>
-                <li>Incolla il link generato.</li>
-                <li>Imposta dimensione 470 × 160.</li>
-              </ol>
-            </div>
-            <div class="guide-card">
-              <h3>TikTok LIVE Studio</h3>
-              <ol>
-                <li>Copia il link generato.</li>
-                <li>Aggiungi una sorgente Link / Browser.</li>
-                <li>Incolla il link.</li>
-                <li>Ridimensionalo dove vuoi in live.</li>
-              </ol>
-            </div>
-          </div>
-          <div class="size-note">Dimensione consigliata: 470 × 160 · Sfondo trasparente · Browser Source / Link Source</div>
-        </div>
-      </section>
-
-      <aside class="panel preview-panel">
-        <div class="section">
-          <div class="section-title">
-            <h2>Anteprima live</h2>
-            <span class="tag">Preview</span>
-          </div>
-          <div class="preview-box">
-            <iframe id="preview" title="Overlay preview"></iframe>
-          </div>
-          <div class="actions">
-            <button id="generate" class="btn secondary">Aggiorna</button>
-            <button id="copy" class="btn">Copia link</button>
-          </div>
-          <textarea id="output" readonly></textarea>
-          <p class="help">Il link può modificare rank e colori, ma non branding e Discord.</p>
-        </div>
-      </aside>
+</div>
+<div class="premium-selected-note" id="premiumSelectedNote">Premium attivo: nessuno. Stai usando l’overlay standard.</div>
+</div>
+<div class="section" id="guide">
+<div class="section-title">
+<h2>5. Guida rapida</h2>
+<span class="tag">OBS / TikTok</span>
+</div>
+<div class="guide-grid">
+<div class="guide-card">
+<h3>OBS</h3>
+<ol>
+<li>Clicca “Copia link”.</li>
+<li>Apri OBS e aggiungi una Fonte Browser.</li>
+<li>Incolla il link generato.</li>
+<li>Imposta dimensione 470 × 160.</li>
+</ol>
+</div>
+<div class="guide-card">
+<h3>TikTok LIVE Studio</h3>
+<ol>
+<li>Copia il link generato.</li>
+<li>Aggiungi una sorgente Link / Browser.</li>
+<li>Incolla il link.</li>
+<li>Ridimensionalo dove vuoi in live.</li>
+</ol>
+</div>
+</div>
+<div class="size-note">Dimensione consigliata: 470 × 160 · Sfondo trasparente · Browser Source / Link Source</div>
+</div>
+</section>
     </div>
   </main>
 
@@ -796,7 +2004,7 @@ iframe#preview,
 
 
     const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV57cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV66cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
     const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let currentProfile = null;
@@ -1076,6 +2284,8 @@ iframe#preview,
     function setValue(id, value) { const el = get(id); if (el) el.value = value; }
 
     async function loadBrandPreview() {
+      const locked = get("lockedPreview");
+      if (!locked) return;
       try {
         const res = await fetch(`/brand.json?v=${Date.now()}`, { cache: "no-store" });
         const cfg = await res.json();
@@ -1083,9 +2293,9 @@ iframe#preview,
         if (cfg.brandText) parts.push("Brand: " + cfg.brandText);
         if (cfg.callToAction) parts.push("CTA: " + cfg.callToAction);
         if (cfg.discordText) parts.push("Discord: " + cfg.discordText);
-        get("lockedPreview").textContent = parts.join("  •  ") || "Branding disattivato";
+        locked.textContent = parts.join("  •  ") || "Branding disattivato";
       } catch {
-        get("lockedPreview").textContent = "ERDRAGON32 • Join the Void • discord.gg/cffTwCcCGD";
+        locked.textContent = "ERDRAGON32 • Join the Void • discord.gg/cffTwCcCGD";
       }
     }
 
@@ -1099,8 +2309,10 @@ iframe#preview,
 
     function resetStyle() {
       applyPalette(palettes[0]);
+      setValue("themeStyle", "default");
       document.querySelectorAll(".palette").forEach((el) => el.classList.remove("active"));
       document.querySelectorAll(".palette")[0]?.classList.add("active");
+      syncPremiumSelection();
     }
 
     function randomStyle() {
@@ -1116,7 +2328,9 @@ iframe#preview,
       "cyber-red": "Cyber Red Impact",
       "glass-minimal": "Glass Minimal",
       "premium-gold": "Premium Gold",
-      "tournament-panel": "Tournament Panel"
+      "tournament-panel": "Tournament Panel",
+      "cyber-red-elite": "Cyber Red Elite",
+      "voidrage-inferno": "VoidRage Inferno"
     };
 
     async function selectPlusStyle(style) {
@@ -1128,6 +2342,37 @@ iframe#preview,
       const note = get("plusSelectedNote");
       if (note) note.textContent = `Stile attivo: ${label}. Layout Plus reale attivo con stemma rank ufficiale dinamico.`;
       await buildLink();
+    }
+
+    async function selectPremiumOverlay(style) {
+      const finalStyle = style || "default";
+      setValue("themeStyle", finalStyle);
+      const cardCyber = get("premiumCardCyberRedElite");
+      const cardInferno = get("premiumCardVoidrageInferno");
+      if (cardCyber) cardCyber.classList.toggle("active", finalStyle === "cyber-red-elite");
+      if (cardInferno) cardInferno.classList.toggle("active", finalStyle === "voidrage-inferno");
+      const note = get("premiumSelectedNote");
+      if (note) {
+        if (finalStyle === "cyber-red-elite") note.textContent = "Premium attivo: Cyber Red Elite. Anteprima live e link finale usano il suo layout dedicato.";
+        else if (finalStyle === "voidrage-inferno") note.textContent = "Premium attivo: VoidRage Inferno. Anteprima live e link finale usano il suo layout dedicato.";
+        else note.textContent = "Premium attivo: nessuno. Al momento stai usando l’overlay standard.";
+      }
+      await buildLink();
+      document.getElementById("livePreviewSection")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function syncPremiumSelection() {
+      const style = get("themeStyle")?.value || "default";
+      const cardCyber = get("premiumCardCyberRedElite");
+      const cardInferno = get("premiumCardVoidrageInferno");
+      if (cardCyber) cardCyber.classList.toggle("active", style === "cyber-red-elite");
+      if (cardInferno) cardInferno.classList.toggle("active", style === "voidrage-inferno");
+      const note = get("premiumSelectedNote");
+      if (note) {
+        if (style === "cyber-red-elite") note.textContent = "Premium attivo: Cyber Red Elite. Anteprima live e link finale usano il suo layout dedicato.";
+        else if (style === "voidrage-inferno") note.textContent = "Premium attivo: VoidRage Inferno. Anteprima live e link finale usano il suo layout dedicato.";
+        else note.textContent = "Premium attivo: nessuno. Al momento stai usando l’overlay standard.";
+      }
     }
 
     function renderPalettes() {
@@ -1284,6 +2529,34 @@ iframe#preview,
       }
     }
 
+
+    const PREMIUM_LAYOUT_STORAGE_KEYS = {
+      "cyber-red-elite": ["ranktag-layout-editor-cyber-red-elite-current-v105","ranktag-layout-editor-cyber-red-elite-current","ranktag-layout-editor-cyber-red-elite-v89","ranktag-layout-editor-cyber-red-elite-v88","ranktag-layout-editor-cyber-red-elite-v82"],
+      "voidrage-inferno": ["ranktag-layout-editor-voidrage-inferno-current-v105","ranktag-layout-editor-voidrage-inferno-current"]
+    };
+
+    function encodeCompletePremiumLayout(layout) {
+      try { return btoa(unescape(encodeURIComponent(JSON.stringify(layout)))); } catch { return ""; }
+    }
+
+    function getCompletePremiumLayoutForLink(style) {
+      try {
+        const keys = PREMIUM_LAYOUT_STORAGE_KEYS[style] || [];
+        for (const key of keys) {
+          const raw = localStorage.getItem(key);
+          if (!raw) continue;
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.elements && (!parsed.style || parsed.style === style)) {
+            parsed.schema = parsed.schema || "ranktag-premium-layout-v2";
+            return parsed;
+          }
+        }
+        return null;
+      } catch {
+        return null;
+      }
+    }
+
     async function buildLink() {
       const url = new URL(window.location.origin + "/");
       const mode = get("mode").value;
@@ -1321,8 +2594,39 @@ iframe#preview,
       });
 
       url.searchParams.set("cacheBust", Date.now().toString());
+      /* RankTag V105 force premium theme in generated link */
+      const selectedThemeStyle = get("themeStyle")?.value || "default";
+      url.searchParams.set("themeStyle", selectedThemeStyle);
+      /* RankTag V105 attach editor layout to generated premium link */
+      if (selectedThemeStyle === "cyber-red-elite") {
+        const savedPremiumLayout = getSavedPremiumLayout();
+        const encodedPremiumLayout = savedPremiumLayout ? encodePremiumLayoutForUrl(savedPremiumLayout) : "";
+        if (encodedPremiumLayout) url.searchParams.set("layout", encodedPremiumLayout);
+      } else {
+        url.searchParams.delete("layout");
+      }
+      /* RankTag V105 final layout param sync */
+      if ((get("themeStyle")?.value || "default") === "cyber-red-elite") {
+        const completeLayout = typeof getCompletePremiumLayoutForLink === "function" ? getCompletePremiumLayoutForLink() : null;
+        const encodedLayout = completeLayout && typeof encodeCompletePremiumLayout === "function" ? encodeCompletePremiumLayout(completeLayout) : "";
+        if (encodedLayout) url.searchParams.set("layout", encodedLayout);
+      }
       get("output").value = url.toString();
+      /* RankTag V105 guarantee layout param */
+      if ((get("themeStyle")?.value || "default") === "cyber-red-elite") {
+        try {
+          const rawLayout = localStorage.getItem("ranktag-layout-editor-cyber-red-elite-current")
+            || localStorage.getItem("ranktag-layout-editor-cyber-red-elite-v89")
+            || localStorage.getItem("ranktag-layout-editor-cyber-red-elite-v88")
+            || localStorage.getItem("ranktag-layout-editor-cyber-red-elite-v82");
+          if (rawLayout && !url.searchParams.get("layout")) {
+            url.searchParams.set("layout", btoa(unescape(encodeURIComponent(rawLayout))));
+            get("output").value = url.toString();
+          }
+        } catch {}
+      }
       get("preview").src = url.toString();
+      syncPremiumSelection();
       return true;
     }
 
@@ -1337,7 +2641,12 @@ iframe#preview,
     get("logoutProfile")?.addEventListener("click", logoutProfile);
     get("saveProject")?.addEventListener("click", saveCurrentProject);
     get("refreshProjects")?.addEventListener("click", renderSavedProjects);
-    document.querySelectorAll(".plus-card").forEach((card) => {
+    get("previewCyberRedElite")?.addEventListener("click", () => selectPremiumOverlay("cyber-red-elite"));
+    get("useCyberRedElite")?.addEventListener("click", () => selectPremiumOverlay("cyber-red-elite"));
+    get("previewVoidrageInferno")?.addEventListener("click", () => selectPremiumOverlay("voidrage-inferno"));
+    get("useVoidrageInferno")?.addEventListener("click", () => selectPremiumOverlay("voidrage-inferno"));
+
+        document.querySelectorAll(".plus-card").forEach((card) => {
       card.addEventListener("click", async (event) => {
         event.preventDefault();
         await selectPlusStyle(card.dataset.themeStyle);
@@ -1353,12 +2662,13 @@ iframe#preview,
 
     renderPalettes();
     loadBrandPreview();
+    syncPremiumSelection();
     buildLink();
     restoreLastProfile();
   </script>
 
 <script>
-/* RankTag V57 force real iframe preview */
+/* RankTag V105 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');
@@ -1385,10 +2695,10 @@ iframe#preview,
       host.appendChild(frame);
     }
     frame.style.width = '470px';
-    frame.style.height = '120px';
+    frame.style.height = '160px';
     frame.style.border = '0';
     frame.style.background = 'transparent';
-    frame.style.transform = 'scale(1.10)';
+    frame.style.transform = 'scale(1)';
     frame.style.transformOrigin = 'center center';
     const next = new URL(url);
     next.searchParams.set('previewBust', Date.now().toString());
@@ -1408,5 +2718,191 @@ iframe#preview,
   });
 })();
 </script>
+
+
+
+
+
+
+
+<script>
+(function rankTagV97InfernoGeneratorPatch(){
+  const INFERNO_STYLE = "voidrage-inferno";
+  const INFERNO_LAYOUT = {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v105.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}};
+  const INFERNO_STORAGE = "ranktag-layout-editor-voidrage-inferno-current-v105";
+
+  function encodeLayout(layout) {
+    try { return btoa(unescape(encodeURIComponent(JSON.stringify(layout)))); } catch { return ""; }
+  }
+
+  function getLayoutForStyle(style) {
+    try {
+      if (style === INFERNO_STYLE) {
+        const saved = localStorage.getItem(INFERNO_STORAGE) || localStorage.getItem("ranktag-layout-editor-voidrage-inferno-current-v104") || localStorage.getItem("ranktag-layout-editor-voidrage-inferno-current");
+        return saved ? JSON.parse(saved) : INFERNO_LAYOUT;
+      }
+      const saved = localStorage.getItem("ranktag-layout-editor-cyber-red-elite-current-v105")
+        || localStorage.getItem("ranktag-layout-editor-cyber-red-elite-current-v103")
+        || localStorage.getItem("ranktag-layout-editor-cyber-red-elite-current")
+        || localStorage.getItem("ranktag-layout-editor-cyber-red-elite-v89")
+        || localStorage.getItem("ranktag-layout-editor-cyber-red-elite-v88");
+      return saved ? JSON.parse(saved) : null;
+    } catch { return style === INFERNO_STYLE ? INFERNO_LAYOUT : null; }
+  }
+
+  function patchOutputAndPreview() {
+    const themeSelect = document.getElementById("themeStyle");
+    const output = document.getElementById("output");
+    const preview = document.getElementById("preview");
+    if (!themeSelect || !output || !output.value) return;
+    const style = themeSelect.value || "default";
+    if (!["cyber-red-elite", INFERNO_STYLE].includes(style)) return;
+    try {
+      const url = new URL(output.value);
+      url.searchParams.set("themeStyle", style);
+      const layout = getLayoutForStyle(style);
+      const encoded = layout ? encodeLayout(layout) : "";
+      if (encoded) url.searchParams.set("layout", encoded);
+      output.value = url.toString();
+      if (preview) preview.src = url.toString();
+    } catch {}
+  }
+
+  document.addEventListener("click", (event) => {
+    const use = event.target.closest("[data-use-premium]");
+    const prev = event.target.closest("[data-preview-premium]");
+    const style = use?.dataset?.usePremium || prev?.dataset?.previewPremium;
+    if (!style) return;
+    const themeSelect = document.getElementById("themeStyle");
+    if (themeSelect) {
+      themeSelect.value = style;
+      themeSelect.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+    setTimeout(patchOutputAndPreview, 80);
+    setTimeout(patchOutputAndPreview, 300);
+  });
+
+  ["change","input"].forEach(evt => {
+    document.addEventListener(evt, () => setTimeout(patchOutputAndPreview, 80), true);
+  });
+  window.addEventListener("load", () => {
+    setTimeout(patchOutputAndPreview, 300);
+    setTimeout(patchOutputAndPreview, 1000);
+  });
+})();
+</script>
+
+
+
+
+<script>
+(function rankTagV100InfernoButtons(){
+  const STYLE = "voidrage-inferno";
+
+  function ensureOption() {
+    const select = document.getElementById("themeStyle");
+    if (!select) return;
+    if (!Array.from(select.options).some(o => o.value === STYLE)) {
+      const opt = document.createElement("option");
+      opt.value = STYLE;
+      opt.textContent = "VoidRage Inferno";
+      select.appendChild(opt);
+    }
+  }
+
+  function activateInferno() {
+    ensureOption();
+    const select = document.getElementById("themeStyle");
+    if (select) {
+      select.value = STYLE;
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+    const generate = document.getElementById("generate");
+    if (generate) generate.click();
+
+    setTimeout(() => {
+      const output = document.getElementById("output");
+      const preview = document.getElementById("preview");
+      if (!output || !output.value) return;
+      try {
+        const url = new URL(output.value);
+        url.searchParams.set("themeStyle", STYLE);
+        output.value = url.toString();
+        if (preview) preview.src = url.toString();
+      } catch {}
+    }, 180);
+  }
+
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("#previewVoidrageInferno, #useVoidrageInferno, [data-use-premium='voidrage-inferno'], [data-preview-premium='voidrage-inferno']")) {
+      e.preventDefault();
+      activateInferno();
+    }
+  }, true);
+
+  window.addEventListener("load", ensureOption);
+  if (document.readyState !== "loading") ensureOption();
+})();
+</script>
+
+
+<script>
+(function rankTagV105FinalGeneratorPremiumSync(){
+  const premiumStyles = ["cyber-red-elite", "voidrage-inferno"];
+  const storage = {
+    "cyber-red-elite": ["ranktag-layout-editor-cyber-red-elite-current-v105","ranktag-layout-editor-cyber-red-elite-current-v103","ranktag-layout-editor-cyber-red-elite-current","ranktag-layout-editor-cyber-red-elite-v89","ranktag-layout-editor-cyber-red-elite-v88","ranktag-layout-editor-cyber-red-elite-v82"],
+    "voidrage-inferno": ["ranktag-layout-editor-voidrage-inferno-current-v105","ranktag-layout-editor-voidrage-inferno-current-v104","ranktag-layout-editor-voidrage-inferno-current"]
+  };
+
+  const defaults = {
+    "cyber-red-elite": {"version":"105","schema":"ranktag-premium-layout-v2","style":"cyber-red-elite","canvas":{"width":470,"height":160},"background":"/assets/premium/cyber-red-elite-bg-v96.png","elements":{"badge":{"x":7,"y":9,"w":136,"h":121,"fontSize":0,"z":5},"rank":{"x":164,"y":39,"w":215,"h":30,"fontSize":25,"z":6},"score":{"x":165,"y":78,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":271,"y":78,"w":142,"h":16,"fontSize":10.5,"z":6},"brand":{"x":165,"y":100,"w":270,"h":16,"fontSize":9.5,"z":6}}},
+    "voidrage-inferno": {"version":"105","schema":"ranktag-premium-layout-v2","style":"voidrage-inferno","canvas":{"width":470,"height":160},"background":"/assets/premium/voidrage-inferno-fit-v105.png","elements":{"badge":{"x":12,"y":20,"w":118,"h":110,"fontSize":0,"z":5},"rank":{"x":150,"y":42,"w":230,"h":30,"fontSize":25,"z":6},"score":{"x":152,"y":78,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":265,"y":78,"w":150,"h":16,"fontSize":10.5,"z":6},"brand":{"x":152,"y":108,"w":260,"h":18,"fontSize":9.5,"z":6}}}
+  };
+  function encode(obj) {
+    try { return btoa(unescape(encodeURIComponent(JSON.stringify(obj)))); } catch { return ""; }
+  }
+  function savedLayout(style) {
+    try {
+      for (const key of storage[style] || []) {
+        const raw = localStorage.getItem(key);
+        if (!raw) continue;
+        const parsed = JSON.parse(raw);
+        if (parsed?.elements && (!parsed.style || parsed.style === style)) return parsed;
+      }
+    } catch {}
+    return null;
+  }
+  function forcePremiumLink() {
+    const select = document.getElementById("themeStyle");
+    const out = document.getElementById("output");
+    const frame = document.getElementById("preview");
+    if (!select || !out || !out.value) return;
+    const style = select.value || "default";
+    if (!premiumStyles.includes(style)) return;
+    try {
+      const url = new URL(out.value);
+      url.searchParams.set("themeStyle", style);
+      const layout = savedLayout(style) || defaults[style];
+      if (layout) url.searchParams.set("layout", encode(layout));
+      else url.searchParams.delete("layout");
+      url.searchParams.set("previewBust", Date.now().toString());
+      out.value = url.toString();
+      if (frame) frame.src = url.toString();
+    } catch {}
+  }
+  document.addEventListener("click", function(e) {
+    const btn = e.target.closest("[data-use-premium],[data-preview-premium],#useCyberRedElite,#previewCyberRedElite,#useVoidrageInferno,#previewVoidrageInferno");
+    if (!btn) return;
+    setTimeout(forcePremiumLink, 220);
+    setTimeout(forcePremiumLink, 600);
+  }, true);
+  document.addEventListener("change", () => setTimeout(forcePremiumLink, 200), true);
+  window.addEventListener("load", () => {
+    setTimeout(forcePremiumLink, 600);
+    setTimeout(forcePremiumLink, 1400);
+  });
+})();
+</script>
+
 </body>
 </html>
