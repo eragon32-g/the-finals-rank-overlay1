@@ -1,5 +1,47 @@
 [
   {
+    "version": "1.0.10",
+    "date": "2026-05-26",
+    "title": "VoidRage Inferno transparency fix + cleanup",
+    "summary": "Corretta la maschera trasparente senza eliminare i dettagli neri interni; rimossi vecchi asset Inferno non più usati.",
+    "fixed": [
+      "la trasparenza rimuoveva anche elementi neri dentro i bordi",
+      "contorno esterno dell'overlay ora resta trasparente",
+      "asset Inferno vecchi rimossi dalla cartella premium"
+    ],
+    "removed": [
+      "voidrage-inferno-bg-v97.png",
+      "voidrage-inferno-base-v97.png",
+      "voidrage-inferno-thumb-v97.png",
+      "voidrage-inferno-bg-v98.png",
+      "voidrage-inferno-thumb-v98.png",
+      "voidrage-inferno-base-v98.png",
+      "voidrage-inferno-bg-v99.png",
+      "voidrage-inferno-thumb-v99.png",
+      "voidrage-inferno-base-v99.png",
+      "voidrage-inferno-bg-v100.png",
+      "voidrage-inferno-thumb-v100.png",
+      "voidrage-inferno-base-v100.png",
+      "voidrage-inferno-bg-v101.png",
+      "voidrage-inferno-thumb-v101.png",
+      "voidrage-inferno-base-v101.png",
+      "voidrage-inferno-bg-v102.png",
+      "voidrage-inferno-thumb-v102.png",
+      "voidrage-inferno-base-v102.png",
+      "voidrage-inferno-bg-v103.png",
+      "voidrage-inferno-thumb-v103.png",
+      "voidrage-inferno-base-v103.png",
+      "voidrage-inferno-fit-v103.png",
+      "voidrage-inferno-fit-v104.png",
+      "voidrage-inferno-bg-v104.png",
+      "voidrage-inferno-thumb-v104.png",
+      "voidrage-inferno-fit-v105.png",
+      "voidrage-inferno-bg-v105.png",
+      "voidrage-inferno-thumb-v105.png",
+      "voidrage-inferno-base-v105.png"
+    ]
+  },
+  {
     "version": "1.0.9",
     "date": "2026-05-26",
     "title": "VoidRage Inferno resize fix",
@@ -106,7 +148,7 @@
     "summary": "Aggiunto secondo overlay premium rosso/nero separato da Cyber Red Elite.",
     "added": [
       "style voidrage-inferno",
-      "/assets/premium/voidrage-inferno-bg-v105.png",
+      "/assets/premium/voidrage-inferno-bg-v110.png",
       "/assets/premium/voidrage-inferno-layout.json",
       "card premium nel generator",
       "supporto renderer detached multi-premium"
@@ -227,7 +269,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=109",
+      "aggiornati thumb premium e cache buster a v=110",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -426,7 +468,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=109"
+      "riferimenti cache aggiornati a v=110"
     ]
   },
   {

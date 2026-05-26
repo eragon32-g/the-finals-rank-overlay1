@@ -1,8 +1,8 @@
 {
-  "version": "1.0.9",
+  "version": "1.0.10",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "1.0.9: VoidRage Inferno ridimensionato correttamente a 470x160 con contorno esterno trasparente."
+  "note": "1.0.10: fix trasparenza VoidRage Inferno senza rimuovere gli elementi neri interni e pulizia file premium inutilizzati."
 }
