@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag v1.0.7 generator real-preview lock */
+/* RankTag v1.0.8 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -611,7 +611,7 @@ iframe#preview,
 
 
 
-/* RankTag v1.0.7 - layout rework: account full width, settings grid, preview bottom */
+/* RankTag v1.0.8 - layout rework: account full width, settings grid, preview bottom */
 .layout {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -769,7 +769,7 @@ aside.panel {
 
 
 
-/* RankTag v1.0.7 - compact generator, account unchanged */
+/* RankTag v1.0.8 - compact generator, account unchanged */
 body {
   padding: 16px !important;
 }
@@ -1047,7 +1047,7 @@ body {
 
 
 
-/* RankTag v1.0.7 - order, compact alignment and premium preview fix */
+/* RankTag v1.0.8 - order, compact alignment and premium preview fix */
 .settings-panel {
   grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
   align-items: stretch !important;
@@ -1163,7 +1163,7 @@ body {
 
 
 
-/* RankTag v1.0.7 - repaired generator layout */
+/* RankTag v1.0.8 - repaired generator layout */
 .settings-panel {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -1225,7 +1225,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 
 
 
-/* RankTag v1.0.7 - premium polish */
+/* RankTag v1.0.8 - premium polish */
 #livePreviewSection .preview-box {
   overflow: hidden !important;
   padding: 10px 0 !important;
@@ -1274,7 +1274,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 
 
 
-/* RankTag v1.0.7 - step 1/2 premium scale and alignment */
+/* RankTag v1.0.8 - step 1/2 premium scale and alignment */
 #livePreviewSection .preview-box {
   min-height: 230px !important;
   display: flex !important;
@@ -1323,7 +1323,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 }
 
 
-/* RankTag v1.0.7 - premium final override */
+/* RankTag v1.0.8 - premium final override */
 #livePreviewSection .preview-box,
 .preview-box {
   display:flex !important;
@@ -1367,7 +1367,7 @@ iframe#preview {
 
 
 
-/* RankTag v1.0.7 - premium card micro alignment */
+/* RankTag v1.0.8 - premium card micro alignment */
 #overlayPremium .premium-preview-real {
   min-height: 140px !important;
   padding: 12px !important;
@@ -1393,7 +1393,7 @@ iframe#preview {
 
 
 
-/* RankTag v1.0.7 - Premium reset engine card */
+/* RankTag v1.0.8 - Premium reset engine card */
 #overlayPremium .premium-preview-real.premium-preview-skin {
   min-height: 170px !important;
   padding: 14px !important;
@@ -1518,7 +1518,7 @@ iframe#preview {
 
 
 
-/* RankTag v1.0.7 - Premium card preview full background */
+/* RankTag v1.0.8 - Premium card preview full background */
 #overlayPremium .premium-preview-real.premium-preview-skin {
   min-height: 202px !important;
   padding: 18px !important;
@@ -1598,7 +1598,7 @@ iframe#preview {
 
 
 
-/* RankTag v1.0.7 - new premium background alignment */
+/* RankTag v1.0.8 - new premium background alignment */
 .premium-preview-badge {
   background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=105') center / 100% 100% no-repeat !important;
 }
@@ -1638,7 +1638,7 @@ iframe#preview {
 
 
 
-/* RankTag v1.0.7 - locked premium coordinates */
+/* RankTag v1.0.8 - locked premium coordinates */
 .premium-preview-emblem {
   left: 18px !important;
   top: 35px !important;
@@ -1677,7 +1677,7 @@ iframe#preview {
 
 
 
-/* RankTag v1.0.7 - generator premium preview uses locked coordinates */
+/* RankTag v1.0.8 - generator premium preview uses locked coordinates */
 .premium-preview-emblem {
   left: 7px !important;
   top: 9px !important;
@@ -1717,6 +1717,30 @@ iframe#preview {
   display: none !important;
 }
 
+
+
+/* RankTag v1.0.8 - Animations Beta */
+.animations-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.animations-grid label {
+  display: grid;
+  gap: 7px;
+}
+.anim-preview-note {
+  margin-top: 10px;
+  padding: 11px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(125,211,252,.16);
+  background: rgba(125,211,252,.06);
+  color: rgba(246,248,251,.72);
+  font-size: 13px;
+}
+@media (max-width: 760px) {
+  .animations-grid { grid-template-columns: 1fr; }
+}
 
 </style>
 
@@ -1767,7 +1791,7 @@ iframe#preview {
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><button class="tag" id="adminUnlock" type="button" style="cursor:pointer;">Admin</button><div class="tag">RankTag v1.0.7</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><button class="tag" id="adminUnlock" type="button" style="cursor:pointer;">Admin</button><div class="tag">RankTag v1.0.8</div></div>
     </header>
 
     <div class="layout">
@@ -1916,9 +1940,55 @@ iframe#preview {
 <textarea id="output" readonly=""></textarea>
 <p class="help">Il link può modificare rank e colori, ma non branding e Discord.</p>
 </div>
+
+<div class="section animations-section" id="animationsSection">
+  <div class="section-title">
+    <h2>4. Animazioni</h2>
+    <span class="tag">Beta</span>
+  </div>
+  <div class="animations-grid">
+    <label>Animazione entrata
+      <select id="animationType">
+        <option value="none">Nessuna</option>
+        <option value="fade">Fade</option>
+        <option value="slide">Slide</option>
+        <option value="zoom">Zoom</option>
+        <option value="glitch">Glitch</option>
+      </select>
+    </label>
+    <label>Intensità
+      <select id="animationIntensity">
+        <option value="soft">Soft</option>
+        <option value="normal" selected>Normal</option>
+        <option value="aggressive">Aggressive</option>
+      </select>
+    </label>
+    <label>Velocità
+      <select id="animationSpeed">
+        <option value="slow">Lenta</option>
+        <option value="normal" selected>Normale</option>
+        <option value="fast">Veloce</option>
+      </select>
+    </label>
+    <label>Glow bordo
+      <select id="glowPulse">
+        <option value="off">Off</option>
+        <option value="on" selected>On</option>
+      </select>
+    </label>
+    <label>Animazione brand
+      <select id="brandAnimation">
+        <option value="off">Off</option>
+        <option value="on" selected>On</option>
+      </select>
+    </label>
+  </div>
+  <div class="anim-preview-note">Le animazioni vengono salvate nel link OBS/TikTok. Beta: pensata per overlay premium e standard.</div>
+</div>
+
 <div class="section premium-section" id="overlayPremium">
 <div class="section-title">
-<h2>4. Overlay Premium</h2>
+<h2>5. Overlay Premium</h2>
 <span class="tag">1 alla volta</span>
 </div>
 <div class="premium-cards-grid">
@@ -1970,7 +2040,7 @@ iframe#preview {
 </div>
 <div class="section" id="guide">
 <div class="section-title">
-<h2>5. Guida rapida</h2>
+<h2>6. Guida rapida</h2>
 <span class="tag">OBS / TikTok</span>
 </div>
 <div class="guide-grid">
@@ -2027,7 +2097,7 @@ iframe#preview {
     }
 
     function collectProjectData() {
-      const fields = ["mode","player","badgeFile","rankScore","scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","themeStyle"];
+      const fields = ["mode","player","badgeFile","rankScore","scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","themeStyle","animationType","animationIntensity","animationSpeed","glowPulse","brandAnimation"];
       const data = {};
       fields.forEach((field) => {
         const el = get(field);
@@ -2589,14 +2659,14 @@ iframe#preview {
         url.searchParams.set("leaderboard", "s10");
       }
 
-      ["scoreLabel", "showStatus", "rankColor", "scoreColor", "nameColor", "extraColor", "backgroundColor", "borderColor", "borderWidth", "brandAccent", "themeStyle"].forEach((field) => {
+      ["scoreLabel", "showStatus", "rankColor", "scoreColor", "nameColor", "extraColor", "backgroundColor", "borderColor", "borderWidth", "brandAccent", "themeStyle", "animationType", "animationIntensity", "animationSpeed", "glowPulse", "brandAnimation"].forEach((field) => {
         const value = get(field)?.value?.trim();
         if (value) url.searchParams.set(field, value);
       });
 
       url.searchParams.set("cacheBust", Date.now().toString());
 
-      /* RankTag v1.0.7 - public premium links stay short and stable.
+      /* RankTag v1.0.8 - public premium links stay short and stable.
          The overlay renderer contains the premium layout internally.
          This avoids broken/too-long clipboard URLs and wrong VoidRage render after paste. */
       const selectedThemeStyle = get("themeStyle")?.value || "default";
@@ -2721,7 +2791,7 @@ renderPalettes();
   </script>
 
 <script>
-/* RankTag v1.0.7 force real iframe preview */
+/* RankTag v1.0.8 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');
@@ -2959,7 +3029,7 @@ renderPalettes();
 
 
 <script>
-/* RankTag v1.0.7.1 - definitive premium link copier + admin-only editor link */
+/* RankTag v1.0.8.1 - definitive premium link copier + admin-only editor link */
 (function rankTagV1051DefinitivePremiumLink(){
   const PREMIUM = ["cyber-red-elite", "voidrage-inferno"];
   const DEFAULTS = {

@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "1.0.7";
+const OVERLAY_VERSION = "1.0.8";
 const params = new URLSearchParams(window.location.search);
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
@@ -549,7 +549,7 @@ if (isManualMode()) {
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
-/* RankTag v1.0.7 Plus style finalizer */
+/* RankTag v1.0.8 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red-elite", "voidrage-inferno", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -584,7 +584,7 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 })();
 
 
-/* RankTag v1.0.7 - single source image-base Plus engine */
+/* RankTag v1.0.8 - single source image-base Plus engine */
 let rankTagPlusLayoutsPromise = null;
 
 function loadRankTagPlusLayouts() {
@@ -718,7 +718,7 @@ function loadRankTagPlusLayouts() {
   });
 })();
 
-/* RankTag v1.0.7 render marker */
+/* RankTag v1.0.8 render marker */
 document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
@@ -731,7 +731,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.7 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
+/* RankTag v1.0.8 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
 (function rankTagPremiumBackdropV78(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -964,7 +964,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     style.textContent += `
 `;
     style.textContent += `
-/* RankTag v1.0.7 - locked premium coordinates from Layout Editor */
+/* RankTag v1.0.8 - locked premium coordinates from Layout Editor */
 #badge.rt78-cyber-red-elite .rank-mark,
 #badge.rt80-cyber-red-elite .rank-mark {
   left: 7px !important;
@@ -1066,7 +1066,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 })();
 
 
-/* RankTag v1.0.7 - Premium backdrop engine: full 470x160 background adapted to stable layout */
+/* RankTag v1.0.8 - Premium backdrop engine: full 470x160 background adapted to stable layout */
 (function rankTagPremiumBackdropV80(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -1339,7 +1339,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.7 - runtime premium layout from URL param */
+/* RankTag v1.0.8 - runtime premium layout from URL param */
 (function rankTagPremiumRuntimeLayoutV89(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
@@ -1472,7 +1472,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.7 - AUTHORITATIVE premium layout sync */
+/* RankTag v1.0.8 - AUTHORITATIVE premium layout sync */
 (function rankTagPremiumLayoutAuthoritativeV90(){
   if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
 
@@ -1683,7 +1683,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.7 - DETACHED PREMIUM RENDERER
+/* RankTag v1.0.8 - DETACHED PREMIUM RENDERER
    Premium Cyber Red Elite no longer uses the standard card layout.
    It renders the exact same JSON layer model used by layout-editor.html. */
 (function rankTagDetachedPremiumRendererV92(){
@@ -2083,7 +2083,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.7 - MULTI PREMIUM DETACHED RENDERER */
+/* RankTag v1.0.8 - MULTI PREMIUM DETACHED RENDERER */
 (function rankTagMultiPremiumDetachedRendererV97(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
@@ -2403,7 +2403,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.7 - FINAL AUTHORITATIVE PREMIUM RENDERER */
+/* RankTag v1.0.8 - FINAL AUTHORITATIVE PREMIUM RENDERER */
 (function rankTagV105FinalPremiumRenderer(){
   const premiumStyles = ["cyber-red-elite", "voidrage-inferno"];
   if (typeof themeStyle === "undefined" || !premiumStyles.includes(themeStyle)) return;
@@ -2561,7 +2561,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.7.3 - SINGLE AUTHORITATIVE PREMIUM RENDERER FIX
+/* RankTag v1.0.8.3 - SINGLE AUTHORITATIVE PREMIUM RENDERER FIX
    Fixes VoidRage Inferno test link: always renders a detached 470x160 overlay,
    ignores older premium renderers, transparent page/OBS output, correct selected style. */
 (function rankTagV1053AuthoritativePremiumRenderer(){
@@ -2709,7 +2709,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.7 - release premium renderer guard
+/* RankTag v1.0.8 - release premium renderer guard
    Keeps premium overlays self-contained. Public links only need themeStyle. */
 (function rankTagV100ReleasePremiumGuard(){
   const allowed = ["cyber-red-elite", "voidrage-inferno"];
@@ -2744,7 +2744,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.7 - FINAL PREMIUM RENDERER
+/* RankTag v1.0.8 - FINAL PREMIUM RENDERER
    Fix:
    - premium copied links no longer need layout param
    - VoidRage Inferno render matches the generator preview sizing/position
@@ -2871,5 +2871,134 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
   }
   window.addEventListener("load",()=>{render();setTimeout(render,80);setTimeout(render,300);setTimeout(render,900);setTimeout(render,1600);});
   render();
+})();
+
+
+
+
+/* RankTag v1.0.8 - Animations Beta runtime */
+(function rankTagAnimationsBetaV108(){
+  const qs = new URLSearchParams(window.location.search);
+
+  const animationType = (qs.get("animationType") || "none").toLowerCase();
+  const animationIntensity = (qs.get("animationIntensity") || "normal").toLowerCase();
+  const animationSpeed = (qs.get("animationSpeed") || "normal").toLowerCase();
+  const glowPulse = (qs.get("glowPulse") || "off").toLowerCase();
+  const brandAnimation = (qs.get("brandAnimation") || "on").toLowerCase();
+
+  const allowedTypes = ["none","fade","slide","zoom","glitch"];
+  const allowedIntensity = ["soft","normal","aggressive"];
+  const allowedSpeed = ["slow","normal","fast"];
+
+  const type = allowedTypes.includes(animationType) ? animationType : "none";
+  const intensity = allowedIntensity.includes(animationIntensity) ? animationIntensity : "normal";
+  const speed = allowedSpeed.includes(animationSpeed) ? animationSpeed : "normal";
+
+  function speedMs() {
+    if (speed === "slow") return "900ms";
+    if (speed === "fast") return "380ms";
+    return "620ms";
+  }
+
+  function ensureStyle() {
+    if (document.getElementById("rt-v108-animations-style")) return;
+    const style = document.createElement("style");
+    style.id = "rt-v108-animations-style";
+    style.textContent = `
+      :root { --rt-anim-speed: ${speedMs()}; --rt-glitch-shift: ${intensity === "aggressive" ? "4px" : intensity === "soft" ? "1px" : "2px"}; }
+
+      .rt-anim-fade { animation: rtAnimFade var(--rt-anim-speed) ease both; }
+      .rt-anim-slide { animation: rtAnimSlide var(--rt-anim-speed) cubic-bezier(.2,.9,.2,1) both; }
+      .rt-anim-zoom { animation: rtAnimZoom var(--rt-anim-speed) cubic-bezier(.2,.9,.2,1) both; }
+      .rt-anim-glitch { animation: rtAnimGlitch var(--rt-anim-speed) steps(2,end) both; }
+
+      .rt-glow-pulse {
+        animation: rtGlowPulse ${speed === "fast" ? "1.2s" : speed === "slow" ? "2.8s" : "1.8s"} ease-in-out infinite alternate;
+      }
+
+      .rt-brand-off .brand-drawer,
+      .rt-brand-off .rt103-brand,
+      .rt-brand-off .rt1053-brand,
+      .rt-brand-off .rt-v101-brand,
+      .rt-brand-off .rt-v101-marquee span {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      @keyframes rtAnimFade {
+        from { opacity: 0; filter: blur(4px); }
+        to { opacity: 1; filter: blur(0); }
+      }
+
+      @keyframes rtAnimSlide {
+        from { opacity: 0; transform: translateX(${intensity === "aggressive" ? "-42px" : intensity === "soft" ? "-14px" : "-26px"}); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+
+      @keyframes rtAnimZoom {
+        from { opacity: 0; transform: scale(${intensity === "aggressive" ? ".78" : intensity === "soft" ? ".94" : ".86"}); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      @keyframes rtAnimGlitch {
+        0% { opacity: 0; transform: translateX(calc(var(--rt-glitch-shift) * -1)); filter: hue-rotate(22deg); }
+        25% { opacity: 1; transform: translateX(var(--rt-glitch-shift)); }
+        50% { transform: translateX(calc(var(--rt-glitch-shift) * -1)); filter: contrast(1.4); }
+        75% { transform: translateX(var(--rt-glitch-shift)); }
+        100% { transform: translateX(0); filter: none; }
+      }
+
+      @keyframes rtGlowPulse {
+        from { filter: drop-shadow(0 0 ${intensity === "aggressive" ? "8px" : "4px"} rgba(255,42,23,.42)); }
+        to { filter: drop-shadow(0 0 ${intensity === "aggressive" ? "24px" : intensity === "soft" ? "10px" : "16px"} rgba(255,42,23,.82)); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function applyAnimations() {
+    ensureStyle();
+    const root = document.getElementById("badge") || document.querySelector(".badge") || document.getElementById("overlay");
+    if (!root) return;
+
+    root.classList.remove("rt-anim-fade","rt-anim-slide","rt-anim-zoom","rt-anim-glitch","rt-glow-pulse","rt-brand-off");
+
+    if (type !== "none") {
+      root.classList.add("rt-anim-" + type);
+    }
+
+    if (glowPulse === "on") {
+      root.classList.add("rt-glow-pulse");
+    }
+
+    if (brandAnimation === "off") {
+      root.classList.add("rt-brand-off");
+    }
+
+    root.dataset.animationType = type;
+    root.dataset.animationIntensity = intensity;
+    root.dataset.animationSpeed = speed;
+    root.dataset.glowPulse = glowPulse;
+    root.dataset.brandAnimation = brandAnimation;
+  }
+
+  window.addEventListener("load", () => {
+    applyAnimations();
+    setTimeout(applyAnimations, 120);
+    setTimeout(applyAnimations, 500);
+    setTimeout(applyAnimations, 1200);
+  });
+
+  const observer = new MutationObserver(() => {
+    clearTimeout(window.__rtV108AnimTimer);
+    window.__rtV108AnimTimer = setTimeout(applyAnimations, 60);
+  });
+
+  window.addEventListener("load", () => {
+    const target = document.getElementById("overlay") || document.body;
+    if (target) observer.observe(target, { childList: true, subtree: true, attributes: true });
+  });
+
+  applyAnimations();
 })();
 

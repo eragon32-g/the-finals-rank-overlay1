@@ -1,5 +1,17 @@
 [
   {
+    "version": "1.0.8",
+    "date": "2026-05-26",
+    "title": "Animations Beta",
+    "summary": "Aggiunta sezione Animazioni nel generator con parametri salvati nel link.",
+    "added": [
+      "Animazione entrata fade, slide, zoom e glitch",
+      "Controllo intensità e velocità",
+      "Glow bordo on/off",
+      "Brand animation on/off"
+    ]
+  },
+  {
     "version": "1.0.7",
     "date": "2026-05-26",
     "title": "Fix definitivo accesso admin Layout Editor",
@@ -70,7 +82,7 @@
   {
     "version": "1.0.0",
     "date": "2026-05-26",
-    "title": "Pubblicazione RankTag v1.0.7",
+    "title": "Pubblicazione RankTag v1.0.8",
     "summary": "Prima release pubblica pulita con generator, overlay premium, accesso admin protetto e sezione updates ripulita.",
     "added": [
       "Overlay premium Cyber Red Elite",
