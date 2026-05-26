@@ -114,7 +114,7 @@
       height: 160px;
       user-select: none;
       overflow: hidden;
-      background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=101') center / 100% 100% no-repeat;
+      background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=102') center / 100% 100% no-repeat;
       box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 16px 38px rgba(0,0,0,.34);
     }
     .item {
@@ -211,7 +211,7 @@
       <h1>Layout Editor</h1>
       <div class="sub">Area interna per spostare gli elementi premium e salvare coordinate bloccate per il sito pubblico. Questo editor è solo per i layout premium: non modifica e non vincola il default.</div>
     </div>
-    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="badge" href="/generator.html" style="text-decoration:none;color:inherit;">← Rank Generator</a><div class="badge">RankTag V101</div></div>
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="badge" href="/generator.html" style="text-decoration:none;color:inherit;">← Rank Generator</a><div class="badge">RankTag V102</div></div>
   </div>
 
   <div class="wrap">
@@ -235,7 +235,7 @@
       <div class="canvasWrap" id="canvasWrap">
         <div class="canvasScaler" id="canvasScaler">
           <div id="canvas">
-            <div class="item badgeEl" data-key="badge"><img src="/assets/badges/platinum.svg?v=101" alt="badge"/><div class="handle"></div></div>
+            <div class="item badgeEl" data-key="badge"><img src="/assets/badges/platinum.svg?v=102" alt="badge"/><div class="handle"></div></div>
             <div class="item rankEl" data-key="rank">PLATINUM 1<div class="handle"></div></div>
             <div class="item scoreEl" data-key="score">ELO: 37.705<div class="handle"></div></div>
             <div class="item playerEl" data-key="player">NOMEPLAYER#1234<div class="handle"></div></div>
@@ -298,8 +298,8 @@
         label: "Cyber Red Elite",
         background: "/assets/premium/cyber-red-elite-bg-v96.png",
         download: "cyber-red-elite-layout.json",
-        storageKey: "ranktag-layout-editor-cyber-red-elite-current",
-        legacyKeys: ["ranktag-layout-editor-cyber-red-elite-v89","ranktag-layout-editor-cyber-red-elite-v88","ranktag-layout-editor-cyber-red-elite-v82"],
+        storageKey: "ranktag-layout-editor-cyber-red-elite-current-v102",
+        legacyKeys: ["ranktag-layout-editor-cyber-red-elite-current","ranktag-layout-editor-cyber-red-elite-v89","ranktag-layout-editor-cyber-red-elite-v88","ranktag-layout-editor-cyber-red-elite-v82"],
         defaults: {
           badge: {x:7,y:9,w:136,h:121,fontSize:0,z:5},
           rank: {x:164,y:39,w:215,h:30,fontSize:25,z:6},
@@ -310,10 +310,10 @@
       },
       "voidrage-inferno": {
         label: "VoidRage Inferno",
-        background: "/assets/premium/voidrage-inferno-bg-v101.png",
+        background: "/assets/premium/voidrage-inferno-bg-v102.png",
         download: "voidrage-inferno-layout.json",
-        storageKey: "ranktag-layout-editor-voidrage-inferno-current",
-        legacyKeys: [],
+        storageKey: "ranktag-layout-editor-voidrage-inferno-current-v102",
+        legacyKeys: ["ranktag-layout-editor-voidrage-inferno-current"],
         defaults: {
           badge: {x:12,y:20,w:118,h:110,fontSize:0,z:5},
           rank: {x:150,y:42,w:230,h:30,fontSize:25,z:6},
@@ -394,7 +394,7 @@
     function applyCanvasStyle() {
       const cfg = currentConfig();
       if (title) title.textContent = cfg.label;
-      canvas.style.background = `transparent url('${cfg.background}?v=101') center / 100% 100% no-repeat`;
+      canvas.style.background = `transparent url('${cfg.background}?v=102') center / 100% 100% no-repeat`;
     }
 
     function render() {

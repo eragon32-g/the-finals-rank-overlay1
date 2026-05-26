@@ -1,5 +1,5 @@
-# RankTag V101
+# RankTag V102
 
-- VoidRage Inferno uses the correct red/black background asset
-- Layout Editor now stores a separate layout per premium overlay
-- Generator attaches the correct style-specific JSON layout to preview/link
+- VoidRage Inferno now uses a truly transparent PNG
+- Layout Editor saves each premium layout separately
+- Generator reads the correct saved layout per premium style

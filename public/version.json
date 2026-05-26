@@ -1,8 +1,8 @@
 {
-  "version": "101",
+  "version": "102",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "VoidRage Inferno image corrected; layout editor isolated per premium style."
+  "note": "Fixed transparent Inferno background and isolated layout editor storage per premium overlay."
 }

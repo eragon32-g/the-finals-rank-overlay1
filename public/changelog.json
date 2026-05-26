@@ -1,5 +1,16 @@
 [
   {
+    "version": "102",
+    "date": "2026-05-26",
+    "title": "Inferno transparency fix + per-premium editor split",
+    "summary": "VoidRage Inferno now uses a truly transparent PNG and the layout editor stores Cyber Red Elite and VoidRage Inferno separately.",
+    "fixed": [
+      "removed white non-transparent checkerboard from VoidRage Inferno background",
+      "style-specific editor storage keys to stop one premium from overwriting the other",
+      "generator fallback reads the correct per-style saved layout"
+    ]
+  },
+  {
     "version": "101",
     "date": "2026-05-26",
     "title": "Inferno image fix + per-style layout editor",
