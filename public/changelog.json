@@ -1,5 +1,16 @@
 [
   {
+    "version": "101",
+    "date": "2026-05-26",
+    "title": "Inferno image fix + per-style layout editor",
+    "summary": "VoidRage Inferno now uses its correct red/black image and the Layout Editor saves separate JSON/state for each premium overlay.",
+    "fixed": [
+      "wrong/stale Inferno background asset",
+      "Layout Editor changes leaking across premium overlays",
+      "generator layout param now works per premium style"
+    ]
+  },
+  {
     "version": "100",
     "date": "2026-05-25",
     "title": "VoidRage Inferno dentro Overlay Premium",

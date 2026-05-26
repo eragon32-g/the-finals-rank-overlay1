@@ -1,8 +1,8 @@
 {
-  "version": "100",
+  "version": "101",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V100: VoidRage Inferno inserito staticamente dentro la sezione 4 Overlay Premium, accanto a Cyber Red Elite."
+  "note": "VoidRage Inferno image corrected; layout editor isolated per premium style."
 }

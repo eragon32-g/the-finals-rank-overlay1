@@ -1,9 +1,5 @@
-# RankTag V100
+# RankTag V101
 
-Fix statico sezione Overlay Premium.
-
-## Include
-- VoidRage Inferno dentro punto 4 Overlay Premium
-- griglia premium con Cyber Red Elite + VoidRage Inferno
-- preview Inferno con classe dedicata, senza ereditare CSS Cyber
-- rimossi script che piazzavano la card in fondo pagina
+- VoidRage Inferno uses the correct red/black background asset
+- Layout Editor now stores a separate layout per premium overlay
+- Generator attaches the correct style-specific JSON layout to preview/link

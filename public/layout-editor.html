@@ -114,7 +114,7 @@
       height: 160px;
       user-select: none;
       overflow: hidden;
-      background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=100') center / 100% 100% no-repeat;
+      background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=101') center / 100% 100% no-repeat;
       box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 16px 38px rgba(0,0,0,.34);
     }
     .item {
@@ -211,7 +211,7 @@
       <h1>Layout Editor</h1>
       <div class="sub">Area interna per spostare gli elementi premium e salvare coordinate bloccate per il sito pubblico. Questo editor è solo per i layout premium: non modifica e non vincola il default.</div>
     </div>
-    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="badge" href="/generator.html" style="text-decoration:none;color:inherit;">← Rank Generator</a><div class="badge">RankTag V100</div></div>
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="badge" href="/generator.html" style="text-decoration:none;color:inherit;">← Rank Generator</a><div class="badge">RankTag V101</div></div>
   </div>
 
   <div class="wrap">
@@ -235,7 +235,7 @@
       <div class="canvasWrap" id="canvasWrap">
         <div class="canvasScaler" id="canvasScaler">
           <div id="canvas">
-            <div class="item badgeEl" data-key="badge"><img src="/assets/badges/platinum.svg?v=100" alt="badge"/><div class="handle"></div></div>
+            <div class="item badgeEl" data-key="badge"><img src="/assets/badges/platinum.svg?v=101" alt="badge"/><div class="handle"></div></div>
             <div class="item rankEl" data-key="rank">PLATINUM 1<div class="handle"></div></div>
             <div class="item scoreEl" data-key="score">ELO: 37.705<div class="handle"></div></div>
             <div class="item playerEl" data-key="player">NOMEPLAYER#1234<div class="handle"></div></div>
@@ -289,64 +289,57 @@
     </aside>
   </div>
 
-  <script>
-    const STORAGE_KEY = "ranktag-layout-editor-cyber-red-elite-current";
-    const LEGACY_STORAGE_KEYS = ["ranktag-layout-editor-cyber-red-elite-v82","ranktag-layout-editor-cyber-red-elite-v88"];
-    const defaults = {
-      "badge": {
-            "x": 7,
-            "y": 9,
-            "w": 136,
-            "h": 121,
-            "fontSize": 0,
-            "z": 5
-      },
-      "rank": {
-            "x": 164,
-            "y": 39,
-            "w": 215,
-            "h": 30,
-            "fontSize": 25,
-            "z": 6
-      },
-      "score": {
-            "x": 165,
-            "y": 78,
-            "w": 120,
-            "h": 16,
-            "fontSize": 12,
-            "z": 6
-      },
-      "player": {
-            "x": 271,
-            "y": 78,
-            "w": 142,
-            "h": 16,
-            "fontSize": 10.5,
-            "z": 6
-      },
-      "brand": {
-            "x": 165,
-            "y": 100,
-            "w": 270,
-            "h": 16,
-            "fontSize": 9.5,
-            "z": 6
-      }
-};
+  
+</html>
 
-    let layout = JSON.parse(JSON.stringify(defaults));
+  <script>
+    const STYLE_CONFIGS = {
+      "cyber-red-elite": {
+        label: "Cyber Red Elite",
+        background: "/assets/premium/cyber-red-elite-bg-v96.png",
+        download: "cyber-red-elite-layout.json",
+        storageKey: "ranktag-layout-editor-cyber-red-elite-current",
+        legacyKeys: ["ranktag-layout-editor-cyber-red-elite-v89","ranktag-layout-editor-cyber-red-elite-v88","ranktag-layout-editor-cyber-red-elite-v82"],
+        defaults: {
+          badge: {x:7,y:9,w:136,h:121,fontSize:0,z:5},
+          rank: {x:164,y:39,w:215,h:30,fontSize:25,z:6},
+          score: {x:165,y:78,w:120,h:16,fontSize:12,z:6},
+          player: {x:271,y:78,w:142,h:16,fontSize:10.5,z:6},
+          brand: {x:165,y:100,w:270,h:16,fontSize:9.5,z:6}
+        }
+      },
+      "voidrage-inferno": {
+        label: "VoidRage Inferno",
+        background: "/assets/premium/voidrage-inferno-bg-v101.png",
+        download: "voidrage-inferno-layout.json",
+        storageKey: "ranktag-layout-editor-voidrage-inferno-current",
+        legacyKeys: [],
+        defaults: {
+          badge: {x:12,y:20,w:118,h:110,fontSize:0,z:5},
+          rank: {x:150,y:42,w:230,h:30,fontSize:25,z:6},
+          score: {x:152,y:78,w:120,h:16,fontSize:12,z:6},
+          player: {x:265,y:78,w:150,h:16,fontSize:10.5,z:6},
+          brand: {x:152,y:108,w:260,h:18,fontSize:9.5,z:6}
+        }
+      }
+    };
+
+    let currentStyle = document.getElementById("premiumStyleSelect")?.value || "cyber-red-elite";
+    let styleLayouts = {};
     let activeKey = "badge";
     let zoom = 1.65;
     const els = {};
     const canvas = document.getElementById("canvas");
     const scaler = document.getElementById("canvasScaler");
     const jsonOut = document.getElementById("jsonOut");
+    const title = document.getElementById("editorStyleTitle");
+    const styleSelect = document.getElementById("premiumStyleSelect");
 
     document.querySelectorAll(".item").forEach(el => {
       els[el.dataset.key] = el;
       el.addEventListener("pointerdown", startDrag);
       el.querySelector(".handle").addEventListener("pointerdown", startResize);
+      el.addEventListener("click", () => select(el.dataset.key));
     });
 
     const fields = ["x","y","w","h","fontSize","z"].reduce((acc, id) => {
@@ -354,10 +347,25 @@
       return acc;
     }, {});
 
+    function clone(v){ return JSON.parse(JSON.stringify(v)); }
     function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+    function currentConfig(){ return STYLE_CONFIGS[currentStyle] || STYLE_CONFIGS["cyber-red-elite"]; }
+    function currentLayout(){ return styleLayouts[currentStyle]; }
+    function storageKey(style=currentStyle){ return STYLE_CONFIGS[style].storageKey; }
 
-    function publicJson() {
-      const clean = JSON.parse(JSON.stringify(layout));
+    function normalizeElements(src, style=currentStyle) {
+      const defaults = clone(STYLE_CONFIGS[style].defaults);
+      const elements = src && src.elements ? src.elements : src;
+      if (!elements) return defaults;
+      Object.keys(defaults).forEach((key) => {
+        defaults[key] = Object.assign({}, defaults[key], elements[key] || {});
+        ["x","y","w","h","fontSize","z"].forEach(k => defaults[key][k] = Number(defaults[key][k] || 0));
+      });
+      return defaults;
+    }
+
+    function publicJson(style=currentStyle) {
+      const clean = clone(currentLayout());
       Object.keys(clean).forEach((key) => {
         clean[key].x = Number(clean[key].x || 0);
         clean[key].y = Number(clean[key].y || 0);
@@ -369,23 +377,29 @@
       return {
         version: 1,
         schema: "ranktag-premium-layout-v2",
-        style: "cyber-red-elite",
+        style,
         note: "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.",
         canvas: { width: 470, height: 160 },
-        background: "/assets/premium/cyber-red-elite-bg-v96.png",
+        background: STYLE_CONFIGS[style].background,
         elements: clean
       };
     }
 
     function saveCurrentLayoutSilent() {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(publicJson()));
+        localStorage.setItem(storageKey(), JSON.stringify(publicJson()));
       } catch {}
+    }
+
+    function applyCanvasStyle() {
+      const cfg = currentConfig();
+      if (title) title.textContent = cfg.label;
+      canvas.style.background = `transparent url('${cfg.background}?v=101') center / 100% 100% no-repeat`;
     }
 
     function render() {
       scaler.style.transform = `scale(${zoom})`;
-
+      const layout = currentLayout();
       for (const [key, cfg] of Object.entries(layout)) {
         const el = els[key];
         if (!el) continue;
@@ -394,17 +408,17 @@
         el.style.width = `${cfg.w}px`;
         el.style.height = `${cfg.h}px`;
         el.style.zIndex = cfg.z || 1;
-
         if (cfg.fontSize) el.style.fontSize = `${cfg.fontSize}px`;
+        else el.style.removeProperty('font-size');
         if (cfg.h) el.style.lineHeight = `${cfg.h}px`;
-
+        else el.style.removeProperty('line-height');
         el.classList.toggle("active", key === activeKey);
       }
-
       document.getElementById("activeName").textContent = activeKey;
       const active = layout[activeKey];
       Object.keys(fields).forEach(k => fields[k].value = active[k] ?? 0);
       jsonOut.value = JSON.stringify(publicJson(), null, 2);
+      applyCanvasStyle();
       saveCurrentLayoutSilent();
     }
 
@@ -415,10 +429,7 @@
 
     function pointToCanvas(e) {
       const rect = canvas.getBoundingClientRect();
-      return {
-        x: (e.clientX - rect.left) / zoom,
-        y: (e.clientY - rect.top) / zoom
-      };
+      return { x: (e.clientX - rect.left) / zoom, y: (e.clientY - rect.top) / zoom };
     }
 
     function startDrag(e) {
@@ -426,184 +437,128 @@
       e.preventDefault();
       const key = e.currentTarget.dataset.key;
       select(key);
-
       const start = pointToCanvas(e);
-      const cfg = layout[key];
+      const cfg = currentLayout()[key];
       const ox = start.x - cfg.x;
       const oy = start.y - cfg.y;
-
       function move(ev) {
         const p = pointToCanvas(ev);
         cfg.x = Math.round(clamp(p.x - ox, -50, 470));
         cfg.y = Math.round(clamp(p.y - oy, -50, 160));
         render();
       }
-
-      function up() {
-        window.removeEventListener("pointermove", move);
-        window.removeEventListener("pointerup", up);
-      }
-
+      function up() { window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); }
       window.addEventListener("pointermove", move);
       window.addEventListener("pointerup", up);
     }
 
     function startResize(e) {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault(); e.stopPropagation();
       const key = e.currentTarget.closest(".item").dataset.key;
       select(key);
-
       const start = pointToCanvas(e);
-      const cfg = layout[key];
-      const sw = cfg.w;
-      const sh = cfg.h;
-
+      const cfg = currentLayout()[key];
+      const sw = cfg.w, sh = cfg.h;
       function move(ev) {
         const p = pointToCanvas(ev);
         cfg.w = Math.round(clamp(sw + (p.x - start.x), 4, 470));
         cfg.h = Math.round(clamp(sh + (p.y - start.y), 4, 160));
         render();
       }
-
-      function up() {
-        window.removeEventListener("pointermove", move);
-        window.removeEventListener("pointerup", up);
-      }
-
+      function up() { window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); }
       window.addEventListener("pointermove", move);
       window.addEventListener("pointerup", up);
     }
 
-    document.querySelectorAll(".item").forEach(el => el.addEventListener("click", () => select(el.dataset.key)));
-
     document.getElementById("applyFields").onclick = () => {
-      const cfg = layout[activeKey];
+      const cfg = currentLayout()[activeKey];
       Object.keys(fields).forEach(k => cfg[k] = Number(fields[k].value || 0));
       render();
     };
-
     document.getElementById("resetSelected").onclick = () => {
-      layout[activeKey] = JSON.parse(JSON.stringify(defaults[activeKey]));
+      currentLayout()[activeKey] = clone(currentConfig().defaults[activeKey]);
       render();
     };
-
     document.getElementById("resetAll").onclick = () => {
-      layout = JSON.parse(JSON.stringify(defaults));
+      styleLayouts[currentStyle] = clone(currentConfig().defaults);
       render();
     };
-
     document.getElementById("saveLocal").onclick = () => {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(publicJson()));
-      alert("Layout salvato in locale.");
+      localStorage.setItem(storageKey(), JSON.stringify(publicJson()));
+      alert(`Layout ${currentConfig().label} salvato in locale.`);
     };
-
     document.getElementById("loadLocal").onclick = () => {
-      let saved = localStorage.getItem(STORAGE_KEY);
+      let saved = localStorage.getItem(storageKey());
       if (!saved) {
-        for (const key of LEGACY_STORAGE_KEYS) {
+        for (const key of currentConfig().legacyKeys || []) {
           saved = localStorage.getItem(key);
           if (saved) break;
         }
       }
-      if (!saved) return alert("Nessun layout locale salvato.");
+      if (!saved) return alert("Nessun layout locale salvato per questo premium.");
       const parsed = JSON.parse(saved);
-      if (parsed.elements) layout = parsed.elements;
+      styleLayouts[currentStyle] = normalizeElements(parsed, currentStyle);
       render();
     };
-
     document.getElementById("copyJson").onclick = async () => {
       await navigator.clipboard.writeText(jsonOut.value);
-      alert("JSON completo copiato: include X/Y/W/H/Font/Z.");
+      alert(`JSON ${currentConfig().label} copiato.`);
     };
-
     document.getElementById("downloadJson").onclick = () => {
       const blob = new Blob([jsonOut.value], { type: "application/json" });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      a.download = "cyber-red-elite-layout.json";
+      a.download = currentConfig().download;
       a.click();
       URL.revokeObjectURL(a.href);
     };
-
     document.getElementById("applyJson").onclick = () => {
       try {
         const parsed = JSON.parse(jsonOut.value);
         if (!parsed.elements) throw new Error("Manca elements");
-        layout = parsed.elements;
+        if (parsed.style && parsed.style !== currentStyle) {
+          throw new Error(`Questo JSON è per ${parsed.style}, non per ${currentStyle}`);
+        }
+        styleLayouts[currentStyle] = normalizeElements(parsed, currentStyle);
         render();
       } catch (err) {
         alert("JSON non valido: " + err.message);
       }
     };
-
     document.getElementById("zoomIn").onclick = () => { zoom = Math.min(3, zoom + .15); render(); };
     document.getElementById("zoomOut").onclick = () => { zoom = Math.max(.7, zoom - .15); render(); };
     document.getElementById("centerAll").onclick = () => document.getElementById("canvasWrap").scrollTo({ left: 0, top: 0, behavior: "smooth" });
 
-    let saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) {
-      for (const key of LEGACY_STORAGE_KEYS) {
-        saved = localStorage.getItem(key);
-        if (saved) break;
+    function loadSavedOrDefault(style) {
+      const cfg = STYLE_CONFIGS[style];
+      let saved = null;
+      try { saved = localStorage.getItem(cfg.storageKey); } catch {}
+      if (!saved && cfg.legacyKeys) {
+        for (const key of cfg.legacyKeys) {
+          try { saved = localStorage.getItem(key); } catch {}
+          if (saved) break;
+        }
       }
-    }
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (parsed.elements) layout = parsed.elements;
-      } catch {}
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          return normalizeElements(parsed, style);
+        } catch {}
+      }
+      return clone(cfg.defaults);
     }
 
-    render();
+    function switchStyle(style) {
+      currentStyle = style;
+      if (!styleLayouts[currentStyle]) styleLayouts[currentStyle] = loadSavedOrDefault(currentStyle);
+      render();
+    }
+
+    Object.keys(STYLE_CONFIGS).forEach(style => {
+      styleLayouts[style] = loadSavedOrDefault(style);
+    });
+    styleSelect?.addEventListener('change', () => switchStyle(styleSelect.value));
+    switchStyle(currentStyle);
   </script>
-
-<script>
-(function rankTagV97LayoutEditorPremiumSwitch(){
-  const layouts = {
-    "cyber-red-elite": null,
-    "voidrage-inferno": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}
-  };
-  const backgrounds = {
-    "cyber-red-elite": "/assets/premium/cyber-red-elite-bg-v96.png?v=100",
-    "voidrage-inferno": "/assets/premium/voidrage-inferno-bg-v97.png?v=100"
-  };
-  const labels = {
-    "cyber-red-elite": "Cyber Red Elite",
-    "voidrage-inferno": "VoidRage Inferno"
-  };
-  const select = document.getElementById("premiumStyleSelect");
-  const title = document.getElementById("editorStyleTitle");
-  const canvas = document.getElementById("canvas");
-  if (!select || !canvas) return;
-
-  function storageKey(style) {
-    return `ranktag-layout-editor-${style}-current`;
-  }
-
-  function tryParse(raw) {
-    try { return JSON.parse(raw); } catch { return null; }
-  }
-
-  function loadStyle(style) {
-    const saved = tryParse(localStorage.getItem(storageKey(style)) || "");
-    if (saved?.elements) {
-      window.layout = saved.elements;
-    } else if (style === "voidrage-inferno") {
-      window.layout = JSON.parse(JSON.stringify(layouts["voidrage-inferno"]));
-    }
-    if (title) title.textContent = labels[style] || style;
-    canvas.style.background = `transparent url('${backgrounds[style]}') center / 100% 100% no-repeat`;
-    setTimeout(() => {
-      try {
-        if (typeof render === "function") render();
-      } catch {}
-    }, 50);
-  }
-
-  select.addEventListener("change", () => loadStyle(select.value));
-})();
-</script>
-
 </body>
 </html>
