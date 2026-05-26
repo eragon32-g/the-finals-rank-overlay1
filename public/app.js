@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "1.0.1";
+const OVERLAY_VERSION = "1.0.2";
 const params = new URLSearchParams(window.location.search);
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
@@ -22,7 +22,7 @@ const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
     "width": 470,
     "height": 160
   },
-  "background": "/assets/premium/voidrage-inferno-fit-v105.png",
+  "background": "/assets/premium/voidrage-inferno-fit-v102-solid-inner.png",
   "elements": {
     "badge": {
       "x": 12,
@@ -2089,7 +2089,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
   const PREMIUM_LAYOUTS = {
     "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : null),
-    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v105.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
+    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v102-solid-inner.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
   };
 
   function safeNumber(value, fallback) {
@@ -2410,7 +2410,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
   const DEFAULTS = {
     "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "cyber-red-elite", "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/cyber-red-elite-bg-v96.png", "elements": {"badge": {"x": 7, "y": 9, "w": 136, "h": 121, "fontSize": 0, "z": 5}, "rank": {"x": 164, "y": 39, "w": 215, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 165, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 271, "y": 78, "w": 142, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 165, "y": 100, "w": 270, "h": 16, "fontSize": 9.5, "z": 6}}}),
-    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v105.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
+    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "105", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v102-solid-inner.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
   };
 
   function esc(v) {
@@ -2568,7 +2568,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
   const allowed = ["cyber-red-elite", "voidrage-inferno"];
   if (typeof themeStyle === "undefined" || !allowed.includes(themeStyle)) return;
 
-  const VOID_DEFAULT = {"version":"105.3","schema":"ranktag-premium-layout-v2","style":"voidrage-inferno","canvas":{"width":470,"height":160},"background":"/assets/premium/voidrage-inferno-fit-v105.png","elements":{"badge":{"x":20,"y":26,"w":102,"h":102,"fontSize":0,"z":5},"rank":{"x":150,"y":43,"w":245,"h":30,"fontSize":25,"z":6},"score":{"x":152,"y":79,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":268,"y":79,"w":160,"h":16,"fontSize":10.5,"z":6},"brand":{"x":152,"y":108,"w":260,"h":18,"fontSize":9.5,"z":6}}};
+  const VOID_DEFAULT = {"version":"105.3","schema":"ranktag-premium-layout-v2","style":"voidrage-inferno","canvas":{"width":470,"height":160},"background":"/assets/premium/voidrage-inferno-fit-v102-solid-inner.png","elements":{"badge":{"x":20,"y":26,"w":102,"h":102,"fontSize":0,"z":5},"rank":{"x":150,"y":43,"w":245,"h":30,"fontSize":25,"z":6},"score":{"x":152,"y":79,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":268,"y":79,"w":160,"h":16,"fontSize":10.5,"z":6},"brand":{"x":152,"y":108,"w":260,"h":18,"fontSize":9.5,"z":6}}};
   const CYBER_DEFAULT = (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" && CYBER_RED_ELITE_LAYOUT_LOCKED)
     ? CYBER_RED_ELITE_LAYOUT_LOCKED
     : {"version":"105.3","schema":"ranktag-premium-layout-v2","style":"cyber-red-elite","canvas":{"width":470,"height":160},"background":"/assets/premium/cyber-red-elite-bg-v96.png","elements":{"badge":{"x":7,"y":9,"w":136,"h":121,"fontSize":0,"z":5},"rank":{"x":164,"y":39,"w":215,"h":30,"fontSize":25,"z":6},"score":{"x":165,"y":78,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":271,"y":78,"w":142,"h":16,"fontSize":10.5,"z":6},"brand":{"x":165,"y":100,"w":270,"h":16,"fontSize":9.5,"z":6}}};
@@ -2744,7 +2744,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag v1.0.1 - FINAL PREMIUM RENDERER
+/* RankTag v1.0.2 - FINAL PREMIUM RENDERER
    Fix:
    - premium copied links no longer need layout param
    - VoidRage Inferno render matches the generator preview sizing/position
@@ -2755,7 +2755,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
   const DEFAULTS = {
     "cyber-red-elite": {
-      version:"1.0.1", schema:"ranktag-premium-layout-v2", style:"cyber-red-elite",
+      version:"1.0.2", schema:"ranktag-premium-layout-v2", style:"cyber-red-elite",
       canvas:{width:470,height:160}, background:"/assets/premium/cyber-red-elite-bg-v96.png",
       elements:{
         badge:{x:7,y:9,w:136,h:121,fontSize:0,z:5},
@@ -2766,8 +2766,8 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
       }
     },
     "voidrage-inferno": {
-      version:"1.0.1", schema:"ranktag-premium-layout-v2", style:"voidrage-inferno",
-      canvas:{width:470,height:160}, background:"/assets/premium/voidrage-inferno-fit-v105.png",
+      version:"1.0.2", schema:"ranktag-premium-layout-v2", style:"voidrage-inferno",
+      canvas:{width:470,height:160}, background:"/assets/premium/voidrage-inferno-fit-v102-solid-inner.png",
       elements:{
         badge:{x:28,y:20,w:112,h:112,fontSize:0,z:5},
         rank:{x:157,y:42,w:245,h:30,fontSize:25,z:6},
@@ -2808,7 +2808,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
       score:(scoreText?.textContent || "ELO: 37.705").trim(),
       player:(nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim(),
       brand:(brandMarqueeText?.textContent || "VOIDRAGE32 • THE FINALS").trim(),
-      badge:badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum-1.png?v=101"
+      badge:badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum-1.png?v=102"
     };
   }
   function ensureStyle(){
@@ -2855,7 +2855,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     root.dataset.themeStyle=themeStyle;
     root.dataset.renderer="rt-v101-final";
     root.innerHTML=`
-      <img class="rt-v101-bg" src="${esc(l.background)}?v=101" alt="" />
+      <img class="rt-v101-bg" src="${esc(l.background)}?v=102" alt="" />
       <div class="rt-v101-layer rt-v101-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badge)}" alt="" /></div>
       <div class="rt-v101-layer rt-v101-rank" style="${layerStyle(e.rank)}">${esc(d.rank)}</div>
       <div class="rt-v101-layer rt-v101-score" style="${layerStyle(e.score)}">${esc(d.score)}</div>

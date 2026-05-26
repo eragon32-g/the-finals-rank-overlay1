@@ -1,5 +1,16 @@
 [
   {
+    "version": "1.0.2",
+    "date": "2026-05-26",
+    "title": "Fix trasparenze interne VoidRage Inferno",
+    "summary": "Corrette le trasparenze interne della cornice VoidRage Inferno: l’esterno resta trasparente, l’interno resta scuro e coerente tra anteprima e link finale.",
+    "fixed": [
+      "Zone trasparenti interne della cornice che mostravano sfondi indesiderati",
+      "Differenza visiva tra anteprima e link finale VoidRage Inferno",
+      "Cache asset aggiornata con nuovo background premium"
+    ]
+  },
+  {
     "version": "1.0.1",
     "date": "2026-05-26",
     "title": "Bugfix overlay premium",
