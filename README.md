@@ -1,9 +1,11 @@
-# RankTag V96
+# RankTag V97
 
-Cache-proof background premium.
+Aggiunto nuovo overlay premium: VoidRage Inferno.
 
-## Cosa cambia
-- nuovo nome immagine premium: `/assets/premium/cyber-red-elite-bg-v96.png`
-- riferimenti aggiornati in generator, layout editor e renderer finale
-- versione aggiornata a V96
-- evita che Vercel/browser continuino a mostrare la vecchia V94/V95
+## Include
+- nuovo style: `voidrage-inferno`
+- nuovo background: `/assets/premium/voidrage-inferno-bg-v97.png`
+- nuovo layout: `/assets/premium/voidrage-inferno-layout.json`
+- renderer premium separato multi-style
+- card premium nel generator
+- branding animato mantenuto

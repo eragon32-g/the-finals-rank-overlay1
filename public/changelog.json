@@ -1,5 +1,18 @@
 [
   {
+    "version": "97",
+    "date": "2026-05-25",
+    "title": "Nuovo premium VoidRage Inferno",
+    "summary": "Aggiunto secondo overlay premium rosso/nero separato da Cyber Red Elite.",
+    "added": [
+      "style voidrage-inferno",
+      "/assets/premium/voidrage-inferno-bg-v97.png",
+      "/assets/premium/voidrage-inferno-layout.json",
+      "card premium nel generator",
+      "supporto renderer detached multi-premium"
+    ]
+  },
+  {
     "version": "96",
     "date": "2026-05-25",
     "title": "Cache proof premium background",
@@ -114,7 +127,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=96",
+      "aggiornati thumb premium e cache buster a v=97",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -313,7 +326,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=96"
+      "riferimenti cache aggiornati a v=97"
     ]
   },
   {

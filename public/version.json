@@ -1,8 +1,8 @@
 {
-  "version": "96",
+  "version": "97",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V96: cache-proof. Background premium rinominato in cyber-red-elite-bg-v96.png e riferimenti aggiornati ovunque."
+  "note": "V97: aggiunto nuovo overlay premium VoidRage Inferno come stile separato, con asset/layout dedicati."
 }
