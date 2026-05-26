@@ -1,5 +1,15 @@
 [
   {
+    "version": "98",
+    "date": "2026-05-25",
+    "title": "Fix card VoidRage Inferno",
+    "summary": "La seconda card premium ora viene iniettata nel generator anche se la struttura HTML cambia.",
+    "fixed": [
+      "VoidRage Inferno non visibile nella sezione Overlay Premium",
+      "aggiunta opzione themeStyle voidrage-inferno se manca"
+    ]
+  },
+  {
     "version": "97",
     "date": "2026-05-25",
     "title": "Nuovo premium VoidRage Inferno",
@@ -127,7 +137,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=97",
+      "aggiornati thumb premium e cache buster a v=98",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -326,7 +336,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=97"
+      "riferimenti cache aggiornati a v=98"
     ]
   },
   {

@@ -1,11 +1,10 @@
-# RankTag V97
+# RankTag V98
 
-Aggiunto nuovo overlay premium: VoidRage Inferno.
+Fix visibilità secondo overlay premium.
 
 ## Include
-- nuovo style: `voidrage-inferno`
-- nuovo background: `/assets/premium/voidrage-inferno-bg-v97.png`
-- nuovo layout: `/assets/premium/voidrage-inferno-layout.json`
-- renderer premium separato multi-style
-- card premium nel generator
-- branding animato mantenuto
+- VoidRage Inferno visibile come seconda card nella sezione Overlay Premium
+- opzione themeStyle voidrage-inferno aggiunta se mancante
+- asset inferno rinominati v98 per cache
+- Cyber Red Elite resta separato
+- default non toccato

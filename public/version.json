@@ -1,8 +1,8 @@
 {
-  "version": "97",
+  "version": "98",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "V97: aggiunto nuovo overlay premium VoidRage Inferno come stile separato, con asset/layout dedicati."
+  "note": "V98: fix visibilità seconda card premium VoidRage Inferno nel generator."
 }
