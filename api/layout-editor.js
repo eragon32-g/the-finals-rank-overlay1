@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = function handler(req, res) {
-  const configuredKey = process.env.ADMIN_LAYOUT_KEY;
+  const configuredKey = process.env.ADMIN_LAYOUT_KEY || "VoidRage32Admin";
   const suppliedKey = (req.query && req.query.key) || req.headers["x-admin-key"];
 
   if (!configuredKey) {

@@ -2558,3 +2558,151 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
   });
   render();
 })();
+
+
+
+/* RankTag V105.3 - SINGLE AUTHORITATIVE PREMIUM RENDERER FIX
+   Fixes VoidRage Inferno test link: always renders a detached 470x160 overlay,
+   ignores older premium renderers, transparent page/OBS output, correct selected style. */
+(function rankTagV1053AuthoritativePremiumRenderer(){
+  const allowed = ["cyber-red-elite", "voidrage-inferno"];
+  if (typeof themeStyle === "undefined" || !allowed.includes(themeStyle)) return;
+
+  const VOID_DEFAULT = {"version":"105.3","schema":"ranktag-premium-layout-v2","style":"voidrage-inferno","canvas":{"width":470,"height":160},"background":"/assets/premium/voidrage-inferno-fit-v105.png","elements":{"badge":{"x":20,"y":26,"w":102,"h":102,"fontSize":0,"z":5},"rank":{"x":150,"y":43,"w":245,"h":30,"fontSize":25,"z":6},"score":{"x":152,"y":79,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":268,"y":79,"w":160,"h":16,"fontSize":10.5,"z":6},"brand":{"x":152,"y":108,"w":260,"h":18,"fontSize":9.5,"z":6}}};
+  const CYBER_DEFAULT = (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" && CYBER_RED_ELITE_LAYOUT_LOCKED)
+    ? CYBER_RED_ELITE_LAYOUT_LOCKED
+    : {"version":"105.3","schema":"ranktag-premium-layout-v2","style":"cyber-red-elite","canvas":{"width":470,"height":160},"background":"/assets/premium/cyber-red-elite-bg-v96.png","elements":{"badge":{"x":7,"y":9,"w":136,"h":121,"fontSize":0,"z":5},"rank":{"x":164,"y":39,"w":215,"h":30,"fontSize":25,"z":6},"score":{"x":165,"y":78,"w":120,"h":16,"fontSize":12,"z":6},"player":{"x":271,"y":78,"w":142,"h":16,"fontSize":10.5,"z":6},"brand":{"x":165,"y":100,"w":270,"h":16,"fontSize":9.5,"z":6}}};
+
+  const DEFAULTS = {
+    "cyber-red-elite": CYBER_DEFAULT,
+    "voidrage-inferno": VOID_DEFAULT
+  };
+
+  function esc(v) {
+    return String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  }
+  function n(v, d) {
+    const x = Number(v);
+    return Number.isFinite(x) ? x : d;
+  }
+  function decodeLayoutParam() {
+    const raw = new URLSearchParams(window.location.search).get("layout");
+    if (!raw) return null;
+    try {
+      const parsed = JSON.parse(decodeURIComponent(escape(atob(raw))));
+      if (parsed && parsed.elements && (!parsed.style || parsed.style === themeStyle)) return parsed;
+    } catch {}
+    try {
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.elements && (!parsed.style || parsed.style === themeStyle)) return parsed;
+    } catch {}
+    return null;
+  }
+  function normalize(layout) {
+    const base = DEFAULTS[themeStyle] || VOID_DEFAULT;
+    const src = layout && layout.elements ? layout : base;
+    const out = JSON.parse(JSON.stringify(base));
+    out.style = themeStyle;
+    out.background = src.background || base.background;
+    out.canvas = { width: 470, height: 160 };
+    for (const key of ["badge","rank","score","player","brand"]) {
+      out.elements[key] = Object.assign({}, base.elements[key], src.elements?.[key] || {});
+      for (const k of ["x","y","w","h","fontSize","z"]) out.elements[key][k] = n(out.elements[key][k], base.elements[key][k] || 0);
+    }
+    return out;
+  }
+  function layerStyle(cfg) {
+    return [
+      `left:${cfg.x}px`,`top:${cfg.y}px`,`width:${cfg.w}px`,`height:${cfg.h}px`,`z-index:${cfg.z}`,
+      cfg.fontSize ? `font-size:${cfg.fontSize}px` : "", `line-height:${cfg.h}px`
+    ].filter(Boolean).join(";");
+  }
+  function data() {
+    return {
+      rank: (rankText?.textContent || "PLATINUM 1").trim(),
+      score: (scoreText?.textContent || "ELO: 37.705").trim(),
+      player: (nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim(),
+      brand: (brandMarqueeText?.textContent || "VOIDRAGE32 • THE FINALS").trim(),
+      badge: badgeImage?.getAttribute("src") || "/assets/badges/platinum-1.png?v=105"
+    };
+  }
+  function ensureStyle() {
+    let style = document.getElementById("rt1053-premium-style");
+    if (style) return;
+    style = document.createElement("style");
+    style.id = "rt1053-premium-style";
+    style.textContent = `
+      html, body { margin:0!important; width:100%!important; height:100%!important; overflow:hidden!important; background:transparent!important; }
+      body { display:grid!important; place-items:center!important; }
+      #overlay.overlay { width:470px!important; height:160px!important; min-width:470px!important; min-height:160px!important; max-width:470px!important; max-height:160px!important; display:grid!important; place-items:center!important; overflow:hidden!important; background:transparent!important; }
+      #badge.rt1053-premium { position:relative!important; width:470px!important; height:160px!important; min-width:470px!important; min-height:160px!important; max-width:470px!important; max-height:160px!important; display:block!important; padding:0!important; margin:0!important; overflow:hidden!important; border:0!important; box-shadow:none!important; background:transparent!important; transform:none!important; }
+      .rt1053-bg { position:absolute; inset:0; width:470px!important; height:160px!important; object-fit:contain!important; pointer-events:none; z-index:0; }
+      .rt1053-layer { position:absolute; display:flex; align-items:center; justify-content:flex-start; white-space:nowrap; overflow:hidden; box-sizing:border-box; }
+      .rt1053-badge { justify-content:center; overflow:visible; }
+      .rt1053-badge img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 2px 10px rgba(255,255,255,.28)) drop-shadow(0 2px 12px rgba(255,42,23,.38)); }
+      .rt1053-rank { color:#54eaff; font-weight:1000; letter-spacing:.7px; text-transform:uppercase; text-shadow:0 0 12px rgba(84,234,255,.34),0 2px 8px rgba(0,0,0,.9); }
+      .theme-voidrage-inferno .rt1053-rank { color:#fff6f2; text-shadow:0 0 12px rgba(255,42,23,.62),0 2px 8px rgba(0,0,0,.95); }
+      .rt1053-score,.rt1053-player { color:#f7f2ff; font-weight:1000; text-transform:uppercase; text-overflow:ellipsis; text-shadow:0 1px 7px rgba(0,0,0,.95); }
+      .rt1053-brand { display:flex; align-items:center; gap:7px; padding:0 8px; border-radius:999px; background:linear-gradient(180deg,rgba(12,10,16,.88),rgba(5,4,10,.78)); border:1px solid rgba(255,255,255,.14); transform:translateY(105%); opacity:0; transition:transform 360ms cubic-bezier(.2,.9,.2,1),opacity 260ms ease; }
+      .rt1053-brand.is-visible { transform:translateY(0); opacity:1; }
+      .rt1053-brand-icon { width:11px; height:11px; border-radius:3px; background:linear-gradient(135deg,#ff2a17,#ffd36a); box-shadow:0 0 12px rgba(255,42,23,.46); transform:rotate(45deg); flex:0 0 11px; }
+      .rt1053-marquee { min-width:0; flex:1; overflow:hidden; white-space:nowrap; mask-image:linear-gradient(90deg, transparent, black 9%, black 91%, transparent); }
+      .rt1053-marquee span { display:inline-block; min-width:max-content; padding-left:100%; font-weight:1000; color:#f7f2ff; text-shadow:0 0 8px rgba(255,42,23,.38),0 1px 7px rgba(0,0,0,.95); animation:rt1053Marquee var(--brand-duration,8s) linear infinite; animation-play-state:paused; }
+      .rt1053-brand.is-visible .rt1053-marquee span { animation-play-state:running; }
+      @keyframes rt1053Marquee { from{transform:translateX(0)} to{transform:translateX(-100%)} }
+    `;
+    document.head.appendChild(style);
+  }
+  let brandStarted = false;
+  function startBrand() {
+    if (brandStarted) return;
+    brandStarted = true;
+    const show = () => {
+      const el = document.querySelector("#badge .rt1053-brand");
+      if (!el) return;
+      el.classList.add("is-visible");
+      setTimeout(() => el.classList.remove("is-visible"), 4500);
+    };
+    setTimeout(show, 800);
+    setInterval(show, 12000);
+  }
+  function render() {
+    ensureStyle();
+    const root = document.getElementById("badge") || badge;
+    if (!root) return;
+    const layout = normalize(decodeLayoutParam());
+    const e = layout.elements;
+    const d = data();
+    root.className = "badge rt1053-premium theme-" + themeStyle;
+    root.dataset.themeStyle = themeStyle;
+    root.dataset.renderer = "rt1053-authoritative";
+    root.innerHTML = `
+      <img class="rt1053-bg" src="${esc(layout.background)}?v=1053" alt="" />
+      <div class="rt1053-layer rt1053-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badge)}" alt="" /></div>
+      <div class="rt1053-layer rt1053-rank" style="${layerStyle(e.rank)}">${esc(d.rank)}</div>
+      <div class="rt1053-layer rt1053-score" style="${layerStyle(e.score)}">${esc(d.score)}</div>
+      <div class="rt1053-layer rt1053-player" style="${layerStyle(e.player)}">${esc(d.player)}</div>
+      <div class="rt1053-layer rt1053-brand" style="${layerStyle(e.brand)}"><div class="rt1053-brand-icon"></div><div class="rt1053-marquee"><span>${esc(d.brand)}</span></div></div>
+    `;
+    startBrand();
+  }
+  const previousSetData = typeof setData === "function" ? setData : null;
+  if (previousSetData && !window.__rt1053PremiumSetData) {
+    window.__rt1053PremiumSetData = true;
+    setData = async function(...args) {
+      await previousSetData.apply(this, args);
+      render();
+      setTimeout(render, 80);
+      setTimeout(render, 260);
+    };
+  }
+  window.addEventListener("load", () => {
+    render();
+    setTimeout(render, 80);
+    setTimeout(render, 300);
+    setTimeout(render, 900);
+    setTimeout(render, 1600);
+  });
+  render();
+})();
+

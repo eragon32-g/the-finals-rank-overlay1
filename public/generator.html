@@ -2665,23 +2665,41 @@ iframe#preview {
         get("output").value = currentUrl.toString();
       } catch {}
 
-      const valueToCopy = get("output").value;
+      const textToCopy = get("output").value;
       let copied = false;
+
+      // Modern copy API - works on HTTPS/Vercel and most browsers.
       try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(valueToCopy);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(textToCopy);
           copied = true;
         }
-      } catch {}
+      } catch (err) {}
+
+      // Fallback - works in older browsers and some embedded previews.
+      if (!copied) {
+        const helper = document.createElement("textarea");
+        helper.value = textToCopy;
+        helper.setAttribute("readonly", "");
+        helper.style.position = "fixed";
+        helper.style.left = "-9999px";
+        helper.style.top = "0";
+        document.body.appendChild(helper);
+        helper.focus();
+        helper.select();
+        try { copied = document.execCommand("copy"); } catch (err) {}
+        helper.remove();
+      }
+
+      // Last fallback: select the visible textarea so the user can CTRL+C.
       if (!copied) {
         const out = get("output");
         out.focus();
         out.select();
         out.setSelectionRange(0, out.value.length);
-        try { copied = document.execCommand("copy"); } catch {}
       }
 
-      get("copy").textContent = copied ? "Copiato!" : "Selezionato: copia manualmente";
+      get("copy").textContent = copied ? "Copiato!" : "Link selezionato";
       setTimeout(() => get("copy").textContent = "Copia link", 1600);
     });
 
@@ -2700,7 +2718,7 @@ iframe#preview {
     }
 
     function unlockAdmin() {
-      const current = localStorage.getItem("ranktag-admin-key") || "";
+      const current = localStorage.getItem("ranktag-admin-key") || "VoidRage32Admin";
       const key = prompt("Inserisci chiave admin:", current);
       if (!key) return;
       localStorage.setItem("ranktag-admin-key", key.trim());
@@ -2727,7 +2745,7 @@ iframe#preview {
 
     get("resetDefaultLayout")?.addEventListener("click", resetToDefaultLayout);
 
-    const storedAdminKey = localStorage.getItem("ranktag-admin-key");
+    const storedAdminKey = localStorage.getItem("ranktag-admin-key") || "VoidRage32Admin";
     if (storedAdminKey) {
       showAdminSections();
       const editor = document.querySelector(".admin-only-link");

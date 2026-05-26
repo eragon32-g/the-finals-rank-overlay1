@@ -1,0 +1,2 @@
+Chiave admin predefinita per test locale: VoidRage32Admin
+Su Vercel puoi cambiarla impostando la variabile ambiente ADMIN_LAYOUT_KEY.
