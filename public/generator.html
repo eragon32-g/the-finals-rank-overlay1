@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag V105 generator real-preview lock */
+/* RankTag v1.0.0 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -611,7 +611,7 @@ iframe#preview,
 
 
 
-/* RankTag V105 - layout rework: account full width, settings grid, preview bottom */
+/* RankTag v1.0.0 - layout rework: account full width, settings grid, preview bottom */
 .layout {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -769,7 +769,7 @@ aside.panel {
 
 
 
-/* RankTag V105 - compact generator, account unchanged */
+/* RankTag v1.0.0 - compact generator, account unchanged */
 body {
   padding: 16px !important;
 }
@@ -1047,7 +1047,7 @@ body {
 
 
 
-/* RankTag V105 - order, compact alignment and premium preview fix */
+/* RankTag v1.0.0 - order, compact alignment and premium preview fix */
 .settings-panel {
   grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
   align-items: stretch !important;
@@ -1163,7 +1163,7 @@ body {
 
 
 
-/* RankTag V105 - repaired generator layout */
+/* RankTag v1.0.0 - repaired generator layout */
 .settings-panel {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -1225,7 +1225,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 
 
 
-/* RankTag V105 - premium polish */
+/* RankTag v1.0.0 - premium polish */
 #livePreviewSection .preview-box {
   overflow: hidden !important;
   padding: 10px 0 !important;
@@ -1274,7 +1274,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 
 
 
-/* RankTag V105 - step 1/2 premium scale and alignment */
+/* RankTag v1.0.0 - step 1/2 premium scale and alignment */
 #livePreviewSection .preview-box {
   min-height: 230px !important;
   display: flex !important;
@@ -1323,7 +1323,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 }
 
 
-/* RankTag V105 - premium final override */
+/* RankTag v1.0.0 - premium final override */
 #livePreviewSection .preview-box,
 .preview-box {
   display:flex !important;
@@ -1367,7 +1367,7 @@ iframe#preview {
 
 
 
-/* RankTag V105 - premium card micro alignment */
+/* RankTag v1.0.0 - premium card micro alignment */
 #overlayPremium .premium-preview-real {
   min-height: 140px !important;
   padding: 12px !important;
@@ -1393,7 +1393,7 @@ iframe#preview {
 
 
 
-/* RankTag V105 - Premium reset engine card */
+/* RankTag v1.0.0 - Premium reset engine card */
 #overlayPremium .premium-preview-real.premium-preview-skin {
   min-height: 170px !important;
   padding: 14px !important;
@@ -1518,7 +1518,7 @@ iframe#preview {
 
 
 
-/* RankTag V105 - Premium card preview full background */
+/* RankTag v1.0.0 - Premium card preview full background */
 #overlayPremium .premium-preview-real.premium-preview-skin {
   min-height: 202px !important;
   padding: 18px !important;
@@ -1598,7 +1598,7 @@ iframe#preview {
 
 
 
-/* RankTag V105 - new premium background alignment */
+/* RankTag v1.0.0 - new premium background alignment */
 .premium-preview-badge {
   background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=105') center / 100% 100% no-repeat !important;
 }
@@ -1638,7 +1638,7 @@ iframe#preview {
 
 
 
-/* RankTag V105 - locked coordinates from Layout Editor */
+/* RankTag v1.0.0 - locked coordinates from Layout Editor */
 .premium-preview-emblem {
   left: 18px !important;
   top: 35px !important;
@@ -1677,7 +1677,7 @@ iframe#preview {
 
 
 
-/* RankTag V105 - generator premium preview uses locked coordinates */
+/* RankTag v1.0.0 - generator premium preview uses locked coordinates */
 .premium-preview-emblem {
   left: 7px !important;
   top: 9px !important;
@@ -1767,7 +1767,7 @@ iframe#preview {
         <h1>RankTag Generator</h1>
         <p class="subtitle">Crea il tuo overlay rank per THE FINALS. Compila i dati, guarda l’anteprima e copia il link per OBS o TikTok LIVE Studio.</p>
       </div>
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><button class="tag" id="adminUnlock" type="button" style="cursor:pointer;">Admin</button><a class="tag admin-only-link" href="/layout-editor.html" style="text-decoration:none; display:none;">Layout Editor</a><div class="tag">RankTag V105</div></div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;"><a class="tag" href="/home.html" style="text-decoration:none;">Home</a><a class="tag" href="/updates.html" style="text-decoration:none;">Updates</a><a class="tag" href="/test.html" style="text-decoration:none;">Test Lab</a><button class="tag" id="adminUnlock" type="button" style="cursor:pointer;">Admin</button><a class="tag admin-only-link" href="/layout-editor.html" style="text-decoration:none; display:none;">Layout Editor</a><div class="tag">RankTag v1.0.0</div></div>
     </header>
 
     <div class="layout">
@@ -2595,10 +2595,10 @@ iframe#preview {
       });
 
       url.searchParams.set("cacheBust", Date.now().toString());
-      /* RankTag V105 force premium theme in generated link */
+      /* RankTag v1.0.0 force premium theme in generated link */
       const selectedThemeStyle = get("themeStyle")?.value || "default";
       url.searchParams.set("themeStyle", selectedThemeStyle);
-      /* RankTag V105 attach editor layout to generated premium link */
+      /* RankTag v1.0.0 attach editor layout to generated premium link */
       if (selectedThemeStyle === "cyber-red-elite" || selectedThemeStyle === "voidrage-inferno") {
         const savedPremiumLayout = getSavedPremiumLayout();
         const encodedPremiumLayout = savedPremiumLayout ? encodePremiumLayoutForUrl(savedPremiumLayout) : "";
@@ -2606,14 +2606,14 @@ iframe#preview {
       } else {
         url.searchParams.delete("layout");
       }
-      /* RankTag V105 final layout param sync */
+      /* RankTag v1.0.0 final layout param sync */
       if ((get("themeStyle")?.value || "default") === "cyber-red-elite" || (get("themeStyle")?.value || "default") === "voidrage-inferno") {
         const completeLayout = typeof getCompletePremiumLayoutForLink === "function" ? getCompletePremiumLayoutForLink(selectedThemeStyle) : null;
         const encodedLayout = completeLayout && typeof encodeCompletePremiumLayout === "function" ? encodeCompletePremiumLayout(completeLayout) : "";
         if (encodedLayout) url.searchParams.set("layout", encodedLayout);
       }
       get("output").value = url.toString();
-      /* RankTag V105 guarantee layout param */
+      /* RankTag v1.0.0 guarantee layout param */
       if ((get("themeStyle")?.value || "default") === "cyber-red-elite" || (get("themeStyle")?.value || "default") === "voidrage-inferno") {
         try {
           const rawLayout = localStorage.getItem("ranktag-layout-editor-cyber-red-elite-current")
@@ -2661,45 +2661,41 @@ iframe#preview {
       try {
         const currentUrl = new URL(get("output").value || (window.location.origin + "/"));
         currentUrl.searchParams.set("themeStyle", finalTheme);
-        if (finalTheme === "default") currentUrl.searchParams.delete("layout");
+
+        // IMPORTANTE v1.0.0:
+        // per i premium usiamo il layout integrato nel codice, così il link resta corto e copiabile.
+        // Il parametro layout resta riservato solo a test/admin avanzati.
+        currentUrl.searchParams.delete("layout");
+
         get("output").value = currentUrl.toString();
+        get("preview").src = currentUrl.toString();
       } catch {}
 
       const textToCopy = get("output").value;
       let copied = false;
 
-      // Modern copy API - works on HTTPS/Vercel and most browsers.
       try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
+        if (window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText) {
           await navigator.clipboard.writeText(textToCopy);
           copied = true;
         }
       } catch (err) {}
 
-      // Fallback - works in older browsers and some embedded previews.
-      if (!copied) {
-        const helper = document.createElement("textarea");
-        helper.value = textToCopy;
-        helper.setAttribute("readonly", "");
-        helper.style.position = "fixed";
-        helper.style.left = "-9999px";
-        helper.style.top = "0";
-        document.body.appendChild(helper);
-        helper.focus();
-        helper.select();
-        try { copied = document.execCommand("copy"); } catch (err) {}
-        helper.remove();
-      }
-
-      // Last fallback: select the visible textarea so the user can CTRL+C.
       if (!copied) {
         const out = get("output");
+        out.removeAttribute("readonly");
         out.focus();
         out.select();
         out.setSelectionRange(0, out.value.length);
+        try { copied = document.execCommand("copy"); } catch (err) {}
+        out.setAttribute("readonly", "");
       }
 
-      get("copy").textContent = copied ? "Copiato!" : "Link selezionato";
+      if (!copied) {
+        window.prompt("Copia manualmente questo link:", textToCopy);
+      }
+
+      get("copy").textContent = copied ? "Copiato!" : "Apri popup copia";
       setTimeout(() => get("copy").textContent = "Copia link", 1600);
     });
 
@@ -2718,7 +2714,7 @@ iframe#preview {
     }
 
     function unlockAdmin() {
-      const current = localStorage.getItem("ranktag-admin-key") || "VoidRage32Admin";
+      const current = "";
       const key = prompt("Inserisci chiave admin:", current);
       if (!key) return;
       localStorage.setItem("ranktag-admin-key", key.trim());
@@ -2745,7 +2741,7 @@ iframe#preview {
 
     get("resetDefaultLayout")?.addEventListener("click", resetToDefaultLayout);
 
-    const storedAdminKey = localStorage.getItem("ranktag-admin-key") || "VoidRage32Admin";
+    const storedAdminKey = localStorage.getItem("ranktag-admin-key");
     if (storedAdminKey) {
       showAdminSections();
       const editor = document.querySelector(".admin-only-link");
@@ -2763,7 +2759,7 @@ iframe#preview {
   </script>
 
 <script>
-/* RankTag V105 force real iframe preview */
+/* RankTag v1.0.0 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');
@@ -3001,7 +2997,7 @@ iframe#preview {
 
 
 <script>
-/* RankTag V105.1 - definitive premium link copier + admin-only editor link */
+/* RankTag v1.0.0.1 - definitive premium link copier + admin-only editor link */
 (function rankTagV1051DefinitivePremiumLink(){
   const PREMIUM = ["cyber-red-elite", "voidrage-inferno"];
   const DEFAULTS = {

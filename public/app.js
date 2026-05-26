@@ -10,7 +10,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "105";
+const OVERLAY_VERSION = "1.0.0";
 const params = new URLSearchParams(window.location.search);
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
@@ -2704,5 +2704,40 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     setTimeout(render, 1600);
   });
   render();
+})();
+
+
+
+
+/* RankTag v1.0.0 - release premium renderer guard
+   Keeps premium overlays self-contained. Public links only need themeStyle. */
+(function rankTagV100ReleasePremiumGuard(){
+  const allowed = ["cyber-red-elite", "voidrage-inferno"];
+  if (typeof themeStyle === "undefined" || !allowed.includes(themeStyle)) return;
+
+  function ensureReleaseMeta(){
+    document.documentElement.dataset.ranktagVersion = "1.0.0";
+    document.body?.classList?.add("ranktag-release-v100");
+  }
+
+  function ensureSizeGuard(){
+    if (document.getElementById("rt-v100-size-guard")) return;
+    const style = document.createElement("style");
+    style.id = "rt-v100-size-guard";
+    style.textContent = `
+      html,body{margin:0!important;width:100%!important;height:100%!important;overflow:hidden!important;background:transparent!important}
+      body{display:grid!important;place-items:center!important}
+      #overlay.overlay{width:470px!important;height:160px!important;min-width:470px!important;min-height:160px!important;max-width:470px!important;max-height:160px!important;overflow:hidden!important;background:transparent!important}
+      #badge.rt1053-premium,#badge.rt103-premium{width:470px!important;height:160px!important;min-width:470px!important;min-height:160px!important;max-width:470px!important;max-height:160px!important;overflow:hidden!important;background:transparent!important}
+    `;
+    document.head.appendChild(style);
+  }
+
+  window.addEventListener("load", () => {
+    ensureReleaseMeta();
+    ensureSizeGuard();
+  });
+  ensureReleaseMeta();
+  ensureSizeGuard();
 })();
 

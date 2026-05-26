@@ -22,7 +22,7 @@
 <body>
   <div class="box">
     <h1>Accesso admin</h1>
-    <p>Inserisci la chiave admin per aprire il Layout Editor riservato. Chiave test predefinita: <code>VoidRage32Admin</code>. Su Vercel puoi cambiarla con <code>ADMIN_LAYOUT_KEY</code>.</p>
+    <p>Inserisci la chiave admin per aprire il Layout Editor riservato. Inserisci la chiave admin impostata su Vercel come <code>ADMIN_LAYOUT_KEY</code>.</p>
     <label>Chiave admin
       <input id="adminKey" type="password" placeholder="Inserisci ADMIN_LAYOUT_KEY" autocomplete="current-password">
     </label>
@@ -35,8 +35,8 @@
   <script>
     const input = document.getElementById("adminKey");
     const msg = document.getElementById("msg");
-    const saved = localStorage.getItem("ranktag-admin-key") || "VoidRage32Admin";
-    input.value = saved;
+    const saved = "";
+    input.value = "";
     document.getElementById("go").addEventListener("click", () => {
       const key = input.value.trim();
       if (!key) {

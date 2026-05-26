@@ -6,104 +6,56 @@
 <title>RankTag Updates</title>
 <style>
 *{box-sizing:border-box}
-:root{--bg:#06070b;--panel:rgba(17,19,27,.90);--panel2:rgba(23,26,36,.94);--line:rgba(255,255,255,.12);--text:#f6f8fb;--muted:rgba(246,248,251,.66);--accent:#ff2a17;--gold:#f0d9aa;--cyan:#7dd3fc}
-body{margin:0;min-height:100vh;color:var(--text);font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 18% 0%,rgba(255,42,23,.20),transparent 34%),radial-gradient(circle at 84% 10%,rgba(125,211,252,.12),transparent 28%),linear-gradient(180deg,#090a10,#05060a)}
-.page{width:min(1040px,100%);margin:0 auto;padding:28px 18px 44px}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:32px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:1000;letter-spacing:.3px}
+:root{--bg:#06070b;--panel:rgba(17,19,27,.92);--line:rgba(255,255,255,.12);--text:#f6f8fb;--muted:rgba(246,248,251,.66);--accent:#ff2a17;--gold:#f0d9aa}
+body{margin:0;min-height:100vh;color:var(--text);font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 18% 0%,rgba(255,42,23,.20),transparent 34%),linear-gradient(180deg,#090a10,#05060a)}
+.page{width:min(980px,100%);margin:0 auto;padding:28px 18px 44px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:34px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:1000}
 .mark{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--gold));transform:rotate(45deg);box-shadow:0 0 22px rgba(255,42,23,.28)}
-.mark span{display:grid;place-items:center;width:100%;height:100%;transform:rotate(-45deg);font-size:13px;color:white}
-.links{display:flex;gap:12px;flex-wrap:wrap}
-.links a,.btn{color:rgba(255,255,255,.78);text-decoration:none;font-weight:900;font-size:14px}
-.hero{margin-bottom:22px}
-.eyebrow{display:inline-flex;padding:8px 11px;border-radius:999px;border:1px solid rgba(240,217,170,.20);background:rgba(240,217,170,.075);color:rgba(255,255,255,.85);font-size:12px;font-weight:1000;letter-spacing:.7px;text-transform:uppercase;margin-bottom:14px}
-h1{margin:0;font-size:clamp(38px,6vw,72px);line-height:.92;letter-spacing:-2.4px}
-.lead{margin:16px 0 0;color:var(--muted);font-size:17px;line-height:1.55;max-width:720px}
-.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:26px 0 14px;padding:14px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.045)}
-.toolbar strong{font-size:14px}
-.toolbar span{color:var(--muted);font-size:13px}
-.update-list{display:grid;gap:14px}
-.card{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.025));padding:18px;box-shadow:0 18px 48px rgba(0,0,0,.22)}
-.card-head{display:flex;align-items:start;justify-content:space-between;gap:14px;margin-bottom:10px}
-.version{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;background:linear-gradient(135deg,var(--accent),#b30f23);font-size:12px;font-weight:1000}
-.date{color:var(--muted);font-size:12px;font-weight:800;white-space:nowrap}
-h2{margin:10px 0 6px;font-size:22px;letter-spacing:-.4px}
-.summary{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.45}
-.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.col{padding:13px;border-radius:16px;border:1px solid rgba(255,255,255,.09);background:rgba(0,0,0,.18)}
-.col h3{margin:0 0 9px;font-size:13px;text-transform:uppercase;letter-spacing:.7px;color:var(--gold)}
-.col ul{margin:0;padding-left:18px;color:rgba(255,255,255,.76);font-size:13px;line-height:1.5}
-.empty{color:rgba(255,255,255,.42);font-size:13px}
-.footer{margin-top:24px;color:rgba(255,255,255,.48);font-size:12px;text-align:center;line-height:1.45}
-@media(max-width:780px){.nav{align-items:flex-start}.cols{grid-template-columns:1fr}.toolbar{display:block}.toolbar span{display:block;margin-top:4px}.card-head{display:block}.date{display:block;margin-top:8px}.links{justify-content:flex-end}}
+.mark span{display:grid;place-items:center;width:100%;height:100%;transform:rotate(-45deg);font-size:12px}
+.links{display:flex;gap:10px;flex-wrap:wrap}
+a{color:inherit;text-decoration:none}
+.pill{padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.06);font-size:13px}
+.hero{padding:28px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));box-shadow:0 22px 80px rgba(0,0,0,.32)}
+h1{margin:0;font-size:clamp(36px,6vw,68px);line-height:.92;letter-spacing:-2px}
+.sub{margin:14px 0 0;color:var(--muted);line-height:1.55;max-width:720px}
+.card{margin-top:18px;padding:22px;border:1px solid rgba(240,217,170,.18);border-radius:22px;background:rgba(240,217,170,.06)}
+.version{display:inline-flex;padding:7px 11px;border-radius:999px;background:rgba(255,42,23,.16);border:1px solid rgba(255,42,23,.32);font-weight:1000;color:#fff}
+h2{margin:14px 0 8px;font-size:28px}
+ul{margin:14px 0 0;padding-left:20px;color:rgba(246,248,251,.82);line-height:1.65}
+.small{color:var(--muted);font-size:13px;margin-top:16px}
 </style>
 </head>
 <body>
 <main class="page">
-<nav class="nav">
-  <div class="brand"><div class="mark"><span>R</span></div><div>RankTag Updates</div></div>
-  <div class="links">
-    <a href="/home.html">Home</a>
-    <a href="/generator.html">Generator</a>
-  </div>
-</nav>
+  <nav class="nav">
+    <a class="brand" href="/home.html"><span class="mark"><span>RT</span></span><span>RankTag</span></a>
+    <div class="links">
+      <a class="pill" href="/home.html">Home</a>
+      <a class="pill" href="/generator.html">Generator</a>
+      <a class="pill" href="/layout-editor.html">Admin</a>
+    </div>
+  </nav>
 
-<section class="hero">
-  <div class="eyebrow">Aggiornamenti</div>
-  <h1>Cosa cambia in RankTag.</h1>
-  <p class="lead">Qui trovi le novità principali spiegate in modo semplice: nuove funzioni, miglioramenti e correzioni.</p>
-</section>
+  <section class="hero">
+    <span class="version">v1.0.0</span>
+    <h1>Update di pubblicazione</h1>
+    <p class="sub">Questa è la prima release pubblica pulita di RankTag. La vecchia lista update è stata rimossa: da qui ripartiamo con versionamento ufficiale.</p>
 
-<section class="toolbar">
-  <div>
-    <strong id="latestVersion">Ultima versione: caricamento...</strong>
-    <span id="updateCount"></span>
-  </div>
-  <a class="btn" href="/generator.html">Apri Generator</a>
-</section>
-
-<section id="updates" class="update-list"></section>
-
-<div class="footer">Fan-made tool for THE FINALS streamers. Not affiliated with Embark Studios.</div>
+    <div class="card">
+      <h2>RankTag v1.0.0</h2>
+      <p class="sub">Release stabile con generator, anteprima live, overlay premium e area admin protetta.</p>
+      <ul>
+        <li>Overlay premium Cyber Red Elite e VoidRage Inferno.</li>
+        <li>Copia link corretto anche sui premium.</li>
+        <li>Link premium più corto: il layout è integrato, non viene più incollato nel parametro URL.</li>
+        <li>Layout Editor accessibile solo tramite chiave admin.</li>
+        <li>Nessuna chiave admin precompilata nella pagina di accesso.</li>
+        <li>Tasto per tornare al layout default.</li>
+      </ul>
+      <div class="small">Data release: 26/05/2026</div>
+    </div>
+  </section>
 </main>
-
-<script>
-function list(items){
-  if(!items || !items.length) return '<div class="empty">Nessuna voce.</div>';
-  return '<ul>' + items.map(item => `<li>${item}</li>`).join('') + '</ul>';
-}
-
-async function loadUpdates(){
-  const wrap = document.getElementById('updates');
-  try{
-    const res = await fetch('/changelog.json?v=' + Date.now(), { cache: 'no-store' });
-    const data = await res.json();
-
-    document.getElementById('latestVersion').textContent = `Ultima versione: V${data[0]?.version || '-'}`;
-    document.getElementById('updateCount').textContent = `${data.length} aggiornamenti registrati`;
-
-    wrap.innerHTML = data.map(update => `
-      <article class="card">
-        <div class="card-head">
-          <div>
-            <span class="version">V${update.version}</span>
-            <h2>${update.title}</h2>
-            <p class="summary">${update.summary || ''}</p>
-          </div>
-          <div class="date">${update.date || ''}</div>
-        </div>
-        <div class="cols">
-          <div class="col"><h3>Aggiunto</h3>${list(update.added)}</div>
-          <div class="col"><h3>Migliorato</h3>${list(update.improved)}</div>
-          <div class="col"><h3>Corretto</h3>${list(update.fixed)}</div>
-        </div>
-      </article>
-    `).join('');
-  } catch(err){
-    wrap.innerHTML = '<article class="card"><h2>Impossibile caricare gli aggiornamenti</h2><p class="summary">Riprova tra qualche secondo.</p></article>';
-  }
-}
-loadUpdates();
-</script>
 </body>
 </html>

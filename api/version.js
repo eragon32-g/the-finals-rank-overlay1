@@ -1,9 +1,5 @@
 module.exports = function handler(req, res) {
-  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
-  res.status(200).json({
-    version: "22",
-    expectedBrand: "ERDRAGON32",
-    expectedDiscord: "discord.gg/cffTwCcCGD",
-    note: "If /api does not work, use /version.json and /brand.json."
-  });
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/json; charset=utf-8");
+  res.end(JSON.stringify({ version: "1.0.0", name: "RankTag v1.0.0", status: "release" }));
 };
