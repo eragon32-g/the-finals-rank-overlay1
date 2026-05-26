@@ -1,5 +1,22 @@
 [
   {
+    "version": "1.0.13",
+    "date": "2026-05-26",
+    "title": "VoidRage Inferno edge trace fix",
+    "summary": "Ritaglio esterno rifatto seguendo il bordo reale invece di una maschera geometrica.",
+    "fixed": [
+      "il ritaglio non seguiva il bordo reale",
+      "nero interno preservato",
+      "nero esterno connesso ai bordi rimosso"
+    ],
+    "removed": [
+      "voidrage-inferno-fit-v112.png",
+      "voidrage-inferno-bg-v112.png",
+      "voidrage-inferno-thumb-v112.png",
+      "voidrage-inferno-base-v112.png"
+    ]
+  },
+  {
     "version": "1.0.12",
     "date": "2026-05-26",
     "title": "VoidRage Inferno outer cut fix",
@@ -10,10 +27,10 @@
       "asset Inferno vecchi rimossi"
     ],
     "removed": [
-      "voidrage-inferno-fit-v111.png",
-      "voidrage-inferno-bg-v111.png",
-      "voidrage-inferno-thumb-v111.png",
-      "voidrage-inferno-base-v111.png"
+      "voidrage-inferno-fit-v113.png",
+      "voidrage-inferno-bg-v113.png",
+      "voidrage-inferno-thumb-v113.png",
+      "voidrage-inferno-base-v113.png"
     ]
   },
   {
@@ -27,10 +44,10 @@
       "file Inferno vecchi rimossi"
     ],
     "removed": [
-      "voidrage-inferno-fit-v112.png",
-      "voidrage-inferno-bg-v112.png",
-      "voidrage-inferno-thumb-v112.png",
-      "voidrage-inferno-base-v112.png"
+      "voidrage-inferno-fit-v113.png",
+      "voidrage-inferno-bg-v113.png",
+      "voidrage-inferno-thumb-v113.png",
+      "voidrage-inferno-base-v113.png"
     ]
   },
   {
@@ -44,35 +61,35 @@
       "asset Inferno vecchi rimossi dalla cartella premium"
     ],
     "removed": [
-      "voidrage-inferno-bg-v112.png",
-      "voidrage-inferno-base-v112.png",
-      "voidrage-inferno-thumb-v112.png",
-      "voidrage-inferno-bg-v112.png",
-      "voidrage-inferno-thumb-v112.png",
-      "voidrage-inferno-base-v112.png",
-      "voidrage-inferno-bg-v112.png",
-      "voidrage-inferno-thumb-v112.png",
-      "voidrage-inferno-base-v112.png",
-      "voidrage-inferno-bg-v112.png",
-      "voidrage-inferno-thumb-v112.png",
-      "voidrage-inferno-base-v112.png",
-      "voidrage-inferno-bg-v112.png",
-      "voidrage-inferno-thumb-v112.png",
-      "voidrage-inferno-base-v112.png",
-      "voidrage-inferno-bg-v112.png",
-      "voidrage-inferno-thumb-v112.png",
-      "voidrage-inferno-base-v112.png",
-      "voidrage-inferno-bg-v112.png",
-      "voidrage-inferno-thumb-v112.png",
-      "voidrage-inferno-base-v112.png",
-      "voidrage-inferno-fit-v112.png",
-      "voidrage-inferno-fit-v112.png",
-      "voidrage-inferno-bg-v112.png",
-      "voidrage-inferno-thumb-v112.png",
-      "voidrage-inferno-fit-v112.png",
-      "voidrage-inferno-bg-v112.png",
-      "voidrage-inferno-thumb-v112.png",
-      "voidrage-inferno-base-v112.png"
+      "voidrage-inferno-bg-v113.png",
+      "voidrage-inferno-base-v113.png",
+      "voidrage-inferno-thumb-v113.png",
+      "voidrage-inferno-bg-v113.png",
+      "voidrage-inferno-thumb-v113.png",
+      "voidrage-inferno-base-v113.png",
+      "voidrage-inferno-bg-v113.png",
+      "voidrage-inferno-thumb-v113.png",
+      "voidrage-inferno-base-v113.png",
+      "voidrage-inferno-bg-v113.png",
+      "voidrage-inferno-thumb-v113.png",
+      "voidrage-inferno-base-v113.png",
+      "voidrage-inferno-bg-v113.png",
+      "voidrage-inferno-thumb-v113.png",
+      "voidrage-inferno-base-v113.png",
+      "voidrage-inferno-bg-v113.png",
+      "voidrage-inferno-thumb-v113.png",
+      "voidrage-inferno-base-v113.png",
+      "voidrage-inferno-bg-v113.png",
+      "voidrage-inferno-thumb-v113.png",
+      "voidrage-inferno-base-v113.png",
+      "voidrage-inferno-fit-v113.png",
+      "voidrage-inferno-fit-v113.png",
+      "voidrage-inferno-bg-v113.png",
+      "voidrage-inferno-thumb-v113.png",
+      "voidrage-inferno-fit-v113.png",
+      "voidrage-inferno-bg-v113.png",
+      "voidrage-inferno-thumb-v113.png",
+      "voidrage-inferno-base-v113.png"
     ]
   },
   {
@@ -182,7 +199,7 @@
     "summary": "Aggiunto secondo overlay premium rosso/nero separato da Cyber Red Elite.",
     "added": [
       "style voidrage-inferno",
-      "/assets/premium/voidrage-inferno-bg-v112.png",
+      "/assets/premium/voidrage-inferno-bg-v113.png",
       "/assets/premium/voidrage-inferno-layout.json",
       "card premium nel generator",
       "supporto renderer detached multi-premium"
@@ -303,7 +320,7 @@
     "date": "2026-05-25",
     "items": [
       "sostituito lo sfondo premium Cyber Red Elite con la nuova grafica VoidRage/The Finals",
-      "aggiornati thumb premium e cache buster a v=112",
+      "aggiornati thumb premium e cache buster a v=113",
       "allineati generator, preview live e layout editor agli stessi asset premium"
     ]
   },
@@ -502,7 +519,7 @@
     "summary": "Corretto package.json e riferimenti versione così il deploy non resta indicato come V71.",
     "fixed": [
       "package.json ancora indicava V71",
-      "riferimenti cache aggiornati a v=112"
+      "riferimenti cache aggiornati a v=113"
     ]
   },
   {
