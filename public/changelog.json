@@ -1,5 +1,17 @@
 [
   {
+    "version": "1.0.5",
+    "date": "2026-05-26",
+    "title": "Truefix Layout Editor e VoidRage",
+    "summary": "Il Layout Editor pubblico è stato rimosso e VoidRage Inferno è stato rigenerato con interno completamente opaco.",
+    "fixed": [
+      "Layout Editor ancora visibile pubblicamente",
+      "Vecchio URL /layout-editor.html ancora raggiungibile",
+      "Trasparenze interne residue in VoidRage Inferno",
+      "Asset premium aggiornato con cache v105"
+    ]
+  },
+  {
     "version": "1.0.4",
     "date": "2026-05-26",
     "title": "Pulizia progetto, README e admin-only Layout Editor",

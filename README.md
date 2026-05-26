@@ -1,33 +1,38 @@
-# RankTag v1.0.4
+# RankTag v1.0.5
 
-Patch correttiva e pulizia progetto.
+Patch correttiva reale su admin-only Layout Editor e VoidRage Inferno.
 
-## Cosa include
+## Fix principali
 
-- README aggiornato al versionamento ufficiale `v1.0.x`
-- Layout Editor non pubblico
-- Accesso Layout Editor solo tramite area admin e chiave `ADMIN_LAYOUT_KEY`
-- Pulizia asset e file vecchi delle patch precedenti
-- VoidRage Inferno ricaricato con trasparenza solo fuori dai contorni
-- Interno VoidRage Inferno opaco/scuro per evitare bug visivi in OBS, browser source e link finale
-- Link premium stabile e senza parametro `layout` pubblico
+- Rimosso completamente `public/layout-editor.html`
+- Aggiunta pagina pubblica separata `admin-login.html`
+- URL pubblici `/layout-editor` e `/layout-editor.html` bloccati su 404
+- Editor reale servito solo da `/api/layout-editor?key=...`
+- API Layout Editor protetta solo tramite variabile ambiente `ADMIN_LAYOUT_KEY`
+- VoidRage Inferno rigenerato con pannello interno opaco
+- Trasparenza mantenuta solo fuori dall’area overlay
+- Cache/asset aggiornati a v1.0.5
 
 ## Accesso admin
 
-Imposta su Vercel la variabile ambiente:
+Su Vercel imposta:
 
 ```txt
 ADMIN_LAYOUT_KEY
 ```
 
-Poi accedi da:
+Poi entra da:
+
+```txt
+/admin-login.html
+```
+
+Oppure direttamente:
 
 ```txt
 /api/layout-editor?key=LA_TUA_CHIAVE
 ```
 
-La pagina pubblica `/layout-editor.html` non contiene l’editor reale: serve solo come login admin.
-
 ## Versione
 
-Release corrente: `v1.0.4`
+Release corrente: `v1.0.5`
