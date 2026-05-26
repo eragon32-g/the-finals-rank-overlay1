@@ -20,7 +20,7 @@ module.exports = function handler(req, res) {
   }
 
   const file = path.join(process.cwd(), "private", "layout-editor.html");
-  const html = fs.readFileSync(file, "utf8").replace("</body>", `<script>try{localStorage.setItem('ranktag-admin','1')}catch{}</script></body>`);
+  const html = fs.readFileSync(file, "utf8").replace("</body>", `<script>try{sessionStorage.setItem(\'ranktag-admin-ok\',\'1\')}catch{}</script></body>`);
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");

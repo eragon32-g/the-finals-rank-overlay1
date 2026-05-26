@@ -38,7 +38,7 @@
     document.getElementById("go").addEventListener("click", () => {
       const key = input.value.trim();
       if (!key) { msg.textContent = "Inserisci la chiave admin."; return; }
-      window.location.href = "/api/admin-login.html?key=" + encodeURIComponent(key);
+      window.location.href = "/api/layout-editor?key=" + encodeURIComponent(key);
     });
     input.addEventListener("keydown", (e) => {
       if (e.key === "Enter") document.getElementById("go").click();

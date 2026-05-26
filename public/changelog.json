@@ -1,5 +1,16 @@
 [
   {
+    "version": "1.0.6",
+    "date": "2026-05-26",
+    "title": "Fix definitivo accesso admin Layout Editor",
+    "summary": "Rimosso il tasto Layout Editor pubblico e corretta la login admin che ora apre direttamente l’API protetta.",
+    "fixed": [
+      "Login admin indirizzata per errore a /api/admin-login.html",
+      "Tasto Layout Editor ancora visibile nel generator",
+      "Accesso admin non avviava più il Layout Editor"
+    ]
+  },
+  {
     "version": "1.0.5",
     "date": "2026-05-26",
     "title": "Truefix Layout Editor e VoidRage",
