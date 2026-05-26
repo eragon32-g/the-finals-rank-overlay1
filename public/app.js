@@ -22,7 +22,7 @@ const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
     "width": 470,
     "height": 160
   },
-  "background": "/assets/premium/voidrage-inferno-bg-v102.png",
+  "background": "/assets/premium/voidrage-inferno-fit-v103.png",
   "elements": {
     "badge": {
       "x": 12,
@@ -549,7 +549,7 @@ if (isManualMode()) {
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 
 
-/* RankTag V102 Plus style finalizer */
+/* RankTag V103 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red-elite", "voidrage-inferno", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -584,7 +584,7 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 })();
 
 
-/* RankTag V102 - single source image-base Plus engine */
+/* RankTag V103 - single source image-base Plus engine */
 let rankTagPlusLayoutsPromise = null;
 
 function loadRankTagPlusLayouts() {
@@ -718,7 +718,7 @@ function loadRankTagPlusLayouts() {
   });
 })();
 
-/* RankTag V102 render marker */
+/* RankTag V103 render marker */
 document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
@@ -731,7 +731,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag V102 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
+/* RankTag V103 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
 (function rankTagPremiumBackdropV78(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -772,7 +772,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=102') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=103') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -964,7 +964,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     style.textContent += `
 `;
     style.textContent += `
-/* RankTag V102 - locked premium coordinates from Layout Editor */
+/* RankTag V103 - locked premium coordinates from Layout Editor */
 #badge.rt78-cyber-red-elite .rank-mark,
 #badge.rt80-cyber-red-elite .rank-mark {
   left: 7px !important;
@@ -1066,7 +1066,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 })();
 
 
-/* RankTag V102 - Premium backdrop engine: full 470x160 background adapted to stable layout */
+/* RankTag V103 - Premium backdrop engine: full 470x160 background adapted to stable layout */
 (function rankTagPremiumBackdropV80(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -1108,7 +1108,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=102') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=103') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -1339,7 +1339,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag V102 - runtime premium layout from URL param */
+/* RankTag V103 - runtime premium layout from URL param */
 (function rankTagPremiumRuntimeLayoutV89(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
@@ -1472,7 +1472,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag V102 - AUTHORITATIVE premium layout sync */
+/* RankTag V103 - AUTHORITATIVE premium layout sync */
 (function rankTagPremiumLayoutAuthoritativeV90(){
   if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
 
@@ -1683,7 +1683,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag V102 - DETACHED PREMIUM RENDERER
+/* RankTag V103 - DETACHED PREMIUM RENDERER
    Premium Cyber Red Elite no longer uses the standard card layout.
    It renders the exact same JSON layer model used by layout-editor.html. */
 (function rankTagDetachedPremiumRendererV92(){
@@ -1769,7 +1769,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     const scoreValue = (scoreText?.textContent || "ELO: 37.705").trim();
     const playerValue = (nameText?.textContent || getPlayerFromUrl?.() || "NOMEPLAYER#1234").trim();
     const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
-    const badgeSrc = badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum.svg?v=102";
+    const badgeSrc = badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum.svg?v=103";
     return { rankValue, scoreValue, playerValue, brandValue, badgeSrc };
   }
 
@@ -2033,7 +2033,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     root.dataset.renderer = "premium-detached-v93";
 
     root.innerHTML = `
-      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=102" alt="" />
+      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=103" alt="" />
       <div class="rt92-layer rt92-badge" style="${layerStyle(e.badge)}">
         <img src="${esc(d.badgeSrc)}" alt="" />
       </div>
@@ -2083,13 +2083,13 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
 
 
 
-/* RankTag V102 - MULTI PREMIUM DETACHED RENDERER */
+/* RankTag V103 - MULTI PREMIUM DETACHED RENDERER */
 (function rankTagMultiPremiumDetachedRendererV97(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
   const PREMIUM_LAYOUTS = {
     "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : null),
-    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": 1, "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-bg-v102.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
+    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "103", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v103.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
   };
 
   function safeNumber(value, fallback) {
@@ -2156,7 +2156,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     const scoreValue = (scoreText?.textContent || "ELO: 37.705").trim();
     const playerValue = (nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim();
     const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
-    const badgeSrc = badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=102";
+    const badgeSrc = badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=103";
     return { rankValue, scoreValue, playerValue, brandValue, badgeSrc };
   }
 
@@ -2369,7 +2369,7 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     root.dataset.themeStyle = themeStyle;
     root.dataset.renderer = "multi-premium-detached-v97";
     root.innerHTML = `
-      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=102" alt="" />
+      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=103" alt="" />
       <div class="rt97-layer rt97-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badgeSrc)}" alt="" /></div>
       <div class="rt97-layer rt97-rank" style="${layerStyle(e.rank)}">${esc(d.rankValue)}</div>
       <div class="rt97-layer rt97-score" style="${layerStyle(e.score)}">${esc(d.scoreValue)}</div>
@@ -2399,4 +2399,162 @@ document.documentElement.setAttribute("data-ranktag-version", "100");
     setTimeout(renderDetached, 1000);
   });
   renderDetached();
+})();
+
+
+
+/* RankTag V103 - FINAL AUTHORITATIVE PREMIUM RENDERER */
+(function rankTagV103FinalPremiumRenderer(){
+  const premiumStyles = ["cyber-red-elite", "voidrage-inferno"];
+  if (typeof themeStyle === "undefined" || !premiumStyles.includes(themeStyle)) return;
+
+  const DEFAULTS = {
+    "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : {"version": "100", "schema": "ranktag-premium-layout-v2", "style": "cyber-red-elite", "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/cyber-red-elite-bg-v96.png", "elements": {"badge": {"x": 7, "y": 9, "w": 136, "h": 121, "fontSize": 0, "z": 5}, "rank": {"x": 164, "y": 39, "w": 215, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 165, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 271, "y": 78, "w": 142, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 165, "y": 100, "w": 270, "h": 16, "fontSize": 9.5, "z": 6}}}),
+    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": 1, "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v103.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
+  };
+
+  function esc(v) {
+    return String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  }
+
+  function n(v, d) {
+    const x = Number(v);
+    return Number.isFinite(x) ? x : d;
+  }
+
+  function decodeLayoutParam() {
+    const raw = new URLSearchParams(window.location.search).get("layout");
+    if (!raw) return null;
+    try {
+      const json = decodeURIComponent(escape(atob(raw)));
+      const parsed = JSON.parse(json);
+      if (parsed?.elements && (!parsed.style || parsed.style === themeStyle)) return parsed;
+    } catch {}
+    try {
+      const parsed = JSON.parse(raw);
+      if (parsed?.elements && (!parsed.style || parsed.style === themeStyle)) return parsed;
+    } catch {}
+    return null;
+  }
+
+  function normalize(layout) {
+    const base = DEFAULTS[themeStyle];
+    const src = layout?.elements ? layout : base;
+    const out = JSON.parse(JSON.stringify(base));
+    out.style = themeStyle;
+    out.background = src.background || base.background;
+    out.canvas = src.canvas || base.canvas || { width: 470, height: 160 };
+    for (const key of ["badge","rank","score","player","brand"]) {
+      out.elements[key] = Object.assign({}, base.elements[key], src.elements?.[key] || {});
+      for (const k of ["x","y","w","h","fontSize","z"]) {
+        out.elements[key][k] = n(out.elements[key][k], base.elements[key][k] || 0);
+      }
+    }
+    return out;
+  }
+
+  function layerStyle(cfg) {
+    return [
+      `left:${cfg.x}px`,
+      `top:${cfg.y}px`,
+      `width:${cfg.w}px`,
+      `height:${cfg.h}px`,
+      `z-index:${cfg.z}`,
+      cfg.fontSize ? `font-size:${cfg.fontSize}px` : "",
+      `line-height:${cfg.h}px`
+    ].filter(Boolean).join(";");
+  }
+
+  function data() {
+    return {
+      rank: (rankText?.textContent || "PLATINUM 1").trim(),
+      score: (scoreText?.textContent || "ELO: 37.705").trim(),
+      player: (nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim(),
+      brand: (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim(),
+      badge: badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=103"
+    };
+  }
+
+  function ensureStyle() {
+    let style = document.getElementById("rt103-final-premium-style");
+    if (style) return;
+    style = document.createElement("style");
+    style.id = "rt103-final-premium-style";
+    style.textContent = `
+      html, body { margin:0!important; width:100%!important; height:100%!important; overflow:hidden!important; background:transparent!important; }
+      body { display:grid!important; place-items:center!important; }
+      #overlay.overlay { width:470px!important; height:160px!important; display:grid!important; place-items:center!important; overflow:hidden!important; background:transparent!important; }
+      #badge.rt103-premium { position:relative!important; width:470px!important; height:160px!important; min-width:470px!important; min-height:160px!important; max-width:470px!important; max-height:160px!important; display:block!important; padding:0!important; margin:0!important; overflow:hidden!important; border:0!important; box-shadow:none!important; background:transparent!important; }
+      .rt103-bg { position:absolute; inset:0; width:470px; height:160px; object-fit:fill; pointer-events:none; z-index:0; }
+      .rt103-layer { position:absolute; display:flex; align-items:center; justify-content:flex-start; white-space:nowrap; overflow:hidden; box-sizing:border-box; }
+      .rt103-badge { justify-content:center; overflow:visible; }
+      .rt103-badge img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 2px 10px rgba(255,255,255,.28)) drop-shadow(0 2px 12px rgba(255,42,23,.38)); }
+      .rt103-rank { color:#54eaff; font-weight:1000; letter-spacing:.7px; text-transform:uppercase; text-shadow:0 0 12px rgba(84,234,255,.34), 0 2px 8px rgba(0,0,0,.9); }
+      .theme-voidrage-inferno .rt103-rank { color:#fff6f2; text-shadow:0 0 12px rgba(255,42,23,.62), 0 2px 8px rgba(0,0,0,.95); }
+      .rt103-score, .rt103-player { color:#f7f2ff; font-weight:1000; text-transform:uppercase; text-overflow:ellipsis; text-shadow:0 1px 7px rgba(0,0,0,.95); }
+      .rt103-brand { display:flex; align-items:center; gap:7px; padding:0 8px; border-radius:999px; background:linear-gradient(180deg, rgba(12,10,16,.88), rgba(5,4,10,.78)); border:1px solid rgba(255,255,255,.14); transform:translateY(105%); opacity:0; transition:transform 360ms cubic-bezier(.2,.9,.2,1), opacity 260ms ease; }
+      .rt103-brand.is-visible { transform:translateY(0); opacity:1; }
+      .rt103-brand-icon { width:11px; height:11px; border-radius:3px; background:linear-gradient(135deg,#ff2a17,#ffd36a); box-shadow:0 0 12px rgba(255,42,23,.46); transform:rotate(45deg); flex:0 0 11px; }
+      .rt103-marquee { min-width:0; flex:1; overflow:hidden; white-space:nowrap; mask-image:linear-gradient(90deg, transparent, black 9%, black 91%, transparent); }
+      .rt103-marquee span { display:inline-block; min-width:max-content; padding-left:100%; font-weight:1000; color:#f7f2ff; text-shadow:0 0 8px rgba(255,42,23,.38), 0 1px 7px rgba(0,0,0,.95); animation:rt103Marquee var(--brand-duration,8s) linear infinite; animation-play-state:paused; }
+      .rt103-brand.is-visible .rt103-marquee span { animation-play-state:running; }
+      @keyframes rt103Marquee { from { transform:translateX(0); } to { transform:translateX(-100%); } }
+    `;
+    document.head.appendChild(style);
+  }
+
+  let brandStarted = false;
+  function startBrand() {
+    if (brandStarted) return;
+    brandStarted = true;
+    const drawer = () => document.querySelector("#badge .rt103-brand");
+    const show = () => {
+      const el = drawer();
+      if (!el) return;
+      el.classList.add("is-visible");
+      setTimeout(() => el.classList.remove("is-visible"), 4500);
+    };
+    setTimeout(show, 800);
+    setInterval(show, 12000);
+  }
+
+  function render() {
+    ensureStyle();
+    const root = document.getElementById("badge") || badge;
+    if (!root) return;
+    const layout = normalize(decodeLayoutParam());
+    const e = layout.elements;
+    const d = data();
+    root.className = "badge rt103-premium";
+    root.dataset.themeStyle = themeStyle;
+    root.dataset.renderer = "rt103-final";
+    root.innerHTML = `
+      <img class="rt103-bg" src="${esc(layout.background)}?v=103" alt="" />
+      <div class="rt103-layer rt103-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badge)}" alt="" /></div>
+      <div class="rt103-layer rt103-rank" style="${layerStyle(e.rank)}">${esc(d.rank)}</div>
+      <div class="rt103-layer rt103-score" style="${layerStyle(e.score)}">${esc(d.score)}</div>
+      <div class="rt103-layer rt103-player" style="${layerStyle(e.player)}">${esc(d.player)}</div>
+      <div class="rt103-layer rt103-brand" style="${layerStyle(e.brand)}"><div class="rt103-brand-icon"></div><div class="rt103-marquee"><span>${esc(d.brand)}</span></div></div>
+    `;
+    startBrand();
+  }
+
+  const oldSetData = typeof setData === "function" ? setData : null;
+  if (oldSetData && !window.__rt103FinalPremiumSetData) {
+    window.__rt103FinalPremiumSetData = true;
+    setData = async function(...args) {
+      await oldSetData.apply(this, args);
+      render();
+      setTimeout(render, 80);
+      setTimeout(render, 260);
+    };
+  }
+
+  window.addEventListener("load", () => {
+    render();
+    setTimeout(render, 150);
+    setTimeout(render, 600);
+    setTimeout(render, 1300);
+  });
+  render();
 })();

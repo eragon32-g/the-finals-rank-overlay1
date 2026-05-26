@@ -1,5 +1,8 @@
-# RankTag V102
+# RankTag V103
 
-- VoidRage Inferno now uses a truly transparent PNG
-- Layout Editor saves each premium layout separately
-- Generator reads the correct saved layout per premium style
+Premium renderer cleanup.
+
+- Cyber Red Elite and VoidRage Inferno are rendered by one final premium renderer
+- Inferno transparent asset/crop improved
+- Layout Editor uses separate v103 localStorage keys for each premium overlay
+- Generator reinforces style-specific layout in preview/link

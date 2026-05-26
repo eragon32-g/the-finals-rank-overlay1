@@ -1,8 +1,8 @@
 {
-  "version": "102",
+  "version": "103",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Fixed transparent Inferno background and isolated layout editor storage per premium overlay."
+  "note": "V103: fixed Cyber Red Elite preview with final premium renderer, improved Inferno transparent crop, and reinforced per-premium layout separation."
 }
