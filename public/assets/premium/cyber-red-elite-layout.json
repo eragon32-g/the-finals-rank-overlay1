@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.1",
   "schema": "ranktag-premium-layout-v2",
   "style": "cyber-red-elite",
   "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.",

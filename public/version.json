@@ -1,12 +1,12 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.1",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.0.3: fix rank manuale anche sugli overlay premium.",
+  "note": "Beta iniziale 0.0.1. La pagina Updates è stata ripulita; gli update pubblici partiranno dal prossimo rilascio importante.",
   "status": "BETA",
-  "label": "BETA 0.0.3",
+  "label": "BETA 0.0.1",
   "versioning": {
     "beta": true,
     "rules": [

@@ -1,8 +1,15 @@
-# RankTag BETA 0.0.3
+# RankTag BETA 0.0.1
 
-Fix modalità manuale sugli overlay premium.
+Build di lancio Beta.
 
-## Include
-- Il rank selezionato in modalità manuale aggiorna anche Cyber Red Elite e VoidRage Inferno.
-- I renderer premium leggono i dati manuali dai parametri URL.
-- Preview e link premium restano sincronizzati.
+## Cambi principali
+- Versione pubblica portata a 0.0.1
+- Stato: BETA
+- Pagina Updates ripulita
+- Changelog pubblico azzerato/ripulito
+- Da ora verranno pubblicati solo aggiornamenti importanti
+
+## Regola versioni
+- 0.0.1 → 0.0.9
+- dopo 0.0.9 si passa a 0.1.0
+- dopo 0.9.0 si passa a 1.0.0

@@ -1,29 +1,5 @@
 [
   {
-    "version": "0.0.3",
-    "status": "BETA",
-    "date": "2026-05-27",
-    "title": "Fix rank manuale premium",
-    "summary": "Corretto il cambio rank in modalità manuale anche sugli overlay premium.",
-    "fixed": [
-      "Cyber Red Elite e VoidRage Inferno potevano mantenere il rank precedente",
-      "i renderer premium ora leggono il rank manuale dai parametri URL",
-      "la preview premium resta sincronizzata con badgeFile/league/division"
-    ]
-  },
-  {
-    "version": "0.0.2",
-    "status": "BETA",
-    "date": "2026-05-26",
-    "title": "Fix rank manuale",
-    "summary": "Corretto il cambio rank in modalità manuale: selezione, anteprima e link finale ora restano sincronizzati.",
-    "fixed": [
-      "il rank selezionato in modalità manuale rimaneva fisso",
-      "alcune richieste asincrone potevano sovrascrivere il link con un rank precedente",
-      "il renderer manuale ora forza il display rank dal badgeFile selezionato"
-    ]
-  },
-  {
     "version": "0.0.1",
     "status": "BETA",
     "date": "2026-05-26",
