@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=014" />
+  <link rel="stylesheet" href="/style.css?v=015" />
   <style>
     * { box-sizing: border-box; }
     body { margin:0; min-height:100vh; background:radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%), linear-gradient(180deg,#111923,#06070b 46%,#030407); color:#f5f7fb; font-family:Arial,Helvetica,sans-serif; padding:24px; overflow-x:auto; }
@@ -141,14 +141,25 @@
 
   
     .builder-stage-holder {
-      width:611px;
-      height:208px;
+      width:940px;
+      height:320px;
+      max-width:100%;
       display:grid;
       place-items:center;
-      overflow:visible;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:20px;
+      background:
+        linear-gradient(45deg,rgba(255,255,255,.035) 25%,transparent 25%),
+        linear-gradient(-45deg,rgba(255,255,255,.035) 25%,transparent 25%),
+        linear-gradient(45deg,transparent 75%,rgba(255,255,255,.035) 75%),
+        linear-gradient(-45deg,transparent 75%,rgba(255,255,255,.035) 75%),
+        rgba(0,0,0,.26);
+      background-size:22px 22px;
+      background-position:0 0,0 11px,11px -11px,-11px 0;
     }
     .builder-stage-holder .builder-stage {
-      transform:scale(var(--builderZoom, 1.3));
+      transform:scale(var(--builderZoom, 1.15));
       transform-origin:center center;
     }
 
@@ -165,7 +176,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.4</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.5</span>
       </div>
     </div>
     <div class="layout">
@@ -208,16 +219,16 @@
         <div style="width:100%;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
   <h2 style="margin:0;">4. Editor layout</h2>
   <div class="actions">
-    <button class="btn secondary" id="zoomOut" type="button">- Zoom</button>
-    <span class="tag" id="zoomLabel">130%</span>
-    <button class="btn secondary" id="zoomIn" type="button">+ Zoom</button>
+    <button class="btn secondary" id="zoomOut" type="button">Allontana</button>
+    <span class="tag" id="zoomLabel">115%</span>
+    <button class="btn secondary" id="zoomIn" type="button">Avvicina</button>
     <button class="btn secondary" id="zoomReset" type="button">Reset zoom</button>
     <span class="tag">Drag & Resize</span>
   </div>
 </div>
         <div class="builder-stage-holder"><div class="builder-stage" id="builderStage"><div class="builder-bg"></div></div></div>
         <div class="actions"><input id="customImageUpload" type="file" accept="image/png,image/jpeg,image/webp" style="max-width:340px;"><button class="btn secondary" id="resetLayout" type="button">Reset layout</button><button class="btn secondary" id="clearImages" type="button">Rimuovi immagini</button></div>
-        <p class="help">L’editor usa proporzioni reali 470×160. Usa lo zoom per lavorare più comodo: gli effetti di badge/testi seguono gli elementi e il font cresce con il resize.</p>
+        <p class="help">L’area editor resta grande; lo zoom modifica solo l’overlay interno, non tutta la finestra. Usa -/+ Zoom per avvicinarti o allontanarti dal layout.</p>
       </section>
       <section class="panel stack">
         <h2>5. Elemento selezionato</h2><span class="tag" id="selectedName">nessuno</span>
@@ -230,7 +241,7 @@
         <div class="actions"><button class="btn secondary" id="applyFields" type="button">Applica</button><button class="btn secondary" id="front" type="button">Porta avanti</button><button class="btn secondary" id="back" type="button">Porta dietro</button><button class="btn secondary" id="removeImage" type="button">Rimuovi immagine</button></div>
         <div class="list" id="elementsList"></div>
         <h2>6. Anteprima finale reale</h2>
-        <p class="help">Questa preview è una copia diretta dell’editor in scala ridotta. Il link finale usa gli stessi dati del layout.</p>
+        <p class="help">Questa preview mostra il risultato reale in scala ridotta. Lo zoom dell’editor non modifica il link finale.</p>
         <div class="mirror-preview" id="mirrorPreview"><div class="mirror-bg"></div></div><iframe id="preview" title="Preview overlay" style="display:none;"></iframe>
         <div class="actions"><button class="btn" id="generate" type="button">Aggiorna link</button><button class="btn secondary" id="copy" type="button">Copia link</button></div>
         <label>Link finale<textarea id="output" readonly></textarea></label>
@@ -242,7 +253,7 @@
     const stage = $("builderStage");
     const MAX_IMAGES = 2, MAX_IMG_SIZE = 320;
     const rankMap = {"bronze-4":["Bronze","4"],"bronze-3":["Bronze","3"],"bronze-2":["Bronze","2"],"bronze-1":["Bronze","1"],"silver-4":["Silver","4"],"silver-3":["Silver","3"],"silver-2":["Silver","2"],"silver-1":["Silver","1"],"gold-4":["Gold","4"],"gold-3":["Gold","3"],"gold-2":["Gold","2"],"gold-1":["Gold","1"],"platinum-4":["Platinum","4"],"platinum-3":["Platinum","3"],"platinum-2":["Platinum","2"],"platinum-1":["Platinum","1"],"diamond-4":["Diamond","4"],"diamond-3":["Diamond","3"],"diamond-2":["Diamond","2"],"diamond-1":["Diamond","1"],"ruby":["Ruby",""]};
-    const defaultLayout = {badge:{kind:"base",label:"Badge",x:22,y:27,w:88,h:88,fontSize:0,z:8,opacity:1},rank:{kind:"base",label:"Rank",x:120,y:37,w:210,h:26,fontSize:23,z:6,opacity:1},score:{kind:"base",label:"ELO",x:122,y:68,w:108,h:15,fontSize:10.5,z:6,opacity:1},player:{kind:"base",label:"Player",x:232,y:68,w:140,h:15,fontSize:10,z:6,opacity:1},brand:{kind:"base",label:"Brand",x:122,y:91,w:230,h:15,fontSize:9,z:6,opacity:1}};
+    const defaultLayout = {badge:{kind:"base",label:"Badge",x:20,y:26,w:90,h:90,fontSize:0,z:8,opacity:1},rank:{kind:"base",label:"Rank",x:122,y:36,w:210,h:26,fontSize:23,z:6,opacity:1},score:{kind:"base",label:"ELO",x:124,y:68,w:108,h:15,fontSize:10.5,z:6,opacity:1},player:{kind:"base",label:"Player",x:234,y:68,w:140,h:15,fontSize:10,z:6,opacity:1},brand:{kind:"base",label:"Brand",x:124,y:91,w:230,h:15,fontSize:9,z:6,opacity:1}};
     let baseLayout = JSON.parse(JSON.stringify(defaultLayout)), customElements = [], selectedId = "badge";
     function uid(){return "ce_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,7);}
     function clamp(n,min,max){return Math.max(min,Math.min(max,Number(n)||0));}
@@ -275,7 +286,7 @@
           lineHeight: `${item.h * scale}px`
         });
         if(item.id==="badge"){
-          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=014" alt="">`;
+          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=015" alt="">`;
         } else if(item.kind==="image"){
           node.innerHTML = `<img src="${item.src}" alt="">`;
         } else {
@@ -298,7 +309,7 @@
         }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",lineHeight:`${item.h}px`});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=014" alt="">`;
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=015" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; label.textContent=item.label||item.name||item.id; box.appendChild(label);
@@ -337,7 +348,7 @@
     $("generate").addEventListener("click",buildLink);
     $("copy").addEventListener("click",async()=>{buildLink(); await navigator.clipboard.writeText($("output").value); $("copy").textContent="Copiato!"; setTimeout(()=>$("copy").textContent="Copia link",1200);});
 
-    let builderZoom = 1.3;
+    let builderZoom = 1.15;
     function applyBuilderZoom(){
       const holder = document.querySelector(".builder-stage-holder");
       if(!holder) return;
@@ -345,9 +356,9 @@
       const label = $("zoomLabel");
       if(label) label.textContent = Math.round(builderZoom * 100) + "%";
     }
-    $("zoomOut")?.addEventListener("click", () => { builderZoom = Math.max(.85, Math.round((builderZoom - .1) * 100) / 100); applyBuilderZoom(); });
-    $("zoomIn")?.addEventListener("click", () => { builderZoom = Math.min(1.8, Math.round((builderZoom + .1) * 100) / 100); applyBuilderZoom(); });
-    $("zoomReset")?.addEventListener("click", () => { builderZoom = 1.3; applyBuilderZoom(); });
+    $("zoomOut")?.addEventListener("click", () => { builderZoom = Math.max(.65, Math.round((builderZoom - .1) * 100) / 100); applyBuilderZoom(); });
+    $("zoomIn")?.addEventListener("click", () => { builderZoom = Math.min(1.75, Math.round((builderZoom + .1) * 100) / 100); applyBuilderZoom(); });
+    $("zoomReset")?.addEventListener("click", () => { builderZoom = 1.15; applyBuilderZoom(); });
 
     applyBuilderZoom();
     render();

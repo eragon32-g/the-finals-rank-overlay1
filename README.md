@@ -1,10 +1,10 @@
-# RankTag BETA 0.1.4
+# RankTag BETA 0.1.5
 
-Builder zoom and effects fix.
+Builder inner zoom fix.
 
 ## Include
-- Zoom editor: - Zoom / + Zoom / Reset zoom
-- Scala iniziale editor più piccola
-- Effetti badge glow/ring seguono il badge
-- Effetti testo/brand seguono gli elementi
-- Font più proporzionato durante il resize
+- Area editor grande ripristinata
+- Zoom applicato solo all'overlay interno
+- Lo zoom non scala tutta la finestra
+- Default zoom 115%
+- Limiti zoom 65% - 175%

@@ -1,12 +1,12 @@
 {
-  "version": "0.1.4",
+  "version": "0.1.5",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.1.4: zoom editor, stage interno più piccolo, effetti che seguono gli elementi e font proporzionato.",
+  "note": "BETA 0.1.5: ripristinata area editor grande; lo zoom ora agisce solo sull'overlay interno.",
   "status": "BETA",
-  "label": "BETA 0.1.4",
+  "label": "BETA 0.1.5",
   "versioning": {
     "beta": true,
     "rules": [

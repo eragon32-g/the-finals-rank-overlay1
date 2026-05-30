@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.1.5",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Builder inner zoom fix",
+    "summary": "Ripristinata la dimensione grande dell'area editor: lo zoom ora agisce solo sull'overlay interno, non sulla finestra/pagina.",
+    "fixed": [
+      "lo zoom agiva sulla zona sbagliata",
+      "l'area editor era stata ridotta troppo",
+      "l'overlay interno ora può essere allontanato o avvicinato dentro un editor grande"
+    ]
+  },
+  {
     "version": "0.1.4",
     "status": "BETA",
     "date": "2026-05-30",
