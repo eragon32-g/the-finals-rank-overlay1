@@ -1,12 +1,12 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.1.0: riallineata colonna destra builder e resa preview finale più veritiera mantenendo il frame reale.",
+  "note": "BETA 0.1.1: fix fedeltà editor/anteprima e pannello destro non tagliato.",
   "status": "BETA",
-  "label": "BETA 0.1.0",
+  "label": "BETA 0.1.1",
   "versioning": {
     "beta": true,
     "rules": [

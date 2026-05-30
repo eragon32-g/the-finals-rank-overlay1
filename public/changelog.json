@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.1.1",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Builder fidelity fix",
+    "summary": "Reso più fedele il rapporto tra editor layout e anteprima finale, correggendo anche il pannello destro tagliato.",
+    "fixed": [
+      "editor layout e anteprima finale non corrispondevano",
+      "coordinate baseLayout ora vengono applicate rispetto al canvas reale",
+      "preview destra scalata per non essere tagliata",
+      "pannello destro più contenuto e leggibile"
+    ]
+  },
+  {
     "version": "0.1.0",
     "status": "BETA",
     "date": "2026-05-30",

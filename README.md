@@ -1,10 +1,8 @@
-# RankTag BETA 0.1.0
+# RankTag BETA 0.1.1
 
-Builder true preview fix.
+Builder fidelity fix.
 
-## Include
-- Colonna destra più larga e ordinata
-- Builder più centrato
-- Preview finale più attendibile
-- baseLayout non rimuove più il frame reale
-- Passaggio versione da 0.0.9 a 0.1.0
+- Editor layout più fedele all'anteprima finale
+- Coordinate baseLayout applicate rispetto al canvas reale
+- Pannello destro non tagliato
+- Preview destra scalata per entrare nel pannello
