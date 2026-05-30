@@ -1,5 +1,5 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-0-5-custom-image-elements",
-  "version": "0.0.5",
-  "description": "RankTag BETA 0.0.5 - custom image elements in generator"
+  "name": "ranktag-finals-overlay-beta-0-0-6-full-overlay-builder",
+  "version": "0.0.6",
+  "description": "RankTag BETA 0.0.6 - full overlay builder with frame clipping"
 }

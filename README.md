@@ -1,11 +1,10 @@
-# RankTag BETA 0.0.5
+# RankTag BETA 0.0.6
 
-Custom image elements.
+Full overlay builder.
 
 ## Include
-- Builder pubblico integrato nel generator
+- Drag & resize badge, rank, ELO, player e brand
 - Upload immagini custom
-- Drag & resize su canvas 470x160
-- Controlli x/y/w/h/opacità/livello
-- Salvataggio elementi nel link overlay
-- Rimozione vecchio Layout Editor admin
+- Clipping alla forma della cornice
+- Layout salvato nel link finale
+- Vecchio Layout Editor separato rimosso

@@ -1,12 +1,12 @@
 {
-  "version": "0.0.5",
+  "version": "0.0.6",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.0.5: introdotto builder pubblico per elementi immagine personalizzati nel generator.",
+  "note": "BETA 0.0.6: builder completo integrato nel generator con drag/resize di badge, testi, branding e immagini; clipping alla forma della cornice.",
   "status": "BETA",
-  "label": "BETA 0.0.5",
+  "label": "BETA 0.0.6",
   "versioning": {
     "beta": true,
     "rules": [

@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.0.6",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Full overlay builder",
+    "summary": "Il builder ora include le meccaniche del vecchio layout editor: badge, rank, ELO, player, brand e immagini custom sono spostabili/ridimensionabili.",
+    "added": [
+      "drag & resize di tutti gli elementi base",
+      "clipping alla forma della cornice",
+      "baseLayout salvato nel link finale",
+      "custom images ancora supportate"
+    ]
+  },
+  {
     "version": "0.0.5",
     "status": "BETA",
     "date": "2026-05-30",
