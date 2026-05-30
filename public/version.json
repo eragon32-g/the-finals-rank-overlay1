@@ -1,12 +1,12 @@
 {
-  "version": "0.0.6",
+  "version": "0.0.7",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.0.6: builder completo integrato nel generator con drag/resize di badge, testi, branding e immagini; clipping alla forma della cornice.",
+  "note": "BETA 0.0.7: Overlay Builder spostato in pagina separata /builder.html con generazione diretta del link finale.",
   "status": "BETA",
-  "label": "BETA 0.0.6",
+  "label": "BETA 0.0.7",
   "versioning": {
     "beta": true,
     "rules": [

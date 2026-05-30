@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.0.7",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Builder page separata",
+    "summary": "Il builder avanzato è stato spostato in una pagina dedicata con più spazio e genera direttamente il link finale da copiare.",
+    "changed": [
+      "Overlay Builder rimosso dal generator principale",
+      "nuova pagina /builder.html",
+      "nessun salvataggio set nel generator principale",
+      "link finale generato direttamente dal builder"
+    ]
+  },
+  {
     "version": "0.0.6",
     "status": "BETA",
     "date": "2026-05-30",

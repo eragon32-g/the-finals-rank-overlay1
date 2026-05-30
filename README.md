@@ -1,10 +1,10 @@
-# RankTag BETA 0.0.6
+# RankTag BETA 0.0.7
 
-Full overlay builder.
+Builder page separata.
 
 ## Include
-- Drag & resize badge, rank, ELO, player e brand
-- Upload immagini custom
-- Clipping alla forma della cornice
-- Layout salvato nel link finale
-- Vecchio Layout Editor separato rimosso
+- /builder.html pagina dedicata per Overlay Builder
+- Generator principale più pulito
+- Builder crea direttamente link finale da copiare
+- Drag & resize badge/testi/brand/immagini custom
+- Clipping cornice tramite clipFrame

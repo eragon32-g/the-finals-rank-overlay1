@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RankTag Builder Overlay</title>
+  <link rel="stylesheet" href="/style.css?v=007" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%), linear-gradient(180deg,#111923,#06070b 46%,#030407); color:#f5f7fb; font-family:Arial,Helvetica,sans-serif; padding:24px; }
+    .page { width:min(1480px,100%); margin:0 auto; }
+    .top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px; flex-wrap:wrap; }
+    h1 { margin:0; font-size:clamp(34px,5vw,64px); line-height:.9; letter-spacing:-1.5px; }
+    .sub { margin:8px 0 0; color:rgba(245,247,251,.72); line-height:1.45; }
+    .nav { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .tag,.nav a { border:1px solid rgba(255,255,255,.14); border-radius:999px; padding:9px 13px; background:rgba(255,255,255,.06); color:#fff; text-decoration:none; font-weight:900; font-size:12px; letter-spacing:.4px; }
+    .layout { display:grid; grid-template-columns:380px minmax(540px,1fr) 380px; gap:16px; align-items:start; }
+    .panel { border:1px solid rgba(255,255,255,.12); border-radius:22px; background:linear-gradient(180deg,rgba(18,21,30,.96),rgba(8,10,15,.98)); padding:18px; box-shadow:0 20px 48px rgba(0,0,0,.24); }
+    .panel h2 { margin:0 0 12px; font-size:20px; }
+    label { display:grid; gap:6px; color:rgba(245,247,251,.76); font-weight:800; font-size:12px; }
+    input,select,textarea { width:100%; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.30); color:#fff; border-radius:12px; padding:10px 12px; font-weight:800; }
+    textarea { min-height:88px; resize:vertical; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .stack { display:grid; gap:12px; }
+    .btn { border:0; border-radius:13px; padding:11px 14px; background:#ef1724; color:#fff; font-weight:1000; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
+    .btn.secondary { background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.13); }
+    .actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .stage-wrap { display:grid; justify-items:center; gap:14px; }
+    .builder-stage { width:940px; height:320px; max-width:100%; position:relative; overflow:hidden; border:1px solid rgba(255,255,255,.18); border-radius:20px; background:linear-gradient(45deg,rgba(255,255,255,.035) 25%,transparent 25%),linear-gradient(-45deg,rgba(255,255,255,.035) 25%,transparent 25%),linear-gradient(45deg,transparent 75%,rgba(255,255,255,.035) 75%),linear-gradient(-45deg,transparent 75%,rgba(255,255,255,.035) 75%),rgba(0,0,0,.26); background-size:22px 22px; background-position:0 0,0 11px,11px -11px,-11px 0; clip-path:polygon(48px 0,calc(100% - 48px) 0,100% 48px,100% calc(100% - 48px),calc(100% - 48px) 100%,48px 100%,0 calc(100% - 48px),0 48px); }
+    .builder-bg { position:absolute; left:180px; top:66px; width:760px; height:188px; border-radius:24px; border:2px solid rgba(124,132,143,.72); background:linear-gradient(180deg,rgba(32,36,45,.96),rgba(7,9,13,.98)); box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 12px 24px rgba(0,0,0,.28); }
+    .builder-bg::before { content:""; position:absolute; left:-2px; top:16px; bottom:16px; width:7px; background:linear-gradient(180deg,transparent,rgba(255,42,23,.94),rgba(255,211,106,.86),transparent); box-shadow:0 0 14px rgba(255,42,23,.30); }
+    .builder-bg::after { content:""; position:absolute; left:70px; right:40px; bottom:10px; height:3px; background:linear-gradient(90deg,transparent,rgba(255,42,23,.48),rgba(255,211,106,.68),transparent); }
+    .builder-item { position:absolute; border:2px dashed rgba(79,234,255,.76); border-radius:10px; cursor:move; user-select:none; min-width:10px; min-height:10px; transform-origin:center center; }
+    .builder-item.active { border-color:#ffd36a; box-shadow:0 0 0 1px rgba(255,211,106,.28),0 0 22px rgba(255,42,23,.22); }
+    .builder-item .label { position:absolute; left:0; top:-22px; color:#ffd36a; font-size:11px; font-weight:1000; text-shadow:0 1px 5px rgba(0,0,0,.9); white-space:nowrap; }
+    .builder-item .handle { position:absolute; right:-8px; bottom:-8px; width:18px; height:18px; border-radius:50%; background:#ffd36a; border:3px solid rgba(0,0,0,.78); cursor:nwse-resize; }
+    .builder-item img { width:100%; height:100%; object-fit:contain; display:block; pointer-events:none; }
+    .text-item { display:flex; align-items:center; overflow:hidden; white-space:nowrap; font-weight:1000; color:#f5f7fb; text-shadow:0 2px 8px rgba(0,0,0,.72); padding:0 4px; }
+    .rank-item { color:#f5f7fb; letter-spacing:1px; }
+    .score-item { color:#f0d9aa; }
+    .player-item { color:#e8edf4; }
+    .brand-item { color:#f5f7fb; background:rgba(0,0,0,.28); border-radius:999px; padding:0 10px; }
+    .list { display:grid; gap:8px; max-height:210px; overflow:auto; }
+    .list button { justify-content:flex-start; text-align:left; }
+    .preview-frame { width:470px; height:160px; border:1px solid rgba(255,255,255,.14); border-radius:18px; background:linear-gradient(45deg,rgba(255,255,255,.04) 25%,transparent 25%),linear-gradient(-45deg,rgba(255,255,255,.04) 25%,transparent 25%),rgba(0,0,0,.32); background-size:20px 20px; overflow:hidden; }
+    .preview-frame iframe { width:470px; height:160px; border:0; display:block; }
+    .help { margin:8px 0 0; font-size:12px; color:rgba(245,247,251,.58); line-height:1.35; }
+    @media (max-width:1250px){ .layout{grid-template-columns:1fr;} .builder-stage{width:min(940px,100%);} }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="top">
+      <div>
+        <h1>Overlay Builder</h1>
+        <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Non salva impostazioni nel generator: crea direttamente il link finale da copiare.</p>
+      </div>
+      <div class="nav">
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.0.7</span>
+      </div>
+    </div>
+    <div class="layout">
+      <section class="panel stack">
+        <h2>1. Dati overlay</h2>
+        <label>Modalità<select id="mode"><option selected value="manual">Manuale</option><option value="auto">Leaderboard</option></select></label>
+        <label>Player<input id="player" value="NomePlayer#1234"></label>
+        <div class="grid2">
+          <label>Rank<select id="badgeFile">
+            <option value="bronze-4">Bronze 4</option><option value="bronze-3">Bronze 3</option><option value="bronze-2">Bronze 2</option><option value="bronze-1">Bronze 1</option>
+            <option value="silver-4">Silver 4</option><option value="silver-3">Silver 3</option><option value="silver-2">Silver 2</option><option value="silver-1">Silver 1</option>
+            <option value="gold-4">Gold 4</option><option value="gold-3">Gold 3</option><option value="gold-2">Gold 2</option><option value="gold-1">Gold 1</option>
+            <option value="platinum-4">Platinum 4</option><option value="platinum-3">Platinum 3</option><option value="platinum-2">Platinum 2</option><option selected value="platinum-1">Platinum 1</option>
+            <option value="diamond-4">Diamond 4</option><option value="diamond-3">Diamond 3</option><option value="diamond-2">Diamond 2</option><option value="diamond-1">Diamond 1</option><option value="ruby">Ruby</option>
+          </select></label>
+          <label>Punteggio<input id="rankScore" value="37705"></label>
+        </div>
+        <div class="grid2">
+          <label>Label punti<select id="scoreLabel"><option selected>ELO</option><option>RS</option><option>PTS</option></select></label>
+          <label>Status<select id="showStatus"><option selected value="0">No</option><option value="1">Sì</option></select></label>
+        </div>
+        <h2>2. Stile base</h2>
+        <div class="grid2">
+          <label>Rank<input id="rankColor" value="f5f7faff"></label><label>ELO<input id="scoreColor" value="f0d9aaff"></label>
+          <label>Nome<input id="nameColor" value="e8edf4ff"></label><label>Extra<input id="extraColor" value="f5f7fbff"></label>
+          <label>Sfondo<input id="backgroundColor" value="0a0c10fa"></label><label>Bordo<input id="borderColor" value="7c848fff"></label>
+          <label>Spessore<input id="borderWidth" value="2"></label><label>Accento<input id="brandAccent" value="ff2a17ff"></label>
+        </div>
+        <h2>3. Effetti base</h2>
+        <div class="grid2">
+          <label>Dettaglio laterale<select id="baseSideDetail"><option selected value="1">Attivo</option><option value="0">Disattivo</option></select></label>
+          <label>Alone stemma<select id="baseBadgeGlow"><option selected value="1">Attivo</option><option value="0">Disattivo</option></select></label>
+          <label>Ring stemma<select id="baseBadgeRing"><option selected value="1">Attivo</option><option value="0">Disattivo</option></select></label>
+          <label>Pulse<select id="basePulse"><option selected value="0">Disattivo</option><option value="1">Attivo</option></select></label>
+          <label>Scanline<select id="baseScanline"><option selected value="0">Disattivo</option><option value="1">Attivo</option></select></label>
+          <label>Ritaglio cornice<select id="clipFrame"><option selected value="1">Attivo</option><option value="0">Disattivo</option></select></label>
+        </div>
+      </section>
+      <section class="panel stage-wrap">
+        <div style="width:100%;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;"><h2 style="margin:0;">4. Editor layout</h2><span class="tag">Drag & Resize</span></div>
+        <div class="builder-stage" id="builderStage"><div class="builder-bg"></div></div>
+        <div class="actions"><input id="customImageUpload" type="file" accept="image/png,image/jpeg,image/webp" style="max-width:340px;"><button class="btn secondary" id="resetLayout" type="button">Reset layout</button><button class="btn secondary" id="clearImages" type="button">Rimuovi immagini</button></div>
+        <p class="help">Gli elementi possono uscire dal frame mentre li sposti, ma nel link finale vengono tagliati dalla forma della cornice se “Ritaglio cornice” è attivo.</p>
+      </section>
+      <section class="panel stack">
+        <h2>5. Elemento selezionato</h2><span class="tag" id="selectedName">nessuno</span>
+        <div class="grid2">
+          <label>X<input id="editX" type="number" value="0"></label><label>Y<input id="editY" type="number" value="0"></label>
+          <label>W<input id="editW" type="number" value="64"></label><label>H<input id="editH" type="number" value="64"></label>
+          <label>Font<input id="editFont" type="number" value="0"></label><label>Livello<input id="editZ" type="number" value="1"></label>
+          <label>Opacità<input id="editOpacity" type="number" min="0" max="1" step="0.05" value="1"></label>
+        </div>
+        <div class="actions"><button class="btn secondary" id="applyFields" type="button">Applica</button><button class="btn secondary" id="front" type="button">Porta avanti</button><button class="btn secondary" id="back" type="button">Porta dietro</button><button class="btn secondary" id="removeImage" type="button">Rimuovi immagine</button></div>
+        <div class="list" id="elementsList"></div>
+        <h2>6. Link finale</h2>
+        <div class="preview-frame"><iframe id="preview" title="Preview overlay"></iframe></div>
+        <div class="actions"><button class="btn" id="generate" type="button">Aggiorna link</button><button class="btn secondary" id="copy" type="button">Copia link</button></div>
+        <textarea id="output" readonly></textarea>
+      </section>
+    </div>
+  </main>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const stage = $("builderStage");
+    const MAX_IMAGES = 2, MAX_IMG_SIZE = 320;
+    const rankMap = {"bronze-4":["Bronze","4"],"bronze-3":["Bronze","3"],"bronze-2":["Bronze","2"],"bronze-1":["Bronze","1"],"silver-4":["Silver","4"],"silver-3":["Silver","3"],"silver-2":["Silver","2"],"silver-1":["Silver","1"],"gold-4":["Gold","4"],"gold-3":["Gold","3"],"gold-2":["Gold","2"],"gold-1":["Gold","1"],"platinum-4":["Platinum","4"],"platinum-3":["Platinum","3"],"platinum-2":["Platinum","2"],"platinum-1":["Platinum","1"],"diamond-4":["Diamond","4"],"diamond-3":["Diamond","3"],"diamond-2":["Diamond","2"],"diamond-1":["Diamond","1"],"ruby":["Ruby",""]};
+    const defaultLayout = {badge:{kind:"base",label:"Badge",x:10,y:32,w:128,h:128,fontSize:0,z:8,opacity:1},rank:{kind:"base",label:"Rank",x:150,y:52,w:250,h:38,fontSize:31,z:6,opacity:1},score:{kind:"base",label:"ELO",x:150,y:96,w:145,h:22,fontSize:14,z:6,opacity:1},player:{kind:"base",label:"Player",x:295,y:96,w:170,h:22,fontSize:12,z:6,opacity:1},brand:{kind:"base",label:"Brand",x:150,y:125,w:290,h:22,fontSize:11,z:6,opacity:1}};
+    let baseLayout = JSON.parse(JSON.stringify(defaultLayout)), customElements = [], selectedId = "badge";
+    function uid(){return "ce_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,7);}
+    function clamp(n,min,max){return Math.max(min,Math.min(max,Number(n)||0));}
+    function encode(obj){try{return btoa(unescape(encodeURIComponent(JSON.stringify(obj))));}catch{return "";}}
+    function compactNumber(v){const raw=String(v||"0").replace(/[^\d]/g,""); try{return new Intl.NumberFormat("it-IT").format(Number(raw||0));}catch{return raw||"0";}}
+    function selected(){return baseLayout[selectedId] || customElements.find((x)=>x.id===selectedId) || null;}
+    function items(){return [...Object.entries(baseLayout).map(([id,item])=>({id,...item})),...customElements.map((item)=>({...item,kind:"image"}))];}
+    function displayText(id){const [league,div]=rankMap[$("badgeFile").value]||["Unranked",""]; if(id==="rank")return (league+(div?" "+div:"")).toUpperCase(); if(id==="score")return `${$("scoreLabel").value||"ELO"}: ${compactNumber($("rankScore").value)}`; if(id==="player")return $("player").value||"NomePlayer#1234"; if(id==="brand")return "ERDRAGON32 • Join the Discord"; return id;}
+    function render(){
+      stage.querySelectorAll(".builder-item").forEach((n)=>n.remove());
+      items().sort((a,b)=>(a.z||1)-(b.z||1)).forEach((item)=>{
+        const box=document.createElement("div");
+        box.className="builder-item"+(item.id===selectedId?" active":"");
+        if(item.kind!=="image") box.classList.add("text-item", item.id+"-item");
+        box.dataset.id=item.id;
+        Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",lineHeight:`${item.h}px`});
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=007" alt="">`;
+        else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
+        else box.textContent=displayText(item.id);
+        const label=document.createElement("div"); label.className="label"; label.textContent=item.label||item.name||item.id; box.appendChild(label);
+        const handle=document.createElement("div"); handle.className="handle"; box.appendChild(handle);
+        box.addEventListener("pointerdown", startDrag); handle.addEventListener("pointerdown", startResize); stage.appendChild(box);
+      });
+      updateFields(); renderList(); buildLink();
+    }
+    function updateFields(){const item=selected(); $("selectedName").textContent=item?(item.label||item.name||selectedId):"nessuno"; if(!item)return; $("editX").value=Math.round(item.x||0); $("editY").value=Math.round(item.y||0); $("editW").value=Math.round(item.w||1); $("editH").value=Math.round(item.h||1); $("editFont").value=Math.round(item.fontSize||0); $("editZ").value=Math.round(item.z||1); $("editOpacity").value=item.opacity??1;}
+    function renderList(){const list=$("elementsList"); list.innerHTML=""; items().forEach((item)=>{const btn=document.createElement("button"); btn.className="btn secondary"; btn.type="button"; btn.textContent=item.label||item.name||item.id; btn.addEventListener("click",()=>{selectedId=item.id; render();}); list.appendChild(btn);});}
+    function point(e){const rect=stage.getBoundingClientRect(); return {x:(e.clientX-rect.left)*(940/rect.width), y:(e.clientY-rect.top)*(320/rect.height)};}
+    function startDrag(e){if(e.target.classList.contains("handle"))return; e.preventDefault(); selectedId=e.currentTarget.dataset.id; const item=selected(); const start=point(e); const ox=start.x-item.x, oy=start.y-item.y; function move(ev){const p=point(ev); item.x=Math.round(clamp(p.x-ox,-240,1180)); item.y=Math.round(clamp(p.y-oy,-240,560)); render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
+    function startResize(e){e.preventDefault(); e.stopPropagation(); selectedId=e.currentTarget.parentElement.dataset.id; const item=selected(); const start=point(e); const sw=item.w, sh=item.h; function move(ev){const p=point(ev); item.w=Math.round(clamp(sw+(p.x-start.x),10,1000)); item.h=Math.round(clamp(sh+(p.y-start.y),10,500)); render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
+    function applyFields(){const item=selected(); if(!item)return; item.x=Math.round(clamp($("editX").value,-240,1180)); item.y=Math.round(clamp($("editY").value,-240,560)); item.w=Math.round(clamp($("editW").value,10,1000)); item.h=Math.round(clamp($("editH").value,10,500)); item.fontSize=Math.max(0,Number($("editFont").value||0)); item.z=Math.round(Number($("editZ").value||1)); item.opacity=Math.max(0,Math.min(1,Number($("editOpacity").value||1))); render();}
+    function scaleLayoutForOverlay(){const out={}; Object.entries(baseLayout).forEach(([key,v])=>{out[key]={x:Math.round((Number(v.x)||0)/2),y:Math.round((Number(v.y)||0)/2),w:Math.max(1,Math.round((Number(v.w)||1)/2)),h:Math.max(1,Math.round((Number(v.h)||1)/2)),fontSize:Math.max(0,Number(v.fontSize||0)/2),z:Math.round(Number(v.z)||1)};}); return {version:1,schema:"ranktag-base-layout-v1",canvas:{width:470,height:160},elements:out};}
+    function customPayload(){return customElements.map((v)=>({id:v.id,name:v.name,type:"image",src:v.src,x:Math.round((Number(v.x)||0)/2),y:Math.round((Number(v.y)||0)/2),w:Math.max(1,Math.round((Number(v.w)||1)/2)),h:Math.max(1,Math.round((Number(v.h)||1)/2)),opacity:Math.max(0,Math.min(1,Number(v.opacity??1))),z:Math.round(Number(v.z)||30)}));}
+    function buildLink(){
+      const url=new URL(window.location.origin+"/"); const mode=$("mode").value, player=$("player").value.trim()||"NomePlayer#1234", badgeFile=$("badgeFile").value; const [league,division]=rankMap[badgeFile]||["Unranked",""];
+      if(mode==="manual"){url.searchParams.set("mode","manual"); url.searchParams.set("player",player); url.searchParams.set("league",league); url.searchParams.set("division",division); url.searchParams.set("rankScore",$("rankScore").value.trim()||"0"); url.searchParams.set("badgeFile",badgeFile);}
+      else{url.searchParams.set("player",player); url.searchParams.set("leaderboard","s10");}
+      ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
+      url.searchParams.set("themeStyle","default"); url.searchParams.set("baseLayout",encode(scaleLayoutForOverlay())); if(customElements.length) url.searchParams.set("customElements",encode(customPayload())); url.searchParams.set("cacheBust",Date.now().toString());
+      $("output").value=url.toString(); $("preview").src=url.toString(); return url.toString();
+    }
+    async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; canvas.getContext("2d").drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.78),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
+    $("customImageUpload").addEventListener("change",async(event)=>{const file=event.target.files&&event.target.files[0]; event.target.value=""; if(!file)return; if(customElements.length>=MAX_IMAGES)return alert(`Massimo ${MAX_IMAGES} immagini custom.`); try{const converted=await fileToDataUrl(file); const ratio=converted.w/converted.h; const h=Math.min(150,converted.h); const w=Math.round(h*ratio); const item={id:uid(),name:file.name.replace(/\.[^.]+$/,"").slice(0,24),kind:"image",type:"image",src:converted.src,x:50+customElements.length*35,y:50+customElements.length*25,w:Math.max(48,Math.min(300,w)),h:Math.max(48,Math.min(240,h)),opacity:1,z:30+customElements.length}; customElements.push(item); selectedId=item.id; render();}catch{alert("Immagine non valida. Usa PNG, JPG o WebP.");}});
+    $("applyFields").addEventListener("click",applyFields); ["editX","editY","editW","editH","editFont","editZ","editOpacity"].forEach((id)=>$(id).addEventListener("change",applyFields));
+    ["mode","player","badgeFile","rankScore","scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{$(id)?.addEventListener("input",()=>{render(); buildLink();}); $(id)?.addEventListener("change",()=>{render(); buildLink();});});
+    $("resetLayout").addEventListener("click",()=>{baseLayout=JSON.parse(JSON.stringify(defaultLayout)); selectedId="badge"; render();});
+    $("clearImages").addEventListener("click",()=>{customElements=[]; selectedId="badge"; render();});
+    $("removeImage").addEventListener("click",()=>{if(baseLayout[selectedId])return; customElements=customElements.filter((x)=>x.id!==selectedId); selectedId="badge"; render();});
+    $("front").addEventListener("click",()=>{const item=selected(); if(item){item.z=Math.min(99,Number(item.z||1)+1); render();}});
+    $("back").addEventListener("click",()=>{const item=selected(); if(item){item.z=Math.max(1,Number(item.z||1)-1); render();}});
+    $("generate").addEventListener("click",buildLink);
+    $("copy").addEventListener("click",async()=>{buildLink(); await navigator.clipboard.writeText($("output").value); $("copy").textContent="Copiato!"; setTimeout(()=>$("copy").textContent="Copia link",1200);});
+    render();
+  </script>
+</body>
+</html>
