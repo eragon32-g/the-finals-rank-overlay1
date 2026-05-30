@@ -1,14 +1,10 @@
-# RankTag BETA 0.0.2
+# RankTag BETA 0.0.3
 
-Base visual upgrade.
+Fix stemma overlay base.
 
 ## Include
-- Rimossa sezione Premium dal generator pubblico
-- Nuove opzioni visuali per overlay base:
-  - dettaglio laterale rosso/giallo
-  - alone dietro stemma
-  - ring sottile stemma
-  - pulse leggero
-  - scanline soft
+- Stemma rank più grande
+- Stemma integrato circa per un terzo dentro il banner
+- Badge non tagliato dal pannello
+- Opzioni visuali base mantenute
 - Admin restore mantenuto
-- Overlay default non sostituito, solo migliorato tramite opzioni

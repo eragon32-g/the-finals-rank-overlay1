@@ -1,12 +1,12 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.0.2: rimossa sezione premium pubblica e aggiunte opzioni visuali attivabili per overlay base.",
+  "note": "BETA 0.0.3: fix dimensione/posizione stemma nell'overlay base.",
   "status": "BETA",
-  "label": "BETA 0.0.2",
+  "label": "BETA 0.0.3",
   "versioning": {
     "beta": true,
     "rules": [

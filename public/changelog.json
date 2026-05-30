@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.0.3",
+    "status": "BETA",
+    "date": "2026-05-27",
+    "title": "Fix stemma overlay base",
+    "summary": "Lo stemma rank dell'overlay base è stato ingrandito e integrato circa per un terzo dentro il banner.",
+    "fixed": [
+      "stemma troppo piccolo",
+      "stemma troppo staccato dal banner",
+      "badge ora si sovrappone al pannello senza tagliarsi"
+    ]
+  },
+  {
     "version": "0.0.2",
     "status": "BETA",
     "date": "2026-05-27",
