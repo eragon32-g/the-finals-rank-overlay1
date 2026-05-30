@@ -1,12 +1,12 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "Beta iniziale 0.0.1. La pagina Updates è stata ripulita; gli update pubblici partiranno dal prossimo rilascio importante.",
+  "note": "BETA 0.0.2: rimossa sezione premium pubblica e aggiunte opzioni visuali attivabili per overlay base.",
   "status": "BETA",
-  "label": "BETA 0.0.1",
+  "label": "BETA 0.0.2",
   "versioning": {
     "beta": true,
     "rules": [

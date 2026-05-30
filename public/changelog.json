@@ -1,5 +1,22 @@
 [
   {
+    "version": "0.0.2",
+    "status": "BETA",
+    "date": "2026-05-27",
+    "title": "Base visual upgrade",
+    "summary": "Rimossa la sezione premium pubblica e aggiunte opzioni visuali attivabili per rendere più curato l'overlay base.",
+    "added": [
+      "dettaglio laterale rosso/giallo",
+      "alone dietro lo stemma",
+      "ring sottile sullo stemma",
+      "base pulse leggero",
+      "scanline quasi invisibile"
+    ],
+    "removed": [
+      "sezione Overlay Premium dal generator pubblico"
+    ]
+  },
+  {
     "version": "0.0.1",
     "status": "BETA",
     "date": "2026-05-26",
