@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.1.7",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Builder bounds fix",
+    "summary": "Rimesso l'editor dentro i margini della pagina e centrato meglio l'overlay interno, senza allungare il workspace.",
+    "fixed": [
+      "editor layout troppo allungato",
+      "workspace centrale usciva dai margini",
+      "overlay interno più centrato",
+      "label degli elementi meno invasive"
+    ]
+  },
+  {
     "version": "0.1.6",
     "status": "BETA",
     "date": "2026-05-30",

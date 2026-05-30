@@ -1,5 +1,5 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-1-6-builder-centered-canvas-fix",
-  "version": "0.1.6",
-  "description": "RankTag BETA 0.1.6 - builder centered canvas and no nested window"
+  "name": "ranktag-finals-overlay-beta-0-1-7-builder-bounds-fix",
+  "version": "0.1.7",
+  "description": "RankTag BETA 0.1.7 - builder layout inside page bounds"
 }

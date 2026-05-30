@@ -1,12 +1,12 @@
 {
-  "version": "0.1.6",
+  "version": "0.1.7",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.1.6: rimosso effetto finestra dentro finestra nel builder e ricentrato l'overlay interno.",
+  "note": "BETA 0.1.7: editor layout ridimensionato entro i margini, overlay centrato e controlli meno invasivi.",
   "status": "BETA",
-  "label": "BETA 0.1.6",
+  "label": "BETA 0.1.7",
   "versioning": {
     "beta": true,
     "rules": [

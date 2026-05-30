@@ -1,10 +1,10 @@
-# RankTag BETA 0.1.6
+# RankTag BETA 0.1.7
 
-Builder centered canvas fix.
+Builder bounds fix.
 
 ## Include
-- Area editor grande mantenuta
-- Rimosso effetto finestra dentro finestra
-- Overlay interno centrato nel workspace
-- Zoom applicato solo all'overlay interno
-- Default zoom 100%
+- Editor centrale più stretto e contenuto
+- Workspace non esce più dai margini
+- Overlay interno centrato meglio
+- Default zoom 112%
+- Label elementi meno invasivi
