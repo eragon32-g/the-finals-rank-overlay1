@@ -1,12 +1,12 @@
 {
-  "version": "0.0.7",
+  "version": "0.0.8",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.0.7: Overlay Builder spostato in pagina separata /builder.html con generazione diretta del link finale.",
+  "note": "BETA 0.0.8: centrato e riallineato Overlay Builder in pagina separata, senza sovrapposizioni tra editor e pannelli.",
   "status": "BETA",
-  "label": "BETA 0.0.7",
+  "label": "BETA 0.0.8",
   "versioning": {
     "beta": true,
     "rules": [

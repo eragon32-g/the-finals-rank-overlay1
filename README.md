@@ -1,10 +1,10 @@
-# RankTag BETA 0.0.7
+# RankTag BETA 0.0.8
 
-Builder page separata.
+Builder centering fix.
 
 ## Include
-- /builder.html pagina dedicata per Overlay Builder
-- Generator principale più pulito
-- Builder crea direttamente link finale da copiare
-- Drag & resize badge/testi/brand/immagini custom
-- Clipping cornice tramite clipFrame
+- Pagina /builder.html riallineata
+- Editor centrale con spazio reale 940x320
+- Pannelli laterali non sovrapposti
+- Generator principale invariato
+- Link finale generato direttamente dal builder

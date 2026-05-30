@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.0.8",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Builder centering fix",
+    "summary": "Riallineata la pagina Overlay Builder: editor centrale con spazio reale 940x320, pannelli laterali non sovrapposti e layout più centrato.",
+    "fixed": [
+      "editor layout troppo schiacciato",
+      "pannello destro sovrapposto all'area centrale",
+      "elementi e preview non centrati correttamente nella pagina builder"
+    ]
+  },
+  {
     "version": "0.0.7",
     "status": "BETA",
     "date": "2026-05-30",
