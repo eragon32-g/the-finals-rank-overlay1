@@ -1,5 +1,22 @@
 [
   {
+    "version": "0.1.4",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Builder zoom and effects fix",
+    "summary": "Aggiunto zoom editor, ridotta la scala interna iniziale e fatti seguire glow/ring/effetti agli elementi spostati.",
+    "added": [
+      "controlli zoom editor",
+      "scala iniziale editor più piccola",
+      "glow e ring badge agganciati al badge spostabile"
+    ],
+    "fixed": [
+      "elementi ancora troppo grandi nell'editor",
+      "effetti non seguivano gli elementi",
+      "font più proporzionato durante il resize"
+    ]
+  },
+  {
     "version": "0.1.3",
     "status": "BETA",
     "date": "2026-05-30",

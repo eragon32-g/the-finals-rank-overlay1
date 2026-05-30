@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=013" />
+  <link rel="stylesheet" href="/style.css?v=014" />
   <style>
     * { box-sizing: border-box; }
     body { margin:0; min-height:100vh; background:radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%), linear-gradient(180deg,#111923,#06070b 46%,#030407); color:#f5f7fb; font-family:Arial,Helvetica,sans-serif; padding:24px; overflow-x:auto; }
@@ -141,16 +141,19 @@
 
   
     .builder-stage-holder {
-      width:705px;
-      height:240px;
+      width:611px;
+      height:208px;
       display:grid;
       place-items:center;
       overflow:visible;
     }
     .builder-stage-holder .builder-stage {
-      transform:scale(1.5);
+      transform:scale(var(--builderZoom, 1.3));
       transform-origin:center center;
     }
+
+  
+    #zoomOut, #zoomIn, #zoomReset { padding:8px 10px; font-size:12px; }
 
   </style>
 </head>
@@ -162,7 +165,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.3</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.4</span>
       </div>
     </div>
     <div class="layout">
@@ -202,10 +205,19 @@
         </div>
       </section>
       <section class="panel stage-wrap">
-        <div style="width:100%;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;"><h2 style="margin:0;">4. Editor layout</h2><span class="tag">Drag & Resize</span></div>
+        <div style="width:100%;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;">
+  <h2 style="margin:0;">4. Editor layout</h2>
+  <div class="actions">
+    <button class="btn secondary" id="zoomOut" type="button">- Zoom</button>
+    <span class="tag" id="zoomLabel">130%</span>
+    <button class="btn secondary" id="zoomIn" type="button">+ Zoom</button>
+    <button class="btn secondary" id="zoomReset" type="button">Reset zoom</button>
+    <span class="tag">Drag & Resize</span>
+  </div>
+</div>
         <div class="builder-stage-holder"><div class="builder-stage" id="builderStage"><div class="builder-bg"></div></div></div>
         <div class="actions"><input id="customImageUpload" type="file" accept="image/png,image/jpeg,image/webp" style="max-width:340px;"><button class="btn secondary" id="resetLayout" type="button">Reset layout</button><button class="btn secondary" id="clearImages" type="button">Rimuovi immagini</button></div>
-        <p class="help">L’editor ora usa le proporzioni reali 470×160 ingrandite: ciò che vedi qui corrisponde al link finale. Ridimensionando una scritta aumenta anche il font.</p>
+        <p class="help">L’editor usa proporzioni reali 470×160. Usa lo zoom per lavorare più comodo: gli effetti di badge/testi seguono gli elementi e il font cresce con il resize.</p>
       </section>
       <section class="panel stack">
         <h2>5. Elemento selezionato</h2><span class="tag" id="selectedName">nessuno</span>
@@ -230,7 +242,7 @@
     const stage = $("builderStage");
     const MAX_IMAGES = 2, MAX_IMG_SIZE = 320;
     const rankMap = {"bronze-4":["Bronze","4"],"bronze-3":["Bronze","3"],"bronze-2":["Bronze","2"],"bronze-1":["Bronze","1"],"silver-4":["Silver","4"],"silver-3":["Silver","3"],"silver-2":["Silver","2"],"silver-1":["Silver","1"],"gold-4":["Gold","4"],"gold-3":["Gold","3"],"gold-2":["Gold","2"],"gold-1":["Gold","1"],"platinum-4":["Platinum","4"],"platinum-3":["Platinum","3"],"platinum-2":["Platinum","2"],"platinum-1":["Platinum","1"],"diamond-4":["Diamond","4"],"diamond-3":["Diamond","3"],"diamond-2":["Diamond","2"],"diamond-1":["Diamond","1"],"ruby":["Ruby",""]};
-    const defaultLayout = {badge:{kind:"base",label:"Badge",x:24,y:21,w:94,h:94,fontSize:0,z:8,opacity:1},rank:{kind:"base",label:"Rank",x:125,y:35,w:215,h:28,fontSize:25,z:6,opacity:1},score:{kind:"base",label:"ELO",x:126,y:68,w:110,h:16,fontSize:11,z:6,opacity:1},player:{kind:"base",label:"Player",x:238,y:68,w:142,h:16,fontSize:10,z:6,opacity:1},brand:{kind:"base",label:"Brand",x:126,y:91,w:230,h:16,fontSize:9,z:6,opacity:1}};
+    const defaultLayout = {badge:{kind:"base",label:"Badge",x:22,y:27,w:88,h:88,fontSize:0,z:8,opacity:1},rank:{kind:"base",label:"Rank",x:120,y:37,w:210,h:26,fontSize:23,z:6,opacity:1},score:{kind:"base",label:"ELO",x:122,y:68,w:108,h:15,fontSize:10.5,z:6,opacity:1},player:{kind:"base",label:"Player",x:232,y:68,w:140,h:15,fontSize:10,z:6,opacity:1},brand:{kind:"base",label:"Brand",x:122,y:91,w:230,h:15,fontSize:9,z:6,opacity:1}};
     let baseLayout = JSON.parse(JSON.stringify(defaultLayout)), customElements = [], selectedId = "badge";
     function uid(){return "ce_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,7);}
     function clamp(n,min,max){return Math.max(min,Math.min(max,Number(n)||0));}
@@ -248,6 +260,10 @@
       items().sort((a,b)=>(a.z||1)-(b.z||1)).forEach((item)=>{
         const node = document.createElement(item.id==="badge" || item.kind==="image" ? "div" : "div");
         node.className = "mirror-item mirror-" + item.id;
+        if(item.id === "badge") {
+          if($("baseBadgeGlow")?.value !== "0") node.classList.add("effect-glow");
+          if($("baseBadgeRing")?.value !== "0") node.classList.add("effect-ring");
+        }
         Object.assign(node.style, {
           left: `${item.x * scale}px`,
           top: `${item.y * scale}px`,
@@ -259,7 +275,7 @@
           lineHeight: `${item.h * scale}px`
         });
         if(item.id==="badge"){
-          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=013" alt="">`;
+          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=014" alt="">`;
         } else if(item.kind==="image"){
           node.innerHTML = `<img src="${item.src}" alt="">`;
         } else {
@@ -275,9 +291,14 @@
         const box=document.createElement("div");
         box.className="builder-item"+(item.id===selectedId?" active":"");
         if(item.kind!=="image") box.classList.add("text-item", item.id+"-item");
+        if(item.id==="badge") {
+          box.classList.add("badge-item");
+          if($("baseBadgeGlow")?.value !== "0") box.classList.add("effect-glow");
+          if($("baseBadgeRing")?.value !== "0") box.classList.add("effect-ring");
+        }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",lineHeight:`${item.h}px`});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=013" alt="">`;
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=014" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; label.textContent=item.label||item.name||item.id; box.appendChild(label);
@@ -293,7 +314,7 @@
     function startResize(e){e.preventDefault(); e.stopPropagation(); selectedId=e.currentTarget.parentElement.dataset.id; const item=selected(); const start=point(e); const sw=item.w, sh=item.h; function move(ev){const p=point(ev); item.w=Math.round(clamp(sw+(p.x-start.x),6,600)); item.h=Math.round(clamp(sh+(p.y-start.y),6,300));
       if(item.kind !== "image" && item.id !== "badge") { item.fontSize = Math.max(7, Math.round(item.h * 0.75)); }
       render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
-    function applyFields(){const item=selected(); if(!item)return; item.x=Math.round(clamp($("editX").value,-120,590)); item.y=Math.round(clamp($("editY").value,-120,280)); item.w=Math.round(clamp($("editW").value,6,600)); item.h=Math.round(clamp($("editH").value,6,300)); item.fontSize=Math.max(0,Number($("editFont").value||0)); item.z=Math.round(Number($("editZ").value||1)); item.opacity=Math.max(0,Math.min(1,Number($("editOpacity").value||1))); render();}
+    function applyFields(){const item=selected(); if(!item)return; item.x=Math.round(clamp($("editX").value,-120,590)); item.y=Math.round(clamp($("editY").value,-120,280)); item.w=Math.round(clamp($("editW").value,6,600)); item.h=Math.round(clamp($("editH").value,6,300)); item.fontSize=Math.max(0,Number($("editFont").value||0)); if(item.kind !== "image" && selectedId !== "badge" && item.fontSize <= 0) item.fontSize = Math.max(7, Math.round(item.h * 0.75)); item.z=Math.round(Number($("editZ").value||1)); item.opacity=Math.max(0,Math.min(1,Number($("editOpacity").value||1))); render();}
     function scaleLayoutForOverlay(){const out={}; Object.entries(baseLayout).forEach(([key,v])=>{out[key]={x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),fontSize:Math.max(0,Number(v.fontSize||0)),z:Math.round(Number(v.z)||1)};}); return {version:1,schema:"ranktag-base-layout-v1",canvas:{width:470,height:160},elements:out};}
     function customPayload(){return customElements.map((v)=>({id:v.id,name:v.name,type:"image",src:v.src,x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),opacity:Math.max(0,Math.min(1,Number(v.opacity??1))),z:Math.round(Number(v.z)||30)}));}
     function buildLink(){
@@ -315,6 +336,20 @@
     $("back").addEventListener("click",()=>{const item=selected(); if(item){item.z=Math.max(1,Number(item.z||1)-1); render();}});
     $("generate").addEventListener("click",buildLink);
     $("copy").addEventListener("click",async()=>{buildLink(); await navigator.clipboard.writeText($("output").value); $("copy").textContent="Copiato!"; setTimeout(()=>$("copy").textContent="Copia link",1200);});
+
+    let builderZoom = 1.3;
+    function applyBuilderZoom(){
+      const holder = document.querySelector(".builder-stage-holder");
+      if(!holder) return;
+      holder.style.setProperty("--builderZoom", builderZoom);
+      const label = $("zoomLabel");
+      if(label) label.textContent = Math.round(builderZoom * 100) + "%";
+    }
+    $("zoomOut")?.addEventListener("click", () => { builderZoom = Math.max(.85, Math.round((builderZoom - .1) * 100) / 100); applyBuilderZoom(); });
+    $("zoomIn")?.addEventListener("click", () => { builderZoom = Math.min(1.8, Math.round((builderZoom + .1) * 100) / 100); applyBuilderZoom(); });
+    $("zoomReset")?.addEventListener("click", () => { builderZoom = 1.3; applyBuilderZoom(); });
+
+    applyBuilderZoom();
     render();
   </script>
 </body>

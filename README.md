@@ -1,10 +1,10 @@
-# RankTag BETA 0.1.3
+# RankTag BETA 0.1.4
 
-Builder scale proportion fix.
+Builder zoom and effects fix.
 
 ## Include
-- Editor builder in proporzioni reali 470x160
-- Stage ingrandito con CSS, ma coordinate reali
-- Niente più divisione /2 ambigua del baseLayout
-- Font delle scritte si adatta quando ridimensioni H
-- Anteprima mirror coerente con editor
+- Zoom editor: - Zoom / + Zoom / Reset zoom
+- Scala iniziale editor più piccola
+- Effetti badge glow/ring seguono il badge
+- Effetti testo/brand seguono gli elementi
+- Font più proporzionato durante il resize

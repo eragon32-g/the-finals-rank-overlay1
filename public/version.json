@@ -1,12 +1,12 @@
 {
-  "version": "0.1.3",
+  "version": "0.1.4",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.1.3: editor builder in proporzioni reali 470x160 ingrandite e font auto-proporzionato al resize.",
+  "note": "BETA 0.1.4: zoom editor, stage interno più piccolo, effetti che seguono gli elementi e font proporzionato.",
   "status": "BETA",
-  "label": "BETA 0.1.3",
+  "label": "BETA 0.1.4",
   "versioning": {
     "beta": true,
     "rules": [
