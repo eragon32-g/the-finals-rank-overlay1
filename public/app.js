@@ -10,11 +10,11 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "004";
+const OVERLAY_VERSION = "005";
 const params = new URLSearchParams(window.location.search);
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
-  "version": "0.0.4",
+  "version": "0.0.5",
   "schema": "ranktag-premium-layout-v2",
   "style": "voidrage-inferno",
   "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.",
@@ -68,7 +68,7 @@ const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
 };
 
 const CYBER_RED_ELITE_LAYOUT_LOCKED = {
-  "version": "0.0.4",
+  "version": "0.0.5",
   "schema": "ranktag-premium-layout-v2",
   "style": "cyber-red-elite",
   "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.",
@@ -244,6 +244,50 @@ function applyBaseVisualOptions() {
   });
 
   document.documentElement.dataset.baseVisual = isBase ? "enabled" : "off";
+}
+
+
+/* RankTag BETA 0.0.5 - custom image elements renderer */
+function decodeCustomElementsParam() {
+  const raw = params.get("customElements");
+  if (!raw) return [];
+  try {
+    const json = decodeURIComponent(escape(atob(raw)));
+    const parsed = JSON.parse(json);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {}
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {}
+  return [];
+}
+
+function renderCustomImageElements() {
+  if (!badge) return;
+  badge.querySelectorAll(".rt-custom-image-layer").forEach((el) => el.remove());
+  const elements = decodeCustomElementsParam()
+    .filter((item) => item && item.type === "image" && item.src)
+    .slice(0, 3);
+
+  elements.forEach((item, index) => {
+    const img = document.createElement("img");
+    img.className = "rt-custom-image-layer";
+    img.src = item.src;
+    img.alt = "";
+    img.style.position = "absolute";
+    img.style.left = `${Number(item.x || 0)}px`;
+    img.style.top = `${Number(item.y || 0)}px`;
+    img.style.width = `${Math.max(1, Number(item.w || 64))}px`;
+    img.style.height = `${Math.max(1, Number(item.h || 64))}px`;
+    img.style.opacity = `${Math.max(0, Math.min(1, Number(item.opacity ?? 1)))}`;
+    img.style.zIndex = `${Number(item.z || 30)}`;
+    img.style.objectFit = "contain";
+    img.style.pointerEvents = "none";
+    img.style.userSelect = "none";
+    img.draggable = false;
+    badge.appendChild(img);
+  });
 }
 
 function getPlayerFromUrl() {
@@ -517,6 +561,7 @@ async function setData(data, status = "LIVE") {
   scoreText.textContent = `${scoreLabel}: ${rankScore}${rank ? " " + rank : ""}${changeText}`;
   nameText.textContent = data.player || data.name || getPlayerFromUrl();
   setupLockedBranding();
+  try { renderCustomImageElements(); } catch(e) { console.warn(e); }
 
   await setBadgeVisual({
     league,
@@ -562,6 +607,7 @@ function isManualMode() {
 
 applyColors();
 try { applyBaseVisualOptions(); } catch(e) { console.warn(e); }
+try { renderCustomImageElements(); } catch(e) { console.warn(e); }
 setLoading();
 
 if (isManualMode()) {
@@ -576,7 +622,7 @@ try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
 try { applyBaseVisualOptions(); } catch(e) { console.warn(e); }
 
 
-/* RankTag BETA 0.0.4 Plus style finalizer */
+/* RankTag BETA 0.0.5 Plus style finalizer */
 (function applyRankTagPlusStyleV38() {
   const allowed = ["default", "cyber-red-elite", "voidrage-inferno", "cyber-red", "glass-minimal", "premium-gold", "tournament-panel"];
   const style = typeof themeStyle !== "undefined" ? themeStyle : (new URLSearchParams(window.location.search).get("themeStyle") || "default");
@@ -611,7 +657,7 @@ try { applyBaseVisualOptions(); } catch(e) { console.warn(e); }
 })();
 
 
-/* RankTag BETA 0.0.4 - single source image-base Plus engine */
+/* RankTag BETA 0.0.5 - single source image-base Plus engine */
 let rankTagPlusLayoutsPromise = null;
 
 function loadRankTagPlusLayouts() {
@@ -745,8 +791,8 @@ function loadRankTagPlusLayouts() {
   });
 })();
 
-/* RankTag BETA 0.0.4 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
+/* RankTag BETA 0.0.5 render marker */
+document.documentElement.setAttribute("data-ranktag-version", "0.0.5");
 
 
 
@@ -758,7 +804,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
 
 
 
-/* RankTag BETA 0.0.4 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
+/* RankTag BETA 0.0.5 - Premium backdrop engine: Cyber Red Elite keeps the stable CSS layout and adds a premium skin image */
 (function rankTagPremiumBackdropV78(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -799,7 +845,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=004') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=005') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -991,7 +1037,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
     style.textContent += `
 `;
     style.textContent += `
-/* RankTag BETA 0.0.4 - locked premium coordinates from Layout Editor */
+/* RankTag BETA 0.0.5 - locked premium coordinates from Layout Editor */
 #badge.rt78-cyber-red-elite .rank-mark,
 #badge.rt80-cyber-red-elite .rank-mark {
   left: 7px !important;
@@ -1093,7 +1139,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
 })();
 
 
-/* RankTag BETA 0.0.4 - Premium backdrop engine: full 470x160 background adapted to stable layout */
+/* RankTag BETA 0.0.5 - Premium backdrop engine: full 470x160 background adapted to stable layout */
 (function rankTagPremiumBackdropV80(){
   if (themeStyle !== "cyber-red-elite") return;
 
@@ -1135,7 +1181,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=004') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=005') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -1366,7 +1412,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
 
 
 
-/* RankTag BETA 0.0.4 - runtime premium layout from URL param */
+/* RankTag BETA 0.0.5 - runtime premium layout from URL param */
 (function rankTagPremiumRuntimeLayoutV89(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
@@ -1499,7 +1545,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
 
 
 
-/* RankTag BETA 0.0.4 - AUTHORITATIVE premium layout sync */
+/* RankTag BETA 0.0.5 - AUTHORITATIVE premium layout sync */
 (function rankTagPremiumLayoutAuthoritativeV90(){
   if (typeof themeStyle === "undefined" || themeStyle !== "cyber-red-elite") return;
 
@@ -1710,7 +1756,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
 
 
 
-/* RankTag BETA 0.0.4 - DETACHED PREMIUM RENDERER
+/* RankTag BETA 0.0.5 - DETACHED PREMIUM RENDERER
    Premium Cyber Red Elite no longer uses the standard card layout.
    It renders the exact same JSON layer model used by layout-editor.html. */
 (function rankTagDetachedPremiumRendererV92(){
@@ -1796,7 +1842,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
     const scoreValue = (scoreText?.textContent || "ELO: 37.705").trim();
     const playerValue = (nameText?.textContent || getPlayerFromUrl?.() || "NOMEPLAYER#1234").trim();
     const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
-    const badgeSrc = badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum.svg?v=004";
+    const badgeSrc = badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum.svg?v=005";
     return { rankValue, scoreValue, playerValue, brandValue, badgeSrc };
   }
 
@@ -2060,7 +2106,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
     root.dataset.renderer = "premium-detached-v93";
 
     root.innerHTML = `
-      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=004" alt="" />
+      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=005" alt="" />
       <div class="rt92-layer rt92-badge" style="${layerStyle(e.badge)}">
         <img src="${esc(d.badgeSrc)}" alt="" />
       </div>
@@ -2110,13 +2156,13 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
 
 
 
-/* RankTag BETA 0.0.4 - MULTI PREMIUM DETACHED RENDERER */
+/* RankTag BETA 0.0.5 - MULTI PREMIUM DETACHED RENDERER */
 (function rankTagMultiPremiumDetachedRendererV97(){
   if (typeof themeStyle === "undefined" || !["cyber-red-elite","voidrage-inferno"].includes(themeStyle)) return;
 
   const PREMIUM_LAYOUTS = {
     "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : null),
-    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "0.0.4", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v113.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
+    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "0.0.5", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v113.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
   };
 
   function safeNumber(value, fallback) {
@@ -2183,7 +2229,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
     const scoreValue = (scoreText?.textContent || "ELO: 37.705").trim();
     const playerValue = (nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim();
     const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
-    const badgeSrc = badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=004";
+    const badgeSrc = badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=005";
     return { rankValue, scoreValue, playerValue, brandValue, badgeSrc };
   }
 
@@ -2396,7 +2442,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
     root.dataset.themeStyle = themeStyle;
     root.dataset.renderer = "multi-premium-detached-v97";
     root.innerHTML = `
-      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=004" alt="" />
+      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=005" alt="" />
       <div class="rt97-layer rt97-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badgeSrc)}" alt="" /></div>
       <div class="rt97-layer rt97-rank" style="${layerStyle(e.rank)}">${esc(d.rankValue)}</div>
       <div class="rt97-layer rt97-score" style="${layerStyle(e.score)}">${esc(d.scoreValue)}</div>
@@ -2430,14 +2476,14 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
 
 
 
-/* RankTag BETA 0.0.4 - FINAL AUTHORITATIVE PREMIUM RENDERER */
+/* RankTag BETA 0.0.5 - FINAL AUTHORITATIVE PREMIUM RENDERER */
 (function rankTagV103FinalPremiumRenderer(){
   const premiumStyles = ["cyber-red-elite", "voidrage-inferno"];
   if (typeof themeStyle === "undefined" || !premiumStyles.includes(themeStyle)) return;
 
   const DEFAULTS = {
-    "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : {"version": "0.0.4", "schema": "ranktag-premium-layout-v2", "style": "cyber-red-elite", "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/cyber-red-elite-bg-v96.png", "elements": {"badge": {"x": 7, "y": 9, "w": 136, "h": 121, "fontSize": 0, "z": 5}, "rank": {"x": 164, "y": 39, "w": 215, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 165, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 271, "y": 78, "w": 142, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 165, "y": 100, "w": 270, "h": 16, "fontSize": 9.5, "z": 6}}}),
-    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "0.0.4", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v113.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
+    "cyber-red-elite": (typeof CYBER_RED_ELITE_LAYOUT_LOCKED !== "undefined" ? CYBER_RED_ELITE_LAYOUT_LOCKED : {"version": "0.0.5", "schema": "ranktag-premium-layout-v2", "style": "cyber-red-elite", "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/cyber-red-elite-bg-v96.png", "elements": {"badge": {"x": 7, "y": 9, "w": 136, "h": 121, "fontSize": 0, "z": 5}, "rank": {"x": 164, "y": 39, "w": 215, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 165, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 271, "y": 78, "w": 142, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 165, "y": 100, "w": 270, "h": 16, "fontSize": 9.5, "z": 6}}}),
+    "voidrage-inferno": (typeof VOIDRAGE_INFERNO_LAYOUT_LOCKED !== "undefined" ? VOIDRAGE_INFERNO_LAYOUT_LOCKED : {"version": "0.0.5", "schema": "ranktag-premium-layout-v2", "style": "voidrage-inferno", "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.", "canvas": {"width": 470, "height": 160}, "background": "/assets/premium/voidrage-inferno-fit-v113.png", "elements": {"badge": {"x": 12, "y": 20, "w": 118, "h": 110, "fontSize": 0, "z": 5}, "rank": {"x": 150, "y": 42, "w": 230, "h": 30, "fontSize": 25, "z": 6}, "score": {"x": 152, "y": 78, "w": 120, "h": 16, "fontSize": 12, "z": 6}, "player": {"x": 265, "y": 78, "w": 150, "h": 16, "fontSize": 10.5, "z": 6}, "brand": {"x": 152, "y": 108, "w": 260, "h": 18, "fontSize": 9.5, "z": 6}}})
   };
 
   function esc(v) {
@@ -2498,7 +2544,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
       score: (scoreText?.textContent || "ELO: 37.705").trim(),
       player: (nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim(),
       brand: (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim(),
-      badge: badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=004"
+      badge: badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=005"
     };
   }
 
@@ -2556,7 +2602,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
     root.dataset.themeStyle = themeStyle;
     root.dataset.renderer = "rt103-final";
     root.innerHTML = `
-      <img class="rt103-bg" src="${esc(layout.background)}?v=004" alt="" />
+      <img class="rt103-bg" src="${esc(layout.background)}?v=005" alt="" />
       <div class="rt103-layer rt103-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badge)}" alt="" /></div>
       <div class="rt103-layer rt103-rank" style="${layerStyle(e.rank)}">${esc(d.rank)}</div>
       <div class="rt103-layer rt103-score" style="${layerStyle(e.score)}">${esc(d.score)}</div>
@@ -2584,4 +2630,14 @@ document.documentElement.setAttribute("data-ranktag-version", "0.0.4");
     setTimeout(render, 1300);
   });
   render();
+})();
+
+
+/* RankTag BETA 0.0.5 - custom elements load fallback */
+(function rankTagCustomElementsLoadFallback(){
+  window.addEventListener("load", () => {
+    [80, 300, 900, 1800].forEach((ms) => setTimeout(() => {
+      try { renderCustomImageElements(); } catch(e) {}
+    }, ms));
+  });
 })();

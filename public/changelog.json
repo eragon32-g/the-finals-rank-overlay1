@@ -1,5 +1,21 @@
 [
   {
+    "version": "0.0.5",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Custom image elements",
+    "summary": "Il Layout Editor separato viene rimosso: il generator integra un builder pubblico per caricare, spostare e ridimensionare immagini sull'overlay.",
+    "added": [
+      "caricamento immagini custom nel generator",
+      "drag & resize su canvas 470x160",
+      "controlli x/y/w/h/opacità/livello",
+      "salvataggio immagini nel link finale"
+    ],
+    "removed": [
+      "Layout Editor separato dalla sezione admin"
+    ]
+  },
+  {
     "version": "0.0.4",
     "status": "BETA",
     "date": "2026-05-27",

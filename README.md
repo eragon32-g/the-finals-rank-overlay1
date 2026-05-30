@@ -1,11 +1,11 @@
-# RankTag BETA 0.0.4
+# RankTag BETA 0.0.5
 
-Fix stemma integrato overlay base.
+Custom image elements.
 
 ## Include
-- Stemma più grande
-- Stemma non tagliato a sinistra
-- Stemma integrato nel banner circa per un terzo
-- Canvas 470x160 rispettato
-- Opzioni visuali base mantenute
-- Admin restore mantenuto
+- Builder pubblico integrato nel generator
+- Upload immagini custom
+- Drag & resize su canvas 470x160
+- Controlli x/y/w/h/opacità/livello
+- Salvataggio elementi nel link overlay
+- Rimozione vecchio Layout Editor admin

@@ -1,12 +1,12 @@
 {
-  "version": "0.0.4",
+  "version": "0.0.5",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.0.4: fix layout stemma overlay base, più grande e integrato correttamente nel banner.",
+  "note": "BETA 0.0.5: introdotto builder pubblico per elementi immagine personalizzati nel generator.",
   "status": "BETA",
-  "label": "BETA 0.0.4",
+  "label": "BETA 0.0.5",
   "versioning": {
     "beta": true,
     "rules": [
