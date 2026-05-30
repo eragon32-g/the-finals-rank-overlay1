@@ -1,10 +1,11 @@
-# RankTag BETA 0.0.3
+# RankTag BETA 0.0.4
 
-Fix stemma overlay base.
+Fix stemma integrato overlay base.
 
 ## Include
-- Stemma rank più grande
-- Stemma integrato circa per un terzo dentro il banner
-- Badge non tagliato dal pannello
+- Stemma più grande
+- Stemma non tagliato a sinistra
+- Stemma integrato nel banner circa per un terzo
+- Canvas 470x160 rispettato
 - Opzioni visuali base mantenute
 - Admin restore mantenuto

@@ -1,12 +1,12 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.0.3: fix dimensione/posizione stemma nell'overlay base.",
+  "note": "BETA 0.0.4: fix layout stemma overlay base, più grande e integrato correttamente nel banner.",
   "status": "BETA",
-  "label": "BETA 0.0.3",
+  "label": "BETA 0.0.4",
   "versioning": {
     "beta": true,
     "rules": [

@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.0.4",
+    "status": "BETA",
+    "date": "2026-05-27",
+    "title": "Fix stemma integrato",
+    "summary": "Corretto il layout dello stemma nell'overlay base: non viene più tagliato ed entra nel banner in modo proporzionato.",
+    "fixed": [
+      "anteprima badge tagliata a sinistra",
+      "stemma ancora troppo piccolo",
+      "stemma ora rimane dentro canvas 470x160 e si integra nel banner"
+    ]
+  },
+  {
     "version": "0.0.3",
     "status": "BETA",
     "date": "2026-05-27",
