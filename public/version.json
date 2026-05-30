@@ -1,12 +1,12 @@
 {
-  "version": "0.0.8",
+  "version": "0.0.9",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.0.8: centrato e riallineato Overlay Builder in pagina separata, senza sovrapposizioni tra editor e pannelli.",
+  "note": "BETA 0.0.9: fix centratura builder, default layout più centrato e preview su /index.html con payload URL-safe.",
   "status": "BETA",
-  "label": "BETA 0.0.8",
+  "label": "BETA 0.0.9",
   "versioning": {
     "beta": true,
     "rules": [

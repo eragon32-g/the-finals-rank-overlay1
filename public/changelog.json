@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.0.9",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Builder preview and centering fix",
+    "summary": "Riallineato il layout iniziale del builder e corretta la preview usando /index.html e parametri layout URL-safe.",
+    "fixed": [
+      "default layout non centrato nel builder",
+      "anteprima iframe poteva mostrare 403 Forbidden",
+      "payload baseLayout/customElements reso URL-safe"
+    ]
+  },
+  {
     "version": "0.0.8",
     "status": "BETA",
     "date": "2026-05-30",

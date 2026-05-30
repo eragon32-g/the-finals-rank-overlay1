@@ -1,10 +1,10 @@
-# RankTag BETA 0.0.8
+# RankTag BETA 0.0.9
 
-Builder centering fix.
+Builder preview and centering fix.
 
 ## Include
-- Pagina /builder.html riallineata
-- Editor centrale con spazio reale 940x320
-- Pannelli laterali non sovrapposti
+- Builder più centrato
+- Default layout più centrato dentro l'editor
+- Preview iframe su /index.html
+- baseLayout/customElements URL-safe
 - Generator principale invariato
-- Link finale generato direttamente dal builder
