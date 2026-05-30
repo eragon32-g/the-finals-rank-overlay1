@@ -4,17 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=011" />
+  <link rel="stylesheet" href="/style.css?v=012" />
   <style>
     * { box-sizing: border-box; }
     body { margin:0; min-height:100vh; background:radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%), linear-gradient(180deg,#111923,#06070b 46%,#030407); color:#f5f7fb; font-family:Arial,Helvetica,sans-serif; padding:24px; overflow-x:auto; }
-    .page { width:min(1720px, calc(100vw - 36px)); max-width:1720px; margin:0 auto; }
+    .page { width:min(1680px, calc(100vw - 32px)); max-width:1680px; margin:0 auto; }
     .top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px; flex-wrap:wrap; }
     h1 { margin:0; font-size:clamp(34px,5vw,64px); line-height:.9; letter-spacing:-1.5px; }
     .sub { margin:8px 0 0; color:rgba(245,247,251,.72); line-height:1.45; }
     .nav { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .tag,.nav a { border:1px solid rgba(255,255,255,.14); border-radius:999px; padding:9px 13px; background:rgba(255,255,255,.06); color:#fff; text-decoration:none; font-weight:900; font-size:12px; letter-spacing:.4px; }
-    .layout { display:grid; grid-template-columns:300px minmax(900px, 960px) minmax(390px, 430px); gap:18px; align-items:start; justify-content:center; }
+    .layout { display:grid; grid-template-columns:300px minmax(820px, 930px) minmax(380px, 420px); gap:18px; align-items:start; justify-content:center; }
     .panel { border:1px solid rgba(255,255,255,.12); border-radius:22px; background:linear-gradient(180deg,rgba(18,21,30,.96),rgba(8,10,15,.98)); padding:18px; box-shadow:0 20px 48px rgba(0,0,0,.24); min-width:0; overflow:visible; }
     .panel h2 { margin:0 0 12px; font-size:20px; }
     label { display:grid; gap:6px; color:rgba(245,247,251,.76); font-weight:800; font-size:12px; }
@@ -46,6 +46,72 @@
     .preview-frame iframe { width:470px; height:160px; border:0; display:block; transform:scale(.85); transform-origin:0 0; }
     .help { margin:8px 0 0; font-size:12px; color:rgba(245,247,251,.58); line-height:1.35; }
     @media (max-width:1780px){ .page{ margin-left:24px; margin-right:24px; } } @media (max-width:1100px){ .page{ width:100%; max-width:100%; margin:0; } .layout{grid-template-columns:1fr;} .builder-stage{ width:min(940px,100%); height:calc(min(940px,100vw - 84px) * 0.3404); } }
+  
+    .mirror-preview {
+      width: 352.5px;
+      height: 120px;
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 16px;
+      background:
+        linear-gradient(45deg, rgba(255,255,255,.045) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,.045) 25%, transparent 25%),
+        rgba(0,0,0,.32);
+      background-size: 15px 15px;
+      clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px);
+    }
+    .mirror-bg {
+      position:absolute;
+      left:33.75px;
+      top:24.75px;
+      width:318.75px;
+      height:70.5px;
+      border-radius:14px;
+      border:1.5px solid rgba(124,132,143,.72);
+      background:linear-gradient(180deg,rgba(32,36,45,.96),rgba(7,9,13,.98));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.18);
+    }
+    .mirror-bg::before {
+      content:"";
+      position:absolute;
+      left:-1px;
+      top:10px;
+      bottom:10px;
+      width:4px;
+      background:linear-gradient(180deg,transparent,rgba(255,42,23,.94),rgba(255,211,106,.86),transparent);
+    }
+    .mirror-bg::after {
+      content:"";
+      position:absolute;
+      left:35px;
+      right:20px;
+      bottom:7px;
+      height:2px;
+      background:linear-gradient(90deg,transparent,rgba(255,42,23,.48),rgba(255,211,106,.68),transparent);
+    }
+    .mirror-item {
+      position:absolute;
+      overflow:hidden;
+      white-space:nowrap;
+      display:flex;
+      align-items:center;
+      font-weight:1000;
+      color:#f5f7fb;
+      text-shadow:0 2px 8px rgba(0,0,0,.72);
+      pointer-events:none;
+      box-sizing:border-box;
+    }
+    .mirror-item img {
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+    .mirror-score { color:#f0d9aa; }
+    .mirror-player { color:#e8edf4; }
+
   </style>
 </head>
 <body>
@@ -56,7 +122,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.1</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.2</span>
       </div>
     </div>
     <div class="layout">
@@ -112,8 +178,8 @@
         <div class="actions"><button class="btn secondary" id="applyFields" type="button">Applica</button><button class="btn secondary" id="front" type="button">Porta avanti</button><button class="btn secondary" id="back" type="button">Porta dietro</button><button class="btn secondary" id="removeImage" type="button">Rimuovi immagine</button></div>
         <div class="list" id="elementsList"></div>
         <h2>6. Anteprima finale reale</h2>
-        <p class="help">Questa preview usa lo stesso link che copi per OBS/TikTok. È scalata per entrare nel pannello, ma il contenuto è quello reale.</p>
-        <div class="preview-frame"><iframe id="preview" title="Preview overlay"></iframe></div>
+        <p class="help">Questa preview è una copia diretta dell’editor in scala ridotta. Il link finale usa gli stessi dati del layout.</p>
+        <div class="mirror-preview" id="mirrorPreview"><div class="mirror-bg"></div></div><iframe id="preview" title="Preview overlay" style="display:none;"></iframe>
         <div class="actions"><button class="btn" id="generate" type="button">Aggiorna link</button><button class="btn secondary" id="copy" type="button">Copia link</button></div>
         <label>Link finale<textarea id="output" readonly></textarea></label>
       </section>
@@ -133,6 +199,36 @@
     function selected(){return baseLayout[selectedId] || customElements.find((x)=>x.id===selectedId) || null;}
     function items(){return [...Object.entries(baseLayout).map(([id,item])=>({id,...item})),...customElements.map((item)=>({...item,kind:"image"}))];}
     function displayText(id){const [league,div]=rankMap[$("badgeFile").value]||["Unranked",""]; if(id==="rank")return (league+(div?" "+div:"")).toUpperCase(); if(id==="score")return `${$("scoreLabel").value||"ELO"}: ${compactNumber($("rankScore").value)}`; if(id==="player")return $("player").value||"NomePlayer#1234"; if(id==="brand")return "ERDRAGON32 • Join the Discord"; return id;}
+
+    function renderMirrorPreview(){
+      const mirror = $("mirrorPreview");
+      if(!mirror) return;
+      mirror.querySelectorAll(".mirror-item").forEach((n)=>n.remove());
+      const scale = 0.375; // 940x320 -> 352.5x120
+      items().sort((a,b)=>(a.z||1)-(b.z||1)).forEach((item)=>{
+        const node = document.createElement(item.id==="badge" || item.kind==="image" ? "div" : "div");
+        node.className = "mirror-item mirror-" + item.id;
+        Object.assign(node.style, {
+          left: `${item.x * scale}px`,
+          top: `${item.y * scale}px`,
+          width: `${item.w * scale}px`,
+          height: `${item.h * scale}px`,
+          opacity: `${item.opacity ?? 1}`,
+          zIndex: `${item.z || 1}`,
+          fontSize: item.fontSize ? `${item.fontSize * scale}px` : "",
+          lineHeight: `${item.h * scale}px`
+        });
+        if(item.id==="badge"){
+          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=012" alt="">`;
+        } else if(item.kind==="image"){
+          node.innerHTML = `<img src="${item.src}" alt="">`;
+        } else {
+          node.textContent = displayText(item.id);
+        }
+        mirror.appendChild(node);
+      });
+    }
+
     function render(){
       stage.querySelectorAll(".builder-item").forEach((n)=>n.remove());
       items().sort((a,b)=>(a.z||1)-(b.z||1)).forEach((item)=>{
@@ -141,14 +237,14 @@
         if(item.kind!=="image") box.classList.add("text-item", item.id+"-item");
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",lineHeight:`${item.h}px`});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=011" alt="">`;
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=012" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; label.textContent=item.label||item.name||item.id; box.appendChild(label);
         const handle=document.createElement("div"); handle.className="handle"; box.appendChild(handle);
         box.addEventListener("pointerdown", startDrag); handle.addEventListener("pointerdown", startResize); stage.appendChild(box);
       });
-      updateFields(); renderList(); buildLink();
+      updateFields(); renderList(); renderMirrorPreview(); buildLink();
     }
     function updateFields(){const item=selected(); $("selectedName").textContent=item?(item.label||item.name||selectedId):"nessuno"; if(!item)return; $("editX").value=Math.round(item.x||0); $("editY").value=Math.round(item.y||0); $("editW").value=Math.round(item.w||1); $("editH").value=Math.round(item.h||1); $("editFont").value=Math.round(item.fontSize||0); $("editZ").value=Math.round(item.z||1); $("editOpacity").value=item.opacity??1;}
     function renderList(){const list=$("elementsList"); list.innerHTML=""; items().forEach((item)=>{const btn=document.createElement("button"); btn.className="btn secondary"; btn.type="button"; btn.textContent=item.label||item.name||item.id; btn.addEventListener("click",()=>{selectedId=item.id; render();}); list.appendChild(btn);});}

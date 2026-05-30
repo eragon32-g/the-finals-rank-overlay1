@@ -1,12 +1,12 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.2",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.1.1: fix fedeltà editor/anteprima e pannello destro non tagliato.",
+  "note": "BETA 0.1.2: anteprima builder a specchio fedele all'editor e renderer finale autoritativo per baseLayout.",
   "status": "BETA",
-  "label": "BETA 0.1.1",
+  "label": "BETA 0.1.2",
   "versioning": {
     "beta": true,
     "rules": [

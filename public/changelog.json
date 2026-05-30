@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.1.2",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Builder mirror preview fix",
+    "summary": "L'anteprima del builder ora è una copia diretta dell'editor in scala ridotta; il renderer finale usa layer autoritativi per rispettare baseLayout.",
+    "fixed": [
+      "anteprima non cambiava rispetto all'editor",
+      "editor e final link non erano fedeli",
+      "pannello destro tagliava la preview",
+      "renderer finale ora applica baseLayout con layer assoluti"
+    ]
+  },
+  {
     "version": "0.1.1",
     "status": "BETA",
     "date": "2026-05-30",

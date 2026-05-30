@@ -1,8 +1,9 @@
-# RankTag BETA 0.1.1
+# RankTag BETA 0.1.2
 
-Builder fidelity fix.
+Builder mirror preview fix.
 
-- Editor layout più fedele all'anteprima finale
-- Coordinate baseLayout applicate rispetto al canvas reale
+## Include
+- Anteprima builder a specchio, fedele all'editor
+- Renderer finale autoritativo per baseLayout
 - Pannello destro non tagliato
-- Preview destra scalata per entrare nel pannello
+- Link finale continua a usare baseLayout/customElements
