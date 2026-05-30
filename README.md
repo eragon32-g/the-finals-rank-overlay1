@@ -1,10 +1,10 @@
-# RankTag BETA 0.1.8
+# RankTag BETA 0.1.9
 
-Right panel preview fix.
+Final link and branding animation fix.
 
 ## Include
-- Pannello destro contenuto dentro i bordi
-- Preview mirror ridotta a 330x112
-- Link finale con textarea più compatta
-- Lista elementi meno invasiva
-- Editor centrale leggermente più stretto
+- baseLayout/customElements applicati in modo più affidabile nel link finale
+- nuovo parametro builderLayout=1
+- nuovo parametro layoutRev per evitare cache/vecchi layout
+- branding animato ripristinato nel renderer finale
+- mirror preview con branding animato

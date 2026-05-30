@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=018" />
+  <link rel="stylesheet" href="/style.css?v=019" />
   <style>
     * { box-sizing: border-box; }
     body { margin:0; min-height:100vh; background:radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%), linear-gradient(180deg,#111923,#06070b 46%,#030407); color:#f5f7fb; font-family:Arial,Helvetica,sans-serif; padding:24px; overflow-x:auto; }
@@ -164,7 +164,7 @@
     #zoomOut, #zoomIn, #zoomReset { padding:7px 9px; font-size:11px; } .stage-wrap > div:first-child .actions { justify-content:flex-end; } .stage-wrap .actions { max-width:100%; }
 
   
-    /* RankTag BETA 0.1.8 - right panel containment */
+    /* RankTag BETA 0.1.9 - right panel containment */
     .layout > .panel:nth-child(3) {
       overflow: hidden;
       min-width: 0;
@@ -216,6 +216,23 @@
       word-break: break-all;
     }
 
+  
+    .mirror-brand {
+      overflow:hidden;
+    }
+    .mirror-brand::after {
+      content: attr(data-marquee);
+      padding-left: 24px;
+    }
+    .mirror-brand {
+      animation: mirrorBrandMarquee 9s linear infinite;
+      min-width: max-content;
+    }
+    @keyframes mirrorBrandMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-30%); }
+    }
+
   </style>
 </head>
 <body>
@@ -226,7 +243,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.8</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.9</span>
       </div>
     </div>
     <div class="layout">
@@ -291,7 +308,7 @@
         <div class="actions"><button class="btn secondary" id="applyFields" type="button">Applica</button><button class="btn secondary" id="front" type="button">Porta avanti</button><button class="btn secondary" id="back" type="button">Porta dietro</button><button class="btn secondary" id="removeImage" type="button">Rimuovi immagine</button></div>
         <div class="list" id="elementsList"></div>
         <h2>6. Anteprima finale reale</h2>
-        <p class="help">Preview reale in scala ridotta. Lo zoom dell’editor non modifica il link finale.</p>
+        <p class="help">Preview reale in scala ridotta. Il link finale ora include layout e branding animato.</p>
         <div class="mirror-preview" id="mirrorPreview"><div class="mirror-bg"></div></div><iframe id="preview" title="Preview overlay" style="display:none;"></iframe>
         <div class="actions"><button class="btn" id="generate" type="button">Aggiorna link</button><button class="btn secondary" id="copy" type="button">Copia link</button></div>
         <label>Link finale<textarea id="output" readonly></textarea></label>
@@ -336,11 +353,12 @@
           lineHeight: `${item.h * scale}px`
         });
         if(item.id==="badge"){
-          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=018" alt="">`;
+          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=019" alt="">`;
         } else if(item.kind==="image"){
           node.innerHTML = `<img src="${item.src}" alt="">`;
         } else {
           node.textContent = displayText(item.id);
+          if(item.id === "brand") node.setAttribute("data-marquee", "   " + displayText(item.id));
         }
         mirror.appendChild(node);
       });
@@ -359,7 +377,7 @@
         }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",lineHeight:`${item.h}px`});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=018" alt="">`;
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=019" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; if(item.id === selectedId){ label.textContent=item.label||item.name||item.id; box.appendChild(label); }
@@ -383,7 +401,7 @@
       if(mode==="manual"){url.searchParams.set("mode","manual"); url.searchParams.set("player",player); url.searchParams.set("league",league); url.searchParams.set("division",division); url.searchParams.set("rankScore",$("rankScore").value.trim()||"0"); url.searchParams.set("badgeFile",badgeFile);}
       else{url.searchParams.set("player",player); url.searchParams.set("leaderboard","s10");}
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
-      url.searchParams.set("themeStyle","default"); url.searchParams.set("baseLayout",encode(scaleLayoutForOverlay())); if(customElements.length) url.searchParams.set("customElements",encode(customPayload())); url.searchParams.set("cacheBust",Date.now().toString());
+      url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("baseLayout",encode(scaleLayoutForOverlay())); if(customElements.length) url.searchParams.set("customElements",encode(customPayload())); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
       $("output").value=url.toString(); $("preview").src=url.toString(); return url.toString();
     }
     async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; canvas.getContext("2d").drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.78),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}

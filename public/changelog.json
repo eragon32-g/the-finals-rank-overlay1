@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.1.9",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Final link and branding animation fix",
+    "summary": "Il link finale applica in modo più affidabile baseLayout/customElements e la scritta branding torna animata.",
+    "fixed": [
+      "le modifiche dell'editor non venivano sempre applicate nel link finale",
+      "branding non era più animato nel renderer finale",
+      "aggiunto builderLayout/layoutRev nel link per forzare il rendering aggiornato"
+    ]
+  },
+  {
     "version": "0.1.8",
     "status": "BETA",
     "date": "2026-05-31",

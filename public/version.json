@@ -1,12 +1,12 @@
 {
-  "version": "0.1.8",
+  "version": "0.1.9",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.1.8: sistemato pannello destro builder, anteprima non tagliata e contenuti dentro i bordi.",
+  "note": "BETA 0.1.9: fix applicazione baseLayout nel link finale e ripristino branding animato.",
   "status": "BETA",
-  "label": "BETA 0.1.8",
+  "label": "BETA 0.1.9",
   "versioning": {
     "beta": true,
     "rules": [

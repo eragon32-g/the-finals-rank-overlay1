@@ -825,7 +825,7 @@ body {
 @keyframes tournamentPulseV38 { 0%,100%{opacity:.45} 50%{opacity:.92} }
 
 
-/* RankTag BETA 0.1.8 - true Plus layouts */
+/* RankTag BETA 0.1.9 - true Plus layouts */
 .badge.rt43-root {
   width: 470px !important;
   min-height: 150px !important;
@@ -1126,7 +1126,7 @@ body {
 }
 
 
-/* RankTag BETA 0.1.8 - Cyber Red Impact Rebuild
+/* RankTag BETA 0.1.9 - Cyber Red Impact Rebuild
    Only Cyber Red is rebuilt here. Other Plus styles remain unchanged for now. */
 
 .rt43-cyber-red.rt45-cyber-rebuild,
@@ -1526,7 +1526,7 @@ body {
 
 
 
-/* RankTag BETA 0.1.8 - Cyber Red compact premium strip
+/* RankTag BETA 0.1.9 - Cyber Red compact premium strip
    Goal: closer to the generated shop cover: low, wide, sharp, dense, premium. */
 
 .badge.rt43-root:has(.rt43-cyber-red),
@@ -1914,7 +1914,7 @@ body {
 
 
 
-/* RankTag BETA 0.1.8 - Cyber Red premium rebuild, real layout */
+/* RankTag BETA 0.1.9 - Cyber Red premium rebuild, real layout */
 .badge.rt47-root {
   width: 470px !important;
   height: 128px !important;
@@ -2247,7 +2247,7 @@ body {
 
 
 
-/* RankTag BETA 0.1.8 - Cyber Red using clean PNG base */
+/* RankTag BETA 0.1.9 - Cyber Red using clean PNG base */
 .badge.rt48-root {
   width: 470px !important;
   height: 157px !important;
@@ -2394,7 +2394,7 @@ body {
 
 
 
-/* RankTag BETA 0.1.8 - Cyber Red asset alignment */
+/* RankTag BETA 0.1.9 - Cyber Red asset alignment */
 .badge.rt49-root {
   width: 470px !important;
   height: 157px !important;
@@ -2544,7 +2544,7 @@ body {
 
 
 
-/* RankTag BETA 0.1.8 - Cyber Red on final-format base */
+/* RankTag BETA 0.1.9 - Cyber Red on final-format base */
 .badge.rt50-root {
   width: 470px !important;
   height: 120px !important;
@@ -2688,7 +2688,7 @@ body {
 
 
 
-/* RankTag BETA 0.1.8 - image-base style engine */
+/* RankTag BETA 0.1.9 - image-base style engine */
 .badge.rt51-root {
   width: var(--rt51-width, 470px) !important;
   height: var(--rt51-height, 120px) !important;
@@ -2780,7 +2780,7 @@ body {
 
 
 
-/* RankTag BETA 0.1.8 - single source image-base Plus engine */
+/* RankTag BETA 0.1.9 - single source image-base Plus engine */
 .badge.rt52-root {
   width: var(--rt52-width, 470px) !important;
   height: var(--rt52-height, 120px) !important;
@@ -2892,13 +2892,13 @@ body {
 
 
 
-/* RankTag BETA 0.1.8 - preview/output consistency helpers */
-html[data-ranktag-version="0.1.8"] body {
+/* RankTag BETA 0.1.9 - preview/output consistency helpers */
+html[data-ranktag-version="0.1.9"] body {
   margin: 0 !important;
   background: transparent !important;
 }
 
-html[data-ranktag-version="0.1.8"] .overlay {
+html[data-ranktag-version="0.1.9"] .overlay {
   width: fit-content !important;
   height: fit-content !important;
   min-height: 0 !important;
@@ -2907,13 +2907,13 @@ html[data-ranktag-version="0.1.8"] .overlay {
   margin: 0 !important;
 }
 
-html[data-ranktag-version="0.1.8"] .badge.rt52-root {
+html[data-ranktag-version="0.1.9"] .badge.rt52-root {
   transform-origin: top left !important;
 }
 
 
 
-/* RankTag BETA 0.1.8 - shop removed */
+/* RankTag BETA 0.1.9 - shop removed */
 .shop-section,
 .plus-shop,
 .plus-styles,
@@ -2932,7 +2932,7 @@ button[data-style],
 
 
 
-/* RankTag BETA 0.1.8 - clean Premium section, no old shop assets */
+/* RankTag BETA 0.1.9 - clean Premium section, no old shop assets */
 .premium-clean-section {
   border-top: 1px solid rgba(255,255,255,.08);
   padding: 22px 0;
@@ -3027,7 +3027,7 @@ button[data-style],
 
 
 
-/* RankTag BETA 0.1.8 - one premium only + cleaner generator UI */
+/* RankTag BETA 0.1.9 - one premium only + cleaner generator UI */
 .premium-clean-grid {
   grid-template-columns: 1fr !important;
 }
@@ -3138,7 +3138,7 @@ button[data-style],
 
 
 
-/* RankTag BETA 0.1.8 - compact generator UI */
+/* RankTag BETA 0.1.9 - compact generator UI */
 .generator-compact-nav {
   position: sticky;
   top: 0;
@@ -3260,7 +3260,7 @@ button[data-style],
 
 
 
-/* RankTag BETA 0.1.8 - generator layout hotfix */
+/* RankTag BETA 0.1.9 - generator layout hotfix */
 #overlayPremium,
 .premium-clean-section,
 .guide-section,
@@ -3415,7 +3415,7 @@ section:has(.premium-one-card) {
 
 
 
-/* RankTag BETA 0.1.8 - Premium position fix, no DOM wrapping */
+/* RankTag BETA 0.1.9 - Premium position fix, no DOM wrapping */
 #overlayPremium,
 .premium-section {
   display: block !important;
@@ -3518,7 +3518,7 @@ section:has(.premium-one-card) {
 
 
 
-/* RankTag BETA 0.1.8 - remove compact UI helpers globally */
+/* RankTag BETA 0.1.9 - remove compact UI helpers globally */
 .generator-compact-nav,
 .generator-ui-note,
 .generator-compact-summary {
@@ -3527,7 +3527,7 @@ section:has(.premium-one-card) {
 
 
 
-/* RankTag BETA 0.1.8 - no compact top interface */
+/* RankTag BETA 0.1.9 - no compact top interface */
 .generator-compact-nav,
 .generator-ui-note,
 .generator-compact-summary {
@@ -3539,7 +3539,7 @@ section:has(.premium-one-card) {
 .overlay, #overlay { flex: 0 0 470px; margin: 0 auto; }
 
 
-/* RankTag BETA 0.1.8 - Base overlay visual options */
+/* RankTag BETA 0.1.9 - Base overlay visual options */
 .badge.base-side-detail .card-side-glow {
   width: 5px;
   top: 9px;
@@ -3631,7 +3631,7 @@ section:has(.premium-one-card) {
 }
 
 
-/* RankTag BETA 0.1.8 - Base badge size/position fix */
+/* RankTag BETA 0.1.9 - Base badge size/position fix */
 .badge:not(.rt103-premium):not(.rt97-premium-detached):not(.rt92-premium) .rank-mark {
   width: 104px !important;
   min-width: 104px !important;
@@ -3682,7 +3682,7 @@ section:has(.premium-one-card) {
 }
 
 
-/* RankTag BETA 0.1.8 - Base badge integrated layout fix
+/* RankTag BETA 0.1.9 - Base badge integrated layout fix
    Final override: badge stays inside the 470x160 canvas, is larger,
    and overlaps the banner by roughly one third. */
 .badge:not(.rt103-premium):not(.rt97-premium-detached):not(.rt92-premium) {
@@ -3755,7 +3755,7 @@ section:has(.premium-one-card) {
 }
 
 
-/* RankTag BETA 0.1.8 - Custom image elements */
+/* RankTag BETA 0.1.9 - Custom image elements */
 #badge .rt-custom-image-layer,
 .badge .rt-custom-image-layer {
   position: absolute;
@@ -3861,7 +3861,7 @@ section:has(.premium-one-card) {
 }
 
 
-/* RankTag BETA 0.1.8 - frame clipping + full builder */
+/* RankTag BETA 0.1.9 - frame clipping + full builder */
 .badge.base-clip-frame {
   overflow: hidden !important;
   clip-path: polygon(
@@ -3996,7 +3996,7 @@ section:has(.premium-one-card) {
 }
 
 
-/* RankTag BETA 0.1.8 - accurate builder/overlay clipping */
+/* RankTag BETA 0.1.9 - accurate builder/overlay clipping */
 .badge.base-clip-frame {
   overflow: hidden !important;
   clip-path: polygon(
@@ -4012,7 +4012,7 @@ section:has(.premium-one-card) {
 }
 
 
-/* RankTag BETA 0.1.8 - final builder layers */
+/* RankTag BETA 0.1.9 - final builder layers */
 .badge.base-builder-authoritative {
   position: relative !important;
   width: 470px !important;
@@ -4038,7 +4038,7 @@ section:has(.premium-one-card) {
 }
 
 
-/* RankTag BETA 0.1.8 - builder effects follow moved layers */
+/* RankTag BETA 0.1.9 - builder effects follow moved layers */
 .rt-builder-final-badge {
   overflow: visible !important;
 }
@@ -4077,4 +4077,33 @@ section:has(.premium-one-card) {
 .builder-item.rank-item {
   letter-spacing: .035em;
   text-shadow: 0 2px 8px rgba(0,0,0,.72), 0 0 10px rgba(255,255,255,.10);
+}
+
+
+/* RankTag BETA 0.1.9 - animated brand clone for builder final link */
+.rt-builder-final-brand {
+  border-radius: 999px;
+  background: rgba(0,0,0,.22);
+}
+.rt-builder-brand-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  min-width: max-content;
+  height: 100%;
+  animation: rtBuilderBrandMarquee 9s linear infinite;
+  will-change: transform;
+}
+.rt-builder-brand-marquee-track span {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+}
+@keyframes rtBuilderBrandMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.badge.base-builder-authoritative .rt-builder-final-layer {
+  visibility: visible !important;
 }
