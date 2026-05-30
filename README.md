@@ -1,10 +1,10 @@
-# RankTag BETA 0.1.7
+# RankTag BETA 0.1.8
 
-Builder bounds fix.
+Right panel preview fix.
 
 ## Include
-- Editor centrale più stretto e contenuto
-- Workspace non esce più dai margini
-- Overlay interno centrato meglio
-- Default zoom 112%
-- Label elementi meno invasivi
+- Pannello destro contenuto dentro i bordi
+- Preview mirror ridotta a 330x112
+- Link finale con textarea più compatta
+- Lista elementi meno invasiva
+- Editor centrale leggermente più stretto

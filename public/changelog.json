@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.1.8",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Right panel preview fix",
+    "summary": "Il pannello destro del builder è stato contenuto meglio: campi, lista elementi, preview e link finale non escono dai bordi.",
+    "fixed": [
+      "pannello destro usciva dai bordi",
+      "anteprima finale veniva tagliata",
+      "textarea link finale troppo alta/larga",
+      "lista elementi con scrollbar invasiva"
+    ]
+  },
+  {
     "version": "0.1.7",
     "status": "BETA",
     "date": "2026-05-31",

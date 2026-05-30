@@ -1,12 +1,12 @@
 {
-  "version": "0.1.7",
+  "version": "0.1.8",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.1.7: editor layout ridimensionato entro i margini, overlay centrato e controlli meno invasivi.",
+  "note": "BETA 0.1.8: sistemato pannello destro builder, anteprima non tagliata e contenuti dentro i bordi.",
   "status": "BETA",
-  "label": "BETA 0.1.7",
+  "label": "BETA 0.1.8",
   "versioning": {
     "beta": true,
     "rules": [

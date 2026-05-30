@@ -4,17 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=017" />
+  <link rel="stylesheet" href="/style.css?v=018" />
   <style>
     * { box-sizing: border-box; }
     body { margin:0; min-height:100vh; background:radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%), linear-gradient(180deg,#111923,#06070b 46%,#030407); color:#f5f7fb; font-family:Arial,Helvetica,sans-serif; padding:24px; overflow-x:auto; }
-    .page { width:min(1500px, calc(100vw - 28px)); max-width:1500px; margin:0 auto; }
+    .page { width:min(1540px, calc(100vw - 28px)); max-width:1540px; margin:0 auto; }
     .top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px; flex-wrap:wrap; }
     h1 { margin:0; font-size:clamp(34px,5vw,64px); line-height:.9; letter-spacing:-1.5px; }
     .sub { margin:8px 0 0; color:rgba(245,247,251,.72); line-height:1.45; }
     .nav { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .tag,.nav a { border:1px solid rgba(255,255,255,.14); border-radius:999px; padding:9px 13px; background:rgba(255,255,255,.06); color:#fff; text-decoration:none; font-weight:900; font-size:12px; letter-spacing:.4px; }
-    .layout { display:grid; grid-template-columns:290px minmax(640px, 720px) minmax(340px, 370px); gap:16px; align-items:start; justify-content:center; }
+    .layout { display:grid; grid-template-columns:290px minmax(620px, 700px) minmax(390px, 430px); gap:16px; align-items:start; justify-content:center; }
     .panel { border:1px solid rgba(255,255,255,.12); border-radius:22px; background:linear-gradient(180deg,rgba(18,21,30,.96),rgba(8,10,15,.98)); padding:18px; box-shadow:0 20px 48px rgba(0,0,0,.24); min-width:0; overflow:visible; }
     .panel h2 { margin:0 0 12px; font-size:20px; }
     label { display:grid; gap:6px; color:rgba(245,247,251,.76); font-weight:800; font-size:12px; }
@@ -85,29 +85,15 @@
     .help { margin:8px 0 0; font-size:12px; color:rgba(245,247,251,.58); line-height:1.35; }
     @media (max-width:1780px){ .page{ margin-left:24px; margin-right:24px; } } @media (max-width:1100px){ .page{ width:100%; max-width:100%; margin:0; } .layout{grid-template-columns:1fr;} .builder-stage{ width:min(940px,100%); height:calc(min(940px,100vw - 84px) * 0.3404); } }
   
-    .mirror-preview {
-      width: 352.5px;
-      height: 120px;
-      position: relative;
-      overflow: hidden;
-      margin: 0 auto;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 16px;
-      background:
-        linear-gradient(45deg, rgba(255,255,255,.045) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(255,255,255,.045) 25%, transparent 25%),
-        rgba(0,0,0,.32);
-      background-size: 15px 15px;
-      clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px);
-    }
+    .mirror-preview { width:100%; max-width:330px; height:112px; position:relative; overflow:hidden; margin:0 auto; border:1px solid rgba(255,255,255,.14); border-radius:16px; background:linear-gradient(45deg, rgba(255,255,255,.045) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,.045) 25%, transparent 25%), rgba(0,0,0,.32); background-size:15px 15px; clip-path:polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px); }
     .mirror-bg {
       position:absolute;
-      left:33.75px;
-      top:24.75px;
-      width:318.75px;
-      height:70.5px;
-      border-radius:14px;
-      border:1.5px solid rgba(124,132,143,.72);
+      left:40.6px;
+      top:26.6px;
+      width:280px;
+      height:58.8px;
+      border-radius:12px;
+      border:1px solid rgba(124,132,143,.72);
       background:linear-gradient(180deg,rgba(32,36,45,.96),rgba(7,9,13,.98));
       box-shadow:inset 0 1px 0 rgba(255,255,255,.18);
     }
@@ -152,8 +138,8 @@
 
   
     .builder-stage-holder {
-      width:680px;
-      height:235px;
+      width:650px;
+      height:225px;
       max-width:100%;
       display:grid;
       place-items:center;
@@ -175,7 +161,60 @@
     }
 
   
-    #zoomOut, #zoomIn, #zoomReset { padding:8px 10px; font-size:12px; } .stage-wrap > div:first-child .actions { justify-content:flex-end; } .stage-wrap .actions { max-width:100%; }
+    #zoomOut, #zoomIn, #zoomReset { padding:7px 9px; font-size:11px; } .stage-wrap > div:first-child .actions { justify-content:flex-end; } .stage-wrap .actions { max-width:100%; }
+
+  
+    /* RankTag BETA 0.1.8 - right panel containment */
+    .layout > .panel:nth-child(3) {
+      overflow: hidden;
+      min-width: 0;
+    }
+    .layout > .panel:nth-child(3) .grid2 {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .layout > .panel:nth-child(3) input,
+    .layout > .panel:nth-child(3) textarea,
+    .layout > .panel:nth-child(3) select {
+      min-width: 0;
+      max-width: 100%;
+      padding: 9px 10px;
+    }
+    .layout > .panel:nth-child(3) .actions {
+      gap: 8px;
+    }
+    .layout > .panel:nth-child(3) .actions .btn {
+      padding: 10px 12px;
+      white-space: nowrap;
+    }
+    #elementsList {
+      max-height: 125px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 6px;
+    }
+    #elementsList .btn {
+      width: 100%;
+      justify-content: flex-start;
+      min-height: 38px;
+      padding: 9px 12px;
+    }
+    .mirror-preview {
+      width: 100%;
+      max-width: 330px;
+      height: 112px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+    #output {
+      width: 100%;
+      min-height: 92px;
+      max-height: 126px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
 
   </style>
 </head>
@@ -187,7 +226,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.7</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.8</span>
       </div>
     </div>
     <div class="layout">
@@ -252,7 +291,7 @@
         <div class="actions"><button class="btn secondary" id="applyFields" type="button">Applica</button><button class="btn secondary" id="front" type="button">Porta avanti</button><button class="btn secondary" id="back" type="button">Porta dietro</button><button class="btn secondary" id="removeImage" type="button">Rimuovi immagine</button></div>
         <div class="list" id="elementsList"></div>
         <h2>6. Anteprima finale reale</h2>
-        <p class="help">Questa preview mostra il risultato reale in scala ridotta. Lo zoom dell’editor non modifica il link finale.</p>
+        <p class="help">Preview reale in scala ridotta. Lo zoom dell’editor non modifica il link finale.</p>
         <div class="mirror-preview" id="mirrorPreview"><div class="mirror-bg"></div></div><iframe id="preview" title="Preview overlay" style="display:none;"></iframe>
         <div class="actions"><button class="btn" id="generate" type="button">Aggiorna link</button><button class="btn secondary" id="copy" type="button">Copia link</button></div>
         <label>Link finale<textarea id="output" readonly></textarea></label>
@@ -278,7 +317,7 @@
       const mirror = $("mirrorPreview");
       if(!mirror) return;
       mirror.querySelectorAll(".mirror-item").forEach((n)=>n.remove());
-      const scale = 0.75; // 470x160 -> 352.5x120
+      const scale = 0.70; // 470x160 -> 329x112
       items().sort((a,b)=>(a.z||1)-(b.z||1)).forEach((item)=>{
         const node = document.createElement(item.id==="badge" || item.kind==="image" ? "div" : "div");
         node.className = "mirror-item mirror-" + item.id;
@@ -297,7 +336,7 @@
           lineHeight: `${item.h * scale}px`
         });
         if(item.id==="badge"){
-          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=017" alt="">`;
+          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=018" alt="">`;
         } else if(item.kind==="image"){
           node.innerHTML = `<img src="${item.src}" alt="">`;
         } else {
@@ -320,7 +359,7 @@
         }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",lineHeight:`${item.h}px`});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=017" alt="">`;
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=018" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; if(item.id === selectedId){ label.textContent=item.label||item.name||item.id; box.appendChild(label); }
