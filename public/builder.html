@@ -4,17 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=012" />
+  <link rel="stylesheet" href="/style.css?v=013" />
   <style>
     * { box-sizing: border-box; }
     body { margin:0; min-height:100vh; background:radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%), linear-gradient(180deg,#111923,#06070b 46%,#030407); color:#f5f7fb; font-family:Arial,Helvetica,sans-serif; padding:24px; overflow-x:auto; }
-    .page { width:min(1680px, calc(100vw - 32px)); max-width:1680px; margin:0 auto; }
+    .page { width:min(1560px, calc(100vw - 32px)); max-width:1560px; margin:0 auto; }
     .top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px; flex-wrap:wrap; }
     h1 { margin:0; font-size:clamp(34px,5vw,64px); line-height:.9; letter-spacing:-1.5px; }
     .sub { margin:8px 0 0; color:rgba(245,247,251,.72); line-height:1.45; }
     .nav { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .tag,.nav a { border:1px solid rgba(255,255,255,.14); border-radius:999px; padding:9px 13px; background:rgba(255,255,255,.06); color:#fff; text-decoration:none; font-weight:900; font-size:12px; letter-spacing:.4px; }
-    .layout { display:grid; grid-template-columns:300px minmax(820px, 930px) minmax(380px, 420px); gap:18px; align-items:start; justify-content:center; }
+    .layout { display:grid; grid-template-columns:300px minmax(640px, 760px) minmax(360px, 400px); gap:18px; align-items:start; justify-content:center; }
     .panel { border:1px solid rgba(255,255,255,.12); border-radius:22px; background:linear-gradient(180deg,rgba(18,21,30,.96),rgba(8,10,15,.98)); padding:18px; box-shadow:0 20px 48px rgba(0,0,0,.24); min-width:0; overflow:visible; }
     .panel h2 { margin:0 0 12px; font-size:20px; }
     label { display:grid; gap:6px; color:rgba(245,247,251,.76); font-weight:800; font-size:12px; }
@@ -26,8 +26,35 @@
     .btn.secondary { background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.13); }
     .actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .stage-wrap { display:grid; justify-items:center; align-content:start; gap:16px; overflow:visible; }
-    .builder-stage { width:940px; height:320px; max-width:100%; position:relative; overflow:hidden; border:1px solid rgba(255,255,255,.18); border-radius:20px; background:linear-gradient(45deg,rgba(255,255,255,.035) 25%,transparent 25%),linear-gradient(-45deg,rgba(255,255,255,.035) 25%,transparent 25%),linear-gradient(45deg,transparent 75%,rgba(255,255,255,.035) 75%),linear-gradient(-45deg,transparent 75%,rgba(255,255,255,.035) 75%),rgba(0,0,0,.26); background-size:22px 22px; background-position:0 0,0 11px,11px -11px,-11px 0; clip-path:polygon(48px 0,calc(100% - 48px) 0,100% 48px,100% calc(100% - 48px),calc(100% - 48px) 100%,48px 100%,0 calc(100% - 48px),0 48px); }
-    .builder-bg { position:absolute; left:90px; top:66px; width:850px; height:188px; border-radius:24px; border:2px solid rgba(124,132,143,.72); background:linear-gradient(180deg,rgba(32,36,45,.96),rgba(7,9,13,.98)); box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 12px 24px rgba(0,0,0,.28); }
+    .builder-stage {
+      width:470px;
+      height:160px;
+      max-width:none;
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:14px;
+      background:
+        linear-gradient(45deg,rgba(255,255,255,.035) 25%,transparent 25%),
+        linear-gradient(-45deg,rgba(255,255,255,.035) 25%,transparent 25%),
+        linear-gradient(45deg,transparent 75%,rgba(255,255,255,.035) 75%),
+        linear-gradient(-45deg,transparent 75%,rgba(255,255,255,.035) 75%),
+        rgba(0,0,0,.26);
+      background-size:11px 11px;
+      background-position:0 0,0 5.5px,5.5px -5.5px,-5.5px 0;
+      clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px);
+    }
+    .builder-bg {
+      position:absolute;
+      left:45px;
+      top:33px;
+      width:425px;
+      height:94px;
+      border-radius:12px;
+      border:1px solid rgba(124,132,143,.72);
+      background:linear-gradient(180deg,rgba(32,36,45,.96),rgba(7,9,13,.98));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 6px 12px rgba(0,0,0,.28);
+    }
     .builder-bg::before { content:""; position:absolute; left:-2px; top:16px; bottom:16px; width:7px; background:linear-gradient(180deg,transparent,rgba(255,42,23,.94),rgba(255,211,106,.86),transparent); box-shadow:0 0 14px rgba(255,42,23,.30); }
     .builder-bg::after { content:""; position:absolute; left:70px; right:40px; bottom:10px; height:3px; background:linear-gradient(90deg,transparent,rgba(255,42,23,.48),rgba(255,211,106,.68),transparent); }
     .builder-item { position:absolute; border:2px dashed rgba(79,234,255,.76); border-radius:10px; cursor:move; user-select:none; min-width:10px; min-height:10px; transform-origin:center center; }
@@ -112,6 +139,19 @@
     .mirror-score { color:#f0d9aa; }
     .mirror-player { color:#e8edf4; }
 
+  
+    .builder-stage-holder {
+      width:705px;
+      height:240px;
+      display:grid;
+      place-items:center;
+      overflow:visible;
+    }
+    .builder-stage-holder .builder-stage {
+      transform:scale(1.5);
+      transform-origin:center center;
+    }
+
   </style>
 </head>
 <body>
@@ -122,7 +162,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.2</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.3</span>
       </div>
     </div>
     <div class="layout">
@@ -163,9 +203,9 @@
       </section>
       <section class="panel stage-wrap">
         <div style="width:100%;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;"><h2 style="margin:0;">4. Editor layout</h2><span class="tag">Drag & Resize</span></div>
-        <div class="builder-stage" id="builderStage"><div class="builder-bg"></div></div>
+        <div class="builder-stage-holder"><div class="builder-stage" id="builderStage"><div class="builder-bg"></div></div></div>
         <div class="actions"><input id="customImageUpload" type="file" accept="image/png,image/jpeg,image/webp" style="max-width:340px;"><button class="btn secondary" id="resetLayout" type="button">Reset layout</button><button class="btn secondary" id="clearImages" type="button">Rimuovi immagini</button></div>
-        <p class="help">Gli elementi possono uscire dal frame mentre li sposti, ma nel link finale vengono tagliati dalla forma della cornice se “Ritaglio cornice” è attivo.</p>
+        <p class="help">L’editor ora usa le proporzioni reali 470×160 ingrandite: ciò che vedi qui corrisponde al link finale. Ridimensionando una scritta aumenta anche il font.</p>
       </section>
       <section class="panel stack">
         <h2>5. Elemento selezionato</h2><span class="tag" id="selectedName">nessuno</span>
@@ -190,7 +230,7 @@
     const stage = $("builderStage");
     const MAX_IMAGES = 2, MAX_IMG_SIZE = 320;
     const rankMap = {"bronze-4":["Bronze","4"],"bronze-3":["Bronze","3"],"bronze-2":["Bronze","2"],"bronze-1":["Bronze","1"],"silver-4":["Silver","4"],"silver-3":["Silver","3"],"silver-2":["Silver","2"],"silver-1":["Silver","1"],"gold-4":["Gold","4"],"gold-3":["Gold","3"],"gold-2":["Gold","2"],"gold-1":["Gold","1"],"platinum-4":["Platinum","4"],"platinum-3":["Platinum","3"],"platinum-2":["Platinum","2"],"platinum-1":["Platinum","1"],"diamond-4":["Diamond","4"],"diamond-3":["Diamond","3"],"diamond-2":["Diamond","2"],"diamond-1":["Diamond","1"],"ruby":["Ruby",""]};
-    const defaultLayout = {badge:{kind:"base",label:"Badge",x:76,y:44,w:150,h:150,fontSize:0,z:8,opacity:1},rank:{kind:"base",label:"Rank",x:250,y:72,w:340,h:44,fontSize:34,z:6,opacity:1},score:{kind:"base",label:"ELO",x:252,y:120,w:150,h:24,fontSize:15,z:6,opacity:1},player:{kind:"base",label:"Player",x:408,y:120,w:210,h:24,fontSize:13,z:6,opacity:1},brand:{kind:"base",label:"Brand",x:252,y:160,w:330,h:24,fontSize:12,z:6,opacity:1}};
+    const defaultLayout = {badge:{kind:"base",label:"Badge",x:24,y:21,w:94,h:94,fontSize:0,z:8,opacity:1},rank:{kind:"base",label:"Rank",x:125,y:35,w:215,h:28,fontSize:25,z:6,opacity:1},score:{kind:"base",label:"ELO",x:126,y:68,w:110,h:16,fontSize:11,z:6,opacity:1},player:{kind:"base",label:"Player",x:238,y:68,w:142,h:16,fontSize:10,z:6,opacity:1},brand:{kind:"base",label:"Brand",x:126,y:91,w:230,h:16,fontSize:9,z:6,opacity:1}};
     let baseLayout = JSON.parse(JSON.stringify(defaultLayout)), customElements = [], selectedId = "badge";
     function uid(){return "ce_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,7);}
     function clamp(n,min,max){return Math.max(min,Math.min(max,Number(n)||0));}
@@ -204,7 +244,7 @@
       const mirror = $("mirrorPreview");
       if(!mirror) return;
       mirror.querySelectorAll(".mirror-item").forEach((n)=>n.remove());
-      const scale = 0.375; // 940x320 -> 352.5x120
+      const scale = 0.75; // 470x160 -> 352.5x120
       items().sort((a,b)=>(a.z||1)-(b.z||1)).forEach((item)=>{
         const node = document.createElement(item.id==="badge" || item.kind==="image" ? "div" : "div");
         node.className = "mirror-item mirror-" + item.id;
@@ -219,7 +259,7 @@
           lineHeight: `${item.h * scale}px`
         });
         if(item.id==="badge"){
-          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=012" alt="">`;
+          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=013" alt="">`;
         } else if(item.kind==="image"){
           node.innerHTML = `<img src="${item.src}" alt="">`;
         } else {
@@ -237,7 +277,7 @@
         if(item.kind!=="image") box.classList.add("text-item", item.id+"-item");
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",lineHeight:`${item.h}px`});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=012" alt="">`;
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=013" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; label.textContent=item.label||item.name||item.id; box.appendChild(label);
@@ -248,12 +288,14 @@
     }
     function updateFields(){const item=selected(); $("selectedName").textContent=item?(item.label||item.name||selectedId):"nessuno"; if(!item)return; $("editX").value=Math.round(item.x||0); $("editY").value=Math.round(item.y||0); $("editW").value=Math.round(item.w||1); $("editH").value=Math.round(item.h||1); $("editFont").value=Math.round(item.fontSize||0); $("editZ").value=Math.round(item.z||1); $("editOpacity").value=item.opacity??1;}
     function renderList(){const list=$("elementsList"); list.innerHTML=""; items().forEach((item)=>{const btn=document.createElement("button"); btn.className="btn secondary"; btn.type="button"; btn.textContent=item.label||item.name||item.id; btn.addEventListener("click",()=>{selectedId=item.id; render();}); list.appendChild(btn);});}
-    function point(e){const rect=stage.getBoundingClientRect(); return {x:(e.clientX-rect.left)*(940/rect.width), y:(e.clientY-rect.top)*(320/rect.height)};}
-    function startDrag(e){if(e.target.classList.contains("handle"))return; e.preventDefault(); selectedId=e.currentTarget.dataset.id; const item=selected(); const start=point(e); const ox=start.x-item.x, oy=start.y-item.y; function move(ev){const p=point(ev); item.x=Math.round(clamp(p.x-ox,-240,1180)); item.y=Math.round(clamp(p.y-oy,-240,560)); render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
-    function startResize(e){e.preventDefault(); e.stopPropagation(); selectedId=e.currentTarget.parentElement.dataset.id; const item=selected(); const start=point(e); const sw=item.w, sh=item.h; function move(ev){const p=point(ev); item.w=Math.round(clamp(sw+(p.x-start.x),10,1000)); item.h=Math.round(clamp(sh+(p.y-start.y),10,500)); render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
-    function applyFields(){const item=selected(); if(!item)return; item.x=Math.round(clamp($("editX").value,-240,1180)); item.y=Math.round(clamp($("editY").value,-240,560)); item.w=Math.round(clamp($("editW").value,10,1000)); item.h=Math.round(clamp($("editH").value,10,500)); item.fontSize=Math.max(0,Number($("editFont").value||0)); item.z=Math.round(Number($("editZ").value||1)); item.opacity=Math.max(0,Math.min(1,Number($("editOpacity").value||1))); render();}
-    function scaleLayoutForOverlay(){const out={}; Object.entries(baseLayout).forEach(([key,v])=>{out[key]={x:Math.round((Number(v.x)||0)/2),y:Math.round((Number(v.y)||0)/2),w:Math.max(1,Math.round((Number(v.w)||1)/2)),h:Math.max(1,Math.round((Number(v.h)||1)/2)),fontSize:Math.max(0,Number(v.fontSize||0)/2),z:Math.round(Number(v.z)||1)};}); return {version:1,schema:"ranktag-base-layout-v1",canvas:{width:470,height:160},elements:out};}
-    function customPayload(){return customElements.map((v)=>({id:v.id,name:v.name,type:"image",src:v.src,x:Math.round((Number(v.x)||0)/2),y:Math.round((Number(v.y)||0)/2),w:Math.max(1,Math.round((Number(v.w)||1)/2)),h:Math.max(1,Math.round((Number(v.h)||1)/2)),opacity:Math.max(0,Math.min(1,Number(v.opacity??1))),z:Math.round(Number(v.z)||30)}));}
+    function point(e){const rect=stage.getBoundingClientRect(); return {x:(e.clientX-rect.left)*(470/rect.width), y:(e.clientY-rect.top)*(160/rect.height)};}
+    function startDrag(e){if(e.target.classList.contains("handle"))return; e.preventDefault(); selectedId=e.currentTarget.dataset.id; const item=selected(); const start=point(e); const ox=start.x-item.x, oy=start.y-item.y; function move(ev){const p=point(ev); item.x=Math.round(clamp(p.x-ox,-120,590)); item.y=Math.round(clamp(p.y-oy,-120,280)); render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
+    function startResize(e){e.preventDefault(); e.stopPropagation(); selectedId=e.currentTarget.parentElement.dataset.id; const item=selected(); const start=point(e); const sw=item.w, sh=item.h; function move(ev){const p=point(ev); item.w=Math.round(clamp(sw+(p.x-start.x),6,600)); item.h=Math.round(clamp(sh+(p.y-start.y),6,300));
+      if(item.kind !== "image" && item.id !== "badge") { item.fontSize = Math.max(7, Math.round(item.h * 0.75)); }
+      render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
+    function applyFields(){const item=selected(); if(!item)return; item.x=Math.round(clamp($("editX").value,-120,590)); item.y=Math.round(clamp($("editY").value,-120,280)); item.w=Math.round(clamp($("editW").value,6,600)); item.h=Math.round(clamp($("editH").value,6,300)); item.fontSize=Math.max(0,Number($("editFont").value||0)); item.z=Math.round(Number($("editZ").value||1)); item.opacity=Math.max(0,Math.min(1,Number($("editOpacity").value||1))); render();}
+    function scaleLayoutForOverlay(){const out={}; Object.entries(baseLayout).forEach(([key,v])=>{out[key]={x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),fontSize:Math.max(0,Number(v.fontSize||0)),z:Math.round(Number(v.z)||1)};}); return {version:1,schema:"ranktag-base-layout-v1",canvas:{width:470,height:160},elements:out};}
+    function customPayload(){return customElements.map((v)=>({id:v.id,name:v.name,type:"image",src:v.src,x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),opacity:Math.max(0,Math.min(1,Number(v.opacity??1))),z:Math.round(Number(v.z)||30)}));}
     function buildLink(){
       const url=new URL(window.location.origin+"/index.html"); const mode=$("mode").value, player=$("player").value.trim()||"NomePlayer#1234", badgeFile=$("badgeFile").value; const [league,division]=rankMap[badgeFile]||["Unranked",""];
       if(mode==="manual"){url.searchParams.set("mode","manual"); url.searchParams.set("player",player); url.searchParams.set("league",league); url.searchParams.set("division",division); url.searchParams.set("rankScore",$("rankScore").value.trim()||"0"); url.searchParams.set("badgeFile",badgeFile);}
@@ -263,7 +305,7 @@
       $("output").value=url.toString(); $("preview").src=url.toString(); return url.toString();
     }
     async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; canvas.getContext("2d").drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.78),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
-    $("customImageUpload").addEventListener("change",async(event)=>{const file=event.target.files&&event.target.files[0]; event.target.value=""; if(!file)return; if(customElements.length>=MAX_IMAGES)return alert(`Massimo ${MAX_IMAGES} immagini custom.`); try{const converted=await fileToDataUrl(file); const ratio=converted.w/converted.h; const h=Math.min(150,converted.h); const w=Math.round(h*ratio); const item={id:uid(),name:file.name.replace(/\.[^.]+$/,"").slice(0,24),kind:"image",type:"image",src:converted.src,x:50+customElements.length*35,y:50+customElements.length*25,w:Math.max(48,Math.min(300,w)),h:Math.max(48,Math.min(240,h)),opacity:1,z:30+customElements.length}; customElements.push(item); selectedId=item.id; render();}catch{alert("Immagine non valida. Usa PNG, JPG o WebP.");}});
+    $("customImageUpload").addEventListener("change",async(event)=>{const file=event.target.files&&event.target.files[0]; event.target.value=""; if(!file)return; if(customElements.length>=MAX_IMAGES)return alert(`Massimo ${MAX_IMAGES} immagini custom.`); try{const converted=await fileToDataUrl(file); const ratio=converted.w/converted.h; const h=Math.min(150,converted.h); const w=Math.round(h*ratio); const item={id:uid(),name:file.name.replace(/\.[^.]+$/,"").slice(0,24),kind:"image",type:"image",src:converted.src,x:30+customElements.length*18,y:30+customElements.length*12,w:Math.max(24,Math.min(150,w)),h:Math.max(24,Math.min(120,h)),opacity:1,z:30+customElements.length}; customElements.push(item); selectedId=item.id; render();}catch{alert("Immagine non valida. Usa PNG, JPG o WebP.");}});
     $("applyFields").addEventListener("click",applyFields); ["editX","editY","editW","editH","editFont","editZ","editOpacity"].forEach((id)=>$(id).addEventListener("change",applyFields));
     ["mode","player","badgeFile","rankScore","scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{$(id)?.addEventListener("input",()=>{render(); buildLink();}); $(id)?.addEventListener("change",()=>{render(); buildLink();});});
     $("resetLayout").addEventListener("click",()=>{baseLayout=JSON.parse(JSON.stringify(defaultLayout)); selectedId="badge"; render();});

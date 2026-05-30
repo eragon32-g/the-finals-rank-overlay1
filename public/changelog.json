@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.1.3",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Builder scale proportion fix",
+    "summary": "L'editor builder ora usa proporzioni reali 470x160 ingrandite, evitando elementi enormi e rendendo il resize del testo proporzionato.",
+    "fixed": [
+      "elementi troppo grandi e fuori scala nell'editor",
+      "editor difficile da usare per il posizionamento fine",
+      "font non aumentava in proporzione quando si ridimensionavano le scritte",
+      "baseLayout non viene più scalato/diviso in modo ambiguo"
+    ]
+  },
+  {
     "version": "0.1.2",
     "status": "BETA",
     "date": "2026-05-30",

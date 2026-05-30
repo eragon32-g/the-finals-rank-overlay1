@@ -1,12 +1,12 @@
 {
-  "version": "0.1.2",
+  "version": "0.1.3",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.1.2: anteprima builder a specchio fedele all'editor e renderer finale autoritativo per baseLayout.",
+  "note": "BETA 0.1.3: editor builder in proporzioni reali 470x160 ingrandite e font auto-proporzionato al resize.",
   "status": "BETA",
-  "label": "BETA 0.1.2",
+  "label": "BETA 0.1.3",
   "versioning": {
     "beta": true,
     "rules": [
