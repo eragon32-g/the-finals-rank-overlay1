@@ -1,248 +1,26 @@
 [
   {
-    "version": "0.1.9",
+    "version": "0.2.0",
     "status": "BETA",
     "date": "2026-05-31",
-    "title": "Final link and branding animation fix",
-    "summary": "Il link finale applica in modo più affidabile baseLayout/customElements e la scritta branding torna animata.",
+    "title": "Updates grouped fix",
+    "summary": "Pagina Updates riscritta in forma raggruppata. Scroll ripristinato e micro-patch accorpate per ciclo versione.",
     "fixed": [
-      "le modifiche dell'editor non venivano sempre applicate nel link finale",
-      "branding non era più animato nel renderer finale",
-      "aggiunto builderLayout/layoutRev nel link per forzare il rendering aggiornato"
+      "scroll pagina Updates bloccato",
+      "lista aggiornamenti troppo lunga",
+      "pubblicazione disordinata delle patch"
     ]
   },
   {
-    "version": "0.1.8",
+    "version": "0.1.1 → 0.1.9",
     "status": "BETA",
-    "date": "2026-05-31",
-    "title": "Right panel preview fix",
-    "summary": "Il pannello destro del builder è stato contenuto meglio: campi, lista elementi, preview e link finale non escono dai bordi.",
-    "fixed": [
-      "pannello destro usciva dai bordi",
-      "anteprima finale veniva tagliata",
-      "textarea link finale troppo alta/larga",
-      "lista elementi con scrollbar invasiva"
-    ]
+    "title": "Refinement Builder",
+    "summary": "Blocco di miglioramenti su Builder, preview, link finale, zoom interno, pannello destro e branding animato."
   },
   {
-    "version": "0.1.7",
+    "version": "0.0.1 → 0.1.0",
     "status": "BETA",
-    "date": "2026-05-31",
-    "title": "Builder bounds fix",
-    "summary": "Rimesso l'editor dentro i margini della pagina e centrato meglio l'overlay interno, senza allungare il workspace.",
-    "fixed": [
-      "editor layout troppo allungato",
-      "workspace centrale usciva dai margini",
-      "overlay interno più centrato",
-      "label degli elementi meno invasive"
-    ]
-  },
-  {
-    "version": "0.1.6",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Builder centered canvas fix",
-    "summary": "Rimosso l'effetto finestra dentro finestra: l'area editor resta grande, ma al centro si modifica solo l'overlay reale.",
-    "fixed": [
-      "overlay interno non centrato",
-      "effetto finestra dentro finestra nel builder",
-      "default zoom riportato a 100%",
-      "layout iniziale più proporzionato e centrato"
-    ]
-  },
-  {
-    "version": "0.1.5",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Builder inner zoom fix",
-    "summary": "Ripristinata la dimensione grande dell'area editor: lo zoom ora agisce solo sull'overlay interno, non sulla finestra/pagina.",
-    "fixed": [
-      "lo zoom agiva sulla zona sbagliata",
-      "l'area editor era stata ridotta troppo",
-      "l'overlay interno ora può essere allontanato o avvicinato dentro un editor grande"
-    ]
-  },
-  {
-    "version": "0.1.4",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Builder zoom and effects fix",
-    "summary": "Aggiunto zoom editor, ridotta la scala interna iniziale e fatti seguire glow/ring/effetti agli elementi spostati.",
-    "added": [
-      "controlli zoom editor",
-      "scala iniziale editor più piccola",
-      "glow e ring badge agganciati al badge spostabile"
-    ],
-    "fixed": [
-      "elementi ancora troppo grandi nell'editor",
-      "effetti non seguivano gli elementi",
-      "font più proporzionato durante il resize"
-    ]
-  },
-  {
-    "version": "0.1.3",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Builder scale proportion fix",
-    "summary": "L'editor builder ora usa proporzioni reali 470x160 ingrandite, evitando elementi enormi e rendendo il resize del testo proporzionato.",
-    "fixed": [
-      "elementi troppo grandi e fuori scala nell'editor",
-      "editor difficile da usare per il posizionamento fine",
-      "font non aumentava in proporzione quando si ridimensionavano le scritte",
-      "baseLayout non viene più scalato/diviso in modo ambiguo"
-    ]
-  },
-  {
-    "version": "0.1.2",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Builder mirror preview fix",
-    "summary": "L'anteprima del builder ora è una copia diretta dell'editor in scala ridotta; il renderer finale usa layer autoritativi per rispettare baseLayout.",
-    "fixed": [
-      "anteprima non cambiava rispetto all'editor",
-      "editor e final link non erano fedeli",
-      "pannello destro tagliava la preview",
-      "renderer finale ora applica baseLayout con layer assoluti"
-    ]
-  },
-  {
-    "version": "0.1.1",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Builder fidelity fix",
-    "summary": "Reso più fedele il rapporto tra editor layout e anteprima finale, correggendo anche il pannello destro tagliato.",
-    "fixed": [
-      "editor layout e anteprima finale non corrispondevano",
-      "coordinate baseLayout ora vengono applicate rispetto al canvas reale",
-      "preview destra scalata per non essere tagliata",
-      "pannello destro più contenuto e leggibile"
-    ]
-  },
-  {
-    "version": "0.1.0",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Builder true preview fix",
-    "summary": "La pagina builder è stata riallineata e la preview finale ora mantiene il frame reale invece di renderizzare uno stato alterato.",
-    "fixed": [
-      "pannello destro ancora poco allineato",
-      "preview finale non attendibile",
-      "baseLayout non deve rimuovere il frame reale dell'overlay"
-    ]
-  },
-  {
-    "version": "0.0.9",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Builder preview and centering fix",
-    "summary": "Riallineato il layout iniziale del builder e corretta la preview usando /index.html e parametri layout URL-safe.",
-    "fixed": [
-      "default layout non centrato nel builder",
-      "anteprima iframe poteva mostrare 403 Forbidden",
-      "payload baseLayout/customElements reso URL-safe"
-    ]
-  },
-  {
-    "version": "0.0.8",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Builder centering fix",
-    "summary": "Riallineata la pagina Overlay Builder: editor centrale con spazio reale 940x320, pannelli laterali non sovrapposti e layout più centrato.",
-    "fixed": [
-      "editor layout troppo schiacciato",
-      "pannello destro sovrapposto all'area centrale",
-      "elementi e preview non centrati correttamente nella pagina builder"
-    ]
-  },
-  {
-    "version": "0.0.7",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Builder page separata",
-    "summary": "Il builder avanzato è stato spostato in una pagina dedicata con più spazio e genera direttamente il link finale da copiare.",
-    "changed": [
-      "Overlay Builder rimosso dal generator principale",
-      "nuova pagina /builder.html",
-      "nessun salvataggio set nel generator principale",
-      "link finale generato direttamente dal builder"
-    ]
-  },
-  {
-    "version": "0.0.6",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Full overlay builder",
-    "summary": "Il builder ora include le meccaniche del vecchio layout editor: badge, rank, ELO, player, brand e immagini custom sono spostabili/ridimensionabili.",
-    "added": [
-      "drag & resize di tutti gli elementi base",
-      "clipping alla forma della cornice",
-      "baseLayout salvato nel link finale",
-      "custom images ancora supportate"
-    ]
-  },
-  {
-    "version": "0.0.5",
-    "status": "BETA",
-    "date": "2026-05-30",
-    "title": "Custom image elements",
-    "summary": "Il Layout Editor separato viene rimosso: il generator integra un builder pubblico per caricare, spostare e ridimensionare immagini sull'overlay.",
-    "added": [
-      "caricamento immagini custom nel generator",
-      "drag & resize su canvas 470x160",
-      "controlli x/y/w/h/opacità/livello",
-      "salvataggio immagini nel link finale"
-    ],
-    "removed": [
-      "Layout Editor separato dalla sezione admin"
-    ]
-  },
-  {
-    "version": "0.0.4",
-    "status": "BETA",
-    "date": "2026-05-27",
-    "title": "Fix stemma integrato",
-    "summary": "Corretto il layout dello stemma nell'overlay base: non viene più tagliato ed entra nel banner in modo proporzionato.",
-    "fixed": [
-      "anteprima badge tagliata a sinistra",
-      "stemma ancora troppo piccolo",
-      "stemma ora rimane dentro canvas 470x160 e si integra nel banner"
-    ]
-  },
-  {
-    "version": "0.0.3",
-    "status": "BETA",
-    "date": "2026-05-27",
-    "title": "Fix stemma overlay base",
-    "summary": "Lo stemma rank dell'overlay base è stato ingrandito e integrato circa per un terzo dentro il banner.",
-    "fixed": [
-      "stemma troppo piccolo",
-      "stemma troppo staccato dal banner",
-      "badge ora si sovrappone al pannello senza tagliarsi"
-    ]
-  },
-  {
-    "version": "0.0.2",
-    "status": "BETA",
-    "date": "2026-05-27",
-    "title": "Base visual upgrade",
-    "summary": "Rimossa la sezione premium pubblica e aggiunte opzioni visuali attivabili per rendere più curato l'overlay base.",
-    "added": [
-      "dettaglio laterale rosso/giallo",
-      "alone dietro lo stemma",
-      "ring sottile sullo stemma",
-      "base pulse leggero",
-      "scanline quasi invisibile"
-    ],
-    "removed": [
-      "sezione Overlay Premium dal generator pubblico"
-    ]
-  },
-  {
-    "version": "0.0.1",
-    "status": "BETA",
-    "date": "2026-05-26",
-    "title": "Beta baseline",
-    "summary": "Base iniziale della Beta. Gli aggiornamenti pubblici importanti partiranno dal prossimo rilascio.",
-    "public": false
+    "title": "Lancio Builder",
+    "summary": "Primo ciclo Beta: pulizia progetto, rimozione premium pubblici, nuovo Overlay Builder e gestione baseLayout/customElements."
   }
 ]

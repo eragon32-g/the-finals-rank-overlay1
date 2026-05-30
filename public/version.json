@@ -1,12 +1,12 @@
 {
-  "version": "0.1.9",
+  "version": "0.2.0",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.1.9: fix applicazione baseLayout nel link finale e ripristino branding animato.",
+  "note": "BETA 0.2.0: Updates raggruppati, scroll fix e pubblicazione pulita per cicli versione.",
   "status": "BETA",
-  "label": "BETA 0.1.9",
+  "label": "BETA 0.2.0",
   "versioning": {
     "beta": true,
     "rules": [

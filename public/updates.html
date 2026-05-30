@@ -2,297 +2,307 @@
 <html lang="it">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Updates</title>
-  <link rel="stylesheet" href="/style.css?v=019" />
+  <link rel="stylesheet" href="/style.css?v=020" />
   <style>
+    * { box-sizing: border-box; }
+    html, body {
+      min-height: 100%;
+      height: auto;
+      overflow-x: hidden;
+      overflow-y: auto !important;
+    }
     body {
-      min-height: 100vh;
       margin: 0;
       background:
-        radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%),
+        radial-gradient(circle at 0 0, rgba(239,23,36,.16), transparent 28%),
         linear-gradient(180deg, #111923, #06070b 46%, #030407);
       color: #f5f7fb;
       font-family: Arial, Helvetica, sans-serif;
+      padding: 28px 18px 60px;
     }
-    .updates-page {
-      width: min(980px, calc(100% - 32px));
+    .page {
+      width: min(1120px, 100%);
       margin: 0 auto;
-      padding: 34px 0 56px;
     }
-    .topbar {
+    .top {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 14px;
+      align-items: flex-start;
+      gap: 16px;
       flex-wrap: wrap;
       margin-bottom: 22px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 72px);
+      line-height: .88;
+      letter-spacing: -2px;
+    }
+    .sub {
+      margin: 10px 0 0;
+      color: rgba(245,247,251,.72);
+      line-height: 1.45;
+      max-width: 760px;
     }
     .nav {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      align-items: center;
     }
-    .nav a, .pill {
+    .nav a, .tag {
       border: 1px solid rgba(255,255,255,.14);
       border-radius: 999px;
       padding: 9px 13px;
       background: rgba(255,255,255,.06);
-      color: inherit;
+      color: #fff;
       text-decoration: none;
       font-weight: 900;
       font-size: 12px;
       letter-spacing: .4px;
     }
-    .hero {
+    .release-stack {
+      display: grid;
+      gap: 18px;
+    }
+    .release-card {
       border: 1px solid rgba(255,255,255,.12);
-      border-radius: 26px;
-      background: linear-gradient(180deg, rgba(20,23,32,.96), rgba(9,11,17,.98));
-      box-shadow: 0 24px 60px rgba(0,0,0,.28);
-      padding: 28px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(18,21,30,.96), rgba(8,10,15,.98));
+      padding: 22px;
+      box-shadow: 0 20px 48px rgba(0,0,0,.24);
+      overflow: hidden;
     }
-    h1 {
+    .release-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .release-head h2 {
       margin: 0;
-      font-size: clamp(34px, 6vw, 64px);
-      line-height: .92;
-      letter-spacing: -1.5px;
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing: -.6px;
     }
-    .subtitle {
-      margin: 14px 0 0;
-      color: rgba(245,247,251,.72);
-      font-size: 15px;
-      line-height: 1.55;
-      max-width: 760px;
-    }
-    .panel {
-      margin-top: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 22px;
-      background: rgba(255,255,255,.05);
-      padding: 20px;
-    }
-    .panel h2 {
-      margin: 0 0 8px;
-      font-size: 20px;
-    }
-    .panel p {
-      margin: 0;
+    .release-note {
+      margin: 0 0 16px;
       color: rgba(245,247,251,.72);
       line-height: 1.5;
     }
-    .version-rules {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .mini {
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.045);
+      border-radius: 18px;
+      padding: 15px;
+    }
+    .mini h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(245,247,251,.82);
+      line-height: 1.55;
+    }
+    li + li { margin-top: 5px; }
+    .version-folder {
       display: grid;
       gap: 10px;
-      margin-top: 14px;
-      color: rgba(245,247,251,.78);
-      font-size: 14px;
+      margin-top: 10px;
     }
-    code {
-      color: #ffd36a;
-      background: rgba(0,0,0,.24);
-      border: 1px solid rgba(255,255,255,.08);
-      padding: 2px 6px;
-      border-radius: 7px;
+    details {
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      background: rgba(0,0,0,.18);
+      padding: 12px 14px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 1000;
+      color: #fff;
+    }
+    details p {
+      margin: 10px 0 0;
+      color: rgba(245,247,251,.72);
+      line-height: 1.45;
+    }
+    .current {
+      border-color: rgba(239,23,36,.52);
+      box-shadow: 0 0 0 1px rgba(239,23,36,.16), 0 0 40px rgba(239,23,36,.09);
+    }
+    @media (max-width: 820px) {
+      .grid { grid-template-columns: 1fr; }
+      body { padding-inline: 12px; }
     }
   </style>
 </head>
 <body>
-  <main class="updates-page">
-    <div class="topbar">
+  <main class="page">
+    <div class="top">
+      <div>
+        <h1>Updates</h1>
+        <p class="sub">
+          Sezione pulita: gli aggiornamenti non vengono più pubblicati come lista infinita di patch.
+          Le modifiche vengono raggruppate per ciclo versione, così Discord e sito restano leggibili.
+        </p>
+      </div>
       <div class="nav">
         <a href="/home.html">Home</a>
         <a href="/generator.html">Generator</a>
-        <a href="/test.html">Test Lab</a>
+        <a href="/builder.html">Builder</a>
+        <span class="tag">RankTag BETA 0.2.0</span>
       </div>
-      <div class="pill">RankTag BETA 0.1.9</div>
     </div>
 
-    <section class="hero">
-      <div class="pill">BETA</div>
-      <h1>Updates</h1>
-      <p class="subtitle">
-        La sezione aggiornamenti è stata ripulita per il lancio della Beta.
-        Da ora verranno pubblicati qui solo aggiornamenti importanti, chiari e utili agli utenti.
-      </p>
-
-      <div class="panel">
-        <h2>Versione attuale</h2>
-        <p>
-          La Beta parte da <code>0.0.1</code>. Questo rilascio è la base iniziale del generatore:
-          gli aggiornamenti pubblici partiranno dal prossimo update importante.
-        </p>
-      </div>
-
-      <div class="panel">
-        <h2>Regola versioni Beta</h2>
-        <div class="version-rules">
-          <div><code>0.0.1 → 0.0.9</code>: piccoli fix e micro aggiornamenti.</div>
-          <div>Dopo <code>0.0.9</code>, il rilascio successivo diventa <code>0.1.0</code>.</div>
-          <div>Dopo <code>0.9.0</code>, il rilascio successivo diventa <code>1.0.0</code>.</div>
-          <div>Con <code>1.0.0</code> il generatore esce dalla Beta e parte il ciclo stabile.</div>
+    <section class="release-stack">
+      <article class="release-card current">
+        <div class="release-head">
+          <h2>BETA 0.2.0 · Updates grouped fix</h2>
+          <span class="tag">Current</span>
         </div>
-      </div>
-    
-      <div class="panel">
-        <h2>BETA 0.0.2 · Base visual upgrade</h2>
-        <p>
-          La sezione Premium è stata rimossa dal generator pubblico. L’overlay base ora ha nuove opzioni visuali attivabili:
-          dettaglio laterale rosso/giallo, alone, ring stemma, pulse leggero e scanline soft.
+        <p class="release-note">
+          Fix importante della pagina Updates: scroll ripristinato, contenuti raggruppati e pulizia
+          della comunicazione pubblica. Da ora gli aggiornamenti piccoli vengono accorpati in un unico post.
         </p>
-      </div>
+        <div class="grid">
+          <div class="mini">
+            <h3>Fix</h3>
+            <ul>
+              <li>risolto bug che impediva lo scroll della pagina Updates</li>
+              <li>rimossa la lista lunga di micro-patch</li>
+              <li>layout più pulito e leggibile anche da mobile</li>
+              <li>navigazione aggiornata con link a Generator e Builder</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h3>Nuova regola pubblicazione</h3>
+            <ul>
+              <li>pubblicare solo aggiornamenti importanti</li>
+              <li>raggruppare le patch per ciclo versione</li>
+              <li>usare dettagli espandibili per storico tecnico</li>
+              <li>evitare post separati per ogni fix minore</li>
+            </ul>
+          </div>
+        </div>
+      </article>
 
-    
-      <div class="panel">
-        <h2>BETA 0.0.3 · Fix stemma overlay base</h2>
-        <p>
-          Lo stemma rank nell’overlay base è stato ingrandito e avvicinato al banner:
-          ora entra parzialmente nel pannello ed è più coerente con il nuovo look.
+      <article class="release-card">
+        <div class="release-head">
+          <h2>BETA 0.0.1 → 0.1.0 · Lancio Builder</h2>
+          <span class="tag">Release group</span>
+        </div>
+        <p class="release-note">
+          Primo ciclo Beta del generatore: pulizia del progetto, rimozione premium pubblici,
+          introduzione del nuovo Overlay Builder e passaggio alla numerazione Beta stabile.
         </p>
-      </div>
+        <div class="grid">
+          <div class="mini">
+            <h3>Principali novità</h3>
+            <ul>
+              <li>generator principale più pulito</li>
+              <li>sezione premium pubblica rimossa</li>
+              <li>vecchio Layout Editor admin rimosso</li>
+              <li>nuovo Overlay Builder separato in <strong>/builder.html</strong></li>
+              <li>drag & resize per badge, rank, ELO, player, brand e immagini custom</li>
+              <li>link finale generato direttamente dal Builder</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h3>Fix principali</h3>
+            <ul>
+              <li>fix posizione e dimensione badge base</li>
+              <li>fix layout editor troppo schiacciato</li>
+              <li>fix preview iframe e problemi 403</li>
+              <li>payload layout reso URL-safe</li>
+              <li>preview finale resa più fedele</li>
+              <li>passaggio corretto da 0.0.9 a 0.1.0</li>
+            </ul>
+          </div>
+        </div>
 
-    
-      <div class="panel">
-        <h2>BETA 0.0.4 · Fix stemma integrato</h2>
-        <p>
-          Lo stemma dell’overlay base ora è più grande, non viene tagliato
-          ed entra correttamente dentro il banner.
+        <div class="version-folder">
+          <details>
+            <summary>Dettaglio patch 0.0.x</summary>
+            <p>
+              0.0.1 ha avviato la Beta e ripulito Updates. 0.0.2 ha rimosso i premium pubblici
+              e introdotto opzioni visuali base. 0.0.5 ha introdotto il primo upload immagini custom.
+              0.0.6 ha portato il builder completo nel generator, poi spostato in pagina separata dalla 0.0.7.
+              0.0.8 e 0.0.9 hanno lavorato su centratura, preview e sicurezza dei parametri.
+            </p>
+          </details>
+          <details>
+            <summary>Dettaglio 0.1.0</summary>
+            <p>
+              0.1.0 ha consolidato il Builder separato, il rendering finale e la gestione del layout
+              tramite baseLayout/customElements.
+            </p>
+          </details>
+        </div>
+      </article>
+
+      <article class="release-card">
+        <div class="release-head">
+          <h2>BETA 0.1.1 → 0.1.9 · Refinement Builder</h2>
+          <span class="tag">Release group</span>
+        </div>
+        <p class="release-note">
+          Secondo blocco di lavoro focalizzato sulla fedeltà tra editor, preview e link finale,
+          con fix specifici al pannello destro e al branding animato.
         </p>
-      </div>
+        <div class="grid">
+          <div class="mini">
+            <h3>Miglioramenti Builder</h3>
+            <ul>
+              <li>preview mirror più coerente con l’editor</li>
+              <li>editor riportato dentro i margini della pagina</li>
+              <li>zoom applicato solo all’overlay interno</li>
+              <li>pannello destro più compatto</li>
+              <li>preview finale non tagliata</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h3>Fix finali</h3>
+            <ul>
+              <li>layout finale forzato con <strong>builderLayout=1</strong></li>
+              <li>aggiunto <strong>layoutRev</strong> per evitare cache vecchie</li>
+              <li>branding animato ripristinato nel link finale</li>
+              <li>customElements e baseLayout applicati in modo più affidabile</li>
+            </ul>
+          </div>
+        </div>
 
-    
-      <div class="panel">
-        <h2>BETA 0.0.5 · Custom image elements</h2>
-        <p>
-          Il generator ora include un builder per caricare immagini personalizzate,
-          spostarle e ridimensionarle sopra l’overlay. Il vecchio Layout Editor separato è stato rimosso.
+        <div class="version-folder">
+          <details>
+            <summary>Dettaglio patch 0.1.x</summary>
+            <p>
+              0.1.1–0.1.4 hanno migliorato fedeltà, proporzioni, effetti e zoom.
+              0.1.5–0.1.8 hanno sistemato area editor, limiti pagina e pannello destro.
+              0.1.9 ha corretto il link finale e ripristinato l’animazione del branding.
+            </p>
+          </details>
+        </div>
+      </article>
+
+      <article class="release-card">
+        <div class="release-head">
+          <h2>Regola versioni</h2>
+          <span class="tag">Beta cycle</span>
+        </div>
+        <p class="release-note">
+          La numerazione segue il ciclo concordato: 0.0.1 → 0.0.9, poi 0.1.0.
+          Quando si arriverà a 0.9.0, la versione successiva importante sarà 1.0.0.
         </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.0.6 · Full overlay builder</h2>
-        <p>
-          Il generator ora permette di spostare e ridimensionare badge, testi, branding e immagini.
-          Gli elementi che escono dal frame vengono ritagliati seguendo la forma della cornice.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.0.7 · Builder page separata</h2>
-        <p>
-          L’Overlay Builder avanzato ora vive in una pagina dedicata con più spazio.
-          Il builder non salva set nel generator principale: crea direttamente il link finale da copiare.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.0.8 · Builder centering fix</h2>
-        <p>
-          La pagina Overlay Builder è stata riallineata: editor centrale più largo,
-          pannelli laterali separati e nessuna sovrapposizione con i controlli.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.0.9 · Builder preview and centering fix</h2>
-        <p>
-          Corretto il layout iniziale del Builder e la preview live: ora il link viene generato su
-          <code>/index.html</code> con parametri più sicuri per evitare 403 nel frame.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.1.0 · Builder true preview fix</h2>
-        <p>
-          Sistemata la colonna destra del Builder e resa l’anteprima finale più affidabile:
-          ora mantiene il frame reale dell’overlay mentre applica layout e immagini.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.1.1 · Builder fidelity fix</h2>
-        <p>
-          Migliorata la corrispondenza tra editor layout e anteprima finale.
-          Il pannello destro ora non dovrebbe più tagliare preview e link.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.1.2 · Builder mirror preview fix</h2>
-        <p>
-          L’anteprima del builder ora replica direttamente l’editor in scala ridotta,
-          mentre il link finale applica lo stesso layout tramite layer dedicati.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.1.3 · Builder scale proportion fix</h2>
-        <p>
-          L’editor builder ora lavora sulle proporzioni reali 470×160 ingrandite.
-          Ridimensionando le scritte, il font si adatta in proporzione.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.1.4 · Builder zoom and effects fix</h2>
-        <p>
-          Aggiunti controlli zoom, resa più piccola la scala iniziale dell’editor
-          e agganciati glow/ring/effetti agli elementi spostabili.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.1.5 · Builder inner zoom fix</h2>
-        <p>
-          L’area editor torna grande come prima. Lo zoom ora modifica solo l’overlay interno,
-          permettendo di avvicinarsi o allontanarsi dal layout senza scalare tutta la pagina.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.1.6 · Builder centered canvas fix</h2>
-        <p>
-          L’editor ora non mostra più una seconda finestra interna: l’area rimane grande,
-          ma al centro viene visualizzato solo l’overlay reale da modificare.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.1.7 · Builder bounds fix</h2>
-        <p>
-          L’editor layout è stato ridimensionato per restare dentro i margini della pagina.
-          L’overlay interno è più centrato e i label degli elementi sono meno invasivi.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.1.8 · Right panel preview fix</h2>
-        <p>
-          Sistemato il pannello destro del Builder: anteprima, link e controlli ora restano dentro i bordi.
-        </p>
-      </div>
-
-    
-      <div class="panel">
-        <h2>BETA 0.1.9 · Final link and branding animation fix</h2>
-        <p>
-          Sistemata l’applicazione del layout nel link finale e ripristinata
-          l’animazione della scritta branding.
-        </p>
-      </div>
-
+      </article>
     </section>
   </main>
 </body>

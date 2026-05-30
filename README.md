@@ -1,10 +1,11 @@
-# RankTag BETA 0.1.9
+# RankTag BETA 0.2.0
 
-Final link and branding animation fix.
+Updates grouped fix.
 
 ## Include
-- baseLayout/customElements applicati in modo più affidabile nel link finale
-- nuovo parametro builderLayout=1
-- nuovo parametro layoutRev per evitare cache/vecchi layout
-- branding animato ripristinato nel renderer finale
-- mirror preview con branding animato
+- Fix scroll pagina Updates
+- Updates riscritti in forma raggruppata
+- Gruppo BETA 0.0.1 -> 0.1.0
+- Gruppo BETA 0.1.1 -> 0.1.9
+- Changelog JSON pulito
+- Regola pubblicazione: solo update importanti, micro-patch accorpate
