@@ -1,10 +1,10 @@
-# RankTag BETA 0.0.9
+# RankTag BETA 0.1.0
 
-Builder preview and centering fix.
+Builder true preview fix.
 
 ## Include
+- Colonna destra più larga e ordinata
 - Builder più centrato
-- Default layout più centrato dentro l'editor
-- Preview iframe su /index.html
-- baseLayout/customElements URL-safe
-- Generator principale invariato
+- Preview finale più attendibile
+- baseLayout non rimuove più il frame reale
+- Passaggio versione da 0.0.9 a 0.1.0

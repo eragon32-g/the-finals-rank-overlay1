@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.1.0",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Builder true preview fix",
+    "summary": "La pagina builder è stata riallineata e la preview finale ora mantiene il frame reale invece di renderizzare uno stato alterato.",
+    "fixed": [
+      "pannello destro ancora poco allineato",
+      "preview finale non attendibile",
+      "baseLayout non deve rimuovere il frame reale dell'overlay"
+    ]
+  },
+  {
     "version": "0.0.9",
     "status": "BETA",
     "date": "2026-05-30",

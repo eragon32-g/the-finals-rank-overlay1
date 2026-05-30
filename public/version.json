@@ -1,12 +1,12 @@
 {
-  "version": "0.0.9",
+  "version": "0.1.0",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.0.9: fix centratura builder, default layout più centrato e preview su /index.html con payload URL-safe.",
+  "note": "BETA 0.1.0: riallineata colonna destra builder e resa preview finale più veritiera mantenendo il frame reale.",
   "status": "BETA",
-  "label": "BETA 0.0.9",
+  "label": "BETA 0.1.0",
   "versioning": {
     "beta": true,
     "rules": [
