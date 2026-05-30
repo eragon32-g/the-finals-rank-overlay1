@@ -1,12 +1,12 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.2.0: Updates raggruppati, scroll fix e pubblicazione pulita per cicli versione.",
+  "note": "BETA 0.2.1: effetti base disattivati di default e pacchetto handoff aggiornato.",
   "status": "BETA",
-  "label": "BETA 0.2.0",
+  "label": "BETA 0.2.1",
   "versioning": {
     "beta": true,
     "rules": [

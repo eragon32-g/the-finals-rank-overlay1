@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=020" />
+  <link rel="stylesheet" href="/style.css?v=021" />
   <style>
     * { box-sizing: border-box; }
     body { margin:0; min-height:100vh; background:radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%), linear-gradient(180deg,#111923,#06070b 46%,#030407); color:#f5f7fb; font-family:Arial,Helvetica,sans-serif; padding:24px; overflow-x:auto; }
@@ -164,7 +164,7 @@
     #zoomOut, #zoomIn, #zoomReset { padding:7px 9px; font-size:11px; } .stage-wrap > div:first-child .actions { justify-content:flex-end; } .stage-wrap .actions { max-width:100%; }
 
   
-    /* RankTag BETA 0.2.0 - right panel containment */
+    /* RankTag BETA 0.2.1 - right panel containment */
     .layout > .panel:nth-child(3) {
       overflow: hidden;
       min-width: 0;
@@ -243,7 +243,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.2.0</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.2.1</span>
       </div>
     </div>
     <div class="layout">
@@ -274,9 +274,9 @@
         </div>
         <h2>3. Effetti base</h2>
         <div class="grid2">
-          <label>Dettaglio laterale<select id="baseSideDetail"><option selected value="1">Attivo</option><option value="0">Disattivo</option></select></label>
-          <label>Alone stemma<select id="baseBadgeGlow"><option selected value="1">Attivo</option><option value="0">Disattivo</option></select></label>
-          <label>Ring stemma<select id="baseBadgeRing"><option selected value="1">Attivo</option><option value="0">Disattivo</option></select></label>
+          <label>Dettaglio laterale<select id="baseSideDetail"><option value="1">Attivo</option><option selected value="0">Disattivo</option></select></label>
+          <label>Alone stemma<select id="baseBadgeGlow"><option value="1">Attivo</option><option selected value="0">Disattivo</option></select></label>
+          <label>Ring stemma<select id="baseBadgeRing"><option value="1">Attivo</option><option selected value="0">Disattivo</option></select></label>
           <label>Pulse<select id="basePulse"><option selected value="0">Disattivo</option><option value="1">Attivo</option></select></label>
           <label>Scanline<select id="baseScanline"><option selected value="0">Disattivo</option><option value="1">Attivo</option></select></label>
           <label>Ritaglio cornice<select id="clipFrame"><option selected value="1">Attivo</option><option value="0">Disattivo</option></select></label>
@@ -353,7 +353,7 @@
           lineHeight: `${item.h * scale}px`
         });
         if(item.id==="badge"){
-          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=020" alt="">`;
+          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=021" alt="">`;
         } else if(item.kind==="image"){
           node.innerHTML = `<img src="${item.src}" alt="">`;
         } else {
@@ -377,7 +377,7 @@
         }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",lineHeight:`${item.h}px`});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=020" alt="">`;
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=021" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; if(item.id === selectedId){ label.textContent=item.label||item.name||item.id; box.appendChild(label); }

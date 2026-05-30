@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.2.1",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Base effects off",
+    "summary": "Gli effetti base partono disattivati di default, restando attivabili manualmente.",
+    "changed": [
+      "Dettaglio laterale default OFF",
+      "Alone stemma default OFF",
+      "Ring stemma default OFF",
+      "Pulse default OFF",
+      "Scanline default OFF"
+    ]
+  },
+  {
     "version": "0.2.0",
     "status": "BETA",
     "date": "2026-05-31",

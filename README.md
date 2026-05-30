@@ -1,11 +1,13 @@
-# RankTag BETA 0.2.0
+# RankTag BETA 0.2.1
 
-Updates grouped fix.
+Base effects off.
 
 ## Include
-- Fix scroll pagina Updates
-- Updates riscritti in forma raggruppata
-- Gruppo BETA 0.0.1 -> 0.1.0
-- Gruppo BETA 0.1.1 -> 0.1.9
-- Changelog JSON pulito
-- Regola pubblicazione: solo update importanti, micro-patch accorpate
+- Effetti base disattivati di default
+- Dettaglio laterale OFF
+- Alone stemma OFF
+- Ring stemma OFF
+- Pulse OFF
+- Scanline OFF
+- Ritaglio cornice resta attivo
+- Updates raggruppati mantenuti
