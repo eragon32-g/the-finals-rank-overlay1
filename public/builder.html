@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=015" />
+  <link rel="stylesheet" href="/style.css?v=016" />
   <style>
     * { box-sizing: border-box; }
     body { margin:0; min-height:100vh; background:radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%), linear-gradient(180deg,#111923,#06070b 46%,#030407); color:#f5f7fb; font-family:Arial,Helvetica,sans-serif; padding:24px; overflow-x:auto; }
@@ -31,35 +31,46 @@
       height:160px;
       max-width:none;
       position:relative;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:14px;
-      background:
-        linear-gradient(45deg,rgba(255,255,255,.035) 25%,transparent 25%),
-        linear-gradient(-45deg,rgba(255,255,255,.035) 25%,transparent 25%),
-        linear-gradient(45deg,transparent 75%,rgba(255,255,255,.035) 75%),
-        linear-gradient(-45deg,transparent 75%,rgba(255,255,255,.035) 75%),
-        rgba(0,0,0,.26);
-      background-size:11px 11px;
-      background-position:0 0,0 5.5px,5.5px -5.5px,-5.5px 0;
-      clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px);
+      overflow:visible;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      clip-path:none;
     }
     .builder-bg {
       position:absolute;
-      left:45px;
-      top:33px;
-      width:425px;
-      height:94px;
+      left:58px;
+      top:38px;
+      width:400px;
+      height:84px;
       border-radius:12px;
       border:1px solid rgba(124,132,143,.72);
       background:linear-gradient(180deg,rgba(32,36,45,.96),rgba(7,9,13,.98));
       box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 6px 12px rgba(0,0,0,.28);
+      z-index:1;
     }
-    .builder-bg::before { content:""; position:absolute; left:-2px; top:16px; bottom:16px; width:7px; background:linear-gradient(180deg,transparent,rgba(255,42,23,.94),rgba(255,211,106,.86),transparent); box-shadow:0 0 14px rgba(255,42,23,.30); }
-    .builder-bg::after { content:""; position:absolute; left:70px; right:40px; bottom:10px; height:3px; background:linear-gradient(90deg,transparent,rgba(255,42,23,.48),rgba(255,211,106,.68),transparent); }
+    .builder-bg::before {
+      content:"";
+      position:absolute;
+      left:-1px;
+      top:10px;
+      bottom:10px;
+      width:4px;
+      background:linear-gradient(180deg,transparent,rgba(255,42,23,.94),rgba(255,211,106,.86),transparent);
+      box-shadow:0 0 10px rgba(255,42,23,.30);
+    }
+    .builder-bg::after {
+      content:"";
+      position:absolute;
+      left:34px;
+      right:18px;
+      bottom:7px;
+      height:2px;
+      background:linear-gradient(90deg,transparent,rgba(255,42,23,.48),rgba(255,211,106,.68),transparent);
+    }
     .builder-item { position:absolute; border:2px dashed rgba(79,234,255,.76); border-radius:10px; cursor:move; user-select:none; min-width:10px; min-height:10px; transform-origin:center center; }
     .builder-item.active { border-color:#ffd36a; box-shadow:0 0 0 1px rgba(255,211,106,.28),0 0 22px rgba(255,42,23,.22); }
-    .builder-item .label { position:absolute; left:0; top:-18px; color:#ffd36a; font-size:11px; font-weight:1000; text-shadow:0 1px 5px rgba(0,0,0,.9); white-space:nowrap; }
+    .builder-item .label { position:absolute; left:0; top:-14px; color:#ffd36a; font-size:9px; font-weight:1000; text-shadow:0 1px 5px rgba(0,0,0,.9); white-space:nowrap; }
     .builder-item .handle { position:absolute; right:-8px; bottom:-8px; width:18px; height:18px; border-radius:50%; background:#ffd36a; border:3px solid rgba(0,0,0,.78); cursor:nwse-resize; }
     .builder-item img { width:100%; height:100%; object-fit:contain; display:block; pointer-events:none; }
     .text-item { display:flex; align-items:center; overflow:hidden; white-space:nowrap; font-weight:1000; color:#f5f7fb; text-shadow:0 2px 8px rgba(0,0,0,.72); padding:0 4px; }
@@ -176,7 +187,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.5</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.1.6</span>
       </div>
     </div>
     <div class="layout">
@@ -220,7 +231,7 @@
   <h2 style="margin:0;">4. Editor layout</h2>
   <div class="actions">
     <button class="btn secondary" id="zoomOut" type="button">Allontana</button>
-    <span class="tag" id="zoomLabel">115%</span>
+    <span class="tag" id="zoomLabel">100%</span>
     <button class="btn secondary" id="zoomIn" type="button">Avvicina</button>
     <button class="btn secondary" id="zoomReset" type="button">Reset zoom</button>
     <span class="tag">Drag & Resize</span>
@@ -228,7 +239,7 @@
 </div>
         <div class="builder-stage-holder"><div class="builder-stage" id="builderStage"><div class="builder-bg"></div></div></div>
         <div class="actions"><input id="customImageUpload" type="file" accept="image/png,image/jpeg,image/webp" style="max-width:340px;"><button class="btn secondary" id="resetLayout" type="button">Reset layout</button><button class="btn secondary" id="clearImages" type="button">Rimuovi immagini</button></div>
-        <p class="help">L’area editor resta grande; lo zoom modifica solo l’overlay interno, non tutta la finestra. Usa -/+ Zoom per avvicinarti o allontanarti dal layout.</p>
+        <p class="help">L’area editor resta grande: al centro vedi solo l’overlay vero, senza una seconda finestra interna. Lo zoom modifica solo l’overlay, non la pagina.</p>
       </section>
       <section class="panel stack">
         <h2>5. Elemento selezionato</h2><span class="tag" id="selectedName">nessuno</span>
@@ -253,7 +264,7 @@
     const stage = $("builderStage");
     const MAX_IMAGES = 2, MAX_IMG_SIZE = 320;
     const rankMap = {"bronze-4":["Bronze","4"],"bronze-3":["Bronze","3"],"bronze-2":["Bronze","2"],"bronze-1":["Bronze","1"],"silver-4":["Silver","4"],"silver-3":["Silver","3"],"silver-2":["Silver","2"],"silver-1":["Silver","1"],"gold-4":["Gold","4"],"gold-3":["Gold","3"],"gold-2":["Gold","2"],"gold-1":["Gold","1"],"platinum-4":["Platinum","4"],"platinum-3":["Platinum","3"],"platinum-2":["Platinum","2"],"platinum-1":["Platinum","1"],"diamond-4":["Diamond","4"],"diamond-3":["Diamond","3"],"diamond-2":["Diamond","2"],"diamond-1":["Diamond","1"],"ruby":["Ruby",""]};
-    const defaultLayout = {badge:{kind:"base",label:"Badge",x:20,y:26,w:90,h:90,fontSize:0,z:8,opacity:1},rank:{kind:"base",label:"Rank",x:122,y:36,w:210,h:26,fontSize:23,z:6,opacity:1},score:{kind:"base",label:"ELO",x:124,y:68,w:108,h:15,fontSize:10.5,z:6,opacity:1},player:{kind:"base",label:"Player",x:234,y:68,w:140,h:15,fontSize:10,z:6,opacity:1},brand:{kind:"base",label:"Brand",x:124,y:91,w:230,h:15,fontSize:9,z:6,opacity:1}};
+    const defaultLayout = {badge:{kind:"base",label:"Badge",x:22,y:31,w:82,h:82,fontSize:0,z:8,opacity:1},rank:{kind:"base",label:"Rank",x:112,y:42,w:205,h:24,fontSize:22,z:6,opacity:1},score:{kind:"base",label:"ELO",x:114,y:70,w:105,h:14,fontSize:10,z:6,opacity:1},player:{kind:"base",label:"Player",x:222,y:70,w:136,h:14,fontSize:9.5,z:6,opacity:1},brand:{kind:"base",label:"Brand",x:114,y:91,w:230,h:14,fontSize:8.5,z:6,opacity:1}};
     let baseLayout = JSON.parse(JSON.stringify(defaultLayout)), customElements = [], selectedId = "badge";
     function uid(){return "ce_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,7);}
     function clamp(n,min,max){return Math.max(min,Math.min(max,Number(n)||0));}
@@ -286,7 +297,7 @@
           lineHeight: `${item.h * scale}px`
         });
         if(item.id==="badge"){
-          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=015" alt="">`;
+          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=016" alt="">`;
         } else if(item.kind==="image"){
           node.innerHTML = `<img src="${item.src}" alt="">`;
         } else {
@@ -309,7 +320,7 @@
         }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",lineHeight:`${item.h}px`});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=015" alt="">`;
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=016" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; label.textContent=item.label||item.name||item.id; box.appendChild(label);
@@ -348,7 +359,7 @@
     $("generate").addEventListener("click",buildLink);
     $("copy").addEventListener("click",async()=>{buildLink(); await navigator.clipboard.writeText($("output").value); $("copy").textContent="Copiato!"; setTimeout(()=>$("copy").textContent="Copia link",1200);});
 
-    let builderZoom = 1.15;
+    let builderZoom = 1;
     function applyBuilderZoom(){
       const holder = document.querySelector(".builder-stage-holder");
       if(!holder) return;
@@ -358,7 +369,7 @@
     }
     $("zoomOut")?.addEventListener("click", () => { builderZoom = Math.max(.65, Math.round((builderZoom - .1) * 100) / 100); applyBuilderZoom(); });
     $("zoomIn")?.addEventListener("click", () => { builderZoom = Math.min(1.75, Math.round((builderZoom + .1) * 100) / 100); applyBuilderZoom(); });
-    $("zoomReset")?.addEventListener("click", () => { builderZoom = 1.15; applyBuilderZoom(); });
+    $("zoomReset")?.addEventListener("click", () => { builderZoom = 1; applyBuilderZoom(); });
 
     applyBuilderZoom();
     render();

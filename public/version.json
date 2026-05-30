@@ -1,12 +1,12 @@
 {
-  "version": "0.1.5",
+  "version": "0.1.6",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.1.5: ripristinata area editor grande; lo zoom ora agisce solo sull'overlay interno.",
+  "note": "BETA 0.1.6: rimosso effetto finestra dentro finestra nel builder e ricentrato l'overlay interno.",
   "status": "BETA",
-  "label": "BETA 0.1.5",
+  "label": "BETA 0.1.6",
   "versioning": {
     "beta": true,
     "rules": [

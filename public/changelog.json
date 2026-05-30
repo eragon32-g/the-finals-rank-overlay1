@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.1.6",
+    "status": "BETA",
+    "date": "2026-05-30",
+    "title": "Builder centered canvas fix",
+    "summary": "Rimosso l'effetto finestra dentro finestra: l'area editor resta grande, ma al centro si modifica solo l'overlay reale.",
+    "fixed": [
+      "overlay interno non centrato",
+      "effetto finestra dentro finestra nel builder",
+      "default zoom riportato a 100%",
+      "layout iniziale più proporzionato e centrato"
+    ]
+  },
+  {
     "version": "0.1.5",
     "status": "BETA",
     "date": "2026-05-30",
