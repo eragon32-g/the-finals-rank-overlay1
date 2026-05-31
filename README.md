@@ -1,9 +1,10 @@
-# RankTag BETA 0.4.2
+# RankTag / THE FINALS Overlay Generator
 
-Nickname Only Account Privacy Fix.
+Build: BETA 0.4.3 — Account Projects Library Save Rework
 
-
-## BETA 0.4.2
-- Fix scroll pagina Account/Login & Progetti su schermi piccoli.
-- Sincronizza tutte le etichette versione visibili rimaste a 0.4.0.
-- Ripristina voce Updates per 0.4.2.
+## Changelog rapido
+- Login e Registrazione unificati nello stesso riquadro nella pagina Account.
+- Libreria progetti con anteprima overlay, stato attivo/scaduto e link salvato.
+- Builder: aggiunto campo Nome progetto e pulsante Salva progetto.
+- Il Builder non salva più automaticamente a ogni aggiornamento link.
+- Versione e Updates sincronizzati a BETA 0.4.3.

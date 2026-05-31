@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.4.3",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Account Projects Library Save Rework",
+    "summary": "Riorganizza la pagina Login & Progetti e aggiunge salvataggio manuale dei progetti dal Builder.",
+    "fixed": [
+      "Accedi e Registrati nello stesso riquadro con tab",
+      "libreria progetti con anteprima dell overlay e link salvato",
+      "pulsante Salva progetto nel Builder",
+      "il Builder non salva più progetti automaticamente a ogni aggiornamento link",
+      "versione e Updates aggiornati a BETA 0.4.3"
+    ]
+  },
+  {
     "version": "0.4.2",
     "title": "Account Version Scroll Sync Fix",
     "date": "2026-05-31",

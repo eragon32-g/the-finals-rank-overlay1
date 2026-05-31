@@ -1,14 +1,14 @@
 {
-  "version": "0.4.2",
+  "version": "0.4.3",
   "status": "BETA",
   "date": "2026-05-31",
-  "name": "Account Version Scroll Sync Fix",
-  "note": "BETA 0.4.2: corregge lo scroll della pagina Account e sincronizza tutte le etichette versione visibili rimaste a 0.4.0.",
-  "label": "BETA 0.4.2",
+  "name": "Account Projects Library Save Rework",
+  "note": "BETA 0.4.3: unifica login e registrazione, introduce libreria progetti con anteprima/link e aggiunge il salvataggio manuale dal Builder.",
+  "label": "BETA 0.4.3",
   "versioning": {
-    "current": "0.4.2",
-    "next": "0.4.2"
+    "current": "0.4.3",
+    "next": "0.4.4"
   },
-  "codename": "account-version-scroll-sync-fix",
+  "codename": "account-projects-library-save-rework",
   "updated": "2026-05-31"
 }

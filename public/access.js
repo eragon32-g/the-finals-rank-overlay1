@@ -189,19 +189,35 @@
     if(exp && exp > now()) return { active:true, expiresAt:exp };
     return { active:false, reason:"expired" };
   }
-  function saveProject(link, name){
-    const st = getAccessState();
-    if(!st.logged || !link) return;
+  function normalizeProjects(){
     const projects = read(PROJECTS_KEY, []).map(p => p.email && !p.userId ? {...p, userId:legacyNickFromUser(p), nickname:legacyNickFromUser(p), email:undefined} : p);
-    projects.unshift({ id:"prj_"+now().toString(36), userId:st.userId, nickname:st.nickname, name:String(name || "Overlay RankTag").slice(0,80), link, createdAt:now(), accessExpiresAt:st.access?.expiresAt || null, permanent:st.access?.type === "permanent" });
-    write(PROJECTS_KEY, projects.slice(0,50));
+    write(PROJECTS_KEY, projects);
+    return projects;
+  }
+  function saveProject(link, name, options){
+    const st = getAccessState();
+    if(!st.logged || !link) throw new Error("Effettua login prima di salvare un progetto.");
+    if(!st.active) throw new Error("Serve un codice accesso valido per salvare il progetto.");
+    const projects = normalizeProjects();
+    const id = String(options?.id || "");
+    const projectName = String(name || "Overlay RankTag").trim().slice(0,80) || "Overlay RankTag";
+    const payload = { userId:st.userId, nickname:st.nickname, name:projectName, link, updatedAt:now(), accessExpiresAt:st.access?.expiresAt || null, permanent:st.access?.type === "permanent" };
+    const index = id ? projects.findIndex(p => p.id === id && p.userId === st.userId) : -1;
+    if(index >= 0){ projects[index] = { ...projects[index], ...payload }; write(PROJECTS_KEY, projects); return projects[index]; }
+    const created = { id:"prj_"+now().toString(36), ...payload, createdAt:now() };
+    projects.unshift(created);
+    write(PROJECTS_KEY, projects.slice(0,80));
+    return created;
   }
   function listProjects(){
     const st = getAccessState();
     if(!st.logged) return [];
-    const projects = read(PROJECTS_KEY, []).map(p => p.email && !p.userId ? {...p, userId:legacyNickFromUser(p), nickname:legacyNickFromUser(p), email:undefined} : p);
-    write(PROJECTS_KEY, projects);
-    return projects.filter(p => p.userId === st.userId).map(p => ({...p, active: p.permanent || !p.accessExpiresAt || Number(p.accessExpiresAt) > now()}));
+    return normalizeProjects().filter(p => p.userId === st.userId).map(p => ({...p, active: p.permanent || !p.accessExpiresAt || Number(p.accessExpiresAt) > now()}));
+  }
+  function getProject(id){
+    const st = getAccessState();
+    if(!st.logged || !id) return null;
+    return listProjects().find(p => p.id === id) || null;
   }
   function makeCode(prefix, type, days){
     const stamp = now().toString(36).toUpperCase();
@@ -273,6 +289,6 @@
   }
   function isAdminUnlocked(){ return localStorage.getItem(ADMIN_KEY) === "1"; }
   function lockAdmin(){ localStorage.removeItem(ADMIN_KEY); }
-  window.RankTagAccess = { register, login, logout, resetPassword, updateNickname, listKnownUsers, redeem, getAuth, getAccessState, requireBuilderAccess, getAccessParams, validateOverlayUrlParams, saveProject, listProjects, formatDate, formatDuration: durationLabel, ensureCodes, listCodes, addCode, generateCode, setCodeDisabled, deleteUnusedCode, exportCodes, importCodes, unlockAdmin, isAdminUnlocked, lockAdmin };
+  window.RankTagAccess = { register, login, logout, resetPassword, updateNickname, listKnownUsers, redeem, getAuth, getAccessState, requireBuilderAccess, getAccessParams, validateOverlayUrlParams, saveProject, listProjects, getProject, formatDate, formatDuration: durationLabel, ensureCodes, listCodes, addCode, generateCode, setCodeDisabled, deleteUnusedCode, exportCodes, importCodes, unlockAdmin, isAdminUnlocked, lockAdmin };
   ensureCodes();
 })();

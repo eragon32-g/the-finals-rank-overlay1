@@ -262,7 +262,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.4.2</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.4.3</span>
       </div>
     </div>
     <div class="layout">
@@ -331,7 +331,7 @@
         <h2>6. Anteprima finale reale</h2>
         <p class="help">Preview reale in scala ridotta. Il link finale ora include layout e branding animato.</p>
         <div class="mirror-preview" id="mirrorPreview"><div class="mirror-bg"></div></div><iframe id="preview" title="Preview overlay" style="display:none;"></iframe>
-        <div class="actions"><button class="btn" id="generate" type="button">Aggiorna link</button><button class="btn secondary" id="copy" type="button">Copia link</button></div>
+        <label>Nome progetto<input id="projectName" placeholder="Es. Overlay ranked rosso"></label><div class="actions"><button class="btn" id="generate" type="button">Aggiorna link</button><button class="btn secondary" id="saveProject" type="button">Salva progetto</button><button class="btn secondary" id="copy" type="button">Copia link</button></div>
         <label>Link finale<textarea id="output" readonly></textarea></label><p class="help" id="linkSizeHelp">Le immagini custom vengono compresse e salvate nel frammento # del link per ridurre problemi sulle piattaforme.</p>
       </section>
     </div>
@@ -508,7 +508,7 @@
       if(accessParams){ Object.entries(accessParams).forEach(([key,value])=>url.searchParams.set(key,value)); }
       url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("baseLayout",encode(scaleLayoutForOverlay())); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
       if(customElements.length){const hash=new URLSearchParams(); hash.set("customElements",encode(customPayload())); url.hash=hash.toString();}
-      const finalLink=url.toString(); $("output").value=finalLink; $("preview").src=finalLink; updateLinkSizeHint(finalLink); window.RankTagAccess?.saveProject?.(finalLink, player); return finalLink;
+      const finalLink=url.toString(); $("output").value=finalLink; $("preview").src=finalLink; updateLinkSizeHint(finalLink); return finalLink;
     }
     async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; const ctx=canvas.getContext("2d"); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.62),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
     $("customImageUpload").addEventListener("change",async(event)=>{const file=event.target.files&&event.target.files[0]; event.target.value=""; if(!file)return; if(customElements.length>=MAX_IMAGES)return alert(`Massimo ${MAX_IMAGES} immagini custom.`); try{const converted=await fileToDataUrl(file); const ratio=converted.w/converted.h; const h=Math.min(150,converted.h); const w=Math.round(h*ratio); const item={id:uid(),name:file.name.replace(/\.[^.]+$/,"").slice(0,24),kind:"image",type:"image",src:converted.src,x:30+customElements.length*18,y:30+customElements.length*12,w:Math.max(24,Math.min(150,w)),h:Math.max(24,Math.min(120,h)),opacity:1,rotation:0,z:30+customElements.length}; customElements.push(item); selectedId=item.id; render();}catch{alert("Immagine non valida. Usa PNG, JPG o WebP.");}});
@@ -522,7 +522,16 @@
     $("removeImage").addEventListener("click",()=>{if(!selectedId || baseLayout[selectedId])return; customElements=customElements.filter((x)=>x.id!==selectedId); selectedId=null; render();});
     $("front").addEventListener("click",()=>{const item=selected(); if(item){item.z=Math.min(99,Number(item.z||1)+1); render();}});
     $("back").addEventListener("click",()=>{const item=selected(); if(item){item.z=Math.max(1,Number(item.z||1)-1); render();}});
+    const currentProjectId = new URLSearchParams(location.search).get("project") || "";
+    const loadedProject = currentProjectId && window.RankTagAccess?.getProject?.(currentProjectId);
+    if(loadedProject){
+      $("projectName").value = loadedProject.name || "";
+      $("output").value = loadedProject.link || "";
+      $("preview").src = loadedProject.link || "";
+      updateLinkSizeHint(loadedProject.link || "");
+    }
     $("generate").addEventListener("click",buildLink);
+    $("saveProject").addEventListener("click",()=>{try{const link=buildLink(); const name=$("projectName").value.trim() || ($("player").value.trim() ? `Overlay ${$("player").value.trim()}` : "Overlay RankTag"); const saved=window.RankTagAccess?.saveProject?.(link,name,{id:currentProjectId}); $("saveProject").textContent="Salvato!"; setTimeout(()=>$("saveProject").textContent="Salva progetto",1200); if(saved && !currentProjectId) history.replaceState(null,"",`/builder.html?project=${encodeURIComponent(saved.id)}`);}catch(e){alert(e.message||e);}});
     $("copy").addEventListener("click",async()=>{buildLink(); await navigator.clipboard.writeText($("output").value); $("copy").textContent="Copiato!"; setTimeout(()=>$("copy").textContent="Copia link",1200);});
 
     let builderZoom = 1.12;
