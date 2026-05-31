@@ -20,7 +20,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "035";
+const OVERLAY_VERSION = "050";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
@@ -157,7 +157,7 @@ function normalizeThemeStyle(value) {
   return allowed.includes(input) ? input : "default";
 }
 
-const themeStyle = normalizeThemeStyle(params.get("themeStyle"));
+const themeStyle = normalizeThemeStyle(getRankTagParam("themeStyle"));
 document.documentElement.dataset.themeStyle = themeStyle;
 document.body?.classList?.add(`theme-${themeStyle}`);
 
@@ -229,15 +229,15 @@ function normalizeHexColor(value, fallback) {
 }
 
 function applyColors() {
-  const textColor = normalizeHexColor(params.get("textColor"), "#f4f7fb");
-  const backgroundColor = normalizeHexColor(params.get("backgroundColor"), "rgba(10,12,16,0.98)");
-  const borderColor = normalizeHexColor(params.get("borderColor"), "#7c848f");
-  const borderWidth = Number(params.get("borderWidth") || 2);
-  const rankColor = normalizeHexColor(params.get("rankColor"), "#f5f7fa");
-  const scoreColor = normalizeHexColor(params.get("scoreColor"), "#f0d9aa");
-  const nameColor = normalizeHexColor(params.get("nameColor"), "rgba(232,237,244,0.94)");
-  const extraColor = normalizeHexColor(params.get("extraColor"), "rgba(245,247,251,0.92)");
-  const brandAccent = normalizeHexColor(params.get("brandAccent"), "#ff2a17");
+  const textColor = normalizeHexColor(getRankTagParam("textColor"), "#f4f7fb");
+  const backgroundColor = normalizeHexColor(getRankTagParam("backgroundColor"), "rgba(10,12,16,0.98)");
+  const borderColor = normalizeHexColor(getRankTagParam("borderColor"), "#7c848f");
+  const borderWidth = Number(getRankTagParam("borderWidth") || 2);
+  const rankColor = normalizeHexColor(getRankTagParam("rankColor"), "#f5f7fa");
+  const scoreColor = normalizeHexColor(getRankTagParam("scoreColor"), "#f0d9aa");
+  const nameColor = normalizeHexColor(getRankTagParam("nameColor"), "rgba(232,237,244,0.94)");
+  const extraColor = normalizeHexColor(getRankTagParam("extraColor"), "rgba(245,247,251,0.92)");
+  const brandAccent = normalizeHexColor(getRankTagParam("brandAccent"), "#ff2a17");
 
   document.documentElement.style.setProperty("--text-color", textColor);
   document.documentElement.style.setProperty("--background-color", backgroundColor);
@@ -2883,10 +2883,10 @@ function renderBaseBuilderLayoutAuthoritative() {
     if (Number(cfg.fontSize || 0) > 0) node.style.fontSize = `${Number(cfg.fontSize)}px`;
     if (cfg.fontFamily) node.style.fontFamily = String(cfg.fontFamily);
     if (cfg.h) node.style.lineHeight = "1.05";
-    if (key === "rank") node.style.color = params.get("rankColor") ? `#${params.get("rankColor").replace("#","").slice(0,6)}` : "";
-    if (key === "score") node.style.color = params.get("scoreColor") ? `#${params.get("scoreColor").replace("#","").slice(0,6)}` : "";
-    if (key === "player") node.style.color = params.get("nameColor") ? `#${params.get("nameColor").replace("#","").slice(0,6)}` : "";
-    if (key === "brand") node.style.color = params.get("extraColor") ? `#${params.get("extraColor").replace("#","").slice(0,6)}` : "";
+    if (key === "rank") node.style.color = getRankTagParam("rankColor") ? `#${getRankTagParam("rankColor").replace("#","").slice(0,6)}` : "";
+    if (key === "score") node.style.color = getRankTagParam("scoreColor") ? `#${getRankTagParam("scoreColor").replace("#","").slice(0,6)}` : "";
+    if (key === "player") node.style.color = getRankTagParam("nameColor") ? `#${getRankTagParam("nameColor").replace("#","").slice(0,6)}` : "";
+    if (key === "brand") node.style.color = getRankTagParam("extraColor") ? `#${getRankTagParam("extraColor").replace("#","").slice(0,6)}` : "";
     if (key === "badge") {
       node.classList.toggle("final-badge-glow", paramEnabled("baseBadgeGlow", false));
       node.classList.toggle("final-badge-ring", paramEnabled("baseBadgeRing", false));
@@ -2922,7 +2922,7 @@ function renderBaseBuilderLayoutAuthoritative() {
 
 /* RankTag BETA 0.2.1 - ensure final link always applies builder layout */
 function scheduleAuthoritativeBuilderLayout() {
-  if (!params.get("baseLayout")) return;
+  if (!getRankTagParam("baseLayout")) return;
   [0, 40, 120, 260, 520, 1000, 1800, 3000].forEach((ms) => {
     setTimeout(() => {
       try { renderBaseBuilderLayoutAuthoritative(); } catch(e) {}

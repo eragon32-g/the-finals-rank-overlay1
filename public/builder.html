@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=036" />
+  <link rel="stylesheet" href="/style.css?v=050" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -262,7 +262,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.4.9</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.0</span>
       </div>
     </div>
     <div class="layout">
@@ -336,7 +336,7 @@
       </section>
     </div>
   </main>
-  <script src="/access.js?v=036"></script>
+  <script src="/access.js?v=050"></script>
   <script>
     if(!window.RankTagAccess || !RankTagAccess.requireBuilderAccess()){
       document.body.innerHTML = `<main class="page"><section class="panel stack" style="max-width:760px;margin:40px auto"><h1>Builder bloccato</h1><p class="sub">Per usare l’Overlay Builder avanzato devi essere loggato e avere un codice accesso valido.</p><div class="actions"><a class="btn" href="/account.html">Login / Riscatta codice</a><a class="btn secondary" href="/home.html">Torna alla Home</a></div></section></main>`;
@@ -498,16 +498,24 @@
     }
     function scaleLayoutForOverlay(){const out={}; Object.entries(baseLayout).forEach(([key,v])=>{out[key]={x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),fontSize:Math.max(0,Number(v.fontSize||0)),fontFamily:String(v.fontFamily||""),z:Math.round(Number(v.z)||1)};}); return {version:2,schema:"ranktag-base-layout-v2",canvas:{width:470,height:160},elements:out};}
     function customPayload(){return customElements.map((v)=>({id:v.id,name:v.name,type:"image",src:v.src,x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),opacity:Math.max(0,Math.min(1,Number(v.opacity??1))),z:Math.round(Number(v.z)||30),rotation:Math.round(Number(v.rotation)||0)}));}
-    function updateLinkSizeHint(link){const help=$("linkSizeHelp"); if(!help)return; const len=link.length; help.textContent = customElements.length ? `Link generato: ${len} caratteri. Le immagini custom sono compresse e messe dopo # per essere lette dall overlay senza appesantire la query.` : `Link generato: ${len} caratteri.`; help.style.color = len > MAX_CUSTOM_LINK_CHARS ? "#ff8f8f" : ""; if(len > MAX_CUSTOM_LINK_CHARS) help.textContent += " Se resta troppo lungo per una piattaforma, usa una sola immagine oppure un file più piccolo.";}
+    function updateLinkSizeHint(link){const help=$("linkSizeHelp"); if(!help)return; const len=link.length; help.textContent = customElements.length ? `Link generato: ${len} caratteri. Layout, accesso e immagini custom sono spostati dopo # per evitare blocchi 403/URL troppo lunghi sulle piattaforme.` : `Link generato: ${len} caratteri.`; help.style.color = len > MAX_CUSTOM_LINK_CHARS ? "#ff8f8f" : ""; if(len > MAX_CUSTOM_LINK_CHARS) help.textContent += " Se resta troppo lungo per una piattaforma, usa una sola immagine oppure un file più piccolo.";}
     function buildLink(){
       const url=new URL(window.location.origin+"/index.html"); const mode=$("mode").value, player=$("player").value.trim()||"NomePlayer#1234", badgeFile=$("badgeFile").value; const [league,division]=rankMap[badgeFile]||["Unranked",""];
       if(mode==="manual"){url.searchParams.set("mode","manual"); url.searchParams.set("player",player); url.searchParams.set("league",league); url.searchParams.set("division",division); url.searchParams.set("rankScore",$("rankScore").value.trim()||"0"); url.searchParams.set("badgeFile",badgeFile);}
       else{url.searchParams.set("player",leaderboardData?.player||player); url.searchParams.set("leaderboard","s10"); url.searchParams.set("platform","crossplay"); url.searchParams.set("refresh","30");}
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
+      url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
+
+      // BETA 0.5.0: i dati pesanti/non necessari al server vengono spostati dopo #.
+      // In questo modo Vercel e le piattaforme streaming ricevono una richiesta corta
+      // e non possono bloccare il link con 403 per URL troppo lunghi o payload base64.
+      const hash=new URLSearchParams();
       const accessParams = window.RankTagAccess?.getAccessParams?.();
-      if(accessParams){ Object.entries(accessParams).forEach(([key,value])=>url.searchParams.set(key,value)); }
-      url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("baseLayout",encode(scaleLayoutForOverlay())); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
-      if(customElements.length){const hash=new URLSearchParams(); hash.set("customElements",encode(customPayload())); url.hash=hash.toString();}
+      if(accessParams){ Object.entries(accessParams).forEach(([key,value])=>hash.set(key,value)); }
+      hash.set("baseLayout",encode(scaleLayoutForOverlay()));
+      if(customElements.length){ hash.set("customElements",encode(customPayload())); }
+      url.hash=hash.toString();
+
       const finalLink=url.toString(); $("output").value=finalLink; $("preview").src=finalLink; updateLinkSizeHint(finalLink); return finalLink;
     }
     async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; const ctx=canvas.getContext("2d"); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.62),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
