@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.4.6",
+    "title": "Portable Access Codes Redeem Fix",
+    "date": "2026-05-31",
+    "note": "Corregge il problema codice non trovato quando il codice viene generato dall’admin su un dispositivo e riscattato da utenti su un altro browser/dispositivo.",
+    "fixes": [
+      "codici generati automaticamente portabili",
+      "riscatto codice valido anche senza import JSON locale",
+      "durata giorni/ore/minuti inclusa nel codice",
+      "test 15 minuti/1 ora funzionanti anche su altri dispositivi",
+      "nota: single-use globale richiederà backend/database"
+    ]
+  },
+  {
     "version": "0.4.5",
     "title": "Projects Preview Alignment Fix",
     "date": "2026-05-31",

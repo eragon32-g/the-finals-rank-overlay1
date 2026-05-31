@@ -42,6 +42,31 @@
     if(mins) parts.push(mins + " minuti");
     return parts.join(" ") || "1 minuto";
   }
+
+  function checksumCode(raw){
+    const text = String(raw || "").toUpperCase();
+    let n = 0;
+    for(let i=0;i<text.length;i++) n = (n * 31 + text.charCodeAt(i)) % 46656;
+    return n.toString(36).toUpperCase().padStart(3,"0").slice(-3);
+  }
+  function encodeDurationToken(type, input){
+    if(type === "permanent") return "P";
+    const mins = Math.max(1, Math.round(durationToMs(input) / 60000));
+    return "T" + mins.toString(36).toUpperCase();
+  }
+  function parsePortableCode(code){
+    const clean = String(code || "").trim().toUpperCase();
+    const parts = clean.split("-");
+    if(parts.length < 5 || parts[0] !== "RT" || parts[1] !== "A") return null;
+    const body = parts.slice(0,-1).join("-");
+    const chk = parts[parts.length-1];
+    if(checksumCode(body) !== chk) return null;
+    const token = parts[2] || "";
+    const type = token === "P" ? "permanent" : "temporary";
+    const minutes = type === "permanent" ? null : parseInt(token.slice(1),36);
+    if(type !== "permanent" && (!Number.isFinite(minutes) || minutes < 1)) return null;
+    return { code:clean, type, days:type === "permanent" ? null : Math.floor(minutes/1440), durationMs:type === "permanent" ? null : minutes*60000, label:type === "permanent" ? "Accesso permanente" : `Accesso ${durationLabel(minutes*60000)}`, note:"codice portabile", createdAt:now(), usedBy:null, usedNickname:null, usedAt:null, expiresAt:null, disabled:false, portable:true };
+  }
   function ensureCodes(){
     const current = read(CODES_KEY, []);
     const byCode = new Map(current.map(c => [String(c.code || "").toUpperCase(), c]));
@@ -151,8 +176,12 @@
     if(!auth?.userId) throw new Error("Effettua login o registrazione prima di riscattare un codice.");
     const clean = String(code || "").trim().toUpperCase();
     const codes = ensureCodes();
-    const item = codes.find(c => String(c.code || "").toUpperCase() === clean);
-    if(!item) throw new Error("Codice non trovato.");
+    let item = codes.find(c => String(c.code || "").toUpperCase() === clean);
+    if(!item){
+      item = parsePortableCode(clean);
+      if(item){ codes.unshift(item); write(CODES_KEY, codes); }
+    }
+    if(!item) throw new Error("Codice non trovato. Se è stato generato da un altro dispositivo, crea un nuovo codice portabile dalla BETA 0.4.6.");
     if(item.disabled) throw new Error("Codice disattivato.");
     if(item.usedBy && item.usedBy !== auth.userId) throw new Error("Codice già utilizzato da un altro account.");
     if(item.usedBy === auth.userId) throw new Error("Hai già riscattato questo codice.");
@@ -220,12 +249,12 @@
     return listProjects().find(p => p.id === id) || null;
   }
   function makeCode(prefix, type, days){
+    const normalizedType = type === "permanent" ? "permanent" : "temporary";
+    const dur = encodeDurationToken(normalizedType, days);
     const stamp = now().toString(36).toUpperCase();
     const rnd = Math.random().toString(36).slice(2,8).toUpperCase();
-    const ms = durationToMs(days);
-    const totalMinutes = Math.max(1, Math.round(ms / 60000));
-    const dur = type === "permanent" ? "PERM" : (totalMinutes < 1440 ? `${totalMinutes}M` : `${Math.round(totalMinutes/1440)}D`);
-    return `${String(prefix || "RT").trim().toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,10) || "RT"}-${dur}-${stamp}-${rnd}`;
+    const body = `RT-A-${dur}-${stamp}-${rnd}`;
+    return `${body}-${checksumCode(body)}`;
   }
   function addCode(code, type, days, note){
     const codes = ensureCodes();

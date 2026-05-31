@@ -1,14 +1,1 @@
-{
-  "version": "0.4.5",
-  "status": "BETA",
-  "date": "2026-05-31",
-  "name": "Projects Preview Alignment Fix",
-  "note": "BETA 0.4.5: centra la libreria progetti e migliora l'allineamento delle anteprime overlay salvate.",
-  "label": "BETA 0.4.5",
-  "versioning": {
-    "current": "0.4.5",
-    "next": "0.4.5"
-  },
-  "codename": "projects-preview-alignment-fix",
-  "updated": "2026-05-31"
-}
+{"version":"BETA 0.4.6","name":"Portable Access Codes Redeem Fix","build":"0.4.6"}
