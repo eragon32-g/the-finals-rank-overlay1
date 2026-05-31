@@ -1,5 +1,8 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-3-2-elo-only-display-fix",
-  "version": "0.3.2",
-  "description": "RankTag BETA 0.3.2 - elo only display fix"
+  "name": "ranktag-finals-overlay-beta-0-3-3-live-leaderboard-refresh-fix",
+  "version": "0.3.3",
+  "description": "RankTag BETA 0.3.3 - live leaderboard refresh no-cache fix",
+  "scripts": {
+    "start": "vercel dev"
+  }
 }

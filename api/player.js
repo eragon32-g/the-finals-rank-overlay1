@@ -60,7 +60,7 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ ok: false, message: "Platform non valida" });
     }
 
-    const apiUrl = `${API_BASE}/${leaderboard}/${platform}?name=${encodeURIComponent(player)}`;
+    const apiUrl = `${API_BASE}/${leaderboard}/${platform}?name=${encodeURIComponent(player)}&_rt=${Date.now()}`;
 
     const apiResponse = await fetch(apiUrl, {
       headers: {
@@ -68,6 +68,7 @@ module.exports = async function handler(req, res) {
         "user-agent": "the-finals-rank-overlay-v1",
       },
       cache: "no-store",
+      next: { revalidate: 0 },
     });
 
     const text = await apiResponse.text();
@@ -103,7 +104,9 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=120");
+    res.setHeader("Cache-Control", "no-store, no-cache, max-age=0, must-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
 
     return res.status(200).json({
       ok: true,

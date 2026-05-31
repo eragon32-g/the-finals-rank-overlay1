@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.3.3",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Live leaderboard refresh no-cache fix",
+    "summary": "Corregge il refresh live dell'overlay finale: rank, ELO e stemma vengono richiesti con cache disattivata e un parametro anti-cache, così durante la live non restano bloccati sui valori iniziali.",
+    "fixed": [
+      "richieste /api/player con parametro anti-cache in overlay finale",
+      "risposta API player impostata no-store/no-cache",
+      "refresh automatico del Builder impostato a 30 secondi nel link finale",
+      "aggiornamento live rilanciato anche quando la tab torna visibile"
+    ]
+  },
+  {
     "version": "0.3.2",
     "status": "BETA",
     "date": "2026-05-31",

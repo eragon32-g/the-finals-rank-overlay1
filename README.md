@@ -1,3 +1,3 @@
-RankTag / THE FINALS Overlay Generator - BETA 0.3.2
+RankTag / THE FINALS Overlay Generator - BETA 0.3.3
 
-Patch: ELO only display fix.
+Fix refresh live leaderboard no-cache per overlay finale.

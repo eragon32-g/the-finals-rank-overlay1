@@ -1,12 +1,12 @@
 {
-  "version": "0.3.2",
+  "version": "0.3.3",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.3.2: nell'overlay finale vengono mostrati solo i punti ELO, senza posizione leaderboard e variazione di posizione.",
+  "note": "BETA 0.3.3: forza il refresh live no-cache della leaderboard in overlay finale e riduce il refresh del Builder a 30 secondi.",
   "status": "BETA",
-  "label": "BETA 0.3.2",
+  "label": "BETA 0.3.3",
   "versioning": {
     "beta": true,
     "rules": [

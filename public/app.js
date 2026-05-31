@@ -713,8 +713,11 @@ async function loadAuto() {
     const player = getPlayerFromUrl();
     const leaderboard = normalizeLeaderboard(params.get("leaderboard"));
     const platform = (params.get("platform") || "crossplay").toLowerCase();
-    const query = new URLSearchParams({ player, leaderboard, platform });
-    const res = await fetch(`/api/player?${query.toString()}`, { cache: "no-store" });
+    const query = new URLSearchParams({ player, leaderboard, platform, _rt: String(Date.now()) });
+    const res = await fetch(`/api/player?${query.toString()}`, {
+      cache: "no-store",
+      headers: { "cache-control": "no-cache", "pragma": "no-cache" },
+    });
     const data = await res.json();
     if (!res.ok || !data.ok) throw new Error(data.message || "Player non trovato");
     await setData(data, "LIVE");
@@ -737,8 +740,9 @@ if (isManualMode()) {
   loadManual();
 } else {
   loadAuto();
-  const refreshSeconds = Math.max(30, Math.min(600, Number(params.get("refresh") || 60)));
+  const refreshSeconds = Math.max(30, Math.min(600, Number(params.get("refresh") || 30)));
   setInterval(loadAuto, refreshSeconds * 1000);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) loadAuto(); });
 }
 
 try { applyThemeStyleClass(); } catch(e) { console.warn(e); }
@@ -915,7 +919,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag BETA 0.2.1 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "0.3.1");
+document.documentElement.setAttribute("data-ranktag-version", "0.3.3");
 
 
 
