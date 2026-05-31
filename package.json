@@ -1,7 +1,7 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-3-6-admin-restore-credentials-reset",
-  "version": "0.3.7",
-  "description": "RankTag BETA 0.3.6 - admin restore credentials reset",
+  "name": "ranktag-finals-overlay-beta-0-3-8-admin-login-credentials-fix",
+  "version": "0.3.8",
+  "description": "RankTag BETA 0.3.8 - admin login credentials fix",
   "scripts": {
     "start": "vercel dev"
   }

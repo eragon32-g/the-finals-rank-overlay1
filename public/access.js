@@ -3,7 +3,8 @@
   const STORAGE_KEY = "ranktagAuthV1";
   const ADMIN_KEY = "ranktagAdminUnlockedV1";
   const ADMIN_USER = "admin";
-  const ADMIN_PASSWORD = "RankTag-Admin-037";
+  const ADMIN_PASSWORD = "RankTag-Admin-038";
+  const ADMIN_PASSWORD_FALLBACKS = ["RankTag-Admin-037", "RankTag-Admin-036"];
   const CODES_KEY = "ranktagAccessCodesV1";
   const PROJECTS_KEY = "ranktagProjectsV1";
   const DAY = 24 * 60 * 60 * 1000;
@@ -183,7 +184,7 @@
   function unlockAdmin(username, password){
     const first = String(username || "").trim();
     const second = String(password || "").trim();
-    const ok = first.toLowerCase() === ADMIN_USER && second === ADMIN_PASSWORD;
+    const ok = first.toLowerCase() === ADMIN_USER && (second === ADMIN_PASSWORD || ADMIN_PASSWORD_FALLBACKS.includes(second));
     if(!ok) throw new Error("Credenziali admin non valide.");
     localStorage.setItem(ADMIN_KEY, "1");
     return true;

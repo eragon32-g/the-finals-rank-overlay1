@@ -1,12 +1,12 @@
 {
-  "version": "0.3.7",
+  "version": "0.3.8",
   "status": "BETA",
   "date": "2026-05-31",
-  "name": "Admin Security Duration Codes Fix",
-  "note": "BETA 0.3.7: rimuove credenziali visibili e autofill dalla pagina Admin, elimina PIN legacy/demo e aggiunge codici temporanei in giorni, ore e minuti per testare scadenza e blocchi.",
-  "label": "BETA 0.3.7",
+  "name": "Admin Login Credentials Fix",
+  "note": "BETA 0.3.8: corregge il controllo delle credenziali admin dopo la rimozione del PIN legacy, mantiene nascosti i dati in pagina e disattiva l'autofill del browser.",
+  "label": "BETA 0.3.8",
   "versioning": {
-    "current": "0.3.7",
-    "next": "0.3.8"
+    "current": "0.3.8",
+    "next": "0.3.9"
   }
 }

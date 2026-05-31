@@ -1,4 +1,4 @@
-# RankTag / THE FINALS Overlay Generator - BETA 0.3.6
+# RankTag / THE FINALS Overlay Generator - BETA 0.3.8
 
 Patch: Admin Restore Credentials Reset
 
@@ -13,4 +13,10 @@ Patch: Admin Restore Credentials Reset
 - aggiunto collegamento Admin nei menu principali
 - rimossa nuovamente la voce Test Lab
 - pagina Test Lab reindirizzata alla Home
-- versione e Updates aggiornati a BETA 0.3.6
+- versione e Updates aggiornati a BETA 0.3.8
+
+
+## BETA 0.3.8
+- Fix login admin dopo hardening sicurezza.
+- Credenziali non mostrate nella pagina.
+- Autofill disattivato sui campi admin.

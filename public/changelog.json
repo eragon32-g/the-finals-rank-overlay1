@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.3.8",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Admin login credentials fix",
+    "summary": "Corregge il login Admin dopo la rimozione delle credenziali visibili e del PIN legacy, mantenendo il pannello non precompilato.",
+    "fixed": [
+      "reset credenziali admin a RankTag-Admin-038",
+      "login admin nuovamente funzionante",
+      "nessuna credenziale mostrata nella pagina",
+      "campi username/password senza autofill",
+      "compatibilità temporanea con password 0.3.7 e 0.3.6"
+    ]
+  },
+  {
     "version": "0.3.7",
     "status": "BETA",
     "date": "2026-05-31",
