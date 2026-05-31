@@ -1,12 +1,12 @@
 {
-  "version": "0.3.0",
+  "version": "0.3.1",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.3.0: il Builder avanzato ora cerca il player nella leaderboard e aggiorna automaticamente preview e link finale.",
+  "note": "BETA 0.3.1: correzione animazione brand nel Builder finale, più fluida e ritagliata dentro il riquadro.",
   "status": "BETA",
-  "label": "BETA 0.3.0",
+  "label": "BETA 0.3.1",
   "versioning": {
     "beta": true,
     "rules": [

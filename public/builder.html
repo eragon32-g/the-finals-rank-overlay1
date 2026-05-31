@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=030" />
+  <link rel="stylesheet" href="/style.css?v=031" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -81,7 +81,7 @@
     .rank-item { color:#f5f7fb; letter-spacing:1px; }
     .score-item { color:#f0d9aa; }
     .player-item { color:#e8edf4; }
-    .brand-item { color:#f5f7fb; background:rgba(0,0,0,.28); border-radius:999px; padding:0 10px; }
+    .brand-item { color:#f5f7fb; background:rgba(0,0,0,.28); border-radius:999px; padding:0 10px; overflow:hidden; contain:paint; }
     .list { display:grid; gap:8px; max-height:135px; overflow:auto; padding-right:4px; }
     .list button { justify-content:flex-start; text-align:left; }
     .preview-frame { width:100%; max-width:470px; height:136px; margin:0 auto; overflow:hidden; border-radius:16px; }
@@ -262,7 +262,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.3.0</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.3.1</span>
       </div>
     </div>
     <div class="layout">
@@ -410,7 +410,7 @@
           transform: item.kind === "image" ? `rotate(${Number(item.rotation || 0)}deg)` : ""
         });
         if(item.id==="badge"){
-          node.innerHTML = `<img src="/assets/badges/${selectedBadgeBase()}.svg?v=030" alt="">`;
+          node.innerHTML = `<img src="/assets/badges/${selectedBadgeBase()}.svg?v=031" alt="">`;
         } else if(item.kind==="image"){
           node.innerHTML = `<img src="${item.src}" alt="">`;
         } else {
@@ -434,7 +434,7 @@
         }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/${selectedBadgeBase()}.svg?v=030" alt="">`;
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/${selectedBadgeBase()}.svg?v=031" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; if(item.id === selectedId){ label.textContent=item.label||item.name||item.id; box.appendChild(label); }

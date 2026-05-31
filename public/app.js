@@ -20,7 +20,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "030";
+const OVERLAY_VERSION = "031";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
@@ -914,7 +914,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag BETA 0.2.1 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "0.3.0");
+document.documentElement.setAttribute("data-ranktag-version", "0.3.1");
 
 
 
@@ -2830,10 +2830,12 @@ function renderBaseBuilderLayoutAuthoritative() {
       node.appendChild(img);
     } else if (key === "brand") {
       node.style.display = "block";
-      node.style.overflow = "visible";
+      node.style.overflow = "hidden";
       node.style.whiteSpace = "nowrap";
       node.style.fontWeight = "1000";
       node.style.textShadow = "0 2px 8px rgba(0,0,0,.72)";
+      node.style.borderRadius = "999px";
+      node.style.contain = "paint";
       const track = document.createElement("span");
       track.className = "rt-builder-brand-marquee-track";
       const first = document.createElement("span");

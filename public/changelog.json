@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.3.1",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Builder brand animation clip fix",
+    "summary": "Corregge l'animazione del brand nell'overlay generato dal Builder: lo scorrimento è più fluido e il testo/logo non esce più dal riquadro impostato nel Layout Editor.",
+    "fixed": [
+      "brand del Builder ritagliato dentro il proprio box",
+      "animazione marquee resa più fluida con transform 3D",
+      "overflow nascosto anche nell'overlay finale generato dal link"
+    ]
+  },
+  {
     "version": "0.3.0",
     "status": "BETA",
     "date": "2026-05-31",
