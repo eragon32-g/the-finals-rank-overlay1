@@ -1,12 +1,12 @@
 {
-  "version": "0.2.4",
+  "version": "0.2.5",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.2.4: immagini custom del builder compresse e spostate nel frammento del link per evitare query troppo lunghe.",
+  "note": "BETA 0.2.5: Layout Editor con selezione manuale degli elementi e testo non tagliato quando viene ingrandito.",
   "status": "BETA",
-  "label": "BETA 0.2.4",
+  "label": "BETA 0.2.5",
   "versioning": {
     "beta": true,
     "rules": [

@@ -301,7 +301,7 @@ function applyBaseLayoutFromUrl() {
     node.style.height = `${Math.max(1, Number(cfg.h || 10))}px`;
     node.style.zIndex = `${Number(cfg.z || 1)}`;
     if (cfg.fontSize) node.style.fontSize = `${Number(cfg.fontSize)}px`;
-    if (cfg.h) node.style.lineHeight = `${Number(cfg.h)}px`;
+    if (cfg.h) node.style.lineHeight = "1.05";
   };
 
   // make base overlay absolute-layout capable
@@ -2805,7 +2805,7 @@ function renderBaseBuilderLayoutAuthoritative() {
       node.appendChild(img);
     } else if (key === "brand") {
       node.style.display = "block";
-      node.style.overflow = "hidden";
+      node.style.overflow = "visible";
       node.style.whiteSpace = "nowrap";
       node.style.fontWeight = "1000";
       node.style.textShadow = "0 2px 8px rgba(0,0,0,.72)";
@@ -2822,7 +2822,7 @@ function renderBaseBuilderLayoutAuthoritative() {
       node.textContent = content || "";
       node.style.display = "flex";
       node.style.alignItems = "center";
-      node.style.overflow = "hidden";
+      node.style.overflow = "visible";
       node.style.whiteSpace = "nowrap";
       node.style.fontWeight = "1000";
       node.style.textShadow = "0 2px 8px rgba(0,0,0,.72)";
@@ -2834,7 +2834,7 @@ function renderBaseBuilderLayoutAuthoritative() {
     node.style.height = `${Math.max(1, Number(cfg.h || 1))}px`;
     node.style.zIndex = `${Number(cfg.z || 10)}`;
     if (Number(cfg.fontSize || 0) > 0) node.style.fontSize = `${Number(cfg.fontSize)}px`;
-    if (cfg.h) node.style.lineHeight = `${Number(cfg.h)}px`;
+    if (cfg.h) node.style.lineHeight = "1.05";
     if (key === "rank") node.style.color = params.get("rankColor") ? `#${params.get("rankColor").replace("#","").slice(0,6)}` : "";
     if (key === "score") node.style.color = params.get("scoreColor") ? `#${params.get("scoreColor").replace("#","").slice(0,6)}` : "";
     if (key === "player") node.style.color = params.get("nameColor") ? `#${params.get("nameColor").replace("#","").slice(0,6)}` : "";

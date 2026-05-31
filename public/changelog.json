@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.2.5",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Layout editor selection and text overflow fix",
+    "summary": "Nel Layout Editor gli elementi non partono più tutti evidenziati: l'utente sceglie cosa modificare. Il testo ingrandito resta visibile e non viene tagliato dal box di editing o dal render finale.",
+    "fixed": [
+      "elementi del Layout Editor mostrati come tutti selezionati/modificabili contemporaneamente",
+      "selezione che interferiva con l'editing dell'overlay",
+      "testo tagliato quando font size e dimensioni del box venivano aumentati"
+    ]
+  },
+  {
     "version": "0.2.4",
     "status": "BETA",
     "date": "2026-05-31",
