@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=024" />
+  <link rel="stylesheet" href="/style.css?v=030" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -249,6 +249,9 @@
       margin-top: -4px;
       color: rgba(245,247,251,.68);
     }
+    #leaderboardStatus[data-state="loading"] { color:#f0d9aa; }
+    #leaderboardStatus[data-state="ok"] { color:#9ff3b5; }
+    #leaderboardStatus[data-state="error"] { color:#ff8f8f; }
   </style>
 </head>
 <body>
@@ -259,7 +262,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.2.9</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.3.0</span>
       </div>
     </div>
     <div class="layout">
@@ -267,6 +270,7 @@
         <h2>1. Dati overlay</h2>
         <label>Modalità<select id="mode"><option selected value="manual">Manuale</option><option value="auto">Leaderboard</option></select></label>
         <label>Player<input id="player" value="NomePlayer#1234"></label>
+        <p class="help" id="leaderboardStatus">Modalità manuale: rank e punti vengono usati dai campi sotto.</p>
         <div class="grid2">
           <label>Rank<select id="badgeFile">
             <option value="bronze-4">Bronze 4</option><option value="bronze-3">Bronze 3</option><option value="bronze-2">Bronze 2</option><option value="bronze-1">Bronze 1</option>
@@ -343,9 +347,43 @@
     function clamp(n,min,max){return Math.max(min,Math.min(max,Number(n)||0));}
     function encode(obj){try{return btoa(unescape(encodeURIComponent(JSON.stringify(obj)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=/g,".");}catch{return "";}}
     function compactNumber(v){const raw=String(v||"0").replace(/[^\d]/g,""); try{return new Intl.NumberFormat("it-IT").format(Number(raw||0));}catch{return raw||"0";}}
+    let leaderboardData = null;
+    let leaderboardLookupTimer = null;
+    let leaderboardLookupId = 0;
     function selected(){return baseLayout[selectedId] || customElements.find((x)=>x.id===selectedId) || null;}
     function items(){return [...Object.entries(baseLayout).map(([id,item])=>({id,...item})),...customElements.map((item)=>({...item,kind:"image"}))];}
-    function displayText(id){const [league,div]=rankMap[$("badgeFile").value]||["Unranked",""]; if(id==="rank")return (league+(div?" "+div:"")).toUpperCase(); if(id==="score")return `${$("scoreLabel").value||"ELO"}: ${compactNumber($("rankScore").value)}`; if(id==="player")return $("player").value||"NomePlayer#1234"; if(id==="brand")return "ERDRAGON32 • Join the Discord"; return id;}
+    function setLeaderboardStatus(text,state){const el=$("leaderboardStatus"); if(!el)return; el.textContent=text; if(state) el.dataset.state=state; else el.removeAttribute("data-state");}
+    function baseLeagueName(value){const clean=String(value||"").toLowerCase(); if(clean.includes("ruby"))return "ruby"; if(clean.includes("diamond"))return "diamond"; if(clean.includes("platinum"))return "platinum"; if(clean.includes("gold"))return "gold"; if(clean.includes("silver"))return "silver"; if(clean.includes("bronze"))return "bronze"; return "unranked";}
+    function divisionFromLeague(value, leagueNumber){const clean=String(value||"").toLowerCase(); if(clean.includes(" 1")||clean.includes(" i")||clean.includes("division 1"))return "1"; if(clean.includes(" 2")||clean.includes(" ii")||clean.includes("division 2"))return "2"; if(clean.includes(" 3")||clean.includes(" iii")||clean.includes("division 3"))return "3"; if(clean.includes(" 4")||clean.includes(" iv")||clean.includes("division 4"))return "4"; const n=Number(leagueNumber); if(Number.isInteger(n)){const div=((n-1)%4)+1; return String(div);} return "";}
+    function badgeFileFromLeaderboard(data){const base=baseLeagueName(data?.league); if(base==="ruby")return "ruby"; if(base==="unranked")return "bronze-4"; const div=divisionFromLeague(data?.league,data?.leagueNumber)||"1"; return `${base}-${div}`;}
+    function currentRankParts(){if($("mode")?.value==="auto" && leaderboardData){const base=String(leaderboardData.league||"Unranked").replace(/\bIV\b/g,"4").replace(/\bIII\b/g,"3").replace(/\bII\b/g,"2").replace(/\bI\b/g,"1").replace(/\s+/g," ").trim(); const div=divisionFromLeague(leaderboardData.league,leaderboardData.leagueNumber); return [base, base.match(/\b[1-4]\b$/)?"":div];} return rankMap[$("badgeFile").value]||["Unranked",""];}
+        function displayText(id){const [league,div]=currentRankParts(); if(id==="rank")return (league+(div?" "+div:"")).toUpperCase(); if(id==="score")return `${$("scoreLabel").value||"ELO"}: ${compactNumber($("mode")?.value==="auto" && leaderboardData ? leaderboardData.rankScore : $("rankScore").value)}`; if(id==="player")return (leaderboardData?.player && $("mode")?.value==="auto") ? leaderboardData.player : ($("player").value||"NomePlayer#1234"); if(id==="brand")return "ERDRAGON32 • Join the Discord"; return id;}
+    function selectedBadgeBase(){if($("mode")?.value==="auto" && leaderboardData)return baseLeagueName(leaderboardData.league); return baseLeagueName($("badgeFile")?.value||"");}
+    async function lookupLeaderboardNow(){
+      if($("mode")?.value!=="auto"){leaderboardData=null; setLeaderboardStatus("Modalità manuale: rank e punti vengono usati dai campi sotto.",""); render(); return;}
+      const player=($("player")?.value||"").trim();
+      if(!player || !player.includes("#")){leaderboardData=null; setLeaderboardStatus("Inserisci un Embark ID completo, esempio Nome#1234, per leggere la leaderboard.","error"); render(); return;}
+      const requestId=++leaderboardLookupId;
+      setLeaderboardStatus("Cerco il player nella leaderboard THE FINALS...","loading");
+      try{
+        const res=await fetch(`/api/player?player=${encodeURIComponent(player)}&leaderboard=s10&platform=crossplay`,{cache:"no-store"});
+        const data=await res.json();
+        if(requestId!==leaderboardLookupId)return;
+        if(!res.ok || !data.ok) throw new Error(data.message||"Player non trovato");
+        leaderboardData=data;
+        const file=badgeFileFromLeaderboard(data); if($("badgeFile")&&rankMap[file]) $("badgeFile").value=file;
+        if($("rankScore") && data.rankScore!=null) $("rankScore").value=String(data.rankScore);
+        if($("player") && data.player) $("player").value=data.player;
+        setLeaderboardStatus(`LIVE: ${data.player||player} · ${data.league||"Unranked"} · ${compactNumber(data.rankScore||0)} ELO`,"ok");
+        render(); buildLink();
+      }catch(err){
+        if(requestId!==leaderboardLookupId)return;
+        leaderboardData=null;
+        setLeaderboardStatus(err.message || "Impossibile leggere la leaderboard.","error");
+        render();
+      }
+    }
+    function scheduleLeaderboardLookup(){clearTimeout(leaderboardLookupTimer); leaderboardLookupTimer=setTimeout(lookupLeaderboardNow,450);}
 
     function renderMirrorPreview(){
       const mirror = $("mirrorPreview");
@@ -372,7 +410,7 @@
           transform: item.kind === "image" ? `rotate(${Number(item.rotation || 0)}deg)` : ""
         });
         if(item.id==="badge"){
-          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=024" alt="">`;
+          node.innerHTML = `<img src="/assets/badges/${selectedBadgeBase()}.svg?v=030" alt="">`;
         } else if(item.kind==="image"){
           node.innerHTML = `<img src="${item.src}" alt="">`;
         } else {
@@ -396,7 +434,7 @@
         }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=024" alt="">`;
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/${selectedBadgeBase()}.svg?v=030" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; if(item.id === selectedId){ label.textContent=item.label||item.name||item.id; box.appendChild(label); }
@@ -459,7 +497,7 @@
     function buildLink(){
       const url=new URL(window.location.origin+"/index.html"); const mode=$("mode").value, player=$("player").value.trim()||"NomePlayer#1234", badgeFile=$("badgeFile").value; const [league,division]=rankMap[badgeFile]||["Unranked",""];
       if(mode==="manual"){url.searchParams.set("mode","manual"); url.searchParams.set("player",player); url.searchParams.set("league",league); url.searchParams.set("division",division); url.searchParams.set("rankScore",$("rankScore").value.trim()||"0"); url.searchParams.set("badgeFile",badgeFile);}
-      else{url.searchParams.set("player",player); url.searchParams.set("leaderboard","s10");}
+      else{url.searchParams.set("player",leaderboardData?.player||player); url.searchParams.set("leaderboard","s10"); url.searchParams.set("platform","crossplay"); url.searchParams.set("refresh","60");}
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
       url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("baseLayout",encode(scaleLayoutForOverlay())); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
       if(customElements.length){const hash=new URLSearchParams(); hash.set("customElements",encode(customPayload())); url.hash=hash.toString();}
@@ -468,7 +506,10 @@
     async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; const ctx=canvas.getContext("2d"); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.62),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
     $("customImageUpload").addEventListener("change",async(event)=>{const file=event.target.files&&event.target.files[0]; event.target.value=""; if(!file)return; if(customElements.length>=MAX_IMAGES)return alert(`Massimo ${MAX_IMAGES} immagini custom.`); try{const converted=await fileToDataUrl(file); const ratio=converted.w/converted.h; const h=Math.min(150,converted.h); const w=Math.round(h*ratio); const item={id:uid(),name:file.name.replace(/\.[^.]+$/,"").slice(0,24),kind:"image",type:"image",src:converted.src,x:30+customElements.length*18,y:30+customElements.length*12,w:Math.max(24,Math.min(150,w)),h:Math.max(24,Math.min(120,h)),opacity:1,rotation:0,z:30+customElements.length}; customElements.push(item); selectedId=item.id; render();}catch{alert("Immagine non valida. Usa PNG, JPG o WebP.");}});
     $("applyFields").addEventListener("click",applyFields); ["editX","editY","editW","editH","editFont","editFontFamily","editZ","editOpacity","editRotate"].forEach((id)=>$(id)?.addEventListener("change",applyFields));
-    ["mode","player","badgeFile","rankScore","scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{$(id)?.addEventListener("input",()=>{render(); buildLink();}); $(id)?.addEventListener("change",()=>{render(); buildLink();});});
+    ["badgeFile","rankScore","scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{$(id)?.addEventListener("input",()=>{if($("mode")?.value!=="auto") leaderboardData=null; render(); buildLink();}); $(id)?.addEventListener("change",()=>{if($("mode")?.value!=="auto") leaderboardData=null; render(); buildLink();});});
+    $("mode")?.addEventListener("change",()=>{leaderboardData=null; render(); buildLink(); scheduleLeaderboardLookup();});
+    $("player")?.addEventListener("input",()=>{leaderboardData=null; render(); buildLink(); if($("mode")?.value==="auto") scheduleLeaderboardLookup();});
+    $("player")?.addEventListener("change",()=>{if($("mode")?.value==="auto") lookupLeaderboardNow();});
     $("resetLayout").addEventListener("click",()=>{baseLayout=JSON.parse(JSON.stringify(defaultLayout)); selectedId=null; render();});
     $("clearImages").addEventListener("click",()=>{customElements=[]; selectedId=null; render();});
     $("removeImage").addEventListener("click",()=>{if(!selectedId || baseLayout[selectedId])return; customElements=customElements.filter((x)=>x.id!==selectedId); selectedId=null; render();});
@@ -491,6 +532,7 @@
 
     applyBuilderZoom();
     render();
+    if($("mode")?.value==="auto") scheduleLeaderboardLookup();
   </script>
 </body>
 </html>

@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.3.0",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Advanced builder leaderboard auto lookup",
+    "summary": "Il Builder avanzato ora usa la stessa ricerca leaderboard del Generator: inserendo il tag player in modalità Leaderboard aggiorna automaticamente rank, punti, badge, preview e link finale.",
+    "fixed": [
+      "ricerca player nella leaderboard THE FINALS anche da /builder.html",
+      "preview mirror aggiornata con dati live invece dei valori manuali",
+      "link finale automatico con leaderboard, platform e refresh per aggiornamento in OBS/TikTok"
+    ]
+  },
+  {
     "version": "0.2.9",
     "status": "BETA",
     "date": "2026-05-31",

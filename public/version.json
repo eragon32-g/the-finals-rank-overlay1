@@ -1,12 +1,12 @@
 {
-  "version": "0.2.9",
+  "version": "0.3.0",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.2.9: aggiunge la rotazione delle immagini custom nel Layout Editor avanzato e nel link finale.",
+  "note": "BETA 0.3.0: il Builder avanzato ora cerca il player nella leaderboard e aggiorna automaticamente preview e link finale.",
   "status": "BETA",
-  "label": "BETA 0.2.9",
+  "label": "BETA 0.3.0",
   "versioning": {
     "beta": true,
     "rules": [
