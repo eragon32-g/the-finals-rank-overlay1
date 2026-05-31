@@ -1,3 +1,3 @@
-RankTag / THE FINALS Overlay Generator - BETA 0.3.3
+# RankTag BETA 0.3.4
 
-Fix refresh live leaderboard no-cache per overlay finale.
+Login obbligatorio per Builder, codici single-use temporanei/permanenti, Account page e overlay temporanei disattivati alla scadenza.

@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.3.4",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Login required builder and single-use access codes",
+    "summary": "Blocca l’Overlay Builder avanzato dietro login e codice accesso valido, aggiunge codici single-use temporanei/permanenti, area Account e disattivazione dei link temporanei quando il codice scade.",
+    "fixed": [
+      "Builder accessibile solo con account e codice valido",
+      "codici single-use con stato disponibile/usato/scaduto",
+      "link overlay generati con scadenza o accesso permanente",
+      "overlay temporanei scaduti mostrano messaggio di non attivo",
+      "pagina Account e admin locale codici"
+    ]
+  },
+  {
     "version": "0.3.3",
     "status": "BETA",
     "date": "2026-05-31",

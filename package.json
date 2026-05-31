@@ -1,7 +1,7 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-3-3-live-leaderboard-refresh-fix",
-  "version": "0.3.3",
-  "description": "RankTag BETA 0.3.3 - live leaderboard refresh no-cache fix",
+  "name": "ranktag-finals-overlay-beta-0-3-4-login-access-codes-gate",
+  "version": "0.3.4",
+  "description": "RankTag BETA 0.3.4 - login required builder and single-use access codes",
   "scripts": {
     "start": "vercel dev"
   }

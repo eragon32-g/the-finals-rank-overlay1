@@ -20,11 +20,26 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "031";
+const OVERLAY_VERSION = "034";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
   return params.get(name) || hashParams.get(name) || "";
+}
+function ranktagValidateAccessFromUrl() {
+  const mode = params.get("rtAccess") || hashParams.get("rtAccess");
+  if (!mode) return true;
+  if (mode === "permanent") return true;
+  const exp = Number(params.get("rtAccessExp") || hashParams.get("rtAccessExp") || 0);
+  return !!(exp && exp > Date.now());
+}
+function ranktagBlockInactiveOverlay() {
+  const overlay = document.getElementById("overlay") || document.body;
+  overlay.innerHTML = `<section style="width:470px;height:160px;display:grid;place-items:center;text-align:center;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:linear-gradient(180deg,rgba(18,21,30,.96),rgba(8,10,15,.98));color:#f5f7fb;font-family:Arial,Helvetica,sans-serif;padding:18px"><div><b style="display:block;font-size:22px;margin-bottom:6px;color:#ff8f8f">Overlay non attivo</b><span style="font-size:12px;color:rgba(245,247,251,.72)">Il codice accesso collegato a questo link è scaduto.</span></div></section>`;
+}
+if (!ranktagValidateAccessFromUrl()) {
+  ranktagBlockInactiveOverlay();
+  throw new Error("RankTag overlay access expired");
 }
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
@@ -919,7 +934,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag BETA 0.2.1 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "0.3.3");
+document.documentElement.setAttribute("data-ranktag-version", "0.3.4");
 
 
 
