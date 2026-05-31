@@ -6,9 +6,11 @@
   <title>RankTag Builder Overlay</title>
   <link rel="stylesheet" href="/style.css?v=024" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
     html { height:auto; min-height:100%; overflow-y:auto; overflow-x:hidden; background:#030407; }
-    body { margin:0; display:block; align-items:initial; justify-content:initial; width:100%; height:auto; min-height:100vh; background:radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%), linear-gradient(180deg,#111923,#06070b 46%,#030407); color:#f5f7fb; font-family:Arial,Helvetica,sans-serif; padding:24px; overflow-y:auto; overflow-x:auto; }
+    :root{--the-finals-font:'Saira Condensed',Arial,Helvetica,sans-serif;}
+    body { margin:0; display:block; align-items:initial; justify-content:initial; width:100%; height:auto; min-height:100vh; background:radial-gradient(circle at 0 0, rgba(239,23,36,.18), transparent 28%), linear-gradient(180deg,#111923,#06070b 46%,#030407); color:#f5f7fb; font-family:var(--the-finals-font); padding:24px; overflow-y:auto; overflow-x:auto; }
     .page { width:min(1540px, calc(100vw - 28px)); max-width:1540px; margin:0 auto; }
     .top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px; flex-wrap:wrap; }
     h1 { margin:0; font-size:clamp(34px,5vw,64px); line-height:.9; letter-spacing:-1.5px; }
@@ -238,7 +240,7 @@
     }
 
   
-    /* RankTag BETA 0.2.7 - font selector visibility */
+    /* RankTag BETA 0.2.8 - font selector visibility */
     .font-picker-field {
       border-color: rgba(239,23,36,.40) !important;
       box-shadow: inset 0 0 0 1px rgba(239,23,36,.12);
@@ -257,7 +259,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.2.7</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.2.8</span>
       </div>
     </div>
     <div class="layout">
@@ -316,10 +318,10 @@
         <div class="grid2">
           <label>X<input id="editX" type="number" value="0"></label><label>Y<input id="editY" type="number" value="0"></label>
           <label>W<input id="editW" type="number" value="64"></label><label>H<input id="editH" type="number" value="64"></label>
-          <label>Dimensione testo<input id="editFont" type="number" value="0"></label><label class="font-picker-field">Font testo<select id="editFontFamily"><option value="">Default RankTag</option><option value="Arial, Helvetica, sans-serif">Arial</option><option value="Impact, Haettenschweiler, Arial Narrow Bold, sans-serif">Impact</option><option value="Verdana, Geneva, sans-serif">Verdana</option><option value="Trebuchet MS, Arial, sans-serif">Trebuchet</option><option value="Georgia, serif">Georgia</option><option value="Tahoma, Geneva, sans-serif">Tahoma</option><option value="Courier New, monospace">Courier New</option><option value="Times New Roman, serif">Times New Roman</option><option value="Lucida Console, Monaco, monospace">Lucida Console</option></select></label><label>Livello<input id="editZ" type="number" value="1"></label>
+          <label>Dimensione testo<input id="editFont" type="number" value="0"></label><label class="font-picker-field">Font testo<select id="editFontFamily"><option value="">Default RankTag</option><option value="'Saira Condensed', Arial, Helvetica, sans-serif">THE FINALS · Saira Condensed</option><option value="Arial, Helvetica, sans-serif">Arial</option><option value="Impact, Haettenschweiler, Arial Narrow Bold, sans-serif">Impact</option><option value="Verdana, Geneva, sans-serif">Verdana</option><option value="Trebuchet MS, Arial, sans-serif">Trebuchet</option><option value="Georgia, serif">Georgia</option><option value="Tahoma, Geneva, sans-serif">Tahoma</option><option value="Courier New, monospace">Courier New</option><option value="Times New Roman, serif">Times New Roman</option><option value="Lucida Console, Monaco, monospace">Lucida Console</option></select></label><label>Livello<input id="editZ" type="number" value="1"></label>
           <label>Opacità<input id="editOpacity" type="number" min="0" max="1" step="0.05" value="1"></label>
         </div>
-        <p class="help font-help">Seleziona prima Rank, ELO, Player o Brand: il menu Font testo si attiva solo per gli elementi testuali e viene salvato nel link finale.</p>
+        <p class="help font-help">Seleziona Rank, ELO, Player o Brand. Guida THE FINALS: Header/Subheader = Saira ExtraBold Italic, Body = Medium, Body Emphasis = Bold, Button = Italic. La scelta font viene salvata nel link finale.</p>
         <div class="actions"><button class="btn secondary" id="applyFields" type="button">Applica</button><button class="btn secondary" id="front" type="button">Porta avanti</button><button class="btn secondary" id="back" type="button">Porta dietro</button><button class="btn secondary" id="removeImage" type="button">Rimuovi immagine</button></div>
         <div class="list" id="elementsList"></div>
         <h2>6. Anteprima finale reale</h2>

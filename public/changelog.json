@@ -1,6 +1,18 @@
 [
   {
-    "version": "0.2.7",
+    "version": "0.2.8",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "THE FINALS Saira typography integration",
+    "summary": "Integra il font Saira Condensed ispirato alla guida tipografica THE FINALS e lo rende selezionabile dagli elementi testuali del Layout Editor avanzato.",
+    "fixed": [
+      "aggiunto font THE FINALS Saira Condensed nel Builder",
+      "font caricato anche in overlay finale e preview",
+      "aggiunta guida rapida pesi/stili: Header/Subheader ExtraBold Italic, Body Medium, Body Emphasis Bold, Button Italic"
+    ]
+  },
+  {
+    "version": "0.2.8",
     "status": "BETA",
     "date": "2026-05-31",
     "title": "Version and font selector visibility fix",

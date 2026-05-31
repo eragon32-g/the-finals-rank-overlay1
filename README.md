@@ -1,3 +1,3 @@
-# RankTag BETA 0.2.7 - Version Updates & Font Selector Visibility Fix
+# RankTag BETA 0.2.8 - THE FINALS Saira Typography Integration
 
-Patch correttiva: sincronizza versione, Updates e selettore font nel Builder avanzato.
+Patch mirata: integra Saira Condensed nel builder, nella preview e nell overlay finale, con guida rapida ispirata alla tavola tipografica THE FINALS.

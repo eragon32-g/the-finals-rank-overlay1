@@ -1,3 +1,13 @@
+
+(function ranktagLoadSairaCondensed(){
+  if (typeof document === "undefined") return;
+  if (document.getElementById("ranktag-saira-font")) return;
+  const link = document.createElement("link");
+  link.id = "ranktag-saira-font";
+  link.rel = "stylesheet";
+  link.href = "https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap";
+  document.head.appendChild(link);
+})();
 const $ = (id) => document.getElementById(id);
 
 const badge = $("badge");
@@ -18,7 +28,7 @@ function getRankTagParam(name) {
 }
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
-  "version": "0.2.7",
+  "version": "0.2.8",
   "schema": "ranktag-premium-layout-v2",
   "style": "voidrage-inferno",
   "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.",
@@ -72,7 +82,7 @@ const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
 };
 
 const CYBER_RED_ELITE_LAYOUT_LOCKED = {
-  "version": "0.2.7",
+  "version": "0.2.8",
   "schema": "ranktag-premium-layout-v2",
   "style": "cyber-red-elite",
   "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.",
@@ -902,7 +912,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag BETA 0.2.1 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "0.2.7");
+document.documentElement.setAttribute("data-ranktag-version", "0.2.8");
 
 
 
@@ -955,7 +965,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.7");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=021') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=028') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -1291,7 +1301,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.7");
         overflow: hidden !important;
         display: block !important;
         color: var(--text-color);
-        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=021') center / 100% 100% no-repeat !important;
+        background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=028') center / 100% 100% no-repeat !important;
         box-shadow: none !important;
         border: none !important;
         transform: none !important;
@@ -1959,7 +1969,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.7");
     const scoreValue = (scoreText?.textContent || "ELO: 37.705").trim();
     const playerValue = (nameText?.textContent || getPlayerFromUrl?.() || "NOMEPLAYER#1234").trim();
     const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
-    const badgeSrc = badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum.svg?v=021";
+    const badgeSrc = badgeImage?.getAttribute("src") || rankIcon?.querySelector("img")?.getAttribute("src") || "/assets/badges/platinum.svg?v=028";
     return { rankValue, scoreValue, playerValue, brandValue, badgeSrc };
   }
 
@@ -2224,7 +2234,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.7");
     root.dataset.renderer = "premium-detached-v93";
 
     root.innerHTML = `
-      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=021" alt="" />
+      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=028" alt="" />
       <div class="rt92-layer rt92-badge" style="${layerStyle(e.badge)}">
         <img src="${esc(d.badgeSrc)}" alt="" />
       </div>
@@ -2348,7 +2358,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.7");
     const scoreValue = (scoreText?.textContent || "ELO: 37.705").trim();
     const playerValue = (nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim();
     const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
-    const badgeSrc = badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=021";
+    const badgeSrc = badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=028";
     return { rankValue, scoreValue, playerValue, brandValue, badgeSrc };
   }
 
@@ -2562,7 +2572,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.7");
     root.dataset.themeStyle = themeStyle;
     root.dataset.renderer = "multi-premium-detached-v97";
     root.innerHTML = `
-      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=021" alt="" />
+      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=028" alt="" />
       <div class="rt97-layer rt97-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badgeSrc)}" alt="" /></div>
       <div class="rt97-layer rt97-rank" style="${layerStyle(e.rank)}">${esc(d.rankValue)}</div>
       <div class="rt97-layer rt97-score" style="${layerStyle(e.score)}">${esc(d.scoreValue)}</div>
@@ -2665,7 +2675,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.7");
       score: (scoreText?.textContent || "ELO: 37.705").trim(),
       player: (nameText?.textContent || (typeof getPlayerFromUrl === "function" ? getPlayerFromUrl() : "NOMEPLAYER#1234")).trim(),
       brand: (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim(),
-      badge: badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=021"
+      badge: badgeImage?.getAttribute("src") || "/assets/badges/platinum.svg?v=028"
     };
   }
 
@@ -2723,7 +2733,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.7");
     root.dataset.themeStyle = themeStyle;
     root.dataset.renderer = "rt103-final";
     root.innerHTML = `
-      <img class="rt103-bg" src="${esc(layout.background)}?v=021" alt="" />
+      <img class="rt103-bg" src="${esc(layout.background)}?v=028" alt="" />
       <div class="rt103-layer rt103-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badge)}" alt="" /></div>
       <div class="rt103-layer rt103-rank" style="${layerStyle(e.rank)}">${esc(d.rank)}</div>
       <div class="rt103-layer rt103-score" style="${layerStyle(e.score)}">${esc(d.score)}</div>

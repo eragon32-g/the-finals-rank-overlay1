@@ -1,12 +1,12 @@
 {
-  "version": "0.2.7",
+  "version": "0.2.8",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.2.7: fix correttivo per sincronizzare versione, pagina Updates e selettore font visibile nel Layout Editor avanzato.",
+  "note": "BETA 0.2.8: integra la tipografia ufficiale THE FINALS Saira Condensed nel builder, nella preview e nell overlay finale.",
   "status": "BETA",
-  "label": "BETA 0.2.7",
+  "label": "BETA 0.2.8",
   "versioning": {
     "beta": true,
     "rules": [
