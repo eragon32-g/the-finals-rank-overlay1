@@ -1,7 +1,7 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-4-4-account-cards-layout-fix",
-  "version": "0.4.4",
-  "description": "RankTag BETA 0.4.4 - account cards same row, recovery modal and projects summary",
+  "name": "ranktag-finals-overlay-beta-0-4-4-projects-preview-alignment-fix",
+  "version": "0.4.5",
+  "description": "RankTag BETA 0.4.5 - projects preview alignment center fix",
   "scripts": {
     "start": "vercel dev"
   }

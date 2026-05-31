@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.4.5",
+    "title": "Projects Preview Alignment Fix",
+    "date": "2026-05-31",
+    "changes": [
+      "centra le card della libreria progetti quando sono poche",
+      "migliora l'allineamento delle anteprime overlay nelle card",
+      "riduce il taglio laterale della preview iframe",
+      "mantiene layout responsive mobile/tablet",
+      "versione e Updates aggiornati a BETA 0.4.5"
+    ]
+  },
+  {
     "version": "0.4.4",
     "status": "BETA",
     "date": "2026-05-31",

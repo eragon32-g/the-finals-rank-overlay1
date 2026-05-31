@@ -1,14 +1,14 @@
 {
-  "version": "0.4.4",
+  "version": "0.4.5",
   "status": "BETA",
   "date": "2026-05-31",
-  "name": "Account Cards Layout Fix",
-  "note": "BETA 0.4.4: riorganizza Login & Progetti con tre card sulla stessa riga, recupero password in modale e riepilogo progetti rapido.",
-  "label": "BETA 0.4.4",
+  "name": "Projects Preview Alignment Fix",
+  "note": "BETA 0.4.5: centra la libreria progetti e migliora l'allineamento delle anteprime overlay salvate.",
+  "label": "BETA 0.4.5",
   "versioning": {
-    "current": "0.4.4",
+    "current": "0.4.5",
     "next": "0.4.5"
   },
-  "codename": "account-cards-layout-fix",
+  "codename": "projects-preview-alignment-fix",
   "updated": "2026-05-31"
 }
