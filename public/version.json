@@ -1,12 +1,12 @@
 {
-  "version": "0.3.6",
+  "version": "0.3.7",
   "status": "BETA",
   "date": "2026-05-31",
-  "name": "Admin Restore Credentials Reset",
-  "note": "BETA 0.3.6: ripristina la sezione admin, resetta le credenziali, collega il pannello nel menu e rimuove di nuovo il Test Lab dalla navigazione.",
-  "label": "BETA 0.3.6",
+  "name": "Admin Security Duration Codes Fix",
+  "note": "BETA 0.3.7: rimuove credenziali visibili e autofill dalla pagina Admin, elimina PIN legacy/demo e aggiunge codici temporanei in giorni, ore e minuti per testare scadenza e blocchi.",
+  "label": "BETA 0.3.7",
   "versioning": {
-    "current": "0.3.6",
-    "next": "0.3.7"
+    "current": "0.3.7",
+    "next": "0.3.8"
   }
 }

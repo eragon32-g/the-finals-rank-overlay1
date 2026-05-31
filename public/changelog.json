@@ -1,5 +1,20 @@
 [
   {
+    "version": "0.3.7",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Admin security and duration codes fix",
+    "summary": "Rende più sicuro il pannello Admin rimuovendo credenziali visibili/autofill e aggiunge codici a durata breve in ore e minuti per testare il blocco Builder e la scadenza.",
+    "fixed": [
+      "rimossa box credenziali dalla pagina Admin",
+      "rimossa compilazione automatica username/password",
+      "rimosso PIN legacy ranktag-admin e password-only login",
+      "aggiunta generazione codici in giorni, ore e minuti",
+      "aggiunti quick test 15 minuti e 1 ora",
+      "rimossi codici demo predefiniti pubblici"
+    ]
+  },
+  {
     "version": "0.3.6",
     "status": "BETA",
     "date": "2026-05-31",

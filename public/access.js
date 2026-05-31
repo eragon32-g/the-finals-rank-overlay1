@@ -3,20 +3,36 @@
   const STORAGE_KEY = "ranktagAuthV1";
   const ADMIN_KEY = "ranktagAdminUnlockedV1";
   const ADMIN_USER = "admin";
-  const ADMIN_PASSWORD = "RankTag-Admin-036";
+  const ADMIN_PASSWORD = "RankTag-Admin-037";
   const CODES_KEY = "ranktagAccessCodesV1";
   const PROJECTS_KEY = "ranktagProjectsV1";
   const DAY = 24 * 60 * 60 * 1000;
-  const DEFAULT_CODES = [
-    { code:"RT-1D-DEMO-2026", type:"temporary", days:1, label:"Accesso 1 giorno", usedBy:null, usedAt:null, disabled:false },
-    { code:"RT-7D-DEMO-2026", type:"temporary", days:7, label:"Accesso 7 giorni", usedBy:null, usedAt:null, disabled:false },
-    { code:"RT-30D-DEMO-2026", type:"temporary", days:30, label:"Accesso 30 giorni", usedBy:null, usedAt:null, disabled:false },
-    { code:"RT-PERM-DEMO-2026", type:"permanent", days:null, label:"Accesso permanente", usedBy:null, usedAt:null, disabled:false }
-  ];
+  const DEFAULT_CODES = [];
   function read(key, fallback){ try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); } catch { return fallback; } }
   function write(key, value){ localStorage.setItem(key, JSON.stringify(value)); }
   function normalizeEmail(v){ return String(v || "").trim().toLowerCase(); }
   function now(){ return Date.now(); }
+  function durationToMs(input){
+    if(input && typeof input === "object"){
+      const d = Math.max(0, Number(input.days || 0));
+      const h = Math.max(0, Number(input.hours || 0));
+      const m = Math.max(0, Number(input.minutes || 0));
+      const total = ((d * 24 * 60) + (h * 60) + m) * 60 * 1000;
+      return Math.max(60 * 1000, total || DAY);
+    }
+    return Math.max(60 * 1000, Math.max(0, Number(input || 0)) * DAY || DAY);
+  }
+  function durationLabel(ms){
+    if(!ms) return "Permanente";
+    let mins = Math.max(1, Math.round(Number(ms) / 60000));
+    const days = Math.floor(mins / 1440); mins -= days * 1440;
+    const hours = Math.floor(mins / 60); mins -= hours * 60;
+    const parts = [];
+    if(days) parts.push(days + " giorni");
+    if(hours) parts.push(hours + " ore");
+    if(mins) parts.push(mins + " minuti");
+    return parts.join(" ") || "1 minuto";
+  }
   function ensureCodes(){
     const current = read(CODES_KEY, []);
     const byCode = new Map(current.map(c => [String(c.code || "").toUpperCase(), c]));
@@ -49,9 +65,9 @@
     if(item.usedBy && item.usedBy !== auth.email) throw new Error("Codice già utilizzato da un altro account.");
     if(item.usedBy === auth.email) throw new Error("Hai già riscattato questo codice.");
     const redeemedAt = now();
-    const expiresAt = item.type === "permanent" ? null : redeemedAt + Math.max(1, Number(item.days || 1)) * DAY;
+    const expiresAt = item.type === "permanent" ? null : redeemedAt + durationToMs(item.durationMs || item.days || 1);
     item.usedBy = auth.email; item.usedAt = redeemedAt; item.expiresAt = expiresAt;
-    auth.access = { code:item.code, type:item.type, days:item.days, redeemedAt, expiresAt };
+    auth.access = { code:item.code, type:item.type, days:item.days, durationMs:item.durationMs || null, redeemedAt, expiresAt };
     write(CODES_KEY, codes);
     setAuth(auth);
     return auth.access;
@@ -95,7 +111,9 @@
   function makeCode(prefix, type, days){
     const stamp = now().toString(36).toUpperCase();
     const rnd = Math.random().toString(36).slice(2,8).toUpperCase();
-    const dur = type === "permanent" ? "PERM" : `${Math.max(1, Number(days || 1))}D`;
+    const ms = durationToMs(days);
+    const totalMinutes = Math.max(1, Math.round(ms / 60000));
+    const dur = type === "permanent" ? "PERM" : (totalMinutes < 1440 ? `${totalMinutes}M` : `${Math.round(totalMinutes/1440)}D`);
     return `${String(prefix || "RT").trim().toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,10) || "RT"}-${dur}-${stamp}-${rnd}`;
   }
   function addCode(code, type, days, note){
@@ -104,11 +122,13 @@
     if(!clean) throw new Error("Codice mancante.");
     if(codes.some(c => String(c.code || "").toUpperCase() === clean)) throw new Error("Codice già esistente.");
     const normalizedType = type === "permanent" ? "permanent" : "temporary";
+    const durationMs = normalizedType === "permanent" ? null : durationToMs(days);
     codes.unshift({
       code:clean,
       type:normalizedType,
-      days:normalizedType === "permanent" ? null : Math.max(1, Number(days || 1)),
-      label:normalizedType === "permanent" ? "Accesso permanente" : `Accesso ${Math.max(1, Number(days || 1))} giorni`,
+      days:normalizedType === "permanent" ? null : Math.max(0, Math.floor(durationMs / DAY)),
+      durationMs,
+      label:normalizedType === "permanent" ? "Accesso permanente" : `Accesso ${durationLabel(durationMs)}`,
       note:String(note || "").slice(0,120),
       createdAt:now(),
       usedBy:null,
@@ -160,19 +180,16 @@
     write(CODES_KEY, next);
     return next;
   }
-  function unlockAdmin(pin, password){
-    const first = String(pin || "").trim();
+  function unlockAdmin(username, password){
+    const first = String(username || "").trim();
     const second = String(password || "").trim();
-    const legacyPinOk = first === "ranktag-admin";
-    const userPassOk = first.toLowerCase() === ADMIN_USER && second === ADMIN_PASSWORD;
-    const passwordOnlyOk = first === ADMIN_PASSWORD;
-    const ok = legacyPinOk || userPassOk || passwordOnlyOk;
+    const ok = first.toLowerCase() === ADMIN_USER && second === ADMIN_PASSWORD;
     if(!ok) throw new Error("Credenziali admin non valide.");
     localStorage.setItem(ADMIN_KEY, "1");
     return true;
   }
   function isAdminUnlocked(){ return localStorage.getItem(ADMIN_KEY) === "1"; }
   function lockAdmin(){ localStorage.removeItem(ADMIN_KEY); }
-  window.RankTagAccess = { register, login, logout, redeem, getAuth, getAccessState, requireBuilderAccess, getAccessParams, validateOverlayUrlParams, saveProject, listProjects, formatDate, ensureCodes, listCodes, addCode, generateCode, setCodeDisabled, deleteUnusedCode, exportCodes, importCodes, unlockAdmin, isAdminUnlocked, lockAdmin };
+  window.RankTagAccess = { register, login, logout, redeem, getAuth, getAccessState, requireBuilderAccess, getAccessParams, validateOverlayUrlParams, saveProject, listProjects, formatDate, formatDuration: durationLabel, ensureCodes, listCodes, addCode, generateCode, setCodeDisabled, deleteUnusedCode, exportCodes, importCodes, unlockAdmin, isAdminUnlocked, lockAdmin };
   ensureCodes();
 })();
