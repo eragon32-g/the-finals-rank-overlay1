@@ -1,4 +1,4 @@
-# RankTag BETA 0.2.3
+# RankTag BETA 0.2.4 - Advanced Builder Custom Image Link Fix
 
 Base effects off.
 

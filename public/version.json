@@ -1,12 +1,12 @@
 {
-  "version": "0.2.3",
+  "version": "0.2.4",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.2.3: ripristinato lo scroll verticale nell Overlay Builder avanzato su finestre basse.",
+  "note": "BETA 0.2.4: immagini custom del builder compresse e spostate nel frammento del link per evitare query troppo lunghe.",
   "status": "BETA",
-  "label": "BETA 0.2.3",
+  "label": "BETA 0.2.4",
   "versioning": {
     "beta": true,
     "rules": [

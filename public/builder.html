@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=023" />
+  <link rel="stylesheet" href="/style.css?v=024" />
   <style>
     * { box-sizing: border-box; }
     html { height:auto; min-height:100%; overflow-y:auto; overflow-x:hidden; background:#030407; }
@@ -246,7 +246,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.2.1</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.2.4</span>
       </div>
     </div>
     <div class="layout">
@@ -314,14 +314,14 @@
         <p class="help">Preview reale in scala ridotta. Il link finale ora include layout e branding animato.</p>
         <div class="mirror-preview" id="mirrorPreview"><div class="mirror-bg"></div></div><iframe id="preview" title="Preview overlay" style="display:none;"></iframe>
         <div class="actions"><button class="btn" id="generate" type="button">Aggiorna link</button><button class="btn secondary" id="copy" type="button">Copia link</button></div>
-        <label>Link finale<textarea id="output" readonly></textarea></label>
+        <label>Link finale<textarea id="output" readonly></textarea></label><p class="help" id="linkSizeHelp">Le immagini custom vengono compresse e salvate nel frammento # del link per ridurre problemi sulle piattaforme.</p>
       </section>
     </div>
   </main>
   <script>
     const $ = (id) => document.getElementById(id);
     const stage = $("builderStage");
-    const MAX_IMAGES = 2, MAX_IMG_SIZE = 320;
+    const MAX_IMAGES = 2, MAX_IMG_SIZE = 160, MAX_CUSTOM_LINK_CHARS = 24000;
     const rankMap = {"bronze-4":["Bronze","4"],"bronze-3":["Bronze","3"],"bronze-2":["Bronze","2"],"bronze-1":["Bronze","1"],"silver-4":["Silver","4"],"silver-3":["Silver","3"],"silver-2":["Silver","2"],"silver-1":["Silver","1"],"gold-4":["Gold","4"],"gold-3":["Gold","3"],"gold-2":["Gold","2"],"gold-1":["Gold","1"],"platinum-4":["Platinum","4"],"platinum-3":["Platinum","3"],"platinum-2":["Platinum","2"],"platinum-1":["Platinum","1"],"diamond-4":["Diamond","4"],"diamond-3":["Diamond","3"],"diamond-2":["Diamond","2"],"diamond-1":["Diamond","1"],"ruby":["Ruby",""]};
     const defaultLayout = {badge:{kind:"base",label:"Badge",x:28,y:32,w:78,h:78,fontSize:0,z:8,opacity:1},rank:{kind:"base",label:"Rank",x:116,y:43,w:205,h:24,fontSize:22,z:6,opacity:1},score:{kind:"base",label:"ELO",x:118,y:70,w:104,h:14,fontSize:10,z:6,opacity:1},player:{kind:"base",label:"Player",x:226,y:70,w:135,h:14,fontSize:9.5,z:6,opacity:1},brand:{kind:"base",label:"Brand",x:118,y:91,w:225,h:14,fontSize:8.5,z:6,opacity:1}};
     let baseLayout = JSON.parse(JSON.stringify(defaultLayout)), customElements = [], selectedId = "badge";
@@ -356,7 +356,7 @@
           lineHeight: `${item.h * scale}px`
         });
         if(item.id==="badge"){
-          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=021" alt="">`;
+          node.innerHTML = `<img src="/assets/badges/platinum.svg?v=024" alt="">`;
         } else if(item.kind==="image"){
           node.innerHTML = `<img src="${item.src}" alt="">`;
         } else {
@@ -380,7 +380,7 @@
         }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",lineHeight:`${item.h}px`});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=021" alt="">`;
+        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=024" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; if(item.id === selectedId){ label.textContent=item.label||item.name||item.id; box.appendChild(label); }
@@ -399,15 +399,17 @@
     function applyFields(){const item=selected(); if(!item)return; item.x=Math.round(clamp($("editX").value,-120,590)); item.y=Math.round(clamp($("editY").value,-120,280)); item.w=Math.round(clamp($("editW").value,6,600)); item.h=Math.round(clamp($("editH").value,6,300)); item.fontSize=Math.max(0,Number($("editFont").value||0)); if(item.kind !== "image" && selectedId !== "badge" && item.fontSize <= 0) item.fontSize = Math.max(7, Math.round(item.h * 0.75)); item.z=Math.round(Number($("editZ").value||1)); item.opacity=Math.max(0,Math.min(1,Number($("editOpacity").value||1))); render();}
     function scaleLayoutForOverlay(){const out={}; Object.entries(baseLayout).forEach(([key,v])=>{out[key]={x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),fontSize:Math.max(0,Number(v.fontSize||0)),z:Math.round(Number(v.z)||1)};}); return {version:1,schema:"ranktag-base-layout-v1",canvas:{width:470,height:160},elements:out};}
     function customPayload(){return customElements.map((v)=>({id:v.id,name:v.name,type:"image",src:v.src,x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),opacity:Math.max(0,Math.min(1,Number(v.opacity??1))),z:Math.round(Number(v.z)||30)}));}
+    function updateLinkSizeHint(link){const help=$("linkSizeHelp"); if(!help)return; const len=link.length; help.textContent = customElements.length ? `Link generato: ${len} caratteri. Le immagini custom sono compresse e messe dopo # per essere lette dall overlay senza appesantire la query.` : `Link generato: ${len} caratteri.`; help.style.color = len > MAX_CUSTOM_LINK_CHARS ? "#ff8f8f" : ""; if(len > MAX_CUSTOM_LINK_CHARS) help.textContent += " Se resta troppo lungo per una piattaforma, usa una sola immagine oppure un file più piccolo.";}
     function buildLink(){
       const url=new URL(window.location.origin+"/index.html"); const mode=$("mode").value, player=$("player").value.trim()||"NomePlayer#1234", badgeFile=$("badgeFile").value; const [league,division]=rankMap[badgeFile]||["Unranked",""];
       if(mode==="manual"){url.searchParams.set("mode","manual"); url.searchParams.set("player",player); url.searchParams.set("league",league); url.searchParams.set("division",division); url.searchParams.set("rankScore",$("rankScore").value.trim()||"0"); url.searchParams.set("badgeFile",badgeFile);}
       else{url.searchParams.set("player",player); url.searchParams.set("leaderboard","s10");}
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
-      url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("baseLayout",encode(scaleLayoutForOverlay())); if(customElements.length) url.searchParams.set("customElements",encode(customPayload())); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
-      $("output").value=url.toString(); $("preview").src=url.toString(); return url.toString();
+      url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("baseLayout",encode(scaleLayoutForOverlay())); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
+      if(customElements.length){const hash=new URLSearchParams(); hash.set("customElements",encode(customPayload())); url.hash=hash.toString();}
+      const finalLink=url.toString(); $("output").value=finalLink; $("preview").src=finalLink; updateLinkSizeHint(finalLink); return finalLink;
     }
-    async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; canvas.getContext("2d").drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.78),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
+    async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; const ctx=canvas.getContext("2d"); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.62),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
     $("customImageUpload").addEventListener("change",async(event)=>{const file=event.target.files&&event.target.files[0]; event.target.value=""; if(!file)return; if(customElements.length>=MAX_IMAGES)return alert(`Massimo ${MAX_IMAGES} immagini custom.`); try{const converted=await fileToDataUrl(file); const ratio=converted.w/converted.h; const h=Math.min(150,converted.h); const w=Math.round(h*ratio); const item={id:uid(),name:file.name.replace(/\.[^.]+$/,"").slice(0,24),kind:"image",type:"image",src:converted.src,x:30+customElements.length*18,y:30+customElements.length*12,w:Math.max(24,Math.min(150,w)),h:Math.max(24,Math.min(120,h)),opacity:1,z:30+customElements.length}; customElements.push(item); selectedId=item.id; render();}catch{alert("Immagine non valida. Usa PNG, JPG o WebP.");}});
     $("applyFields").addEventListener("click",applyFields); ["editX","editY","editW","editH","editFont","editZ","editOpacity"].forEach((id)=>$(id).addEventListener("change",applyFields));
     ["mode","player","badgeFile","rankScore","scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{$(id)?.addEventListener("input",()=>{render(); buildLink();}); $(id)?.addEventListener("change",()=>{render(); buildLink();});});

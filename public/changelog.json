@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.2.4",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Advanced builder custom image link fix",
+    "summary": "Le immagini custom caricate nel Builder avanzato vengono compresse meglio e salvate nel frammento # del link, così l'overlay finale può leggerle evitando query URL eccessive.",
+    "fixed": [
+      "immagini custom non lette correttamente dal link finale su browser source/piattaforme esterne",
+      "link finale troppo pesante perché le immagini venivano inserite nella query principale",
+      "mancanza di avviso quando il link con immagini diventa molto lungo"
+    ]
+  },
+  {
     "version": "0.2.3",
     "status": "BETA",
     "date": "2026-05-31",

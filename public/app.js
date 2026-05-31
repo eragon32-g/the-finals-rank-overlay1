@@ -10,11 +10,15 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "022";
+const OVERLAY_VERSION = "024";
 const params = new URLSearchParams(window.location.search);
+const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
+function getRankTagParam(name) {
+  return params.get(name) || hashParams.get(name) || "";
+}
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
-  "version": "0.2.3",
+  "version": "0.2.4",
   "schema": "ranktag-premium-layout-v2",
   "style": "voidrage-inferno",
   "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.",
@@ -68,7 +72,7 @@ const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
 };
 
 const CYBER_RED_ELITE_LAYOUT_LOCKED = {
-  "version": "0.2.3",
+  "version": "0.2.4",
   "schema": "ranktag-premium-layout-v2",
   "style": "cyber-red-elite",
   "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.",
@@ -259,7 +263,7 @@ function decodeRankTagPayload(raw) {
 }
 
 function decodeBaseLayoutParam() {
-  const raw = params.get("baseLayout");
+  const raw = getRankTagParam("baseLayout");
   if (!raw) return null;
   try {
     const parsed = JSON.parse(decodeRankTagPayload(raw));
@@ -349,7 +353,7 @@ function applyBaseLayoutFromUrl() {
 
 /* RankTag BETA 0.2.1 - custom image elements renderer */
 function decodeCustomElementsParam() {
-  const raw = params.get("customElements");
+  const raw = getRankTagParam("customElements");
   if (!raw) return [];
   try {
     const parsed = JSON.parse(decodeRankTagPayload(raw));
@@ -896,7 +900,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag BETA 0.2.1 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "0.2.3");
+document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
 
 
 
