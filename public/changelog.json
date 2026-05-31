@@ -1,5 +1,20 @@
 [
   {
+    "version": "0.3.9",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Account Recovery Projects Page Rework",
+    "summary": "Sposta l’account fuori dalla pagina RankTag principale e aggiunge una pagina dedicata per login, registrazione, recupero locale e progetti personali.",
+    "fixed": [
+      "rimossa sezione Account dalla pagina Generator",
+      "pagina /account.html riorganizzata come Login & Progetti",
+      "login possibile con email oppure nickname",
+      "aggiunto elenco account locali per recuperare nickname dimenticati",
+      "aggiunto reset password locale per account salvati sul dispositivo",
+      "preparata base multi-account locale senza bloccare la creazione di nuovi utenti"
+    ]
+  },
+  {
     "version": "0.3.8",
     "status": "BETA",
     "date": "2026-05-31",

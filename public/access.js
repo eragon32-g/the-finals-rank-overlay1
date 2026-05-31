@@ -1,6 +1,7 @@
 
 (function(){
   const STORAGE_KEY = "ranktagAuthV1";
+  const USERS_KEY = "ranktagUsersV2";
   const ADMIN_KEY = "ranktagAdminUnlockedV1";
   const ADMIN_USER = "admin";
   const ADMIN_PASSWORD = "RankTag-Admin-038";
@@ -41,20 +42,89 @@
     write(CODES_KEY, current);
     return current;
   }
-  function getAuth(){ return read(STORAGE_KEY, null); }
-  function setAuth(auth){ write(STORAGE_KEY, auth); window.dispatchEvent(new Event("ranktag-auth-change")); return auth; }
-  function register(email, password){
-    email = normalizeEmail(email);
-    if(!email || !password) throw new Error("Inserisci email e password.");
-    return setAuth({ email, password:String(password), createdAt:now(), access:null });
+  function getUsers(){
+    const users = read(USERS_KEY, []);
+    const legacy = read(STORAGE_KEY, null);
+    if(legacy?.email && legacy?.password && !users.some(u => normalizeEmail(u.email) === normalizeEmail(legacy.email))){
+      users.push({
+        email:normalizeEmail(legacy.email),
+        nickname:legacy.nickname || String(legacy.email).split("@")[0],
+        password:String(legacy.password),
+        createdAt:legacy.createdAt || now(),
+        access:legacy.access || null
+      });
+      write(USERS_KEY, users);
+    }
+    return users;
   }
-  function login(email, password){
+  function setUsers(users){ write(USERS_KEY, users); return users; }
+  function getSession(){ return read(STORAGE_KEY, null); }
+  function getAuth(){
+    const session = getSession();
+    if(!session?.email) return null;
+    const users = getUsers();
+    const user = users.find(u => normalizeEmail(u.email) === normalizeEmail(session.email));
+    if(!user) return null;
+    return {...user, email:normalizeEmail(user.email)};
+  }
+  function setAuth(auth){
+    const clean = normalizeEmail(auth?.email);
+    if(!clean) return null;
+    write(STORAGE_KEY, { email:clean, loggedAt:now() });
+    window.dispatchEvent(new Event("ranktag-auth-change"));
+    return getAuth();
+  }
+  function upsertUser(user){
+    const users = getUsers();
+    const clean = normalizeEmail(user.email);
+    const i = users.findIndex(u => normalizeEmail(u.email) === clean);
+    const next = {...(i>=0?users[i]:{}), ...user, email:clean};
+    if(i>=0) users[i]=next; else users.push(next);
+    setUsers(users);
+    return next;
+  }
+  function register(email, password, nickname){
     email = normalizeEmail(email);
-    const auth = getAuth();
-    if(!auth || auth.email !== email || String(auth.password || "") !== String(password || "")) throw new Error("Login non valido su questo browser. Registrati o controlla i dati.");
-    return setAuth(auth);
+    const nick = String(nickname || email.split("@")[0] || "player").trim();
+    if(!email || !password) throw new Error("Inserisci email e password.");
+    const users = getUsers();
+    if(users.some(u => normalizeEmail(u.email) === email)) throw new Error("Account già esistente. Usa login oppure Recupero accesso.");
+    if(nick && users.some(u => String(u.nickname||"").toLowerCase() === nick.toLowerCase())) throw new Error("Nickname già usato. Scegline un altro oppure recupera l’account.");
+    const user = { email, nickname:nick, password:String(password), createdAt:now(), access:null };
+    users.push(user); setUsers(users);
+    return setAuth(user);
+  }
+  function login(identifier, password){
+    const id = String(identifier || "").trim().toLowerCase();
+    const users = getUsers();
+    const user = users.find(u => normalizeEmail(u.email) === id || String(u.nickname||"").toLowerCase() === id);
+    if(!user || String(user.password || "") !== String(password || "")) throw new Error("Login non valido. Puoi usare email oppure nickname.");
+    return setAuth(user);
   }
   function logout(){ localStorage.removeItem(STORAGE_KEY); window.dispatchEvent(new Event("ranktag-auth-change")); }
+  function resetPassword(identifier, newPassword){
+    const id = String(identifier || "").trim().toLowerCase();
+    if(!id || !newPassword) throw new Error("Inserisci email/nickname e nuova password.");
+    const users = getUsers();
+    const user = users.find(u => normalizeEmail(u.email) === id || String(u.nickname||"").toLowerCase() === id);
+    if(!user) throw new Error("Account non trovato su questo dispositivo.");
+    user.password = String(newPassword);
+    setUsers(users);
+    return user;
+  }
+  function updateNickname(nickname){
+    const auth = getAuth();
+    if(!auth?.email) throw new Error("Effettua login prima di modificare il nickname.");
+    const nick = String(nickname || "").trim();
+    if(!nick) throw new Error("Nickname mancante.");
+    const users = getUsers();
+    if(users.some(u => normalizeEmail(u.email) !== auth.email && String(u.nickname||"").toLowerCase() === nick.toLowerCase())) throw new Error("Nickname già usato.");
+    const user = users.find(u => normalizeEmail(u.email) === auth.email);
+    user.nickname = nick;
+    setUsers(users);
+    return setAuth(user);
+  }
+  function listKnownUsers(){ return getUsers().map(u => ({ email:normalizeEmail(u.email), nickname:u.nickname || "", hasAccess:!!u.access })); }
   function redeem(code){
     const auth = getAuth();
     if(!auth?.email) throw new Error("Effettua login o registrazione prima di riscattare un codice.");
@@ -69,6 +139,7 @@
     const expiresAt = item.type === "permanent" ? null : redeemedAt + durationToMs(item.durationMs || item.days || 1);
     item.usedBy = auth.email; item.usedAt = redeemedAt; item.expiresAt = expiresAt;
     auth.access = { code:item.code, type:item.type, days:item.days, durationMs:item.durationMs || null, redeemedAt, expiresAt };
+    upsertUser(auth);
     write(CODES_KEY, codes);
     setAuth(auth);
     return auth.access;
@@ -191,6 +262,6 @@
   }
   function isAdminUnlocked(){ return localStorage.getItem(ADMIN_KEY) === "1"; }
   function lockAdmin(){ localStorage.removeItem(ADMIN_KEY); }
-  window.RankTagAccess = { register, login, logout, redeem, getAuth, getAccessState, requireBuilderAccess, getAccessParams, validateOverlayUrlParams, saveProject, listProjects, formatDate, formatDuration: durationLabel, ensureCodes, listCodes, addCode, generateCode, setCodeDisabled, deleteUnusedCode, exportCodes, importCodes, unlockAdmin, isAdminUnlocked, lockAdmin };
+  window.RankTagAccess = { register, login, logout, resetPassword, updateNickname, listKnownUsers, redeem, getAuth, getAccessState, requireBuilderAccess, getAccessParams, validateOverlayUrlParams, saveProject, listProjects, formatDate, formatDuration: durationLabel, ensureCodes, listCodes, addCode, generateCode, setCodeDisabled, deleteUnusedCode, exportCodes, importCodes, unlockAdmin, isAdminUnlocked, lockAdmin };
   ensureCodes();
 })();

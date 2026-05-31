@@ -1,12 +1,12 @@
 {
-  "version": "0.3.8",
+  "version": "0.3.9",
   "status": "BETA",
   "date": "2026-05-31",
-  "name": "Admin Login Credentials Fix",
-  "note": "BETA 0.3.8: corregge il controllo delle credenziali admin dopo la rimozione del PIN legacy, mantiene nascosti i dati in pagina e disattiva l'autofill del browser.",
-  "label": "BETA 0.3.8",
+  "name": "Account Recovery Projects Page Rework",
+  "note": "BETA 0.3.9: sposta login/progetti in una pagina dedicata, rimuove la sezione Account dalla pagina RankTag e aggiunge recupero locale con reset password per gli utenti che dimenticano nickname o password.",
+  "label": "BETA 0.3.9",
   "versioning": {
-    "current": "0.3.8",
-    "next": "0.3.9"
+    "current": "0.3.9",
+    "next": "0.4.0"
   }
 }
