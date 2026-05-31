@@ -237,6 +237,16 @@
       100% { transform: translateX(-30%); }
     }
 
+  
+    /* RankTag BETA 0.2.7 - font selector visibility */
+    .font-picker-field {
+      border-color: rgba(239,23,36,.40) !important;
+      box-shadow: inset 0 0 0 1px rgba(239,23,36,.12);
+    }
+    .font-help {
+      margin-top: -4px;
+      color: rgba(245,247,251,.68);
+    }
   </style>
 </head>
 <body>
@@ -247,7 +257,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.2.4</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.2.7</span>
       </div>
     </div>
     <div class="layout">
@@ -306,9 +316,10 @@
         <div class="grid2">
           <label>X<input id="editX" type="number" value="0"></label><label>Y<input id="editY" type="number" value="0"></label>
           <label>W<input id="editW" type="number" value="64"></label><label>H<input id="editH" type="number" value="64"></label>
-          <label>Dimensione testo<input id="editFont" type="number" value="0"></label><label>Font testo<select id="editFontFamily"><option value="">Default RankTag</option><option value="Arial, Helvetica, sans-serif">Arial</option><option value="Impact, Haettenschweiler, Arial Narrow Bold, sans-serif">Impact</option><option value="Verdana, Geneva, sans-serif">Verdana</option><option value="Trebuchet MS, Arial, sans-serif">Trebuchet</option><option value="Georgia, serif">Georgia</option><option value="Tahoma, Geneva, sans-serif">Tahoma</option><option value="Courier New, monospace">Courier New</option><option value="Times New Roman, serif">Times New Roman</option><option value="Lucida Console, Monaco, monospace">Lucida Console</option></select></label><label>Livello<input id="editZ" type="number" value="1"></label>
+          <label>Dimensione testo<input id="editFont" type="number" value="0"></label><label class="font-picker-field">Font testo<select id="editFontFamily"><option value="">Default RankTag</option><option value="Arial, Helvetica, sans-serif">Arial</option><option value="Impact, Haettenschweiler, Arial Narrow Bold, sans-serif">Impact</option><option value="Verdana, Geneva, sans-serif">Verdana</option><option value="Trebuchet MS, Arial, sans-serif">Trebuchet</option><option value="Georgia, serif">Georgia</option><option value="Tahoma, Geneva, sans-serif">Tahoma</option><option value="Courier New, monospace">Courier New</option><option value="Times New Roman, serif">Times New Roman</option><option value="Lucida Console, Monaco, monospace">Lucida Console</option></select></label><label>Livello<input id="editZ" type="number" value="1"></label>
           <label>Opacità<input id="editOpacity" type="number" min="0" max="1" step="0.05" value="1"></label>
         </div>
+        <p class="help font-help">Seleziona prima Rank, ELO, Player o Brand: il menu Font testo si attiva solo per gli elementi testuali e viene salvato nel link finale.</p>
         <div class="actions"><button class="btn secondary" id="applyFields" type="button">Applica</button><button class="btn secondary" id="front" type="button">Porta avanti</button><button class="btn secondary" id="back" type="button">Porta dietro</button><button class="btn secondary" id="removeImage" type="button">Rimuovi immagine</button></div>
         <div class="list" id="elementsList"></div>
         <h2>6. Anteprima finale reale</h2>

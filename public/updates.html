@@ -160,7 +160,7 @@
         <a href="/home.html">Home</a>
         <a href="/generator.html">Generator</a>
         <a href="/builder.html">Builder</a>
-        <span class="tag">RankTag BETA 0.2.2</span>
+        <span class="tag">RankTag BETA 0.2.7</span>
       </div>
     </div>
 
@@ -168,173 +168,48 @@
 
       <article class="release-card current">
         <div class="release-head">
-          <h2>BETA 0.2.2 · Base visual alignment fix</h2>
-          <p>Il blocco Aspetto overlay base ora è centrato e allineato nella pagina Generator.</p>
-          <h2>BETA 0.2.1 · Base effects off</h2>
+          <h2>BETA 0.2.7 · Version and font selector visibility fix</h2>
           <span class="tag">Current</span>
         </div>
-        <p class="release-note">
-          Gli effetti base ora partono disattivati di default. L’utente può attivarli manualmente dal Builder/Generator.
-        </p>
+        <p class="release-note">Patch correttiva: sincronizza versione, pagina Updates e selettore font nel Layout Editor avanzato.</p>
         <div class="grid">
-          <div class="mini">
-            <h3>Modifica</h3>
-            <ul>
-              <li>Dettaglio laterale disattivato di default</li>
-              <li>Alone stemma disattivato di default</li>
-              <li>Ring stemma disattivato di default</li>
-              <li>Pulse disattivato di default</li>
-              <li>Scanline disattivata di default</li>
-            </ul>
-          </div>
-          <div class="mini">
-            <h3>Nota</h3>
-            <ul>
-              <li>Il ritaglio cornice resta attivo</li>
-              <li>Gli effetti restano disponibili e attivabili a piacimento</li>
-            </ul>
-          </div>
+          <div class="mini"><h3>Fix</h3><ul><li>versione visibile aggiornata a BETA 0.2.7</li><li>pagina Updates aggiornata con le ultime build</li><li>selettore Font testo reso più evidente nel Builder</li></ul></div>
+          <div class="mini"><h3>Nota</h3><ul><li>il font si attiva selezionando Rank, ELO, Player o Brand</li><li>la scelta viene salvata nel link finale tramite baseLayout</li></ul></div>
         </div>
       </article>
 
       <article class="release-card">
-        <div class="release-head">
-          <h2>BETA 0.2.0 · Updates grouped fix</h2>
-          <span class="tag">Current</span>
-        </div>
-        <p class="release-note">
-          Fix importante della pagina Updates: scroll ripristinato, contenuti raggruppati e pulizia
-          della comunicazione pubblica. Da ora gli aggiornamenti piccoli vengono accorpati in un unico post.
-        </p>
-        <div class="grid">
-          <div class="mini">
-            <h3>Fix</h3>
-            <ul>
-              <li>risolto bug che impediva lo scroll della pagina Updates</li>
-              <li>rimossa la lista lunga di micro-patch</li>
-              <li>layout più pulito e leggibile anche da mobile</li>
-              <li>navigazione aggiornata con link a Generator e Builder</li>
-            </ul>
-          </div>
-          <div class="mini">
-            <h3>Nuova regola pubblicazione</h3>
-            <ul>
-              <li>pubblicare solo aggiornamenti importanti</li>
-              <li>raggruppare le patch per ciclo versione</li>
-              <li>usare dettagli espandibili per storico tecnico</li>
-              <li>evitare post separati per ogni fix minore</li>
-            </ul>
-          </div>
-        </div>
+        <div class="release-head"><h2>BETA 0.2.6 · Text font selector</h2></div>
+        <p class="release-note">Aggiunta scelta font per i testi modificabili del Layout Editor avanzato.</p>
+        <div class="grid"><div class="mini"><h3>Aggiunto</h3><ul><li>font per Rank, ELO, Player e Brand</li><li>font applicato in editor, preview e overlay finale</li><li>font salvato nel parametro baseLayout</li></ul></div></div>
       </article>
 
       <article class="release-card">
-        <div class="release-head">
-          <h2>BETA 0.0.1 → 0.1.0 · Lancio Builder</h2>
-          <span class="tag">Release group</span>
-        </div>
-        <p class="release-note">
-          Primo ciclo Beta del generatore: pulizia del progetto, rimozione premium pubblici,
-          introduzione del nuovo Overlay Builder e passaggio alla numerazione Beta stabile.
-        </p>
-        <div class="grid">
-          <div class="mini">
-            <h3>Principali novità</h3>
-            <ul>
-              <li>generator principale più pulito</li>
-              <li>sezione premium pubblica rimossa</li>
-              <li>vecchio Layout Editor admin rimosso</li>
-              <li>nuovo Overlay Builder separato in <strong>/builder.html</strong></li>
-              <li>drag & resize per badge, rank, ELO, player, brand e immagini custom</li>
-              <li>link finale generato direttamente dal Builder</li>
-            </ul>
-          </div>
-          <div class="mini">
-            <h3>Fix principali</h3>
-            <ul>
-              <li>fix posizione e dimensione badge base</li>
-              <li>fix layout editor troppo schiacciato</li>
-              <li>fix preview iframe e problemi 403</li>
-              <li>payload layout reso URL-safe</li>
-              <li>preview finale resa più fedele</li>
-              <li>passaggio corretto da 0.0.9 a 0.1.0</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="version-folder">
-          <details>
-            <summary>Dettaglio patch 0.0.x</summary>
-            <p>
-              0.0.1 ha avviato la Beta e ripulito Updates. 0.0.2 ha rimosso i premium pubblici
-              e introdotto opzioni visuali base. 0.0.5 ha introdotto il primo upload immagini custom.
-              0.0.6 ha portato il builder completo nel generator, poi spostato in pagina separata dalla 0.0.7.
-              0.0.8 e 0.0.9 hanno lavorato su centratura, preview e sicurezza dei parametri.
-            </p>
-          </details>
-          <details>
-            <summary>Dettaglio 0.1.0</summary>
-            <p>
-              0.1.0 ha consolidato il Builder separato, il rendering finale e la gestione del layout
-              tramite baseLayout/customElements.
-            </p>
-          </details>
-        </div>
+        <div class="release-head"><h2>BETA 0.2.5 · Layout editor selection and text overflow fix</h2></div>
+        <p class="release-note">Gli elementi non partono più tutti selezionati e il testo ingrandito resta visibile.</p>
+        <div class="grid"><div class="mini"><h3>Fix</h3><ul><li>selezione manuale dell’elemento</li><li>resize visibile solo sull’elemento selezionato</li><li>testo non tagliato durante l’ingrandimento</li></ul></div></div>
       </article>
 
       <article class="release-card">
-        <div class="release-head">
-          <h2>BETA 0.1.1 → 0.1.9 · Refinement Builder</h2>
-          <span class="tag">Release group</span>
-        </div>
-        <p class="release-note">
-          Secondo blocco di lavoro focalizzato sulla fedeltà tra editor, preview e link finale,
-          con fix specifici al pannello destro e al branding animato.
-        </p>
-        <div class="grid">
-          <div class="mini">
-            <h3>Miglioramenti Builder</h3>
-            <ul>
-              <li>preview mirror più coerente con l’editor</li>
-              <li>editor riportato dentro i margini della pagina</li>
-              <li>zoom applicato solo all’overlay interno</li>
-              <li>pannello destro più compatto</li>
-              <li>preview finale non tagliata</li>
-            </ul>
-          </div>
-          <div class="mini">
-            <h3>Fix finali</h3>
-            <ul>
-              <li>layout finale forzato con <strong>builderLayout=1</strong></li>
-              <li>aggiunto <strong>layoutRev</strong> per evitare cache vecchie</li>
-              <li>branding animato ripristinato nel link finale</li>
-              <li>customElements e baseLayout applicati in modo più affidabile</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="version-folder">
-          <details>
-            <summary>Dettaglio patch 0.1.x</summary>
-            <p>
-              0.1.1–0.1.4 hanno migliorato fedeltà, proporzioni, effetti e zoom.
-              0.1.5–0.1.8 hanno sistemato area editor, limiti pagina e pannello destro.
-              0.1.9 ha corretto il link finale e ripristinato l’animazione del branding.
-            </p>
-          </details>
-        </div>
+        <div class="release-head"><h2>BETA 0.2.4 · Custom image link fix</h2></div>
+        <p class="release-note">Le immagini custom vengono compresse e salvate nel frammento # del link finale.</p>
       </article>
 
       <article class="release-card">
-        <div class="release-head">
-          <h2>Regola versioni</h2>
-          <span class="tag">Beta cycle</span>
-        </div>
-        <p class="release-note">
-          La numerazione segue il ciclo concordato: 0.0.1 → 0.0.9, poi 0.1.0.
-          Quando si arriverà a 0.9.0, la versione successiva importante sarà 1.0.0.
-        </p>
+        <div class="release-head"><h2>BETA 0.2.3 · Advanced builder scroll fix</h2></div>
+        <p class="release-note">Ripristinato lo scroll verticale su schermi o finestre più piccole.</p>
       </article>
+
+      <article class="release-card">
+        <div class="release-head"><h2>BETA 0.2.2 · Base visual alignment fix</h2></div>
+        <p class="release-note">Centrata e allineata la sezione Aspetto overlay base nel Generator.</p>
+      </article>
+
+      <article class="release-card">
+        <div class="release-head"><h2>BETA 0.2.1 · Base effects off</h2></div>
+        <p class="release-note">Effetti base disattivati di default, con ritaglio cornice attivo.</p>
+      </article>
+
     </section>
   </main>
 </body>

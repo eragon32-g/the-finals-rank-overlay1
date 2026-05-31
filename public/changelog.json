@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.2.7",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Version and font selector visibility fix",
+    "summary": "Patch correttiva: sincronizza tutte le etichette versione visibili, ripristina la voce Updates più recente e rende evidente il selettore font nel Layout Editor avanzato.",
+    "fixed": [
+      "versione visibile rimasta su build precedenti in Builder, Generator e Updates",
+      "pagina Updates non aggiornata con le ultime patch",
+      "selettore font non abbastanza evidente nella sezione Elemento selezionato"
+    ]
+  },
+  {
     "version": "0.2.6",
     "status": "BETA",
     "date": "2026-05-31",

@@ -1,12 +1,12 @@
 {
-  "version": "0.2.6",
+  "version": "0.2.7",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.2.6: aggiunta selezione font per i testi nel Layout Editor avanzato, salvata nel link finale.",
+  "note": "BETA 0.2.7: fix correttivo per sincronizzare versione, pagina Updates e selettore font visibile nel Layout Editor avanzato.",
   "status": "BETA",
-  "label": "BETA 0.2.6",
+  "label": "BETA 0.2.7",
   "versioning": {
     "beta": true,
     "rules": [
