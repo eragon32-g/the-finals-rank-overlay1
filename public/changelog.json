@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.2.9",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Advanced builder custom image rotation",
+    "summary": "Il Layout Editor avanzato permette ora di ruotare le foto caricate e salva la rotazione nel link finale dell'overlay.",
+    "fixed": [
+      "aggiunto campo Rotazione foto per immagini custom selezionate",
+      "rotazione visibile nell'editor e nella preview mirror",
+      "rotazione applicata anche nell'overlay finale generato dal link"
+    ]
+  },
+  {
     "version": "0.2.8",
     "status": "BETA",
     "date": "2026-05-31",

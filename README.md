@@ -1,3 +1,3 @@
-# RankTag BETA 0.2.8 - THE FINALS Saira Typography Integration
+# RankTag BETA 0.2.9 - Custom Image Rotation
 
-Patch mirata: integra Saira Condensed nel builder, nella preview e nell overlay finale, con guida rapida ispirata alla tavola tipografica THE FINALS.
+Patch mirata: rotazione delle immagini custom nel Layout Editor avanzato e nell overlay finale.

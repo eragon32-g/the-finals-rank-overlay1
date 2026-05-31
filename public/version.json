@@ -1,12 +1,12 @@
 {
-  "version": "0.2.8",
+  "version": "0.2.9",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.2.8: integra la tipografia ufficiale THE FINALS Saira Condensed nel builder, nella preview e nell overlay finale.",
+  "note": "BETA 0.2.9: aggiunge la rotazione delle immagini custom nel Layout Editor avanzato e nel link finale.",
   "status": "BETA",
-  "label": "BETA 0.2.8",
+  "label": "BETA 0.2.9",
   "versioning": {
     "beta": true,
     "rules": [

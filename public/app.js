@@ -28,7 +28,7 @@ function getRankTagParam(name) {
 }
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
-  "version": "0.2.8",
+  "version": "0.2.9",
   "schema": "ranktag-premium-layout-v2",
   "style": "voidrage-inferno",
   "note": "Secondo overlay premium separato. Posizioni gestibili via Layout Editor.",
@@ -82,7 +82,7 @@ const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
 };
 
 const CYBER_RED_ELITE_LAYOUT_LOCKED = {
-  "version": "0.2.8",
+  "version": "0.2.9",
   "schema": "ranktag-premium-layout-v2",
   "style": "cyber-red-elite",
   "note": "Include posizione e dimensioni: x/y/w/h/fontSize/z. Questi valori devono essere importati nel pubblico e nel link finale.",
@@ -398,6 +398,8 @@ function renderCustomImageElements() {
     img.style.opacity = `${Math.max(0, Math.min(1, Number(item.opacity ?? 1)))}`;
     img.style.zIndex = `${Number(item.z || 30)}`;
     img.style.objectFit = "contain";
+    img.style.transformOrigin = "center center";
+    img.style.transform = `rotate(${Number(item.rotation || 0)}deg)`;
     img.style.pointerEvents = "none";
     img.style.userSelect = "none";
     img.draggable = false;
@@ -912,7 +914,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag BETA 0.2.1 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "0.2.8");
+document.documentElement.setAttribute("data-ranktag-version", "0.2.9");
 
 
 
