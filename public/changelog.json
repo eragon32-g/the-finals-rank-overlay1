@@ -1,5 +1,16 @@
 [
   {
+    "version": "0.4.8",
+    "title": "Access Code Expiry Repair Fix",
+    "summary": "Ripara le scadenze dei codici temporanei già riscattati che potevano risultare non valide.",
+    "changes": [
+      "ricalcolo automatico della scadenza da durata e data riscatto",
+      "riparazione codici temporanei salvati nel browser",
+      "durata giorni/ore/minuti salvata in modo completo",
+      "versione e Updates aggiornati a BETA 0.4.8"
+    ]
+  },
+  {
     "version": "0.4.7",
     "title": "Access Code Expiry Date Fix",
     "summary": "Corregge la scadenza dei codici temporanei che veniva mostrata come Invalid Date dopo il riscatto.",

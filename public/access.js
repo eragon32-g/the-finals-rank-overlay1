@@ -43,6 +43,59 @@
     return parts.join(" ") || "1 minuto";
   }
 
+
+  function safeNumber(v){
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  }
+  function parseDurationFromCode(code){
+    const parsed = parsePortableCode(code);
+    return parsed && parsed.type !== "permanent" ? parsed.durationMs : null;
+  }
+  function repairTemporaryAccess(access, fallbackCode){
+    if(!access || access.type === "permanent") return access;
+    const repaired = {...access, type:"temporary"};
+    let redeemedAt = safeNumber(repaired.redeemedAt);
+    if(!redeemedAt || redeemedAt <= 0) redeemedAt = safeNumber(repaired.usedAt);
+    if(!redeemedAt || redeemedAt <= 0) redeemedAt = now();
+    let durationMs = safeNumber(repaired.durationMs);
+    if(!durationMs || durationMs <= 0) durationMs = parseDurationFromCode(repaired.code || fallbackCode);
+    if(!durationMs || durationMs <= 0) durationMs = durationToMs({
+      days: safeNumber(repaired.days) || 0,
+      hours: safeNumber(repaired.hours) || 0,
+      minutes: safeNumber(repaired.minutes) || 0
+    });
+    let expiresAt = safeNumber(repaired.expiresAt);
+    if(!expiresAt || expiresAt <= 0) expiresAt = redeemedAt + durationMs;
+    repaired.redeemedAt = redeemedAt;
+    repaired.durationMs = durationMs;
+    repaired.expiresAt = expiresAt;
+    return repaired;
+  }
+  function repairCodeRecord(c){
+    if(!c || c.type === "permanent") return c;
+    const next = {...c, type:"temporary"};
+    let durationMs = safeNumber(next.durationMs);
+    if(!durationMs || durationMs <= 0) durationMs = parseDurationFromCode(next.code);
+    if(!durationMs || durationMs <= 0) durationMs = durationToMs({
+      days: safeNumber(next.days) || 0,
+      hours: safeNumber(next.hours) || 0,
+      minutes: safeNumber(next.minutes) || 0
+    });
+    next.durationMs = durationMs;
+    next.days = Math.floor(durationMs / DAY);
+    next.label = next.label || `Accesso ${durationLabel(durationMs)}`;
+    if(next.usedBy){
+      let usedAt = safeNumber(next.usedAt);
+      if(!usedAt || usedAt <= 0) usedAt = now();
+      let expiresAt = safeNumber(next.expiresAt);
+      if(!expiresAt || expiresAt <= 0) expiresAt = usedAt + durationMs;
+      next.usedAt = usedAt;
+      next.expiresAt = expiresAt;
+    }
+    return next;
+  }
+
   function checksumCode(raw){
     const text = String(raw || "").toUpperCase();
     let n = 0;
@@ -68,9 +121,9 @@
     return { code:clean, type, days:type === "permanent" ? null : Math.floor(minutes/1440), durationMs:type === "permanent" ? null : minutes*60000, label:type === "permanent" ? "Accesso permanente" : `Accesso ${durationLabel(minutes*60000)}`, note:"codice portabile", createdAt:now(), usedBy:null, usedNickname:null, usedAt:null, expiresAt:null, disabled:false, portable:true };
   }
   function ensureCodes(){
-    const current = read(CODES_KEY, []);
+    const current = read(CODES_KEY, []).map(repairCodeRecord);
     const byCode = new Map(current.map(c => [String(c.code || "").toUpperCase(), c]));
-    DEFAULT_CODES.forEach(c => { if(!byCode.has(c.code)) current.push({...c}); });
+    DEFAULT_CODES.forEach(c => { if(!byCode.has(c.code)) current.push(repairCodeRecord({...c})); });
     write(CODES_KEY, current);
     return current;
   }
@@ -189,7 +242,7 @@
     const ttlMs = item.type === "permanent" ? null : (Number.isFinite(Number(item.durationMs)) && Number(item.durationMs) > 0 ? Number(item.durationMs) : durationToMs({ days:Number(item.days || 1), hours:Number(item.hours || 0), minutes:Number(item.minutes || 0) }));
     const expiresAt = item.type === "permanent" ? null : redeemedAt + ttlMs;
     item.usedBy = auth.userId; item.usedNickname = auth.nickname; item.usedAt = redeemedAt; item.expiresAt = expiresAt;
-    auth.access = { code:item.code, type:item.type, days:item.days, durationMs:ttlMs || null, redeemedAt, expiresAt };
+    auth.access = { code:item.code, type:item.type, days:item.days, hours:item.hours || 0, minutes:item.minutes || 0, durationMs:ttlMs || null, redeemedAt, expiresAt };
     upsertUser(auth);
     write(CODES_KEY, codes);
     setAuth(auth);
@@ -198,13 +251,15 @@
   function getAccessState(){
     const auth = getAuth();
     if(!auth?.userId) return { logged:false, active:false, reason:"not_logged" };
-    const access = auth.access || null;
+    let access = auth.access || null;
     if(!access) return { logged:true, active:false, userId:auth.userId, nickname:auth.nickname, reason:"no_code" };
+    access = repairTemporaryAccess(access, access.code);
+    if(JSON.stringify(access) !== JSON.stringify(auth.access)){ auth.access = access; upsertUser(auth); }
     if(access.type !== "permanent" && Number(access.expiresAt || 0) <= now()) return { logged:true, active:false, userId:auth.userId, nickname:auth.nickname, access, reason:"expired" };
     return { logged:true, active:true, userId:auth.userId, nickname:auth.nickname, access, reason:"active" };
   }
   function requireBuilderAccess(){ return getAccessState().active; }
-  function formatDate(ts){ if(!ts) return "Permanente"; const n = Number(ts); if(!Number.isFinite(n) || n <= 0) return "Scadenza non valida"; const d = new Date(n); if(Number.isNaN(d.getTime())) return "Scadenza non valida"; return d.toLocaleString("it-IT"); }
+  function formatDate(ts){ if(!ts) return "Permanente"; const n = Number(ts); if(!Number.isFinite(n) || n <= 0) return "Da ricalcolare: riscatta di nuovo un codice temporaneo"; const d = new Date(n); if(Number.isNaN(d.getTime())) return "Da ricalcolare: riscatta di nuovo un codice temporaneo"; return d.toLocaleString("it-IT"); }
   function getAccessParams(){
     const st = getAccessState();
     if(!st.active) return null;
@@ -264,7 +319,7 @@
     if(codes.some(c => String(c.code || "").toUpperCase() === clean)) throw new Error("Codice già esistente.");
     const normalizedType = type === "permanent" ? "permanent" : "temporary";
     const durationMs = normalizedType === "permanent" ? null : durationToMs(days);
-    codes.unshift({ code:clean, type:normalizedType, days:normalizedType === "permanent" ? null : Math.max(0, Math.floor(durationMs / DAY)), durationMs, label:normalizedType === "permanent" ? "Accesso permanente" : `Accesso ${durationLabel(durationMs)}`, note:String(note || "").slice(0,120), createdAt:now(), usedBy:null, usedNickname:null, usedAt:null, expiresAt:null, disabled:false });
+    codes.unshift({ code:clean, type:normalizedType, days:normalizedType === "permanent" ? null : Math.max(0, Math.floor(durationMs / DAY)), hours:normalizedType === "permanent" ? null : Math.floor((durationMs % DAY) / 3600000), minutes:normalizedType === "permanent" ? null : Math.floor((durationMs % 3600000) / 60000), durationMs, label:normalizedType === "permanent" ? "Accesso permanente" : `Accesso ${durationLabel(durationMs)}`, note:String(note || "").slice(0,120), createdAt:now(), usedBy:null, usedNickname:null, usedAt:null, expiresAt:null, disabled:false });
     write(CODES_KEY, codes); return codes;
   }
   function generateCode(type, days, prefix, note){ return addCode(makeCode(prefix || "RT", type, days), type, days, note); }
