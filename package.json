@@ -1,7 +1,7 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-3-9-account-recovery-projects-page-rework",
-  "version": "0.3.9",
-  "description": "RankTag BETA 0.3.9 - account recovery and dedicated projects page rework",
+  "name": "ranktag-finals-overlay-beta-0-4-0-nickname-only-account-privacy-fix",
+  "version": "0.4.0",
+  "description": "RankTag BETA 0.4.0 - nickname-only account privacy fix",
   "scripts": {
     "start": "vercel dev"
   }

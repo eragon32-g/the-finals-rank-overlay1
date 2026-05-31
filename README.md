@@ -1,3 +1,3 @@
-# RankTag BETA 0.3.9
+# RankTag BETA 0.4.0
 
-Account Recovery Projects Page Rework. Login e progetti spostati in pagina dedicata, recupero locale account aggiunto, sezione Account rimossa dal Generator.
+Nickname Only Account Privacy Fix.

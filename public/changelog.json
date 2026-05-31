@@ -1,5 +1,21 @@
 [
   {
+    "version": "0.4.0",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Nickname Only Account Privacy Fix",
+    "summary": "Rimuove i campi email dalla pagina Account e riporta il sistema utente a nickname + password, mantenendo codici accesso e progetti personali.",
+    "fixed": [
+      "rimossi campi email da login e registrazione",
+      "login solo con nickname e password",
+      "recupero locale tramite nickname",
+      "migrazione locale dei vecchi account creati con email verso nickname",
+      "codici single-use collegati al nickname",
+      "progetti personali collegati al nickname",
+      "versione e Updates aggiornati a BETA 0.4.0"
+    ]
+  },
+  {
     "version": "0.3.9",
     "status": "BETA",
     "date": "2026-05-31",

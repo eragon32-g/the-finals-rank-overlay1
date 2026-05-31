@@ -1,4 +1,3 @@
-
 (function(){
   const STORAGE_KEY = "ranktagAuthV1";
   const USERS_KEY = "ranktagUsersV2";
@@ -12,8 +11,16 @@
   const DEFAULT_CODES = [];
   function read(key, fallback){ try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); } catch { return fallback; } }
   function write(key, value){ localStorage.setItem(key, JSON.stringify(value)); }
-  function normalizeEmail(v){ return String(v || "").trim().toLowerCase(); }
   function now(){ return Date.now(); }
+  function cleanNick(v){ return String(v || "").trim().replace(/\s+/g,"_").slice(0,32); }
+  function normNick(v){ return cleanNick(v).toLowerCase(); }
+  function legacyNickFromUser(u){
+    const nick = cleanNick(u?.nickname || u?.userId || u?.username);
+    if(nick) return nick;
+    const old = String(u?.email || "").trim();
+    if(old.includes("@")) return cleanNick(old.split("@")[0]);
+    return cleanNick(old);
+  }
   function durationToMs(input){
     if(input && typeof input === "object"){
       const d = Math.max(0, Number(input.days || 0));
@@ -42,102 +49,116 @@
     write(CODES_KEY, current);
     return current;
   }
-  function getUsers(){
-    const users = read(USERS_KEY, []);
-    const legacy = read(STORAGE_KEY, null);
-    if(legacy?.email && legacy?.password && !users.some(u => normalizeEmail(u.email) === normalizeEmail(legacy.email))){
-      users.push({
-        email:normalizeEmail(legacy.email),
-        nickname:legacy.nickname || String(legacy.email).split("@")[0],
-        password:String(legacy.password),
-        createdAt:legacy.createdAt || now(),
-        access:legacy.access || null
+  function normalizeUsers(raw){
+    const out = [];
+    const seen = new Set();
+    (Array.isArray(raw) ? raw : []).forEach(u => {
+      const nickname = legacyNickFromUser(u);
+      const key = normNick(nickname);
+      if(!key || seen.has(key)) return;
+      seen.add(key);
+      out.push({
+        userId:key,
+        nickname,
+        password:String(u.password || ""),
+        createdAt:u.createdAt || now(),
+        access:u.access || null
       });
-      write(USERS_KEY, users);
+    });
+    return out;
+  }
+  function getUsers(){
+    let users = normalizeUsers(read(USERS_KEY, []));
+    const legacy = read(STORAGE_KEY, null);
+    const legacyNickname = legacyNickFromUser(legacy);
+    if(legacyNickname && legacy?.password && !users.some(u => normNick(u.nickname) === normNick(legacyNickname))){
+      users.push({ userId:normNick(legacyNickname), nickname:legacyNickname, password:String(legacy.password), createdAt:legacy.createdAt || now(), access:legacy.access || null });
     }
+    write(USERS_KEY, users);
     return users;
   }
-  function setUsers(users){ write(USERS_KEY, users); return users; }
+  function setUsers(users){ write(USERS_KEY, normalizeUsers(users)); return getUsers(); }
   function getSession(){ return read(STORAGE_KEY, null); }
   function getAuth(){
     const session = getSession();
-    if(!session?.email) return null;
+    const sessionNick = legacyNickFromUser(session);
+    if(!sessionNick) return null;
     const users = getUsers();
-    const user = users.find(u => normalizeEmail(u.email) === normalizeEmail(session.email));
+    const user = users.find(u => normNick(u.nickname) === normNick(sessionNick) || u.userId === normNick(sessionNick));
     if(!user) return null;
-    return {...user, email:normalizeEmail(user.email)};
+    return {...user, userId:normNick(user.nickname)};
   }
   function setAuth(auth){
-    const clean = normalizeEmail(auth?.email);
-    if(!clean) return null;
-    write(STORAGE_KEY, { email:clean, loggedAt:now() });
+    const nickname = legacyNickFromUser(auth);
+    if(!nickname) return null;
+    write(STORAGE_KEY, { nickname, userId:normNick(nickname), loggedAt:now() });
     window.dispatchEvent(new Event("ranktag-auth-change"));
     return getAuth();
   }
   function upsertUser(user){
     const users = getUsers();
-    const clean = normalizeEmail(user.email);
-    const i = users.findIndex(u => normalizeEmail(u.email) === clean);
-    const next = {...(i>=0?users[i]:{}), ...user, email:clean};
+    const nickname = legacyNickFromUser(user);
+    const key = normNick(nickname);
+    const i = users.findIndex(u => u.userId === key || normNick(u.nickname) === key);
+    const next = { ...(i>=0?users[i]:{}), ...user, userId:key, nickname };
+    delete next.email;
     if(i>=0) users[i]=next; else users.push(next);
     setUsers(users);
     return next;
   }
-  function register(email, password, nickname){
-    email = normalizeEmail(email);
-    const nick = String(nickname || email.split("@")[0] || "player").trim();
-    if(!email || !password) throw new Error("Inserisci email e password.");
+  function register(nickname, password){
+    const nick = cleanNick(nickname);
+    if(!nick || !password) throw new Error("Inserisci nickname e password.");
     const users = getUsers();
-    if(users.some(u => normalizeEmail(u.email) === email)) throw new Error("Account già esistente. Usa login oppure Recupero accesso.");
-    if(nick && users.some(u => String(u.nickname||"").toLowerCase() === nick.toLowerCase())) throw new Error("Nickname già usato. Scegline un altro oppure recupera l’account.");
-    const user = { email, nickname:nick, password:String(password), createdAt:now(), access:null };
+    if(users.some(u => normNick(u.nickname) === normNick(nick))) throw new Error("Nickname già esistente. Usa login oppure Recupero accesso.");
+    const user = { userId:normNick(nick), nickname:nick, password:String(password), createdAt:now(), access:null };
     users.push(user); setUsers(users);
     return setAuth(user);
   }
   function login(identifier, password){
-    const id = String(identifier || "").trim().toLowerCase();
+    const id = normNick(identifier);
     const users = getUsers();
-    const user = users.find(u => normalizeEmail(u.email) === id || String(u.nickname||"").toLowerCase() === id);
-    if(!user || String(user.password || "") !== String(password || "")) throw new Error("Login non valido. Puoi usare email oppure nickname.");
+    const user = users.find(u => u.userId === id || normNick(u.nickname) === id);
+    if(!user || String(user.password || "") !== String(password || "")) throw new Error("Login non valido. Usa nickname e password.");
     return setAuth(user);
   }
   function logout(){ localStorage.removeItem(STORAGE_KEY); window.dispatchEvent(new Event("ranktag-auth-change")); }
   function resetPassword(identifier, newPassword){
-    const id = String(identifier || "").trim().toLowerCase();
-    if(!id || !newPassword) throw new Error("Inserisci email/nickname e nuova password.");
+    const id = normNick(identifier);
+    if(!id || !newPassword) throw new Error("Inserisci nickname e nuova password.");
     const users = getUsers();
-    const user = users.find(u => normalizeEmail(u.email) === id || String(u.nickname||"").toLowerCase() === id);
-    if(!user) throw new Error("Account non trovato su questo dispositivo.");
+    const user = users.find(u => u.userId === id || normNick(u.nickname) === id);
+    if(!user) throw new Error("Nickname non trovato su questo dispositivo.");
     user.password = String(newPassword);
     setUsers(users);
     return user;
   }
   function updateNickname(nickname){
     const auth = getAuth();
-    if(!auth?.email) throw new Error("Effettua login prima di modificare il nickname.");
-    const nick = String(nickname || "").trim();
+    if(!auth?.userId) throw new Error("Effettua login prima di modificare il nickname.");
+    const nick = cleanNick(nickname);
     if(!nick) throw new Error("Nickname mancante.");
     const users = getUsers();
-    if(users.some(u => normalizeEmail(u.email) !== auth.email && String(u.nickname||"").toLowerCase() === nick.toLowerCase())) throw new Error("Nickname già usato.");
-    const user = users.find(u => normalizeEmail(u.email) === auth.email);
-    user.nickname = nick;
+    if(users.some(u => u.userId !== auth.userId && normNick(u.nickname) === normNick(nick))) throw new Error("Nickname già usato.");
+    const user = users.find(u => u.userId === auth.userId);
+    user.nickname = nick; user.userId = normNick(nick);
     setUsers(users);
     return setAuth(user);
   }
-  function listKnownUsers(){ return getUsers().map(u => ({ email:normalizeEmail(u.email), nickname:u.nickname || "", hasAccess:!!u.access })); }
+  function listKnownUsers(){ return getUsers().map(u => ({ nickname:u.nickname || "", hasAccess:!!u.access })); }
   function redeem(code){
     const auth = getAuth();
-    if(!auth?.email) throw new Error("Effettua login o registrazione prima di riscattare un codice.");
+    if(!auth?.userId) throw new Error("Effettua login o registrazione prima di riscattare un codice.");
     const clean = String(code || "").trim().toUpperCase();
     const codes = ensureCodes();
     const item = codes.find(c => String(c.code || "").toUpperCase() === clean);
     if(!item) throw new Error("Codice non trovato.");
     if(item.disabled) throw new Error("Codice disattivato.");
-    if(item.usedBy && item.usedBy !== auth.email) throw new Error("Codice già utilizzato da un altro account.");
-    if(item.usedBy === auth.email) throw new Error("Hai già riscattato questo codice.");
+    if(item.usedBy && item.usedBy !== auth.userId) throw new Error("Codice già utilizzato da un altro account.");
+    if(item.usedBy === auth.userId) throw new Error("Hai già riscattato questo codice.");
     const redeemedAt = now();
     const expiresAt = item.type === "permanent" ? null : redeemedAt + durationToMs(item.durationMs || item.days || 1);
-    item.usedBy = auth.email; item.usedAt = redeemedAt; item.expiresAt = expiresAt;
+    item.usedBy = auth.userId; item.usedNickname = auth.nickname; item.usedAt = redeemedAt; item.expiresAt = expiresAt;
     auth.access = { code:item.code, type:item.type, days:item.days, durationMs:item.durationMs || null, redeemedAt, expiresAt };
     upsertUser(auth);
     write(CODES_KEY, codes);
@@ -146,19 +167,19 @@
   }
   function getAccessState(){
     const auth = getAuth();
-    if(!auth?.email) return { logged:false, active:false, reason:"not_logged" };
+    if(!auth?.userId) return { logged:false, active:false, reason:"not_logged" };
     const access = auth.access || null;
-    if(!access) return { logged:true, active:false, email:auth.email, reason:"no_code" };
-    if(access.type !== "permanent" && Number(access.expiresAt || 0) <= now()) return { logged:true, active:false, email:auth.email, access, reason:"expired" };
-    return { logged:true, active:true, email:auth.email, access, reason:"active" };
+    if(!access) return { logged:true, active:false, userId:auth.userId, nickname:auth.nickname, reason:"no_code" };
+    if(access.type !== "permanent" && Number(access.expiresAt || 0) <= now()) return { logged:true, active:false, userId:auth.userId, nickname:auth.nickname, access, reason:"expired" };
+    return { logged:true, active:true, userId:auth.userId, nickname:auth.nickname, access, reason:"active" };
   }
   function requireBuilderAccess(){ return getAccessState().active; }
   function formatDate(ts){ if(!ts) return "Permanente"; try { return new Date(Number(ts)).toLocaleString("it-IT"); } catch { return "Scadenza non valida"; } }
   function getAccessParams(){
     const st = getAccessState();
     if(!st.active) return null;
-    if(st.access?.type === "permanent") return { rtAccess:"permanent", rtAccessUser:st.email };
-    return { rtAccess:"expires", rtAccessExp:String(st.access.expiresAt), rtAccessUser:st.email };
+    if(st.access?.type === "permanent") return { rtAccess:"permanent", rtAccessUser:st.userId };
+    return { rtAccess:"expires", rtAccessExp:String(st.access.expiresAt), rtAccessUser:st.userId };
   }
   function validateOverlayUrlParams(params){
     const mode = params.get("rtAccess");
@@ -171,14 +192,16 @@
   function saveProject(link, name){
     const st = getAccessState();
     if(!st.logged || !link) return;
-    const projects = read(PROJECTS_KEY, []);
-    projects.unshift({ id:"prj_"+now().toString(36), email:st.email, name:String(name || "Overlay RankTag").slice(0,80), link, createdAt:now(), accessExpiresAt:st.access?.expiresAt || null, permanent:st.access?.type === "permanent" });
+    const projects = read(PROJECTS_KEY, []).map(p => p.email && !p.userId ? {...p, userId:legacyNickFromUser(p), nickname:legacyNickFromUser(p), email:undefined} : p);
+    projects.unshift({ id:"prj_"+now().toString(36), userId:st.userId, nickname:st.nickname, name:String(name || "Overlay RankTag").slice(0,80), link, createdAt:now(), accessExpiresAt:st.access?.expiresAt || null, permanent:st.access?.type === "permanent" });
     write(PROJECTS_KEY, projects.slice(0,50));
   }
   function listProjects(){
     const st = getAccessState();
     if(!st.logged) return [];
-    return read(PROJECTS_KEY, []).filter(p => p.email === st.email).map(p => ({...p, active: p.permanent || !p.accessExpiresAt || Number(p.accessExpiresAt) > now()}));
+    const projects = read(PROJECTS_KEY, []).map(p => p.email && !p.userId ? {...p, userId:legacyNickFromUser(p), nickname:legacyNickFromUser(p), email:undefined} : p);
+    write(PROJECTS_KEY, projects);
+    return projects.filter(p => p.userId === st.userId).map(p => ({...p, active: p.permanent || !p.accessExpiresAt || Number(p.accessExpiresAt) > now()}));
   }
   function makeCode(prefix, type, days){
     const stamp = now().toString(36).toUpperCase();
@@ -195,19 +218,7 @@
     if(codes.some(c => String(c.code || "").toUpperCase() === clean)) throw new Error("Codice già esistente.");
     const normalizedType = type === "permanent" ? "permanent" : "temporary";
     const durationMs = normalizedType === "permanent" ? null : durationToMs(days);
-    codes.unshift({
-      code:clean,
-      type:normalizedType,
-      days:normalizedType === "permanent" ? null : Math.max(0, Math.floor(durationMs / DAY)),
-      durationMs,
-      label:normalizedType === "permanent" ? "Accesso permanente" : `Accesso ${durationLabel(durationMs)}`,
-      note:String(note || "").slice(0,120),
-      createdAt:now(),
-      usedBy:null,
-      usedAt:null,
-      expiresAt:null,
-      disabled:false
-    });
+    codes.unshift({ code:clean, type:normalizedType, days:normalizedType === "permanent" ? null : Math.max(0, Math.floor(durationMs / DAY)), durationMs, label:normalizedType === "permanent" ? "Accesso permanente" : `Accesso ${durationLabel(durationMs)}`, note:String(note || "").slice(0,120), createdAt:now(), usedBy:null, usedNickname:null, usedAt:null, expiresAt:null, disabled:false });
     write(CODES_KEY, codes); return codes;
   }
   function generateCode(type, days, prefix, note){ return addCode(makeCode(prefix || "RT", type, days), type, days, note); }
@@ -236,7 +247,7 @@
     if(c.usedBy) return "usato";
     return "disponibile";
   }
-  function listCodes(){ return ensureCodes().map(c => ({...c, status:getCodeStatus(c)})); }
+  function listCodes(){ return ensureCodes().map(c => ({...c, status:getCodeStatus(c), usedNickname:c.usedNickname || c.usedBy || ""})); }
   function exportCodes(){ return JSON.stringify(listCodes(), null, 2); }
   function importCodes(raw){
     let incoming = JSON.parse(String(raw || "[]"));

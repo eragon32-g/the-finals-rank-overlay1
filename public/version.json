@@ -1,12 +1,12 @@
 {
-  "version": "0.3.9",
+  "version": "0.4.0",
   "status": "BETA",
   "date": "2026-05-31",
-  "name": "Account Recovery Projects Page Rework",
-  "note": "BETA 0.3.9: sposta login/progetti in una pagina dedicata, rimuove la sezione Account dalla pagina RankTag e aggiunge recupero locale con reset password per gli utenti che dimenticano nickname o password.",
-  "label": "BETA 0.3.9",
+  "name": "Nickname Only Account Privacy Fix",
+  "note": "BETA 0.4.0: rimuove i campi email introdotti nella pagina Account e ripristina il sistema account basato solo su nickname e password, con recupero locale e progetti personali.",
+  "label": "BETA 0.4.0",
   "versioning": {
-    "current": "0.3.9",
-    "next": "0.4.0"
+    "current": "0.4.0",
+    "next": "0.4.1"
   }
 }
