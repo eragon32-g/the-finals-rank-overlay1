@@ -181,14 +181,15 @@
       item = parsePortableCode(clean);
       if(item){ codes.unshift(item); write(CODES_KEY, codes); }
     }
-    if(!item) throw new Error("Codice non trovato. Se è stato generato da un altro dispositivo, crea un nuovo codice portabile dalla BETA 0.4.6.");
+    if(!item) throw new Error("Codice non trovato. Se è stato generato da un altro dispositivo, crea un nuovo codice portabile dalla BETA 0.4.7.");
     if(item.disabled) throw new Error("Codice disattivato.");
     if(item.usedBy && item.usedBy !== auth.userId) throw new Error("Codice già utilizzato da un altro account.");
     if(item.usedBy === auth.userId) throw new Error("Hai già riscattato questo codice.");
     const redeemedAt = now();
-    const expiresAt = item.type === "permanent" ? null : redeemedAt + durationToMs(item.durationMs || item.days || 1);
+    const ttlMs = item.type === "permanent" ? null : (Number.isFinite(Number(item.durationMs)) && Number(item.durationMs) > 0 ? Number(item.durationMs) : durationToMs({ days:Number(item.days || 1), hours:Number(item.hours || 0), minutes:Number(item.minutes || 0) }));
+    const expiresAt = item.type === "permanent" ? null : redeemedAt + ttlMs;
     item.usedBy = auth.userId; item.usedNickname = auth.nickname; item.usedAt = redeemedAt; item.expiresAt = expiresAt;
-    auth.access = { code:item.code, type:item.type, days:item.days, durationMs:item.durationMs || null, redeemedAt, expiresAt };
+    auth.access = { code:item.code, type:item.type, days:item.days, durationMs:ttlMs || null, redeemedAt, expiresAt };
     upsertUser(auth);
     write(CODES_KEY, codes);
     setAuth(auth);
@@ -203,7 +204,7 @@
     return { logged:true, active:true, userId:auth.userId, nickname:auth.nickname, access, reason:"active" };
   }
   function requireBuilderAccess(){ return getAccessState().active; }
-  function formatDate(ts){ if(!ts) return "Permanente"; try { return new Date(Number(ts)).toLocaleString("it-IT"); } catch { return "Scadenza non valida"; } }
+  function formatDate(ts){ if(!ts) return "Permanente"; const n = Number(ts); if(!Number.isFinite(n) || n <= 0) return "Scadenza non valida"; const d = new Date(n); if(Number.isNaN(d.getTime())) return "Scadenza non valida"; return d.toLocaleString("it-IT"); }
   function getAccessParams(){
     const st = getAccessState();
     if(!st.active) return null;

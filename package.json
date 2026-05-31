@@ -1,7 +1,7 @@
 {
   "name": "ranktag-finals-overlay-beta-0-4-4-projects-preview-alignment-fix",
-  "version": "0.4.6",
-  "description": "RankTag BETA 0.4.5 - projects preview alignment center fix",
+  "version": "0.4.7",
+  "description": "RankTag BETA 0.4.7 - access code expiry date fix",
   "scripts": {
     "start": "vercel dev"
   }

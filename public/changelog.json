@@ -1,5 +1,16 @@
 [
   {
+    "version": "0.4.7",
+    "title": "Access Code Expiry Date Fix",
+    "summary": "Corregge la scadenza dei codici temporanei che veniva mostrata come Invalid Date dopo il riscatto.",
+    "changes": [
+      "calcolo scadenza dei codici temporanei sistemato",
+      "durata in minuti/ore/giorni mantenuta correttamente dopo il riscatto",
+      "fallback sicuro per date non valide",
+      "versione e Updates aggiornati a BETA 0.4.7"
+    ]
+  },
+  {
     "version": "0.4.6",
     "title": "Portable Access Codes Redeem Fix",
     "date": "2026-05-31",
