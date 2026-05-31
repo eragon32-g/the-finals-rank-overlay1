@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.4.2",
+    "title": "Account Version Scroll Sync Fix",
+    "date": "2026-05-31",
+    "summary": "Patch correttiva: Account scroll realmente attivo e versioni visibili sincronizzate su tutte le pagine principali.",
+    "fixes": [
+      "scroll verticale forzato su account.html",
+      "etichette RankTag BETA aggiornate da 0.4.0 a 0.4.2",
+      "versione e Updates aggiornati a BETA 0.4.2",
+      "cache-buster account.js portato a v=042"
+    ]
+  },
+  {
     "version": "0.4.1",
     "status": "BETA",
     "date": "2026-05-31",

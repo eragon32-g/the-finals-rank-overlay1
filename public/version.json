@@ -1,12 +1,14 @@
 {
-  "version": "0.4.1",
+  "version": "0.4.2",
   "status": "BETA",
   "date": "2026-05-31",
-  "name": "Account Page Scroll Fix",
-  "note": "BETA 0.4.1: ripristina lo scroll verticale nella pagina Account/Login & Progetti quando viene aperta su finestre più piccole.",
-  "label": "BETA 0.4.1",
+  "name": "Account Version Scroll Sync Fix",
+  "note": "BETA 0.4.2: corregge lo scroll della pagina Account e sincronizza tutte le etichette versione visibili rimaste a 0.4.0.",
+  "label": "BETA 0.4.2",
   "versioning": {
-    "current": "0.4.1",
+    "current": "0.4.2",
     "next": "0.4.2"
-  }
+  },
+  "codename": "account-version-scroll-sync-fix",
+  "updated": "2026-05-31"
 }
