@@ -1,12 +1,12 @@
 {
-  "version": "0.2.2",
+  "version": "0.2.3",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.2.2: centrato e allineato il blocco Aspetto overlay base nel generator.",
+  "note": "BETA 0.2.3: ripristinato lo scroll verticale nell Overlay Builder avanzato su finestre basse.",
   "status": "BETA",
-  "label": "BETA 0.2.2",
+  "label": "BETA 0.2.3",
   "versioning": {
     "beta": true,
     "rules": [

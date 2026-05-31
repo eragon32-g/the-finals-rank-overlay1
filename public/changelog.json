@@ -1,5 +1,16 @@
 [
   {
+    "version": "0.2.3",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Advanced builder scroll fix",
+    "summary": "Overlay Builder avanzato ora permette lo scroll verticale quando la finestra o lo schermo sono più piccoli.",
+    "fixed": [
+      "pagina /builder.html bloccata su viewport bassi",
+      "pannelli non raggiungibili quando la finestra è ridotta"
+    ]
+  },
+  {
     "version": "0.2.2",
     "status": "BETA",
     "date": "2026-05-31",
