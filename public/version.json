@@ -4,7 +4,7 @@
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.2.2: allineamento e centratura della sezione Aspetto overlay base nel generator.",
+  "note": "BETA 0.2.2: centrato e allineato il blocco Aspetto overlay base nel generator.",
   "status": "BETA",
   "label": "BETA 0.2.2",
   "versioning": {

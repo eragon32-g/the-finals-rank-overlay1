@@ -544,7 +544,7 @@
     }
 
   
-/* RankTag BETA 0.2.2 generator real-preview lock */
+/* RankTag BETA 0.2.1 generator real-preview lock */
 .preview-box,
 .live-preview,
 .preview-stage,
@@ -611,7 +611,7 @@ iframe#preview,
 
 
 
-/* RankTag BETA 0.2.2 - layout rework: account full width, settings grid, preview bottom */
+/* RankTag BETA 0.2.1 - layout rework: account full width, settings grid, preview bottom */
 .layout {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -769,7 +769,7 @@ aside.panel {
 
 
 
-/* RankTag BETA 0.2.2 - compact generator, account unchanged */
+/* RankTag BETA 0.2.1 - compact generator, account unchanged */
 body {
   padding: 16px !important;
 }
@@ -1047,7 +1047,7 @@ body {
 
 
 
-/* RankTag BETA 0.2.2 - order, compact alignment and premium preview fix */
+/* RankTag BETA 0.2.1 - order, compact alignment and premium preview fix */
 .settings-panel {
   grid-template-columns: repeat(3, minmax(260px, 1fr)) !important;
   align-items: stretch !important;
@@ -1163,7 +1163,7 @@ body {
 
 
 
-/* RankTag BETA 0.2.2 - repaired generator layout */
+/* RankTag BETA 0.2.1 - repaired generator layout */
 .settings-panel {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -1225,7 +1225,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 
 
 
-/* RankTag BETA 0.2.2 - premium polish */
+/* RankTag BETA 0.2.1 - premium polish */
 #livePreviewSection .preview-box {
   overflow: hidden !important;
   padding: 10px 0 !important;
@@ -1274,7 +1274,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 
 
 
-/* RankTag BETA 0.2.2 - step 1/2 premium scale and alignment */
+/* RankTag BETA 0.2.1 - step 1/2 premium scale and alignment */
 #livePreviewSection .preview-box {
   min-height: 230px !important;
   display: flex !important;
@@ -1323,7 +1323,7 @@ aside.preview-panel.bottom-preview-panel { display: none !important; }
 }
 
 
-/* RankTag BETA 0.2.2 - premium final override */
+/* RankTag BETA 0.2.1 - premium final override */
 #livePreviewSection .preview-box,
 .preview-box {
   display:flex !important;
@@ -1367,7 +1367,7 @@ iframe#preview {
 
 
 
-/* RankTag BETA 0.2.2 - premium card micro alignment */
+/* RankTag BETA 0.2.1 - premium card micro alignment */
 #overlayPremium .premium-preview-real {
   min-height: 140px !important;
   padding: 12px !important;
@@ -1393,7 +1393,7 @@ iframe#preview {
 
 
 
-/* RankTag BETA 0.2.2 - Premium reset engine card */
+/* RankTag BETA 0.2.1 - Premium reset engine card */
 #overlayPremium .premium-preview-real.premium-preview-skin {
   min-height: 170px !important;
   padding: 14px !important;
@@ -1518,7 +1518,7 @@ iframe#preview {
 
 
 
-/* RankTag BETA 0.2.2 - Premium card preview full background */
+/* RankTag BETA 0.2.1 - Premium card preview full background */
 #overlayPremium .premium-preview-real.premium-preview-skin {
   min-height: 202px !important;
   padding: 18px !important;
@@ -1598,7 +1598,7 @@ iframe#preview {
 
 
 
-/* RankTag BETA 0.2.2 - new premium background alignment */
+/* RankTag BETA 0.2.1 - new premium background alignment */
 .premium-preview-badge {
   background: transparent url('/assets/premium/cyber-red-elite-bg-v96.png?v=021') center / 100% 100% no-repeat !important;
 }
@@ -1638,7 +1638,7 @@ iframe#preview {
 
 
 
-/* RankTag BETA 0.2.2 - locked coordinates from Layout Editor */
+/* RankTag BETA 0.2.1 - locked coordinates from Layout Editor */
 .premium-preview-emblem {
   left: 18px !important;
   top: 35px !important;
@@ -1677,7 +1677,7 @@ iframe#preview {
 
 
 
-/* RankTag BETA 0.2.2 - generator premium preview uses locked coordinates */
+/* RankTag BETA 0.2.1 - generator premium preview uses locked coordinates */
 .premium-preview-emblem {
   left: 7px !important;
   top: 9px !important;
@@ -1763,75 +1763,45 @@ iframe#preview {
 <style id="rt002-base-visual-generator-style">
   #overlayPremium { display: none !important; }
   .base-visual-section select { cursor: pointer; }
-</style>
 
-<style id="rt022-base-visual-alignment-fix">
-  /* BETA 0.2.2 - allineamento sezione 4: Aspetto overlay base */
-  #baseVisualSection {
-    text-align: center;
-  }
 
-  #baseVisualSection .section-title {
-    justify-content: center !important;
-    position: relative;
-    gap: 12px;
-  }
-
-  #baseVisualSection .section-title .tag {
-    position: absolute;
-    right: 0;
-  }
-
-  #baseVisualSection .theme-note {
-    max-width: 620px;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center;
-  }
-
-  #baseVisualSection .grid {
-    width: min(720px, 100%);
-    margin: 16px auto 0;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px 22px !important;
-    align-items: start;
-    justify-content: center;
-  }
-
-  #baseVisualSection label {
-    width: 100%;
-    text-align: left;
-  }
-
-  #baseVisualSection label:last-child {
-    grid-column: 1 / -1;
-    width: min(340px, 100%);
-    justify-self: center;
-  }
-
-  #baseVisualSection select {
-    width: 100%;
-  }
-
-  @media (max-width: 720px) {
-    #baseVisualSection .section-title {
-      justify-content: space-between !important;
-    }
-
-    #baseVisualSection .section-title .tag {
-      position: static;
-    }
-
-    #baseVisualSection .grid {
-      grid-template-columns: 1fr;
-    }
-
-    #baseVisualSection label:last-child {
-      grid-column: auto;
-      width: 100%;
-    }
-  }
+/* RankTag BETA 0.2.2 - center base visual section */
+#baseVisualSection {
+  grid-column: 1 / -1 !important;
+  max-width: 860px !important;
+  width: 100% !important;
+  justify-self: center !important;
+  text-align: center !important;
+}
+#baseVisualSection .section-title {
+  justify-content: center !important;
+  text-align: center !important;
+}
+#baseVisualSection .theme-note {
+  max-width: 680px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+#baseVisualSection .grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(190px, 1fr)) !important;
+  gap: 12px !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+  max-width: 760px !important;
+  margin: 0 auto !important;
+}
+#baseVisualSection label {
+  text-align: left !important;
+  min-height: 76px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+@media (max-width: 760px) {
+  #baseVisualSection .grid { grid-template-columns: 1fr !important; }
+}
 </style>
 
 </head>
@@ -2668,10 +2638,10 @@ iframe#preview {
       const customEncoded = typeof getCustomElementsEncoded === "function" ? getCustomElementsEncoded() : "";
       if (customEncoded) url.searchParams.set("customElements", customEncoded);
       url.searchParams.set("cacheBust", Date.now().toString());
-      /* RankTag BETA 0.2.2 force premium theme in generated link */
+      /* RankTag BETA 0.2.1 force premium theme in generated link */
       const selectedThemeStyle = get("themeStyle")?.value || "default";
       url.searchParams.set("themeStyle", selectedThemeStyle);
-      /* RankTag BETA 0.2.2 attach editor layout to generated premium link */
+      /* RankTag BETA 0.2.1 attach editor layout to generated premium link */
       if (selectedThemeStyle === "cyber-red-elite") {
         const savedPremiumLayout = getSavedPremiumLayout();
         const encodedPremiumLayout = savedPremiumLayout ? encodePremiumLayoutForUrl(savedPremiumLayout) : "";
@@ -2679,14 +2649,14 @@ iframe#preview {
       } else {
         url.searchParams.delete("layout");
       }
-      /* RankTag BETA 0.2.2 final layout param sync */
+      /* RankTag BETA 0.2.1 final layout param sync */
       if ((get("themeStyle")?.value || "default") === "cyber-red-elite") {
         const completeLayout = typeof getCompletePremiumLayoutForLink === "function" ? getCompletePremiumLayoutForLink() : null;
         const encodedLayout = completeLayout && typeof encodeCompletePremiumLayout === "function" ? encodeCompletePremiumLayout(completeLayout) : "";
         if (encodedLayout) url.searchParams.set("layout", encodedLayout);
       }
       get("output").value = url.toString();
-      /* RankTag BETA 0.2.2 guarantee layout param */
+      /* RankTag BETA 0.2.1 guarantee layout param */
       if ((get("themeStyle")?.value || "default") === "cyber-red-elite") {
         try {
           const rawLayout = localStorage.getItem("ranktag-layout-editor-cyber-red-elite-current")
@@ -2742,7 +2712,7 @@ iframe#preview {
   </script>
 
 <script>
-/* RankTag BETA 0.2.2 force real iframe preview */
+/* RankTag BETA 0.2.1 force real iframe preview */
 (function(){
   function findPreviewIframe(){
     return document.querySelector('iframe#preview, #previewFrame, iframe.preview-frame, .live-preview iframe, .preview-box iframe, .preview-stage iframe');

@@ -4,12 +4,10 @@
     "status": "BETA",
     "date": "2026-05-31",
     "title": "Base visual alignment fix",
-    "summary": "Sezione Aspetto overlay base riallineata e centrata nel Generator.",
+    "summary": "Il blocco Aspetto overlay base ora occupa una riga completa ed è centrato/allineato nel generator.",
     "fixed": [
-      "centratura titolo e descrizione sezione 4",
-      "allineamento griglia effetti base su due colonne",
-      "campo Scanline centrato sotto le due colonne",
-      "layout responsive mobile mantenuto"
+      "sezione 4 non centrata nella griglia del generator",
+      "controlli visuali base non allineati tra loro"
     ]
   },
   {

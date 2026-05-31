@@ -1,4 +1,4 @@
-# RankTag BETA 0.2.1
+# RankTag BETA 0.2.2
 
 Base effects off.
 
