@@ -2,6 +2,8 @@
 (function(){
   const STORAGE_KEY = "ranktagAuthV1";
   const ADMIN_KEY = "ranktagAdminUnlockedV1";
+  const ADMIN_USER = "admin";
+  const ADMIN_PASSWORD = "RankTag-Admin-036";
   const CODES_KEY = "ranktagAccessCodesV1";
   const PROJECTS_KEY = "ranktagProjectsV1";
   const DAY = 24 * 60 * 60 * 1000;
@@ -158,9 +160,14 @@
     write(CODES_KEY, next);
     return next;
   }
-  function unlockAdmin(pin){
-    const ok = String(pin || "") === "ranktag-admin";
-    if(!ok) throw new Error("PIN admin non valido.");
+  function unlockAdmin(pin, password){
+    const first = String(pin || "").trim();
+    const second = String(password || "").trim();
+    const legacyPinOk = first === "ranktag-admin";
+    const userPassOk = first.toLowerCase() === ADMIN_USER && second === ADMIN_PASSWORD;
+    const passwordOnlyOk = first === ADMIN_PASSWORD;
+    const ok = legacyPinOk || userPassOk || passwordOnlyOk;
+    if(!ok) throw new Error("Credenziali admin non valide.");
     localStorage.setItem(ADMIN_KEY, "1");
     return true;
   }

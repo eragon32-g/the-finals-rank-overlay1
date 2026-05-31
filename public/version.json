@@ -1,19 +1,12 @@
 {
-  "version": "0.3.5",
-  "project": "RankTag",
-  "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
-  "expectedBrand": "ERDRAGON32",
-  "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.3.5: potenzia admin codici single-use con generazione automatica, stati codice, disattivazione/riattivazione, import/export e protezione admin locale.",
+  "version": "0.3.6",
   "status": "BETA",
-  "label": "BETA 0.3.5",
+  "date": "2026-05-31",
+  "name": "Admin Restore Credentials Reset",
+  "note": "BETA 0.3.6: ripristina la sezione admin, resetta le credenziali, collega il pannello nel menu e rimuove di nuovo il Test Lab dalla navigazione.",
+  "label": "BETA 0.3.6",
   "versioning": {
-    "beta": true,
-    "rules": [
-      "Si parte da 0.0.1",
-      "Dopo 0.0.9 il successivo è 0.1.0",
-      "Dopo 0.9.0 il successivo è 1.0.0",
-      "Gli aggiornamenti pubblici verranno pubblicati solo quando importanti"
-    ]
+    "current": "0.3.6",
+    "next": "0.3.7"
   }
 }

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=035" />
+  <link rel="stylesheet" href="/style.css?v=036" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -262,7 +262,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Account</a><a href="/updates.html">Updates</a><span class="tag">RankTag BETA 0.3.5</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Account</a><a href="/updates.html">Updates</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.3.6</span>
       </div>
     </div>
     <div class="layout">
@@ -336,7 +336,7 @@
       </section>
     </div>
   </main>
-  <script src="/access.js?v=035"></script>
+  <script src="/access.js?v=036"></script>
   <script>
     if(!window.RankTagAccess || !RankTagAccess.requireBuilderAccess()){
       document.body.innerHTML = `<main class="page"><section class="panel stack" style="max-width:760px;margin:40px auto"><h1>Builder bloccato</h1><p class="sub">Per usare l’Overlay Builder avanzato devi essere loggato e avere un codice accesso valido.</p><div class="actions"><a class="btn" href="/account.html">Login / Riscatta codice</a><a class="btn secondary" href="/home.html">Torna alla Home</a></div></section></main>`;

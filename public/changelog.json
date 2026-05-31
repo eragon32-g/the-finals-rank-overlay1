@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.3.6",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Admin restore and credentials reset",
+    "summary": "Ripristina il pannello Admin con link visibile, reset credenziali, dashboard codici e pulizia Test Lab dalla navigazione.",
+    "fixed": [
+      "ripristinata pagina /admin.html",
+      "aggiunto link Admin nei menu principali",
+      "reset credenziali admin: admin / RankTag-Admin-036",
+      "mantenuto vecchio PIN ranktag-admin solo come compatibilità locale",
+      "Test Lab rimosso dalla navigazione e reindirizzato alla Home"
+    ]
+  },
+  {
     "version": "0.3.5",
     "status": "BETA",
     "date": "2026-05-31",
