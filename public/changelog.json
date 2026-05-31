@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.4.9",
+    "title": "Updates Layout Center Fix",
+    "summary": "Ripristina centratura, larghezza e forma corretta della pagina Updates dopo le patch sui codici accesso.",
+    "changes": [
+      "pagina Updates ricostruita con HTML pulito e valido",
+      "contenuto centrato su desktop e responsive su mobile",
+      "pulsanti navigazione riportati alla forma compatta corretta",
+      "rimossa sezione duplicata fuori dal body",
+      "versione e changelog aggiornati a BETA 0.4.9"
+    ]
+  },
+  {
     "version": "0.4.8",
     "title": "Access Code Expiry Repair Fix",
     "summary": "Ripara le scadenze dei codici temporanei già riscattati che potevano risultare non valide.",
