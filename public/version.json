@@ -1,12 +1,12 @@
 {
-  "version": "0.3.4",
+  "version": "0.3.5",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.3.4: introduce login obbligatorio per Builder, codici accesso single-use temporanei/permanenti e blocco overlay alla scadenza.",
+  "note": "BETA 0.3.5: potenzia admin codici single-use con generazione automatica, stati codice, disattivazione/riattivazione, import/export e protezione admin locale.",
   "status": "BETA",
-  "label": "BETA 0.3.4",
+  "label": "BETA 0.3.5",
   "versioning": {
     "beta": true,
     "rules": [

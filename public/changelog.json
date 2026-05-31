@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.3.5",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Access Codes Admin System",
+    "summary": "Potenzia la gestione dei codici accesso single-use con generazione automatica, stati chiari, azioni admin, import/export e protezione admin locale.",
+    "fixed": [
+      "generazione automatica codici temporanei e permanenti",
+      "stato codice disponibile/usato/scaduto/disattivato",
+      "azioni disattiva, riattiva ed elimina codici non usati",
+      "export/import JSON codici",
+      "protezione admin locale con PIN demo"
+    ]
+  },
+  {
     "version": "0.3.4",
     "status": "BETA",
     "date": "2026-05-31",

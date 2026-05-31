@@ -20,7 +20,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "034";
+const OVERLAY_VERSION = "035";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
@@ -934,7 +934,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag BETA 0.2.1 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "0.3.4");
+document.documentElement.setAttribute("data-ranktag-version", "0.3.5");
 
 
 

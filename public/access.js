@@ -1,6 +1,7 @@
 
 (function(){
   const STORAGE_KEY = "ranktagAuthV1";
+  const ADMIN_KEY = "ranktagAdminUnlockedV1";
   const CODES_KEY = "ranktagAccessCodesV1";
   const PROJECTS_KEY = "ranktagProjectsV1";
   const DAY = 24 * 60 * 60 * 1000;
@@ -89,15 +90,82 @@
     if(!st.logged) return [];
     return read(PROJECTS_KEY, []).filter(p => p.email === st.email).map(p => ({...p, active: p.permanent || !p.accessExpiresAt || Number(p.accessExpiresAt) > now()}));
   }
-  function addCode(code, type, days){
+  function makeCode(prefix, type, days){
+    const stamp = now().toString(36).toUpperCase();
+    const rnd = Math.random().toString(36).slice(2,8).toUpperCase();
+    const dur = type === "permanent" ? "PERM" : `${Math.max(1, Number(days || 1))}D`;
+    return `${String(prefix || "RT").trim().toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,10) || "RT"}-${dur}-${stamp}-${rnd}`;
+  }
+  function addCode(code, type, days, note){
     const codes = ensureCodes();
-    const clean = String(code || "").trim().toUpperCase();
+    const clean = String(code || makeCode("RT", type, days)).trim().toUpperCase();
     if(!clean) throw new Error("Codice mancante.");
     if(codes.some(c => String(c.code || "").toUpperCase() === clean)) throw new Error("Codice già esistente.");
-    codes.unshift({ code:clean, type:type === "permanent" ? "permanent" : "temporary", days:type === "permanent" ? null : Math.max(1, Number(days || 1)), label:type === "permanent" ? "Accesso permanente" : `Accesso ${Math.max(1, Number(days || 1))} giorni`, usedBy:null, usedAt:null, disabled:false });
+    const normalizedType = type === "permanent" ? "permanent" : "temporary";
+    codes.unshift({
+      code:clean,
+      type:normalizedType,
+      days:normalizedType === "permanent" ? null : Math.max(1, Number(days || 1)),
+      label:normalizedType === "permanent" ? "Accesso permanente" : `Accesso ${Math.max(1, Number(days || 1))} giorni`,
+      note:String(note || "").slice(0,120),
+      createdAt:now(),
+      usedBy:null,
+      usedAt:null,
+      expiresAt:null,
+      disabled:false
+    });
     write(CODES_KEY, codes); return codes;
   }
-  function listCodes(){ return ensureCodes(); }
-  window.RankTagAccess = { register, login, logout, redeem, getAuth, getAccessState, requireBuilderAccess, getAccessParams, validateOverlayUrlParams, saveProject, listProjects, formatDate, ensureCodes, listCodes, addCode };
+  function generateCode(type, days, prefix, note){ return addCode(makeCode(prefix || "RT", type, days), type, days, note); }
+  function setCodeDisabled(code, disabled){
+    const clean = String(code || "").trim().toUpperCase();
+    const codes = ensureCodes();
+    const item = codes.find(c => String(c.code || "").toUpperCase() === clean);
+    if(!item) throw new Error("Codice non trovato.");
+    item.disabled = !!disabled;
+    write(CODES_KEY, codes);
+    return codes;
+  }
+  function deleteUnusedCode(code){
+    const clean = String(code || "").trim().toUpperCase();
+    const codes = ensureCodes();
+    const item = codes.find(c => String(c.code || "").toUpperCase() === clean);
+    if(!item) throw new Error("Codice non trovato.");
+    if(item.usedBy) throw new Error("Non puoi eliminare un codice già riscattato: disattivalo.");
+    const next = codes.filter(c => String(c.code || "").toUpperCase() !== clean);
+    write(CODES_KEY, next);
+    return next;
+  }
+  function getCodeStatus(c){
+    if(c.disabled) return "disattivato";
+    if(c.usedBy && c.type !== "permanent" && Number(c.expiresAt || 0) <= now()) return "scaduto";
+    if(c.usedBy) return "usato";
+    return "disponibile";
+  }
+  function listCodes(){ return ensureCodes().map(c => ({...c, status:getCodeStatus(c)})); }
+  function exportCodes(){ return JSON.stringify(listCodes(), null, 2); }
+  function importCodes(raw){
+    let incoming = JSON.parse(String(raw || "[]"));
+    if(!Array.isArray(incoming)) throw new Error("Import non valido.");
+    const current = ensureCodes();
+    const byCode = new Map(current.map(c => [String(c.code || "").toUpperCase(), c]));
+    incoming.forEach(c => {
+      const clean = String(c.code || "").trim().toUpperCase();
+      if(!clean) return;
+      byCode.set(clean, {...c, code:clean, disabled:!!c.disabled});
+    });
+    const next = Array.from(byCode.values());
+    write(CODES_KEY, next);
+    return next;
+  }
+  function unlockAdmin(pin){
+    const ok = String(pin || "") === "ranktag-admin";
+    if(!ok) throw new Error("PIN admin non valido.");
+    localStorage.setItem(ADMIN_KEY, "1");
+    return true;
+  }
+  function isAdminUnlocked(){ return localStorage.getItem(ADMIN_KEY) === "1"; }
+  function lockAdmin(){ localStorage.removeItem(ADMIN_KEY); }
+  window.RankTagAccess = { register, login, logout, redeem, getAuth, getAccessState, requireBuilderAccess, getAccessParams, validateOverlayUrlParams, saveProject, listProjects, formatDate, ensureCodes, listCodes, addCode, generateCode, setCodeDisabled, deleteUnusedCode, exportCodes, importCodes, unlockAdmin, isAdminUnlocked, lockAdmin };
   ensureCodes();
 })();

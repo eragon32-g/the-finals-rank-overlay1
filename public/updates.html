@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Updates</title>
-  <link rel="stylesheet" href="/style.css?v=034" />
+  <link rel="stylesheet" href="/style.css?v=035" />
   <style>
     * { box-sizing: border-box; }
     html, body {
@@ -160,7 +160,7 @@
         <a href="/home.html">Home</a>
         <a href="/generator.html">Generator</a>
         <a href="/builder.html">Builder</a><a href="/account.html">Account</a>
-        <span class="tag">RankTag BETA 0.3.4</span>
+        <span class="tag">RankTag BETA 0.3.5</span>
       </div>
     </div>
 
@@ -168,12 +168,22 @@
 
       <article class="release-card current">
         <div class="release-head">
-          <h2>BETA 0.3.4 · Live leaderboard refresh no-cache fix</h2>
+          <h2>BETA 0.3.5 · Access Codes Admin System</h2>
           <span class="tag">Current</span>
         </div>
-        <p class="release-note">Corregge il refresh live dell overlay finale: rank, ELO e stemma vengono richiesti senza cache, così durante la live non restano bloccati sui valori iniziali.</p>
+        <p class="release-note">Rende più completa la gestione dei codici accesso single-use con generazione automatica, stati chiari, disattivazione, import/export e protezione admin locale.</p>
         <div class="grid">
-          <div class="mini"><h3>Fix</h3><ul><li>richieste player con parametro anti-cache</li><li>API player con no-store/no-cache</li><li>link Builder con refresh automatico ogni 30 secondi</li></ul></div>
+          <div class="mini"><h3>Aggiunto</h3><ul><li>generazione automatica codici temporanei/permanenti</li><li>stati codice: disponibile, usato, scaduto, disattivato</li><li>azioni admin: disattiva, riattiva, elimina codici non usati</li><li>export/import JSON dei codici</li></ul></div>
+        </div>
+      </article>
+
+      <article class="release-card">
+        <div class="release-head">
+          <h2>BETA 0.3.4 · Login required builder and single-use access codes</h2>
+          </div>
+        <p class="release-note">Blocca l Overlay Builder avanzato dietro login e codice accesso valido, aggiunge area Account e codici single-use temporanei/permanenti.</p>
+        <div class="grid">
+          <div class="mini"><h3>Fix</h3><ul><li>Builder accessibile solo con account e codice valido</li><li>codici single-use collegati al primo account che li riscatta</li><li>overlay temporanei disattivati alla scadenza</li></ul></div>
         </div>
       </article>
 
