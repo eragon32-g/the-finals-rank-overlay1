@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.4.1",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Account Page Scroll Fix",
+    "summary": "Ripristina lo scroll verticale nella pagina Account/Login & Progetti su schermi piccoli o finestre basse.",
+    "fixed": [
+      "abilitato overflow verticale su /account.html",
+      "pagina Login & Progetti ora scorre correttamente",
+      "pannelli inferiori raggiungibili anche su finestre più piccole",
+      "versione e Updates aggiornati a BETA 0.4.1"
+    ]
+  },
+  {
     "version": "0.4.0",
     "status": "BETA",
     "date": "2026-05-31",

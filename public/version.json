@@ -1,12 +1,12 @@
 {
-  "version": "0.4.0",
+  "version": "0.4.1",
   "status": "BETA",
   "date": "2026-05-31",
-  "name": "Nickname Only Account Privacy Fix",
-  "note": "BETA 0.4.0: rimuove i campi email introdotti nella pagina Account e ripristina il sistema account basato solo su nickname e password, con recupero locale e progetti personali.",
-  "label": "BETA 0.4.0",
+  "name": "Account Page Scroll Fix",
+  "note": "BETA 0.4.1: ripristina lo scroll verticale nella pagina Account/Login & Progetti quando viene aperta su finestre più piccole.",
+  "label": "BETA 0.4.1",
   "versioning": {
-    "current": "0.4.0",
-    "next": "0.4.1"
+    "current": "0.4.1",
+    "next": "0.4.2"
   }
 }
