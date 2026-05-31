@@ -1,12 +1,12 @@
 {
-  "version": "0.3.1",
+  "version": "0.3.2",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.3.1: correzione animazione brand nel Builder finale, più fluida e ritagliata dentro il riquadro.",
+  "note": "BETA 0.3.2: nell'overlay finale vengono mostrati solo i punti ELO, senza posizione leaderboard e variazione di posizione.",
   "status": "BETA",
-  "label": "BETA 0.3.1",
+  "label": "BETA 0.3.2",
   "versioning": {
     "beta": true,
     "rules": [

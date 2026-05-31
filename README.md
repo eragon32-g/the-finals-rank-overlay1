@@ -1,3 +1,3 @@
-# RankTag BETA 0.2.9 - Custom Image Rotation
+RankTag / THE FINALS Overlay Generator - BETA 0.3.2
 
-Patch mirata: rotazione delle immagini custom nel Layout Editor avanzato e nell overlay finale.
+Patch: ELO only display fix.

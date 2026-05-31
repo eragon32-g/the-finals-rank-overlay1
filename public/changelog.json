@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.3.2",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "ELO only display fix",
+    "summary": "Rimuove dalla riga punteggio dell'overlay finale la posizione in leaderboard e la variazione di posizione: ora viene mostrato solo il valore ELO.",
+    "fixed": [
+      "riga ELO pulita senza #posizione leaderboard",
+      "rimossa freccia/variazione salita o discesa posizione",
+      "mantenuta compatibilità opzionale con showLeaderboardMeta=1 per riattivare quei dettagli se servissero"
+    ]
+  },
+  {
     "version": "0.3.1",
     "status": "BETA",
     "date": "2026-05-31",

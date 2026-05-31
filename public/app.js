@@ -662,8 +662,9 @@ async function setData(data, status = "LIVE") {
   const division = data.division || "";
   const rankScoreRaw = data.rankScore ?? data.score ?? params.get("rankScore") ?? params.get("score") ?? params.get("points") ?? "-";
   const rankScore = compactNumber(rankScoreRaw);
-  const rank = data.rank ? `#${compactNumber(data.rank)}` : "";
-  const change = Number(data.change || 0);
+  const showLeaderboardMeta = ["1", "true", "yes"].includes(String(params.get("showLeaderboardMeta") || "").toLowerCase());
+  const rank = showLeaderboardMeta && data.rank ? `#${compactNumber(data.rank)}` : "";
+  const change = showLeaderboardMeta ? Number(data.change || 0) : 0;
   const changeText = change === 0 ? "" : change > 0 ? ` ▲${compactNumber(change)}` : ` ▼${compactNumber(Math.abs(change))}`;
   const scoreLabel = (params.get("scoreLabel") || "ELO").toUpperCase();
 
