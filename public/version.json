@@ -1,14 +1,14 @@
 {
-  "version": "0.4.3",
+  "version": "0.4.4",
   "status": "BETA",
   "date": "2026-05-31",
-  "name": "Account Projects Library Save Rework",
-  "note": "BETA 0.4.3: unifica login e registrazione, introduce libreria progetti con anteprima/link e aggiunge il salvataggio manuale dal Builder.",
-  "label": "BETA 0.4.3",
+  "name": "Account Cards Layout Fix",
+  "note": "BETA 0.4.4: riorganizza Login & Progetti con tre card sulla stessa riga, recupero password in modale e riepilogo progetti rapido.",
+  "label": "BETA 0.4.4",
   "versioning": {
-    "current": "0.4.3",
-    "next": "0.4.4"
+    "current": "0.4.4",
+    "next": "0.4.5"
   },
-  "codename": "account-projects-library-save-rework",
+  "codename": "account-cards-layout-fix",
   "updated": "2026-05-31"
 }

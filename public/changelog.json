@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.4.4",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Account Cards Layout Fix",
+    "summary": "Riorganizza la pagina Login & Progetti con tre sezioni principali allineate e recupero password spostato in modale.",
+    "fixed": [
+      "Accesso account, Riscatta codice e I miei progetti sulla stessa riga desktop",
+      "recupero password spostato in Password dimenticata? per ridurre confusione",
+      "card I miei progetti con anteprima rapida degli ultimi overlay salvati",
+      "layout responsive: 3 colonne desktop, 2 colonne tablet, 1 colonna mobile",
+      "versione e Updates aggiornati a BETA 0.4.4"
+    ]
+  },
+  {
     "version": "0.4.3",
     "status": "BETA",
     "date": "2026-05-31",
