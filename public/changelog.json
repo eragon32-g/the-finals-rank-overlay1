@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.2.6",
+    "status": "BETA",
+    "date": "2026-05-31",
+    "title": "Advanced builder text font selector",
+    "summary": "Il Layout Editor avanzato permette ora di scegliere il font dei testi modificabili e salva la scelta nel link finale dell'overlay.",
+    "fixed": [
+      "aggiunta scelta font per Rank, ELO, Player e Brand",
+      "font applicato in editor, preview mirror e overlay finale",
+      "scelta font inclusa nel parametro baseLayout del link finale"
+    ]
+  },
+  {
     "version": "0.2.5",
     "status": "BETA",
     "date": "2026-05-31",

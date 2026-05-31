@@ -306,7 +306,7 @@
         <div class="grid2">
           <label>X<input id="editX" type="number" value="0"></label><label>Y<input id="editY" type="number" value="0"></label>
           <label>W<input id="editW" type="number" value="64"></label><label>H<input id="editH" type="number" value="64"></label>
-          <label>Font<input id="editFont" type="number" value="0"></label><label>Livello<input id="editZ" type="number" value="1"></label>
+          <label>Dimensione testo<input id="editFont" type="number" value="0"></label><label>Font testo<select id="editFontFamily"><option value="">Default RankTag</option><option value="Arial, Helvetica, sans-serif">Arial</option><option value="Impact, Haettenschweiler, Arial Narrow Bold, sans-serif">Impact</option><option value="Verdana, Geneva, sans-serif">Verdana</option><option value="Trebuchet MS, Arial, sans-serif">Trebuchet</option><option value="Georgia, serif">Georgia</option><option value="Tahoma, Geneva, sans-serif">Tahoma</option><option value="Courier New, monospace">Courier New</option><option value="Times New Roman, serif">Times New Roman</option><option value="Lucida Console, Monaco, monospace">Lucida Console</option></select></label><label>Livello<input id="editZ" type="number" value="1"></label>
           <label>Opacità<input id="editOpacity" type="number" min="0" max="1" step="0.05" value="1"></label>
         </div>
         <div class="actions"><button class="btn secondary" id="applyFields" type="button">Applica</button><button class="btn secondary" id="front" type="button">Porta avanti</button><button class="btn secondary" id="back" type="button">Porta dietro</button><button class="btn secondary" id="removeImage" type="button">Rimuovi immagine</button></div>
@@ -324,7 +324,7 @@
     const stage = $("builderStage");
     const MAX_IMAGES = 2, MAX_IMG_SIZE = 160, MAX_CUSTOM_LINK_CHARS = 24000;
     const rankMap = {"bronze-4":["Bronze","4"],"bronze-3":["Bronze","3"],"bronze-2":["Bronze","2"],"bronze-1":["Bronze","1"],"silver-4":["Silver","4"],"silver-3":["Silver","3"],"silver-2":["Silver","2"],"silver-1":["Silver","1"],"gold-4":["Gold","4"],"gold-3":["Gold","3"],"gold-2":["Gold","2"],"gold-1":["Gold","1"],"platinum-4":["Platinum","4"],"platinum-3":["Platinum","3"],"platinum-2":["Platinum","2"],"platinum-1":["Platinum","1"],"diamond-4":["Diamond","4"],"diamond-3":["Diamond","3"],"diamond-2":["Diamond","2"],"diamond-1":["Diamond","1"],"ruby":["Ruby",""]};
-    const defaultLayout = {badge:{kind:"base",label:"Badge",x:28,y:32,w:78,h:78,fontSize:0,z:8,opacity:1},rank:{kind:"base",label:"Rank",x:116,y:43,w:205,h:24,fontSize:22,z:6,opacity:1},score:{kind:"base",label:"ELO",x:118,y:70,w:104,h:14,fontSize:10,z:6,opacity:1},player:{kind:"base",label:"Player",x:226,y:70,w:135,h:14,fontSize:9.5,z:6,opacity:1},brand:{kind:"base",label:"Brand",x:118,y:91,w:225,h:14,fontSize:8.5,z:6,opacity:1}};
+    const defaultLayout = {badge:{kind:"base",label:"Badge",x:28,y:32,w:78,h:78,fontSize:0,z:8,opacity:1,fontFamily:""},rank:{kind:"base",label:"Rank",x:116,y:43,w:205,h:24,fontSize:22,z:6,opacity:1,fontFamily:""},score:{kind:"base",label:"ELO",x:118,y:70,w:104,h:14,fontSize:10,z:6,opacity:1,fontFamily:""},player:{kind:"base",label:"Player",x:226,y:70,w:135,h:14,fontSize:9.5,z:6,opacity:1,fontFamily:""},brand:{kind:"base",label:"Brand",x:118,y:91,w:225,h:14,fontSize:8.5,z:6,opacity:1,fontFamily:""}};
     let baseLayout = JSON.parse(JSON.stringify(defaultLayout)), customElements = [], selectedId = null;
     function uid(){return "ce_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,7);}
     function clamp(n,min,max){return Math.max(min,Math.min(max,Number(n)||0));}
@@ -354,6 +354,7 @@
           opacity: `${item.opacity ?? 1}`,
           zIndex: `${item.z || 1}`,
           fontSize: item.fontSize ? `${item.fontSize * scale}px` : "",
+          fontFamily: item.fontFamily || "",
           lineHeight: `${item.h * scale}px`
         });
         if(item.id==="badge"){
@@ -380,7 +381,7 @@
           if($("baseBadgeRing")?.value !== "0") box.classList.add("effect-ring");
         }
         box.dataset.id=item.id;
-        Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`});
+        Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`});
         if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/platinum.svg?v=024" alt="">`;
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
@@ -390,15 +391,51 @@
       });
       updateFields(); renderList(); renderMirrorPreview(); buildLink();
     }
-    function updateFields(){const item=selected(); $("selectedName").textContent=item?(item.label||item.name||selectedId):"nessuno"; ["editX","editY","editW","editH","editFont","editZ","editOpacity"].forEach((id)=>{$(id).disabled=!item;}); if(!item){["editX","editY","editW","editH","editFont","editZ","editOpacity"].forEach((id)=>{$(id).value="";}); return;} $("editX").value=Math.round(item.x||0); $("editY").value=Math.round(item.y||0); $("editW").value=Math.round(item.w||1); $("editH").value=Math.round(item.h||1); $("editFont").value=Math.round(item.fontSize||0); $("editZ").value=Math.round(item.z||1); $("editOpacity").value=item.opacity??1;}
+    function updateFields(){
+      const item=selected();
+      const fieldIds=["editX","editY","editW","editH","editFont","editZ","editOpacity"];
+      const fontFamilyField=$("editFontFamily");
+      const isText=Boolean(item && item.kind!=="image" && selectedId!=="badge");
+      $("selectedName").textContent=item?(item.label||item.name||selectedId):"nessuno";
+      fieldIds.forEach((id)=>{$(id).disabled=!item;});
+      if(fontFamilyField) fontFamilyField.disabled=!isText;
+      if(!item){
+        fieldIds.forEach((id)=>{$(id).value="";});
+        if(fontFamilyField) fontFamilyField.value="";
+        return;
+      }
+      $("editX").value=Math.round(item.x||0);
+      $("editY").value=Math.round(item.y||0);
+      $("editW").value=Math.round(item.w||1);
+      $("editH").value=Math.round(item.h||1);
+      $("editFont").value=Math.round(item.fontSize||0);
+      if(fontFamilyField) fontFamilyField.value=isText?(item.fontFamily||""):"";
+      $("editZ").value=Math.round(item.z||1);
+      $("editOpacity").value=item.opacity??1;
+    }
     function renderList(){const list=$("elementsList"); list.innerHTML=""; items().forEach((item)=>{const btn=document.createElement("button"); btn.className="btn secondary"+(item.id===selectedId?" active":""); btn.type="button"; btn.textContent=item.label||item.name||item.id; btn.addEventListener("click",()=>{selectedId=item.id; render();}); list.appendChild(btn);});}
     function point(e){const rect=stage.getBoundingClientRect(); return {x:(e.clientX-rect.left)*(470/rect.width), y:(e.clientY-rect.top)*(160/rect.height)};}
     function startDrag(e){if(e.target.classList.contains("handle"))return; e.preventDefault(); const id=e.currentTarget.dataset.id; if(selectedId!==id){selectedId=id; render(); return;} const item=selected(); const start=point(e); const ox=start.x-item.x, oy=start.y-item.y; function move(ev){const p=point(ev); item.x=Math.round(clamp(p.x-ox,-120,590)); item.y=Math.round(clamp(p.y-oy,-120,280)); render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
     function startResize(e){e.preventDefault(); e.stopPropagation(); selectedId=e.currentTarget.parentElement.dataset.id; const item=selected(); const start=point(e); const sw=item.w, sh=item.h; function move(ev){const p=point(ev); item.w=Math.round(clamp(sw+(p.x-start.x),6,600)); item.h=Math.round(clamp(sh+(p.y-start.y),6,300));
       if(item.kind !== "image" && item.id !== "badge") { item.fontSize = Math.max(7, Math.round(item.h * 0.75)); }
       render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
-    function applyFields(){const item=selected(); if(!item)return; item.x=Math.round(clamp($("editX").value,-120,590)); item.y=Math.round(clamp($("editY").value,-120,280)); item.w=Math.round(clamp($("editW").value,6,600)); item.h=Math.round(clamp($("editH").value,6,300)); item.fontSize=Math.max(0,Number($("editFont").value||0)); if(item.kind !== "image" && selectedId !== "badge" && item.fontSize <= 0) item.fontSize = Math.max(7, Math.round(item.h * 0.75)); item.z=Math.round(Number($("editZ").value||1)); item.opacity=Math.max(0,Math.min(1,Number($("editOpacity").value||1))); render();}
-    function scaleLayoutForOverlay(){const out={}; Object.entries(baseLayout).forEach(([key,v])=>{out[key]={x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),fontSize:Math.max(0,Number(v.fontSize||0)),z:Math.round(Number(v.z)||1)};}); return {version:1,schema:"ranktag-base-layout-v1",canvas:{width:470,height:160},elements:out};}
+    function applyFields(){
+      const item=selected();
+      if(!item)return;
+      item.x=Math.round(clamp($("editX").value,-120,590));
+      item.y=Math.round(clamp($("editY").value,-120,280));
+      item.w=Math.round(clamp($("editW").value,6,600));
+      item.h=Math.round(clamp($("editH").value,6,300));
+      item.fontSize=Math.max(0,Number($("editFont").value||0));
+      if(item.kind !== "image" && selectedId !== "badge") {
+        if(item.fontSize <= 0) item.fontSize = Math.max(7, Math.round(item.h * 0.75));
+        item.fontFamily = $("editFontFamily")?.value || "";
+      }
+      item.z=Math.round(Number($("editZ").value||1));
+      item.opacity=Math.max(0,Math.min(1,Number($("editOpacity").value||1)));
+      render();
+    }
+    function scaleLayoutForOverlay(){const out={}; Object.entries(baseLayout).forEach(([key,v])=>{out[key]={x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),fontSize:Math.max(0,Number(v.fontSize||0)),fontFamily:String(v.fontFamily||""),z:Math.round(Number(v.z)||1)};}); return {version:2,schema:"ranktag-base-layout-v2",canvas:{width:470,height:160},elements:out};}
     function customPayload(){return customElements.map((v)=>({id:v.id,name:v.name,type:"image",src:v.src,x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),opacity:Math.max(0,Math.min(1,Number(v.opacity??1))),z:Math.round(Number(v.z)||30)}));}
     function updateLinkSizeHint(link){const help=$("linkSizeHelp"); if(!help)return; const len=link.length; help.textContent = customElements.length ? `Link generato: ${len} caratteri. Le immagini custom sono compresse e messe dopo # per essere lette dall overlay senza appesantire la query.` : `Link generato: ${len} caratteri.`; help.style.color = len > MAX_CUSTOM_LINK_CHARS ? "#ff8f8f" : ""; if(len > MAX_CUSTOM_LINK_CHARS) help.textContent += " Se resta troppo lungo per una piattaforma, usa una sola immagine oppure un file più piccolo.";}
     function buildLink(){
@@ -412,7 +449,7 @@
     }
     async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; const ctx=canvas.getContext("2d"); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.62),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
     $("customImageUpload").addEventListener("change",async(event)=>{const file=event.target.files&&event.target.files[0]; event.target.value=""; if(!file)return; if(customElements.length>=MAX_IMAGES)return alert(`Massimo ${MAX_IMAGES} immagini custom.`); try{const converted=await fileToDataUrl(file); const ratio=converted.w/converted.h; const h=Math.min(150,converted.h); const w=Math.round(h*ratio); const item={id:uid(),name:file.name.replace(/\.[^.]+$/,"").slice(0,24),kind:"image",type:"image",src:converted.src,x:30+customElements.length*18,y:30+customElements.length*12,w:Math.max(24,Math.min(150,w)),h:Math.max(24,Math.min(120,h)),opacity:1,z:30+customElements.length}; customElements.push(item); selectedId=item.id; render();}catch{alert("Immagine non valida. Usa PNG, JPG o WebP.");}});
-    $("applyFields").addEventListener("click",applyFields); ["editX","editY","editW","editH","editFont","editZ","editOpacity"].forEach((id)=>$(id).addEventListener("change",applyFields));
+    $("applyFields").addEventListener("click",applyFields); ["editX","editY","editW","editH","editFont","editFontFamily","editZ","editOpacity"].forEach((id)=>$(id)?.addEventListener("change",applyFields));
     ["mode","player","badgeFile","rankScore","scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{$(id)?.addEventListener("input",()=>{render(); buildLink();}); $(id)?.addEventListener("change",()=>{render(); buildLink();});});
     $("resetLayout").addEventListener("click",()=>{baseLayout=JSON.parse(JSON.stringify(defaultLayout)); selectedId=null; render();});
     $("clearImages").addEventListener("click",()=>{customElements=[]; selectedId=null; render();});

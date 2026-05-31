@@ -1,12 +1,12 @@
 {
-  "version": "0.2.5",
+  "version": "0.2.6",
   "project": "RankTag",
   "supabaseUrl": "https://dgmhxldfhmcywamgigji.supabase.co",
   "expectedBrand": "ERDRAGON32",
   "expectedDiscord": "discord.gg/cffTwCcCGD",
-  "note": "BETA 0.2.5: Layout Editor con selezione manuale degli elementi e testo non tagliato quando viene ingrandito.",
+  "note": "BETA 0.2.6: aggiunta selezione font per i testi nel Layout Editor avanzato, salvata nel link finale.",
   "status": "BETA",
-  "label": "BETA 0.2.5",
+  "label": "BETA 0.2.6",
   "versioning": {
     "beta": true,
     "rules": [

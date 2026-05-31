@@ -301,6 +301,7 @@ function applyBaseLayoutFromUrl() {
     node.style.height = `${Math.max(1, Number(cfg.h || 10))}px`;
     node.style.zIndex = `${Number(cfg.z || 1)}`;
     if (cfg.fontSize) node.style.fontSize = `${Number(cfg.fontSize)}px`;
+    if (cfg.fontFamily) node.style.fontFamily = String(cfg.fontFamily);
     if (cfg.h) node.style.lineHeight = "1.05";
   };
 
@@ -333,6 +334,7 @@ function applyBaseLayoutFromUrl() {
   if (brandDrawer) {
     brandDrawer.style.display = "block";
     brandDrawer.style.overflow = "hidden";
+    brandDrawer.querySelectorAll("span").forEach((span)=>{ if(e.brand?.fontFamily) span.style.fontFamily = String(e.brand.fontFamily); });
   }
 
   if (rankInfo) {
@@ -1702,6 +1704,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
         w: safeNumber(e.w, def[key].w),
         h: safeNumber(e.h, def[key].h),
         fontSize: safeNumber(e.fontSize, def[key].fontSize),
+        fontFamily: typeof e.fontFamily === "string" ? e.fontFamily : "",
         z: safeNumber(e.z, def[key].z)
       };
     }
@@ -1774,6 +1777,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
         width: ${e.rank.w}px !important;
         height: ${e.rank.h}px !important;
         font-size: ${e.rank.fontSize}px !important;
+        ${e.rank.fontFamily ? `font-family: ${e.rank.fontFamily} !important;` : ""}
         line-height: ${e.rank.h}px !important;
         z-index: ${e.rank.z} !important;
       }
@@ -1787,6 +1791,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
         width: ${e.score.w}px !important;
         height: ${e.score.h}px !important;
         font-size: ${e.score.fontSize}px !important;
+        ${e.score.fontFamily ? `font-family: ${e.score.fontFamily} !important;` : ""}
         line-height: ${e.score.h}px !important;
         z-index: ${e.score.z} !important;
       }
@@ -1800,6 +1805,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
         width: ${e.player.w}px !important;
         height: ${e.player.h}px !important;
         font-size: ${e.player.fontSize}px !important;
+        ${e.player.fontFamily ? `font-family: ${e.player.fontFamily} !important;` : ""}
         line-height: ${e.player.h}px !important;
         z-index: ${e.player.z} !important;
       }
@@ -1813,6 +1819,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
         width: ${e.brand.w}px !important;
         height: ${e.brand.h}px !important;
         font-size: ${e.brand.fontSize}px !important;
+        ${e.brand.fontFamily ? `font-family: ${e.brand.fontFamily} !important;` : ""}
         line-height: ${e.brand.h}px !important;
         z-index: ${e.brand.z} !important;
       }
@@ -1820,6 +1827,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
       #badge.rt78-cyber-red-elite .brand-marquee span,
       #badge.rt80-cyber-red-elite .brand-marquee span {
         font-size: ${e.brand.fontSize}px !important;
+        ${e.brand.fontFamily ? `font-family: ${e.brand.fontFamily} !important;` : ""}
         line-height: ${e.brand.h}px !important;
       }
     `;
@@ -1922,6 +1930,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
         w: safeNumber(v.w, d.w || 10),
         h: safeNumber(v.h, d.h || 10),
         fontSize: safeNumber(v.fontSize, d.fontSize || 0),
+        fontFamily: typeof v.fontFamily === "string" ? v.fontFamily : "",
         z: safeNumber(v.z, d.z || 1)
       };
     });
@@ -2134,6 +2143,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
       `height:${cfg.h}px`,
       `z-index:${cfg.z}`,
       cfg.fontSize ? `font-size:${cfg.fontSize}px` : "",
+      cfg.fontFamily ? `font-family:${cfg.fontFamily}` : "",
       `line-height:${cfg.h}px`
     ].filter(Boolean).join(";");
   }
@@ -2309,6 +2319,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
         w: safeNumber(v.w, d.w || 10),
         h: safeNumber(v.h, d.h || 10),
         fontSize: safeNumber(v.fontSize, d.fontSize || 0),
+        fontFamily: typeof v.fontFamily === "string" ? v.fontFamily : "",
         z: safeNumber(v.z, d.z || 1)
       };
     });
@@ -2535,6 +2546,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
       `height:${cfg.h}px`,
       `z-index:${cfg.z}`,
       cfg.fontSize ? `font-size:${cfg.fontSize}px` : "",
+      cfg.fontFamily ? `font-family:${cfg.fontFamily}` : "",
       `line-height:${cfg.h}px`
     ].filter(Boolean).join(";");
   }
@@ -2642,6 +2654,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.2.4");
       `height:${cfg.h}px`,
       `z-index:${cfg.z}`,
       cfg.fontSize ? `font-size:${cfg.fontSize}px` : "",
+      cfg.fontFamily ? `font-family:${cfg.fontFamily}` : "",
       `line-height:${cfg.h}px`
     ].filter(Boolean).join(";");
   }
@@ -2834,6 +2847,7 @@ function renderBaseBuilderLayoutAuthoritative() {
     node.style.height = `${Math.max(1, Number(cfg.h || 1))}px`;
     node.style.zIndex = `${Number(cfg.z || 10)}`;
     if (Number(cfg.fontSize || 0) > 0) node.style.fontSize = `${Number(cfg.fontSize)}px`;
+    if (cfg.fontFamily) node.style.fontFamily = String(cfg.fontFamily);
     if (cfg.h) node.style.lineHeight = "1.05";
     if (key === "rank") node.style.color = params.get("rankColor") ? `#${params.get("rankColor").replace("#","").slice(0,6)}` : "";
     if (key === "score") node.style.color = params.get("scoreColor") ? `#${params.get("scoreColor").replace("#","").slice(0,6)}` : "";
