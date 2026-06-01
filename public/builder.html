@@ -262,7 +262,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.0</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.1</span>
       </div>
     </div>
     <div class="layout">
@@ -364,6 +364,26 @@
     function currentRankParts(){if($("mode")?.value==="auto" && leaderboardData){const base=String(leaderboardData.league||"Unranked").replace(/\bIV\b/g,"4").replace(/\bIII\b/g,"3").replace(/\bII\b/g,"2").replace(/\bI\b/g,"1").replace(/\s+/g," ").trim(); const div=divisionFromLeague(leaderboardData.league,leaderboardData.leagueNumber); return [base, base.match(/\b[1-4]\b$/)?"":div];} return rankMap[$("badgeFile").value]||["Unranked",""];}
         function displayText(id){const [league,div]=currentRankParts(); if(id==="rank")return (league+(div?" "+div:"")).toUpperCase(); if(id==="score")return `${$("scoreLabel").value||"ELO"}: ${compactNumber($("mode")?.value==="auto" && leaderboardData ? leaderboardData.rankScore : $("rankScore").value)}`; if(id==="player")return (leaderboardData?.player && $("mode")?.value==="auto") ? leaderboardData.player : ($("player").value||"NomePlayer#1234"); if(id==="brand")return "ERDRAGON32 • Join the Discord"; return id;}
     function selectedBadgeBase(){if($("mode")?.value==="auto" && leaderboardData)return baseLeagueName(leaderboardData.league); return baseLeagueName($("badgeFile")?.value||"");}
+
+    const EMBARK_BADGE_BASE = "https://id.embark.games/images/leaderboards/leagues/";
+    function selectedBadgeKey(){
+      if($("mode")?.value === "auto" && leaderboardData) return badgeFileFromLeaderboard(leaderboardData);
+      return $("badgeFile")?.value || "platinum-1";
+    }
+    function localBadgeFallback(key){
+      const base = baseLeagueName(key);
+      return `/assets/badges/${base}.svg?v=051`;
+    }
+    function officialBadgeUrl(key){
+      const clean = String(key || "").toLowerCase().replace(/[^a-z0-9-]/g, "");
+      if(!clean || clean === "unranked") return localBadgeFallback(clean);
+      return `${EMBARK_BADGE_BASE}${clean}.png`;
+    }
+    function badgeImgMarkup(){
+      const key = selectedBadgeKey();
+      const fallback = localBadgeFallback(key);
+      return `<img src="${officialBadgeUrl(key)}" onerror="this.onerror=null;this.src='${fallback}'" alt="${key}">`;
+    }
     async function lookupLeaderboardNow(){
       if($("mode")?.value!=="auto"){leaderboardData=null; setLeaderboardStatus("Modalità manuale: rank e punti vengono usati dai campi sotto.",""); render(); return;}
       const player=($("player")?.value||"").trim();
@@ -415,7 +435,7 @@
           transform: item.kind === "image" ? `rotate(${Number(item.rotation || 0)}deg)` : ""
         });
         if(item.id==="badge"){
-          node.innerHTML = `<img src="/assets/badges/${selectedBadgeBase()}.svg?v=031" alt="">`;
+          node.innerHTML = badgeImgMarkup();
         } else if(item.kind==="image"){
           node.innerHTML = `<img src="${item.src}" alt="">`;
         } else {
@@ -439,7 +459,7 @@
         }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""});
-        if(item.id==="badge") box.innerHTML=`<img src="/assets/badges/${selectedBadgeBase()}.svg?v=031" alt="">`;
+        if(item.id==="badge") box.innerHTML = badgeImgMarkup();
         else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
         else box.textContent=displayText(item.id);
         const label=document.createElement("div"); label.className="label"; if(item.id === selectedId){ label.textContent=item.label||item.name||item.id; box.appendChild(label); }
@@ -506,7 +526,7 @@
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
       url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
 
-      // BETA 0.5.0: i dati pesanti/non necessari al server vengono spostati dopo #.
+      // BETA 0.5.1: i dati pesanti/non necessari al server vengono spostati dopo #.
       // In questo modo Vercel e le piattaforme streaming ricevono una richiesta corta
       // e non possono bloccare il link con 403 per URL troppo lunghi o payload base64.
       const hash=new URLSearchParams();
