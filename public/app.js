@@ -313,8 +313,8 @@ function applyBaseLayoutFromUrl() {
   if (!layout || !layout.elements) return;
 
   const e = layout.elements;
-  const shellOffsetX = 45;
-  const shellOffsetY = 33;
+  const shellOffsetX = 0;
+  const shellOffsetY = 0;
   const apply = (node, cfg, rootCoords = true) => {
     if (!node || !cfg) return;
     const x = Number(cfg.x || 0) - (rootCoords ? shellOffsetX : 0);
@@ -327,7 +327,7 @@ function applyBaseLayoutFromUrl() {
     node.style.zIndex = `${Number(cfg.z || 1)}`;
     if (cfg.fontSize) node.style.fontSize = `${Number(cfg.fontSize)}px`;
     if (cfg.fontFamily) node.style.fontFamily = String(cfg.fontFamily);
-    if (cfg.h) node.style.lineHeight = "1.05";
+    if (cfg.h) { node.style.lineHeight = "1.05"; node.style.padding = "0"; node.style.boxSizing = "border-box"; }
   };
 
   // make base overlay absolute-layout capable
@@ -406,6 +406,7 @@ function renderCustomImageElements() {
     img.src = item.src;
     img.alt = "";
     img.style.position = "absolute";
+    img.style.boxSizing = "border-box";
     img.style.left = `${Number(item.x || 0)}px`;
     img.style.top = `${Number(item.y || 0)}px`;
     img.style.width = `${Math.max(1, Number(item.w || 64))}px`;
@@ -934,7 +935,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag BETA 0.2.1 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "0.3.8");
+document.documentElement.setAttribute("data-ranktag-version", "0.5.3");
 
 
 
@@ -2875,6 +2876,8 @@ function renderBaseBuilderLayoutAuthoritative() {
       node.style.textShadow = "0 2px 8px rgba(0,0,0,.72)";
     }
     node.style.position = "absolute";
+    node.style.boxSizing = "border-box";
+    node.style.padding = "0";
     node.style.left = `${Number(cfg.x || 0)}px`;
     node.style.top = `${Number(cfg.y || 0)}px`;
     node.style.width = `${Math.max(1, Number(cfg.w || 1))}px`;
@@ -2882,7 +2885,7 @@ function renderBaseBuilderLayoutAuthoritative() {
     node.style.zIndex = `${Number(cfg.z || 10)}`;
     if (Number(cfg.fontSize || 0) > 0) node.style.fontSize = `${Number(cfg.fontSize)}px`;
     if (cfg.fontFamily) node.style.fontFamily = String(cfg.fontFamily);
-    if (cfg.h) node.style.lineHeight = "1.05";
+    if (cfg.h) { node.style.lineHeight = "1.05"; node.style.padding = "0"; node.style.boxSizing = "border-box"; }
     if (key === "rank") node.style.color = getRankTagParam("rankColor") ? `#${getRankTagParam("rankColor").replace("#","").slice(0,6)}` : "";
     if (key === "score") node.style.color = getRankTagParam("scoreColor") ? `#${getRankTagParam("scoreColor").replace("#","").slice(0,6)}` : "";
     if (key === "player") node.style.color = getRankTagParam("nameColor") ? `#${getRankTagParam("nameColor").replace("#","").slice(0,6)}` : "";

@@ -4148,3 +4148,29 @@ section:has(.premium-one-card) {
   0% { transform: translate3d(0,0,0); }
   100% { transform: translate3d(-50%,0,0); }
 }
+
+
+/* RankTag BETA 0.5.3 - Layout Editor fidelity sync */
+.badge.base-builder-authoritative .rt-builder-final-layer,
+.badge.base-builder-authoritative .rt-custom-image-layer {
+  box-sizing: border-box !important;
+  padding: 0 !important;
+  transform-origin: center center !important;
+}
+.badge.base-builder-authoritative .rt-builder-final-rank,
+.badge.base-builder-authoritative .rt-builder-final-score,
+.badge.base-builder-authoritative .rt-builder-final-player,
+.badge.base-builder-authoritative .rt-builder-final-brand {
+  line-height: 1.05 !important;
+  display: flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+}
+.badge.base-builder-authoritative .rt-builder-final-rank,
+.badge.base-builder-authoritative .rt-builder-final-score,
+.badge.base-builder-authoritative .rt-builder-final-player {
+  overflow: visible !important;
+}
+.badge.base-builder-authoritative .rt-builder-final-brand {
+  overflow: hidden !important;
+}

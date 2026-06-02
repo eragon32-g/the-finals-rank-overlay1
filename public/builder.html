@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=050" />
+  <link rel="stylesheet" href="/style.css?v=053" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -71,21 +71,23 @@
       height:2px;
       background:linear-gradient(90deg,transparent,rgba(255,42,23,.48),rgba(255,211,106,.68),transparent);
     }
-    .builder-item { position:absolute; border:2px dashed transparent; border-radius:10px; cursor:pointer; user-select:none; min-width:10px; min-height:10px; transform-origin:center center; }
+    .builder-item { position:absolute; border:2px dashed transparent; border-radius:10px; cursor:pointer; user-select:none; min-width:10px; min-height:10px; transform-origin:center center; box-sizing:border-box; }
     .builder-item.active { cursor:move; border-color:#ffd36a; box-shadow:0 0 0 1px rgba(255,211,106,.28),0 0 22px rgba(255,42,23,.22); }
     .builder-item .label { position:absolute; left:0; top:-12px; color:#ffd36a; font-size:8px; font-weight:1000; text-shadow:0 1px 5px rgba(0,0,0,.9); white-space:nowrap; }
     .builder-item .handle { display:none; position:absolute; right:-8px; bottom:-8px; width:18px; height:18px; border-radius:50%; background:#ffd36a; border:3px solid rgba(0,0,0,.78); cursor:nwse-resize; }
     .builder-item.active .handle { display:block; }
     .builder-item img { width:100%; height:100%; object-fit:contain; display:block; pointer-events:none; }
-    .text-item { display:flex; align-items:center; overflow:visible; white-space:nowrap; font-weight:1000; color:#f5f7fb; text-shadow:0 2px 8px rgba(0,0,0,.72); padding:0 4px; }
+    .text-item { display:flex; align-items:center; overflow:visible; white-space:nowrap; font-weight:1000; color:#f5f7fb; text-shadow:0 2px 8px rgba(0,0,0,.72); padding:0; line-height:1.05; }
     .rank-item { color:#f5f7fb; letter-spacing:1px; }
     .score-item { color:#f0d9aa; }
     .player-item { color:#e8edf4; }
-    .brand-item { color:#f5f7fb; background:rgba(0,0,0,.28); border-radius:999px; padding:0 10px; overflow:hidden; contain:paint; }
+    .brand-item { color:#f5f7fb; background:rgba(0,0,0,.28); border-radius:999px; padding:0; overflow:hidden; contain:paint; }
     .list { display:grid; gap:8px; max-height:135px; overflow:auto; padding-right:4px; }
     .list button { justify-content:flex-start; text-align:left; }
     .preview-frame { width:100%; max-width:470px; height:136px; margin:0 auto; overflow:hidden; border-radius:16px; }
     .preview-frame iframe { width:470px; height:160px; border:0; display:block; transform:scale(.85); transform-origin:0 0; }
+    #preview { display:block !important; width:470px; height:160px; max-width:none; border:0; transform:scale(.70); transform-origin:0 0; background:transparent; }
+    .real-preview-wrap { width:330px; height:112px; margin:0 auto; overflow:hidden; border:1px solid rgba(255,255,255,.14); border-radius:16px; background:rgba(0,0,0,.22); }
     .help { margin:8px 0 0; font-size:12px; color:rgba(245,247,251,.58); line-height:1.35; }
     @media (max-width:1780px){ .page{ margin-left:24px; margin-right:24px; } } @media (max-width:1100px){ .page{ width:100%; max-width:100%; margin:0; } .layout{grid-template-columns:1fr;} .builder-stage{ width:min(940px,100%); height:calc(min(940px,100vw - 84px) * 0.3404); } }
     @media (max-height:820px){ body{ padding-top:18px; padding-bottom:32px; } .top{ margin-bottom:14px; } .panel{ padding:15px; } }
@@ -123,7 +125,7 @@
     }
     .mirror-item {
       position:absolute;
-      overflow:hidden;
+      overflow:visible;
       white-space:nowrap;
       display:flex;
       align-items:center;
@@ -264,7 +266,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.2</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.3</span>
       </div>
     </div>
     <div class="layout">
@@ -317,7 +319,7 @@
 </div>
         <div class="builder-stage-holder"><div class="builder-stage" id="builderStage"><div class="builder-bg"></div></div></div>
         <div class="actions"><input id="customImageUpload" type="file" accept="image/png,image/jpeg,image/webp" style="max-width:340px;"><button class="btn secondary" id="resetLayout" type="button">Reset layout</button><button class="btn secondary" id="clearImages" type="button">Rimuovi immagini</button></div>
-        <p class="help">Editor ridimensionato per restare dentro i margini: al centro modifichi l’overlay reale. Lo zoom agisce solo sull’overlay interno.</p>
+        <p class="help">Editor in coordinate reali 470×160: posizione, dimensioni e livelli vengono salvati con lo stesso sistema usato da anteprima e overlay finale. Lo zoom agisce solo sulla vista, non sui valori.</p>
       </section>
       <section class="panel stack">
         <h2>5. Elemento selezionato</h2><span class="tag" id="selectedName">nessuno</span>
@@ -330,16 +332,17 @@
         <p class="help font-help">Seleziona un elemento. Per le immagini custom puoi anche impostare la rotazione in gradi. Guida THE FINALS: Header/Subheader = Saira ExtraBold Italic, Body = Medium, Body Emphasis = Bold, Button = Italic. La scelta font viene salvata nel link finale.</p>
         <div class="actions"><button class="btn secondary" id="applyFields" type="button">Applica</button><button class="btn secondary" id="front" type="button">Porta avanti</button><button class="btn secondary" id="back" type="button">Porta dietro</button><button class="btn secondary" id="removeImage" type="button">Rimuovi immagine</button></div>
         <div class="list" id="elementsList"></div>
-        <h2>6. Anteprima finale reale</h2>
-        <p class="help">Preview reale in scala ridotta. Il link finale ora include layout e branding animato.</p>
-        <div class="mirror-preview" id="mirrorPreview"><div class="mirror-bg"></div></div><iframe id="preview" title="Preview overlay" style="display:none;"></iframe>
+        <h2>6. Anteprima fedele</h2>
+        <p class="help">Sopra trovi la preview mirror veloce; sotto trovi l’iframe reale generato dal link finale. Deve combaciare con l’overlay che aprono gli utenti.</p>
+        <div class="mirror-preview" id="mirrorPreview"><div class="mirror-bg"></div></div>
+        <div class="real-preview-wrap"><iframe id="preview" title="Preview overlay"></iframe></div>
         <label>Nome progetto<input id="projectName" placeholder="Es. Overlay ranked rosso"></label><div class="actions"><button class="btn" id="generate" type="button">Aggiorna link</button><button class="btn secondary" id="saveProject" type="button">Salva progetto</button><button class="btn secondary" id="copy" type="button">Copia link</button></div>
         <label>Link finale<textarea id="output" readonly></textarea></label><p class="help" id="linkSizeHelp">Le immagini custom vengono compresse e salvate nel frammento # del link per ridurre problemi sulle piattaforme.</p>
       </section>
     </div>
   </main>
   <a class="quick-feedback" href="/feedback.html?from=builder" target="_blank" rel="noopener">Segnala problema</a>
-  <script src="/access.js?v=052"></script>
+  <script src="/access.js?v=053"></script>
   <script>
     if(!window.RankTagAccess || !RankTagAccess.requireBuilderAccess()){
       document.body.innerHTML = `<main class="page"><section class="panel stack" style="max-width:760px;margin:40px auto"><h1>Builder bloccato</h1><p class="sub">Per usare l’Overlay Builder avanzato devi essere loggato e avere un codice accesso valido.</p><div class="actions"><a class="btn" href="/account.html">Login / Riscatta codice</a><a class="btn secondary" href="/home.html">Torna alla Home</a></div></section></main>`;
@@ -351,6 +354,7 @@
     const rankMap = {"bronze-4":["Bronze","4"],"bronze-3":["Bronze","3"],"bronze-2":["Bronze","2"],"bronze-1":["Bronze","1"],"silver-4":["Silver","4"],"silver-3":["Silver","3"],"silver-2":["Silver","2"],"silver-1":["Silver","1"],"gold-4":["Gold","4"],"gold-3":["Gold","3"],"gold-2":["Gold","2"],"gold-1":["Gold","1"],"platinum-4":["Platinum","4"],"platinum-3":["Platinum","3"],"platinum-2":["Platinum","2"],"platinum-1":["Platinum","1"],"diamond-4":["Diamond","4"],"diamond-3":["Diamond","3"],"diamond-2":["Diamond","2"],"diamond-1":["Diamond","1"],"ruby":["Ruby",""]};
     const defaultLayout = {badge:{kind:"base",label:"Badge",x:28,y:32,w:78,h:78,fontSize:0,z:8,opacity:1,fontFamily:""},rank:{kind:"base",label:"Rank",x:116,y:43,w:205,h:24,fontSize:22,z:6,opacity:1,fontFamily:""},score:{kind:"base",label:"ELO",x:118,y:70,w:104,h:14,fontSize:10,z:6,opacity:1,fontFamily:""},player:{kind:"base",label:"Player",x:226,y:70,w:135,h:14,fontSize:9.5,z:6,opacity:1,fontFamily:""},brand:{kind:"base",label:"Brand",x:118,y:91,w:225,h:14,fontSize:8.5,z:6,opacity:1,fontFamily:""}};
     let baseLayout = JSON.parse(JSON.stringify(defaultLayout)), customElements = [], selectedId = null;
+    let previewUpdateTimer = null;
     function uid(){return "ce_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,7);}
     function clamp(n,min,max){return Math.max(min,Math.min(max,Number(n)||0));}
     function encode(obj){try{return btoa(unescape(encodeURIComponent(JSON.stringify(obj)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=/g,".");}catch{return "";}}
@@ -434,7 +438,7 @@
           zIndex: `${item.z || 1}`,
           fontSize: item.fontSize ? `${item.fontSize * scale}px` : "",
           fontFamily: item.fontFamily || "",
-          lineHeight: `${item.h * scale}px`,
+          lineHeight: item.kind!=="image" ? "1.05" : `${item.h * scale}px`,
           transform: item.kind === "image" ? `rotate(${Number(item.rotation || 0)}deg)` : ""
         });
         if(item.id==="badge"){
@@ -529,7 +533,7 @@
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
       url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
 
-      // BETA 0.5.2: i dati pesanti/non necessari al server vengono spostati dopo #.
+      // BETA 0.5.3: i dati pesanti/non necessari al server vengono spostati dopo #.
       // In questo modo Vercel e le piattaforme streaming ricevono una richiesta corta
       // e non possono bloccare il link con 403 per URL troppo lunghi o payload base64.
       const hash=new URLSearchParams();
@@ -539,7 +543,11 @@
       if(customElements.length){ hash.set("customElements",encode(customPayload())); }
       url.hash=hash.toString();
 
-      const finalLink=url.toString(); $("output").value=finalLink; $("preview").src=finalLink; updateLinkSizeHint(finalLink); return finalLink;
+      const finalLink=url.toString();
+      $("output").value=finalLink;
+      clearTimeout(previewUpdateTimer);
+      previewUpdateTimer=setTimeout(()=>{ const frame=$("preview"); if(frame && frame.src!==finalLink) frame.src=finalLink; }, 180);
+      updateLinkSizeHint(finalLink); return finalLink;
     }
     async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; const ctx=canvas.getContext("2d"); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.62),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
     $("customImageUpload").addEventListener("change",async(event)=>{const file=event.target.files&&event.target.files[0]; event.target.value=""; if(!file)return; if(customElements.length>=MAX_IMAGES)return alert(`Massimo ${MAX_IMAGES} immagini custom.`); try{const converted=await fileToDataUrl(file); const ratio=converted.w/converted.h; const h=Math.min(150,converted.h); const w=Math.round(h*ratio); const item={id:uid(),name:file.name.replace(/\.[^.]+$/,"").slice(0,24),kind:"image",type:"image",src:converted.src,x:30+customElements.length*18,y:30+customElements.length*12,w:Math.max(24,Math.min(150,w)),h:Math.max(24,Math.min(120,h)),opacity:1,rotation:0,z:30+customElements.length}; customElements.push(item); selectedId=item.id; render();}catch{alert("Immagine non valida. Usa PNG, JPG o WebP.");}});
