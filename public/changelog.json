@@ -1,1 +1,1 @@
-[{"version":"BETA 0.5.4","name":"Single Preview Fidelity Fix","changes":["rimossa la doppia anteprima dal Builder","mantenuta una sola anteprima iframe generata dal link finale","anteprima unica sincronizzata con overlay finale","versione e Updates aggiornati a BETA 0.5.4"]}]
+[{"version": "BETA 0.5.5", "name": "Builder Preview Dock Fix", "changes": ["rimossa definitivamente la seconda anteprima dal Builder", "anteprima unica spostata sotto Editor layout", "preview sincronizzata con il link finale", "versione e Updates aggiornati a BETA 0.5.5"]}]

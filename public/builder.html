@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=054" />
+  <link rel="stylesheet" href="/style.css?v=055" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -86,8 +86,11 @@
     .list button { justify-content:flex-start; text-align:left; }
     .preview-frame { width:100%; max-width:470px; height:136px; margin:0 auto; overflow:hidden; border-radius:16px; }
     .preview-frame iframe { width:470px; height:160px; border:0; display:block; transform:scale(.85); transform-origin:0 0; }
-    #preview { display:block !important; width:470px; height:160px; max-width:none; border:0; transform:scale(.70); transform-origin:0 0; background:transparent; }
-    .real-preview-wrap { width:330px; height:112px; margin:0 auto; overflow:hidden; border:1px solid rgba(255,255,255,.14); border-radius:16px; background:linear-gradient(45deg, rgba(255,255,255,.045) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,.045) 25%, transparent 25%), rgba(0,0,0,.32); background-size:15px 15px; clip-path:polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px); }
+    #preview { display:block !important; width:470px; height:160px; max-width:none; border:0; transform:none; transform-origin:0 0; background:transparent; }
+    .stage-preview-block { width:100%; display:grid; gap:10px; justify-items:center; margin-top:4px; }
+    .stage-preview-block h2 { width:100%; max-width:470px; margin:0; }
+    .stage-preview-block .help { width:100%; max-width:470px; margin:0; text-align:left; }
+    .real-preview-wrap { width:470px; height:160px; max-width:100%; margin:0 auto; overflow:hidden; border:1px solid rgba(255,255,255,.14); border-radius:16px; background:linear-gradient(45deg, rgba(255,255,255,.045) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,.045) 25%, transparent 25%), rgba(0,0,0,.32); background-size:15px 15px; clip-path:polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px); }
     .help { margin:8px 0 0; font-size:12px; color:rgba(245,247,251,.58); line-height:1.35; }
     @media (max-width:1780px){ .page{ margin-left:24px; margin-right:24px; } } @media (max-width:1100px){ .page{ width:100%; max-width:100%; margin:0; } .layout{grid-template-columns:1fr;} .builder-stage{ width:min(940px,100%); height:calc(min(940px,100vw - 84px) * 0.3404); } }
     @media (max-height:820px){ body{ padding-top:18px; padding-bottom:32px; } .top{ margin-bottom:14px; } .panel{ padding:15px; } }
@@ -266,7 +269,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.4</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.5</span>
       </div>
     </div>
     <div class="layout">
@@ -320,9 +323,14 @@
         <div class="builder-stage-holder"><div class="builder-stage" id="builderStage"><div class="builder-bg"></div></div></div>
         <div class="actions"><input id="customImageUpload" type="file" accept="image/png,image/jpeg,image/webp" style="max-width:340px;"><button class="btn secondary" id="resetLayout" type="button">Reset layout</button><button class="btn secondary" id="clearImages" type="button">Rimuovi immagini</button></div>
         <p class="help">Editor in coordinate reali 470×160: posizione, dimensioni e livelli vengono salvati con lo stesso sistema usato da anteprima e overlay finale. Lo zoom agisce solo sulla vista, non sui valori.</p>
+        <div class="stage-preview-block">
+          <h2>5. Anteprima live</h2>
+          <p class="help">Una sola anteprima, sotto l’Editor layout, sincronizzata con il link finale che vedono gli utenti.</p>
+          <div class="real-preview-wrap"><iframe id="preview" title="Preview overlay"></iframe></div>
+        </div>
       </section>
       <section class="panel stack">
-        <h2>5. Elemento selezionato</h2><span class="tag" id="selectedName">nessuno</span>
+        <h2>6. Elemento selezionato</h2><span class="tag" id="selectedName">nessuno</span>
         <div class="grid2">
           <label>X<input id="editX" type="number" value="0"></label><label>Y<input id="editY" type="number" value="0"></label>
           <label>W<input id="editW" type="number" value="64"></label><label>H<input id="editH" type="number" value="64"></label>
@@ -332,17 +340,13 @@
         <p class="help font-help">Seleziona un elemento. Per le immagini custom puoi anche impostare la rotazione in gradi. Guida THE FINALS: Header/Subheader = Saira ExtraBold Italic, Body = Medium, Body Emphasis = Bold, Button = Italic. La scelta font viene salvata nel link finale.</p>
         <div class="actions"><button class="btn secondary" id="applyFields" type="button">Applica</button><button class="btn secondary" id="front" type="button">Porta avanti</button><button class="btn secondary" id="back" type="button">Porta dietro</button><button class="btn secondary" id="removeImage" type="button">Rimuovi immagine</button></div>
         <div class="list" id="elementsList"></div>
-        <h2>6. Anteprima fedele</h2>
-        <p class="help">Sopra trovi la preview mirror veloce; sotto trovi l’iframe reale generato dal link finale. Deve combaciare con l’overlay che aprono gli utenti.</p>
-        <div class="mirror-preview" id="mirrorPreview"><div class="mirror-bg"></div></div>
-        <div class="real-preview-wrap"><iframe id="preview" title="Preview overlay"></iframe></div>
         <label>Nome progetto<input id="projectName" placeholder="Es. Overlay ranked rosso"></label><div class="actions"><button class="btn" id="generate" type="button">Aggiorna link</button><button class="btn secondary" id="saveProject" type="button">Salva progetto</button><button class="btn secondary" id="copy" type="button">Copia link</button></div>
         <label>Link finale<textarea id="output" readonly></textarea></label><p class="help" id="linkSizeHelp">Le immagini custom vengono compresse e salvate nel frammento # del link per ridurre problemi sulle piattaforme.</p>
       </section>
     </div>
   </main>
   <a class="quick-feedback" href="/feedback.html?from=builder" target="_blank" rel="noopener">Segnala problema</a>
-  <script src="/access.js?v=054"></script>
+  <script src="/access.js?v=055"></script>
   <script>
     if(!window.RankTagAccess || !RankTagAccess.requireBuilderAccess()){
       document.body.innerHTML = `<main class="page"><section class="panel stack" style="max-width:760px;margin:40px auto"><h1>Builder bloccato</h1><p class="sub">Per usare l’Overlay Builder avanzato devi essere loggato e avere un codice accesso valido.</p><div class="actions"><a class="btn" href="/account.html">Login / Riscatta codice</a><a class="btn secondary" href="/home.html">Torna alla Home</a></div></section></main>`;
@@ -533,7 +537,7 @@
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
       url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
 
-      // BETA 0.5.4: preview unica e link finale restano sincronizzati con dati pesanti dopo #.
+      // BETA 0.5.5: preview unica e link finale restano sincronizzati con dati pesanti dopo #.
       // In questo modo Vercel e le piattaforme streaming ricevono una richiesta corta
       // e non possono bloccare il link con 403 per URL troppo lunghi o payload base64.
       const hash=new URLSearchParams();
@@ -591,3 +595,4 @@
   </script>
 </body>
 </html>
+<!-- RankTag BETA 0.5.5: mirror preview rimossa; resta solo iframe preview sotto Editor layout. -->
