@@ -1,1 +1,1 @@
-{"name": "ranktag-finals-overlay-beta-0-5-3-layout-editor-fidelity-sync-fix", "version": "0.5.3", "description": "RankTag BETA 0.5.3 - layout editor fidelity sync fix", "scripts": {"start": "vercel dev"}}
+{"name":"ranktag-finals-overlay-beta-0-5-4-single-preview-fidelity-fix","version":"0.5.4","description":"RankTag BETA 0.5.4 - single preview fidelity fix","scripts":{"start":"vercel dev"}}

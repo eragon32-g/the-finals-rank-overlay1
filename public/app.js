@@ -935,7 +935,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag BETA 0.2.1 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "0.5.3");
+document.documentElement.setAttribute("data-ranktag-version", "0.5.4");
 
 
 
