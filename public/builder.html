@@ -252,6 +252,8 @@
     #leaderboardStatus[data-state="loading"] { color:#f0d9aa; }
     #leaderboardStatus[data-state="ok"] { color:#9ff3b5; }
     #leaderboardStatus[data-state="error"] { color:#ff8f8f; }
+  .quick-feedback{position:fixed;right:18px;bottom:18px;z-index:9999;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:12px 15px;background:#ff2638;color:#fff;text-decoration:none;font-weight:1000;box-shadow:0 12px 32px rgba(0,0,0,.36)}
+    @media(max-width:700px){.quick-feedback{right:12px;bottom:12px;padding:10px 12px;font-size:12px}}
   </style>
 </head>
 <body>
@@ -262,7 +264,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.1</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.2</span>
       </div>
     </div>
     <div class="layout">
@@ -336,7 +338,8 @@
       </section>
     </div>
   </main>
-  <script src="/access.js?v=050"></script>
+  <a class="quick-feedback" href="/feedback.html?from=builder" target="_blank" rel="noopener">Segnala problema</a>
+  <script src="/access.js?v=052"></script>
   <script>
     if(!window.RankTagAccess || !RankTagAccess.requireBuilderAccess()){
       document.body.innerHTML = `<main class="page"><section class="panel stack" style="max-width:760px;margin:40px auto"><h1>Builder bloccato</h1><p class="sub">Per usare l’Overlay Builder avanzato devi essere loggato e avere un codice accesso valido.</p><div class="actions"><a class="btn" href="/account.html">Login / Riscatta codice</a><a class="btn secondary" href="/home.html">Torna alla Home</a></div></section></main>`;
@@ -526,7 +529,7 @@
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
       url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
 
-      // BETA 0.5.1: i dati pesanti/non necessari al server vengono spostati dopo #.
+      // BETA 0.5.2: i dati pesanti/non necessari al server vengono spostati dopo #.
       // In questo modo Vercel e le piattaforme streaming ricevono una richiesta corta
       // e non possono bloccare il link con 403 per URL troppo lunghi o payload base64.
       const hash=new URLSearchParams();

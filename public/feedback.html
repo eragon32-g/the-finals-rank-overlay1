@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RankTag Feedback & Report</title>
+<link rel="stylesheet" href="/style.css?v=052">
+<style>
+*{box-sizing:border-box}html,body{min-height:100%;height:auto;overflow-y:auto!important}body{margin:0;background:radial-gradient(circle at 0 0,rgba(239,23,36,.18),transparent 30%),linear-gradient(180deg,#111923,#06070b 48%,#030407);color:#f5f7fb;font-family:Arial,Helvetica,sans-serif;padding:28px 18px 70px}.page{width:min(1180px,100%);margin:0 auto}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px}.nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.nav a,.tag{border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:9px 13px;background:rgba(255,255,255,.06);color:#fff;text-decoration:none;font-weight:900;font-size:12px;letter-spacing:.4px}h1{font-size:clamp(38px,6vw,76px);line-height:.9;margin:0 0 10px;letter-spacing:-2px}h2{margin:0 0 10px}.sub,.muted{color:rgba(245,247,251,.72);line-height:1.45}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.panel{border:1px solid rgba(255,255,255,.12);border-radius:24px;background:linear-gradient(180deg,rgba(18,21,30,.96),rgba(8,10,15,.98));padding:20px;box-shadow:0 18px 44px rgba(0,0,0,.24);margin-top:16px}.wide{grid-column:1/-1}label{display:grid;gap:8px;color:rgba(245,247,251,.82);font-size:13px;font-weight:800;margin:10px 0}input,select,textarea{width:100%;border:1px solid rgba(255,255,255,.16);border-radius:14px;background:rgba(0,0,0,.24);color:#fff;padding:12px;font-weight:800}textarea{min-height:120px;resize:vertical}.btn{border:0;border-radius:14px;background:#ff2638;color:#fff;padding:12px 15px;font-weight:950;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.secondary{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14)}.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.idea,.showcase-card{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.045);border-radius:18px;padding:14px;margin:10px 0}.badge{display:inline-flex;border-radius:999px;padding:6px 9px;background:rgba(255,255,255,.08);font-size:11px;font-weight:950;color:#f0d9aa}.ok{color:#3cff9d}.thumb{width:100%;max-height:180px;object-fit:contain;background:rgba(0,0,0,.25);border-radius:14px;border:1px solid rgba(255,255,255,.1);margin-top:8px}@media(max-width:860px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.nav{justify-content:flex-start}}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="top">
+    <div><h1>Feedback & Report</h1><p class="sub">Centro unico per bug, suggerimenti e showcase overlay. I dati restano salvati localmente nel browser.</p></div>
+    <nav class="nav"><a href="/home.html">Home</a><a href="/account.html">Login / Progetti</a><a href="/builder.html">Builder</a><a href="/updates.html">Updates</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.2</span></nav>
+  </header>
+  <section class="grid">
+    <form class="panel" id="bugForm"><h2>🐛 Segnala un Bug</h2><p class="muted">Usalo per problemi su Builder, Overlay, Account, Codici o Leaderboard.</p><label>Categoria<select id="bugCategory"><option>Builder</option><option>Overlay</option><option>Account</option><option>Codici</option><option>Leaderboard</option><option>Altro</option></select></label><label>Descrizione<textarea id="bugDescription" placeholder="Spiega cosa succede, cosa ti aspettavi e come riprodurre il bug."></textarea></label><label>Screenshot opzionale<input id="bugScreenshot" type="file" accept="image/png,image/jpeg,image/webp"></label><button class="btn" type="submit">Invia Report</button><p class="muted" id="bugStatus"></p></form>
+    <form class="panel" id="featureForm"><h2>💡 Suggerisci una Funzione</h2><p class="muted">Proposte e miglioramenti per decidere cosa sviluppare prima.</p><label>Titolo<input id="featureTitle" placeholder="Es. Layer Manager completo"></label><label>Priorità<select id="featurePriority"><option>Bassa</option><option selected>Media</option><option>Alta</option></select></label><label>Descrizione<textarea id="featureDescription" placeholder="Descrivi la funzione e perché sarebbe utile."></textarea></label><button class="btn" type="submit">Invia Suggerimento</button><p class="muted" id="featureStatus"></p></form>
+    <section class="panel wide"><div class="tools" style="justify-content:space-between"><div><h2>⭐ Idee più richieste</h2><p class="muted">Vota le funzioni che vuoi vedere prima.</p></div><button class="btn secondary" id="refreshIdeas" type="button">Aggiorna</button></div><div id="ideasList"></div></section>
+    <form class="panel" id="showcaseForm"><h2>🎨 Showcase Overlay</h2><p class="muted">Pubblica uno screenshot del tuo overlay per mostrare cosa hai creato.</p><label>Nome progetto<input id="showcaseTitle" placeholder="Es. Ranked Main"></label><label>Nickname autore<input id="showcaseAuthor" placeholder="Il tuo nickname"></label><label>Screenshot overlay<input id="showcaseImage" type="file" accept="image/png,image/jpeg,image/webp"></label><button class="btn" type="submit">Aggiungi Showcase</button><p class="muted" id="showcaseStatus"></p></form>
+    <section class="panel"><h2>Showcase recenti</h2><div id="showcaseList"></div></section>
+  </section>
+</main>
+<script>
+const RT_FEEDBACK_KEY='ranktag_feedback_reports_v1';
+const RT_IDEAS_KEY='ranktag_feedback_ideas_v1';
+const RT_SHOWCASE_KEY='ranktag_showcase_v1';
+const VERSION='RankTag BETA 0.5.2';
+const $=id=>document.getElementById(id);
+function read(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch{return[]}}
+function write(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function id(){return 'rt_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7)}
+function meta(){return {version:VERSION,browser:navigator.userAgent,platform:navigator.platform,from:new URLSearchParams(location.search).get('from')||location.pathname,createdAt:new Date().toISOString()}}
+function fileToDataURL(input){return new Promise((res)=>{const f=input.files&&input.files[0]; if(!f)return res(''); const r=new FileReader(); r.onload=()=>res(String(r.result||'')); r.onerror=()=>res(''); r.readAsDataURL(f);})}
+$('bugForm').addEventListener('submit',async e=>{e.preventDefault(); const desc=$('bugDescription').value.trim(); if(!desc){$('bugStatus').textContent='Inserisci una descrizione.';return} const reports=read(RT_FEEDBACK_KEY); reports.unshift({id:id(),type:'bug',category:$('bugCategory').value,description:desc,screenshot:await fileToDataURL($('bugScreenshot'),),status:'aperto',...meta()}); write(RT_FEEDBACK_KEY,reports); e.target.reset(); $('bugStatus').innerHTML='<span class="ok">Report salvato.</span>';});
+$('featureForm').addEventListener('submit',e=>{e.preventDefault(); const title=$('featureTitle').value.trim(); const desc=$('featureDescription').value.trim(); if(!title||!desc){$('featureStatus').textContent='Inserisci titolo e descrizione.';return} const ideas=read(RT_IDEAS_KEY); ideas.unshift({id:id(),title,description:desc,priority:$('featurePriority').value,votes:0,voted:false,status:'nuova',...meta()}); write(RT_IDEAS_KEY,ideas); e.target.reset(); $('featureStatus').innerHTML='<span class="ok">Suggerimento salvato.</span>'; renderIdeas();});
+$('showcaseForm').addEventListener('submit',async e=>{e.preventDefault(); const image=await fileToDataURL($('showcaseImage')); if(!image){$('showcaseStatus').textContent='Aggiungi uno screenshot overlay.';return} const rows=read(RT_SHOWCASE_KEY); rows.unshift({id:id(),title:$('showcaseTitle').value.trim()||'Overlay RankTag',author:$('showcaseAuthor').value.trim()||'utente',image,...meta()}); write(RT_SHOWCASE_KEY,rows); e.target.reset(); $('showcaseStatus').innerHTML='<span class="ok">Showcase salvato.</span>'; renderShowcase();});
+function renderIdeas(){const ideas=read(RT_IDEAS_KEY); $('ideasList').innerHTML=ideas.length?ideas.map(x=>`<div class="idea"><div class="tools" style="justify-content:space-between"><div><b>${escapeHtml(x.title)}</b> <span class="badge">${escapeHtml(x.priority)}</span></div><button class="btn secondary" data-vote="${x.id}">👍 ${Number(x.votes||0)}</button></div><p class="muted">${escapeHtml(x.description)}</p></div>`).join(''):'<p class="muted">Nessuna idea inviata.</p>'; document.querySelectorAll('[data-vote]').forEach(b=>b.onclick=()=>{const list=read(RT_IDEAS_KEY); const it=list.find(x=>x.id===b.dataset.vote); if(it&&!it.voted){it.votes=Number(it.votes||0)+1; it.voted=true; write(RT_IDEAS_KEY,list); renderIdeas();}})}
+function renderShowcase(){const rows=read(RT_SHOWCASE_KEY); $('showcaseList').innerHTML=rows.length?rows.slice(0,6).map(x=>`<div class="showcase-card"><b>${escapeHtml(x.title)}</b><p class="muted">di ${escapeHtml(x.author)} · ${new Date(x.createdAt).toLocaleString('it-IT')}</p><img class="thumb" src="${x.image}" alt="showcase overlay"></div>`).join(''):'<p class="muted">Nessuno showcase ancora pubblicato.</p>'}
+function escapeHtml(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+$('refreshIdeas').onclick=renderIdeas; renderIdeas(); renderShowcase();
+</script>
+</body>
+</html>
