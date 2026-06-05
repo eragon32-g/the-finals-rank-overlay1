@@ -1,3 +1,3 @@
-# RankTag BETA 0.4.7
+# RankTag BETA 0.7.3
 
-Access Code Expiry Date Fix.
+Editor Base Only Renderer Sync Fix.

@@ -1,5 +1,5 @@
 {
-  "version": "BETA 0.7.2",
-  "name": "Editor Base Layer Duplicate Fix",
-  "build": "0.7.2"
+  "version": "BETA 0.7.3",
+  "name": "Editor Base Only Renderer Sync Fix",
+  "build": "0.7.3"
 }

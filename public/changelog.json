@@ -1,13 +1,12 @@
 [
   {
-    "version": "BETA 0.7.2",
-    "title": "Editor Base Layer Duplicate Fix",
-    "date": "2026-06-05",
+    "version": "BETA 0.7.3",
+    "title": "Editor Base Only Renderer Sync Fix",
     "changes": [
-      "rimuove testi/stemma fissi sotto il layer modificabile dell'Editor",
-      "iframe Editor usato solo come base/frame senza elementi dinamici",
-      "mantiene drag, resize e stabilità dello stemma dalla 0.7.1",
-      "anteprima finale resta completa e fedele al link pubblico"
+      "l'iframe sotto l'Editor mostra solo il frame/base, senza testi o stemma fissi",
+      "il layer modificabile resta l'unica sorgente visiva degli elementi durante editing",
+      "drag e resize della 0.7.1 mantenuti funzionanti",
+      "anteprima finale resta completa e fedele al link finale"
     ]
   },
   {
