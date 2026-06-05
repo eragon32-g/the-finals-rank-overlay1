@@ -1,6 +1,15 @@
 [
   {
-    "version": "BETA 0.7.0",
+    "version": "BETA 0.7.1",
+    "title": "Stable Editor Recovery Fix",
+    "changes": [
+      "ripristino editor dalla build 0.6.8 confermata funzionante",
+      "rimosse modifiche 0.6.9/0.7.0 che bloccavano drag e resize",
+      "versione sincronizzata su file principali"
+    ]
+  },
+  {
+    "version": "BETA 0.7.1",
     "title": "Editor Drag Resize Version Sync Fix",
     "date": "2026-06-05",
     "changes": [
