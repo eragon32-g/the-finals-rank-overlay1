@@ -1,5 +1,21 @@
 [
   {
+    "version": "BETA 0.6.6",
+    "title": "Editor Drag Resize Live Restore Fix",
+    "description": "Ripristina lo spostamento e il ridimensionamento live nell'Editor senza far sfarfallare lo stemma rank.",
+    "groups": [
+      {
+        "title": "Fix",
+        "items": [
+          "drag e resize di nuovo visibili durante il movimento",
+          "aggiunto ghost live dell'elemento selezionato durante editing",
+          "iframe finale aggiornato solo al rilascio per evitare flicker dello stemma",
+          "renderer unico 0.6.3 mantenuto"
+        ]
+      }
+    ]
+  },
+  {
     "version": "BETA 0.6.5",
     "title": "Editor Drag Resize Restore Fix",
     "description": "Ripristina spostamento e ridimensionamento degli elementi dopo la stabilizzazione del renderer unico.",

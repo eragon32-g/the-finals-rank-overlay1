@@ -1,6 +1,6 @@
 {
   "name": "ranktag-finals-overlay-beta-0-6-5-editor-drag-resize-restore-fix",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "RankTag BETA 0.6.5 - editor drag resize restore fix",
   "scripts": {
     "start": "vercel dev"

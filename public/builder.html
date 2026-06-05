@@ -99,6 +99,12 @@
     .builder-item .handle { display:none; position:absolute; right:-8px; bottom:-8px; width:18px; height:18px; border-radius:50%; background:#ffd36a; border:3px solid rgba(0,0,0,.78); cursor:nwse-resize; }
     .builder-item.active .handle { display:block; }
     .builder-item img { width:100%; height:100%; object-fit:contain; display:block; pointer-events:none; }
+
+    /* RankTag BETA 0.6.6 - live edit ghost: rende visibile lo spostamento senza ricaricare iframe a ogni pixel */
+    .edit-live-ghost{position:absolute;box-sizing:border-box;pointer-events:none;display:flex;align-items:center;white-space:nowrap;overflow:visible;font-weight:1000;color:#f5f7fb;text-shadow:0 2px 8px rgba(0,0,0,.72);line-height:1.05;transform-origin:center center;z-index:500!important;}
+    .edit-live-ghost img{width:100%;height:100%;object-fit:contain;display:block;}
+    .edit-live-ghost.score-item{color:#f0d9aa;}
+    .edit-live-ghost.player-item{color:#e8edf4;}
     .text-item { display:flex; align-items:center; overflow:visible; white-space:nowrap; font-weight:1000; color:#f5f7fb; text-shadow:0 2px 8px rgba(0,0,0,.72); padding:0; line-height:1.05; }
     .rank-item { color:#f5f7fb; letter-spacing:1px; }
     .score-item { color:#f0d9aa; }
@@ -658,6 +664,36 @@
       if(!box) return;
       Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""});
     }
+    function styleEditGhost(ghost,item){
+      if(!ghost || !item) return;
+      ghost.className = `edit-live-ghost ${item.id}-item`;
+      Object.assign(ghost.style,{
+        left:`${item.x}px`, top:`${item.y}px`, width:`${item.w}px`, height:`${item.h}px`,
+        opacity:`${item.opacity??1}`, zIndex:`${500 + Number(item.z||1)}`,
+        fontSize:item.fontSize?`${item.fontSize}px`:"", fontFamily:item.fontFamily||"",
+        lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,
+        transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""
+      });
+    }
+    function createEditGhost(item){
+      if(!item) return null;
+      const ghost=document.createElement("div");
+      styleEditGhost(ghost,item);
+      if(item.id==="badge") ghost.innerHTML = badgeImgMarkup();
+      else if(item.kind==="image") ghost.innerHTML = `<img src="${item.src}" alt="">`;
+      else ghost.textContent = displayText(item.id);
+      stage.appendChild(ghost);
+      return ghost;
+    }
+    function commitEditorPreviewNow(){
+      const link=buildLink();
+      const frame=$("preview");
+      const editorFrame=$("editorPreview");
+      lastPreviewLink = "";
+      clearTimeout(previewUpdateTimer);
+      if(frame && frame.src!==link) frame.src=link;
+      if(editorFrame && editorFrame.src!==link) editorFrame.src=link;
+    }
     function selectOnly(id){
       selectedId=id;
       stage.querySelectorAll(".builder-item").forEach((box)=>{
@@ -676,27 +712,62 @@
     function startDrag(e){
       if(e.target.classList.contains("handle"))return;
       e.preventDefault();
-      e.currentTarget.setPointerCapture?.(e.pointerId);
-      const id=e.currentTarget.dataset.id;
+      const box=e.currentTarget;
+      const id=box.dataset.id;
       if(selectedId!==id) selectOnly(id);
       const item=selected(); if(!item) return;
+      box.setPointerCapture?.(e.pointerId);
       const start=point(e); const ox=start.x-item.x, oy=start.y-item.y;
-      function move(ev){const p=point(ev); item.x=Math.round(p.x-ox); item.y=Math.round(p.y-oy); clampToCanvas(item); syncHitbox(item); updateFields(); buildLink();}
-      function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up); render();}
-      window.addEventListener("pointermove",move); window.addEventListener("pointerup",up);
+      const ghost=createEditGhost(item);
+      function move(ev){
+        const p=point(ev);
+        item.x=Math.round(p.x-ox);
+        item.y=Math.round(p.y-oy);
+        clampToCanvas(item);
+        syncHitbox(item);
+        styleEditGhost(ghost,item);
+        updateFields();
+        // Non ricarichiamo l'iframe a ogni pixel: evita flicker badge ma rende il movimento visibile col ghost.
+        scaleLayoutForOverlay();
+      }
+      function up(){
+        window.removeEventListener("pointermove",move);
+        window.removeEventListener("pointerup",up);
+        ghost?.remove();
+        commitEditorPreviewNow();
+        render();
+      }
+      window.addEventListener("pointermove",move);
+      window.addEventListener("pointerup",up);
     }
     function startResize(e){
       e.preventDefault(); e.stopPropagation();
-      e.currentTarget.setPointerCapture?.(e.pointerId);
-      const id=e.currentTarget.parentElement.dataset.id;
+      const handle=e.currentTarget;
+      const id=handle.parentElement.dataset.id;
       if(selectedId!==id) selectOnly(id);
       const item=selected(); if(!item) return;
+      handle.setPointerCapture?.(e.pointerId);
       const start=point(e); const sw=item.w, sh=item.h;
-      function move(ev){const p=point(ev); item.w=Math.round(clamp(sw+(p.x-start.x),6,activeCanvasWidth())); item.h=Math.round(clamp(sh+(p.y-start.y),6,160)); clampToCanvas(item);
+      const ghost=createEditGhost(item);
+      function move(ev){
+        const p=point(ev);
+        item.w=Math.round(clamp(sw+(p.x-start.x),6,activeCanvasWidth()));
+        item.h=Math.round(clamp(sh+(p.y-start.y),6,160));
+        clampToCanvas(item);
         if(item.kind !== "image" && item.id !== "badge") { item.fontSize = Math.max(7, Math.round(item.h * 0.75)); }
-        syncHitbox(item); updateFields(); buildLink();}
-      function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up); render();}
-      window.addEventListener("pointermove",move); window.addEventListener("pointerup",up);
+        syncHitbox(item);
+        styleEditGhost(ghost,item);
+        updateFields();
+      }
+      function up(){
+        window.removeEventListener("pointermove",move);
+        window.removeEventListener("pointerup",up);
+        ghost?.remove();
+        commitEditorPreviewNow();
+        render();
+      }
+      window.addEventListener("pointermove",move);
+      window.addEventListener("pointerup",up);
     }
     function applyFields(){
       const item=selected();
@@ -738,7 +809,7 @@
       else{url.searchParams.set("player",leaderboardData?.player||player); url.searchParams.set("leaderboard","s10"); url.searchParams.set("platform","crossplay"); url.searchParams.set("refresh","30");}
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
       url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1");
-      // BETA 0.6.5: drag/resize ripristinati senza ricaricare iframe ad ogni selezione.
+      // BETA 0.6.6: drag/resize visibili live senza ricaricare iframe ad ogni pixel.
       // Prima ogni click o selezione cambiava il link, ricaricava gli iframe e faceva sfarfallare il badge rank.
 
       // BETA 0.5.5: preview unica e link finale restano sincronizzati con dati pesanti dopo #.
@@ -808,4 +879,4 @@
   </script>
 </body>
 </html>
-<!-- RankTag BETA 0.6.5: drag/resize hitbox ripristinati mantenendo stabile il renderer unico. -->
+<!-- RankTag BETA 0.6.6: drag/resize live ghost + renderer unico stabile. -->
