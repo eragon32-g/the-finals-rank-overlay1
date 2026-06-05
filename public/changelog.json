@@ -1,5 +1,15 @@
 [
   {
+    "version": "BETA 0.7.5",
+    "title": "Site Version Visual Sync Fix",
+    "changes": [
+      "Sincronizzate le etichette versione visibili nel sito",
+      "Aggiornati header, menu e pagine che mostravano versioni vecchie",
+      "Pulito il riferimento visivo rimasto a BETA 0.7.1",
+      "Mantenuta intatta la stabilità Editor della 0.7.4"
+    ]
+  },
+  {
     "version": "BETA 0.7.4",
     "title": "Editor Preview Sync Free Edit Fix",
     "changes": [

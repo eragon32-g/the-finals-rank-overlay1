@@ -1,7 +1,7 @@
 {
   "name": "ranktag-finals-overlay-beta-0-7-4-editor-preview-sync-free-edit-fix",
-  "version": "0.7.4",
-  "description": "RankTag BETA 0.7.4 - editor preview sync free edit fix",
+  "version": "0.7.5",
+  "description": "RankTag BETA 0.7.5 - site version visual sync fix",
   "scripts": {
     "start": "vercel dev"
   }
