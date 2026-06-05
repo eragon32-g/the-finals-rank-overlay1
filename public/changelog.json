@@ -1,5 +1,21 @@
 [
   {
+    "version": "BETA 0.6.7",
+    "title": "Editor Live Interaction Layer Fix",
+    "description": "Ripristina drag e resize fluidi nell’Editor mantenendo il renderer unico e lo stemma rank stabile.",
+    "groups": [
+      {
+        "title": "Fix",
+        "items": [
+          "layer di editing sempre sopra al renderer finale",
+          "drag e resize visibili live senza ricaricare iframe a ogni pixel",
+          "hitbox con pointer events stabili anche con zoom Editor",
+          "aggiornamento overlay finale solo al rilascio per evitare flicker dello stemma"
+        ]
+      }
+    ]
+  },
+  {
     "version": "BETA 0.6.6",
     "title": "Editor Drag Resize Live Restore Fix",
     "description": "Ripristina lo spostamento e il ridimensionamento live nell'Editor senza far sfarfallare lo stemma rank.",

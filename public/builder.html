@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=063" />
+  <link rel="stylesheet" href="/style.css?v=067" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -90,8 +90,9 @@
       height:2px;
       background:linear-gradient(90deg,transparent,rgba(255,42,23,.48),rgba(255,211,106,.68),transparent);
     }
-    .builder-item { position:absolute; border:2px dashed transparent; border-radius:10px; cursor:pointer; user-select:none; min-width:10px; min-height:10px; transform-origin:center center; box-sizing:border-box; }
+    .builder-item { position:absolute; border:2px dashed transparent; border-radius:10px; cursor:pointer; user-select:none; min-width:10px; min-height:10px; transform-origin:center center; box-sizing:border-box; pointer-events:auto; touch-action:none; }
     .builder-item.editor-hitbox { color:transparent!important; text-shadow:none!important; background:transparent!important; overflow:visible!important; }
+    .builder-stage.is-editing .builder-item.editor-hitbox { pointer-events:none; }
     .builder-item.editor-hitbox img { display:none!important; }
     .builder-item.editor-hitbox:hover { border-color:rgba(255,255,255,.18); }
     .builder-item.active { cursor:move; border-color:#ffd36a; box-shadow:0 0 0 1px rgba(255,211,106,.28),0 0 22px rgba(255,42,23,.22); }
@@ -100,8 +101,8 @@
     .builder-item.active .handle { display:block; }
     .builder-item img { width:100%; height:100%; object-fit:contain; display:block; pointer-events:none; }
 
-    /* RankTag BETA 0.6.6 - live edit ghost: rende visibile lo spostamento senza ricaricare iframe a ogni pixel */
-    .edit-live-ghost{position:absolute;box-sizing:border-box;pointer-events:none;display:flex;align-items:center;white-space:nowrap;overflow:visible;font-weight:1000;color:#f5f7fb;text-shadow:0 2px 8px rgba(0,0,0,.72);line-height:1.05;transform-origin:center center;z-index:500!important;}
+    /* RankTag BETA 0.6.7 - live edit ghost: rende visibile lo spostamento senza ricaricare iframe a ogni pixel */
+    .edit-live-ghost{position:absolute;box-sizing:border-box;pointer-events:none;display:flex;align-items:center;white-space:nowrap;overflow:visible;font-weight:1000;color:#f5f7fb!important;text-shadow:0 2px 8px rgba(0,0,0,.72)!important;line-height:1.05;transform-origin:center center;z-index:99999!important;background:transparent!important;border:2px solid rgba(255,211,106,.92);border-radius:10px;box-shadow:0 0 0 1px rgba(255,211,106,.25),0 0 22px rgba(255,42,23,.16);padding:0;}
     .edit-live-ghost img{width:100%;height:100%;object-fit:contain;display:block;}
     .edit-live-ghost.score-item{color:#f0d9aa;}
     .edit-live-ghost.player-item{color:#e8edf4;}
@@ -613,7 +614,7 @@
           if($("baseBadgeRing")?.value !== "0") box.classList.add("effect-ring");
         }
         box.dataset.id=item.id;
-        Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""});
+        Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${editorZ(item)}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""});
         // BETA 0.6.3: l'Editor non ridisegna più testi, badge o immagini.
         // La visuale reale è l'iframe editorPreview; questi box sono solo hitbox drag/resize.
         const label=document.createElement("div"); label.className="label"; if(item.id === selectedId){ label.textContent=item.label||item.name||item.id; box.appendChild(label); }
@@ -658,18 +659,21 @@
       item.x=Math.round(clamp(Number(item.x)||0,0,wLimit-item.w));
       item.y=Math.round(clamp(Number(item.y)||0,0,160-item.h));
     }
+    function editorZ(item){ return 2000 + Number(item?.z || 1); }
+    function setEditingState(on){ stage?.classList.toggle("is-editing", Boolean(on)); }
+    function safeReleasePointer(target,pointerId){ try{ target?.releasePointerCapture?.(pointerId); }catch{} }
     function syncHitbox(item){
       if(!item) return;
       const box = stage.querySelector(`.builder-item[data-id="${CSS.escape(item.id)}"]`);
       if(!box) return;
-      Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""});
+      Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${editorZ(item)}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""});
     }
     function styleEditGhost(ghost,item){
       if(!ghost || !item) return;
       ghost.className = `edit-live-ghost ${item.id}-item`;
       Object.assign(ghost.style,{
         left:`${item.x}px`, top:`${item.y}px`, width:`${item.w}px`, height:`${item.h}px`,
-        opacity:`${item.opacity??1}`, zIndex:`${500 + Number(item.z||1)}`,
+        opacity:`${item.opacity??1}`, zIndex:`${99999 + Number(item.z||1)}`,
         fontSize:item.fontSize?`${item.fontSize}px`:"", fontFamily:item.fontFamily||"",
         lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,
         transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""
@@ -712,33 +716,41 @@
     function startDrag(e){
       if(e.target.classList.contains("handle"))return;
       e.preventDefault();
+      e.stopPropagation();
       const box=e.currentTarget;
       const id=box.dataset.id;
       if(selectedId!==id) selectOnly(id);
       const item=selected(); if(!item) return;
+      setEditingState(true);
       box.setPointerCapture?.(e.pointerId);
+      const pointerId=e.pointerId;
       const start=point(e); const ox=start.x-item.x, oy=start.y-item.y;
       const ghost=createEditGhost(item);
+      let raf=0;
+      function paint(){ raf=0; syncHitbox(item); styleEditGhost(ghost,item); updateFields(); }
       function move(ev){
+        ev.preventDefault();
         const p=point(ev);
         item.x=Math.round(p.x-ox);
         item.y=Math.round(p.y-oy);
         clampToCanvas(item);
-        syncHitbox(item);
-        styleEditGhost(ghost,item);
-        updateFields();
-        // Non ricarichiamo l'iframe a ogni pixel: evita flicker badge ma rende il movimento visibile col ghost.
-        scaleLayoutForOverlay();
+        if(!raf) raf=requestAnimationFrame(paint);
       }
-      function up(){
-        window.removeEventListener("pointermove",move);
-        window.removeEventListener("pointerup",up);
+      function up(ev){
+        if(raf) cancelAnimationFrame(raf);
+        document.removeEventListener("pointermove",move,true);
+        document.removeEventListener("pointerup",up,true);
+        document.removeEventListener("pointercancel",up,true);
+        safeReleasePointer(box,pointerId);
+        syncHitbox(item);
         ghost?.remove();
+        setEditingState(false);
         commitEditorPreviewNow();
         render();
       }
-      window.addEventListener("pointermove",move);
-      window.addEventListener("pointerup",up);
+      document.addEventListener("pointermove",move,true);
+      document.addEventListener("pointerup",up,true);
+      document.addEventListener("pointercancel",up,true);
     }
     function startResize(e){
       e.preventDefault(); e.stopPropagation();
@@ -746,28 +758,37 @@
       const id=handle.parentElement.dataset.id;
       if(selectedId!==id) selectOnly(id);
       const item=selected(); if(!item) return;
+      setEditingState(true);
       handle.setPointerCapture?.(e.pointerId);
+      const pointerId=e.pointerId;
       const start=point(e); const sw=item.w, sh=item.h;
       const ghost=createEditGhost(item);
+      let raf=0;
+      function paint(){ raf=0; syncHitbox(item); styleEditGhost(ghost,item); updateFields(); }
       function move(ev){
+        ev.preventDefault();
         const p=point(ev);
         item.w=Math.round(clamp(sw+(p.x-start.x),6,activeCanvasWidth()));
         item.h=Math.round(clamp(sh+(p.y-start.y),6,160));
         clampToCanvas(item);
         if(item.kind !== "image" && item.id !== "badge") { item.fontSize = Math.max(7, Math.round(item.h * 0.75)); }
-        syncHitbox(item);
-        styleEditGhost(ghost,item);
-        updateFields();
+        if(!raf) raf=requestAnimationFrame(paint);
       }
-      function up(){
-        window.removeEventListener("pointermove",move);
-        window.removeEventListener("pointerup",up);
+      function up(ev){
+        if(raf) cancelAnimationFrame(raf);
+        document.removeEventListener("pointermove",move,true);
+        document.removeEventListener("pointerup",up,true);
+        document.removeEventListener("pointercancel",up,true);
+        safeReleasePointer(handle,pointerId);
+        syncHitbox(item);
         ghost?.remove();
+        setEditingState(false);
         commitEditorPreviewNow();
         render();
       }
-      window.addEventListener("pointermove",move);
-      window.addEventListener("pointerup",up);
+      document.addEventListener("pointermove",move,true);
+      document.addEventListener("pointerup",up,true);
+      document.addEventListener("pointercancel",up,true);
     }
     function applyFields(){
       const item=selected();
@@ -809,7 +830,7 @@
       else{url.searchParams.set("player",leaderboardData?.player||player); url.searchParams.set("leaderboard","s10"); url.searchParams.set("platform","crossplay"); url.searchParams.set("refresh","30");}
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
       url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1");
-      // BETA 0.6.6: drag/resize visibili live senza ricaricare iframe ad ogni pixel.
+      // BETA 0.6.7: drag/resize visibili live senza ricaricare iframe ad ogni pixel.
       // Prima ogni click o selezione cambiava il link, ricaricava gli iframe e faceva sfarfallare il badge rank.
 
       // BETA 0.5.5: preview unica e link finale restano sincronizzati con dati pesanti dopo #.
@@ -879,4 +900,4 @@
   </script>
 </body>
 </html>
-<!-- RankTag BETA 0.6.6: drag/resize live ghost + renderer unico stabile. -->
+<!-- RankTag BETA 0.6.7: editor interaction layer fluido + renderer unico stabile. -->
