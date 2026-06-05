@@ -369,9 +369,9 @@ function applyBaseLayoutFromUrl() {
   };
 
   // make base overlay absolute-layout capable
-  const nonRankedFrame = getOverlayType() !== "ranked";
+  // BETA 0.6.2: always keep the same 470x160 canvas used by the Builder editor.
   badge.style.position = "relative";
-  badge.style.width = nonRankedFrame ? "400px" : "470px";
+  badge.style.width = "470px";
   badge.style.height = "160px";
 
   const shell = badge.querySelector(".card-shell");
@@ -380,9 +380,9 @@ function applyBaseLayoutFromUrl() {
 
   if (shell) {
     // Keep the real base frame visible while applying custom layout coordinates.
-    // Non-ranked uses the visual frame only: no hidden 70px canvas area on the left/right.
+    // BETA 0.6.2: same inner frame as Builder editor for 1:1 coordinates.
     shell.style.position = "absolute";
-    shell.style.left = nonRankedFrame ? "0px" : "58px";
+    shell.style.left = "58px";
     shell.style.top = "38px";
     shell.style.width = "400px";
     shell.style.height = "84px";
@@ -391,7 +391,10 @@ function applyBaseLayoutFromUrl() {
     shell.style.overflow = "visible";
   }
 
-  apply(rankMark, e.badge);
+  if (rankMark) {
+    rankMark.style.display = (getOverlayType() === "ranked" && getRankTagParam("hideBadge") !== "1") ? "" : "none";
+  }
+  if (getOverlayType() === "ranked" && getRankTagParam("hideBadge") !== "1") apply(rankMark, e.badge);
   apply(rankText, e.rank);
   apply(scoreText, e.score);
   apply(nameText, e.player);
@@ -2878,10 +2881,11 @@ function renderBaseBuilderLayoutAuthoritative() {
   const shell = badge.querySelector(".card-shell");
   if (shell) {
     shell.style.position = "absolute";
-    const nonRankedFrame = getOverlayType() !== "ranked";
-    shell.style.left = nonRankedFrame ? "8px" : "58px";
+    // BETA 0.6.2: final overlay uses the same 470x160 canvas and same inner frame
+    // position as the Builder editor, so text coordinates match 1:1.
+    shell.style.left = "58px";
     shell.style.top = "38px";
-    shell.style.width = nonRankedFrame ? "454px" : "400px";
+    shell.style.width = "400px";
     shell.style.height = "84px";
     shell.style.padding = "0";
     shell.style.margin = "0";
@@ -2967,11 +2971,15 @@ function renderBaseBuilderLayoutAuthoritative() {
   const playerValue = (nameText?.textContent || getPlayerFromUrl()).trim();
   const brandValue = (brandMarqueeText?.textContent || "ERDRAGON32 • Join the Discord").trim();
 
-  make("badge", e.badge, "", "");
+  if (getOverlayType() === "ranked" && getRankTagParam("hideBadge") !== "1") {
+    make("badge", e.badge, "", "");
+  }
   make("rank", e.rank, rankValue, "");
   make("score", e.score, scoreValue, "");
   make("player", e.player, playerValue, "");
-  make("brand", e.brand, brandValue, "");
+  if (getOverlayType() === "ranked" && getRankTagParam("hideBrand") !== "1") {
+    make("brand", e.brand, brandValue, "");
+  }
 }
 
 

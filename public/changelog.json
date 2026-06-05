@@ -1,5 +1,15 @@
 [
   {
+    "version": "BETA 0.6.2",
+    "title": "Editor Preview Coordinate Sync Fix",
+    "changes": [
+      "ripristinato il canvas Editor 470×160 senza accorciare la finestra",
+      "sincronizzato il frame interno tra Editor, anteprima live e overlay finale",
+      "coordinate testi/immagini ora coerenti tra Editor e preview",
+      "badge rank e brand non vengono renderizzati nel finale quando la categoria non-ranked li nasconde"
+    ]
+  },
+  {
     "version": "BETA 0.6.1",
     "title": "Non Ranked Editor Width Fix",
     "changes": [
