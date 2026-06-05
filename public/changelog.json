@@ -1,5 +1,16 @@
 [
   {
+    "version": "BETA 0.6.8",
+    "title": "Editor Drag Resize Version Sync Fix",
+    "date": "2026-06-05",
+    "changes": [
+      "drag e resize ripristinati nel layer editor",
+      "movimento live visibile sopra al renderer finale",
+      "versione sincronizzata su pagine, version.json e package.json",
+      "renderer unico mantenuto senza bloccare l'editing"
+    ]
+  },
+  {
     "version": "BETA 0.6.7",
     "title": "Editor Live Interaction Layer Fix",
     "description": "Ripristina drag e resize fluidi nell’Editor mantenendo il renderer unico e lo stemma rank stabile.",
