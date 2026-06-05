@@ -20,12 +20,31 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "063";
+const OVERLAY_VERSION = "072";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
   return params.get(name) || hashParams.get(name) || "";
 }
+
+function isEditorBaseOnly(){ return getRankTagParam("editorBaseOnly") === "1"; }
+function applyEditorBaseOnlyMode(){
+  if(!isEditorBaseOnly()) return;
+  try{
+    document.documentElement.dataset.editorBaseOnly = "1";
+    document.body?.classList?.add("editor-base-only");
+    const dynamicNodes = [
+      document.getElementById("rankText"),
+      document.getElementById("scoreText"),
+      document.getElementById("nameText"),
+      document.getElementById("brandDrawer"),
+      document.querySelector("#badge .rank-mark")
+    ];
+    dynamicNodes.forEach((node)=>{ if(node) node.style.display = "none"; });
+    document.querySelectorAll(".ranktag-custom-image, .rt-custom-image, [data-ranktag-custom-image]").forEach((node)=>{ node.style.display = "none"; });
+  }catch(e){}
+}
+
 
 function getOverlayType(){ return (getRankTagParam("overlayType") || "ranked").toLowerCase(); }
 function shouldHideBrand(){ return getRankTagParam("hideBrand") === "1"; }
@@ -70,6 +89,7 @@ function ranktagValidateAccessFromUrl() {
   return !!(exp && exp > Date.now());
 }
 applyBuilderVisibilityFlags();
+applyEditorBaseOnlyMode();
 function ranktagBlockInactiveOverlay() {
   const overlay = document.getElementById("overlay") || document.body;
   overlay.innerHTML = `<section style="width:470px;height:160px;display:grid;place-items:center;text-align:center;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:linear-gradient(180deg,rgba(18,21,30,.96),rgba(8,10,15,.98));color:#f5f7fb;font-family:Arial,Helvetica,sans-serif;padding:18px"><div><b style="display:block;font-size:22px;margin-bottom:6px;color:#ff8f8f">Overlay non attivo</b><span style="font-size:12px;color:rgba(245,247,251,.72)">Il codice accesso collegato a questo link è scaduto.</span></div></section>`;
@@ -406,6 +426,7 @@ function applyBaseLayoutFromUrl() {
   }
 
   applyBuilderVisibilityFlags();
+  applyEditorBaseOnlyMode();
 
   if (rankInfo) {
     rankInfo.style.position = "static";
@@ -418,7 +439,7 @@ function applyBaseLayoutFromUrl() {
 (function rankTagBaseLayoutLoadHooks006(){
   window.addEventListener("load", () => {
     [50, 180, 450, 1000].forEach((ms) => setTimeout(() => {
-      try { applyBaseLayoutFromUrl(); renderCustomImageElements(); } catch(e) {}
+      try { applyBaseLayoutFromUrl(); renderCustomImageElements(); applyEditorBaseOnlyMode(); } catch(e) {}
     }, ms));
   });
 })();
@@ -464,6 +485,8 @@ function renderCustomImageElements() {
     img.style.pointerEvents = "none";
     img.style.userSelect = "none";
     img.draggable = false;
+    img.classList.add("ranktag-custom-image");
+    img.setAttribute("data-ranktag-custom-image", "1");
     badge.appendChild(img);
   });
 }
@@ -3006,3 +3029,6 @@ function scheduleAuthoritativeBuilderLayout() {
 }
 document.addEventListener("DOMContentLoaded", scheduleAuthoritativeBuilderLayout);
 window.addEventListener("load", scheduleAuthoritativeBuilderLayout);
+
+/* RankTag BETA 0.7.2: editor iframe can render base/frame only so the editable layer is the only visible element layer. */
+try { applyEditorBaseOnlyMode(); } catch(e) {}

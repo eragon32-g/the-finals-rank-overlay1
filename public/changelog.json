@@ -1,5 +1,16 @@
 [
   {
+    "version": "BETA 0.7.2",
+    "title": "Editor Base Layer Duplicate Fix",
+    "date": "2026-06-05",
+    "changes": [
+      "rimuove testi/stemma fissi sotto il layer modificabile dell'Editor",
+      "iframe Editor usato solo come base/frame senza elementi dinamici",
+      "mantiene drag, resize e stabilità dello stemma dalla 0.7.1",
+      "anteprima finale resta completa e fedele al link pubblico"
+    ]
+  },
+  {
     "version": "BETA 0.7.1",
     "title": "Stable Editor Recovery Fix",
     "changes": [

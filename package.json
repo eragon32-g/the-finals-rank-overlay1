@@ -1,7 +1,7 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-6-8-editor-drag-resize-version-sync-fix",
-  "version": "0.7.1",
-  "description": "RankTag BETA 0.7.1 - stable editor recovery from 0.6.8",
+  "name": "ranktag-finals-overlay-beta-0-7-2-editor-base-layer-duplicate-fix",
+  "version": "0.7.2",
+  "description": "RankTag BETA 0.7.2 - editor base layer duplicate fix",
   "scripts": {
     "start": "vercel dev"
   }
