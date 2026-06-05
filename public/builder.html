@@ -91,7 +91,7 @@
       background:linear-gradient(90deg,transparent,rgba(255,42,23,.48),rgba(255,211,106,.68),transparent);
     }
     .builder-item { position:absolute; border:2px dashed transparent; border-radius:10px; cursor:pointer; user-select:none; min-width:10px; min-height:10px; transform-origin:center center; box-sizing:border-box; pointer-events:auto; touch-action:none; }
-    /* BETA 0.6.8 - layer editing visibile e fluido sopra al renderer finale.
+    /* BETA 0.6.9 - layer editing visibile e fluido sopra al renderer finale.
        Gli elementi non sono più solo hitbox trasparenti: durante drag/resize si vede subito cosa si sta muovendo. */
     .builder-item.editor-hitbox { overflow:visible!important; background:transparent!important; }
     .builder-item.editor-hitbox img { width:100%; height:100%; object-fit:contain; display:block; pointer-events:none; }
@@ -102,7 +102,17 @@
     .builder-item.active .handle { display:block; }
     .builder-item img { width:100%; height:100%; object-fit:contain; display:block; pointer-events:none; }
 
-    /* RankTag BETA 0.6.8 - live edit ghost: rende visibile lo spostamento senza ricaricare iframe a ogni pixel */
+    /* RankTag BETA 0.6.9 - no duplicate visual layer.
+       Il renderer finale resta l'unica visuale; il layer editor usa solo bordi/hitbox invisibili. */
+    .builder-item.editor-hitbox{ color:transparent!important; text-shadow:none!important; background:transparent!important; }
+    .builder-item.editor-hitbox img{ display:none!important; }
+    .builder-item.editor-hitbox .editor-live-text{ display:none!important; }
+    .builder-item.editor-hitbox::before{ content:none!important; }
+    .builder-item.editor-hitbox.active{ background:rgba(255,211,106,.035)!important; }
+    .edit-live-ghost{ background:rgba(255,211,106,.04)!important; color:transparent!important; text-shadow:none!important; }
+    .edit-live-ghost img{ display:none!important; }
+
+    /* RankTag BETA 0.6.9 - live edit ghost: rende visibile lo spostamento senza ricaricare iframe a ogni pixel */
     .edit-live-ghost{position:absolute;box-sizing:border-box;pointer-events:none;display:flex;align-items:center;white-space:nowrap;overflow:visible;font-weight:1000;color:#f5f7fb!important;text-shadow:0 2px 8px rgba(0,0,0,.72)!important;line-height:1.05;transform-origin:center center;z-index:99999!important;background:transparent!important;border:2px solid rgba(255,211,106,.92);border-radius:10px;box-shadow:0 0 0 1px rgba(255,211,106,.25),0 0 22px rgba(255,42,23,.16);padding:0;}
     .edit-live-ghost img{width:100%;height:100%;object-fit:contain;display:block;}
     .edit-live-ghost.score-item{color:#f0d9aa;}
@@ -205,7 +215,7 @@
     #zoomOut, #zoomIn, #zoomReset { padding:7px 9px; font-size:11px; } .stage-wrap > div:first-child .actions { justify-content:flex-end; } .stage-wrap .actions { max-width:100%; }
 
   
-    /* RankTag BETA 0.6.8 - right panel containment */
+    /* RankTag BETA 0.6.9 - right panel containment */
     .layout > .panel:nth-child(3) {
       overflow: hidden;
       min-width: 0;
@@ -275,7 +285,7 @@
     }
 
   
-    /* RankTag BETA 0.6.8 - font selector visibility */
+    /* RankTag BETA 0.6.9 - font selector visibility */
     .font-picker-field {
       border-color: rgba(239,23,36,.40) !important;
       box-shadow: inset 0 0 0 1px rgba(239,23,36,.12);
@@ -291,7 +301,7 @@
     @media(max-width:700px){.quick-feedback{right:12px;bottom:12px;padding:10px 12px;font-size:12px}}
 
 
-    /* RankTag BETA 0.6.8 - categorie pulite per tipo overlay */
+    /* RankTag BETA 0.6.9 - categorie pulite per tipo overlay */
     .category-card{border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:14px;background:rgba(255,255,255,.035);box-shadow:inset 0 0 0 1px rgba(255,255,255,.025)}
     .category-card h3{margin:0 0 10px;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#fff}
     .category-card .mini-help{margin:8px 0 0;color:rgba(245,247,251,.64);font-size:12px;line-height:1.45}
@@ -303,7 +313,7 @@
     body:not([data-overlay-type="ranked"]) .builder-item[data-id="badge"]{display:none!important}
     body:not([data-overlay-type="ranked"]) #selectedName::after{content:""}
 
-    /* RankTag BETA 0.6.8 - pannello settaggi più largo e branding rimosso dal Builder */
+    /* RankTag BETA 0.6.9 - pannello settaggi più largo e branding rimosso dal Builder */
     .settings-panel{min-width:430px;}
     .brand-item{display:none!important;}
     .builder-item[data-id="brand"]{display:none!important;}
@@ -312,7 +322,7 @@
 
 
 
-    /* RankTag BETA 0.6.8 - editor fedele a effetti, badge/brand e centratura */
+    /* RankTag BETA 0.6.9 - editor fedele a effetti, badge/brand e centratura */
     body:not([data-overlay-type="ranked"]) .builder-stage .builder-item[data-id="badge"],
     body:not([data-overlay-type="ranked"]) .builder-stage .badge-item { display:none!important; }
     .builder-stage.no-side-detail .builder-bg::before { display:none!important; }
@@ -335,7 +345,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.6.8</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.6.9</span>
       </div>
     </div>
     <div class="layout">
@@ -616,7 +626,7 @@
         }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${editorZ(item)}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""});
-        // BETA 0.6.8: il layer editor mostra contenuto reale sopra all'iframe finale.
+        // BETA 0.6.9: il layer editor mostra contenuto reale sopra all'iframe finale.
         // L'iframe resta il riferimento fedele, ma il layer editor permette drag/resize live e fluido.
         if(item.id==="badge"){
           box.innerHTML = badgeImgMarkup();
@@ -703,9 +713,8 @@
       if(!item) return null;
       const ghost=document.createElement("div");
       styleEditGhost(ghost,item);
-      if(item.id==="badge") ghost.innerHTML = badgeImgMarkup();
-      else if(item.kind==="image") ghost.innerHTML = `<img src="${item.src}" alt="">`;
-      else ghost.textContent = displayText(item.id);
+      // BETA 0.6.9: ghost solo come sagoma di editing, senza duplicare testo/immagini sopra il renderer finale.
+      ghost.setAttribute("aria-label", item.label || item.name || item.id);
       stage.appendChild(ghost);
       return ghost;
     }
@@ -850,10 +859,10 @@
       else{url.searchParams.set("player",leaderboardData?.player||player); url.searchParams.set("leaderboard","s10"); url.searchParams.set("platform","crossplay"); url.searchParams.set("refresh","30");}
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
       url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1");
-      // BETA 0.6.8: drag/resize visibili live senza ricaricare iframe ad ogni pixel.
+      // BETA 0.6.9: drag/resize visibili live senza ricaricare iframe ad ogni pixel.
       // Prima ogni click o selezione cambiava il link, ricaricava gli iframe e faceva sfarfallare il badge rank.
 
-      // BETA 0.6.8: preview unica e link finale restano sincronizzati con dati pesanti dopo #.
+      // BETA 0.6.9: preview unica e link finale restano sincronizzati con dati pesanti dopo #.
       // In questo modo Vercel e le piattaforme streaming ricevono una richiesta corta
       // e non possono bloccare il link con 403 per URL troppo lunghi o payload base64.
       const hash=new URLSearchParams();
@@ -918,6 +927,7 @@
     render();
     if($("mode")?.value==="auto") scheduleLeaderboardLookup();
   </script>
+<!-- RankTag BETA 0.6.9: editor hitbox only, no duplicated visual content. -->
 </body>
 </html>
-<!-- RankTag BETA 0.6.8: drag/resize live ripristinato + version sync. -->
+<!-- RankTag BETA 0.6.9: drag/resize live ripristinato + version sync. -->

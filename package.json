@@ -1,7 +1,7 @@
 {
   "name": "ranktag-finals-overlay-beta-0-6-8-editor-drag-resize-version-sync-fix",
-  "version": "0.6.8",
-  "description": "RankTag BETA 0.6.8 - editor drag resize and version sync fix",
+  "version": "0.6.9",
+  "description": "RankTag BETA 0.6.9 - editor drag resize and version sync fix",
   "scripts": {
     "start": "vercel dev"
   }

@@ -1,5 +1,15 @@
 [
   {
+    "version": "BETA 0.6.9",
+    "title": "Editor No Duplicate Visual Layer Fix",
+    "changes": [
+      "rimuove la duplicazione visiva nell'Editor layout",
+      "mantiene il renderer finale come unica visuale reale",
+      "layer editor usato solo per selezione, drag e resize",
+      "versione aggiornata a BETA 0.6.9"
+    ]
+  },
+  {
     "version": "BETA 0.6.8",
     "title": "Editor Drag Resize Version Sync Fix",
     "date": "2026-06-05",

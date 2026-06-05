@@ -13,7 +13,7 @@
 <main class="page">
   <header class="top">
     <div><h1>Feedback & Report</h1><p class="sub">Centro unico per bug, suggerimenti e showcase overlay. I dati restano salvati localmente nel browser.</p></div>
-    <nav class="nav"><a href="/home.html">Home</a><a href="/account.html">Login / Progetti</a><a href="/builder.html">Builder</a><a href="/updates.html">Updates</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.6.8</span></nav>
+    <nav class="nav"><a href="/home.html">Home</a><a href="/account.html">Login / Progetti</a><a href="/builder.html">Builder</a><a href="/updates.html">Updates</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.6.9</span></nav>
   </header>
   <section class="grid">
     <form class="panel" id="bugForm"><h2>🐛 Segnala un Bug</h2><p class="muted">Usalo per problemi su Builder, Overlay, Account, Codici o Leaderboard.</p><label>Categoria<select id="bugCategory"><option>Builder</option><option>Overlay</option><option>Account</option><option>Codici</option><option>Leaderboard</option><option>Altro</option></select></label><label>Descrizione<textarea id="bugDescription" placeholder="Spiega cosa succede, cosa ti aspettavi e come riprodurre il bug."></textarea></label><label>Screenshot opzionale<input id="bugScreenshot" type="file" accept="image/png,image/jpeg,image/webp"></label><button class="btn" type="submit">Invia Report</button><p class="muted" id="bugStatus"></p></form>
@@ -27,7 +27,7 @@
 const RT_FEEDBACK_KEY='ranktag_feedback_reports_v1';
 const RT_IDEAS_KEY='ranktag_feedback_ideas_v1';
 const RT_SHOWCASE_KEY='ranktag_showcase_v1';
-const VERSION='RankTag BETA 0.6.8';
+const VERSION='RankTag BETA 0.6.9';
 const $=id=>document.getElementById(id);
 function read(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch{return[]}}
 function write(k,v){localStorage.setItem(k,JSON.stringify(v))}
