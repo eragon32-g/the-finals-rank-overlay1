@@ -1,5 +1,15 @@
 [
   {
+    "version": "BETA 0.6.1",
+    "title": "Non Ranked Editor Width Fix",
+    "changes": [
+      "accorciato davvero il canvas Editor nelle categorie non-ranked",
+      "rimossa l’area vuota a sinistra senza allungare il frame",
+      "bounds drag/resize calcolati su 400×160 per Creator/Clan/Streamer/World Tour/Custom",
+      "overlay finale non-ranked sincronizzato con la stessa larghezza visiva dell’Editor"
+    ]
+  },
+  {
     "version": "BETA 0.6.0",
     "title": "Editor Canvas Bounds Fix",
     "changes": [

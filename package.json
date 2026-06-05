@@ -1,7 +1,7 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-5-9-builder-fidelity-cleanup-fix",
-  "version": "0.6.0",
-  "description": "RankTag BETA 0.6.0 - builder fidelity cleanup fix",
+  "name": "ranktag-finals-overlay-beta-0-6-1-non-ranked-editor-width-fix",
+  "version": "0.6.1",
+  "description": "RankTag BETA 0.6.1 - non ranked editor width fix",
   "scripts": {
     "start": "vercel dev"
   }

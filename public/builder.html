@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=060" />
+  <link rel="stylesheet" href="/style.css?v=061" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -300,7 +300,9 @@
     .builder-stage.badge-glow-on .builder-item[data-id="badge"] { filter:drop-shadow(0 0 14px rgba(255,255,255,.36)); }
     .builder-stage.badge-ring-on .builder-item[data-id="badge"]::after { content:""; position:absolute; inset:7%; border:2px solid rgba(255,255,255,.42); border-radius:50%; pointer-events:none; }
     .builder-stage.clip-frame-on { overflow:hidden; clip-path:polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px); }
-    body:not([data-overlay-type="ranked"]) .builder-bg { left:8px; width:454px; }
+    body:not([data-overlay-type="ranked"]) .builder-stage { width:400px; }
+    body:not([data-overlay-type="ranked"]) .builder-stage-holder { width:min(430px, 100%); }
+    body:not([data-overlay-type="ranked"]) .builder-bg { left:0; width:400px; }
     .stage-preview-block, .real-preview-wrap { justify-self:center; }
 
   </style>
@@ -628,16 +630,18 @@
       if($("editRotate")) $("editRotate").value=isImage?Math.round(Number(item.rotation||0)):0;
     }
     function renderList(){const list=$("elementsList"); list.innerHTML=""; items().forEach((item)=>{const btn=document.createElement("button"); btn.className="btn secondary"+(item.id===selectedId?" active":""); btn.type="button"; btn.textContent=item.label||item.name||item.id; btn.addEventListener("click",()=>{selectedId=item.id; render();}); list.appendChild(btn);});}
-    function point(e){const rect=stage.getBoundingClientRect(); return {x:(e.clientX-rect.left)*(470/rect.width), y:(e.clientY-rect.top)*(160/rect.height)};}
+    function activeCanvasWidth(){ return overlayType() === "ranked" ? 470 : 400; }
+    function point(e){const rect=stage.getBoundingClientRect(); const w=activeCanvasWidth(); return {x:(e.clientX-rect.left)*(w/rect.width), y:(e.clientY-rect.top)*(160/rect.height)};}
     function clampToCanvas(item){
       if(!item) return;
-      item.w=Math.round(clamp(Number(item.w)||1,6,470));
+      const wLimit = activeCanvasWidth();
+      item.w=Math.round(clamp(Number(item.w)||1,6,wLimit));
       item.h=Math.round(clamp(Number(item.h)||1,6,160));
-      item.x=Math.round(clamp(Number(item.x)||0,0,470-item.w));
+      item.x=Math.round(clamp(Number(item.x)||0,0,wLimit-item.w));
       item.y=Math.round(clamp(Number(item.y)||0,0,160-item.h));
     }
     function startDrag(e){if(e.target.classList.contains("handle"))return; e.preventDefault(); const id=e.currentTarget.dataset.id; if(selectedId!==id){selectedId=id; render(); return;} const item=selected(); const start=point(e); const ox=start.x-item.x, oy=start.y-item.y; function move(ev){const p=point(ev); item.x=Math.round(p.x-ox); item.y=Math.round(p.y-oy); clampToCanvas(item); render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
-    function startResize(e){e.preventDefault(); e.stopPropagation(); selectedId=e.currentTarget.parentElement.dataset.id; const item=selected(); const start=point(e); const sw=item.w, sh=item.h; function move(ev){const p=point(ev); item.w=Math.round(clamp(sw+(p.x-start.x),6,470)); item.h=Math.round(clamp(sh+(p.y-start.y),6,160)); clampToCanvas(item);
+    function startResize(e){e.preventDefault(); e.stopPropagation(); selectedId=e.currentTarget.parentElement.dataset.id; const item=selected(); const start=point(e); const sw=item.w, sh=item.h; function move(ev){const p=point(ev); item.w=Math.round(clamp(sw+(p.x-start.x),6,activeCanvasWidth())); item.h=Math.round(clamp(sh+(p.y-start.y),6,160)); clampToCanvas(item);
       if(item.kind !== "image" && item.id !== "badge") { item.fontSize = Math.max(7, Math.round(item.h * 0.75)); }
       render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
     function applyFields(){
@@ -645,7 +649,7 @@
       if(!item)return;
       item.x=Math.round(Number($("editX").value||0));
       item.y=Math.round(Number($("editY").value||0));
-      item.w=Math.round(clamp($("editW").value,6,470));
+      item.w=Math.round(clamp($("editW").value,6,activeCanvasWidth()));
       item.h=Math.round(clamp($("editH").value,6,160));
       clampToCanvas(item);
       item.fontSize=Math.max(0,Number($("editFont").value||0));
@@ -658,7 +662,7 @@
       if(item.kind === "image") item.rotation=Math.round(clamp($("editRotate")?.value||0,-180,180));
       render();
     }
-    function scaleLayoutForOverlay(){const out={}; Object.entries(baseLayout).forEach(([key,v])=>{out[key]={x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),fontSize:Math.max(0,Number(v.fontSize||0)),fontFamily:String(v.fontFamily||""),z:Math.round(Number(v.z)||1)};}); return {version:2,schema:"ranktag-base-layout-v2",canvas:{width:470,height:160},elements:out};}
+    function scaleLayoutForOverlay(){const out={}; Object.entries(baseLayout).forEach(([key,v])=>{out[key]={x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),fontSize:Math.max(0,Number(v.fontSize||0)),fontFamily:String(v.fontFamily||""),z:Math.round(Number(v.z)||1)};}); return {version:2,schema:"ranktag-base-layout-v2",canvas:{width:activeCanvasWidth(),height:160},elements:out};}
     function customPayload(){return customElements.map((v)=>({id:v.id,name:v.name,type:"image",src:v.src,x:Math.round(Number(v.x)||0),y:Math.round(Number(v.y)||0),w:Math.max(1,Math.round(Number(v.w)||1)),h:Math.max(1,Math.round(Number(v.h)||1)),opacity:Math.max(0,Math.min(1,Number(v.opacity??1))),z:Math.round(Number(v.z)||30),rotation:Math.round(Number(v.rotation)||0)}));}
     function updateLinkSizeHint(link){const help=$("linkSizeHelp"); if(!help)return; const len=link.length; help.textContent = customElements.length ? `Link generato: ${len} caratteri. Layout, accesso e immagini custom sono spostati dopo # per evitare blocchi 403/URL troppo lunghi sulle piattaforme.` : `Link generato: ${len} caratteri.`; help.style.color = len > MAX_CUSTOM_LINK_CHARS ? "#ff8f8f" : ""; if(len > MAX_CUSTOM_LINK_CHARS) help.textContent += " Se resta troppo lungo per una piattaforma, usa una sola immagine oppure un file più piccolo.";}
     function buildLink(){
@@ -740,4 +744,4 @@
   </script>
 </body>
 </html>
-<!-- RankTag BETA 0.6.0: tipi overlay Creator/Clan/Streamer/World Tour/Custom aggiunti al Builder. -->
+<!-- RankTag BETA 0.6.1: canvas non-ranked accorciato davvero a 400px e bounds sincronizzati. -->

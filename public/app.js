@@ -20,7 +20,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "059";
+const OVERLAY_VERSION = "061";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
@@ -369,8 +369,9 @@ function applyBaseLayoutFromUrl() {
   };
 
   // make base overlay absolute-layout capable
+  const nonRankedFrame = getOverlayType() !== "ranked";
   badge.style.position = "relative";
-  badge.style.width = "470px";
+  badge.style.width = nonRankedFrame ? "400px" : "470px";
   badge.style.height = "160px";
 
   const shell = badge.querySelector(".card-shell");
@@ -379,11 +380,11 @@ function applyBaseLayoutFromUrl() {
 
   if (shell) {
     // Keep the real base frame visible while applying custom layout coordinates.
+    // Non-ranked uses the visual frame only: no hidden 70px canvas area on the left/right.
     shell.style.position = "absolute";
-    const nonRankedFrame = getOverlayType() !== "ranked";
-    shell.style.left = nonRankedFrame ? "8px" : "58px";
+    shell.style.left = nonRankedFrame ? "0px" : "58px";
     shell.style.top = "38px";
-    shell.style.width = nonRankedFrame ? "454px" : "400px";
+    shell.style.width = "400px";
     shell.style.height = "84px";
     shell.style.padding = "0";
     shell.style.margin = "0";
