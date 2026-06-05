@@ -20,11 +20,26 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "050";
+const OVERLAY_VERSION = "056";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
   return params.get(name) || hashParams.get(name) || "";
+}
+
+function getOverlayType(){ return (getRankTagParam("overlayType") || "ranked").toLowerCase(); }
+function applyNonRankedCopy(){
+  const type = getOverlayType();
+  if(type === "ranked") return false;
+  const title = getRankTagParam("customTitle") || getRankTagParam("player") || "VOIDRAGE32";
+  const line1 = getRankTagParam("customLine1") || (type === "world-tour" ? "WORLD TOUR POINTS" : "Kick / Twitch / TikTok");
+  const line2 = getRankTagParam("customLine2") || (type === "clan" ? "TEAM • CLAN • COMMUNITY" : "Creator Overlay • RankTag");
+  if(statusText) statusText.classList.add("hidden");
+  if(rankText) rankText.textContent = title.toUpperCase();
+  if(scoreText) scoreText.textContent = line1;
+  if(nameText) nameText.textContent = line2;
+  if(brandMarqueeText) brandMarqueeText.textContent = type === "world-tour" ? "WORLD TOUR • THE FINALS" : type === "clan" ? "TEAM • CLAN • COMMUNITY" : "CREATOR OVERLAY • RANKTAG";
+  return true;
 }
 function ranktagValidateAccessFromUrl() {
   const mode = params.get("rtAccess") || hashParams.get("rtAccess");
@@ -683,6 +698,16 @@ async function setData(data, status = "LIVE") {
   const change = showLeaderboardMeta ? Number(data.change || 0) : 0;
   const changeText = change === 0 ? "" : change > 0 ? ` ▲${compactNumber(change)}` : ` ▼${compactNumber(Math.abs(change))}`;
   const scoreLabel = (params.get("scoreLabel") || "ELO").toUpperCase();
+
+  if (applyNonRankedCopy()) {
+    setupLockedBranding();
+    try { applyBaseLayoutFromUrl(); } catch(e) { console.warn(e); }
+    try { renderCustomImageElements(); } catch(e) { console.warn(e); }
+    await setBadgeVisual({ league, division, forcedBadge: data.badge, badgeFile: data.badgeFile, leagueNumber: data.leagueNumber });
+    try { renderBaseBuilderLayoutAuthoritative(); } catch(e) { console.warn(e); }
+    try { scheduleAuthoritativeBuilderLayout(); } catch(e) { console.warn(e); }
+    return;
+  }
 
   if (shouldShowStatus(status) && status !== "MANUAL") {
     statusText.textContent = status;

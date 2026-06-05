@@ -1,6 +1,6 @@
 {
   "name": "ranktag-finals-overlay-beta-0-5-4-single-preview-fidelity-fix",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "RankTag BETA 0.5.4 - single preview fidelity fix",
   "scripts": {
     "start": "vercel dev"
