@@ -1,5 +1,16 @@
 [
   {
+    "version": "BETA 0.5.9",
+    "title": "Builder Fidelity Cleanup Fix",
+    "changes": [
+      "anteprima finale senza stemma rank nelle categorie non-ranked",
+      "branding bloccato nel Builder e nel link finale quando disattivato",
+      "effetti base visibili anche nell’Editor layout",
+      "area editor più centrata e meno spazio vuoto laterale",
+      "preview live centrata meglio rispetto all’overlay finale"
+    ]
+  },
+  {
     "version": "BETA 0.5.8",
     "title": "Builder Layout Panel & Branding Cleanup",
     "changes": [

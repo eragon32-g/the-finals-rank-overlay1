@@ -20,7 +20,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "058";
+const OVERLAY_VERSION = "059";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
@@ -30,7 +30,11 @@ function getRankTagParam(name) {
 function getOverlayType(){ return (getRankTagParam("overlayType") || "ranked").toLowerCase(); }
 function shouldHideBrand(){ return getRankTagParam("hideBrand") === "1"; }
 function applyBuilderVisibilityFlags(){
-  if(brandDrawer && shouldHideBrand()) brandDrawer.style.display = "none";
+  if(brandDrawer && shouldHideBrand()) {
+    brandDrawer.style.display = "none";
+    brandDrawer.classList.remove("is-visible");
+    brandDrawer.closest(".card-shell")?.classList.remove("brand-open");
+  }
   const type = getOverlayType();
   if(badge) {
     const hideBadge = getRankTagParam("hideBadge") === "1" || type !== "ranked";
@@ -41,7 +45,11 @@ function applyBuilderVisibilityFlags(){
 }
 function applyNonRankedCopy(){
   const type = getOverlayType();
-  if(badge) badge.classList.toggle("hide-rank-badge", getRankTagParam("hideBadge") === "1" || type !== "ranked");
+  if(badge) {
+    badge.classList.toggle("hide-rank-badge", getRankTagParam("hideBadge") === "1" || type !== "ranked");
+    const rankMark = badge.querySelector(".rank-mark");
+    if(rankMark) rankMark.style.display = type !== "ranked" ? "none" : "";
+  }
   if(type === "ranked") return false;
   const title = getRankTagParam("customTitle") || getRankTagParam("player") || "VOIDRAGE32";
   const line1 = getRankTagParam("customLine1") || (type === "world-tour" ? "WORLD TOUR POINTS" : "Kick / Twitch / TikTok");
@@ -392,6 +400,8 @@ function applyBaseLayoutFromUrl() {
     brandDrawer.querySelectorAll("span").forEach((span)=>{ if(e.brand?.fontFamily) span.style.fontFamily = String(e.brand.fontFamily); });
   }
 
+  applyBuilderVisibilityFlags();
+
   if (rankInfo) {
     rankInfo.style.position = "static";
     rankInfo.style.padding = "0";
@@ -626,6 +636,7 @@ function buildBrandText(config) {
 }
 
 function showBrandDrawer(config) {
+  if (shouldHideBrand()) return;
   if (!brandDrawer || !brandMarqueeText) return;
 
   const visibleSeconds = Math.max(2, Math.min(20, Number(config.visibleSeconds || 7)));
@@ -641,6 +652,15 @@ function showBrandDrawer(config) {
 }
 
 async function setupLockedBranding() {
+  if (shouldHideBrand()) {
+    if (brandDrawer) {
+      brandDrawer.style.display = "none";
+      brandDrawer.classList.remove("is-visible");
+      brandDrawer.closest(".card-shell")?.classList.remove("brand-open");
+    }
+    if (brandMarqueeText) brandMarqueeText.textContent = "";
+    return;
+  }
   const config = await loadLockedBranding();
   const text = buildBrandText(config);
 
@@ -718,7 +738,7 @@ async function setData(data, status = "LIVE") {
     setupLockedBranding();
     try { applyBaseLayoutFromUrl(); } catch(e) { console.warn(e); }
     try { renderCustomImageElements(); } catch(e) { console.warn(e); }
-    await setBadgeVisual({ league, division, forcedBadge: data.badge, badgeFile: data.badgeFile, leagueNumber: data.leagueNumber });
+    applyBuilderVisibilityFlags();
     try { renderBaseBuilderLayoutAuthoritative(); } catch(e) { console.warn(e); }
     try { scheduleAuthoritativeBuilderLayout(); } catch(e) { console.warn(e); }
     return;

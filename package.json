@@ -1,7 +1,7 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-5-7-overlay-category-fields-cleanup",
-  "version": "0.5.8",
-  "description": "RankTag BETA 0.5.8 - overlay category fields cleanup",
+  "name": "ranktag-finals-overlay-beta-0-5-9-builder-fidelity-cleanup-fix",
+  "version": "0.5.9",
+  "description": "RankTag BETA 0.5.9 - builder fidelity cleanup fix",
   "scripts": {
     "start": "vercel dev"
   }

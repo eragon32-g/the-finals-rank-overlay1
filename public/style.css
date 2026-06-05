@@ -4176,9 +4176,14 @@ section:has(.premium-one-card) {
 }
 
 
-/* RankTag BETA 0.5.8 - hide ranked badge for non-ranked overlay types */
+/* RankTag BETA 0.5.9 - hide ranked badge for non-ranked overlay types */
 .badge.hide-rank-badge .rank-mark{display:none!important;}
 .badge.hide-rank-badge .card-shell{margin-left:0!important;}
 
-/* RankTag BETA 0.5.8 - hide builder branding when requested */
+/* RankTag BETA 0.5.9 - hide builder branding when requested */
 .badge.hide-rank-badge .rank-mark{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important;}
+
+/* RankTag BETA 0.5.9 - hide non-ranked badge/brand robustamente nel finale */
+.badge.hide-rank-badge .rank-mark{display:none!important;}
+.badge.hide-rank-badge .card-shell{ }
+body .brand-drawer[style*="display: none"]{display:none!important;}

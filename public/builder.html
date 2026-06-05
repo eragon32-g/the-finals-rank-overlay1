@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=058" />
+  <link rel="stylesheet" href="/style.css?v=059" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -17,7 +17,7 @@
     .sub { margin:8px 0 0; color:rgba(245,247,251,.72); line-height:1.45; }
     .nav { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .tag,.nav a { border:1px solid rgba(255,255,255,.14); border-radius:999px; padding:9px 13px; background:rgba(255,255,255,.06); color:#fff; text-decoration:none; font-weight:900; font-size:12px; letter-spacing:.4px; }
-    .layout { display:grid; grid-template-columns:370px minmax(620px, 700px) minmax(390px, 430px); gap:16px; align-items:start; justify-content:center; }
+    .layout { display:grid; grid-template-columns:430px minmax(620px, 700px) minmax(390px, 430px); gap:16px; align-items:start; justify-content:center; }
     .panel { border:1px solid rgba(255,255,255,.12); border-radius:22px; background:linear-gradient(180deg,rgba(18,21,30,.96),rgba(8,10,15,.98)); padding:18px; box-shadow:0 20px 48px rgba(0,0,0,.24); min-width:0; overflow:visible; }
     .panel h2 { margin:0 0 12px; font-size:20px; }
     label { display:grid; gap:6px; color:rgba(245,247,251,.76); font-weight:800; font-size:12px; }
@@ -156,8 +156,8 @@
 
   
     .builder-stage-holder {
-      width:650px;
-      height:225px;
+      width:min(560px, 100%);
+      height:205px;
       max-width:100%;
       display:grid;
       place-items:center;
@@ -268,7 +268,7 @@
     @media(max-width:700px){.quick-feedback{right:12px;bottom:12px;padding:10px 12px;font-size:12px}}
 
 
-    /* RankTag BETA 0.5.8 - categorie pulite per tipo overlay */
+    /* RankTag BETA 0.5.9 - categorie pulite per tipo overlay */
     .category-card{border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:14px;background:rgba(255,255,255,.035);box-shadow:inset 0 0 0 1px rgba(255,255,255,.025)}
     .category-card h3{margin:0 0 10px;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#fff}
     .category-card .mini-help{margin:8px 0 0;color:rgba(245,247,251,.64);font-size:12px;line-height:1.45}
@@ -280,12 +280,28 @@
     body:not([data-overlay-type="ranked"]) .builder-item[data-id="badge"]{display:none!important}
     body:not([data-overlay-type="ranked"]) #selectedName::after{content:""}
 
-    /* RankTag BETA 0.5.8 - pannello settaggi più largo e branding rimosso dal Builder */
-    .settings-panel{min-width:370px;}
+    /* RankTag BETA 0.5.9 - pannello settaggi più largo e branding rimosso dal Builder */
+    .settings-panel{min-width:430px;}
     .brand-item{display:none!important;}
     .builder-item[data-id="brand"]{display:none!important;}
     body:not([data-overlay-type="ranked"]) .badge-item,
     body:not([data-overlay-type="ranked"]) .builder-item[data-id="badge"]{display:none!important;}
+
+
+
+    /* RankTag BETA 0.5.9 - editor fedele a effetti, badge/brand e centratura */
+    body:not([data-overlay-type="ranked"]) .builder-stage .builder-item[data-id="badge"],
+    body:not([data-overlay-type="ranked"]) .builder-stage .badge-item { display:none!important; }
+    .builder-stage.no-side-detail .builder-bg::before { display:none!important; }
+    .builder-stage.no-bottom-line .builder-bg::after { display:none!important; }
+    .builder-stage.scanline-on .builder-bg { background-image:linear-gradient(180deg,rgba(32,36,45,.96),rgba(7,9,13,.98)), repeating-linear-gradient(0deg, rgba(255,255,255,.055) 0 1px, transparent 1px 4px); background-blend-mode:normal,screen; }
+    .builder-stage.pulse-on .builder-bg { animation:builderPulseGlow 1.9s ease-in-out infinite; }
+    @keyframes builderPulseGlow { 0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 12px rgba(0,0,0,.28)} 50%{box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 0 24px rgba(255,42,23,.32)} }
+    .builder-stage.badge-glow-on .builder-item[data-id="badge"] { filter:drop-shadow(0 0 14px rgba(255,255,255,.36)); }
+    .builder-stage.badge-ring-on .builder-item[data-id="badge"]::after { content:""; position:absolute; inset:7%; border:2px solid rgba(255,255,255,.42); border-radius:50%; pointer-events:none; }
+    .builder-stage.clip-frame-on { overflow:hidden; clip-path:polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px); }
+    body:not([data-overlay-type="ranked"]) .builder-bg { left:58px; }
+    .stage-preview-block, .real-preview-wrap { justify-self:center; }
 
   </style>
 </head>
@@ -297,7 +313,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.8</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.9</span>
       </div>
     </div>
     <div class="layout">
@@ -433,6 +449,17 @@
     function customTitle(){ return ($("customTitle")?.value || "VOIDRAGE32").trim(); }
     function customLine1(){ return ($("customLine1")?.value || "Kick.tv/VoidRage32").trim(); }
     function customLine2(){ return ($("customLine2")?.value || "TikTok @VoidRage32 • PROIT").trim(); }
+    function updateStageVisualEffects(){
+      const type = overlayType();
+      stage?.classList.toggle("no-side-detail", $("baseSideDetail")?.value !== "1");
+      stage?.classList.toggle("badge-glow-on", type === "ranked" && $("baseBadgeGlow")?.value === "1");
+      stage?.classList.toggle("badge-ring-on", type === "ranked" && $("baseBadgeRing")?.value === "1");
+      stage?.classList.toggle("pulse-on", $("basePulse")?.value === "1");
+      stage?.classList.toggle("scanline-on", $("baseScanline")?.value === "1");
+      stage?.classList.toggle("no-bottom-line", false);
+      stage?.classList.toggle("clip-frame-on", $("clipFrame")?.value === "1");
+    }
+
     function syncOverlayTypeUi(){
       const type=overlayType();
       document.body.dataset.overlayType=type;
@@ -705,4 +732,4 @@
   </script>
 </body>
 </html>
-<!-- RankTag BETA 0.5.8: tipi overlay Creator/Clan/Streamer/World Tour/Custom aggiunti al Builder. -->
+<!-- RankTag BETA 0.5.9: tipi overlay Creator/Clan/Streamer/World Tour/Custom aggiunti al Builder. -->
