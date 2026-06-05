@@ -20,7 +20,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "061";
+const OVERLAY_VERSION = "063";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
@@ -369,7 +369,7 @@ function applyBaseLayoutFromUrl() {
   };
 
   // make base overlay absolute-layout capable
-  // BETA 0.6.2: always keep the same 470x160 canvas used by the Builder editor.
+  // BETA 0.6.3: always keep the same 470x160 canvas used by the Builder editor.
   badge.style.position = "relative";
   badge.style.width = "470px";
   badge.style.height = "160px";
@@ -380,7 +380,7 @@ function applyBaseLayoutFromUrl() {
 
   if (shell) {
     // Keep the real base frame visible while applying custom layout coordinates.
-    // BETA 0.6.2: same inner frame as Builder editor for 1:1 coordinates.
+    // BETA 0.6.3: same inner frame as Builder editor for 1:1 coordinates.
     shell.style.position = "absolute";
     shell.style.left = "58px";
     shell.style.top = "38px";
@@ -1000,7 +1000,7 @@ function loadRankTagPlusLayouts() {
 })();
 
 /* RankTag BETA 0.2.1 render marker */
-document.documentElement.setAttribute("data-ranktag-version", "0.5.5");
+document.documentElement.setAttribute("data-ranktag-version", "0.6.3");
 
 
 
@@ -2881,7 +2881,7 @@ function renderBaseBuilderLayoutAuthoritative() {
   const shell = badge.querySelector(".card-shell");
   if (shell) {
     shell.style.position = "absolute";
-    // BETA 0.6.2: final overlay uses the same 470x160 canvas and same inner frame
+    // BETA 0.6.3: final overlay uses the same 470x160 canvas and same inner frame
     // position as the Builder editor, so text coordinates match 1:1.
     shell.style.left = "58px";
     shell.style.top = "38px";

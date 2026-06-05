@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=062" />
+  <link rel="stylesheet" href="/style.css?v=063" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -41,13 +41,25 @@
       height:160px;
       max-width:none;
       position:relative;
-      overflow:visible;
+      overflow:hidden;
       border:0;
       border-radius:0;
       background:transparent;
       clip-path:none;
     }
+    .editor-render-frame {
+      position:absolute;
+      inset:0;
+      width:470px;
+      height:160px;
+      border:0;
+      display:block;
+      background:transparent;
+      pointer-events:none;
+      z-index:0;
+    }
     .builder-bg {
+      display:none;
       position:absolute;
       left:58px;
       top:38px;
@@ -79,6 +91,9 @@
       background:linear-gradient(90deg,transparent,rgba(255,42,23,.48),rgba(255,211,106,.68),transparent);
     }
     .builder-item { position:absolute; border:2px dashed transparent; border-radius:10px; cursor:pointer; user-select:none; min-width:10px; min-height:10px; transform-origin:center center; box-sizing:border-box; }
+    .builder-item.editor-hitbox { color:transparent!important; text-shadow:none!important; background:transparent!important; overflow:visible!important; }
+    .builder-item.editor-hitbox img { display:none!important; }
+    .builder-item.editor-hitbox:hover { border-color:rgba(255,255,255,.18); }
     .builder-item.active { cursor:move; border-color:#ffd36a; box-shadow:0 0 0 1px rgba(255,211,106,.28),0 0 22px rgba(255,42,23,.22); }
     .builder-item .label { position:absolute; left:0; top:-12px; color:#ffd36a; font-size:8px; font-weight:1000; text-shadow:0 1px 5px rgba(0,0,0,.9); white-space:nowrap; }
     .builder-item .handle { display:none; position:absolute; right:-8px; bottom:-8px; width:18px; height:18px; border-radius:50%; background:#ffd36a; border:3px solid rgba(0,0,0,.78); cursor:nwse-resize; }
@@ -312,7 +327,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.6.2</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.6.3</span>
       </div>
     </div>
     <div class="layout">
@@ -385,9 +400,9 @@
     <span class="tag">Drag & Resize</span>
   </div>
 </div>
-        <div class="builder-stage-holder"><div class="builder-stage" id="builderStage"><div class="builder-bg"></div></div></div>
+        <div class="builder-stage-holder"><div class="builder-stage" id="builderStage"><iframe id="editorPreview" class="editor-render-frame" title="Editor overlay render"></iframe><div class="builder-bg"></div></div></div>
         <div class="actions"><input id="customImageUpload" type="file" accept="image/png,image/jpeg,image/webp" style="max-width:340px;"><button class="btn secondary" id="resetLayout" type="button">Reset layout</button><button class="btn secondary" id="clearImages" type="button">Rimuovi immagini</button></div>
-        <p class="help">Editor in coordinate reali 470×160: l’Editor, l’anteprima live e l’overlay finale usano lo stesso canvas. Lo zoom agisce solo sulla vista, non sui valori.</p>
+        <p class="help">Editor in coordinate reali 470×160: la visuale dentro l’Editor usa lo stesso renderer del link finale. I riquadri tratteggiati servono solo per selezionare, spostare e ridimensionare.</p>
         <div class="stage-preview-block">
           <h2>6. Anteprima live</h2>
           <p class="help">Una sola anteprima, sotto l’Editor layout, sincronizzata con il link finale che vedono gli utenti.</p>
@@ -411,7 +426,7 @@
     </div>
   </main>
   <a class="quick-feedback" href="/feedback.html?from=builder" target="_blank" rel="noopener">Segnala problema</a>
-  <script src="/access.js?v=057"></script>
+  <script src="/access.js?v=063"></script>
   <script>
     if(!window.RankTagAccess || !RankTagAccess.requireBuilderAccess()){
       document.body.innerHTML = `<main class="page"><section class="panel stack" style="max-width:760px;margin:40px auto"><h1>Builder bloccato</h1><p class="sub">Per usare l’Overlay Builder avanzato devi essere loggato e avere un codice accesso valido.</p><div class="actions"><a class="btn" href="/account.html">Login / Riscatta codice</a><a class="btn secondary" href="/home.html">Torna alla Home</a></div></section></main>`;
@@ -583,7 +598,7 @@
       stage.querySelectorAll(".builder-item").forEach((n)=>n.remove());
       items().sort((a,b)=>(a.z||1)-(b.z||1)).forEach((item)=>{
         const box=document.createElement("div");
-        box.className="builder-item"+(item.id===selectedId?" active":"");
+        box.className="builder-item editor-hitbox"+(item.id===selectedId?" active":"");
         if(item.kind!=="image") box.classList.add("text-item", item.id+"-item");
         if(item.id==="badge") {
           box.classList.add("badge-item");
@@ -592,9 +607,8 @@
         }
         box.dataset.id=item.id;
         Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""});
-        if(item.id==="badge") box.innerHTML = badgeImgMarkup();
-        else if(item.kind==="image") box.innerHTML=`<img src="${item.src}" alt="">`;
-        else box.textContent=displayText(item.id);
+        // BETA 0.6.3: l'Editor non ridisegna più testi, badge o immagini.
+        // La visuale reale è l'iframe editorPreview; questi box sono solo hitbox drag/resize.
         const label=document.createElement("div"); label.className="label"; if(item.id === selectedId){ label.textContent=item.label||item.name||item.id; box.appendChild(label); }
         const handle=document.createElement("div"); handle.className="handle"; box.appendChild(handle);
         box.addEventListener("pointerdown", startDrag); handle.addEventListener("pointerdown", startResize); stage.appendChild(box);
@@ -695,7 +709,12 @@
       const finalLink=url.toString();
       $("output").value=finalLink;
       clearTimeout(previewUpdateTimer);
-      previewUpdateTimer=setTimeout(()=>{ const frame=$("preview"); if(frame && frame.src!==finalLink) frame.src=finalLink; }, 180);
+      previewUpdateTimer=setTimeout(()=>{
+        const frame=$("preview");
+        const editorFrame=$("editorPreview");
+        if(frame && frame.src!==finalLink) frame.src=finalLink;
+        if(editorFrame && editorFrame.src!==finalLink) editorFrame.src=finalLink;
+      }, 120);
       updateLinkSizeHint(finalLink); return finalLink;
     }
     async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; const ctx=canvas.getContext("2d"); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.62),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
@@ -716,6 +735,7 @@
       $("projectName").value = loadedProject.name || "";
       $("output").value = loadedProject.link || "";
       $("preview").src = loadedProject.link || "";
+      if($("editorPreview")) $("editorPreview").src = loadedProject.link || "";
       updateLinkSizeHint(loadedProject.link || "");
     }
     $("generate").addEventListener("click",buildLink);
@@ -741,4 +761,4 @@
   </script>
 </body>
 </html>
-<!-- RankTag BETA 0.6.2: ripristinato canvas editor 470x160 e sincronizzati frame/coordinate con anteprima finale. -->
+<!-- RankTag BETA 0.6.3: ripristinato canvas editor 470x160 e sincronizzati frame/coordinate con anteprima finale. -->

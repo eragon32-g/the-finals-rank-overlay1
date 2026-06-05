@@ -1,22 +1,18 @@
 [
   {
-    "version": "BETA 0.6.2",
-    "title": "Editor Preview Coordinate Sync Fix",
-    "changes": [
-      "ripristinato il canvas Editor 470×160 senza accorciare la finestra",
-      "sincronizzato il frame interno tra Editor, anteprima live e overlay finale",
-      "coordinate testi/immagini ora coerenti tra Editor e preview",
-      "badge rank e brand non vengono renderizzati nel finale quando la categoria non-ranked li nasconde"
-    ]
-  },
-  {
-    "version": "BETA 0.6.1",
-    "title": "Non Ranked Editor Width Fix",
-    "changes": [
-      "accorciato davvero il canvas Editor nelle categorie non-ranked",
-      "rimossa l’area vuota a sinistra senza allungare il frame",
-      "bounds drag/resize calcolati su 400×160 per Creator/Clan/Streamer/World Tour/Custom",
-      "overlay finale non-ranked sincronizzato con la stessa larghezza visiva dell’Editor"
+    "version": "BETA 0.6.3",
+    "title": "Unified Final Renderer Editor Fix",
+    "description": "L'Editor layout usa lo stesso renderer dell'overlay finale dentro un iframe, con hitbox drag/resize sovrapposte.",
+    "groups": [
+      {
+        "title": "Fix",
+        "items": [
+          "visuale Editor allineata al link finale",
+          "rimossi renderer duplicati nell'Editor",
+          "hitbox drag/resize sopra il renderer reale",
+          "anteprima live e overlay finale basati sullo stesso link"
+        ]
+      }
     ]
   },
   {

@@ -1,1 +1,5 @@
-{"version": "BETA 0.6.2", "name": "Editor Preview Coordinate Sync Fix", "build": "0.6.2"}
+{
+  "version": "BETA 0.6.3",
+  "name": "Unified Final Renderer Editor Fix",
+  "build": "0.6.3"
+}
