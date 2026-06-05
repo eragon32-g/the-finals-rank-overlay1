@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=073" />
+  <link rel="stylesheet" href="/style.css?v=074" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -434,7 +434,7 @@
     </div>
   </main>
   <a class="quick-feedback" href="/feedback.html?from=builder" target="_blank" rel="noopener">Segnala problema</a>
-  <script src="/access.js?v=073"></script>
+  <script src="/access.js?v=074"></script>
   <script>
     if(!window.RankTagAccess || !RankTagAccess.requireBuilderAccess()){
       document.body.innerHTML = `<main class="page"><section class="panel stack" style="max-width:760px;margin:40px auto"><h1>Builder bloccato</h1><p class="sub">Per usare l’Overlay Builder avanzato devi essere loggato e avere un codice accesso valido.</p><div class="actions"><a class="btn" href="/account.html">Login / Riscatta codice</a><a class="btn secondary" href="/home.html">Torna alla Home</a></div></section></main>`;
@@ -659,15 +659,19 @@
     }
     function renderList(){const list=$("elementsList"); list.innerHTML=""; items().forEach((item)=>{const btn=document.createElement("button"); btn.className="btn secondary"+(item.id===selectedId?" active":""); btn.type="button"; btn.textContent=item.label||item.name||item.id; btn.addEventListener("click",()=>{selectedId=item.id; render();}); list.appendChild(btn);});}
     function activeCanvasWidth(){ return 470; }
-    function point(e){const rect=stage.getBoundingClientRect(); const w=activeCanvasWidth(); return {x:(e.clientX-rect.left)*(w/rect.width), y:(e.clientY-rect.top)*(160/rect.height)};}
-    function clampToCanvas(item){
+    function activeCanvasHeight(){ return 160; }
+    function point(e){const rect=stage.getBoundingClientRect(); const w=activeCanvasWidth(); return {x:(e.clientX-rect.left)*(w/rect.width), y:(e.clientY-rect.top)*(activeCanvasHeight()/rect.height)};}
+    function normalizeEditorItem(item){
       if(!item) return;
-      const wLimit = activeCanvasWidth();
-      item.w=Math.round(clamp(Number(item.w)||1,6,wLimit));
-      item.h=Math.round(clamp(Number(item.h)||1,6,160));
-      item.x=Math.round(clamp(Number(item.x)||0,0,wLimit-item.w));
-      item.y=Math.round(clamp(Number(item.y)||0,0,160-item.h));
+      // BETA 0.7.4: niente più blocco rigido dentro il frame.
+      // L'utente può usare tutto lo spazio dell'Editor e anche preparare elementi
+      // parzialmente fuori area; il ritaglio finale resta gestito dall'overlay.
+      item.x=Math.round(Number(item.x)||0);
+      item.y=Math.round(Number(item.y)||0);
+      item.w=Math.max(6,Math.round(Number(item.w)||1));
+      item.h=Math.max(6,Math.round(Number(item.h)||1));
     }
+    function clampToCanvas(item){ normalizeEditorItem(item); }
     function editorZ(item){ return 2000 + Number(item?.z || 1); }
     function setEditingState(on){ stage?.classList.toggle("is-editing", Boolean(on)); }
     function safeReleasePointer(target,pointerId){ try{ target?.releasePointerCapture?.(pointerId); }catch{} }
@@ -709,6 +713,10 @@
       stage.appendChild(ghost);
       return ghost;
     }
+    function previewBustLink(link){
+      try{ const url=new URL(link); url.searchParams.set("_rtPreview", String(Date.now())); return url.toString(); }
+      catch{ return link; }
+    }
     function makeEditorBaseLink(finalLink){
       try{
         const url = new URL(finalLink);
@@ -725,8 +733,8 @@
       const editorLink=makeEditorBaseLink(link);
       lastPreviewLink = "";
       clearTimeout(previewUpdateTimer);
-      if(frame && frame.src!==link) frame.src=link;
-      if(editorFrame && editorFrame.src!==editorLink) editorFrame.src=editorLink;
+      if(frame) frame.src=previewBustLink(link);
+      if(editorFrame) editorFrame.src=previewBustLink(editorLink);
     }
     function selectOnly(id){
       selectedId=id;
@@ -798,9 +806,9 @@
       function move(ev){
         ev.preventDefault();
         const p=point(ev);
-        item.w=Math.round(clamp(sw+(p.x-start.x),6,activeCanvasWidth()));
-        item.h=Math.round(clamp(sh+(p.y-start.y),6,160));
-        clampToCanvas(item);
+        item.w=Math.max(6,Math.round(sw+(p.x-start.x)));
+        item.h=Math.max(6,Math.round(sh+(p.y-start.y)));
+        normalizeEditorItem(item);
         if(item.kind !== "image" && item.id !== "badge") { item.fontSize = Math.max(7, Math.round(item.h * 0.75)); }
         if(!raf) raf=requestAnimationFrame(paint);
       }
@@ -825,9 +833,9 @@
       if(!item)return;
       item.x=Math.round(Number($("editX").value||0));
       item.y=Math.round(Number($("editY").value||0));
-      item.w=Math.round(clamp($("editW").value,6,activeCanvasWidth()));
-      item.h=Math.round(clamp($("editH").value,6,160));
-      clampToCanvas(item);
+      item.w=Math.max(6,Math.round(Number($("editW").value||1)));
+      item.h=Math.max(6,Math.round(Number($("editH").value||1)));
+      normalizeEditorItem(item);
       item.fontSize=Math.max(0,Number($("editFont").value||0));
       if(item.kind !== "image" && selectedId !== "badge") {
         if(item.fontSize <= 0) item.fontSize = Math.max(7, Math.round(item.h * 0.75));
@@ -877,14 +885,15 @@
       $("output").value=finalLink;
       clearTimeout(previewUpdateTimer);
       previewUpdateTimer=setTimeout(()=>{
-        if(finalLink === lastPreviewLink) return;
-        lastPreviewLink = finalLink;
         const frame=$("preview");
         const editorFrame=$("editorPreview");
         const editorLink=makeEditorBaseLink(finalLink);
-        if(frame && frame.src!==finalLink) frame.src=finalLink;
-        if(editorFrame && editorFrame.src!==editorLink) editorFrame.src=editorLink;
-      }, 180);
+        // BETA 0.7.4: l'output resta pulito, ma gli iframe ricevono un bust locale
+        // così anteprima/editor si aggiornano sempre anche se il browser tiene cache.
+        if(frame) frame.src=previewBustLink(finalLink);
+        if(editorFrame) editorFrame.src=previewBustLink(editorLink);
+        lastPreviewLink = finalLink;
+      }, 120);
       updateLinkSizeHint(finalLink); return finalLink;
     }
     async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; const ctx=canvas.getContext("2d"); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.62),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
@@ -904,8 +913,8 @@
     if(loadedProject){
       $("projectName").value = loadedProject.name || "";
       $("output").value = loadedProject.link || "";
-      $("preview").src = loadedProject.link || "";
-      if($("editorPreview")) $("editorPreview").src = loadedProject.link ? makeEditorBaseLink(loadedProject.link) : "";
+      $("preview").src = loadedProject.link ? previewBustLink(loadedProject.link) : "";
+      if($("editorPreview")) $("editorPreview").src = loadedProject.link ? previewBustLink(makeEditorBaseLink(loadedProject.link)) : "";
       updateLinkSizeHint(loadedProject.link || "");
     }
     $("generate").addEventListener("click",buildLink);
@@ -931,4 +940,4 @@
   </script>
 </body>
 </html>
-<!-- RankTag BETA 0.7.3: editor base-only iframe, layer modificabile unico. -->
+<!-- RankTag BETA 0.7.4: preview sync e limiti editor rimossi. -->

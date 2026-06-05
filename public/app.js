@@ -20,7 +20,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "073";
+const OVERLAY_VERSION = "074";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
@@ -442,7 +442,7 @@ function decodeCustomElementsParam() {
 function renderCustomImageElements() {
   if (!badge) return;
   badge.querySelectorAll(".rt-custom-image-layer").forEach((el) => el.remove());
-  // BETA 0.7.3: l'iframe usato come base dell'Editor deve mostrare solo il frame,
+  // BETA 0.7.4: l'iframe usato come base dell'Editor deve mostrare solo il frame,
   // non immagini/testi fissi sotto al layer modificabile.
   if (isRankTagEditorBaseOnly()) return;
   const elements = decodeCustomElementsParam()
@@ -2905,7 +2905,7 @@ function renderBaseBuilderLayoutAuthoritative() {
 
   badge.querySelectorAll(".rt-builder-final-layer").forEach((node) => node.remove());
 
-  // BETA 0.7.3: modalità base-only per l'Editor.
+  // BETA 0.7.4: modalità base-only per l'Editor.
   // Il frame resta identico al finale, ma testi/stemma/brand clonati non vengono disegnati sotto.
   if (isRankTagEditorBaseOnly()) return;
 

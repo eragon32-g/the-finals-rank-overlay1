@@ -1,3 +1,3 @@
-# RankTag BETA 0.7.3
+# RankTag BETA 0.7.4
 
-Editor Base Only Renderer Sync Fix.
+Editor Preview Sync Free Edit Fix

@@ -1,5 +1,15 @@
 [
   {
+    "version": "BETA 0.7.4",
+    "title": "Editor Preview Sync Free Edit Fix",
+    "changes": [
+      "Anteprima aggiornata correttamente dopo drag/resize",
+      "Rimosso il blocco rigido dei movimenti dentro il frame",
+      "Editor libero su tutta l’area di lavoro",
+      "Renderer base-only stabile mantenuto"
+    ]
+  },
+  {
     "version": "BETA 0.7.3",
     "title": "Editor Base Only Renderer Sync Fix",
     "changes": [
