@@ -20,7 +20,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "057";
+const OVERLAY_VERSION = "058";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
@@ -28,6 +28,17 @@ function getRankTagParam(name) {
 }
 
 function getOverlayType(){ return (getRankTagParam("overlayType") || "ranked").toLowerCase(); }
+function shouldHideBrand(){ return getRankTagParam("hideBrand") === "1"; }
+function applyBuilderVisibilityFlags(){
+  if(brandDrawer && shouldHideBrand()) brandDrawer.style.display = "none";
+  const type = getOverlayType();
+  if(badge) {
+    const hideBadge = getRankTagParam("hideBadge") === "1" || type !== "ranked";
+    badge.classList.toggle("hide-rank-badge", hideBadge);
+    const rankMark = badge.querySelector(".rank-mark");
+    if(rankMark) rankMark.style.display = hideBadge ? "none" : "";
+  }
+}
 function applyNonRankedCopy(){
   const type = getOverlayType();
   if(badge) badge.classList.toggle("hide-rank-badge", getRankTagParam("hideBadge") === "1" || type !== "ranked");
@@ -39,7 +50,8 @@ function applyNonRankedCopy(){
   if(rankText) rankText.textContent = title.toUpperCase();
   if(scoreText) scoreText.textContent = line1;
   if(nameText) nameText.textContent = line2;
-  if(brandMarqueeText) brandMarqueeText.textContent = type === "world-tour" ? "WORLD TOUR • THE FINALS" : type === "clan" ? "TEAM • CLAN • COMMUNITY" : "CREATOR OVERLAY • RANKTAG";
+  if(brandMarqueeText) brandMarqueeText.textContent = "";
+  if(brandDrawer) brandDrawer.style.display = "none";
   return true;
 }
 function ranktagValidateAccessFromUrl() {
@@ -49,6 +61,7 @@ function ranktagValidateAccessFromUrl() {
   const exp = Number(params.get("rtAccessExp") || hashParams.get("rtAccessExp") || 0);
   return !!(exp && exp > Date.now());
 }
+applyBuilderVisibilityFlags();
 function ranktagBlockInactiveOverlay() {
   const overlay = document.getElementById("overlay") || document.body;
   overlay.innerHTML = `<section style="width:470px;height:160px;display:grid;place-items:center;text-align:center;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:linear-gradient(180deg,rgba(18,21,30,.96),rgba(8,10,15,.98));color:#f5f7fb;font-family:Arial,Helvetica,sans-serif;padding:18px"><div><b style="display:block;font-size:22px;margin-bottom:6px;color:#ff8f8f">Overlay non attivo</b><span style="font-size:12px;color:rgba(245,247,251,.72)">Il codice accesso collegato a questo link è scaduto.</span></div></section>`;
@@ -318,6 +331,7 @@ function decodeBaseLayoutParam() {
 }
 
 function applyBaseLayoutFromUrl() {
+  applyBuilderVisibilityFlags();
   if (!badge) return;
   const isBase = !["cyber-red-elite", "voidrage-inferno"].includes(themeStyle);
   if (!isBase) return;
@@ -371,9 +385,9 @@ function applyBaseLayoutFromUrl() {
   apply(rankText, e.rank);
   apply(scoreText, e.score);
   apply(nameText, e.player);
-  apply(brandDrawer, e.brand);
+  if (!shouldHideBrand()) apply(brandDrawer, e.brand);
   if (brandDrawer) {
-    brandDrawer.style.display = "block";
+    brandDrawer.style.display = shouldHideBrand() ? "none" : "block";
     brandDrawer.style.overflow = "hidden";
     brandDrawer.querySelectorAll("span").forEach((span)=>{ if(e.brand?.fontFamily) span.style.fontFamily = String(e.brand.fontFamily); });
   }

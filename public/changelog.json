@@ -1,5 +1,14 @@
 [
   {
+    "version": "BETA 0.5.8",
+    "title": "Builder Layout Panel & Branding Cleanup",
+    "changes": [
+      "pannello sinistro settaggi più largo",
+      "badge rank nascosto davvero nelle categorie non-ranked",
+      "branding rimosso dal Builder e dal link finale generato"
+    ]
+  },
+  {
     "version": "BETA 0.5.7",
     "name": "Overlay Category Fields Cleanup",
     "changes": [
