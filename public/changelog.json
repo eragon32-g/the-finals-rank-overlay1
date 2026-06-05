@@ -1,13 +1,12 @@
 [
   {
-    "version": "BETA 0.5.9",
-    "title": "Builder Fidelity Cleanup Fix",
+    "version": "BETA 0.6.0",
+    "title": "Editor Canvas Bounds Fix",
     "changes": [
-      "anteprima finale senza stemma rank nelle categorie non-ranked",
-      "branding bloccato nel Builder e nel link finale quando disattivato",
-      "effetti base visibili anche nell’Editor layout",
-      "area editor più centrata e meno spazio vuoto laterale",
-      "preview live centrata meglio rispetto all’overlay finale"
+      "ridotto lo spazio extra a sinistra nell’Editor per overlay non-ranked",
+      "frame non-ranked allineato tra Editor e overlay finale",
+      "drag bloccato dentro il canvas 470×160 per evitare elementi fuori dal finale",
+      "resize bloccato dentro il canvas per mantenere fedeltà Editor/anteprima/link finale"
     ]
   },
   {

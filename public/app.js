@@ -380,9 +380,10 @@ function applyBaseLayoutFromUrl() {
   if (shell) {
     // Keep the real base frame visible while applying custom layout coordinates.
     shell.style.position = "absolute";
-    shell.style.left = "58px";
+    const nonRankedFrame = getOverlayType() !== "ranked";
+    shell.style.left = nonRankedFrame ? "8px" : "58px";
     shell.style.top = "38px";
-    shell.style.width = "400px";
+    shell.style.width = nonRankedFrame ? "454px" : "400px";
     shell.style.height = "84px";
     shell.style.padding = "0";
     shell.style.margin = "0";
@@ -2876,9 +2877,10 @@ function renderBaseBuilderLayoutAuthoritative() {
   const shell = badge.querySelector(".card-shell");
   if (shell) {
     shell.style.position = "absolute";
-    shell.style.left = "58px";
+    const nonRankedFrame = getOverlayType() !== "ranked";
+    shell.style.left = nonRankedFrame ? "8px" : "58px";
     shell.style.top = "38px";
-    shell.style.width = "400px";
+    shell.style.width = nonRankedFrame ? "454px" : "400px";
     shell.style.height = "84px";
     shell.style.padding = "0";
     shell.style.margin = "0";
