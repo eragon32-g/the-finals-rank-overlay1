@@ -4174,3 +4174,8 @@ section:has(.premium-one-card) {
 .badge.base-builder-authoritative .rt-builder-final-brand {
   overflow: hidden !important;
 }
+
+
+/* RankTag BETA 0.5.7 - hide ranked badge for non-ranked overlay types */
+.badge.hide-rank-badge .rank-mark{display:none!important;}
+.badge.hide-rank-badge .card-shell{margin-left:0!important;}

@@ -20,7 +20,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "056";
+const OVERLAY_VERSION = "057";
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
@@ -30,6 +30,7 @@ function getRankTagParam(name) {
 function getOverlayType(){ return (getRankTagParam("overlayType") || "ranked").toLowerCase(); }
 function applyNonRankedCopy(){
   const type = getOverlayType();
+  if(badge) badge.classList.toggle("hide-rank-badge", getRankTagParam("hideBadge") === "1" || type !== "ranked");
   if(type === "ranked") return false;
   const title = getRankTagParam("customTitle") || getRankTagParam("player") || "VOIDRAGE32";
   const line1 = getRankTagParam("customLine1") || (type === "world-tour" ? "WORLD TOUR POINTS" : "Kick / Twitch / TikTok");

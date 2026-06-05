@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RankTag Builder Overlay</title>
-  <link rel="stylesheet" href="/style.css?v=056" />
+  <link rel="stylesheet" href="/style.css?v=057" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,500;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
     * { box-sizing: border-box; }
@@ -266,6 +266,20 @@
     #leaderboardStatus[data-state="error"] { color:#ff8f8f; }
   .quick-feedback{position:fixed;right:18px;bottom:18px;z-index:9999;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:12px 15px;background:#ff2638;color:#fff;text-decoration:none;font-weight:1000;box-shadow:0 12px 32px rgba(0,0,0,.36)}
     @media(max-width:700px){.quick-feedback{right:12px;bottom:12px;padding:10px 12px;font-size:12px}}
+
+
+    /* RankTag BETA 0.5.7 - categorie pulite per tipo overlay */
+    .category-card{border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:14px;background:rgba(255,255,255,.035);box-shadow:inset 0 0 0 1px rgba(255,255,255,.025)}
+    .category-card h3{margin:0 0 10px;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#fff}
+    .category-card .mini-help{margin:8px 0 0;color:rgba(245,247,251,.64);font-size:12px;line-height:1.45}
+    .category-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(239,23,36,.28);background:rgba(239,23,36,.09);border-radius:999px;padding:8px 10px;color:#fff;font-weight:900;font-size:12px;margin-top:6px}
+    body:not([data-overlay-type="ranked"]) .ranked-only{display:none!important}
+    body[data-overlay-type="ranked"] .non-ranked-only{display:none!important}
+    body[data-overlay-type="creator"] .creator-only, body[data-overlay-type="clan"] .clan-only, body[data-overlay-type="streamer"] .streamer-only, body[data-overlay-type="world-tour"] .world-tour-only, body[data-overlay-type="custom"] .custom-only{display:block}
+    .type-specific{display:none}
+    body:not([data-overlay-type="ranked"]) .builder-item[data-id="badge"]{display:none!important}
+    body:not([data-overlay-type="ranked"]) #selectedName::after{content:""}
+
   </style>
 </head>
 <body>
@@ -276,36 +290,50 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.6</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.5.7</span>
       </div>
     </div>
     <div class="layout">
       <section class="panel stack">
         <h2>1. Tipo overlay</h2>
         <label>Tipo overlay<select id="overlayType"><option selected value="ranked">Ranked</option><option value="creator">Creator / Social</option><option value="clan">Clan / Team</option><option value="streamer">Streamer</option><option value="world-tour">World Tour</option><option value="custom">Custom libero</option></select></label>
-        <p class="type-help" id="overlayTypeHelp">Ranked usa rank, ELO e leaderboard. Gli altri tipi servono anche a chi non gioca ranked: social, clan, sponsor, eventi e identità creator.</p>
-        <div class="stack custom-copy-fields" id="customCopyFields">
-          <label>Titolo principale<input id="customTitle" value="VOIDRAGE32"></label>
-          <label>Riga info<input id="customLine1" value="Kick.tv/VoidRage32"></label>
-          <label>Riga extra<input id="customLine2" value="TikTok @VoidRage32 • PROIT"></label>
+        <p class="type-help" id="overlayTypeHelp">Scegli il tipo e il Builder mostrerà solo i campi utili per quella categoria.</p>
+        <span class="category-badge" id="categoryBadge">Categoria: Ranked</span>
+
+        <div class="category-card ranked-only">
+          <h3>Categoria Ranked</h3>
+          <label>Modalità<select id="mode"><option selected value="manual">Manuale</option><option value="auto">Leaderboard</option></select></label>
+          <label>Player<input id="player" value="NomePlayer#1234"></label>
+          <p class="help" id="leaderboardStatus">Modalità manuale: rank e punti vengono usati dai campi sotto.</p>
+          <div class="grid2">
+            <label>Rank<select id="badgeFile">
+              <option value="bronze-4">Bronze 4</option><option value="bronze-3">Bronze 3</option><option value="bronze-2">Bronze 2</option><option value="bronze-1">Bronze 1</option>
+              <option value="silver-4">Silver 4</option><option value="silver-3">Silver 3</option><option value="silver-2">Silver 2</option><option value="silver-1">Silver 1</option>
+              <option value="gold-4">Gold 4</option><option value="gold-3">Gold 3</option><option value="gold-2">Gold 2</option><option value="gold-1">Gold 1</option>
+              <option value="platinum-4">Platinum 4</option><option value="platinum-3">Platinum 3</option><option value="platinum-2">Platinum 2</option><option selected value="platinum-1">Platinum 1</option>
+              <option value="diamond-4">Diamond 4</option><option value="diamond-3">Diamond 3</option><option value="diamond-2">Diamond 2</option><option value="diamond-1">Diamond 1</option><option value="ruby">Ruby</option>
+            </select></label>
+            <label>Punteggio<input id="rankScore" value="37705"></label>
+          </div>
+          <div class="grid2">
+            <label>Label punti<select id="scoreLabel"><option selected>ELO</option><option>RS</option><option>PTS</option></select></label>
+            <label>Status<select id="showStatus"><option selected value="0">No</option><option value="1">Sì</option></select></label>
+          </div>
+          <p class="mini-help">Qui restano badge rank, ELO e ricerca leaderboard. È l’unica categoria dove lo scudino rank è mostrato di default.</p>
         </div>
-        <h2>2. Dati ranked</h2>
-        <label>Modalità<select id="mode"><option selected value="manual">Manuale</option><option value="auto">Leaderboard</option></select></label>
-        <label>Player<input id="player" value="NomePlayer#1234"></label>
-        <p class="help" id="leaderboardStatus">Modalità manuale: rank e punti vengono usati dai campi sotto.</p>
-        <div class="grid2">
-          <label>Rank<select id="badgeFile">
-            <option value="bronze-4">Bronze 4</option><option value="bronze-3">Bronze 3</option><option value="bronze-2">Bronze 2</option><option value="bronze-1">Bronze 1</option>
-            <option value="silver-4">Silver 4</option><option value="silver-3">Silver 3</option><option value="silver-2">Silver 2</option><option value="silver-1">Silver 1</option>
-            <option value="gold-4">Gold 4</option><option value="gold-3">Gold 3</option><option value="gold-2">Gold 2</option><option value="gold-1">Gold 1</option>
-            <option value="platinum-4">Platinum 4</option><option value="platinum-3">Platinum 3</option><option value="platinum-2">Platinum 2</option><option selected value="platinum-1">Platinum 1</option>
-            <option value="diamond-4">Diamond 4</option><option value="diamond-3">Diamond 3</option><option value="diamond-2">Diamond 2</option><option value="diamond-1">Diamond 1</option><option value="ruby">Ruby</option>
-          </select></label>
-          <label>Punteggio<input id="rankScore" value="37705"></label>
-        </div>
-        <div class="grid2">
-          <label>Label punti<select id="scoreLabel"><option selected>ELO</option><option>RS</option><option>PTS</option></select></label>
-          <label>Status<select id="showStatus"><option selected value="0">No</option><option value="1">Sì</option></select></label>
+
+        <div class="category-card non-ranked-only">
+          <h3>Testi categoria</h3>
+          <div class="stack custom-copy-fields" id="customCopyFields">
+            <label id="customTitleLabel">Titolo principale<input id="customTitle" value="VOIDRAGE32"></label>
+            <label id="customLine1Label">Riga info<input id="customLine1" value="Kick.tv/VoidRage32"></label>
+            <label id="customLine2Label">Riga extra<input id="customLine2" value="TikTok @VoidRage32 • PROIT"></label>
+          </div>
+          <p class="mini-help creator-only type-specific">Creator: usa nickname, social e CTA. Nessun badge ranked obbligatorio.</p>
+          <p class="mini-help clan-only type-specific">Clan/Team: usa tag team, nome player, sponsor o community.</p>
+          <p class="mini-help streamer-only type-specific">Streamer: usa piattaforma live, nome canale e call to action.</p>
+          <p class="mini-help world-tour-only type-specific">World Tour: usa punti/evento WT senza dipendere dalla ranked.</p>
+          <p class="mini-help custom-only type-specific">Custom: tre righe libere per eventi, tornei, sponsor o grafiche personali.</p>
         </div>
         <h2>3. Stile base</h2>
         <div class="grid2">
@@ -361,7 +389,7 @@
     </div>
   </main>
   <a class="quick-feedback" href="/feedback.html?from=builder" target="_blank" rel="noopener">Segnala problema</a>
-  <script src="/access.js?v=056"></script>
+  <script src="/access.js?v=057"></script>
   <script>
     if(!window.RankTagAccess || !RankTagAccess.requireBuilderAccess()){
       document.body.innerHTML = `<main class="page"><section class="panel stack" style="max-width:760px;margin:40px auto"><h1>Builder bloccato</h1><p class="sub">Per usare l’Overlay Builder avanzato devi essere loggato e avere un codice accesso valido.</p><div class="actions"><a class="btn" href="/account.html">Login / Riscatta codice</a><a class="btn secondary" href="/home.html">Torna alla Home</a></div></section></main>`;
@@ -382,7 +410,12 @@
     let leaderboardLookupTimer = null;
     let leaderboardLookupId = 0;
     function selected(){return baseLayout[selectedId] || customElements.find((x)=>x.id===selectedId) || null;}
-    function items(){return [...Object.entries(baseLayout).map(([id,item])=>({id,...item})),...customElements.map((item)=>({...item,kind:"image"}))];}
+    function items(){
+      const baseItems = Object.entries(baseLayout)
+        .filter(([id]) => overlayType()==="ranked" || id!=="badge")
+        .map(([id,item])=>({id,...item}));
+      return [...baseItems,...customElements.map((item)=>({...item,kind:"image"}))];
+    }
     function setLeaderboardStatus(text,state){const el=$("leaderboardStatus"); if(!el)return; el.textContent=text; if(state) el.dataset.state=state; else el.removeAttribute("data-state");}
     function baseLeagueName(value){const clean=String(value||"").toLowerCase(); if(clean.includes("ruby"))return "ruby"; if(clean.includes("diamond"))return "diamond"; if(clean.includes("platinum"))return "platinum"; if(clean.includes("gold"))return "gold"; if(clean.includes("silver"))return "silver"; if(clean.includes("bronze"))return "bronze"; return "unranked";}
     function divisionFromLeague(value, leagueNumber){const clean=String(value||"").toLowerCase(); if(clean.includes(" 1")||clean.includes(" i")||clean.includes("division 1"))return "1"; if(clean.includes(" 2")||clean.includes(" ii")||clean.includes("division 2"))return "2"; if(clean.includes(" 3")||clean.includes(" iii")||clean.includes("division 3"))return "3"; if(clean.includes(" 4")||clean.includes(" iv")||clean.includes("division 4"))return "4"; const n=Number(leagueNumber); if(Number.isInteger(n)){const div=((n-1)%4)+1; return String(div);} return "";}
@@ -397,9 +430,20 @@
       document.body.dataset.overlayType=type;
       const help=$("overlayTypeHelp");
       if(help){
-        const copy={ranked:"Ranked usa rank, ELO e leaderboard ufficiale.",creator:"Creator mostra nickname, social e brand: ideale per TikTok/Kick/YouTube.",clan:"Clan/Team mostra tag team, player e sponsor.",streamer:"Streamer è pensato per live: nome canale, piattaforma e call to action.","world-tour":"World Tour mostra punti/evento senza dipendere dalla ranked.",custom:"Custom libero: tre righe testuali modificabili per eventi, sponsor o tornei."};
+        const copy={ranked:"Ranked: rank, ELO, badge ufficiale e ricerca leaderboard.",creator:"Creator/Social: nickname, link social e identità canale. Il badge rank viene nascosto.",clan:"Clan/Team: tag team, player e sponsor/community. Il badge rank viene nascosto.",streamer:"Streamer: nome canale, piattaforma live e call to action. Il badge rank viene nascosto.","world-tour":"World Tour: punti o info evento senza dipendere dalla ranked.",custom:"Custom libero: tre righe testuali per eventi, tornei o sponsor."};
         help.textContent=copy[type]||copy.ranked;
       }
+      const badge=$("categoryBadge");
+      if(badge) badge.textContent="Categoria: "+({ranked:"Ranked",creator:"Creator / Social",clan:"Clan / Team",streamer:"Streamer", "world-tour":"World Tour", custom:"Custom"}[type]||"Ranked");
+      const labels={
+        creator:["Nome creator / canale","Social principale","CTA / community"],
+        clan:["Tag clan / team","Player / roster","Sponsor / community"],
+        streamer:["Nome canale","Piattaforma live","Call to action"],
+        "world-tour":["Titolo World Tour","Punti / evento","Team / player"],
+        custom:["Titolo principale","Riga info","Riga extra"]
+      }[type] || ["Titolo principale","Riga info","Riga extra"];
+      const ids=["customTitleLabel","customLine1Label","customLine2Label"];
+      ids.forEach((id,i)=>{const label=$(id); const input=label?.querySelector("input"); if(label&&input){label.firstChild.textContent=labels[i];}});
     }
     function displayText(id){
       const type=overlayType();
@@ -584,6 +628,7 @@
         url.searchParams.set("league", overlayType()==="world-tour" ? "World Tour" : "Creator");
         url.searchParams.set("rankScore", "");
         url.searchParams.set("badgeFile", badgeFile);
+        url.searchParams.set("hideBadge", "1");
       }
       else if(mode==="manual"){url.searchParams.set("mode","manual"); url.searchParams.set("player",player); url.searchParams.set("league",league); url.searchParams.set("division",division); url.searchParams.set("rankScore",$("rankScore").value.trim()||"0"); url.searchParams.set("badgeFile",badgeFile);}
       else{url.searchParams.set("player",leaderboardData?.player||player); url.searchParams.set("leaderboard","s10"); url.searchParams.set("platform","crossplay"); url.searchParams.set("refresh","30");}
@@ -649,4 +694,4 @@
   </script>
 </body>
 </html>
-<!-- RankTag BETA 0.5.6: tipi overlay Creator/Clan/Streamer/World Tour/Custom aggiunti al Builder. -->
+<!-- RankTag BETA 0.5.7: tipi overlay Creator/Clan/Streamer/World Tour/Custom aggiunti al Builder. -->
