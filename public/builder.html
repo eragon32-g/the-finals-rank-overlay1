@@ -327,7 +327,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.6.4</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.6.5</span>
       </div>
     </div>
     <div class="layout">
@@ -652,10 +652,52 @@
       item.x=Math.round(clamp(Number(item.x)||0,0,wLimit-item.w));
       item.y=Math.round(clamp(Number(item.y)||0,0,160-item.h));
     }
-    function startDrag(e){if(e.target.classList.contains("handle"))return; e.preventDefault(); const id=e.currentTarget.dataset.id; if(selectedId!==id){selectedId=id; render(); return;} const item=selected(); const start=point(e); const ox=start.x-item.x, oy=start.y-item.y; function move(ev){const p=point(ev); item.x=Math.round(p.x-ox); item.y=Math.round(p.y-oy); clampToCanvas(item); render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
-    function startResize(e){e.preventDefault(); e.stopPropagation(); selectedId=e.currentTarget.parentElement.dataset.id; const item=selected(); const start=point(e); const sw=item.w, sh=item.h; function move(ev){const p=point(ev); item.w=Math.round(clamp(sw+(p.x-start.x),6,activeCanvasWidth())); item.h=Math.round(clamp(sh+(p.y-start.y),6,160)); clampToCanvas(item);
-      if(item.kind !== "image" && item.id !== "badge") { item.fontSize = Math.max(7, Math.round(item.h * 0.75)); }
-      render();} function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up);} window.addEventListener("pointermove",move); window.addEventListener("pointerup",up); render();}
+    function syncHitbox(item){
+      if(!item) return;
+      const box = stage.querySelector(`.builder-item[data-id="${CSS.escape(item.id)}"]`);
+      if(!box) return;
+      Object.assign(box.style,{left:`${item.x}px`,top:`${item.y}px`,width:`${item.w}px`,height:`${item.h}px`,opacity:`${item.opacity??1}`,zIndex:`${item.z||1}`,fontSize:item.fontSize?`${item.fontSize}px`:"",fontFamily:item.fontFamily||"",lineHeight:item.kind!=="image"?"1.05":`${item.h}px`,transform:item.kind==="image"?`rotate(${Number(item.rotation||0)}deg)`:""});
+    }
+    function selectOnly(id){
+      selectedId=id;
+      stage.querySelectorAll(".builder-item").forEach((box)=>{
+        const active = box.dataset.id === selectedId;
+        box.classList.toggle("active", active);
+        let label = box.querySelector(".label");
+        if(active && !label){ label=document.createElement("div"); label.className="label"; box.prepend(label); }
+        if(label){
+          if(active){ const item=selected(); label.textContent=item?.label||item?.name||selectedId; }
+          else label.remove();
+        }
+      });
+      updateFields();
+      renderList();
+    }
+    function startDrag(e){
+      if(e.target.classList.contains("handle"))return;
+      e.preventDefault();
+      e.currentTarget.setPointerCapture?.(e.pointerId);
+      const id=e.currentTarget.dataset.id;
+      if(selectedId!==id) selectOnly(id);
+      const item=selected(); if(!item) return;
+      const start=point(e); const ox=start.x-item.x, oy=start.y-item.y;
+      function move(ev){const p=point(ev); item.x=Math.round(p.x-ox); item.y=Math.round(p.y-oy); clampToCanvas(item); syncHitbox(item); updateFields(); buildLink();}
+      function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up); render();}
+      window.addEventListener("pointermove",move); window.addEventListener("pointerup",up);
+    }
+    function startResize(e){
+      e.preventDefault(); e.stopPropagation();
+      e.currentTarget.setPointerCapture?.(e.pointerId);
+      const id=e.currentTarget.parentElement.dataset.id;
+      if(selectedId!==id) selectOnly(id);
+      const item=selected(); if(!item) return;
+      const start=point(e); const sw=item.w, sh=item.h;
+      function move(ev){const p=point(ev); item.w=Math.round(clamp(sw+(p.x-start.x),6,activeCanvasWidth())); item.h=Math.round(clamp(sh+(p.y-start.y),6,160)); clampToCanvas(item);
+        if(item.kind !== "image" && item.id !== "badge") { item.fontSize = Math.max(7, Math.round(item.h * 0.75)); }
+        syncHitbox(item); updateFields(); buildLink();}
+      function up(){window.removeEventListener("pointermove",move); window.removeEventListener("pointerup",up); render();}
+      window.addEventListener("pointermove",move); window.addEventListener("pointerup",up);
+    }
     function applyFields(){
       const item=selected();
       if(!item)return;
@@ -696,7 +738,7 @@
       else{url.searchParams.set("player",leaderboardData?.player||player); url.searchParams.set("leaderboard","s10"); url.searchParams.set("platform","crossplay"); url.searchParams.set("refresh","30");}
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
       url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1");
-      // BETA 0.6.4: niente layoutRev/cacheBust ad ogni render.
+      // BETA 0.6.5: drag/resize ripristinati senza ricaricare iframe ad ogni selezione.
       // Prima ogni click o selezione cambiava il link, ricaricava gli iframe e faceva sfarfallare il badge rank.
 
       // BETA 0.5.5: preview unica e link finale restano sincronizzati con dati pesanti dopo #.
@@ -766,4 +808,4 @@
   </script>
 </body>
 </html>
-<!-- RankTag BETA 0.6.4: ripristinato canvas editor 470x160 e sincronizzati frame/coordinate con anteprima finale. -->
+<!-- RankTag BETA 0.6.5: drag/resize hitbox ripristinati mantenendo stabile il renderer unico. -->

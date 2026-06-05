@@ -1,5 +1,21 @@
 [
   {
+    "version": "BETA 0.6.5",
+    "title": "Editor Drag Resize Restore Fix",
+    "description": "Ripristina spostamento e ridimensionamento degli elementi dopo la stabilizzazione del renderer unico.",
+    "groups": [
+      {
+        "title": "Fix",
+        "items": [
+          "drag e resize di testi, immagini e badge di nuovo funzionanti",
+          "selezione elemento senza bloccare il primo movimento",
+          "hitbox aggiornate durante il movimento senza ricreare tutto l'Editor",
+          "renderer unico e badge rank restano stabili"
+        ]
+      }
+    ]
+  },
+  {
     "version": "BETA 0.6.4",
     "title": "Rank Badge Flicker Stabilization Fix",
     "description": "Stabilizza il badge rank nell'Editor layout evitando ricariche iframe inutili durante click, selezione, drag e resize.",
