@@ -1,5 +1,21 @@
 [
   {
+    "version": "BETA 0.6.4",
+    "title": "Rank Badge Flicker Stabilization Fix",
+    "description": "Stabilizza il badge rank nell'Editor layout evitando ricariche iframe inutili durante click, selezione, drag e resize.",
+    "groups": [
+      {
+        "title": "Fix",
+        "items": [
+          "badge rank non sfarfalla più durante click o selezione",
+          "rimossi cacheBust/layoutRev generati ad ogni render del Builder",
+          "iframe Editor/Anteprima aggiornati solo quando cambia davvero il link",
+          "drag e resize più stabili con renderer finale unificato"
+        ]
+      }
+    ]
+  },
+  {
     "version": "BETA 0.6.3",
     "title": "Unified Final Renderer Editor Fix",
     "description": "L'Editor layout usa lo stesso renderer dell'overlay finale dentro un iframe, con hitbox drag/resize sovrapposte.",

@@ -327,7 +327,7 @@
         <p class="sub">Pagina separata per personalizzare l’overlay con più spazio. Il generatore principale resta pulito: qui crei direttamente il link finale da copiare.</p>
       </div>
       <div class="nav">
-        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.6.3</span>
+        <a href="/home.html">Home</a><a href="/generator.html">Generator</a><a href="/account.html">Login / Progetti</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a><span class="tag">RankTag BETA 0.6.4</span>
       </div>
     </div>
     <div class="layout">
@@ -439,6 +439,7 @@
     const defaultLayout = {badge:{kind:"base",label:"Badge",x:28,y:32,w:78,h:78,fontSize:0,z:8,opacity:1,fontFamily:""},rank:{kind:"base",label:"Rank",x:116,y:43,w:205,h:24,fontSize:22,z:6,opacity:1,fontFamily:""},score:{kind:"base",label:"ELO",x:118,y:70,w:104,h:14,fontSize:10,z:6,opacity:1,fontFamily:""},player:{kind:"base",label:"Player",x:226,y:70,w:135,h:14,fontSize:9.5,z:6,opacity:1,fontFamily:""},brand:{kind:"base",label:"Brand",x:118,y:91,w:225,h:14,fontSize:8.5,z:6,opacity:1,fontFamily:""}};
     let baseLayout = JSON.parse(JSON.stringify(defaultLayout)), customElements = [], selectedId = null;
     let previewUpdateTimer = null;
+    let lastPreviewLink = "";
     function uid(){return "ce_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,7);}
     function clamp(n,min,max){return Math.max(min,Math.min(max,Number(n)||0));}
     function encode(obj){try{return btoa(unescape(encodeURIComponent(JSON.stringify(obj)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=/g,".");}catch{return "";}}
@@ -694,7 +695,9 @@
       else if(mode==="manual"){url.searchParams.set("mode","manual"); url.searchParams.set("player",player); url.searchParams.set("league",league); url.searchParams.set("division",division); url.searchParams.set("rankScore",$("rankScore").value.trim()||"0"); url.searchParams.set("badgeFile",badgeFile);}
       else{url.searchParams.set("player",leaderboardData?.player||player); url.searchParams.set("leaderboard","s10"); url.searchParams.set("platform","crossplay"); url.searchParams.set("refresh","30");}
       ["scoreLabel","showStatus","rankColor","scoreColor","nameColor","extraColor","backgroundColor","borderColor","borderWidth","brandAccent","baseSideDetail","baseBadgeGlow","baseBadgeRing","basePulse","baseScanline","clipFrame"].forEach((id)=>{const value=$(id)?.value?.trim(); if(value) url.searchParams.set(id,value);});
-      url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1"); url.searchParams.set("layoutRev",Date.now().toString()); url.searchParams.set("cacheBust",Date.now().toString());
+      url.searchParams.set("themeStyle","default"); url.searchParams.set("builderLayout","1");
+      // BETA 0.6.4: niente layoutRev/cacheBust ad ogni render.
+      // Prima ogni click o selezione cambiava il link, ricaricava gli iframe e faceva sfarfallare il badge rank.
 
       // BETA 0.5.5: preview unica e link finale restano sincronizzati con dati pesanti dopo #.
       // In questo modo Vercel e le piattaforme streaming ricevono una richiesta corta
@@ -710,11 +713,13 @@
       $("output").value=finalLink;
       clearTimeout(previewUpdateTimer);
       previewUpdateTimer=setTimeout(()=>{
+        if(finalLink === lastPreviewLink) return;
+        lastPreviewLink = finalLink;
         const frame=$("preview");
         const editorFrame=$("editorPreview");
         if(frame && frame.src!==finalLink) frame.src=finalLink;
         if(editorFrame && editorFrame.src!==finalLink) editorFrame.src=finalLink;
-      }, 120);
+      }, 180);
       updateLinkSizeHint(finalLink); return finalLink;
     }
     async function fileToDataUrl(file){const raw=await new Promise((resolve,reject)=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file);}); const img=await new Promise((resolve,reject)=>{const image=new Image(); image.onload=()=>resolve(image); image.onerror=reject; image.src=raw;}); const scale=Math.min(1,MAX_IMG_SIZE/Math.max(img.width,img.height)); const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale)); const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h; const ctx=canvas.getContext("2d"); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality="high"; ctx.drawImage(img,0,0,w,h); try{return {src:canvas.toDataURL("image/webp",.62),w,h};}catch{return {src:canvas.toDataURL("image/png"),w,h};}}
@@ -761,4 +766,4 @@
   </script>
 </body>
 </html>
-<!-- RankTag BETA 0.6.3: ripristinato canvas editor 470x160 e sincronizzati frame/coordinate con anteprima finale. -->
+<!-- RankTag BETA 0.6.4: ripristinato canvas editor 470x160 e sincronizzati frame/coordinate con anteprima finale. -->

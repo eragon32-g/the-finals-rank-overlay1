@@ -1,7 +1,7 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-6-2-editor-preview-coordinate-sync-fix",
-  "version": "0.6.3",
-  "description": "RankTag BETA 0.6.3 - editor preview coordinate sync fix",
+  "name": "ranktag-finals-overlay-beta-0-6-4-rank-badge-flicker-stabilization-fix",
+  "version": "0.6.4",
+  "description": "RankTag BETA 0.6.4 - rank badge flicker stabilization fix",
   "scripts": {
     "start": "vercel dev"
   }
