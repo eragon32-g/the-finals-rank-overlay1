@@ -20,7 +20,18 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "074";
+const OVERLAY_VERSION = "076";
+
+function ranktagApplyBgFallback(img, themeClass) {
+  if (!img) return;
+  const onFail = () => {
+    img.style.display = "none";
+    const host = img.closest(".badge, .rt92-root, .rt97-root, .rt103-root, [data-rank-card]");
+    if (host) host.classList.add(themeClass || "rt-bg-fallback");
+  };
+  if (img.complete && img.naturalWidth === 0) onFail();
+  else img.addEventListener("error", onFail, { once: true });
+}
 const params = new URLSearchParams(window.location.search);
 const hashParams = new URLSearchParams((window.location.hash || "").replace(/^#/, ""));
 function getRankTagParam(name) {
@@ -2326,7 +2337,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.6.3");
     root.dataset.renderer = "premium-detached-v93";
 
     root.innerHTML = `
-      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=028" alt="" />
+      <img class="rt92-layer-bg" src="${esc(layout.background)}?v=${OVERLAY_VERSION}" alt="" />
       <div class="rt92-layer rt92-badge" style="${layerStyle(e.badge)}">
         <img src="${esc(d.badgeSrc)}" alt="" />
       </div>
@@ -2341,6 +2352,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.6.3");
 
     document.documentElement.dataset.premiumRenderer = "detached-v93";
     document.documentElement.dataset.premiumLayoutApplied = new URLSearchParams(window.location.search).get("layout") ? "url" : "locked";
+    ranktagApplyBgFallback(root.querySelector(".rt92-layer-bg"), "rt-bg-fallback-cyber-red");
     startPremiumBrandCycle();
   }
 
@@ -2664,7 +2676,7 @@ document.documentElement.setAttribute("data-ranktag-version", "0.6.3");
     root.dataset.themeStyle = themeStyle;
     root.dataset.renderer = "multi-premium-detached-v97";
     root.innerHTML = `
-      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=028" alt="" />
+      <img class="rt97-layer-bg" src="${esc(layout.background)}?v=${OVERLAY_VERSION}" alt="" />
       <div class="rt97-layer rt97-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badgeSrc)}" alt="" /></div>
       <div class="rt97-layer rt97-rank" style="${layerStyle(e.rank)}">${esc(d.rankValue)}</div>
       <div class="rt97-layer rt97-score" style="${layerStyle(e.score)}">${esc(d.scoreValue)}</div>
@@ -2673,6 +2685,8 @@ document.documentElement.setAttribute("data-ranktag-version", "0.6.3");
     `;
     document.documentElement.dataset.premiumRenderer = "multi-detached-v97";
     document.documentElement.dataset.premiumLayoutApplied = new URLSearchParams(window.location.search).get("layout") ? "url" : "locked";
+    const fallbackClass = themeStyle === "voidrage-inferno" ? "rt-bg-fallback-voidrage" : "rt-bg-fallback-cyber-red";
+    ranktagApplyBgFallback(root.querySelector(".rt97-layer-bg"), fallbackClass);
     startPremiumBrandCycle();
   }
 
@@ -2825,13 +2839,15 @@ document.documentElement.setAttribute("data-ranktag-version", "0.6.3");
     root.dataset.themeStyle = themeStyle;
     root.dataset.renderer = "rt103-final";
     root.innerHTML = `
-      <img class="rt103-bg" src="${esc(layout.background)}?v=028" alt="" />
+      <img class="rt103-bg" src="${esc(layout.background)}?v=${OVERLAY_VERSION}" alt="" />
       <div class="rt103-layer rt103-badge" style="${layerStyle(e.badge)}"><img src="${esc(d.badge)}" alt="" /></div>
       <div class="rt103-layer rt103-rank" style="${layerStyle(e.rank)}">${esc(d.rank)}</div>
       <div class="rt103-layer rt103-score" style="${layerStyle(e.score)}">${esc(d.score)}</div>
       <div class="rt103-layer rt103-player" style="${layerStyle(e.player)}">${esc(d.player)}</div>
       <div class="rt103-layer rt103-brand" style="${layerStyle(e.brand)}"><div class="rt103-brand-icon"></div><div class="rt103-marquee"><span>${esc(d.brand)}</span></div></div>
     `;
+    const fallbackClass = themeStyle === "voidrage-inferno" ? "rt-bg-fallback-voidrage" : "rt-bg-fallback-cyber-red";
+    ranktagApplyBgFallback(root.querySelector(".rt103-bg"), fallbackClass);
     startBrand();
   }
 

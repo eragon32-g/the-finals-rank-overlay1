@@ -1,5 +1,17 @@
 [
   {
+    "version": "BETA 0.7.6",
+    "title": "Security & Stability Fix",
+    "changes": [
+      "Rimossa password admin dal client JavaScript",
+      "Login admin validato solo dal server (/api/admin-auth)",
+      "Rate limit sulla API player e supporto embarkIdName/embarkIdNumber",
+      "Versioni sincronizzate via version.json e ranktag-version.js",
+      "Script npm run build per Vercel",
+      "Fallback gradient per background premium mancanti"
+    ]
+  },
+  {
     "version": "BETA 0.7.5",
     "title": "Site Version Visual Sync Fix",
     "changes": [

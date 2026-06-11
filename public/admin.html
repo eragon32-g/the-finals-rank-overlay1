@@ -11,7 +11,7 @@
 </head>
 <body>
 <main class="page">
-  <nav class="nav"><a href="/home.html">Home</a><a href="/account.html">Account</a><a href="/builder.html">Builder</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><span class="tag">BETA 0.7.1</span></nav>
+  <nav class="nav"><a href="/home.html">Home</a><a href="/account.html">Account</a><a href="/builder.html">Builder</a><a href="/updates.html">Updates</a><a href="/feedback.html">Feedback</a><span class="tag" data-ranktag-version>RankTag BETA 0.7.6</span></nav>
   <h1>RankTag Admin</h1>
   <p class="sub">Pannello admin per gestire codici single-use, accessi e stato codici. Le credenziali non vengono mostrate nella pagina pubblica.</p>
   <section class="panel" id="lock">
@@ -21,7 +21,7 @@
       <label>Password<input id="adminPass" type="password" autocomplete="current-password" placeholder="Password admin"></label>
       <div style="display:flex;align-items:end"><button class="btn" id="unlock">Entra admin</button></div>
     </div>
-    <p class="muted" style="margin-top:12px">Accesso riservato. Nessuna credenziale viene mostrata o precompilata nella pagina.</p>
+    <p class="muted" style="margin-top:12px">Accesso riservato. Le credenziali sono validate solo dal server (variabile <code>ADMIN_PASSWORD</code> su Vercel).</p>
   </section>
   <div id="adminArea" class="hidden">
     <section class="panel"><div class="tools" style="justify-content:space-between"><div><h2 style="margin:0">Dashboard</h2><p class="muted">Gestione locale. In produzione questa parte andrà collegata a database/server.</p></div><button class="btn secondary" id="lockBtn">Logout admin</button></div><div class="grid"><div class="panel"><b id="totalCodes">0</b><p class="muted">Codici totali</p></div><div class="panel"><b id="availableCodes">0</b><p class="muted">Disponibili</p></div><div class="panel"><b id="usedCodes">0</b><p class="muted">Usati</p></div><div class="panel"><b id="disabledCodes">0</b><p class="muted">Disattivati/scaduti</p></div></div></section>
@@ -31,7 +31,8 @@
     <section class="panel"><div class="tools" style="justify-content:space-between"><h2 style="margin:0">Codici accesso</h2><div class="tools"><button class="btn secondary" id="export">Export JSON</button><button class="btn secondary" id="import">Import JSON</button></div></div><div id="codes"></div><textarea id="io" placeholder="Export / Import JSON"></textarea></section>
   </div>
 </main>
-<script src="/access.js?v=052"></script>
+<script src="/js/ranktag-version.js?v=076"></script>
+<script src="/access.js?v=076"></script>
 <script>
 const $=id=>document.getElementById(id);
 function statusClass(s){return s==='disponibile'?'ok':s==='usato'?'warn':'bad'}
@@ -40,7 +41,7 @@ function readFeedbackAdmin(k){try{return JSON.parse(localStorage.getItem(k)||'[]
 function renderFeedbackAdmin(){if(!RankTagAccess.isAdminUnlocked())return;const bugs=readFeedbackAdmin('ranktag_feedback_reports_v1'),ideas=readFeedbackAdmin('ranktag_feedback_ideas_v1'),show=readFeedbackAdmin('ranktag_showcase_v1'); if($('bugCount')){$('bugCount').textContent=bugs.length;$('ideaCount').textContent=ideas.length;$('showcaseCount').textContent=show.length;$('voteCount').textContent=ideas.reduce((a,x)=>a+Number(x.votes||0),0);$('feedbackAdminList').innerHTML=[...bugs.slice(0,5).map(x=>`<div class="code" style="grid-template-columns:.6fr .8fr 1.8fr .8fr"><b>Bug</b><span>${x.category||''}</span><span class="muted">${String(x.description||'').slice(0,120)}</span><span>${x.status||'aperto'}</span></div>`),...ideas.slice(0,5).map(x=>`<div class="code" style="grid-template-columns:.6fr .8fr 1.8fr .8fr"><b>Idea</b><span>${x.priority||''}</span><span class="muted">${String(x.title||'').slice(0,120)}</span><span>👍 ${Number(x.votes||0)}</span></div>`)].join('')||'<p class="muted">Nessun feedback salvato.</p>';}}
 
 function render(){const unlocked=RankTagAccess.isAdminUnlocked();$('lock').classList.toggle('hidden',unlocked);$('adminArea').classList.toggle('hidden',!unlocked);if(!unlocked)return;const codes=RankTagAccess.listCodes();$('totalCodes').textContent=codes.length;$('availableCodes').textContent=codes.filter(c=>c.status==='disponibile').length;$('usedCodes').textContent=codes.filter(c=>c.status==='usato').length;$('disabledCodes').textContent=codes.filter(c=>c.status==='scaduto'||c.status==='disattivato').length;$('codes').innerHTML=codes.map(c=>`<div class="code"><b>${c.code}</b><span>${c.type==='permanent'?'Permanente':RankTagAccess.formatDuration(c.durationMs || ((Number(c.days)||0)*86400000))}</span><span class="${statusClass(c.status)}">${c.status}</span><span class="muted">${c.usedNickname||c.usedBy||c.note||''}</span><div class="tools"><button class="btn secondary" data-toggle="${c.code}">${c.disabled?'Riattiva':'Disattiva'}</button>${!c.usedBy?`<button class="btn secondary" data-del="${c.code}">Elimina</button>`:''}</div></div>`).join('')||'<p class="muted">Nessun codice.</p>';document.querySelectorAll('[data-toggle]').forEach(b=>b.onclick=()=>{RankTagAccess.setCodeDisabled(b.dataset.toggle,!codes.find(c=>c.code===b.dataset.toggle).disabled);render()});document.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{if(confirm('Eliminare codice non usato?')){RankTagAccess.deleteUnusedCode(b.dataset.del);render()}})}
-function run(fn){try{fn();render()}catch(e){alert(e.message||e)}}
+async function run(fn){try{await fn();render()}catch(e){alert(e.message||e)}}
 $('unlock').onclick=()=>run(()=>RankTagAccess.unlockAdmin($('adminUser').value,$('adminPass').value));
 $('adminPass').addEventListener('keydown',e=>{if(e.key==='Enter')$('unlock').click()});
 $('lockBtn').onclick=()=>{RankTagAccess.lockAdmin();render()};

@@ -2,9 +2,8 @@
   const STORAGE_KEY = "ranktagAuthV1";
   const USERS_KEY = "ranktagUsersV2";
   const ADMIN_KEY = "ranktagAdminUnlockedV1";
-  const ADMIN_USER = "admin";
-  const ADMIN_PASSWORD = "RankTag-Admin-038";
-  const ADMIN_PASSWORD_FALLBACKS = ["RankTag-Admin-037", "RankTag-Admin-036"];
+  const ADMIN_TOKEN_KEY = "ranktagAdminTokenV1";
+  const ADMIN_EXP_KEY = "ranktagAdminExpV1";
   const CODES_KEY = "ranktagAccessCodesV1";
   const PROJECTS_KEY = "ranktagProjectsV1";
   const DAY = 24 * 60 * 60 * 1000;
@@ -364,16 +363,35 @@
     write(CODES_KEY, next);
     return next;
   }
-  function unlockAdmin(username, password){
+  async function unlockAdmin(username, password){
     const first = String(username || "").trim();
-    const second = String(password || "").trim();
-    const ok = first.toLowerCase() === ADMIN_USER && (second === ADMIN_PASSWORD || ADMIN_PASSWORD_FALLBACKS.includes(second));
-    if(!ok) throw new Error("Credenziali admin non valide.");
-    localStorage.setItem(ADMIN_KEY, "1");
+    const second = String(password || "");
+    if(!first || !second) throw new Error("Inserisci username e password admin.");
+    const res = await fetch("/api/admin-auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ username: first, password: second }),
+      cache: "no-store"
+    });
+    let data = {};
+    try { data = await res.json(); } catch { data = {}; }
+    if(!res.ok || !data.ok) throw new Error(data.message || "Credenziali admin non valide.");
+    sessionStorage.setItem(ADMIN_KEY, "1");
+    if(data.token) sessionStorage.setItem(ADMIN_TOKEN_KEY, String(data.token));
+    if(data.expiresAt) sessionStorage.setItem(ADMIN_EXP_KEY, String(data.expiresAt));
     return true;
   }
-  function isAdminUnlocked(){ return localStorage.getItem(ADMIN_KEY) === "1"; }
-  function lockAdmin(){ localStorage.removeItem(ADMIN_KEY); }
+  function isAdminUnlocked(){
+    if(sessionStorage.getItem(ADMIN_KEY) !== "1") return false;
+    const exp = Number(sessionStorage.getItem(ADMIN_EXP_KEY) || 0);
+    if(exp && exp <= now()) { lockAdmin(); return false; }
+    return true;
+  }
+  function lockAdmin(){
+    sessionStorage.removeItem(ADMIN_KEY);
+    sessionStorage.removeItem(ADMIN_TOKEN_KEY);
+    sessionStorage.removeItem(ADMIN_EXP_KEY);
+  }
   window.RankTagAccess = { register, login, logout, resetPassword, updateNickname, listKnownUsers, redeem, getAuth, getAccessState, requireBuilderAccess, getAccessParams, validateOverlayUrlParams, saveProject, listProjects, getProject, formatDate, formatDuration: durationLabel, ensureCodes, listCodes, addCode, generateCode, setCodeDisabled, deleteUnusedCode, exportCodes, importCodes, unlockAdmin, isAdminUnlocked, lockAdmin };
   ensureCodes();
 })();

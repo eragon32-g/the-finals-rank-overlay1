@@ -130,6 +130,7 @@
       .version-folder { padding: 18px; }
     }
   </style>
+  <script src="/js/ranktag-version.js?v=076"></script>
 </head>
 <body>
   <main class="updates-page">
@@ -143,9 +144,18 @@
         <a href="/account.html">Login / Progetti</a>
         <a href="/builder.html">Builder</a>
         <a href="/feedback.html">Feedback</a><a href="/admin.html">Admin</a>
-        <span class="updates-tag">RankTag BETA 0.7.5</span>
+        <span class="updates-tag" data-ranktag-version>RankTag BETA 0.7.6</span>
       </nav>
     </header>
+
+      <section class="version-folder">
+        <h2>BETA 0.7.6 · Security & Stability Fix</h2>
+        <p class="release-note">Correzioni di sicurezza, versioni allineate, API migliorata e fallback per asset premium mancanti.</p>
+        <div class="change-box">
+          <h3>Sicurezza & infrastruttura</h3>
+          <ul><li>rimossa password admin hardcoded dal JavaScript client</li><li>login admin spostato su <code>/api/admin-auth</code> con variabili Vercel</li><li>rate limit sulla API player</li><li>script <code>npm run build</code> per deploy Vercel</li><li>versione unica da <code>version.json</code> + <code>ranktag-version.js</code></li><li>fallback gradient per temi premium se mancano i PNG</li></ul>
+        </div>
+      </section>
 
       <section class="version-folder">
         <h2>BETA 0.7.5 · Site Version Visual Sync Fix</h2>

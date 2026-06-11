@@ -1,8 +1,11 @@
 {
-  "name": "ranktag-finals-overlay-beta-0-7-4-editor-preview-sync-free-edit-fix",
-  "version": "0.7.5",
-  "description": "RankTag BETA 0.7.5 - site version visual sync fix",
+  "name": "ranktag-finals-overlay",
+  "version": "0.7.6",
+  "description": "RankTag BETA 0.7.6 - Security & Stability Fix",
+  "private": true,
   "scripts": {
-    "start": "vercel dev"
+    "start": "vercel dev",
+    "build": "node scripts/build.js",
+    "dev": "vercel dev"
   }
 }

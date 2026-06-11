@@ -4187,3 +4187,24 @@ section:has(.premium-one-card) {
 .badge.hide-rank-badge .rank-mark{display:none!important;}
 .badge.hide-rank-badge .card-shell{ }
 body .brand-drawer[style*="display: none"]{display:none!important;}
+
+/* RankTag 0.7.6 - fallback gradient quando mancano PNG premium nel repo */
+.badge.rt-bg-fallback-cyber-red,
+.badge.rt-bg-fallback-cyber-red.rt92-premium-detached,
+.badge.rt-bg-fallback-cyber-red.rt97-premium-detached,
+.badge.rt-bg-fallback-cyber-red.rt103-premium {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255,42,23,.34), transparent 42%),
+    linear-gradient(135deg, rgba(18,8,10,.98), rgba(6,6,10,.98)) !important;
+}
+.badge.rt-bg-fallback-voidrage,
+.badge.rt-bg-fallback-voidrage.rt97-premium-detached,
+.badge.rt-bg-fallback-voidrage.rt103-premium {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,120,40,.30), transparent 38%),
+    radial-gradient(circle at 82% 78%, rgba(120,40,255,.18), transparent 34%),
+    linear-gradient(160deg, rgba(12,8,18,.98), rgba(4,4,8,.98)) !important;
+}
+.badge.rt-bg-fallback {
+  background: linear-gradient(135deg, rgba(20,22,30,.98), rgba(8,10,14,.98)) !important;
+}

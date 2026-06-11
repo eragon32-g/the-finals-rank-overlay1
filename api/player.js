@@ -1,3 +1,5 @@
+const { rateLimit } = require("./_lib/rate-limit");
+
 const API_BASE = "https://api.the-finals-leaderboard.com/v1/leaderboard";
 
 function normalizeLeaderboard(value) {
@@ -14,6 +16,19 @@ function cleanPlayer(value) {
     .trim()
     .replace(/\s+/g, " ")
     .slice(0, 80);
+}
+
+function buildPlayerName(req) {
+  const direct = cleanPlayer(req.query.player || req.query.name);
+  if (direct) return direct;
+
+  const embarkName = cleanPlayer(req.query.embarkIdName);
+  const embarkNumber = String(req.query.embarkIdNumber || "").trim().replace(/\D/g, "");
+  if (embarkName && embarkNumber) {
+    return `${embarkName}#${embarkNumber}`;
+  }
+
+  return "";
 }
 
 function normalizeName(value) {
@@ -41,7 +56,18 @@ function pickBestPlayer(entries, requestedPlayer) {
 
 module.exports = async function handler(req, res) {
   try {
-    const player = cleanPlayer(req.query.player || req.query.name);
+    const limit = rateLimit(req, { limit: 90, windowMs: 60_000, key: "player" });
+    res.setHeader("X-RateLimit-Remaining", String(limit.remaining));
+
+    if (!limit.allowed) {
+      return res.status(429).json({
+        ok: false,
+        message: "Troppe richieste. Riprova tra qualche secondo.",
+        retryAt: limit.resetAt,
+      });
+    }
+
+    const player = buildPlayerName(req);
     const leaderboard = normalizeLeaderboard(req.query.leaderboard);
     const platform = String(req.query.platform || "crossplay").toLowerCase().trim();
 
@@ -64,8 +90,8 @@ module.exports = async function handler(req, res) {
 
     const apiResponse = await fetch(apiUrl, {
       headers: {
-        "accept": "application/json",
-        "user-agent": "the-finals-rank-overlay-v1",
+        accept: "application/json",
+        "user-agent": "ranktag-finals-overlay/0.7.6",
       },
       cache: "no-store",
       next: { revalidate: 0 },
@@ -107,6 +133,7 @@ module.exports = async function handler(req, res) {
     res.setHeader("Cache-Control", "no-store, no-cache, max-age=0, must-revalidate");
     res.setHeader("Pragma", "no-cache");
     res.setHeader("Expires", "0");
+    res.setHeader("X-Robots-Tag", "noindex");
 
     return res.status(200).json({
       ok: true,
