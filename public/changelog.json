@@ -1,5 +1,17 @@
 [
   {
+    "version": "BETA 0.7.7",
+    "title": "Supabase Access & Platform Sync",
+    "changes": [
+      "Codici accesso su Supabase con riscatto server-side",
+      "Validazione overlay via /api/access/validate",
+      "Admin collegato a /api/admin/codes",
+      "Config Supabase centralizzata (/api/public-config)",
+      "Generator: selettore leaderboard e guida OBS",
+      "Rimossi file legacy root app.js/style.css"
+    ]
+  },
+  {
     "version": "BETA 0.7.6",
     "title": "Security & Stability Fix",
     "changes": [

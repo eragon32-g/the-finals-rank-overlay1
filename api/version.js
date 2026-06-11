@@ -7,9 +7,9 @@ function readVersionFile() {
     return JSON.parse(fs.readFileSync(file, "utf8"));
   } catch {
     return {
-      version: "BETA 0.7.6",
-      name: "Security & Stability Fix",
-      build: "0.7.6",
+      version: "BETA 0.7.7",
+      build: "0.7.7",
+      name: "Supabase Access & Platform Sync",
     };
   }
 }

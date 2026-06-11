@@ -91,7 +91,7 @@ module.exports = async function handler(req, res) {
     const apiResponse = await fetch(apiUrl, {
       headers: {
         accept: "application/json",
-        "user-agent": "ranktag-finals-overlay/0.7.6",
+        "user-agent": "ranktag-finals-overlay/0.7.7",
       },
       cache: "no-store",
       next: { revalidate: 0 },

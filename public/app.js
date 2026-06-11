@@ -20,7 +20,7 @@ const brandMarqueeText = $("brandMarqueeText");
 const rankIcon = $("rankIcon");
 const badgeImage = $("badgeImage");
 
-const OVERLAY_VERSION = "076";
+const OVERLAY_VERSION = "077";
 
 function ranktagApplyBgFallback(img, themeClass) {
   if (!img) return;
@@ -77,19 +77,41 @@ function applyNonRankedCopy(){
 function ranktagValidateAccessFromUrl() {
   const mode = params.get("rtAccess") || hashParams.get("rtAccess");
   if (!mode) return true;
-  if (mode === "permanent") return true;
+  if (mode === "permanent" && !params.get("rtAccessUser") && !hashParams.get("rtAccessUser")) return true;
   const exp = Number(params.get("rtAccessExp") || hashParams.get("rtAccessExp") || 0);
-  return !!(exp && exp > Date.now());
+  if (mode === "expires" && exp && exp > Date.now()) return true;
+  if (mode === "permanent" && params.get("rtAccessSig")) return true;
+  return false;
+}
+async function ranktagValidateAccessFromUrlServer() {
+  const mode = params.get("rtAccess") || hashParams.get("rtAccess");
+  if (!mode) return true;
+  const q = new URLSearchParams({
+    rtAccess: mode,
+    rtAccessUser: params.get("rtAccessUser") || hashParams.get("rtAccessUser") || "",
+    rtAccessExp: params.get("rtAccessExp") || hashParams.get("rtAccessExp") || "",
+    sig: params.get("rtAccessSig") || hashParams.get("rtAccessSig") || "",
+  });
+  try {
+    const res = await fetch(`/api/access/validate?${q.toString()}`, { cache: "no-store" });
+    const data = await res.json();
+    if (data && data.active === false) return false;
+    if (data && data.active === true) return true;
+  } catch (_) {}
+  return ranktagValidateAccessFromUrl();
 }
 applyBuilderVisibilityFlags();
 function ranktagBlockInactiveOverlay() {
   const overlay = document.getElementById("overlay") || document.body;
   overlay.innerHTML = `<section style="width:470px;height:160px;display:grid;place-items:center;text-align:center;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:linear-gradient(180deg,rgba(18,21,30,.96),rgba(8,10,15,.98));color:#f5f7fb;font-family:Arial,Helvetica,sans-serif;padding:18px"><div><b style="display:block;font-size:22px;margin-bottom:6px;color:#ff8f8f">Overlay non attivo</b><span style="font-size:12px;color:rgba(245,247,251,.72)">Il codice accesso collegato a questo link è scaduto.</span></div></section>`;
 }
-if (!ranktagValidateAccessFromUrl()) {
-  ranktagBlockInactiveOverlay();
-  throw new Error("RankTag overlay access expired");
-}
+(async function ranktagBootAccessGate(){
+  const ok = await ranktagValidateAccessFromUrlServer();
+  if (!ok) {
+    ranktagBlockInactiveOverlay();
+    throw new Error("RankTag overlay access expired");
+  }
+})();
 
 const VOIDRAGE_INFERNO_LAYOUT_LOCKED = {
   "version": "0.3.0",

@@ -1825,6 +1825,13 @@ iframe#preview {
 </div>
 <div class="grid">
 <label>
+              Leaderboard / stagione
+              <select id="leaderboard">
+                <option selected value="s10">Ranked S10 (attuale)</option>
+                <option value="s10worldtour">World Tour S10</option>
+              </select>
+            </label>
+<label>
               Modalità overlay
               <select id="mode">
 <option selected="" value="manual">Manuale</option>
@@ -1943,6 +1950,7 @@ iframe#preview {
 <div class="actions">
 <button class="btn secondary" id="generate">Aggiorna</button>
 <button class="btn" id="copy">Copia link</button>
+<button class="btn secondary" id="copyObs">Copia guida OBS</button>
 </div>
 <textarea id="output" readonly=""></textarea>
 <p class="help">Il link può modificare rank e colori, ma non branding e Discord.</p>
@@ -2007,16 +2015,13 @@ iframe#preview {
     </div>
   </main>
 
-  <script src="/js/ranktag-version.js?v=076"></script>
+  <script src="/js/ranktag-version.js?v=077"></script>
+  <script src="/js/ranktag-config.js?v=077"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const get = (id) => document.getElementById(id);
 
-
-    const SUPABASE_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnbWh4bGRmaG1jeXdhbWdpZ2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTcyOTcsImV66cCI6MjA5NTE5MzI5N30.3EFk6f5CN9BVTL8SRCKVlPphriT4AFyUj8rpimIaGQI";
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
+    let sb = null;
     let currentProfile = null;
     let currentToken = localStorage.getItem("ranktag_online_token") || "";
     let currentRole = "user";
@@ -2493,7 +2498,7 @@ iframe#preview {
       setGuardMessage("Verifica rank e punti nella leaderboard pubblica...", "warn");
 
       try {
-        const res = await fetch(`/api/player?player=${encodeURIComponent(player)}&leaderboard=s10&platform=crossplay`, { cache: "no-store" });
+        const res = await fetch(`/api/player?player=${encodeURIComponent(player)}&leaderboard=${encodeURIComponent(get("leaderboard")?.value || "s10")}&platform=crossplay`, { cache: "no-store" });
         const data = await res.json().catch(() => ({}));
 
         if (reqId !== manualGuardRequest) return !manualGuardBlocked;
@@ -2595,7 +2600,7 @@ iframe#preview {
         } else {
           url.searchParams.set("player", player);
         }
-        url.searchParams.set("leaderboard", "s10");
+        url.searchParams.set("leaderboard", get("leaderboard")?.value || "s10");
       }
 
       ["scoreLabel", "showStatus", "rankColor", "scoreColor", "nameColor", "extraColor", "backgroundColor", "borderColor", "borderWidth", "brandAccent", "themeStyle", "baseSideDetail", "baseBadgeGlow", "baseBadgeRing", "basePulse", "baseScanline", "clipFrame"].forEach((field) => {
@@ -2673,12 +2678,33 @@ iframe#preview {
       get("copy").textContent = "Copiato!";
       setTimeout(() => get("copy").textContent = "Copia link", 1200);
     });
+    get("copyObs")?.addEventListener("click", async () => {
+      const ok = await buildLink();
+      if (!ok) return;
+      const link = get("output").value;
+      const obsGuide = [
+        "OBS — Browser Source",
+        `URL: ${link}`,
+        "Larghezza: 470",
+        "Altezza: 160",
+        "FPS: 30",
+        "Shutdown source when not visible: ON",
+        "Control audio via OBS: OFF",
+      ].join("\n");
+      await navigator.clipboard.writeText(obsGuide);
+      get("copyObs").textContent = "Guida OBS copiata!";
+      setTimeout(() => get("copyObs").textContent = "Copia guida OBS", 1400);
+    });
 
-    renderPalettes();
-    loadBrandPreview();
-    syncPremiumSelection();
-    buildLink();
-    restoreLastProfile();
+    (async function bootGenerator() {
+      await loadRankTagPublicConfig();
+      sb = createRankTagSupabaseClient();
+      renderPalettes();
+      loadBrandPreview();
+      syncPremiumSelection();
+      buildLink();
+      await restoreLastProfile();
+    })();
   </script>
 
 <script>

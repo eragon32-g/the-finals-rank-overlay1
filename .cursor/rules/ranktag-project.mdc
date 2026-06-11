@@ -1,0 +1,15 @@
+---
+description: Contesto progetto RankTag per THE FINALS
+alwaysApply: true
+---
+
+# RankTag
+
+- Repo: https://github.com/eragon32-g/the-finals-rank-overlay1
+- Live: https://the-finals-rank-overlay32.vercel.app
+- Supabase ref: dgmhxldfhmcywamgigji
+- Versione: public/version.json
+- Stack: public/ + api/ serverless + Vercel + Supabase RPC
+- Admin: /api/admin-auth + ADMIN_PASSWORD
+- Codici accesso: Supabase (ranktag_access_codes) + fallback localStorage
+- Non committare segreti (.env, service role)

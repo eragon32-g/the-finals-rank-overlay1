@@ -223,7 +223,7 @@
     return setAuth(user);
   }
   function listKnownUsers(){ return getUsers().map(u => ({ nickname:u.nickname || "", hasAccess:!!u.access })); }
-  function redeem(code){
+  function redeemLocal(code){
     const auth = getAuth();
     if(!auth?.userId) throw new Error("Effettua login o registrazione prima di riscattare un codice.");
     const clean = String(code || "").trim().toUpperCase();
@@ -247,6 +247,42 @@
     setAuth(auth);
     return auth.access;
   }
+  async function redeem(code){
+    const auth = getAuth();
+    if(!auth?.userId) throw new Error("Effettua login o registrazione prima di riscattare un codice.");
+    const clean = String(code || "").trim().toUpperCase();
+    try {
+      const res = await fetch("/api/access/redeem", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ code: clean, userId: auth.userId, nickname: auth.nickname }),
+        cache: "no-store"
+      });
+      const data = await res.json().catch(() => ({}));
+      if(res.ok && data.ok && data.access){
+        const a = data.access;
+        const redeemedAt = a.redeemed_at ? new Date(a.redeemed_at).getTime() : now();
+        const expiresAt = a.expires_at ? new Date(a.expires_at).getTime() : null;
+        auth.access = {
+          code: a.code || clean,
+          type: a.type || "temporary",
+          durationMs: a.duration_ms || null,
+          redeemedAt,
+          expiresAt,
+          overlaySig: data.overlaySig || null
+        };
+        upsertUser(auth);
+        setAuth(auth);
+        return auth.access;
+      }
+      if(!data.offline && data.message && res.status !== 503){
+        throw new Error(data.message);
+      }
+    } catch (err) {
+      if(err.message && !String(err.message).includes("fetch")) throw err;
+    }
+    return redeemLocal(clean);
+  }
   function getAccessState(){
     const auth = getAuth();
     if(!auth?.userId) return { logged:false, active:false, reason:"not_logged" };
@@ -262,8 +298,11 @@
   function getAccessParams(){
     const st = getAccessState();
     if(!st.active) return null;
-    if(st.access?.type === "permanent") return { rtAccess:"permanent", rtAccessUser:st.userId };
-    return { rtAccess:"expires", rtAccessExp:String(st.access.expiresAt), rtAccessUser:st.userId };
+    const base = st.access?.type === "permanent"
+      ? { rtAccess:"permanent", rtAccessUser:st.userId }
+      : { rtAccess:"expires", rtAccessExp:String(st.access.expiresAt), rtAccessUser:st.userId };
+    if(st.access?.overlaySig) base.rtAccessSig = st.access.overlaySig;
+    return base;
   }
   function validateOverlayUrlParams(params){
     const mode = params.get("rtAccess");
@@ -379,6 +418,7 @@
     sessionStorage.setItem(ADMIN_KEY, "1");
     if(data.token) sessionStorage.setItem(ADMIN_TOKEN_KEY, String(data.token));
     if(data.expiresAt) sessionStorage.setItem(ADMIN_EXP_KEY, String(data.expiresAt));
+    sessionStorage.setItem("ranktagAdminApiPass", second);
     return true;
   }
   function isAdminUnlocked(){
@@ -391,7 +431,9 @@
     sessionStorage.removeItem(ADMIN_KEY);
     sessionStorage.removeItem(ADMIN_TOKEN_KEY);
     sessionStorage.removeItem(ADMIN_EXP_KEY);
+    sessionStorage.removeItem("ranktagAdminApiPass");
   }
-  window.RankTagAccess = { register, login, logout, resetPassword, updateNickname, listKnownUsers, redeem, getAuth, getAccessState, requireBuilderAccess, getAccessParams, validateOverlayUrlParams, saveProject, listProjects, getProject, formatDate, formatDuration: durationLabel, ensureCodes, listCodes, addCode, generateCode, setCodeDisabled, deleteUnusedCode, exportCodes, importCodes, unlockAdmin, isAdminUnlocked, lockAdmin };
+  function getAdminApiKey(){ return sessionStorage.getItem("ranktagAdminApiPass") || ""; }
+  window.RankTagAccess = { register, login, logout, resetPassword, updateNickname, listKnownUsers, redeem, getAuth, getAccessState, requireBuilderAccess, getAccessParams, validateOverlayUrlParams, saveProject, listProjects, getProject, formatDate, formatDuration: durationLabel, ensureCodes, listCodes, addCode, generateCode, setCodeDisabled, deleteUnusedCode, exportCodes, importCodes, unlockAdmin, isAdminUnlocked, lockAdmin, getAdminApiKey };
   ensureCodes();
 })();
