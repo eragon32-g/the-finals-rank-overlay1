@@ -1,5 +1,5 @@
 const crypto = require("crypto");
-const { supabaseRpc } = require("../_lib/supabase-admin");
+const { supabaseRpc, isInvalidSupabaseKeyError } = require("../_lib/supabase-admin");
 const { parsePortableCode } = require("../_lib/access-code");
 
 function readBody(req) {
@@ -54,6 +54,15 @@ module.exports = async function handler(req, res) {
         ok: false,
         offline: true,
         message: rpc.message,
+      });
+    }
+    if (isInvalidSupabaseKeyError(rpc.status, rpc.message)) {
+      return res.status(503).json({
+        ok: false,
+        offline: true,
+        configError: true,
+        message:
+          "Chiave Supabase errata su Vercel. Controlla SUPABASE_SERVICE_ROLE_KEY (deve essere service_role, non anon).",
       });
     }
     return res.status(rpc.status || 500).json({

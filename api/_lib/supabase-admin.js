@@ -1,9 +1,16 @@
 const DEFAULT_URL = "https://dgmhxldfhmcywamgigji.supabase.co";
 
+function normalizeSupabaseUrl(value) {
+  const raw = String(value || "").trim();
+  if (!raw || raw.includes("supabase.com/dashboard")) return DEFAULT_URL;
+  if (!/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(raw)) return DEFAULT_URL;
+  return raw.replace(/\/$/, "");
+}
+
 function getSupabaseConfig() {
-  const url = process.env.SUPABASE_URL || DEFAULT_URL;
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
-  const anonKey = process.env.SUPABASE_ANON_KEY || "";
+  const url = normalizeSupabaseUrl(process.env.SUPABASE_URL);
+  const serviceKey = String(process.env.SUPABASE_SERVICE_ROLE_KEY || "").trim();
+  const anonKey = String(process.env.SUPABASE_ANON_KEY || "").trim();
   return { url, serviceKey, anonKey, ready: Boolean(serviceKey) };
 }
 
@@ -72,8 +79,15 @@ async function supabaseRpc(fn, args = {}) {
     ok: res.ok,
     status: res.status,
     data,
-    message: res.ok ? null : data?.message || text || "Errore RPC Supabase",
+    message: res.ok
+      ? null
+      : data?.message || data?.error || data?.hint || text || "Errore Supabase",
   };
 }
 
-module.exports = { getSupabaseConfig, supabaseRest, supabaseRpc };
+function isInvalidSupabaseKeyError(status, message) {
+  const text = String(message || "").toLowerCase();
+  return status === 401 || text.includes("invalid api key") || text.includes("invalid jwt");
+}
+
+module.exports = { getSupabaseConfig, supabaseRest, supabaseRpc, isInvalidSupabaseKeyError };

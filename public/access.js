@@ -275,7 +275,9 @@
         setAuth(auth);
         return auth.access;
       }
-      if(!data.offline && data.message && res.status !== 503){
+      if(data.configError){
+        console.warn(data.message || "Config Supabase errata, uso riscatto locale.");
+      } else if(!data.offline && data.message && res.status !== 503 && res.status !== 401){
         throw new Error(data.message);
       }
     } catch (err) {

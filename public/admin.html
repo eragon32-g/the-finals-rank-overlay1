@@ -53,7 +53,13 @@ async function adminFetch(path, options = {}) {
     cache: "no-store",
   });
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.message || "Errore API admin");
+  if (!res.ok) {
+    const msg = String(data.message || data.error || "Errore API admin").toLowerCase();
+    if (res.status === 401 || msg.includes("invalid api key")) {
+      throw new Error("Chiave Supabase errata su Vercel: SUPABASE_SERVICE_ROLE_KEY deve essere la chiave service_role (secret), non anon.");
+    }
+    throw new Error(data.message || data.error || "Errore API admin");
+  }
   return data;
 }
 function mapServerCode(c) {
@@ -102,17 +108,13 @@ function createCode(type,days,note,hours=0,minutes=0){
   return adminFetch('/api/admin/codes', {
     method: 'POST',
     body: JSON.stringify({ type, duration: { days, hours, minutes }, note: note || 'admin' }),
-  }).catch(() => { RankTagAccess.generateCode(type,{days,hours,minutes},'RT',note||'admin'); });
+  });
 }
 $('add').onclick=()=>run(async ()=>{
   const manual=$('code').value.trim();
   const duration={days:Number($('days').value||0),hours:Number($('hours').value||0),minutes:Number($('minutes').value||0)};
   if(manual){
-    try {
-      await adminFetch('/api/admin/codes', { method:'POST', body: JSON.stringify({ code: manual, type: $('type').value, duration, note: $('note').value }) });
-    } catch {
-      RankTagAccess.addCode(manual,$('type').value,duration,$('note').value);
-    }
+    await adminFetch('/api/admin/codes', { method:'POST', body: JSON.stringify({ code: manual, type: $('type').value, duration, note: $('note').value }) });
   } else {
     await createCode($('type').value,duration.days,$('note').value,duration.hours,duration.minutes);
   }
